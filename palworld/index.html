@@ -18,6 +18,16 @@
   </head>
   <body>
     <header class="site-header">
+      <div class="site-brand">
+        <a class="brand-logo-frame" href="./" aria-label="Palworld Passive Skills">
+          <img
+            class="brand-logo"
+            src="./assets/palworld-logo.png"
+            alt="Palworld"
+          >
+        </a>
+      </div>
+
       <nav
         class="palworld-nav navbar navbar-expand"
         aria-label="Palworld navigation"
@@ -34,6 +44,23 @@
     </header>
 
     <main class="site-content">
+      <section class="passive-skills-section" aria-label="Passive Skills">
+        <div class="skills-summary">
+          <span id="passive-skills-count" class="skill-count"></span>
+        </div>
+
+        <div
+          id="passive-skills-grid"
+          class="row g-3"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <p class="loading-message">Loading passive skills…</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
       <section
         id="data-status"
         class="data-status alert"
@@ -47,7 +74,7 @@
         </div>
         <div id="data-status-meta" class="data-status-meta"></div>
       </section>
-    </main>
+    </footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

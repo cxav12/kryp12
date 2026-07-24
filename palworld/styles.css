@@ -25,9 +25,29 @@ body {
   padding-top: 1.4rem;
 }
 
+.site-brand {
+  width: 90%;
+  margin: 0 auto 0.85rem;
+}
+
+.brand-logo-frame {
+  display: block;
+  width: clamp(12rem, 22vw, 18rem);
+  aspect-ratio: 2047 / 581;
+  overflow: hidden;
+}
+
+.brand-logo {
+  display: block;
+  width: 117.24%;
+  max-width: none;
+  height: auto;
+  transform: translate(-8.5%, -28.93%);
+}
+
 .palworld-nav {
   position: relative;
-  width: 80%;
+  width: 90%;
   min-height: 4.75rem;
   margin-inline: auto;
   padding: 0;
@@ -74,8 +94,13 @@ body {
 }
 
 .site-content {
-  width: 80%;
-  margin: 1rem auto 0;
+  width: 90%;
+  margin: 1rem auto 1.5rem;
+}
+
+.site-footer {
+  width: 90%;
+  margin: 0 auto 2rem;
 }
 
 .data-status {
@@ -118,9 +143,147 @@ body {
   white-space: nowrap;
 }
 
+.passive-skills-section {
+  padding-top: 1rem;
+}
+
+.skills-summary {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-count {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.passive-skill-card {
+  height: 100%;
+  padding: 1rem;
+  border: 1px solid #30343a;
+  border-radius: 0.75rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 55%),
+    #101214;
+}
+
+.passive-skill-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.passive-skill-title {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.skill-badges {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+.skill-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.45rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid;
+  border-radius: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.surgery-badge {
+  border-color: #2f687b;
+  background: #102934;
+  color: #79d5f3;
+}
+
+.rank-badge {
+  border-color: #9c2cb4;
+  background: #3d1146;
+  color: #eb8aff;
+}
+
+.rank-badge[data-rank="4"] {
+  border-color: #9a7d00;
+  background: #332b00;
+  color: #ffe238;
+}
+
+.rank-badge[data-rank="3"] {
+  border-color: #ca8a1f;
+  background: #3a2608;
+  color: #ffc968;
+}
+
+.rank-badge[data-rank="2"] {
+  border-color: #9b9da2;
+  background: #2a2c2f;
+  color: #e2e4e7;
+}
+
+.rank-badge[data-rank="1"] {
+  border-color: #4779c2;
+  background: #132b4d;
+  color: #8fbdff;
+}
+
+.rank-badge[data-negative="true"] {
+  border-color: #8c4148;
+  background: #36171a;
+  color: #ff929a;
+}
+
+.skill-effects {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-effects li {
+  position: relative;
+  padding-left: 1rem;
+  color: #cbd0d6;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.skill-effects li::before {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.15rem;
+  width: 0;
+  height: 0;
+  border-right: 0.24rem solid transparent;
+  border-bottom: 0.36rem solid #54e295;
+  border-left: 0.24rem solid transparent;
+  content: "";
+}
+
+.loading-message,
+.skills-error {
+  color: var(--muted);
+}
+
 @media (max-width: 767.98px) {
   .palworld-nav,
-  .site-content {
+  .site-brand,
+  .site-content,
+  .site-footer {
     width: calc(100% - 2rem);
   }
 
@@ -140,4 +303,5 @@ body {
   .data-status-meta {
     text-align: left;
   }
+
 }

@@ -1,16 +1,1337 @@
-{
-  "metadata": {
-    "gameVersion": "1.0.1",
-    "datasetVersion": 1,
-    "lastUpdated": "2026-07-24",
-    "lastChecked": "2026-07-24",
-    "updateStatus": "current",
-    "updateMessage": "",
-    "source": {
-      "name": "Paldeck",
-      "url": "https://paldeck.cc/",
-      "retrieval": "Pending approved import process"
-    }
-  },
-  "passiveSkills": []
+﻿{
+    "metadata":  {
+                     "gameVersion":  "1.0.1",
+                     "datasetVersion":  2,
+                     "lastUpdated":  "2026-07-24",
+                     "lastChecked":  "2026-07-24",
+                     "updateStatus":  "current",
+                     "updateMessage":  "",
+                     "recordCount":  115,
+                     "source":  {
+                                    "name":  "Paldeck",
+                                    "url":  "https://paldeck.cc/passives",
+                                    "retrievedAt":  "2026-07-24",
+                                    "supplementalEffects":  "https://palbreeding.com/guides/palworld-passive-skills"
+                                }
+                 },
+    "passiveSkills":  [
+                          {
+                              "id":  "insulated-body",
+                              "name":  "Insulated Body",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% decrease in incoming Lightning damage."
+                                          ]
+                          },
+                          {
+                              "id":  "botanical-barrier",
+                              "name":  "Botanical Barrier",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% decrease in incoming Grass damage."
+                                          ]
+                          },
+                          {
+                              "id":  "heated-body",
+                              "name":  "Heated Body",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% decrease in incoming Ice damage."
+                                          ]
+                          },
+                          {
+                              "id":  "waterproof",
+                              "name":  "Waterproof",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% decrease in incoming Water damage."
+                                          ]
+                          },
+                          {
+                              "id":  "aggressive",
+                              "name":  "Aggressive",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +10%",
+                                              "Defense -10%"
+                                          ]
+                          },
+                          {
+                              "id":  "abnormal",
+                              "name":  "Abnormal",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% decrease in incoming Neutral damage."
+                                          ]
+                          },
+                          {
+                              "id":  "suntan-lover",
+                              "name":  "Suntan Lover",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% decrease in incoming Fire damage."
+                                          ]
+                          },
+                          {
+                              "id":  "pyromaniac",
+                              "name":  "Pyromaniac",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Fire attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "hydromaniac",
+                              "name":  "Hydromaniac",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Water attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "capacitor",
+                              "name":  "Capacitor",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Lightning attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "spirit-of-zen",
+                              "name":  "Spirit of Zen",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Neutral attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "earthquake-resistant",
+                              "name":  "Earthquake Resistant",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% decrease in incoming Earth damage."
+                                          ]
+                          },
+                          {
+                              "id":  "cheery",
+                              "name":  "Cheery",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% decrease in incoming Dark damage."
+                                          ]
+                          },
+                          {
+                              "id":  "dragonkiller",
+                              "name":  "Dragonkiller",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% decrease in incoming Dragon damage."
+                                          ]
+                          },
+                          {
+                              "id":  "musclehead",
+                              "name":  "Musclehead",
+                              "rank":  2,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +30%",
+                                              "Work Speed -50%"
+                                          ]
+                          },
+                          {
+                              "id":  "heavyweight",
+                              "name":  "Heavyweight",
+                              "rank":  2,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Defense +20%",
+                                              "Immune to Knockback"
+                                          ]
+                          },
+                          {
+                              "id":  "serious",
+                              "name":  "Serious",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Work Speed +20%"
+                                          ]
+                          },
+                          {
+                              "id":  "reload-master",
+                              "name":  "Reload Master",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Player Reload Speed +4%"
+                                          ]
+                          },
+                          {
+                              "id":  "farmhand",
+                              "name":  "Farmhand",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Farming\u0027s Work Suitability +1"
+                                          ]
+                          },
+                          {
+                              "id":  "wellness-watcher",
+                              "name":  "Wellness Watcher",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Player Stamina Consumption -5.0%"
+                                          ]
+                          },
+                          {
+                              "id":  "healing-coach",
+                              "name":  "Healing Coach",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Player Auto Health Regeneration Rate +5%"
+                                          ]
+                          },
+                          {
+                              "id":  "sadist",
+                              "name":  "Sadist",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +15%",
+                                              "Defense -15%"
+                                          ]
+                          },
+                          {
+                              "id":  "masochist",
+                              "name":  "Masochist",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Defense +15%",
+                                              "Attack -15%"
+                                          ]
+                          },
+                          {
+                              "id":  "work-slave",
+                              "name":  "Work Slave",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Work Speed +30%",
+                                              "Attack -30%"
+                                          ]
+                          },
+                          {
+                              "id":  "conceited",
+                              "name":  "Conceited",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Work Speed +10%",
+                                              "Defense -10%"
+                                          ]
+                          },
+                          {
+                              "id":  "hard-skin",
+                              "name":  "Hard Skin",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Defense +10%"
+                                          ]
+                          },
+                          {
+                              "id":  "brave",
+                              "name":  "Brave",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +10%"
+                                          ]
+                          },
+                          {
+                              "id":  "hooligan",
+                              "name":  "Hooligan",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +15%",
+                                              "Work Speed -10%"
+                                          ]
+                          },
+                          {
+                              "id":  "fragrant-foliage",
+                              "name":  "Fragrant Foliage",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Grass attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "mercy-hit",
+                              "name":  "Mercy Hit",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Pacifist.",
+                                              "Will not reduce the target\u0027s Health below 1."
+                                          ]
+                          },
+                          {
+                              "id":  "easygoing",
+                              "name":  "Easygoing",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Active skill cooldown extension -15%"
+                                          ]
+                          },
+                          {
+                              "id":  "sickly",
+                              "name":  "Sickly",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Max Stamina -25%",
+                                              "*This effect is only valid for rideable pals."
+                                          ]
+                          },
+                          {
+                              "id":  "unstable",
+                              "name":  "Unstable",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "SAN drops +10.0% faster."
+                                          ]
+                          },
+                          {
+                              "id":  "downtrodden",
+                              "name":  "Downtrodden",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Defense -10%"
+                                          ]
+                          },
+                          {
+                              "id":  "coward",
+                              "name":  "Coward",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack -10%"
+                                          ]
+                          },
+                          {
+                              "id":  "glutton",
+                              "name":  "Glutton",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Hunger decreases +10.0% faster."
+                                          ]
+                          },
+                          {
+                              "id":  "slacker",
+                              "name":  "Slacker",
+                              "rank":  -3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Work Speed -30%"
+                                          ]
+                          },
+                          {
+                              "id":  "brittle",
+                              "name":  "Brittle",
+                              "rank":  -3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Defense -20%"
+                                          ]
+                          },
+                          {
+                              "id":  "pacifist",
+                              "name":  "Pacifist",
+                              "rank":  -3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack -20%"
+                                          ]
+                          },
+                          {
+                              "id":  "destructive",
+                              "name":  "Destructive",
+                              "rank":  -2,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "SAN drops +15.0% faster."
+                                          ]
+                          },
+                          {
+                              "id":  "shabby",
+                              "name":  "Shabby",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Decrease the value of items when sold by -10%"
+                                          ]
+                          },
+                          {
+                              "id":  "night-owl",
+                              "name":  "Night Owl",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Tends to nap through the day, due to being nocturnal."
+                                          ]
+                          },
+                          {
+                              "id":  "bottomless-stomach",
+                              "name":  "Bottomless Stomach",
+                              "rank":  -2,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Hunger decreases +15.0% faster."
+                                          ]
+                          },
+                          {
+                              "id":  "dainty-eater",
+                              "name":  "Dainty Eater",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Hunger decreases +10.0% slower."
+                                          ]
+                          },
+                          {
+                              "id":  "positive-thinker",
+                              "name":  "Positive Thinker",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "SAN drops +10.0% slower."
+                                          ]
+                          },
+                          {
+                              "id":  "nimble",
+                              "name":  "Nimble",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase to movement speed."
+                                          ]
+                          },
+                          {
+                              "id":  "blood-of-the-dragon",
+                              "name":  "Blood of the Dragon",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Dragon attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "coldblooded",
+                              "name":  "Coldblooded",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Ice attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "power-of-gaia",
+                              "name":  "Power of Gaia",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Earth attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "veil-of-darkness",
+                              "name":  "Veil of Darkness",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Dark attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "otherworldly-cells",
+                              "name":  "Otherworldly Cells",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +10%",
+                                              "Fire damage reduction 15%",
+                                              "Lightning damage reduction 15%"
+                                          ]
+                          },
+                          {
+                              "id":  "sleek-stroke",
+                              "name":  "Sleek Stroke",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase movement speed on water."
+                                          ]
+                          },
+                          {
+                              "id":  "clumsy",
+                              "name":  "Clumsy",
+                              "rank":  -1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Work Speed -10%"
+                                          ]
+                          },
+                          {
+                              "id":  "fine-furs",
+                              "name":  "Fine Furs",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Increases the value of items when sold by +3%"
+                                          ]
+                          },
+                          {
+                              "id":  "insomnia",
+                              "name":  "Insomnia",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Does not sleep and continues to work even at night."
+                                          ]
+                          },
+                          {
+                              "id":  "impatient",
+                              "name":  "Impatient",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Active skill cooldown reduction 15%"
+                                          ]
+                          },
+                          {
+                              "id":  "fit-as-a-fiddle",
+                              "name":  "Fit as a Fiddle",
+                              "rank":  1,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Max stamina +25%",
+                                              "*This effect is only valid for rideable pals."
+                                          ]
+                          },
+                          {
+                              "id":  "service-minded",
+                              "name":  "Service-Minded",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Your Dropped Items + 50%"
+                                          ]
+                          },
+                          {
+                              "id":  "eternal-engine",
+                              "name":  "Eternal Engine",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Max stamina +75%",
+                                              "*This effect is only valid for rideable pals."
+                                          ]
+                          },
+                          {
+                              "id":  "vampiric",
+                              "name":  "Vampiric",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Absorbs a portion of the damage dealt to restore Health.",
+                                              "Does not sleep at night and continues to work."
+                                          ]
+                          },
+                          {
+                              "id":  "lunker",
+                              "name":  "Lunker",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "20% increase to Water attack damage",
+                                              "20% increase to Ice attack damage",
+                                              "20% increase to defense."
+                                          ]
+                          },
+                          {
+                              "id":  "swift",
+                              "name":  "Swift",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase to movement speed."
+                                          ]
+                          },
+                          {
+                              "id":  "demon-god",
+                              "name":  "Demon God",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +30%",
+                                              "Defense +5%"
+                                          ]
+                          },
+                          {
+                              "id":  "mastery-of-fasting",
+                              "name":  "Mastery of Fasting",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Hunger decreases +20.0% slower."
+                                          ]
+                          },
+                          {
+                              "id":  "heart-of-the-immovable-king",
+                              "name":  "Heart of the Immovable King",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "SAN drops +20.0% slower."
+                                          ]
+                          },
+                          {
+                              "id":  "lavish-hospitality",
+                              "name":  "Lavish Hospitality",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Your Dropped Items + 100%"
+                                          ]
+                          },
+                          {
+                              "id":  "ranch-master",
+                              "name":  "Ranch Master",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Farming\u0027s Work Suitability +2"
+                                          ]
+                          },
+                          {
+                              "id":  "immortality",
+                              "name":  "Immortality",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Life Steal +5%",
+                                              "Pal Auto Health Regeneration Rate +100%",
+                                              "Attack +15%"
+                                          ]
+                          },
+                          {
+                              "id":  "idiosyncratic",
+                              "name":  "Idiosyncratic",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Pal and Player Auto Health Regeneration Rate +50%",
+                                              "Defense +25%",
+                                              "Immune to Poison Damage",
+                                              "Immune to Burn Damage"
+                                          ]
+                          },
+                          {
+                              "id":  "king-of-the-waves",
+                              "name":  "King of the Waves",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "50% increase movement speed on water."
+                                          ]
+                          },
+                          {
+                              "id":  "savior",
+                              "name":  "Savior",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Neutral attack damage.",
+                                              "30% increase in Grass attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "babysitter",
+                              "name":  "Babysitter",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "While at a base, increases egg production speed by +30% and incubation speed by +30% for Pals assigned to a Breeding Farm."
+                                          ]
+                          },
+                          {
+                              "id":  "hermit-sage",
+                              "name":  "Hermit Sage",
+                              "rank":  5,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "SAN depletion rate -50.0%",
+                                              "Work Speed -20%",
+                                              "World Tree resources will not vanish when approached."
+                                          ]
+                          },
+                          {
+                              "id":  "dimensional-leap",
+                              "name":  "Dimensional Leap",
+                              "rank":  5,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Movement Speed +50%",
+                                              "Increases Hunger depletion rate by +15.0%",
+                                              "World Tree resources will not vanish when approached."
+                                          ]
+                          },
+                          {
+                              "id":  "god-of-destruction",
+                              "name":  "God of Destruction",
+                              "rank":  5,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +40%",
+                                              "Defense +20%",
+                                              "Max Health -50%",
+                                              "World Tree resources will not vanish when approached."
+                                          ]
+                          },
+                          {
+                              "id":  "world-tree-seedbed",
+                              "name":  "World Tree Seedbed",
+                              "rank":  5,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Decrease Hunger depletion rate by +50.0%",
+                                              "HP -20%",
+                                              "World Tree resources will not vanish when approached."
+                                          ]
+                          },
+                          {
+                              "id":  "twin-edged-holy-blade",
+                              "name":  "Twin-Edged Holy Blade",
+                              "rank":  5,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +50%",
+                                              "Defense -30%",
+                                              "World Tree resources will not vanish when approached."
+                                          ]
+                          },
+                          {
+                              "id":  "sanctified-meat-shield",
+                              "name":  "Sanctified Meat Shield",
+                              "rank":  5,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Defense +50%",
+                                              "Attack -30%",
+                                              "World Tree resources will not vanish when approached."
+                                          ]
+                          },
+                          {
+                              "id":  "demon-s-hand",
+                              "name":  "Demon’s Hand",
+                              "rank":  5,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Work Speed +90%",
+                                              "SAN dreceases +15.0% faster",
+                                              "World Tree harvestables won\u0027t vanish when approached."
+                                          ]
+                          },
+                          {
+                              "id":  "siren-of-the-void",
+                              "name":  "Siren of the Void",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Dark attack damage.",
+                                              "30% increase in Ice attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "eternal-flame",
+                              "name":  "Eternal Flame",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase to Fire attack damage.",
+                                              "30% increase to Lightning attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "invader",
+                              "name":  "Invader",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Dark attack damage.",
+                                              "30% increase in Dragon attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "legend",
+                              "name":  "Legend",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +20%",
+                                              "Defense +20%",
+                                              "Movement Speed increases 20%"
+                                          ]
+                          },
+                          {
+                              "id":  "remarkable-craftsmanship",
+                              "name":  "Remarkable Craftsmanship",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Work Speed +75%"
+                                          ]
+                          },
+                          {
+                              "id":  "diamond-body",
+                              "name":  "Diamond Body",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Defense +30%",
+                                              "Immune to Flinch",
+                                              "Immune to Knockback"
+                                          ]
+                          },
+                          {
+                              "id":  "lucky",
+                              "name":  "Lucky",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +15%",
+                                              "Defense +15%",
+                                              "Work Speed +20%"
+                                          ]
+                          },
+                          {
+                              "id":  "heavily-armored",
+                              "name":  "Heavily Armored",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Immune to Explosion Damage"
+                                          ]
+                          },
+                          {
+                              "id":  "earth-emperor",
+                              "name":  "Earth Emperor",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Earth attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "lord-of-the-underworld",
+                              "name":  "Lord of the Underworld",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Dark attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "divine-dragon",
+                              "name":  "Divine Dragon",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Dragon attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "ice-emperor",
+                              "name":  "Ice Emperor",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Ice attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "lord-of-the-sea",
+                              "name":  "Lord of the Sea",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Water attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "lord-of-lightning",
+                              "name":  "Lord of Lightning",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Lightning attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "spirit-emperor",
+                              "name":  "Spirit Emperor",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Grass attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "noble",
+                              "name":  "Noble",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Increases the value of items when sold by +5%"
+                                          ]
+                          },
+                          {
+                              "id":  "ace-swimmer",
+                              "name":  "Ace Swimmer",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "40% increase movement speed on water."
+                                          ]
+                          },
+                          {
+                              "id":  "whopper",
+                              "name":  "Whopper",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Water damage +5%",
+                                              "Ice damage +5%",
+                                              "Defense +5%"
+                                          ]
+                          },
+                          {
+                              "id":  "infinite-stamina",
+                              "name":  "Infinite Stamina",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Max stamina +50%",
+                                              "*This effect is only valid for rideable pals."
+                                          ]
+                          },
+                          {
+                              "id":  "runner",
+                              "name":  "Runner",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "20% increase to movement speed."
+                                          ]
+                          },
+                          {
+                              "id":  "philanthropist",
+                              "name":  "Philanthropist",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "When assigned to a Breeding Farm, breeding speed is increased by 100%."
+                                          ]
+                          },
+                          {
+                              "id":  "serenity",
+                              "name":  "Serenity",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Active skill cooldown reduction 30%",
+                                              "Attack +10%"
+                                          ]
+                          },
+                          {
+                              "id":  "ferocious",
+                              "name":  "Ferocious",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Attack +20%"
+                                          ]
+                          },
+                          {
+                              "id":  "vanguard",
+                              "name":  "Vanguard",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Player Attack."
+                                          ]
+                          },
+                          {
+                              "id":  "stronghold-strategist",
+                              "name":  "Stronghold Strategist",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "10% increase in Player Defense."
+                                          ]
+                          },
+                          {
+                              "id":  "burly-body",
+                              "name":  "Burly Body",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Defense +20%",
+                                              "Immune to Flinch"
+                                          ]
+                          },
+                          {
+                              "id":  "lightfooted",
+                              "name":  "Lightfooted",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Mounted Jump Count +1"
+                                          ]
+                          },
+                          {
+                              "id":  "skymarcher",
+                              "name":  "Skymarcher",
+                              "rank":  4,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Mounted Jump Count +2"
+                                          ]
+                          },
+                          {
+                              "id":  "artisan",
+                              "name":  "Artisan",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Work Speed +50%"
+                                          ]
+                          },
+                          {
+                              "id":  "workaholic",
+                              "name":  "Workaholic",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "SAN drops +15.0% slower."
+                                          ]
+                          },
+                          {
+                              "id":  "celestial-emperor",
+                              "name":  "Celestial Emperor",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Neutral attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "flame-emperor",
+                              "name":  "Flame Emperor",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "30% increase in Fire attack damage."
+                                          ]
+                          },
+                          {
+                              "id":  "diet-lover",
+                              "name":  "Diet Lover",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "Hunger decreases +15.0% slower."
+                                          ]
+                          },
+                          {
+                              "id":  "motivational-leader",
+                              "name":  "Motivational Leader",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "25% increase in Player Work Speed."
+                                          ]
+                          },
+                          {
+                              "id":  "mine-foreman",
+                              "name":  "Mine Foreman",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "25% increase in Player Mining Efficiency."
+                                          ]
+                          },
+                          {
+                              "id":  "logging-foreman",
+                              "name":  "Logging Foreman",
+                              "rank":  3,
+                              "acquisition":  [
+                                                  "Surgery"
+                                              ],
+                              "effects":  [
+                                              "25% increase in Player Logging Efficiency."
+                                          ]
+                          }
+                      ]
 }

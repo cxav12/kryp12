@@ -75,7 +75,9 @@ body {
 .palworld-nav .nav-link {
   display: flex;
   align-items: center;
-  padding: 0 2.5rem;
+  justify-content: center;
+  min-width: 8.75rem;
+  padding: 0 2rem;
   border-right: 2px solid var(--nav-border);
   color: var(--text);
   font-size: 1rem;
@@ -145,7 +147,8 @@ body {
   white-space: nowrap;
 }
 
-.passive-skills-section {
+.passive-skills-section,
+.pals-section {
   padding-top: 1rem;
 }
 
@@ -162,51 +165,166 @@ body {
 }
 
 .passive-skill-card {
-  --tier-bg-start: #151719;
-  --tier-bg-end: #101214;
+  --tier-bg: #101214;
   --tier-border: #30343a;
 
   height: 100%;
   padding: 0.85rem;
   border: 1px solid var(--tier-border);
   border-radius: var(--card-radius);
-  background: linear-gradient(135deg, var(--tier-bg-start), var(--tier-bg-end));
+  background: var(--tier-bg);
 }
 
 .passive-skill-card[data-tier="s"] {
-  --tier-bg-start: #35204d;
-  --tier-bg-end: #171021;
+  --tier-bg: #241936;
   --tier-border: #8d55c7;
 }
 
 .passive-skill-card[data-tier="a"] {
-  --tier-bg-start: #3e350b;
-  --tier-bg-end: #181403;
+  --tier-bg: #302907;
   --tier-border: #c9a500;
 }
 
 .passive-skill-card[data-tier="b"] {
-  --tier-bg-start: #3d2708;
-  --tier-bg-end: #190f02;
+  --tier-bg: #302009;
   --tier-border: #ca8a1f;
 }
 
 .passive-skill-card[data-tier="c"] {
-  --tier-bg-start: #32373e;
-  --tier-bg-end: #15181c;
+  --tier-bg: #24282e;
   --tier-border: #7d858e;
 }
 
 .passive-skill-card[data-tier="d"] {
-  --tier-bg-start: #173257;
-  --tier-bg-end: #081321;
+  --tier-bg: #102540;
   --tier-border: #4779c2;
 }
 
 .passive-skill-card[data-tier="f"] {
-  --tier-bg-start: #42191f;
-  --tier-bg-end: #19080a;
+  --tier-bg: #321417;
   --tier-border: #8c4148;
+}
+
+.pal-card {
+  display: grid;
+  grid-template-columns: 5.25rem minmax(0, 1fr);
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #30343a;
+  border-radius: var(--card-radius);
+  background: #101214;
+}
+
+.pal-card-media {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: 0.65rem;
+  border-right: 1px solid #30343a;
+  background: #171a1d;
+}
+
+.pal-card-media img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+}
+
+.pal-card-body {
+  min-width: 0;
+  padding: 0.85rem;
+}
+
+.pal-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.45rem;
+}
+
+.pal-card-number {
+  margin: 0 0 0.1rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pal-elements,
+.pal-work {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.pal-elements {
+  margin-bottom: 0.5rem;
+}
+
+.pal-work {
+  margin-top: 0.55rem;
+}
+
+.pal-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 1.25rem;
+  padding: 0.16rem 0.36rem;
+  border: 1px solid #343940;
+  border-radius: 0.35rem;
+  background: #171a1d;
+  color: #d9dde2;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pal-icon-badge img {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+}
+
+.pal-description {
+  display: -webkit-box;
+  margin: 0.45rem 0 0;
+  overflow: hidden;
+  color: #cbd0d6;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.pal-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+}
+
+.pal-stat {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.35rem 0.4rem;
+  border: 1px solid #30343a;
+  border-radius: 0.35rem;
+  background: #151719;
+}
+
+.pal-stat span {
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pal-stat strong {
+  color: #fff;
+  font-size: 0.82rem;
+  line-height: 1;
 }
 
 .passive-skill-header {
@@ -339,7 +457,8 @@ body {
   }
 
   .palworld-nav .nav-link {
-    padding-inline: 1.5rem;
+    min-width: 7rem;
+    padding-inline: 1.25rem;
   }
 
   .data-status {
@@ -349,6 +468,15 @@ body {
 
   .data-status-meta {
     text-align: left;
+  }
+
+  .pal-card {
+    grid-template-columns: 4.75rem minmax(0, 1fr);
+  }
+
+  .pal-card-media img {
+    width: 3.6rem;
+    height: 3.6rem;
   }
 
 }

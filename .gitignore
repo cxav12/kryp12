@@ -4,3 +4,7 @@
 start-local-site.cmd
 start-local-site.ps1
 palworld/start-palworld.cmd
+palworld/start-palworld.command
+yankees/start-yankees.command
+server-out.log
+server-err.log

@@ -38,26 +38,44 @@ function createBadge(text, className, attributes = {}) {
 }
 
 function getTierLabel(rank) {
+  if (rank < 0) {
+    return "F-Tier";
+  }
+
   const tierByRank = {
     5: "S-Tier",
     4: "A-Tier",
     3: "B-Tier",
     2: "C-Tier",
     1: "D-Tier",
-    "-1": "F-Tier",
-    "-2": "F−-Tier",
-    "-3": "F−−-Tier",
   };
 
   return tierByRank[rank] ?? `Rank ${rank}`;
 }
 
+function getTierKey(rank) {
+  if (rank < 0) {
+    return "f";
+  }
+
+  const tierByRank = {
+    5: "s",
+    4: "a",
+    3: "b",
+    2: "c",
+    1: "d",
+  };
+
+  return tierByRank[rank] ?? "unranked";
+}
+
 function createSkillCard(skill) {
   const column = document.createElement("div");
-  column.className = "col-12 col-lg-6";
+  column.className = "col-12 col-md-6 col-lg-4 col-xxl-3";
 
   const card = document.createElement("article");
   card.className = "passive-skill-card";
+  card.dataset.tier = getTierKey(skill.rank);
 
   const header = document.createElement("header");
   header.className = "passive-skill-header";
@@ -75,6 +93,7 @@ function createSkillCard(skill) {
 
   const rankBadge = createBadge(getTierLabel(skill.rank), "rank-badge", {
     rank: String(skill.rank),
+    tier: getTierKey(skill.rank),
     negative: String(skill.rank < 0),
   });
   rankBadge.title = `Palworld Rank ${skill.rank}`;

@@ -5,7 +5,11 @@ const statusTitle = document.querySelector("#data-status-title");
 const statusMessage = document.querySelector("#data-status-message");
 const statusMeta = document.querySelector("#data-status-meta");
 const skillsGrid = document.querySelector("#passive-skills-grid");
-const skillsCount = document.querySelector("#passive-skills-count");
+const tierFilters = document.querySelector("#tier-filters");
+const searchInput = document.querySelector("#passive-search-input");
+
+let allPassiveSkills = [];
+let activeTier = "all";
 
 function formatDate(dateString) {
   const date = new Date(`${dateString}T00:00:00`);
@@ -121,6 +125,15 @@ function createSkillCard(skill) {
 }
 
 function renderPassiveSkills(skills) {
+  if (skills.length === 0) {
+    const message = document.createElement("p");
+    message.className = "no-skills-message";
+    message.textContent = "No passive skills match these filters.";
+    skillsGrid.replaceChildren(message);
+    skillsGrid.setAttribute("aria-busy", "false");
+    return;
+  }
+
   const fragment = document.createDocumentFragment();
 
   skills.forEach((skill) => {
@@ -129,8 +142,44 @@ function renderPassiveSkills(skills) {
 
   skillsGrid.replaceChildren(fragment);
   skillsGrid.setAttribute("aria-busy", "false");
-  skillsCount.textContent = `${skills.length} skills`;
 }
+
+function applyFilters() {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+  const filteredSkills = allPassiveSkills.filter((skill) => {
+    const matchesTier =
+      activeTier === "all" || getTierKey(skill.rank) === activeTier;
+    const searchableText = [skill.name, ...skill.effects]
+      .join(" ")
+      .toLowerCase();
+    const matchesSearch =
+      searchTerm.length === 0 || searchableText.includes(searchTerm);
+
+    return matchesTier && matchesSearch;
+  });
+
+  renderPassiveSkills(filteredSkills);
+}
+
+tierFilters.addEventListener("click", (event) => {
+  const button = event.target.closest(".tier-filter");
+
+  if (!button) {
+    return;
+  }
+
+  activeTier = button.dataset.tier;
+
+  tierFilters.querySelectorAll(".tier-filter").forEach((filterButton) => {
+    const isActive = filterButton === button;
+    filterButton.classList.toggle("active", isActive);
+    filterButton.setAttribute("aria-pressed", String(isActive));
+  });
+
+  applyFilters();
+});
+
+searchInput.addEventListener("input", applyFilters);
 
 async function loadPassiveSkills() {
   try {
@@ -155,7 +204,8 @@ async function loadPassiveSkills() {
       meta: `Last checked ${formatDate(metadata.lastChecked)}`,
     });
 
-    renderPassiveSkills(data.passiveSkills);
+    allPassiveSkills = data.passiveSkills;
+    applyFilters();
   } catch (error) {
     console.error("Unable to load Palworld passive skills.", error);
     showStatus({

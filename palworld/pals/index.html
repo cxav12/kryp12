@@ -14,7 +14,7 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     >
-    <link rel="stylesheet" href="../styles.css?v=20260724b">
+    <link rel="stylesheet" href="../styles.css?v=20260724k">
   </head>
   <body>
     <header class="site-header">
@@ -50,8 +50,91 @@
 
     <main class="site-content">
       <section class="pals-section" aria-label="Pals">
-        <div class="skills-summary">
-          <span id="pals-count" class="skill-count"></span>
+        <div class="pals-toolbar">
+          <div
+            id="pals-view-filters"
+            class="tier-filters"
+            role="group"
+            aria-label="Choose Pal view"
+          >
+            <button
+              class="tier-filter active"
+              type="button"
+              data-view="all"
+              aria-pressed="true"
+            >
+              All
+            </button>
+            <button
+              class="tier-filter"
+              type="button"
+              data-view="workers"
+              aria-pressed="false"
+            >
+              Top Workers
+            </button>
+            <button
+              class="tier-filter"
+              type="button"
+              data-view="elements"
+              aria-pressed="false"
+            >
+              Element
+            </button>
+          </div>
+
+          <div class="passive-search pal-search" role="search">
+            <label class="visually-hidden" for="pal-search-input">
+              Search Pals
+            </label>
+            <input
+              id="pal-search-input"
+              class="form-control"
+              type="search"
+              placeholder="Search Pals..."
+              autocomplete="off"
+            >
+          </div>
+        </div>
+
+        <div
+          id="work-filters"
+          class="work-filters"
+          role="group"
+          aria-label="Rank Pals by work suitability"
+          hidden
+        ></div>
+
+        <div id="element-filter-panel" class="element-filter-panel" hidden>
+          <p class="filter-hint">
+            Choose the primary element.
+          </p>
+          <div
+            id="element-filters"
+            class="element-filters"
+            role="group"
+            aria-label="Choose the primary element"
+          ></div>
+
+          <button
+            id="second-element-toggle"
+            class="tier-filter second-element-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="second-element-panel"
+          >
+            Add a 2nd Element
+          </button>
+
+          <div id="second-element-panel" class="second-element-panel" hidden>
+            <p class="filter-hint">Choose the second element.</p>
+            <div
+              id="second-element-filters"
+              class="element-filters"
+              role="group"
+              aria-label="Choose the second element"
+            ></div>
+          </div>
         </div>
 
         <div
@@ -86,6 +169,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=20260724h"></script>
   </body>
 </html>

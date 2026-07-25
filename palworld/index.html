@@ -14,7 +14,7 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     >
-    <link rel="stylesheet" href="./styles.css?v=20260724b">
+    <link rel="stylesheet" href="./styles.css?v=20260724k">
   </head>
   <body>
     <header class="site-header">
@@ -50,8 +50,34 @@
 
     <main class="site-content">
       <section class="passive-skills-section" aria-label="Passive Skills">
-        <div class="skills-summary">
-          <span id="passive-skills-count" class="skill-count"></span>
+        <div class="skills-toolbar">
+          <div
+            id="tier-filters"
+            class="tier-filters"
+            role="group"
+            aria-label="Filter passive skills by tier"
+          >
+            <button class="tier-filter active" type="button" data-tier="all" aria-pressed="true">All</button>
+            <button class="tier-filter" type="button" data-tier="s" aria-pressed="false">S-Tier</button>
+            <button class="tier-filter" type="button" data-tier="a" aria-pressed="false">A-Tier</button>
+            <button class="tier-filter" type="button" data-tier="b" aria-pressed="false">B-Tier</button>
+            <button class="tier-filter" type="button" data-tier="c" aria-pressed="false">C-Tier</button>
+            <button class="tier-filter" type="button" data-tier="d" aria-pressed="false">D-Tier</button>
+            <button class="tier-filter" type="button" data-tier="f" aria-pressed="false">F-Tier</button>
+          </div>
+
+          <div class="passive-search" role="search">
+            <label class="visually-hidden" for="passive-search-input">
+              Search passive skills
+            </label>
+            <input
+              id="passive-search-input"
+              class="form-control"
+              type="search"
+              placeholder="Search passive skills..."
+              autocomplete="off"
+            >
+          </div>
         </div>
 
         <div
@@ -86,6 +112,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=20260724c"></script>
   </body>
 </html>

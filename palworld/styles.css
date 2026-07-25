@@ -291,12 +291,41 @@ textarea {
   }
 
   .palworld-nav {
-    min-height: 4rem;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .palworld-nav .navbar-nav {
+    display: grid;
+    flex: 1 1 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-width: 0;
+    width: auto;
+  }
+
+  .palworld-nav .nav-item {
+    min-width: 0;
   }
 
   .palworld-nav .nav-link {
-    min-width: 7rem;
-    padding-inline: 1.25rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 3.25rem;
+    padding: 0.65rem 0.5rem;
+    border-bottom: 2px solid #0b0b0b;
+    font-size: 0.875rem;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .palworld-nav .nav-item:nth-child(2n) .nav-link {
+    border-right: 0;
+  }
+
+  .palworld-nav .nav-item:nth-last-child(-n + 2) .nav-link {
+    border-bottom: 0;
   }
 
   .data-status,

@@ -1,6 +1,7 @@
 ---
 deployment:
   tasks:
-    - /bin/cp -f index.html /home/horacqou/public_html/index.html
-    - /bin/cp -Rf palworld /home/horacqou/public_html/
-    - /bin/cp -Rf yankees /home/horacqou/public_html/
+    - export DEPLOYPATH=/home/horacqou/public_html/
+    - /bin/cp -f index.html $DEPLOYPATH
+    - /bin/cp -Rf palworld $DEPLOYPATH
+    - /bin/cp -Rf yankees $DEPLOYPATH

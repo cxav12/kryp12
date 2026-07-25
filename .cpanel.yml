@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/horacqou/public_html/
+    - /bin/cp -R palworld "$DEPLOYPATH"
+    - /bin/cp -R yankees "$DEPLOYPATH"
+    - /bin/cp index.html "$DEPLOYPATH"

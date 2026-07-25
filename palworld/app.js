@@ -1,4 +1,7 @@
-const DATA_URL = "./data/passive-skills.json";
+const DATA_URL = new URL(
+  "./data/passive-skills.json",
+  document.currentScript.src,
+);
 
 const statusPanel = document.querySelector("#data-status");
 const statusTitle = document.querySelector("#data-status-title");

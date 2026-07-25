@@ -344,8 +344,6 @@ body {
 }
 
 .pal-card {
-  display: grid;
-  grid-template-columns: 5.25rem minmax(0, 1fr);
   height: 100%;
   overflow: hidden;
   border: 1px solid #30343a;
@@ -353,18 +351,34 @@ body {
   background: #101214;
 }
 
+.pal-card-identity {
+  display: grid;
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.75rem;
+}
+
+.pal-portrait-column {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+}
+
 .pal-card-media {
   display: grid;
   align-items: center;
   justify-items: center;
-  padding: 0.65rem;
-  border-right: 1px solid #30343a;
+  width: 4.5rem;
+  height: 4.5rem;
+  overflow: hidden;
+  border: 1px solid #3a3f46;
+  border-radius: 50%;
   background: #171a1d;
 }
 
 .pal-card-media img {
-  width: 4rem;
-  height: 4rem;
+  width: 4.1rem;
+  height: 4.1rem;
   object-fit: contain;
 }
 
@@ -382,11 +396,12 @@ body {
 }
 
 .pal-card-number {
-  margin: 0 0 0.1rem;
+  margin: 0;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
   line-height: 1;
+  text-align: center;
 }
 
 .pal-elements,
@@ -397,7 +412,7 @@ body {
 }
 
 .pal-elements {
-  margin-bottom: 0.5rem;
+  margin-top: 0.4rem;
 }
 
 .pal-work {
@@ -423,17 +438,6 @@ body {
   width: 1rem;
   height: 1rem;
   object-fit: contain;
-}
-
-.pal-description {
-  display: -webkit-box;
-  margin: 0.45rem 0 0;
-  overflow: hidden;
-  color: #cbd0d6;
-  font-size: 0.78rem;
-  line-height: 1.35;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
 }
 
 .pal-stats {
@@ -624,8 +628,13 @@ body {
     margin-bottom: 0.75rem;
   }
 
-  .pal-card {
-    grid-template-columns: 4.75rem minmax(0, 1fr);
+  .pal-card-identity {
+    grid-template-columns: 4.25rem minmax(0, 1fr);
+  }
+
+  .pal-card-media {
+    width: 4rem;
+    height: 4rem;
   }
 
   .pal-card-media img {

@@ -119,6 +119,12 @@ function createPalCard(pal, workName = null) {
   const card = document.createElement("article");
   card.className = "pal-card";
 
+  const identity = document.createElement("div");
+  identity.className = "pal-card-identity";
+
+  const portraitColumn = document.createElement("div");
+  portraitColumn.className = "pal-portrait-column";
+
   const media = document.createElement("div");
   media.className = "pal-card-media";
 
@@ -129,28 +135,26 @@ function createPalCard(pal, workName = null) {
     : document.createElement("img");
   image.src = imageUrl;
   image.alt = pal.name;
-  image.loading = "eager";
-  image.decoding = "sync";
+  image.loading = cachedImage ? "eager" : "lazy";
+  image.decoding = "async";
   media.append(image);
-
-  const body = document.createElement("div");
-  body.className = "pal-card-body";
-
-  const header = document.createElement("header");
-  header.className = "pal-card-header";
-
-  const titleGroup = document.createElement("div");
 
   const number = document.createElement("p");
   number.className = "pal-card-number";
   number.textContent = `#${pal.dexKey}`;
+  portraitColumn.append(media, number);
+
+  const identityDetails = document.createElement("div");
+  identityDetails.className = "pal-identity-details";
+
+  const header = document.createElement("header");
+  header.className = "pal-card-header";
 
   const title = document.createElement("h2");
   title.className = "passive-skill-title";
   title.textContent = pal.name;
 
-  titleGroup.append(number, title);
-  header.append(titleGroup);
+  header.append(title);
 
   if (workName) {
     const selectedSuitability = getWorkSuitability(pal, workName);
@@ -161,10 +165,11 @@ function createPalCard(pal, workName = null) {
   }
 
   const elements = createIconList(pal.elements, "pal-elements");
+  identityDetails.append(header, elements);
+  identity.append(portraitColumn, identityDetails);
 
-  const description = document.createElement("p");
-  description.className = "pal-description";
-  description.textContent = pal.description;
+  const body = document.createElement("div");
+  body.className = "pal-card-body";
 
   const stats = document.createElement("div");
   stats.className = "pal-stats";
@@ -183,8 +188,8 @@ function createPalCard(pal, workName = null) {
     .slice(0, 4);
   const workSuitability = createIconList(workItems, "pal-work", workName);
 
-  body.append(header, elements, description, stats, workSuitability);
-  card.append(media, body);
+  body.append(identity, stats, workSuitability);
+  card.append(body);
   column.append(card);
 
   return column;
@@ -520,8 +525,19 @@ async function loadPals() {
     allPals = data.pals;
     renderWorkFilters(allPals);
     renderElementFilters(allPals);
-    await preloadPalImages(allPals);
     applyWorkFilter();
+
+    const beginImagePreload = () => {
+      preloadPalImages(allPals).catch((error) => {
+        console.warn("Some Pal images could not be preloaded.", error);
+      });
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(beginImagePreload, { timeout: 1500 });
+    } else {
+      window.setTimeout(beginImagePreload, 250);
+    }
   } catch (error) {
     console.error("Unable to load Palworld Pals.", error);
     showStatus({

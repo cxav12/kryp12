@@ -1,4 +1,4 @@
-const DATA_URL = "../data/pals.json";
+const DATA_URL = "../data/pals.json?v=20260725sprite2";
 
 const statusPanel = document.querySelector("#data-status");
 const statusTitle = document.querySelector("#data-status-title");
@@ -7,6 +7,7 @@ const statusMeta = document.querySelector("#data-status-meta");
 const palsGrid = document.querySelector("#pals-grid");
 const palsViewFilters = document.querySelector("#pals-view-filters");
 const workFilters = document.querySelector("#work-filters");
+const rarityFilters = document.querySelector("#rarity-filters");
 const elementFilterPanel = document.querySelector("#element-filter-panel");
 const elementFilters = document.querySelector("#element-filters");
 const secondElementToggle = document.querySelector("#second-element-toggle");
@@ -16,10 +17,13 @@ const palSearchInput = document.querySelector("#pal-search-input");
 
 let allPals = [];
 let selectedWork = null;
+let selectedRarity = null;
 let defaultWork = null;
 let selectedElements = [];
 let defaultElement = null;
-const palImageCache = new Map();
+let palSprite = null;
+let palIconSprite = null;
+const palCardCache = new Map();
 
 function formatDate(dateString) {
   return new Intl.DateTimeFormat("en-US", {
@@ -45,154 +49,219 @@ function resolveAssetUrl(url) {
   return `../${url.slice(2)}`;
 }
 
-function preloadPalImage(url) {
-  return new Promise((resolve) => {
-    const image = new Image();
-
-    image.onload = async () => {
-      try {
-        await image.decode();
-      } catch {
-        // A successfully loaded image can still be used if decoding is deferred.
-      }
-
-      palImageCache.set(url, image);
-      resolve();
-    };
-
-    image.onerror = () => resolve();
-    image.src = url;
-  });
+function getWorkSuitability(pal, workName) {
+  return pal.workSuitability.find((work) => work.name === workName);
 }
 
-async function preloadPalImages(pals) {
-  const imageUrls = [
-    ...new Set(pals.map((pal) => resolveAssetUrl(pal.image)).filter(Boolean)),
-  ];
+function getElementDisplayName(name) {
+  const displayNames = {
+    Normal: "Neutral",
+    Leaf: "Grass",
+    Electricity: "Electric",
+    Earth: "Ground",
+  };
 
-  await Promise.all(imageUrls.map(preloadPalImage));
+  return displayNames[name] || name;
 }
 
-function createIconList(items, className, highlightedName = null) {
+function createSpriteIcon(icon, label = "") {
+  const coordinates = palIconSprite?.icons?.[icon];
+
+  if (!coordinates) {
+    const image = document.createElement("img");
+    image.src = resolveAssetUrl(icon);
+    image.alt = label;
+    return image;
+  }
+
+  const spriteIcon = document.createElement("span");
+  const column = coordinates.x / palIconSprite.cellSize;
+  const row = coordinates.y / palIconSprite.cellSize;
+  const horizontalPosition =
+    palIconSprite.columns > 1
+      ? (column / (palIconSprite.columns - 1)) * 100
+      : 0;
+  const verticalPosition =
+    palIconSprite.rows > 1 ? (row / (palIconSprite.rows - 1)) * 100 : 0;
+
+  spriteIcon.className = "pal-sprite-icon";
+  spriteIcon.style.backgroundImage =
+    `url("${resolveAssetUrl(palIconSprite.image)}")`;
+  spriteIcon.style.backgroundSize =
+    `${palIconSprite.columns * 100}% ${palIconSprite.rows * 100}%`;
+  spriteIcon.style.backgroundPosition =
+    `${horizontalPosition}% ${verticalPosition}%`;
+
+  if (label) {
+    spriteIcon.setAttribute("role", "img");
+    spriteIcon.setAttribute("aria-label", label);
+  } else {
+    spriteIcon.setAttribute("aria-hidden", "true");
+  }
+
+  return spriteIcon;
+}
+
+function getRarityDetails(rarity) {
+  if (rarity >= 11) {
+    return { key: "legendary", label: "Legendary" };
+  }
+
+  if (rarity >= 8) {
+    return { key: "epic", label: "Epic" };
+  }
+
+  if (rarity >= 5) {
+    return { key: "rare", label: "Rare" };
+  }
+
+  return { key: "common", label: "Common" };
+}
+
+function createCornerIcons(items, className, showLevel = false) {
   const list = document.createElement("div");
   list.className = className;
 
   items.forEach((item) => {
     const badge = document.createElement("span");
-    badge.className = "pal-icon-badge";
-    badge.classList.toggle("selected-work", item.name === highlightedName);
-    badge.title = item.level ? `${item.name} Lv. ${item.level}` : item.name;
+    const displayName = getElementDisplayName(item.name);
+    badge.className = "pal-corner-icon";
+    badge.title = item.level
+      ? `${displayName} Lv. ${item.level}`
+      : displayName;
 
     if (item.icon) {
-      const image = document.createElement("img");
-      image.src = resolveAssetUrl(item.icon);
-      image.alt = item.name;
-      image.loading = "lazy";
-      badge.append(image);
+      badge.append(createSpriteIcon(item.icon, displayName));
     }
 
-    const text = document.createElement("span");
-    text.textContent = item.level ? `${item.name} ${item.level}` : item.name;
-    badge.append(text);
+    if (showLevel && item.level) {
+      const level = document.createElement("strong");
+      level.textContent = item.level;
+      badge.append(level);
+    }
+
     list.append(badge);
   });
 
   return list;
 }
 
-function createStat(label, value) {
-  const item = document.createElement("span");
-  item.className = "pal-stat";
-  item.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
-
-  return item;
+function getDisplayedSuitability(pal, workName = null) {
+  return workName
+    ? getWorkSuitability(pal, workName)
+    : [...pal.workSuitability].sort((a, b) => b.level - a.level)[0];
 }
 
-function getWorkSuitability(pal, workName) {
-  return pal.workSuitability.find((work) => work.name === workName);
+function updatePalCardWork(cardEntry, pal, workName = null) {
+  const selectedSuitability = getDisplayedSuitability(pal, workName);
+  const replacement = selectedSuitability
+    ? createCornerIcons([selectedSuitability], "pal-corner-work", true)
+    : document.createElement("div");
+
+  replacement.classList.add("pal-corner-work");
+  cardEntry.work.replaceWith(replacement);
+  cardEntry.work = replacement;
 }
 
 function createPalCard(pal, workName = null) {
   const column = document.createElement("div");
-  column.className = "col-12 col-md-6 col-lg-4 col-xxl-3";
+  column.className = "col-6 col-sm-4 col-md-3 col-xl-2";
 
   const card = document.createElement("article");
   card.className = "pal-card";
+  const rarity = getRarityDetails(pal.rarity);
+  card.dataset.rarity = rarity.key;
 
-  const identity = document.createElement("div");
-  identity.className = "pal-card-identity";
+  const topRow = document.createElement("div");
+  topRow.className = "pal-card-top";
 
-  const portraitColumn = document.createElement("div");
-  portraitColumn.className = "pal-portrait-column";
+  const elements = createCornerIcons(pal.elements, "pal-corner-elements");
+  const selectedSuitability = getDisplayedSuitability(pal, workName);
+  const work = selectedSuitability
+    ? createCornerIcons([selectedSuitability], "pal-corner-work", true)
+    : document.createElement("div");
+  work.classList.add("pal-corner-work");
+  topRow.append(elements, work);
 
   const media = document.createElement("div");
   media.className = "pal-card-media";
 
-  const imageUrl = resolveAssetUrl(pal.image);
-  const cachedImage = palImageCache.get(imageUrl);
-  const image = cachedImage
-    ? cachedImage.cloneNode(false)
-    : document.createElement("img");
-  image.src = imageUrl;
-  image.alt = pal.name;
-  image.loading = cachedImage ? "eager" : "lazy";
-  image.decoding = "async";
-  media.append(image);
+  if (palSprite && pal.sprite) {
+    const portrait = document.createElement("div");
+    const column = pal.sprite.x / palSprite.cellSize;
+    const row = pal.sprite.y / palSprite.cellSize;
+    const horizontalPosition =
+      palSprite.columns > 1 ? (column / (palSprite.columns - 1)) * 100 : 0;
+    const verticalPosition =
+      palSprite.rows > 1 ? (row / (palSprite.rows - 1)) * 100 : 0;
 
-  const number = document.createElement("p");
-  number.className = "pal-card-number";
-  number.textContent = `#${pal.dexKey}`;
-  portraitColumn.append(media, number);
+    portrait.className = "pal-portrait-sprite";
+    portrait.setAttribute("role", "img");
+    portrait.setAttribute("aria-label", pal.name);
+    portrait.style.backgroundImage =
+      `url("${resolveAssetUrl(palSprite.image)}")`;
+    portrait.style.backgroundSize =
+      `${palSprite.columns * 100}% ${palSprite.rows * 100}%`;
+    portrait.style.backgroundPosition =
+      `${horizontalPosition}% ${verticalPosition}%`;
+    media.append(portrait);
+  } else {
+    const image = document.createElement("img");
+    image.src = resolveAssetUrl(pal.image);
+    image.alt = pal.name;
+    image.loading = "eager";
+    image.decoding = "async";
+    media.append(image);
+  }
 
-  const identityDetails = document.createElement("div");
-  identityDetails.className = "pal-identity-details";
-
-  const header = document.createElement("header");
-  header.className = "pal-card-header";
-
+  const identity = document.createElement("div");
+  identity.className = "pal-card-name-row";
   const title = document.createElement("h2");
   title.className = "passive-skill-title";
   title.textContent = pal.name;
 
-  header.append(title);
+  identity.append(title);
 
-  if (workName) {
-    const selectedSuitability = getWorkSuitability(pal, workName);
-    const workLevel = document.createElement("span");
-    workLevel.className = "selected-work-level";
-    workLevel.textContent = `${workName} Lv. ${selectedSuitability.level}`;
-    header.append(workLevel);
+  const hasPalNumber =
+    pal.dexKey !== undefined &&
+    pal.dexKey !== null &&
+    String(pal.dexKey).trim() !== "" &&
+    String(pal.dexKey).toLowerCase() !== "undefined";
+
+  if (hasPalNumber) {
+    const number = document.createElement("span");
+    number.className = "pal-card-number";
+    number.textContent = `#${pal.dexKey}`;
+    identity.append(number);
   }
 
-  const elements = createIconList(pal.elements, "pal-elements");
-  identityDetails.append(header, elements);
-  identity.append(portraitColumn, identityDetails);
+  const rarityBadge = document.createElement("div");
+  rarityBadge.className = "pal-rarity";
 
-  const body = document.createElement("div");
-  body.className = "pal-card-body";
+  const rarityNumber = document.createElement("strong");
+  rarityNumber.textContent = pal.rarity;
 
-  const stats = document.createElement("div");
-  stats.className = "pal-stats";
-  stats.append(
-    createStat("HP", pal.stats.hp),
-    createStat("ATK", pal.stats.rangedattack),
-    createStat("DEF", pal.stats.defense),
-  );
+  const rarityLabel = document.createElement("span");
+  rarityLabel.textContent = rarity.label;
+  rarityBadge.append(rarityNumber, rarityLabel);
 
-  const workItems = [...pal.workSuitability]
-    .sort((a, b) => {
-      if (a.name === workName) return -1;
-      if (b.name === workName) return 1;
-      return 0;
-    })
-    .slice(0, 4);
-  const workSuitability = createIconList(workItems, "pal-work", workName);
-
-  body.append(identity, stats, workSuitability);
-  card.append(body);
+  card.append(topRow, media, identity, rarityBadge);
   column.append(card);
 
-  return column;
+  return { column, work };
+}
+
+function getPalCard(pal, workName = null) {
+  let cardEntry = palCardCache.get(pal);
+
+  if (!cardEntry) {
+    cardEntry = createPalCard(pal, workName);
+    palCardCache.set(pal, cardEntry);
+  } else {
+    updatePalCardWork(cardEntry, pal, workName);
+  }
+
+  return cardEntry.column;
 }
 
 function renderPals(pals, workName = null) {
@@ -208,7 +277,7 @@ function renderPals(pals, workName = null) {
   const fragment = document.createDocumentFragment();
 
   pals.forEach((pal) => {
-    fragment.append(createPalCard(pal, workName));
+    fragment.append(getPalCard(pal, workName));
   });
 
   palsGrid.replaceChildren(fragment);
@@ -223,11 +292,7 @@ function createWorkFilter(name, icon = null) {
   button.setAttribute("aria-pressed", "false");
 
   if (icon) {
-    const image = document.createElement("img");
-    image.src = resolveAssetUrl(icon);
-    image.alt = "";
-    image.loading = "lazy";
-    button.append(image);
+    button.append(createSpriteIcon(icon));
   }
 
   const label = document.createElement("span");
@@ -270,15 +335,11 @@ function createElementFilter(name, icon, filterPosition) {
   button.setAttribute("aria-pressed", "false");
 
   if (icon) {
-    const image = document.createElement("img");
-    image.src = resolveAssetUrl(icon);
-    image.alt = "";
-    image.loading = "lazy";
-    button.append(image);
+    button.append(createSpriteIcon(icon));
   }
 
   const label = document.createElement("span");
-  label.textContent = name;
+  label.textContent = getElementDisplayName(name);
   button.append(label);
 
   return button;
@@ -312,7 +373,29 @@ function renderElementFilters(pals) {
 }
 
 function updateElementControls() {
-  const [primaryElement, secondaryElement] = selectedElements;
+  const primaryElement = selectedElements[0];
+  let secondaryElement = selectedElements[1];
+  const validSecondaryElements = new Set();
+
+  if (primaryElement) {
+    allPals.forEach((pal) => {
+      const palElements = pal.elements.map((element) => element.name);
+
+      if (palElements.includes(primaryElement)) {
+        palElements
+          .filter((elementName) => elementName !== primaryElement)
+          .forEach((elementName) => validSecondaryElements.add(elementName));
+      }
+    });
+  }
+
+  if (
+    secondaryElement &&
+    !validSecondaryElements.has(secondaryElement)
+  ) {
+    selectedElements.splice(1, 1);
+    secondaryElement = null;
+  }
 
   elementFilters.querySelectorAll(".element-filter").forEach((button) => {
     const isActive = button.dataset.element === primaryElement;
@@ -322,8 +405,18 @@ function updateElementControls() {
 
   secondElementFilters.querySelectorAll(".element-filter").forEach((button) => {
     const isPrimary = button.dataset.element === primaryElement;
+    const hasMatchingPals = validSecondaryElements.has(
+      button.dataset.element,
+    );
     const isActive = button.dataset.element === secondaryElement;
-    button.disabled = isPrimary;
+    button.disabled = isPrimary || !hasMatchingPals;
+    const primaryDisplayName = getElementDisplayName(primaryElement);
+    const secondaryDisplayName = getElementDisplayName(
+      button.dataset.element,
+    );
+    button.title = button.disabled
+      ? `No Pals have both ${primaryDisplayName} and ${secondaryDisplayName}.`
+      : `Show Pals with ${primaryDisplayName} and ${secondaryDisplayName}.`;
     button.classList.toggle("active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
@@ -346,6 +439,9 @@ function applyWorkFilter() {
       pal.name,
       pal.dexKey,
       ...pal.elements.map((element) => element.name),
+      ...pal.elements.map((element) =>
+        getElementDisplayName(element.name),
+      ),
     ]
       .join(" ")
       .toLowerCase();
@@ -356,8 +452,11 @@ function applyWorkFilter() {
     const matchesElement = selectedElements.every((elementName) =>
       palElements.includes(elementName),
     );
+    const matchesRarity =
+      !selectedRarity ||
+      getRarityDetails(pal.rarity).key === selectedRarity;
 
-    return matchesSearch && matchesElement;
+    return matchesSearch && matchesElement && matchesRarity;
   });
 
   if (!selectedWork) {
@@ -398,6 +497,8 @@ palsViewFilters.addEventListener("click", (event) => {
 
   const showWorkers = button.dataset.view === "workers";
   const showElements = button.dataset.view === "elements";
+  const showAll = button.dataset.view === "all";
+  const showRarity = button.dataset.view === "rarity";
 
   palsViewFilters.querySelectorAll("[data-view]").forEach((viewButton) => {
     const isActive = viewButton === button;
@@ -407,9 +508,11 @@ palsViewFilters.addEventListener("click", (event) => {
 
   workFilters.hidden = !showWorkers;
   elementFilterPanel.hidden = !showElements;
+  rarityFilters.hidden = !showRarity;
 
-  if (!showWorkers && !showElements) {
+  if (showAll) {
     selectedWork = null;
+    selectedRarity = null;
     selectedElements = [];
     secondElementPanel.hidden = true;
     updateElementControls();
@@ -418,6 +521,7 @@ palsViewFilters.addEventListener("click", (event) => {
   }
 
   if (showWorkers) {
+    selectedRarity = null;
     selectedElements = [];
     secondElementPanel.hidden = true;
     updateElementControls();
@@ -432,11 +536,26 @@ palsViewFilters.addEventListener("click", (event) => {
 
   if (showElements) {
     selectedWork = null;
+    selectedRarity = null;
     if (selectedElements.length === 0 && defaultElement) {
       selectedElements = [defaultElement];
     }
 
     updateElementControls();
+  }
+
+  if (showRarity) {
+    selectedWork = null;
+    selectedElements = [];
+    secondElementPanel.hidden = true;
+    updateElementControls();
+    selectedRarity ??= "legendary";
+
+    rarityFilters.querySelectorAll(".rarity-filter").forEach((filterButton) => {
+      const isActive = filterButton.dataset.rarity === selectedRarity;
+      filterButton.classList.toggle("active", isActive);
+      filterButton.setAttribute("aria-pressed", String(isActive));
+    });
   }
 
   applyWorkFilter();
@@ -457,6 +576,23 @@ workFilters.addEventListener("click", (event) => {
     filterButton.setAttribute("aria-pressed", String(isActive));
   });
 
+  applyWorkFilter();
+});
+
+rarityFilters.addEventListener("click", (event) => {
+  const button = event.target.closest(".rarity-filter");
+
+  if (!button) {
+    return;
+  }
+
+  selectedRarity =
+    button.dataset.rarity === "all" ? null : button.dataset.rarity;
+  rarityFilters.querySelectorAll(".rarity-filter").forEach((filterButton) => {
+    const isActive = filterButton === button;
+    filterButton.classList.toggle("active", isActive);
+    filterButton.setAttribute("aria-pressed", String(isActive));
+  });
   applyWorkFilter();
 });
 
@@ -523,21 +659,11 @@ async function loadPals() {
     });
 
     allPals = data.pals;
+    palSprite = metadata.palSprite || null;
+    palIconSprite = metadata.palIconSprite || null;
     renderWorkFilters(allPals);
     renderElementFilters(allPals);
     applyWorkFilter();
-
-    const beginImagePreload = () => {
-      preloadPalImages(allPals).catch((error) => {
-        console.warn("Some Pal images could not be preloaded.", error);
-      });
-    };
-
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(beginImagePreload, { timeout: 1500 });
-    } else {
-      window.setTimeout(beginImagePreload, 250);
-    }
   } catch (error) {
     console.error("Unable to load Palworld Pals.", error);
     showStatus({

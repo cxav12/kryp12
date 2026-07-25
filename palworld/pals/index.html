@@ -14,7 +14,19 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     >
-    <link rel="stylesheet" href="../styles.css?v=20260725a">
+    <link rel="stylesheet" href="../styles.css?v=20260725ab">
+    <link
+      rel="preload"
+      href="../assets/paldeck/pal-portraits.webp"
+      as="image"
+      type="image/webp"
+    >
+    <link
+      rel="preload"
+      href="../assets/paldeck/pal-icons.webp"
+      as="image"
+      type="image/webp"
+    >
   </head>
   <body>
     <header class="site-header">
@@ -44,6 +56,12 @@
               Passive Skills
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../breeding/">Breeding</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../type-chart/">Type Chart</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -64,6 +82,14 @@
               aria-pressed="true"
             >
               All
+            </button>
+            <button
+              class="tier-filter"
+              type="button"
+              data-view="rarity"
+              aria-pressed="false"
+            >
+              Rarity
             </button>
             <button
               class="tier-filter"
@@ -105,10 +131,48 @@
           hidden
         ></div>
 
+        <div
+          id="rarity-filters"
+          class="rarity-filters"
+          role="group"
+          aria-label="Filter Pals by rarity"
+          hidden
+        >
+          <button
+            class="tier-filter rarity-filter"
+            type="button"
+            data-rarity="legendary"
+            aria-pressed="false"
+          >
+            Legendary
+          </button>
+          <button
+            class="tier-filter rarity-filter"
+            type="button"
+            data-rarity="epic"
+            aria-pressed="false"
+          >
+            Epic
+          </button>
+          <button
+            class="tier-filter rarity-filter"
+            type="button"
+            data-rarity="rare"
+            aria-pressed="false"
+          >
+            Rare
+          </button>
+          <button
+            class="tier-filter rarity-filter"
+            type="button"
+            data-rarity="common"
+            aria-pressed="false"
+          >
+            Common
+          </button>
+        </div>
+
         <div id="element-filter-panel" class="element-filter-panel" hidden>
-          <p class="filter-hint">
-            Choose the primary element.
-          </p>
           <div
             id="element-filters"
             class="element-filters"
@@ -169,6 +233,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script src="./app.js?v=20260725c"></script>
+    <script src="./app.js?v=20260725n"></script>
   </body>
 </html>

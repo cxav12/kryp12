@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Calculate Palworld children from two parents or find parent combinations for a target Pal."
+    >
+    <title>Palworld Reference | Breeding</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    >
+    <link rel="stylesheet" href="../styles.css?v=20260725ab">
+    <link
+      rel="preload"
+      href="../assets/paldeck/pal-portraits.webp"
+      as="image"
+      type="image/webp"
+    >
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-brand">
+        <a class="brand-logo-frame" href="../" aria-label="Palworld Pals">
+          <img
+            class="brand-logo"
+            src="../assets/palworld-logo.png"
+            alt="Palworld"
+          >
+        </a>
+      </div>
+
+      <nav
+        class="palworld-nav navbar navbar-expand"
+        aria-label="Palworld navigation"
+      >
+        <div class="nav-accent" aria-hidden="true"></div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../pals/">Pals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../passive-skills/">Passive Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./">
+              Breeding
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../type-chart/">Type Chart</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="site-content">
+      <section class="breeding-section" aria-label="Breeding Calculator">
+        <div
+          id="breeding-modes"
+          class="breeding-modes"
+          role="group"
+          aria-label="Choose calculator mode"
+        >
+          <button
+            class="breeding-mode active"
+            type="button"
+            data-mode="child"
+            aria-pressed="true"
+          >
+            Find parent combinations
+          </button>
+          <button
+            class="breeding-mode"
+            type="button"
+            data-mode="parents"
+            aria-pressed="false"
+          >
+            Breed two Pals
+          </button>
+        </div>
+
+        <div class="breeding-controls">
+          <div id="parents-controls" class="row g-3" hidden>
+            <div class="col-12 col-md-6 breeding-field">
+              <label for="parent-a-input">First parent</label>
+              <input
+                id="parent-a-input"
+                class="form-control breeding-input"
+                type="search"
+                placeholder="Search any Pal..."
+                autocomplete="off"
+              >
+            </div>
+            <div class="col-12 col-md-6 breeding-field">
+              <label for="parent-b-input">Second parent</label>
+              <input
+                id="parent-b-input"
+                class="form-control breeding-input"
+                type="search"
+                placeholder="Search any Pal..."
+                autocomplete="off"
+              >
+            </div>
+          </div>
+
+          <div id="child-controls" class="row g-3">
+            <div class="col-12 breeding-field">
+              <label for="child-input">I want to breed...</label>
+              <input
+                id="child-input"
+                class="form-control breeding-input"
+                type="search"
+                placeholder="Search any Pal..."
+                autocomplete="off"
+              >
+            </div>
+            <div class="col-12">
+              <section
+                class="breeding-quick-picks"
+                aria-labelledby="quick-select-toggle"
+              >
+                <div class="quick-select-heading">
+                  <button
+                    id="quick-select-toggle"
+                    class="quick-select-toggle"
+                    type="button"
+                    aria-expanded="true"
+                    aria-controls="quick-select-content"
+                  >
+                    Hide Quick Select
+                  </button>
+                </div>
+                <div id="quick-select-content">
+                  <h3>S-Tier Pals</h3>
+                  <div id="s-tier-pals" class="s-tier-pals"></div>
+                  <h3>A-Tier Pals</h3>
+                  <div
+                    id="a-tier-pals"
+                    class="s-tier-pals a-tier-pals"
+                  ></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="breeding-results"
+          class="breeding-results"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <div class="breeding-empty">
+            <span aria-hidden="true">◎</span>
+            <p>Loading breeding data...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <section
+        id="breeding-data-status"
+        class="data-status alert"
+        data-state="current"
+        role="status"
+        hidden
+      ></section>
+    </footer>
+
+    <script src="./app.js?v=20260725m"></script>
+  </body>
+</html>

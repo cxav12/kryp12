@@ -94,10 +94,6 @@ function createSkillCard(skill) {
   const badges = document.createElement("div");
   badges.className = "skill-badges";
 
-  skill.acquisition.forEach((method) => {
-    badges.append(createBadge(`🧬 ${method}`, "surgery-badge"));
-  });
-
   const rankBadge = createBadge(getTierLabel(skill.rank), "rank-badge", {
     rank: String(skill.rank),
     tier: getTierKey(skill.rank),

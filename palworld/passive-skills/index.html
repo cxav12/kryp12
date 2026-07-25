@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="A Palworld reference site for passive skills, Pals, items, and more."
+      content="Browse and filter Palworld passive skills by tier or name."
     >
     <title>Palworld Reference | Passive Skills</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     >
-    <link rel="stylesheet" href="../styles.css?v=20260725ab">
+    <link rel="stylesheet" href="../styles.css?v=20260725-clean1">
+    <link rel="stylesheet" href="./styles.css?v=20260725-clean1">
   </head>
   <body>
     <header class="site-header">
       <div class="site-brand">
-        <a class="brand-logo-frame" href="../" aria-label="Palworld Passive Skills">
+        <a class="brand-logo-frame" href="../" aria-label="Palworld reference">
           <img
             class="brand-logo"
             src="../assets/palworld-logo.png"
             alt="Palworld"
+            width="2400"
+            height="1500"
+            decoding="async"
           >
         </a>
       </div>
@@ -55,24 +60,24 @@
     </header>
 
     <main class="site-content">
-      <section class="passive-skills-section" aria-label="Passive Skills">
-        <div class="skills-toolbar">
+      <section class="content-section" aria-label="Passive Skills">
+        <div class="site-toolbar">
           <div
             id="tier-filters"
-            class="tier-filters"
+            class="filter-group"
             role="group"
             aria-label="Filter passive skills by tier"
           >
-            <button class="tier-filter active" type="button" data-tier="all" aria-pressed="true">All</button>
-            <button class="tier-filter" type="button" data-tier="s" aria-pressed="false">S-Tier</button>
-            <button class="tier-filter" type="button" data-tier="a" aria-pressed="false">A-Tier</button>
-            <button class="tier-filter" type="button" data-tier="b" aria-pressed="false">B-Tier</button>
-            <button class="tier-filter" type="button" data-tier="c" aria-pressed="false">C-Tier</button>
-            <button class="tier-filter" type="button" data-tier="d" aria-pressed="false">D-Tier</button>
-            <button class="tier-filter" type="button" data-tier="f" aria-pressed="false">F-Tier</button>
+            <button class="filter-button active" type="button" data-tier="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-tier="s" aria-pressed="false">S-Tier</button>
+            <button class="filter-button" type="button" data-tier="a" aria-pressed="false">A-Tier</button>
+            <button class="filter-button" type="button" data-tier="b" aria-pressed="false">B-Tier</button>
+            <button class="filter-button" type="button" data-tier="c" aria-pressed="false">C-Tier</button>
+            <button class="filter-button" type="button" data-tier="d" aria-pressed="false">D-Tier</button>
+            <button class="filter-button" type="button" data-tier="f" aria-pressed="false">F-Tier</button>
           </div>
 
-          <div class="passive-search" role="search">
+          <div class="site-search" role="search">
             <label class="visually-hidden" for="passive-search-input">
               Search passive skills
             </label>
@@ -92,7 +97,7 @@
           aria-live="polite"
           aria-busy="true"
         >
-          <p class="loading-message">Loading passive skills…</p>
+          <p class="empty-state-message">Loading passive skills...</p>
         </div>
       </section>
     </main>
@@ -113,11 +118,7 @@
       </section>
     </footer>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-    <script src="../app.js?v=20260725d"></script>
+    <script src="../shared.js?v=20260725-clean1"></script>
+    <script src="../app.js?v=20260725-clean1"></script>
   </body>
 </html>

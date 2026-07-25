@@ -1,6 +1,13 @@
 const ICON_SPRITE_URL = "../assets/paldeck/pal-icons.webp";
 const ICON_COLUMNS = 7;
 const ICON_ROWS = 3;
+const ICON_SIZE = 48;
+const { applySpriteStyle } = window.PalworldUI;
+const iconSprite = {
+  cellSize: ICON_SIZE,
+  columns: ICON_COLUMNS,
+  rows: ICON_ROWS,
+};
 
 const types = [
   { key: "neutral", name: "Neutral", icon: 0, beats: [], weakTo: ["dark"] },
@@ -68,15 +75,14 @@ function createTypeIcon(type, label = true) {
   const icon = document.createElement("span");
   const column = type.icon % ICON_COLUMNS;
   const row = Math.floor(type.icon / ICON_COLUMNS);
-  const horizontalPosition =
-    (column / (ICON_COLUMNS - 1)) * 100;
-  const verticalPosition = (row / (ICON_ROWS - 1)) * 100;
 
   icon.className = "type-icon";
-  icon.style.backgroundImage = `url("${ICON_SPRITE_URL}")`;
-  icon.style.backgroundSize = `${ICON_COLUMNS * 100}% ${ICON_ROWS * 100}%`;
-  icon.style.backgroundPosition =
-    `${horizontalPosition}% ${verticalPosition}%`;
+  applySpriteStyle(
+    icon,
+    iconSprite,
+    { x: column * ICON_SIZE, y: row * ICON_SIZE },
+    ICON_SPRITE_URL,
+  );
 
   if (label) {
     icon.setAttribute("role", "img");
@@ -106,10 +112,11 @@ function renderSummary() {
     column.className = "col-12 col-md-6 col-xl-4";
 
     const card = document.createElement("article");
-    card.className = "type-summary-card";
+    card.className = "tinted-card type-summary-card";
     card.dataset.type = type.key;
 
     const heading = document.createElement("h2");
+    heading.className = "card-title";
     heading.append(createTypeIcon(type), type.name);
 
     const beats = document.createElement("div");
@@ -145,61 +152,6 @@ function renderSummary() {
   });
 
   summary.replaceChildren(fragment);
-}
-
-function renderMatrix() {
-  const head = document.querySelector("#damage-matrix-head");
-  const body = document.querySelector("#damage-matrix-body");
-  const headingRow = document.createElement("tr");
-  const corner = document.createElement("th");
-  corner.scope = "col";
-  corner.textContent = "ATK \\ DEF";
-  headingRow.append(corner);
-
-  types.forEach((type) => {
-    const cell = document.createElement("th");
-    cell.scope = "col";
-    cell.title = type.name;
-    cell.append(createTypeIcon(type));
-    headingRow.append(cell);
-  });
-
-  head.replaceChildren(headingRow);
-  const rows = document.createDocumentFragment();
-
-  types.forEach((attacker) => {
-    const row = document.createElement("tr");
-    const label = document.createElement("th");
-    label.scope = "row";
-    label.dataset.type = attacker.key;
-    label.append(createTypeIcon(attacker, false), attacker.name);
-    row.append(label);
-
-    types.forEach((defender) => {
-      const cell = document.createElement("td");
-
-      if (attacker.beats.includes(defender.key)) {
-        cell.className = "super-effective";
-        cell.textContent = "2x";
-      } else if (attacker.weakTo.includes(defender.key)) {
-        cell.className = "resisted";
-        cell.innerHTML = "&frac12;";
-      } else {
-        cell.className = "normal-damage";
-        cell.textContent = "·";
-      }
-
-      cell.setAttribute(
-        "aria-label",
-        `${attacker.name} attacking ${defender.name}: ${cell.textContent}`,
-      );
-      row.append(cell);
-    });
-
-    rows.append(row);
-  });
-
-  body.replaceChildren(rows);
 }
 
 renderSummary();

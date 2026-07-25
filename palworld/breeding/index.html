@@ -8,13 +8,15 @@
       content="Calculate Palworld children from two parents or find parent combinations for a target Pal."
     >
     <title>Palworld Reference | Breeding</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     >
-    <link rel="stylesheet" href="../styles.css?v=20260725ab">
+    <link rel="stylesheet" href="../styles.css?v=20260725-clean1">
+    <link rel="stylesheet" href="./styles.css?v=20260725-clean1">
     <link
       rel="preload"
       href="../assets/paldeck/pal-portraits.webp"
@@ -25,11 +27,14 @@
   <body>
     <header class="site-header">
       <div class="site-brand">
-        <a class="brand-logo-frame" href="../" aria-label="Palworld Pals">
+        <a class="brand-logo-frame" href="../" aria-label="Palworld reference">
           <img
             class="brand-logo"
             src="../assets/palworld-logo.png"
             alt="Palworld"
+            width="2400"
+            height="1500"
+            decoding="async"
           >
         </a>
       </div>
@@ -59,7 +64,7 @@
     </header>
 
     <main class="site-content">
-      <section class="breeding-section" aria-label="Breeding Calculator">
+      <section class="content-section" aria-label="Breeding Calculator">
         <div
           id="breeding-modes"
           class="breeding-modes"
@@ -173,6 +178,7 @@
       ></section>
     </footer>
 
-    <script src="./app.js?v=20260725m"></script>
+    <script src="../shared.js?v=20260725-clean1"></script>
+    <script src="./app.js?v=20260725-clean1"></script>
   </body>
 </html>

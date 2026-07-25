@@ -1,6 +1,7 @@
-const BREEDING_DATA_URL = "../data/breeding.json?v=20260725a";
-const PAL_DATA_URL = "../data/pals.json?v=20260725sprite2";
+const BREEDING_DATA_URL = "../data/breeding.json?v=20260725-clean1";
+const PAL_DATA_URL = "../data/pal-index.json?v=20260725-clean1";
 const INITIAL_RESULT_LIMIT = 60;
+const { applySpriteStyle, formatPalNumber } = window.PalworldUI;
 
 const modes = document.querySelector("#breeding-modes");
 const parentsControls = document.querySelector("#parents-controls");
@@ -21,6 +22,7 @@ let palSprite = null;
 let palByName = new Map();
 let orderedPalNames = [];
 let breedingNameByLowercase = new Map();
+let breedingIndexByName = new Map();
 let pairResults = new Map();
 let childResults = new Map();
 let visibleResultLimit = INITIAL_RESULT_LIMIT;
@@ -32,23 +34,8 @@ function pairKey(firstIndex, secondIndex) {
     : `${secondIndex}:${firstIndex}`;
 }
 
-function formatPalNumber(dexKey) {
-  const match = String(dexKey).match(/^(\d+)(.*)$/);
-
-  if (!match) {
-    return String(dexKey);
-  }
-
-  return `${match[1].padStart(3, "0")}${match[2]}`;
-}
-
-function getSelectedName(input, optional = false) {
+function getSelectedName(input) {
   const value = input.value.trim();
-
-  if (!value && optional) {
-    input.setCustomValidity("");
-    return null;
-  }
 
   const name = breedingNameByLowercase.get(value.toLowerCase());
   input.setCustomValidity(name || !value ? "" : "Choose a Pal from the list.");
@@ -168,19 +155,14 @@ function createPortrait(pal, name) {
   }
 
   const portrait = document.createElement("span");
-  const column = pal.sprite.x / palSprite.cellSize;
-  const row = pal.sprite.y / palSprite.cellSize;
-  const horizontalPosition =
-    (column / (palSprite.columns - 1)) * 100;
-  const verticalPosition = (row / (palSprite.rows - 1)) * 100;
 
   portrait.className = "breeding-pal-sprite";
-  portrait.style.backgroundImage =
-    `url("../${palSprite.image.slice(2)}")`;
-  portrait.style.backgroundSize =
-    `${palSprite.columns * 100}% ${palSprite.rows * 100}%`;
-  portrait.style.backgroundPosition =
-    `${horizontalPosition}% ${verticalPosition}%`;
+  applySpriteStyle(
+    portrait,
+    palSprite,
+    pal.sprite,
+    `../${palSprite.image.slice(2)}`,
+  );
   portrait.setAttribute("role", "img");
   portrait.setAttribute("aria-label", name);
   frame.append(portrait);
@@ -276,12 +258,10 @@ function showEmpty(message, symbol = "◎") {
   results.setAttribute("aria-busy", "false");
 }
 
-function createCombinationRow(combination, showChild = false) {
-  const [parentA, parentB, child, genderA, genderB] = combination;
+function createCombinationRow(combination) {
+  const [parentA, parentB, , genderA, genderB] = combination;
   const row = document.createElement("article");
-  row.className = showChild
-    ? "breeding-combination with-child"
-    : "breeding-combination parent-pair";
+  row.className = "breeding-combination parent-pair";
   row.append(
     createPalChip(breedingData.pals[parentA], genderA),
   );
@@ -290,16 +270,6 @@ function createCombinationRow(combination, showChild = false) {
   plus.className = "breeding-operator breeding-plus";
   plus.textContent = "+";
   row.append(plus, createPalChip(breedingData.pals[parentB], genderB));
-
-  if (showChild) {
-    const arrow = document.createElement("span");
-    arrow.className = "breeding-operator breeding-arrow";
-    arrow.textContent = "→";
-    row.append(
-      arrow,
-      createPalChip(breedingData.pals[child], 0, true),
-    );
-  }
 
   return row;
 }
@@ -313,8 +283,8 @@ function renderParentResult() {
     return;
   }
 
-  const parentA = breedingData.pals.indexOf(parentAName);
-  const parentB = breedingData.pals.indexOf(parentBName);
+  const parentA = breedingIndexByName.get(parentAName);
+  const parentB = breedingIndexByName.get(parentBName);
   const matches = pairResults.get(pairKey(parentA, parentB)) || [];
 
   if (matches.length === 0) {
@@ -344,6 +314,7 @@ function renderParentResult() {
     wrapper.append(child);
   });
   results.replaceChildren(wrapper);
+  results.setAttribute("aria-busy", "false");
 }
 
 function renderChildResults() {
@@ -354,7 +325,7 @@ function renderChildResults() {
     return;
   }
 
-  const child = breedingData.pals.indexOf(childName);
+  const child = breedingIndexByName.get(childName);
   const matches = childResults.get(child) || [];
 
   if (matches.length === 0) {
@@ -379,7 +350,7 @@ function renderChildResults() {
 
   if (visibleResultLimit < matches.length) {
     const showMore = document.createElement("button");
-    showMore.className = "tier-filter breeding-show-more";
+    showMore.className = "filter-button breeding-show-more";
     showMore.type = "button";
     showMore.textContent =
       `Show more (${(matches.length - visibleResultLimit).toLocaleString()} remaining)`;
@@ -391,6 +362,7 @@ function renderChildResults() {
   }
 
   results.replaceChildren(wrapper);
+  results.setAttribute("aria-busy", "false");
 }
 
 function renderCurrentMode() {
@@ -404,8 +376,9 @@ function renderCurrentMode() {
 }
 
 function buildIndexes() {
-  breedingData.pals.forEach((name) => {
+  breedingData.pals.forEach((name, index) => {
     breedingNameByLowercase.set(name.toLowerCase(), name);
+    breedingIndexByName.set(name, index);
   });
 
   breedingData.combinations.forEach((combination) => {
@@ -507,13 +480,22 @@ async function loadBreedingCalculator() {
       childInput,
     ].forEach(setupAutocomplete);
 
-    status.innerHTML =
-      `<div><strong>Breeding data is ready</strong>` +
-      `<p class="mb-0">${breedingData.metadata.palCount} Pals and ` +
+    const statusCopy = document.createElement("div");
+    const statusTitle = document.createElement("strong");
+    statusTitle.textContent = "Breeding data is ready";
+    const statusMessage = document.createElement("p");
+    statusMessage.className = "mb-0";
+    statusMessage.textContent =
+      `${breedingData.metadata.palCount} Pals and ` +
       `${breedingData.metadata.combinationCount.toLocaleString()} ` +
-      `combinations are available.</p></div>` +
-      `<div class="data-status-meta">Source data: ` +
-      `${breedingData.metadata.sourceExportedAt}</div>`;
+      "combinations are available.";
+    statusCopy.append(statusTitle, statusMessage);
+
+    const statusMeta = document.createElement("div");
+    statusMeta.className = "data-status-meta";
+    statusMeta.textContent =
+      `Source data: ${breedingData.metadata.sourceExportedAt}`;
+    status.replaceChildren(statusCopy, statusMeta);
     status.hidden = false;
     renderCurrentMode();
   } catch (error) {

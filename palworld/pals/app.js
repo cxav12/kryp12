@@ -1,4 +1,11 @@
-const DATA_URL = "../data/pals.json?v=20260725sprite2";
+const DATA_URL = "../data/pal-cards.json?v=20260725-clean1";
+const {
+  applySpriteStyle,
+  createDataStatusController,
+  formatDate,
+  getElementDisplayName,
+  getRarityDetails,
+} = window.PalworldUI;
 
 const statusPanel = document.querySelector("#data-status");
 const statusTitle = document.querySelector("#data-status-title");
@@ -14,6 +21,12 @@ const secondElementToggle = document.querySelector("#second-element-toggle");
 const secondElementPanel = document.querySelector("#second-element-panel");
 const secondElementFilters = document.querySelector("#second-element-filters");
 const palSearchInput = document.querySelector("#pal-search-input");
+const showStatus = createDataStatusController({
+  panel: statusPanel,
+  titleElement: statusTitle,
+  messageElement: statusMessage,
+  metaElement: statusMeta,
+});
 
 let allPals = [];
 let selectedWork = null;
@@ -24,22 +37,6 @@ let defaultElement = null;
 let palSprite = null;
 let palIconSprite = null;
 const palCardCache = new Map();
-
-function formatDate(dateString) {
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(new Date(dateString));
-}
-
-function showStatus({ state, title, message, meta = "" }) {
-  statusPanel.dataset.state = state;
-  statusTitle.textContent = title;
-  statusMessage.textContent = message;
-  statusMeta.textContent = meta;
-  statusPanel.hidden = false;
-}
 
 function resolveAssetUrl(url) {
   if (!url || !url.startsWith("./")) {
@@ -53,17 +50,6 @@ function getWorkSuitability(pal, workName) {
   return pal.workSuitability.find((work) => work.name === workName);
 }
 
-function getElementDisplayName(name) {
-  const displayNames = {
-    Normal: "Neutral",
-    Leaf: "Grass",
-    Electricity: "Electric",
-    Earth: "Ground",
-  };
-
-  return displayNames[name] || name;
-}
-
 function createSpriteIcon(icon, label = "") {
   const coordinates = palIconSprite?.icons?.[icon];
 
@@ -75,22 +61,13 @@ function createSpriteIcon(icon, label = "") {
   }
 
   const spriteIcon = document.createElement("span");
-  const column = coordinates.x / palIconSprite.cellSize;
-  const row = coordinates.y / palIconSprite.cellSize;
-  const horizontalPosition =
-    palIconSprite.columns > 1
-      ? (column / (palIconSprite.columns - 1)) * 100
-      : 0;
-  const verticalPosition =
-    palIconSprite.rows > 1 ? (row / (palIconSprite.rows - 1)) * 100 : 0;
-
   spriteIcon.className = "pal-sprite-icon";
-  spriteIcon.style.backgroundImage =
-    `url("${resolveAssetUrl(palIconSprite.image)}")`;
-  spriteIcon.style.backgroundSize =
-    `${palIconSprite.columns * 100}% ${palIconSprite.rows * 100}%`;
-  spriteIcon.style.backgroundPosition =
-    `${horizontalPosition}% ${verticalPosition}%`;
+  applySpriteStyle(
+    spriteIcon,
+    palIconSprite,
+    coordinates,
+    resolveAssetUrl(palIconSprite.image),
+  );
 
   if (label) {
     spriteIcon.setAttribute("role", "img");
@@ -100,22 +77,6 @@ function createSpriteIcon(icon, label = "") {
   }
 
   return spriteIcon;
-}
-
-function getRarityDetails(rarity) {
-  if (rarity >= 11) {
-    return { key: "legendary", label: "Legendary" };
-  }
-
-  if (rarity >= 8) {
-    return { key: "epic", label: "Epic" };
-  }
-
-  if (rarity >= 5) {
-    return { key: "rare", label: "Rare" };
-  }
-
-  return { key: "common", label: "Common" };
 }
 
 function createCornerIcons(items, className, showLevel = false) {
@@ -147,9 +108,14 @@ function createCornerIcons(items, className, showLevel = false) {
 }
 
 function getDisplayedSuitability(pal, workName = null) {
-  return workName
-    ? getWorkSuitability(pal, workName)
-    : [...pal.workSuitability].sort((a, b) => b.level - a.level)[0];
+  if (workName) {
+    return getWorkSuitability(pal, workName);
+  }
+
+  return pal.workSuitability.reduce(
+    (best, work) => (!best || work.level > best.level ? work : best),
+    null,
+  );
 }
 
 function updatePalCardWork(cardEntry, pal, workName = null) {
@@ -168,7 +134,7 @@ function createPalCard(pal, workName = null) {
   column.className = "col-6 col-sm-4 col-md-3 col-xl-2";
 
   const card = document.createElement("article");
-  card.className = "pal-card";
+  card.className = "tinted-card pal-card";
   const rarity = getRarityDetails(pal.rarity);
   card.dataset.rarity = rarity.key;
 
@@ -188,22 +154,16 @@ function createPalCard(pal, workName = null) {
 
   if (palSprite && pal.sprite) {
     const portrait = document.createElement("div");
-    const column = pal.sprite.x / palSprite.cellSize;
-    const row = pal.sprite.y / palSprite.cellSize;
-    const horizontalPosition =
-      palSprite.columns > 1 ? (column / (palSprite.columns - 1)) * 100 : 0;
-    const verticalPosition =
-      palSprite.rows > 1 ? (row / (palSprite.rows - 1)) * 100 : 0;
 
     portrait.className = "pal-portrait-sprite";
     portrait.setAttribute("role", "img");
     portrait.setAttribute("aria-label", pal.name);
-    portrait.style.backgroundImage =
-      `url("${resolveAssetUrl(palSprite.image)}")`;
-    portrait.style.backgroundSize =
-      `${palSprite.columns * 100}% ${palSprite.rows * 100}%`;
-    portrait.style.backgroundPosition =
-      `${horizontalPosition}% ${verticalPosition}%`;
+    applySpriteStyle(
+      portrait,
+      palSprite,
+      pal.sprite,
+      resolveAssetUrl(palSprite.image),
+    );
     media.append(portrait);
   } else {
     const image = document.createElement("img");
@@ -217,7 +177,7 @@ function createPalCard(pal, workName = null) {
   const identity = document.createElement("div");
   identity.className = "pal-card-name-row";
   const title = document.createElement("h2");
-  title.className = "passive-skill-title";
+  title.className = "card-title";
   title.textContent = pal.name;
 
   identity.append(title);
@@ -267,7 +227,7 @@ function getPalCard(pal, workName = null) {
 function renderPals(pals, workName = null) {
   if (pals.length === 0) {
     const message = document.createElement("p");
-    message.className = "no-skills-message";
+    message.className = "empty-state-message";
     message.textContent = "No Pals match this search and filter.";
     palsGrid.replaceChildren(message);
     palsGrid.setAttribute("aria-busy", "false");
@@ -286,7 +246,7 @@ function renderPals(pals, workName = null) {
 
 function createWorkFilter(name, icon = null) {
   const button = document.createElement("button");
-  button.className = "tier-filter work-filter";
+  button.className = "filter-button work-filter";
   button.type = "button";
   button.dataset.work = name;
   button.setAttribute("aria-pressed", "false");
@@ -328,7 +288,7 @@ function renderWorkFilters(pals) {
 
 function createElementFilter(name, icon, filterPosition) {
   const button = document.createElement("button");
-  button.className = "tier-filter element-filter";
+  button.className = "filter-button element-filter";
   button.type = "button";
   button.dataset.element = name;
   button.dataset.position = filterPosition;
@@ -432,7 +392,7 @@ function updateElementControls() {
   );
 }
 
-function applyWorkFilter() {
+function applyFilters() {
   const searchTerm = palSearchInput.value.trim().toLowerCase();
   const searchedPals = allPals.filter((pal) => {
     const searchableText = [
@@ -475,8 +435,7 @@ function applyWorkFilter() {
         return levelDifference;
       }
 
-      const workSpeedDifference =
-        palB.stats.craftspeed - palA.stats.craftspeed;
+      const workSpeedDifference = palB.craftSpeed - palA.craftSpeed;
 
       if (workSpeedDifference !== 0) {
         return workSpeedDifference;
@@ -516,7 +475,7 @@ palsViewFilters.addEventListener("click", (event) => {
     selectedElements = [];
     secondElementPanel.hidden = true;
     updateElementControls();
-    applyWorkFilter();
+    applyFilters();
     return;
   }
 
@@ -558,7 +517,7 @@ palsViewFilters.addEventListener("click", (event) => {
     });
   }
 
-  applyWorkFilter();
+  applyFilters();
 });
 
 workFilters.addEventListener("click", (event) => {
@@ -576,7 +535,7 @@ workFilters.addEventListener("click", (event) => {
     filterButton.setAttribute("aria-pressed", String(isActive));
   });
 
-  applyWorkFilter();
+  applyFilters();
 });
 
 rarityFilters.addEventListener("click", (event) => {
@@ -593,7 +552,7 @@ rarityFilters.addEventListener("click", (event) => {
     filterButton.classList.toggle("active", isActive);
     filterButton.setAttribute("aria-pressed", String(isActive));
   });
-  applyWorkFilter();
+  applyFilters();
 });
 
 elementFilters.addEventListener("click", (event) => {
@@ -611,7 +570,7 @@ elementFilters.addEventListener("click", (event) => {
   }
 
   updateElementControls();
-  applyWorkFilter();
+  applyFilters();
 });
 
 secondElementToggle.addEventListener("click", () => {
@@ -620,7 +579,7 @@ secondElementToggle.addEventListener("click", () => {
 
   if (!openingPanel) {
     selectedElements.splice(1, 1);
-    applyWorkFilter();
+    applyFilters();
   }
 
   updateElementControls();
@@ -635,10 +594,10 @@ secondElementFilters.addEventListener("click", (event) => {
 
   selectedElements[1] = button.dataset.element;
   updateElementControls();
-  applyWorkFilter();
+  applyFilters();
 });
 
-palSearchInput.addEventListener("input", applyWorkFilter);
+palSearchInput.addEventListener("input", applyFilters);
 
 async function loadPals() {
   try {
@@ -663,7 +622,7 @@ async function loadPals() {
     palIconSprite = metadata.palIconSprite || null;
     renderWorkFilters(allPals);
     renderElementFilters(allPals);
-    applyWorkFilter();
+    applyFilters();
   } catch (error) {
     console.error("Unable to load Palworld Pals.", error);
     showStatus({
@@ -673,7 +632,10 @@ async function loadPals() {
         "The local Paldeck dataset could not be loaded. Check the data file before publishing.",
     });
 
-    palsGrid.innerHTML = '<p class="skills-error">Pals could not be loaded.</p>';
+    const message = document.createElement("p");
+    message.className = "empty-state-message";
+    message.textContent = "Pals could not be loaded.";
+    palsGrid.replaceChildren(message);
     palsGrid.setAttribute("aria-busy", "false");
   }
 }

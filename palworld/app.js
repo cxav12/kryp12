@@ -1,5 +1,5 @@
 const DATA_URL = new URL(
-  "./data/passive-skills.json",
+  "./data/passive-skills.json?v=20260725-clean1",
   document.currentScript.src,
 );
 
@@ -10,27 +10,16 @@ const statusMeta = document.querySelector("#data-status-meta");
 const skillsGrid = document.querySelector("#passive-skills-grid");
 const tierFilters = document.querySelector("#tier-filters");
 const searchInput = document.querySelector("#passive-search-input");
+const { createDataStatusController, formatDate } = window.PalworldUI;
+const showStatus = createDataStatusController({
+  panel: statusPanel,
+  titleElement: statusTitle,
+  messageElement: statusMessage,
+  metaElement: statusMeta,
+});
 
 let allPassiveSkills = [];
 let activeTier = "all";
-
-function formatDate(dateString) {
-  const date = new Date(`${dateString}T00:00:00`);
-
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(date);
-}
-
-function showStatus({ state, title, message, meta = "" }) {
-  statusPanel.dataset.state = state;
-  statusTitle.textContent = title;
-  statusMessage.textContent = message;
-  statusMeta.textContent = meta;
-  statusPanel.hidden = false;
-}
 
 function createBadge(text, className, attributes = {}) {
   const badge = document.createElement("span");
@@ -81,14 +70,14 @@ function createSkillCard(skill) {
   column.className = "col-12 col-md-6 col-lg-4 col-xxl-3";
 
   const card = document.createElement("article");
-  card.className = "passive-skill-card";
+  card.className = "tinted-card passive-skill-card";
   card.dataset.tier = getTierKey(skill.rank);
 
   const header = document.createElement("header");
   header.className = "passive-skill-header";
 
   const title = document.createElement("h2");
-  title.className = "passive-skill-title";
+  title.className = "card-title";
   title.textContent = skill.name;
 
   const badges = document.createElement("div");
@@ -126,7 +115,7 @@ function createSkillCard(skill) {
 function renderPassiveSkills(skills) {
   if (skills.length === 0) {
     const message = document.createElement("p");
-    message.className = "no-skills-message";
+    message.className = "empty-state-message";
     message.textContent = "No passive skills match these filters.";
     skillsGrid.replaceChildren(message);
     skillsGrid.setAttribute("aria-busy", "false");
@@ -161,7 +150,7 @@ function applyFilters() {
 }
 
 tierFilters.addEventListener("click", (event) => {
-  const button = event.target.closest(".tier-filter");
+  const button = event.target.closest(".filter-button");
 
   if (!button) {
     return;
@@ -169,7 +158,7 @@ tierFilters.addEventListener("click", (event) => {
 
   activeTier = button.dataset.tier;
 
-  tierFilters.querySelectorAll(".tier-filter").forEach((filterButton) => {
+  tierFilters.querySelectorAll(".filter-button").forEach((filterButton) => {
     const isActive = filterButton === button;
     filterButton.classList.toggle("active", isActive);
     filterButton.setAttribute("aria-pressed", String(isActive));
@@ -214,8 +203,10 @@ async function loadPassiveSkills() {
         "The local Palworld dataset could not be loaded. Check the data file before publishing.",
     });
 
-    skillsGrid.innerHTML =
-      '<p class="skills-error">Passive skills could not be loaded.</p>';
+    const message = document.createElement("p");
+    message.className = "empty-state-message";
+    message.textContent = "Passive skills could not be loaded.";
+    skillsGrid.replaceChildren(message);
     skillsGrid.setAttribute("aria-busy", "false");
   }
 }

@@ -1,4 +1,4 @@
-"""Build Pal portrait and UI-icon sprite sheets for pals.json."""
+"""Build Pal sprite sheets and compact browser datasets from pals.json."""
 
 import json
 import math
@@ -9,6 +9,8 @@ from PIL import Image
 
 PALWORLD_DIR = Path(__file__).resolve().parents[1]
 DATA_FILE = PALWORLD_DIR / "data" / "pals.json"
+PAL_INDEX_FILE = PALWORLD_DIR / "data" / "pal-index.json"
+PAL_CARDS_FILE = PALWORLD_DIR / "data" / "pal-cards.json"
 SPRITE_FILE = PALWORLD_DIR / "assets" / "paldeck" / "pal-portraits.webp"
 ICON_SPRITE_FILE = PALWORLD_DIR / "assets" / "paldeck" / "pal-icons.webp"
 CELL_SIZE = 96
@@ -96,6 +98,53 @@ def main():
         json.dumps(data, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
+    pal_index = {
+        "metadata": {
+            "palSprite": data["metadata"]["palSprite"],
+        },
+        "pals": [
+            {
+                "name": pal["name"],
+                "dexKey": pal.get("dexKey"),
+                "rarity": pal["rarity"],
+                "sprite": pal.get("sprite"),
+            }
+            for pal in data["pals"]
+        ],
+    }
+    PAL_INDEX_FILE.write_text(
+        json.dumps(pal_index, ensure_ascii=False, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
+    pal_cards = {
+        "metadata": {
+            key: data["metadata"][key]
+            for key in (
+                "palCount",
+                "assetCount",
+                "importedAt",
+                "palSprite",
+                "palIconSprite",
+            )
+        },
+        "pals": [
+            {
+                "name": pal["name"],
+                "dexKey": pal.get("dexKey"),
+                "rarity": pal["rarity"],
+                "sprite": pal.get("sprite"),
+                "image": pal.get("image"),
+                "elements": pal["elements"],
+                "workSuitability": pal["workSuitability"],
+                "craftSpeed": pal.get("stats", {}).get("craftspeed", 0),
+            }
+            for pal in data["pals"]
+        ],
+    }
+    PAL_CARDS_FILE.write_text(
+        json.dumps(pal_cards, ensure_ascii=False, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
 
     print(
         f"Built {SPRITE_FILE.name}: {len(image_paths)} portraits, "
@@ -104,6 +153,12 @@ def main():
     print(
         f"Built {ICON_SPRITE_FILE.name}: {len(icon_paths)} icons, "
         f"{ICON_COLUMNS}x{icon_rows} cells."
+    )
+    print(
+        f"Built {PAL_INDEX_FILE.name}: {len(pal_index['pals'])} compact records."
+    )
+    print(
+        f"Built {PAL_CARDS_FILE.name}: {len(pal_cards['pals'])} card records."
     )
 
 

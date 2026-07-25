@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="A Palworld reference page for browsing Pals, elements, work suitability, and stats."
+      content="Browse and filter Palworld Pals by rarity, element, and work suitability."
     >
     <title>Palworld Reference | Pals</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     >
-    <link rel="stylesheet" href="../styles.css?v=20260725ab">
+    <link rel="stylesheet" href="../styles.css?v=20260725-clean1">
+    <link rel="stylesheet" href="./styles.css?v=20260725-clean1">
     <link
       rel="preload"
       href="../assets/paldeck/pal-portraits.webp"
@@ -31,11 +33,14 @@
   <body>
     <header class="site-header">
       <div class="site-brand">
-        <a class="brand-logo-frame" href="../" aria-label="Palworld Pals">
+        <a class="brand-logo-frame" href="../" aria-label="Palworld reference">
           <img
             class="brand-logo"
             src="../assets/palworld-logo.png"
             alt="Palworld"
+            width="2400"
+            height="1500"
+            decoding="async"
           >
         </a>
       </div>
@@ -67,16 +72,16 @@
     </header>
 
     <main class="site-content">
-      <section class="pals-section" aria-label="Pals">
-        <div class="pals-toolbar">
+      <section class="content-section" aria-label="Pals">
+        <div class="site-toolbar">
           <div
             id="pals-view-filters"
-            class="tier-filters"
+            class="filter-group"
             role="group"
             aria-label="Choose Pal view"
           >
             <button
-              class="tier-filter active"
+              class="filter-button active"
               type="button"
               data-view="all"
               aria-pressed="true"
@@ -84,7 +89,7 @@
               All
             </button>
             <button
-              class="tier-filter"
+              class="filter-button"
               type="button"
               data-view="rarity"
               aria-pressed="false"
@@ -92,7 +97,7 @@
               Rarity
             </button>
             <button
-              class="tier-filter"
+              class="filter-button"
               type="button"
               data-view="workers"
               aria-pressed="false"
@@ -100,7 +105,7 @@
               Top Workers
             </button>
             <button
-              class="tier-filter"
+              class="filter-button"
               type="button"
               data-view="elements"
               aria-pressed="false"
@@ -109,7 +114,7 @@
             </button>
           </div>
 
-          <div class="passive-search pal-search" role="search">
+          <div class="site-search" role="search">
             <label class="visually-hidden" for="pal-search-input">
               Search Pals
             </label>
@@ -139,7 +144,7 @@
           hidden
         >
           <button
-            class="tier-filter rarity-filter"
+            class="filter-button rarity-filter"
             type="button"
             data-rarity="legendary"
             aria-pressed="false"
@@ -147,7 +152,7 @@
             Legendary
           </button>
           <button
-            class="tier-filter rarity-filter"
+            class="filter-button rarity-filter"
             type="button"
             data-rarity="epic"
             aria-pressed="false"
@@ -155,7 +160,7 @@
             Epic
           </button>
           <button
-            class="tier-filter rarity-filter"
+            class="filter-button rarity-filter"
             type="button"
             data-rarity="rare"
             aria-pressed="false"
@@ -163,7 +168,7 @@
             Rare
           </button>
           <button
-            class="tier-filter rarity-filter"
+            class="filter-button rarity-filter"
             type="button"
             data-rarity="common"
             aria-pressed="false"
@@ -182,7 +187,7 @@
 
           <button
             id="second-element-toggle"
-            class="tier-filter second-element-toggle"
+            class="filter-button second-element-toggle"
             type="button"
             aria-expanded="false"
             aria-controls="second-element-panel"
@@ -207,7 +212,7 @@
           aria-live="polite"
           aria-busy="true"
         >
-          <p class="loading-message">Loading Pals...</p>
+          <p class="empty-state-message">Loading Pals...</p>
         </div>
       </section>
     </main>
@@ -228,11 +233,7 @@
       </section>
     </footer>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-    <script src="./app.js?v=20260725n"></script>
+    <script src="../shared.js?v=20260725-clean1"></script>
+    <script src="./app.js?v=20260725-clean1"></script>
   </body>
 </html>

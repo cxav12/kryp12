@@ -1,0 +1,103 @@
+.passive-skill-card {
+  padding: 0.85rem;
+}
+
+.passive-skill-card[data-tier="s"] { --card-tint: #b66ee8; }
+.passive-skill-card[data-tier="a"] { --card-tint: #e5c327; }
+.passive-skill-card[data-tier="b"] { --card-tint: #dc9630; }
+.passive-skill-card[data-tier="c"] { --card-tint: #9aa2ab; }
+.passive-skill-card[data-tier="d"] { --card-tint: #5f91d8; }
+.passive-skill-card[data-tier="f"] { --card-tint: #bd5962; }
+
+.passive-skill-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.skill-badges {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.3rem;
+}
+
+.skill-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.35rem;
+  padding: 0.18rem 0.42rem;
+  border: 1px solid;
+  border-radius: 0.35rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rank-badge {
+  border-color: #9c2cb4;
+  background: #3d1146;
+  color: #eb8aff;
+}
+
+.rank-badge[data-rank="4"] {
+  border-color: #9a7d00;
+  background: #332b00;
+  color: #ffe238;
+}
+
+.rank-badge[data-rank="3"] {
+  border-color: #ca8a1f;
+  background: #3a2608;
+  color: #ffc968;
+}
+
+.rank-badge[data-rank="2"] {
+  border-color: #9b9da2;
+  background: #2a2c2f;
+  color: #e2e4e7;
+}
+
+.rank-badge[data-rank="1"] {
+  border-color: #4779c2;
+  background: #132b4d;
+  color: #8fbdff;
+}
+
+.rank-badge[data-negative="true"] {
+  border-color: #8c4148;
+  background: #36171a;
+  color: #ff929a;
+}
+
+.skill-effects {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-effects li {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.skill-effects li::before {
+  position: absolute;
+  top: 0.48rem;
+  left: 0.2rem;
+  width: 0.34rem;
+  height: 0.34rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--card-tint) 75%, #fff);
+  box-shadow: 0 0 0.35rem
+    color-mix(in srgb, var(--card-tint) 45%, transparent);
+  content: "";
+}

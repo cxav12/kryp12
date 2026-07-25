@@ -203,11 +203,11 @@
 
   .work-filter,
   .element-filter {
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     min-width: 0;
     padding-inline: 0.4rem;
-    text-align: center;
+    text-align: left;
   }
 
   .pal-card-media {

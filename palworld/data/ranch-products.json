@@ -88,13 +88,23 @@
     {
       "name": "Woolipop",
       "products": [
-        { "name": "Cotton Candy", "category": "food", "icon": "☁" }
+        {
+          "name": "Cotton Candy",
+          "category": "food",
+          "categories": ["food", "cake"],
+          "icon": "☁"
+        }
       ]
     },
     {
       "name": "Woolipop Terra",
       "products": [
-        { "name": "Caramel Cotton Candy", "category": "food", "icon": "☁" }
+        {
+          "name": "Caramel Cotton Candy",
+          "category": "food",
+          "categories": ["food", "cake"],
+          "icon": "☁"
+        }
       ]
     },
     {

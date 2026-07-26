@@ -14,6 +14,10 @@
   let ranchPals = [];
   let activeFilter = "all";
 
+  function productMatchesCategory(product, category) {
+    return (product.categories || [product.category]).includes(category);
+  }
+
   const updateStatus = PalworldUI.createDataStatusController({
     panel: statusPanel,
     titleElement: document.querySelector("#ranch-data-status-title"),
@@ -136,7 +140,9 @@
     const matches = ranchPals.filter((pal) => {
       const matchesFilter =
         activeFilter === "all" ||
-        pal.products.some((product) => product.category === activeFilter);
+        pal.products.some((product) =>
+          productMatchesCategory(product, activeFilter),
+        );
       const matchesProduct = pal.products.some((product) =>
         product.name.toLowerCase().includes(query),
       );
@@ -186,7 +192,7 @@
   searchInput.addEventListener("input", render);
 
   Promise.all([
-    fetch("../data/ranch-products.json").then((response) => {
+    fetch("../data/ranch-products.json?v=20260726-cake1").then((response) => {
       if (!response.ok) {
         throw new Error(`Ranch data returned ${response.status}`);
       }

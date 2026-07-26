@@ -1,5 +1,5 @@
 const DATA_URL = new URL(
-  "./data/passive-skills.json?v=20260725-clean1",
+  "./data/passive-skills.json?v=20260726-player1",
   document.currentScript.src,
 );
 
@@ -8,6 +8,7 @@ const statusTitle = document.querySelector("#data-status-title");
 const statusMessage = document.querySelector("#data-status-message");
 const statusMeta = document.querySelector("#data-status-meta");
 const skillsGrid = document.querySelector("#passive-skills-grid");
+const typeFilters = document.querySelector("#type-filters");
 const tierFilters = document.querySelector("#tier-filters");
 const searchInput = document.querySelector("#passive-search-input");
 const { createDataStatusController, formatDate } = window.PalworldUI;
@@ -19,7 +20,28 @@ const showStatus = createDataStatusController({
 });
 
 let allPassiveSkills = [];
+let activeType = "all";
 let activeTier = "all";
+
+const skillTypeMatchers = {
+  player: (skill) => skill.affectsPlayer === true,
+  combat: (skill, effects) =>
+    /attack|defense|damage|health|life steal|active skill cooldown|flinch|knockback|pacifist/i.test(
+      effects,
+    ),
+  work: (skill, effects) =>
+    /work speed|san |sanity|hunger|sleep|work suitability|breeding farm|farming/i.test(
+      effects,
+    ),
+  movement: (skill, effects) =>
+    /movement speed|stamina|mounted jump|rideable/i.test(effects),
+  elemental: (skill, effects) =>
+    /(Neutral|Fire|Water|Lightning|Grass|Ice|Earth|Dark|Dragon) (attack )?damage|incoming (Neutral|Fire|Water|Lightning|Grass|Ice|Earth|Dark|Dragon) damage/i.test(
+      effects,
+    ),
+  economy: (skill, effects) =>
+    /value of items|dropped items/i.test(effects),
+};
 
 function createBadge(text, className, attributes = {}) {
   const badge = document.createElement("span");
@@ -163,6 +185,10 @@ function renderPassiveSkills(skills) {
 function applyFilters() {
   const searchTerm = searchInput.value.trim().toLowerCase();
   const filteredSkills = allPassiveSkills.filter((skill) => {
+    const effects = skill.effects.join(" ");
+    const matchesType =
+      activeType === "all" ||
+      skillTypeMatchers[activeType]?.(skill, effects) === true;
     const matchesTier =
       activeTier === "all" || getTierKey(skill.rank) === activeTier;
     const searchableText = [skill.name, ...skill.effects]
@@ -171,11 +197,29 @@ function applyFilters() {
     const matchesSearch =
       searchTerm.length === 0 || searchableText.includes(searchTerm);
 
-    return matchesTier && matchesSearch;
+    return matchesType && matchesTier && matchesSearch;
   });
 
   renderPassiveSkills(filteredSkills);
 }
+
+typeFilters.addEventListener("click", (event) => {
+  const button = event.target.closest(".filter-button");
+
+  if (!button) {
+    return;
+  }
+
+  activeType = button.dataset.type;
+
+  typeFilters.querySelectorAll(".filter-button").forEach((filterButton) => {
+    const isActive = filterButton === button;
+    filterButton.classList.toggle("active", isActive);
+    filterButton.setAttribute("aria-pressed", String(isActive));
+  });
+
+  applyFilters();
+});
 
 tierFilters.addEventListener("click", (event) => {
   const button = event.target.closest(".filter-button");

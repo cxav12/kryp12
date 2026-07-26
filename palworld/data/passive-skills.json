@@ -1,9 +1,9 @@
 ﻿{
     "metadata":  {
                      "gameVersion":  "1.0.1",
-                     "datasetVersion":  2,
-                     "lastUpdated":  "2026-07-24",
-                     "lastChecked":  "2026-07-24",
+                     "datasetVersion":  3,
+                     "lastUpdated":  "2026-07-26",
+                     "lastChecked":  "2026-07-26",
                      "updateStatus":  "current",
                      "updateMessage":  "",
                      "recordCount":  115,
@@ -209,6 +209,7 @@
                               "id":  "reload-master",
                               "name":  "Reload Master",
                               "rank":  3,
+                              "affectsPlayer":  true,
                               "acquisition":  [
                                                   "Surgery"
                                               ],
@@ -231,6 +232,7 @@
                               "id":  "wellness-watcher",
                               "name":  "Wellness Watcher",
                               "rank":  3,
+                              "affectsPlayer":  true,
                               "acquisition":  [
                                                   "Surgery"
                                               ],
@@ -242,6 +244,7 @@
                               "id":  "healing-coach",
                               "name":  "Healing Coach",
                               "rank":  3,
+                              "affectsPlayer":  true,
                               "acquisition":  [
                                                   "Surgery"
                                               ],
@@ -787,6 +790,7 @@
                               "id":  "idiosyncratic",
                               "name":  "Idiosyncratic",
                               "rank":  4,
+                              "affectsPlayer":  true,
                               "acquisition":  [
                                                   "Surgery"
                                               ],
@@ -1193,6 +1197,7 @@
                               "id":  "vanguard",
                               "name":  "Vanguard",
                               "rank":  3,
+                              "affectsPlayer":  true,
                               "acquisition":  [
                                                   "Surgery"
                                               ],
@@ -1204,6 +1209,7 @@
                               "id":  "stronghold-strategist",
                               "name":  "Stronghold Strategist",
                               "rank":  3,
+                              "affectsPlayer":  true,
                               "acquisition":  [
                                                   "Surgery"
                                               ],
@@ -1304,6 +1310,7 @@
                               "id":  "motivational-leader",
                               "name":  "Motivational Leader",
                               "rank":  3,
+                              "affectsPlayer":  true,
                               "acquisition":  [
                                                   "Surgery"
                                               ],
@@ -1315,6 +1322,7 @@
                               "id":  "mine-foreman",
                               "name":  "Mine Foreman",
                               "rank":  3,
+                              "affectsPlayer":  true,
                               "acquisition":  [
                                                   "Surgery"
                                               ],
@@ -1326,6 +1334,7 @@
                               "id":  "logging-foreman",
                               "name":  "Logging Foreman",
                               "rank":  3,
+                              "affectsPlayer":  true,
                               "acquisition":  [
                                                   "Surgery"
                                               ],

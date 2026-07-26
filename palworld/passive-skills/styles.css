@@ -1,3 +1,34 @@
+.passive-toolbar {
+  align-items: flex-start;
+}
+
+.passive-filter-stack {
+  display: grid;
+  flex: 1 1 auto;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.passive-filter-row {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  gap: 0.65rem;
+}
+
+.passive-filter-label {
+  padding-top: 0.52rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.passive-toolbar .site-search {
+  max-width: 32rem;
+}
+
 .passive-skill-card {
   padding: 0.85rem;
 }
@@ -147,4 +178,34 @@
   box-shadow: 0 0 0.35rem
     color-mix(in srgb, var(--card-tint) 45%, transparent);
   content: "";
+}
+
+@media (max-width: 1199.98px) {
+  .passive-toolbar {
+    flex-direction: column;
+  }
+
+  .passive-toolbar .site-search {
+    max-width: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .passive-filter-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .passive-filter-label {
+    padding-top: 0;
+  }
+
+  .passive-filter-row .filter-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .passive-filter-row .filter-button {
+    text-align: left;
+  }
 }

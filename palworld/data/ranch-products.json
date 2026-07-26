@@ -1,0 +1,199 @@
+{
+  "metadata": {
+    "gameVersion": "1.0.1",
+    "verifiedAt": "2026-07-26",
+    "palCount": 29,
+    "notes": "Ranch products are maintained separately because the Paldeck drops field represents battle drops, not Ranch production."
+  },
+  "pals": [
+    {
+      "name": "Lamball",
+      "products": [
+        { "name": "Wool", "category": "materials", "icon": "🧶" }
+      ]
+    },
+    {
+      "name": "Chikipi",
+      "products": [
+        { "name": "Egg", "category": "cake", "icon": "🥚" }
+      ]
+    },
+    {
+      "name": "Vixy",
+      "products": [
+        { "name": "Arrow", "category": "utility", "icon": "➶" },
+        { "name": "Bone", "category": "materials", "icon": "🦴" },
+        { "name": "Gold Coin", "category": "utility", "icon": "●", "quantity": "×10" },
+        { "name": "Pal Sphere", "category": "utility", "icon": "◉" },
+        { "name": "Mega Sphere", "category": "utility", "icon": "◉", "minimumLevel": 3 },
+        { "name": "Giga Sphere", "category": "utility", "icon": "◉", "minimumLevel": 4 },
+        { "name": "Hyper Sphere", "category": "utility", "icon": "◉", "minimumLevel": 5 }
+      ],
+      "note": "Produces one randomly selected item. Better spheres unlock at higher Ranch levels."
+    },
+    {
+      "name": "Cremis",
+      "products": [
+        { "name": "Wool", "category": "materials", "icon": "🧶" }
+      ]
+    },
+    {
+      "name": "Depresso",
+      "products": [
+        { "name": "Venom Gland", "category": "materials", "icon": "☠" }
+      ]
+    },
+    {
+      "name": "Melpaca",
+      "products": [
+        { "name": "Wool", "category": "materials", "icon": "🧶" }
+      ]
+    },
+    {
+      "name": "Flambelle",
+      "products": [
+        { "name": "Flame Organ", "category": "organs", "icon": "🔥" }
+      ]
+    },
+    {
+      "name": "Rooby",
+      "products": [
+        { "name": "Flame Organ", "category": "organs", "icon": "🔥" }
+      ]
+    },
+    {
+      "name": "Mau",
+      "products": [
+        { "name": "Gold Coin", "category": "utility", "icon": "●", "quantity": "×10" }
+      ]
+    },
+    {
+      "name": "Mau Cryst",
+      "products": [
+        { "name": "Ice Organ", "category": "organs", "icon": "❄" }
+      ]
+    },
+    {
+      "name": "Caprity",
+      "products": [
+        { "name": "Red Berries", "category": "food", "icon": "●" }
+      ]
+    },
+    {
+      "name": "Caprity Noct",
+      "products": [
+        { "name": "Venom Gland", "category": "materials", "icon": "☠" }
+      ]
+    },
+    {
+      "name": "Woolipop",
+      "products": [
+        { "name": "Cotton Candy", "category": "food", "icon": "☁" }
+      ]
+    },
+    {
+      "name": "Woolipop Terra",
+      "products": [
+        { "name": "Caramel Cotton Candy", "category": "food", "icon": "☁" }
+      ]
+    },
+    {
+      "name": "Mozzarina",
+      "products": [
+        { "name": "Milk", "category": "cake", "icon": "🥛" }
+      ]
+    },
+    {
+      "name": "Sparkit",
+      "products": [
+        { "name": "Electric Organ", "category": "organs", "icon": "⚡" }
+      ]
+    },
+    {
+      "name": "Kelpsea",
+      "products": [
+        { "name": "Aquatic Pal Fluids", "category": "materials", "icon": "💧" }
+      ]
+    },
+    {
+      "name": "Kelpsea Ignis",
+      "products": [
+        { "name": "Flame Organ", "category": "organs", "icon": "🔥" }
+      ]
+    },
+    {
+      "name": "Cawgnito",
+      "products": [
+        { "name": "Bone", "category": "materials", "icon": "🦴" }
+      ]
+    },
+    {
+      "name": "Vaelet",
+      "products": [
+        { "name": "Carrot Seeds", "category": "food", "icon": "◆" },
+        { "name": "Lettuce Seeds", "category": "food", "icon": "◆" },
+        { "name": "Onion Seeds", "category": "food", "icon": "◆" },
+        { "name": "Potato Seeds", "category": "food", "icon": "◆" },
+        { "name": "Tomato Seeds", "category": "food", "icon": "◆" },
+        { "name": "Wheat Seeds", "category": "food", "icon": "◆" }
+      ]
+    },
+    {
+      "name": "Beegarde",
+      "products": [
+        { "name": "Honey", "category": "cake", "icon": "⬢" }
+      ]
+    },
+    {
+      "name": "Surfent",
+      "products": [
+        { "name": "Leather", "category": "materials", "icon": "◈" }
+      ]
+    },
+    {
+      "name": "Foxcicle",
+      "products": [
+        { "name": "Ice Organ", "category": "organs", "icon": "❄" }
+      ]
+    },
+    {
+      "name": "Dumud",
+      "products": [
+        { "name": "High Quality Pal Oil", "category": "materials", "icon": "◉" }
+      ]
+    },
+    {
+      "name": "Dumud Gild",
+      "products": [
+        { "name": "High Quality Pal Oil", "category": "materials", "icon": "◉" },
+        { "name": "Gold Coin", "category": "utility", "icon": "●", "quantity": "×100" }
+      ],
+      "note": "Occasionally produces Gold Coins instead of High Quality Pal Oil."
+    },
+    {
+      "name": "Sibelyx",
+      "products": [
+        { "name": "High Quality Cloth", "category": "materials", "icon": "▧" }
+      ]
+    },
+    {
+      "name": "Sibelyx Primo",
+      "products": [
+        { "name": "High Quality Cloth", "category": "materials", "icon": "▧" }
+      ]
+    },
+    {
+      "name": "Shroomer",
+      "products": [
+        { "name": "Mushroom", "category": "food", "icon": "🍄" },
+        { "name": "Cavern Mushroom", "category": "food", "icon": "🍄" }
+      ]
+    },
+    {
+      "name": "Sootseer",
+      "products": [
+        { "name": "Bone", "category": "materials", "icon": "🦴" }
+      ]
+    }
+  ]
+}

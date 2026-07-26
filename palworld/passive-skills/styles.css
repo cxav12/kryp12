@@ -19,10 +19,11 @@
 
 .skill-badges {
   display: flex;
+  align-items: center;
   flex: 0 0 auto;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 0.3rem;
+  gap: 0.45rem;
 }
 
 .skill-badge {
@@ -71,6 +72,52 @@
   border-color: #8c4148;
   background: #36171a;
   color: #ff929a;
+}
+
+.passive-rank-icon {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 1.45rem;
+  min-height: 1.9rem;
+  padding: 0.08rem 0.12rem;
+  color: #6ff3d7;
+  filter: drop-shadow(0 0 0.22rem rgb(111 243 215 / 0.35));
+  line-height: 1;
+}
+
+.passive-rank-icon[data-direction="negative"] {
+  color: #ff6972;
+  filter: drop-shadow(0 0 0.22rem rgb(255 105 114 / 0.3));
+}
+
+.rank-chevron {
+  width: 0.72rem;
+  height: 0.72rem;
+  margin-bottom: -0.42rem;
+  border-top: 0.18rem solid currentColor;
+  border-left: 0.18rem solid currentColor;
+  transform: rotate(45deg);
+}
+
+.passive-rank-icon[data-direction="negative"] .rank-chevron {
+  margin-top: -0.42rem;
+  margin-bottom: 0;
+  transform: rotate(225deg);
+}
+
+.rank-sign {
+  margin-top: 0.22rem;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 0.7;
+}
+
+.passive-rank-icon[data-direction="negative"] .rank-sign {
+  order: -1;
+  margin-top: 0;
+  margin-bottom: 0.22rem;
 }
 
 .skill-effects {

@@ -1,0 +1,200 @@
+.ranch-tip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 25rem;
+  padding-left: 1rem;
+  border-left: 1px solid color-mix(in srgb, var(--accent-green) 35%, var(--border));
+}
+
+.ranch-tip span {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  place-items: center;
+  border-radius: 0.45rem;
+  background: rgb(84 226 149 / 0.12);
+  color: var(--accent-green);
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.ranch-tip p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.ranch-toolbar {
+  align-items: stretch;
+}
+
+.ranch-toolbar .filter-group {
+  flex: 0 1 auto;
+}
+
+.ranch-card {
+  --card-tint: #66c997;
+
+  min-height: 100%;
+  padding: 1rem;
+}
+
+.ranch-card[data-ranch-level="2"] {
+  --card-tint: #60cdb5;
+}
+
+.ranch-card[data-ranch-level="3"] {
+  --card-tint: #69aee8;
+}
+
+.ranch-card[data-ranch-level="4"] {
+  --card-tint: #e5bc55;
+}
+
+.ranch-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 4.65rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgb(255 255 255 / 0.07);
+}
+
+.ranch-pal-portrait {
+  width: 4.5rem;
+  height: 4.5rem;
+  flex: 0 0 4.5rem;
+  border: 3px solid color-mix(in srgb, var(--card-tint) 48%, #3a4149);
+  border-radius: 50%;
+  background-color: #182027;
+  background-repeat: no-repeat;
+  image-rendering: auto;
+}
+
+.ranch-pal-heading {
+  min-width: 0;
+  flex: 1;
+}
+
+.ranch-pal-heading .card-title {
+  font-size: 1rem;
+}
+
+.ranch-pal-number {
+  margin-left: 0.25rem;
+  color: var(--link);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ranch-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--card-tint) 48%, var(--border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--card-tint) 9%, transparent);
+  color: color-mix(in srgb, var(--card-tint) 72%, white);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.ranch-level img {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.ranch-output-label {
+  margin: 0.8rem 0 0.45rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ranch-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ranch-product {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 1.85rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid #363d45;
+  border-radius: 0.45rem;
+  background: rgb(0 0 0 / 0.18);
+  color: #f2f4f6;
+  font-size: 0.76rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.ranch-product-icon {
+  display: inline-grid;
+  width: 1.2rem;
+  height: 1.2rem;
+  place-items: center;
+  color: var(--accent-green);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.ranch-product-level,
+.ranch-product-quantity {
+  color: #8fa5ff;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.ranch-card-note {
+  margin: 0.7rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgb(255 255 255 / 0.06);
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.ranch-empty {
+  padding: 2rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface-1);
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 1199.98px) {
+  .ranch-toolbar {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ranch-tip {
+    max-width: none;
+    padding: 0.8rem 0 0;
+    border-top: 1px solid color-mix(in srgb, var(--accent-green) 35%, var(--border));
+    border-left: 0;
+  }
+
+  .ranch-toolbar .filter-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ranch-toolbar .filter-button {
+    text-align: left;
+  }
+}

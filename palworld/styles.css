@@ -84,6 +84,7 @@ textarea {
 
 .palworld-nav {
   position: relative;
+  display: flex;
   min-height: 4.75rem;
   padding: 0;
   overflow-x: auto;
@@ -104,8 +105,14 @@ textarea {
   background: var(--accent);
 }
 
+.nav-toggle {
+  display: none;
+}
+
 .palworld-nav .navbar-nav {
+  display: flex;
   align-self: stretch;
+  flex-direction: row;
   flex-wrap: nowrap;
 }
 
@@ -147,6 +154,40 @@ textarea {
 .content-section {
   width: 100%;
   padding-top: 1rem;
+}
+
+.page-intro {
+  --card-tint: #73d9a1;
+
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 1.25rem 1.4rem;
+}
+
+.page-intro h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.page-intro > div:first-child {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.page-intro-copy {
+  max-width: 48rem;
+  margin: 0.45rem 0 0;
+  color: var(--text-soft);
+}
+
+.page-intro > div:only-child .page-intro-copy {
+  max-width: none;
 }
 
 .site-footer {
@@ -291,18 +332,86 @@ textarea {
   }
 
   .palworld-nav {
-    align-items: stretch;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: var(--accent-bar-width) minmax(0, 1fr);
     min-height: 0;
     overflow: hidden;
   }
 
-  .palworld-nav .navbar-nav {
+  .nav-accent {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-height: 3.5rem;
+  }
+
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0.7rem 1rem;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 750;
+    text-align: left;
+  }
+
+  .nav-toggle:hover {
+    background: #2d2d2d;
+  }
+
+  .nav-toggle:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: -3px;
+  }
+
+  .nav-toggle-icon {
     display: grid;
-    flex: 1 1 0;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.27rem;
+    width: 1.4rem;
+  }
+
+  .nav-toggle-icon span {
+    display: block;
+    width: 100%;
+    height: 0.14rem;
+    border-radius: 999px;
+    background: currentColor;
+    transition:
+      transform 160ms ease,
+      opacity 160ms ease;
+  }
+
+  .palworld-nav[data-open="true"] .nav-toggle-icon span:first-child {
+    transform: translateY(0.41rem) rotate(45deg);
+  }
+
+  .palworld-nav[data-open="true"] .nav-toggle-icon span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .palworld-nav[data-open="true"] .nav-toggle-icon span:last-child {
+    transform: translateY(-0.41rem) rotate(-45deg);
+  }
+
+  .palworld-nav .navbar-nav {
+    display: none;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    flex-direction: column;
     min-width: 0;
-    width: auto;
+    width: 100%;
+    border-top: 2px solid #0b0b0b;
+  }
+
+  .palworld-nav[data-open="true"] .navbar-nav {
+    display: flex;
   }
 
   .palworld-nav .nav-item {
@@ -313,18 +422,16 @@ textarea {
     width: 100%;
     min-width: 0;
     min-height: 3.25rem;
-    padding: 0.65rem 0.5rem;
+    justify-content: flex-start;
+    padding: 0.7rem 1rem;
+    border-right: 0;
     border-bottom: 2px solid #0b0b0b;
     font-size: 0.875rem;
-    text-align: center;
+    text-align: left;
     white-space: normal;
   }
 
-  .palworld-nav .nav-item:nth-child(2n) .nav-link {
-    border-right: 0;
-  }
-
-  .palworld-nav .nav-item:nth-last-child(-n + 2) .nav-link {
+  .palworld-nav .nav-item:last-child .nav-link {
     border-bottom: 0;
   }
 
@@ -332,6 +439,12 @@ textarea {
   .site-toolbar {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .page-intro {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .data-status-meta {

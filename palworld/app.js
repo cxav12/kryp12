@@ -65,6 +65,34 @@ function getTierKey(rank) {
   return tierByRank[rank] ?? "unranked";
 }
 
+function createRankIcon(rank) {
+  const icon = document.createElement("span");
+  const isNegative = rank < 0;
+  const chevronCount = Math.max(0, Math.min(Math.abs(rank) - 1, 4));
+  const rankLabel = `Palworld Rank ${rank > 0 ? `+${rank}` : rank}`;
+
+  icon.className = "passive-rank-icon";
+  icon.dataset.direction = isNegative ? "negative" : "positive";
+  icon.setAttribute("role", "img");
+  icon.setAttribute("aria-label", rankLabel);
+  icon.title = rankLabel;
+
+  for (let index = 0; index < chevronCount; index += 1) {
+    const chevron = document.createElement("span");
+    chevron.className = "rank-chevron";
+    chevron.setAttribute("aria-hidden", "true");
+    icon.append(chevron);
+  }
+
+  const sign = document.createElement("span");
+  sign.className = "rank-sign";
+  sign.setAttribute("aria-hidden", "true");
+  sign.textContent = isNegative ? "−" : "+";
+  icon.append(sign);
+
+  return icon;
+}
+
 function createSkillCard(skill) {
   const column = document.createElement("div");
   column.className = "col-12 col-md-6 col-lg-4 col-xxl-3";
@@ -93,7 +121,7 @@ function createSkillCard(skill) {
     "aria-label",
     `${getTierLabel(skill.rank)}, Palworld Rank ${skill.rank}`,
   );
-  badges.append(rankBadge);
+  badges.append(rankBadge, createRankIcon(skill.rank));
 
   header.append(title, badges);
 

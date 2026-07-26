@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Browse and filter Palworld passive skills by tier or name."
+      content="Find every Palworld Ranch Pal and the items each Pal produces."
     >
-    <title>Palworld Reference | Passive Skills</title>
+    <title>Palworld Reference | Ranch</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -16,7 +16,13 @@
       crossorigin="anonymous"
     >
     <link rel="stylesheet" href="../styles.css?v=20260726-nav1">
-    <link rel="stylesheet" href="./styles.css?v=20260726-rank1">
+    <link rel="stylesheet" href="./styles.css?v=20260726-intro1">
+    <link
+      rel="preload"
+      href="../assets/paldeck/pal-portraits.webp"
+      as="image"
+      type="image/webp"
+    >
   </head>
   <body>
     <header class="site-header">
@@ -52,20 +58,16 @@
         </button>
         <ul id="palworld-nav-links" class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="../pals/">
-              Pals
-            </a>
+            <a class="nav-link" href="../pals/">Pals</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./">
-              Passive Skills
-            </a>
+            <a class="nav-link" href="../passive-skills/">Passive Skills</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../breeding/">Breeding</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../ranch/">Ranch</a>
+            <a class="nav-link active" aria-current="page" href="./">Ranch</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../type-chart/">Type Chart</a>
@@ -75,75 +77,81 @@
     </header>
 
     <main class="site-content">
-      <section class="content-section" aria-labelledby="passive-skills-title">
+      <section class="content-section" aria-labelledby="ranch-title">
         <div class="page-intro tinted-card">
           <div>
-            <h1 id="passive-skills-title">Passive Skills</h1>
+            <h1 id="ranch-title">Ranch</h1>
             <p class="page-intro-copy">
-              Explore every passive skill and filter by tier to find the
-              traits you want for combat, work, and breeding.
+              Find the Pal you need for every Ranch-produced ingredient,
+              material, organ, and utility item.
+            </p>
+          </div>
+          <div class="ranch-tip">
+            <span aria-hidden="true">↑</span>
+            <p>
+              Raising a Pal's Ranch level increases its output and can unlock
+              better items.
             </p>
           </div>
         </div>
 
-        <div class="site-toolbar">
+        <div class="site-toolbar ranch-toolbar">
           <div
-            id="tier-filters"
+            id="ranch-filters"
             class="filter-group"
             role="group"
-            aria-label="Filter passive skills by tier"
+            aria-label="Filter Ranch Pals by product type"
           >
-            <button class="filter-button active" type="button" data-tier="all" aria-pressed="true">All</button>
-            <button class="filter-button" type="button" data-tier="s" aria-pressed="false">S-Tier</button>
-            <button class="filter-button" type="button" data-tier="a" aria-pressed="false">A-Tier</button>
-            <button class="filter-button" type="button" data-tier="b" aria-pressed="false">B-Tier</button>
-            <button class="filter-button" type="button" data-tier="c" aria-pressed="false">C-Tier</button>
-            <button class="filter-button" type="button" data-tier="d" aria-pressed="false">D-Tier</button>
-            <button class="filter-button" type="button" data-tier="f" aria-pressed="false">F-Tier</button>
+            <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="cake" aria-pressed="false">Cake Ingredients</button>
+            <button class="filter-button" type="button" data-filter="organs" aria-pressed="false">Organs</button>
+            <button class="filter-button" type="button" data-filter="materials" aria-pressed="false">Materials</button>
+            <button class="filter-button" type="button" data-filter="food" aria-pressed="false">Food &amp; Seeds</button>
+            <button class="filter-button" type="button" data-filter="utility" aria-pressed="false">Utility</button>
           </div>
 
           <div class="site-search" role="search">
-            <label class="visually-hidden" for="passive-search-input">
-              Search passive skills
+            <label class="visually-hidden" for="ranch-search-input">
+              Search Pals or Ranch products
             </label>
             <input
-              id="passive-search-input"
+              id="ranch-search-input"
               class="form-control"
               type="search"
-              placeholder="Search passive skills..."
+              placeholder="Search Pals or items..."
               autocomplete="off"
             >
           </div>
         </div>
 
         <div
-          id="passive-skills-grid"
+          id="ranch-grid"
           class="row g-2 g-xl-3"
           aria-live="polite"
           aria-busy="true"
         >
-          <p class="empty-state-message">Loading passive skills...</p>
+          <p class="empty-state-message">Loading Ranch data...</p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <section
-        id="data-status"
+        id="ranch-data-status"
         class="data-status alert"
         role="status"
         aria-live="polite"
         hidden
       >
         <div>
-          <strong id="data-status-title">Checking game data…</strong>
-          <p id="data-status-message" class="mb-0"></p>
+          <strong id="ranch-data-status-title">Checking Ranch data...</strong>
+          <p id="ranch-data-status-message" class="mb-0"></p>
         </div>
-        <div id="data-status-meta" class="data-status-meta"></div>
+        <div id="ranch-data-status-meta" class="data-status-meta"></div>
       </section>
     </footer>
 
     <script src="../shared.js?v=20260726-nav1"></script>
-    <script src="../app.js?v=20260726-rank1"></script>
+    <script src="./app.js?v=20260726-ranch2"></script>
   </body>
 </html>

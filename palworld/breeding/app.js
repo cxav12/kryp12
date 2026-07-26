@@ -427,8 +427,8 @@ quickSelectToggle.addEventListener("click", () => {
   const opening = quickSelectContent.hidden;
   quickSelectContent.hidden = !opening;
   quickSelectToggle.textContent = opening
-    ? "Hide Quick Select"
-    : "Show Quick Select";
+    ? "Hide Quick Select Pals"
+    : "Show Quick Select Pals";
   quickSelectToggle.setAttribute("aria-expanded", String(opening));
 });
 

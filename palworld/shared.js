@@ -79,6 +79,47 @@
       `${horizontalPosition}% ${verticalPosition}%`;
   }
 
+  function initializeNavigation() {
+    document.querySelectorAll(".palworld-nav").forEach((navigation) => {
+      const toggle = navigation.querySelector(".nav-toggle");
+      const links = navigation.querySelector(".navbar-nav");
+
+      if (!toggle || !links) {
+        return;
+      }
+
+      const setOpen = (open) => {
+        navigation.dataset.open = String(open);
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute(
+          "aria-label",
+          open ? "Close navigation" : "Open navigation",
+        );
+      };
+
+      toggle.addEventListener("click", () => {
+        setOpen(navigation.dataset.open !== "true");
+      });
+
+      links.addEventListener("click", (event) => {
+        if (event.target.closest(".nav-link")) {
+          setOpen(false);
+        }
+      });
+
+      navigation.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && navigation.dataset.open === "true") {
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+
+      setOpen(false);
+    });
+  }
+
+  initializeNavigation();
+
   window.PalworldUI = Object.freeze({
     applySpriteStyle,
     createDataStatusController,

@@ -85,6 +85,7 @@ textarea {
 .palworld-nav {
   position: relative;
   display: flex;
+  justify-content: flex-start;
   min-height: 4.75rem;
   padding: 0;
   overflow-x: auto;

@@ -43,34 +43,6 @@ const skillTypeMatchers = {
     /value of items|dropped items/i.test(effects),
 };
 
-function createBadge(text, className, attributes = {}) {
-  const badge = document.createElement("span");
-  badge.className = `skill-badge ${className}`;
-  badge.textContent = text;
-
-  Object.entries(attributes).forEach(([name, value]) => {
-    badge.dataset[name] = value;
-  });
-
-  return badge;
-}
-
-function getTierLabel(rank) {
-  if (rank < 0) {
-    return "F-Tier";
-  }
-
-  const tierByRank = {
-    5: "S-Tier",
-    4: "A-Tier",
-    3: "B-Tier",
-    2: "C-Tier",
-    1: "D-Tier",
-  };
-
-  return tierByRank[rank] ?? `Rank ${rank}`;
-}
-
 function getTierKey(rank) {
   if (rank < 0) {
     return "f";
@@ -94,6 +66,7 @@ function createRankIcon(rank) {
   const rankLabel = `Palworld Rank ${rank > 0 ? `+${rank}` : rank}`;
 
   icon.className = "passive-rank-icon";
+  icon.classList.toggle("rank-icon-single", chevronCount === 0);
   icon.dataset.direction = isNegative ? "negative" : "positive";
   icon.setAttribute("role", "img");
   icon.setAttribute("aria-label", rankLabel);
@@ -130,22 +103,11 @@ function createSkillCard(skill) {
   title.className = "card-title";
   title.textContent = skill.name;
 
-  const badges = document.createElement("div");
-  badges.className = "skill-badges";
+  const titleRow = document.createElement("div");
+  titleRow.className = "passive-skill-title-row";
+  titleRow.append(title, createRankIcon(skill.rank));
 
-  const rankBadge = createBadge(getTierLabel(skill.rank), "rank-badge", {
-    rank: String(skill.rank),
-    tier: getTierKey(skill.rank),
-    negative: String(skill.rank < 0),
-  });
-  rankBadge.title = `Palworld Rank ${skill.rank}`;
-  rankBadge.setAttribute(
-    "aria-label",
-    `${getTierLabel(skill.rank)}, Palworld Rank ${skill.rank}`,
-  );
-  badges.append(rankBadge, createRankIcon(skill.rank));
-
-  header.append(title, badges);
+  header.append(titleRow);
 
   const effects = document.createElement("ul");
   effects.className = "skill-effects";
@@ -184,21 +146,27 @@ function renderPassiveSkills(skills) {
 
 function applyFilters() {
   const searchTerm = searchInput.value.trim().toLowerCase();
-  const filteredSkills = allPassiveSkills.filter((skill) => {
-    const effects = skill.effects.join(" ");
-    const matchesType =
-      activeType === "all" ||
-      skillTypeMatchers[activeType]?.(skill, effects) === true;
-    const matchesTier =
-      activeTier === "all" || getTierKey(skill.rank) === activeTier;
-    const searchableText = [skill.name, ...skill.effects]
-      .join(" ")
-      .toLowerCase();
-    const matchesSearch =
-      searchTerm.length === 0 || searchableText.includes(searchTerm);
+  const filteredSkills = allPassiveSkills
+    .filter((skill) => {
+      const effects = skill.effects.join(" ");
+      const matchesType =
+        activeType === "all" ||
+        skillTypeMatchers[activeType]?.(skill, effects) === true;
+      const matchesTier =
+        activeTier === "all" || getTierKey(skill.rank) === activeTier;
+      const searchableText = [skill.name, ...skill.effects]
+        .join(" ")
+        .toLowerCase();
+      const matchesSearch =
+        searchTerm.length === 0 || searchableText.includes(searchTerm);
 
-    return matchesType && matchesTier && matchesSearch;
-  });
+      return matchesType && matchesTier && matchesSearch;
+    })
+    .sort(
+      (firstSkill, secondSkill) =>
+        secondSkill.rank - firstSkill.rank ||
+        firstSkill.name.localeCompare(secondSkill.name),
+    );
 
   renderPassiveSkills(filteredSkills);
 }

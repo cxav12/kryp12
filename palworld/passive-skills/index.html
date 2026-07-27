@@ -90,52 +90,56 @@
           <div class="passive-filter-stack">
             <div class="passive-filter-row">
               <span class="passive-filter-label">Type</span>
-              <div
-                id="type-filters"
-                class="filter-group"
-                role="group"
-                aria-label="Filter passive skills by type"
-              >
-                <button class="filter-button active" type="button" data-type="all" aria-pressed="true">All</button>
-                <button class="filter-button" type="button" data-type="player" aria-pressed="false">Player Buffs</button>
-                <button class="filter-button" type="button" data-type="combat" aria-pressed="false">Combat</button>
-                <button class="filter-button" type="button" data-type="work" aria-pressed="false">Base &amp; Work</button>
-                <button class="filter-button" type="button" data-type="movement" aria-pressed="false">Movement &amp; Mounts</button>
-                <button class="filter-button" type="button" data-type="elemental" aria-pressed="false">Elemental</button>
-                <button class="filter-button" type="button" data-type="economy" aria-pressed="false">Economy &amp; Loot</button>
+              <div class="passive-type-controls">
+                <div
+                  id="type-filters"
+                  class="filter-group"
+                  role="group"
+                  aria-label="Filter passive skills by type"
+                >
+                  <button class="filter-button active" type="button" data-type="all" aria-pressed="true">All</button>
+                  <button class="filter-button" type="button" data-type="player" aria-pressed="false">Player Buffs</button>
+                  <button class="filter-button" type="button" data-type="combat" aria-pressed="false">Combat</button>
+                  <button class="filter-button" type="button" data-type="work" aria-pressed="false">Base &amp; Work</button>
+                  <button class="filter-button" type="button" data-type="movement" aria-pressed="false">Movement &amp; Mounts</button>
+                  <button class="filter-button" type="button" data-type="elemental" aria-pressed="false">Elemental</button>
+                  <button class="filter-button" type="button" data-type="economy" aria-pressed="false">Economy &amp; Loot</button>
+                </div>
+
+                <div class="site-search" role="search">
+                  <label class="visually-hidden" for="passive-search-input">
+                    Search passive skills
+                  </label>
+                  <input
+                    id="passive-search-input"
+                    class="form-control"
+                    type="search"
+                    placeholder="Search passive skills..."
+                    autocomplete="off"
+                  >
+                </div>
               </div>
             </div>
 
             <div class="passive-filter-row">
               <span class="passive-filter-label">Tier</span>
-              <div
-                id="tier-filters"
-                class="filter-group"
-                role="group"
-                aria-label="Filter passive skills by tier"
-              >
-                <button class="filter-button active" type="button" data-tier="all" aria-pressed="true">All Tiers</button>
-                <button class="filter-button" type="button" data-tier="s" aria-pressed="false">S-Tier</button>
-                <button class="filter-button" type="button" data-tier="a" aria-pressed="false">A-Tier</button>
-                <button class="filter-button" type="button" data-tier="b" aria-pressed="false">B-Tier</button>
-                <button class="filter-button" type="button" data-tier="c" aria-pressed="false">C-Tier</button>
-                <button class="filter-button" type="button" data-tier="d" aria-pressed="false">D-Tier</button>
-                <button class="filter-button" type="button" data-tier="f" aria-pressed="false">F-Tier</button>
+              <div class="passive-tier-controls">
+                <div
+                  id="tier-filters"
+                  class="filter-group"
+                  role="group"
+                  aria-label="Filter passive skills by tier"
+                >
+                  <button class="filter-button active" type="button" data-tier="all" aria-pressed="true">All Tiers</button>
+                  <button class="filter-button" type="button" data-tier="s" aria-pressed="false">S-Tier</button>
+                  <button class="filter-button" type="button" data-tier="a" aria-pressed="false">A-Tier</button>
+                  <button class="filter-button" type="button" data-tier="b" aria-pressed="false">B-Tier</button>
+                  <button class="filter-button" type="button" data-tier="c" aria-pressed="false">C-Tier</button>
+                  <button class="filter-button" type="button" data-tier="d" aria-pressed="false">D-Tier</button>
+                  <button class="filter-button" type="button" data-tier="f" aria-pressed="false">F-Tier</button>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="site-search" role="search">
-            <label class="visually-hidden" for="passive-search-input">
-              Search passive skills
-            </label>
-            <input
-              id="passive-search-input"
-              class="form-control"
-              type="search"
-              placeholder="Search passive skills..."
-              autocomplete="off"
-            >
           </div>
         </div>
 

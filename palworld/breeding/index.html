@@ -15,8 +15,8 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     >
-    <link rel="stylesheet" href="../styles.css?v=20260726-nav2">
-    <link rel="stylesheet" href="./styles.css?v=20260725-clean1">
+    <link rel="stylesheet" href="../styles.css?v=20260727-tools1">
+    <link rel="stylesheet" href="./styles.css?v=20260727-bpguide1">
     <link
       rel="preload"
       href="../assets/paldeck/pal-portraits.webp"
@@ -72,6 +72,15 @@
             <a class="nav-link" href="../ranch/">Ranch</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="../base-planner/">Base Planner</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../party-guides/">Party Guides</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../items/">Items</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="../type-chart/">Type Chart</a>
           </li>
         </ul>
@@ -89,6 +98,45 @@
             </p>
           </div>
         </div>
+
+        <details class="breeding-explainer">
+          <summary>
+            <span>
+              <strong>How Breeding Power Works</strong>
+              <small>Understand what the BP numbers mean</small>
+            </span>
+          </summary>
+          <div class="breeding-explainer-content">
+            <p>
+              Breeding Power is a hidden species value used to determine most
+              standard offspring. It is not a combat stat and does not make an
+              individual Pal stronger in battle.
+            </p>
+            <div class="breeding-formula" aria-label="Breeding Power formula">
+              Child BP = floor((Parent A BP + Parent B BP + 1) ÷ 2)
+            </div>
+            <ul>
+              <li>
+                The game averages both parents’ Breeding Power values.
+              </li>
+              <li>
+                The eligible child species nearest that result is normally
+                selected.
+              </li>
+              <li>
+                Internal game ordering resolves results that are equally close.
+              </li>
+              <li>
+                Fixed combinations and breeding restrictions can override the
+                normal formula.
+              </li>
+              <li>
+                Lower values generally correspond to rarer or more powerful
+                species.
+              </li>
+            </ul>
+          </div>
+        </details>
 
         <div
           id="breeding-modes"
@@ -203,7 +251,7 @@
       ></section>
     </footer>
 
-    <script src="../shared.js?v=20260726-nav1"></script>
-    <script src="./app.js?v=20260726-quickselect1"></script>
+    <script src="../shared.js?v=20260727-passivepath1"></script>
+    <script src="./app.js?v=20260727-bp1"></script>
   </body>
 </html>

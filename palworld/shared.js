@@ -1,10 +1,94 @@
 (() => {
+  const palPreferencesKey = "palworld-pal-preferences-v1";
   const elementDisplayNames = {
     Normal: "Neutral",
     Leaf: "Grass",
     Electricity: "Electric",
     Earth: "Ground",
   };
+  const gameTokenDisplayNames = {
+    berries: "Red Berries",
+    cavemushroom: "Cave Mushroom",
+    copperore: "Copper Ore",
+    egg: "Egg",
+    fireorgan: "Flame Organ",
+    iceorgan: "Ice Organ",
+    money: "Gold Coin",
+    mushroom: "Mushroom",
+    palfluid: "Pal Fluids",
+    paloil: "High Quality Pal Oil",
+    sweet: "Cotton Candy",
+    sweet_caramel: "Caramelized Cotton Candy",
+    venom: "Venom Gland",
+    wool: "Wool",
+  };
+
+  function humanizeGameToken(token) {
+    const normalizedToken = String(token)
+      .replace(/^COMMON_ELEMENT_NAME_/i, "")
+      .replace(/^ADDITIONAL_EFFECT_/i, "")
+      .replace(/^COMMON_STATUS_/i, "")
+      .replace(/^COMMON_WORK_SUITABILITY_/i, "")
+      .replace(/^COMMON_CHARACTER_NAME_/i, "");
+    const knownElement = getElementDisplayName(normalizedToken);
+
+    if (knownElement !== normalizedToken) {
+      return knownElement;
+    }
+
+    return normalizedToken
+      .replace(/_/g, " ")
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .replace(/\b\w/g, (letter) => letter.toUpperCase());
+  }
+
+  function formatGameText(value) {
+    if (!value) {
+      return "";
+    }
+
+    return String(value)
+      .replace(/â€™/g, "’")
+      .replace(/â€œ|â€/g, '"')
+      .replace(/Â·/g, "·")
+      .replace(/<img\b[^>]*>/gi, "")
+      .replace(
+        /Unknown (?:Status|Character) \(([^|)]+)\|\s*style=\|[^)]+\)/gi,
+        (_, token) => humanizeGameToken(token),
+      )
+      .replace(
+        /\b(inflicts?\s+[A-Z][A-Za-z ]*?)\s*<Status_Up>\s*\{[^}]+\}\s*<\/>/gi,
+        "$1",
+      )
+      .replace(
+        /<(?:Status_Up|Status_Keyword)>\s*[+-]?\{[^}]+\}%?\s*<\/>/gi,
+        "an amount based on Partner Skill level",
+      )
+      .replace(/\{ReferenceMsgId_[^}]+\}/gi, "")
+      .replace(
+        /\{[^}]+\}-second/gi,
+        "Partner Skill level-based",
+      )
+      .replace(
+        /[+-]?\{[^}]+\}%?/g,
+        "an amount based on Partner Skill level",
+      )
+      .replace(/<[^>]*>/g, "")
+      .replace(
+        /([A-Za-z][A-Za-z0-9_]*)\|\s*style=\|[A-Za-z0-9_]+/gi,
+        (_, token) =>
+          gameTokenDisplayNames[token.toLowerCase()] ||
+          humanizeGameToken(token),
+      )
+      .replace(
+        /Unknown (?:Status|Character) \(([^)]+)\)/gi,
+        (_, token) => humanizeGameToken(token.split("|")[0]),
+      )
+      .replace(/\s+([,.;:%)])/g, "$1")
+      .replace(/\(\s*\)/g, "")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  }
 
   function formatPalNumber(dexKey) {
     const match = String(dexKey).match(/^(\d+)(.*)$/);
@@ -79,6 +163,76 @@
       `${horizontalPosition}% ${verticalPosition}%`;
   }
 
+  function getPalPreferences() {
+    try {
+      const storedPreferences = JSON.parse(
+        window.localStorage.getItem(palPreferencesKey) || "{}",
+      );
+
+      return {
+        favorites: Array.isArray(storedPreferences.favorites)
+          ? storedPreferences.favorites
+          : [],
+      };
+    } catch {
+      return { favorites: [] };
+    }
+  }
+
+  function hasPalPreference(name, preference) {
+    return getPalPreferences()[preference]?.includes(name) === true;
+  }
+
+  function setPalPreference(name, preference, enabled) {
+    const preferences = getPalPreferences();
+
+    if (!Object.hasOwn(preferences, preference)) {
+      return false;
+    }
+
+    const names = new Set(preferences[preference]);
+    enabled ? names.add(name) : names.delete(name);
+    preferences[preference] = [...names].sort((nameA, nameB) =>
+      nameA.localeCompare(nameB),
+    );
+
+    try {
+      window.localStorage.setItem(
+        palPreferencesKey,
+        JSON.stringify(preferences),
+      );
+    } catch {
+      return false;
+    }
+
+    window.dispatchEvent(
+      new CustomEvent("palworld:preferences-changed", {
+        detail: { name, preference, enabled },
+      }),
+    );
+    return true;
+  }
+
+  function updateUrlParams(values) {
+    const url = new URL(window.location.href);
+
+    Object.entries(values).forEach(([name, value]) => {
+      if (
+        value === undefined ||
+        value === null ||
+        value === "" ||
+        value === false
+      ) {
+        url.searchParams.delete(name);
+      } else {
+        url.searchParams.set(name, String(value));
+      }
+    });
+
+    const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+    window.history.replaceState(null, "", nextUrl);
+  }
+
   function initializeNavigation() {
     document.querySelectorAll(".palworld-nav").forEach((navigation) => {
       const toggle = navigation.querySelector(".nav-toggle");
@@ -124,8 +278,13 @@
     applySpriteStyle,
     createDataStatusController,
     formatDate,
+    formatGameText,
     formatPalNumber,
+    getPalPreferences,
     getElementDisplayName,
     getRarityDetails,
+    hasPalPreference,
+    setPalPreference,
+    updateUrlParams,
   });
 })();

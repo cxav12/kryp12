@@ -1,0 +1,248 @@
+{
+  "metadata": {
+    "gameVersion": "1.0",
+    "reviewedAt": "2026-07-27",
+    "guideCount": 13,
+    "description": "Curated active-party recommendations based on current Pal Partner Skills."
+  },
+  "categories": [
+    { "id": "all", "label": "All Guides" },
+    { "id": "fishing", "label": "Fishing & Salvage" },
+    { "id": "capturing", "label": "Capturing" },
+    { "id": "gathering", "label": "Gathering" },
+    { "id": "loot", "label": "Loot Farming" },
+    { "id": "utility", "label": "Utility" }
+  ],
+  "guides": [
+    {
+      "id": "fishing-party",
+      "category": "fishing",
+      "title": "All-Purpose Fishing Party",
+      "eyebrow": "Fishing",
+      "summary": "More loot, easier catches, talented-Pal odds, and fast travel between fishing spots.",
+      "accent": "#55c8ff",
+      "tip": "Ghangler is the travel slot in current 1.0 data. Swap it for Galeclaw or Dogen when another movement option suits the route better.",
+      "members": [
+        { "name": "Jelliette", "role": "Fishing rewards", "effect": "Increases items obtained from fishing and scales with condensation.", "requirement": "Keep in party" },
+        { "name": "Gloopie", "role": "Gauge protection", "effect": "Slows capture-gauge loss when the fishing bars separate.", "requirement": "Keep in party" },
+        { "name": "Whalaska Ignis", "role": "Gauge support", "effect": "Starts the fishing gauge higher and increases progress while aligned.", "requirement": "Keep in party", "alternatives": ["Whalaska"] },
+        { "name": "Solmora Lux", "role": "Talented Pal hunter", "effect": "Improves talented-Pal odds and serves as a Water mount.", "requirement": "Keep in party", "alternatives": ["Solmora"] },
+        { "name": "Ghangler", "role": "Water traversal", "effect": "Travels on water and gains speed from other Dark or Water party members.", "requirement": "Ride between spots", "alternatives": ["Galeclaw", "Dogen"] }
+      ]
+    },
+    {
+      "id": "salvage-party",
+      "category": "fishing",
+      "title": "Ocean-Salvage Party",
+      "eyebrow": "Ocean Salvage",
+      "summary": "Increase salvage rewards and support a combined fishing-and-salvage route.",
+      "accent": "#34d6c8",
+      "tip": "Jellroy is the essential salvage booster. Gloopie and Whalaska Ignis assist fishing encounters between salvage spots, not the salvage timing circle itself.",
+      "members": [
+        { "name": "Jellroy", "role": "Salvage rewards", "effect": "Increases items obtained from successful salvage spots.", "requirement": "Keep in party" },
+        { "name": "Gloopie", "role": "Fishing support", "effect": "Makes fishing encounters between salvage stops more forgiving.", "requirement": "Keep in party" },
+        { "name": "Whalaska Ignis", "role": "Fishing gauge support", "effect": "Improves the starting gauge and aligned progress during fishing.", "requirement": "Keep in party" },
+        { "name": "Solmora Lux", "role": "Water mount", "effect": "Provides Water travel between offshore salvage spots.", "requirement": "Ride at salvage spot" },
+        { "name": "Dogen", "role": "Return trip", "effect": "Teleports to the nearest base after the run.", "requirement": "Activate Partner Skill", "alternatives": ["Galeclaw"] }
+      ]
+    },
+    {
+      "id": "capture-party",
+      "category": "capturing",
+      "title": "General Capturing Party",
+      "eyebrow": "Capturing",
+      "summary": "Combine back-bonus and status-based capture boosts with safe chip damage.",
+      "accent": "#9e86ff",
+      "tip": "Damage the target, apply Freeze or Ivy-Covered, move behind it, then throw your best affordable sphere. The back bonus can combine with a status bonus.",
+      "members": [
+        { "name": "Wispaw", "role": "Back-bonus captures", "effect": "Improves capture rate when a throw receives the back bonus.", "requirement": "Throw from behind" },
+        { "name": "Muffly", "role": "Frozen captures", "effect": "Improves capture rate against Frozen Pals.", "requirement": "Freeze the target" },
+        { "name": "Souffline", "role": "Ivy captures", "effect": "Improves capture rate against Ivy-Covered Pals.", "requirement": "Apply Ivy-Covered" },
+        { "name": "Daedream", "role": "Safe chip damage", "effect": "Necklace attacks cannot lower the target below 1 HP.", "requirement": "Keep in party" },
+        { "name": "Jetragon", "role": "Fast mount", "effect": "Closes distance quickly while searching for targets.", "requirement": "Equip mount gear", "alternatives": ["Frostallion", "Solmora Lux"] }
+      ]
+    },
+    {
+      "id": "passive-hunting-party",
+      "category": "capturing",
+      "title": "Passive-Skill Hunting Party",
+      "eyebrow": "Passive Hunting",
+      "summary": "Use Yakumo to search for wild Pals carrying specific eligible passives.",
+      "accent": "#d58cff",
+      "tip": "Give Yakumo only the one or two passives you actually want. Yakumo must be actively fighting, and exclusive passives are excluded.",
+      "members": [
+        { "name": "Yakumo", "role": "Passive matcher", "effect": "Raises the chance of encountering Pals with the same eligible passives.", "requirement": "Use as active Pal" },
+        { "name": "Wispaw", "role": "Back-bonus captures", "effect": "Improves capture rate on successful back-bonus throws.", "requirement": "Throw from behind" },
+        { "name": "Muffly", "role": "Frozen captures", "effect": "Improves capture rate against Frozen targets.", "requirement": "Freeze the target" },
+        { "name": "Daedream", "role": "Safe chip damage", "effect": "Assists without reducing the target below 1 HP.", "requirement": "Keep in party" },
+        { "name": "Souffline", "role": "Ivy captures", "effect": "Improves capture rate against Ivy-Covered targets.", "requirement": "Apply Ivy-Covered", "alternatives": ["Jetragon"] }
+      ]
+    },
+    {
+      "id": "wild-egg-party",
+      "category": "gathering",
+      "title": "Wild-Egg Gathering Party",
+      "eyebrow": "Egg Hunting",
+      "summary": "Improve wild-egg pickups while covering travel, movement, and the return trip.",
+      "accent": "#f0c95f",
+      "tip": "Grintale and Broncherry Aqua do not benefit from duplicate copies. Condense the single Pal used in each slot.",
+      "members": [
+        { "name": "Grintale", "role": "Extra eggs", "effect": "Can provide one additional Pal Egg when an egg is picked up.", "requirement": "Keep in party" },
+        { "name": "Broncherry Aqua", "role": "Alpha eggs", "effect": "Can convert a collected Pal Egg into an Alpha Pal Egg.", "requirement": "Keep in party" },
+        { "name": "Jetragon", "role": "Fast flying mount", "effect": "Rapidly covers long egg routes.", "requirement": "Equip mount gear", "alternatives": ["Frostallion"] },
+        { "name": "Verdash", "role": "Movement support", "effect": "Adds an extra jump and mid-air dash while in the party.", "requirement": "Keep in party" },
+        { "name": "Dogen", "role": "Return trip", "effect": "Teleports to the nearest base after the route.", "requirement": "Activate Partner Skill" }
+      ]
+    },
+    {
+      "id": "ore-chromite-party",
+      "category": "gathering",
+      "title": "Ore & Chromite Party",
+      "eyebrow": "Mining",
+      "summary": "Mine ore manually, locate Chromite, and get overloaded resources home quickly.",
+      "accent": "#d89a55",
+      "tip": "Smokie must fight alongside you for its Chromite acquisition bonus. Replace it with extra carrying or travel support on ordinary ore runs.",
+      "members": [
+        { "name": "Astegon", "role": "Mounted miner", "effect": "Deals heavy ore damage and increases ore yield while mounted.", "requirement": "Mine while mounted" },
+        { "name": "Smokie", "role": "Chromite specialist", "effect": "Detects nearby Chromite and increases the amount acquired.", "requirement": "Use as active Pal" },
+        { "name": "Cattiva", "role": "Carrying capacity", "effect": "Raises maximum carrying capacity.", "requirement": "Keep in party" },
+        { "name": "Dogen", "role": "Overload escape", "effect": "Teleports to the nearest base when the run is complete.", "requirement": "Activate Partner Skill" },
+        { "name": "Galeclaw", "role": "Travel support", "effect": "Provides fast gliding between deposits.", "requirement": "Keep in party", "alternatives": ["Jetragon"] }
+      ]
+    },
+    {
+      "id": "pal-soul-party",
+      "category": "loot",
+      "title": "Pal Soul Farming Party",
+      "eyebrow": "Pal Souls",
+      "summary": "Make Nitemary the reliable reward core and use the remaining slots to clear targets faster.",
+      "accent": "#7976df",
+      "tip": "Nitemary must fight alongside you. Whether an elemental drop booster affects the same Soul table can vary, so treat it as an optional slot.",
+      "members": [
+        { "name": "Nitemary", "role": "Soul drop booster", "effect": "Increases Pal Souls dropped by defeated Pals.", "requirement": "Use as active Pal" },
+        { "name": "Match the target element", "role": "Optional drop booster", "effect": "Use the elemental reference below when its bonus applies to the target.", "requirement": "Keep in party", "flexible": true },
+        { "name": "Solenne", "role": "Player Attack", "effect": "Raises player Attack when all party Pals are different species.", "requirement": "Unique-species party" },
+        { "name": "Gobfin", "role": "Additional Attack", "effect": "Adds another player Attack bonus.", "requirement": "Keep in party" },
+        { "name": "Strong combat Pal", "role": "Clear speed", "effect": "Use your strongest active attacker or fastest suitable mount.", "requirement": "Flexible slot", "flexible": true }
+      ]
+    },
+    {
+      "id": "gold-party",
+      "category": "loot",
+      "title": "Gold Coin Farming Party",
+      "eyebrow": "Gold Farming",
+      "summary": "Increase Gold Coin drops while stacking distinct bonuses that improve clear speed.",
+      "accent": "#f1cc3c",
+      "tip": "Dumud Gild is the essential member and duplicate copies do not stack. Keep every species unique so Solenne remains active.",
+      "members": [
+        { "name": "Dumud Gild", "role": "Gold drop booster", "effect": "Increases Gold Coins dropped by defeated enemies.", "requirement": "Keep in party" },
+        { "name": "Solenne", "role": "Player Attack", "effect": "Raises player Attack when every party Pal is a different species.", "requirement": "Unique-species party" },
+        { "name": "Gobfin", "role": "Additional Attack", "effect": "Increases player Attack from the party.", "requirement": "Keep in party" },
+        { "name": "Vanwyrm Cryst", "role": "Weak-point damage", "effect": "Improves player damage against enemy weak points.", "requirement": "Keep in party" },
+        { "name": "Strong active Pal", "role": "Clear speed", "effect": "Use a strong combat Pal or elemental mount suited to the route.", "requirement": "Flexible slot", "flexible": true }
+      ]
+    },
+    {
+      "id": "elemental-material-party",
+      "category": "loot",
+      "title": "Elemental-Material Farming Party",
+      "eyebrow": "Targeted Drops",
+      "summary": "Match one drop booster to the target's element, then use four slots to increase kill speed.",
+      "accent": "#ff7a67",
+      "tip": "Choose the booster by the defeated Pal's element—not your attack element. Current 1.0 assignments appear in the reference below.",
+      "members": [
+        { "name": "Element drop booster", "role": "More target drops", "effect": "Choose the matching Pal from the enemy-drop reference below.", "requirement": "Keep in party", "flexible": true },
+        { "name": "Solenne", "role": "Player Attack", "effect": "Raises player Attack in a unique-species party.", "requirement": "Unique-species party" },
+        { "name": "Gobfin", "role": "Additional Attack", "effect": "Raises player Attack from the party.", "requirement": "Keep in party" },
+        { "name": "Vanwyrm Cryst", "role": "Weak-point damage", "effect": "Increases player weak-point damage.", "requirement": "Keep in party" },
+        { "name": "Counter-element Pal", "role": "Active attacker", "effect": "Use a strong Pal whose element counters the target.", "requirement": "Flexible slot", "flexible": true }
+      ]
+    },
+    {
+      "id": "butchering-party",
+      "category": "loot",
+      "title": "Meat Cleaver Party",
+      "eyebrow": "Butchering",
+      "summary": "Maximize manual Meat Cleaver rewards and support movement, carrying, healing, and return travel.",
+      "accent": "#df6570",
+      "tip": "Splatterina is the only required Pal. Do not assume the bonus affects the Pal Disassembly Conveyor unless that interaction is confirmed in-game.",
+      "members": [
+        { "name": "Splatterina", "role": "Cleaver rewards", "effect": "Substantially increases items obtained with the Meat Cleaver.", "requirement": "Keep in party" },
+        { "name": "Dogen", "role": "Return trip", "effect": "Teleports to the nearest base.", "requirement": "Activate Partner Skill" },
+        { "name": "Cattiva", "role": "Carrying capacity", "effect": "Raises maximum carrying capacity.", "requirement": "Keep in party" },
+        { "name": "Galeclaw", "role": "Movement utility", "effect": "Provides fast gliding while retaining weapon use.", "requirement": "Keep in party" },
+        { "name": "Celesdir", "role": "Passive healing", "effect": "Recovers Health for the player and party Pals over time.", "requirement": "Keep in party" }
+      ]
+    },
+    {
+      "id": "leveling-party",
+      "category": "utility",
+      "title": "Party-Leveling Team",
+      "eyebrow": "Experience",
+      "summary": "Boost party experience while one strong Pal clears encounters for three trainees.",
+      "accent": "#6ec8a2",
+      "tip": "Omascul's experience bonus does not stack. Make the combat slot strong enough to clear bosses or dense enemy groups quickly.",
+      "members": [
+        { "name": "Omascul", "role": "Experience booster", "effect": "Increases experience gained by the other party Pals.", "requirement": "Keep in party" },
+        { "name": "Strong combat Pal", "role": "Encounter clearing", "effect": "Use a powerful Pal capable of quickly clearing high-value encounters.", "requirement": "Flexible slot", "flexible": true },
+        { "name": "Pal being leveled", "role": "Trainee 1", "effect": "Place one of the Pals you want to train in this slot.", "requirement": "Flexible slot", "flexible": true },
+        { "name": "Pal being leveled", "role": "Trainee 2", "effect": "Place another Pal you want to train in this slot.", "requirement": "Flexible slot", "flexible": true },
+        { "name": "Pal being leveled", "role": "Trainee 3", "effect": "Use the final slot for another Pal that needs experience.", "requirement": "Flexible slot", "flexible": true }
+      ]
+    },
+    {
+      "id": "exploration-party",
+      "category": "utility",
+      "title": "Exploration & Treasure Party",
+      "eyebrow": "Exploration",
+      "summary": "Search islands, dungeons, treasure chests, scrap, and dark areas efficiently.",
+      "accent": "#62b8e8",
+      "tip": "Tombat's scanner must be activated; it is not a constant passive radar. Dogen cannot teleport from every restricted area.",
+      "members": [
+        { "name": "Jetragon", "role": "Fast flying mount", "effect": "Covers long exploration routes quickly.", "requirement": "Equip mount gear", "alternatives": ["Frostallion"] },
+        { "name": "Tombat", "role": "Treasure scanner", "effect": "Detects nearby dungeons, treasure chests, and scrap when activated.", "requirement": "Activate Partner Skill" },
+        { "name": "Cawgnito", "role": "Night vision", "effect": "Toggles Night Vision for dark areas.", "requirement": "Activate Partner Skill" },
+        { "name": "Galeclaw", "role": "High-speed gliding", "effect": "Provides fast gliding while retaining weapon use.", "requirement": "Keep in party" },
+        { "name": "Dogen", "role": "Return trip", "effect": "Teleports to the nearest base when exploration is complete.", "requirement": "Activate Partner Skill" }
+      ]
+    },
+    {
+      "id": "safe-material-party",
+      "category": "capturing",
+      "title": "Safe Material-Gathering Party",
+      "eyebrow": "Capture or Defeat",
+      "summary": "Keep targets alive until you decide whether capturing or defeating them gives the better reward.",
+      "accent": "#7ad39e",
+      "tip": "Use Wispaw and Muffly when capturing. Use Nitemary or the matching elemental booster when you decide to defeat the target.",
+      "members": [
+        { "name": "Daedream", "role": "Nonlethal damage", "effect": "Necklace attacks cannot reduce the target below 1 HP.", "requirement": "Keep in party" },
+        { "name": "Wispaw", "role": "Back-bonus captures", "effect": "Improves capture rate on back-bonus throws.", "requirement": "Throw from behind" },
+        { "name": "Muffly", "role": "Frozen captures", "effect": "Improves capture rate against Frozen targets.", "requirement": "Freeze the target" },
+        { "name": "Nitemary", "role": "Defeat rewards", "effect": "Increases Pal Soul drops when it fights alongside you.", "requirement": "Use as active Pal", "alternatives": ["Matching element booster"] },
+        { "name": "Jetragon", "role": "Fast mount", "effect": "Moves quickly between material targets.", "requirement": "Equip mount gear" }
+      ]
+    }
+  ],
+  "dropBoosters": [
+    { "element": "Neutral", "pal": "Katress", "alternatives": ["Blazehowl Noct"], "color": "#c8b9b2" },
+    { "element": "Fire", "pal": "Penking", "alternatives": ["Faleris Aqua"], "color": "#ff7548" },
+    { "element": "Water", "pal": "Fenglope Lux", "alternatives": [], "color": "#56a9ff" },
+    { "element": "Grass", "pal": "Blazehowl", "alternatives": [], "color": "#79d94c" },
+    { "element": "Electric", "pal": "Menasting", "alternatives": ["Menasting Terra"], "color": "#f0df21" },
+    { "element": "Ice", "pal": "Faleris", "alternatives": [], "color": "#73dce9" },
+    { "element": "Ground", "pal": "Vaelet", "alternatives": [], "color": "#c88c45" },
+    { "element": "Dark", "pal": "Elphidran", "alternatives": [], "color": "#9468ca" },
+    { "element": "Dragon", "pal": "Cryolinx", "alternatives": [], "color": "#dc58f4" }
+  ],
+  "condensationPriorities": [
+    "Jelliette",
+    "Jellroy",
+    "Whalaska Ignis",
+    "Yakumo",
+    "Grintale",
+    "Broncherry Aqua",
+    "Nitemary",
+    "Dumud Gild",
+    "Splatterina"
+  ]
+}

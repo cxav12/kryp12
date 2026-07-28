@@ -9,6 +9,12 @@ Static Palworld reference site published as a sibling of the Yankees site.
 - Each page has its own `styles.css` for page-specific components only.
 - `shared.js` contains reusable display and sprite helpers.
 - Each page keeps its behavior in its own `app.js`.
+- Favorite selections use device-local browser storage. They are not uploaded
+  or synchronized between devices.
+- Search and filter state is stored in each page URL so filtered views can be
+  bookmarked or shared.
+- Run `scripts/update-breeding-power.py` after refreshing Pal data to add the
+  current Paldeck breeding-power values to the site datasets.
 
 ## Data status
 
@@ -50,6 +56,20 @@ Breeding combinations can be regenerated with:
 ```sh
 python scripts/build-breeding-data.py
 ```
+
+The Item Guide is generated from the verified Pal drop and Ranch source
+data:
+
+```sh
+python scripts/build-item-data.py
+```
+
+Party Guides are stored as curated recommendations in
+`data/party-guides.json`. Pal names in those guides resolve against
+`data/pal-index.json` so the page can reuse the shared Pal portrait sprite.
+
+The generated `data/items.json` intentionally contains only items with a known
+Pal drop or Ranch source in the local datasets.
 
 ## Namecheap hosting
 

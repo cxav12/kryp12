@@ -1,3 +1,98 @@
+.breeding-explainer {
+  margin: 0 0 1.5rem;
+  overflow: hidden;
+  border: 1px solid #354473;
+  border-radius: 0.75rem;
+  background:
+    linear-gradient(135deg, rgb(100 123 231 / 0.07), transparent 55%),
+    var(--surface-1);
+}
+
+.breeding-explainer summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  color: #fff;
+  cursor: pointer;
+  list-style: none;
+}
+
+.breeding-explainer summary::-webkit-details-marker {
+  display: none;
+}
+
+.breeding-explainer summary > span {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.breeding-explainer summary strong {
+  font-size: 0.9rem;
+}
+
+.breeding-explainer summary small {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.breeding-explainer summary::after {
+  display: grid;
+  flex: 0 0 auto;
+  width: 1.65rem;
+  height: 1.65rem;
+  content: "+";
+  place-items: center;
+  border: 1px solid #4b5882;
+  border-radius: 50%;
+  color: #aebdff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.breeding-explainer[open] summary::after {
+  content: "−";
+}
+
+.breeding-explainer summary:hover,
+.breeding-explainer summary:focus-visible {
+  outline: 0;
+  background: rgb(100 123 231 / 0.07);
+}
+
+.breeding-explainer-content {
+  padding: 1rem;
+  border-top: 1px solid #303a5b;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+}
+
+.breeding-explainer-content p {
+  margin: 0;
+}
+
+.breeding-formula {
+  margin: 0.85rem 0;
+  padding: 0.75rem;
+  overflow-wrap: anywhere;
+  border: 1px solid #3d4f88;
+  border-radius: 0.5rem;
+  background: #11182b;
+  color: #c8d2ff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.breeding-explainer-content ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0 0 0.85rem;
+  padding-left: 1.15rem;
+}
+
 .breeding-modes {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -422,6 +517,18 @@
   color: var(--link);
   font-size: 0.67rem;
   font-weight: 700;
+}
+
+.breeding-pal-chip > div:last-child > span.breeding-power-badge {
+  justify-self: start;
+  margin-top: 0.18rem;
+  padding: 0.12rem 0.38rem;
+  border: 1px solid #45537f;
+  border-radius: 999px;
+  background: #171d31;
+  color: #aebdff;
+  font-size: 0.62rem;
+  line-height: 1.2;
 }
 
 .breeding-pal-chip small {

@@ -11,7 +11,11 @@ const skillsGrid = document.querySelector("#passive-skills-grid");
 const typeFilters = document.querySelector("#type-filters");
 const tierFilters = document.querySelector("#tier-filters");
 const searchInput = document.querySelector("#passive-search-input");
-const { createDataStatusController, formatDate } = window.PalworldUI;
+const {
+  createDataStatusController,
+  formatDate,
+  updateUrlParams,
+} = window.PalworldUI;
 const showStatus = createDataStatusController({
   panel: statusPanel,
   titleElement: statusTitle,
@@ -22,6 +26,35 @@ const showStatus = createDataStatusController({
 let allPassiveSkills = [];
 let activeType = "all";
 let activeTier = "all";
+const initialParams = new URLSearchParams(window.location.search);
+const requestedType = initialParams.get("type");
+const requestedTier = initialParams.get("tier");
+
+if (
+  [...typeFilters.querySelectorAll("[data-type]")].some(
+    (button) => button.dataset.type === requestedType,
+  )
+) {
+  activeType = requestedType;
+}
+if (
+  [...tierFilters.querySelectorAll("[data-tier]")].some(
+    (button) => button.dataset.tier === requestedTier,
+  )
+) {
+  activeTier = requestedTier;
+}
+searchInput.value = initialParams.get("q") || "";
+
+[typeFilters, tierFilters].forEach((group) => {
+  const dataName = group === typeFilters ? "type" : "tier";
+  const activeValue = dataName === "type" ? activeType : activeTier;
+  group.querySelectorAll(".filter-button").forEach((button) => {
+    const active = button.dataset[dataName] === activeValue;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+});
 
 const skillTypeMatchers = {
   player: (skill) => skill.affectsPlayer === true,
@@ -169,6 +202,11 @@ function applyFilters() {
     );
 
   renderPassiveSkills(filteredSkills);
+  updateUrlParams({
+    type: activeType === "all" ? null : activeType,
+    tier: activeTier === "all" ? null : activeTier,
+    q: searchTerm || null,
+  });
 }
 
 typeFilters.addEventListener("click", (event) => {

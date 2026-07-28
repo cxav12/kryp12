@@ -13,6 +13,22 @@
   };
   let ranchPals = [];
   let activeFilter = "all";
+  const initialParams = new URLSearchParams(window.location.search);
+  const requestedCategory = initialParams.get("category");
+
+  if (
+    filterButtons.some(
+      (button) => button.dataset.filter === requestedCategory,
+    )
+  ) {
+    activeFilter = requestedCategory;
+  }
+  searchInput.value = initialParams.get("q") || "";
+  filterButtons.forEach((button) => {
+    const active = button.dataset.filter === activeFilter;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
 
   function productMatchesCategory(product, category) {
     return (product.categories || [product.category]).includes(category);
@@ -161,6 +177,10 @@
 
     grid.replaceChildren();
     grid.setAttribute("aria-busy", "false");
+    PalworldUI.updateUrlParams({
+      category: activeFilter === "all" ? null : activeFilter,
+      q: query || null,
+    });
 
     if (matches.length === 0) {
       const empty = document.createElement("div");

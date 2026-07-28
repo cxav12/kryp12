@@ -71,12 +71,31 @@
 }
 
 .pal-card {
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   min-height: 10rem;
   padding: 0.65rem;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.pal-card:hover,
+.pal-card:focus-visible {
+  border-color: color-mix(in srgb, var(--card-tint) 55%, var(--border));
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(100 123 231 / 0.15);
+}
+
+.pal-preference-marker {
+  position: absolute;
+  top: 0.6rem;
+  left: 50%;
+  color: #ffe36d;
+  font-size: 0.8rem;
+  letter-spacing: 0.08rem;
+  transform: translateX(-50%);
 }
 
 .pal-card[data-rarity="rare"] { --card-tint: #4e91df; }
@@ -190,6 +209,155 @@
   font-weight: 700;
 }
 
+.pal-detail-dialog {
+  width: min(52rem, calc(100% - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 1.25rem;
+  overflow: auto;
+  border: 1px solid var(--border-strong);
+  border-radius: 1rem;
+  background: #0e1013;
+  color: var(--text);
+  box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 0.65);
+}
+
+.pal-detail-dialog::backdrop {
+  background: rgb(0 0 0 / 0.78);
+  backdrop-filter: blur(3px);
+}
+
+.pal-detail-dialog[data-rarity="rare"] { --detail-tint: #4e91df; }
+.pal-detail-dialog[data-rarity="epic"] { --detail-tint: #c452ee; }
+.pal-detail-dialog[data-rarity="legendary"] { --detail-tint: #f0c643; }
+
+.pal-detail-close {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0 0 -2.25rem auto;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: #17191e;
+  color: #fff;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.pal-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 2.75rem;
+}
+
+.pal-detail-portrait {
+  display: grid;
+  flex: 0 0 auto;
+  width: 6rem;
+  height: 6rem;
+  overflow: hidden;
+  place-items: center;
+  border: 3px solid color-mix(in srgb, var(--detail-tint, #71808e) 55%, #20242a);
+  border-radius: 50%;
+  background: #171a1d;
+}
+
+.pal-detail-sprite {
+  width: 5.4rem;
+  height: 5.4rem;
+  background-repeat: no-repeat;
+}
+
+.pal-detail-eyebrow {
+  color: var(--link);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.pal-detail-header h2 {
+  margin: 0.15rem 0;
+  color: #fff;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.pal-detail-header p,
+.pal-detail-section p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.pal-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0;
+}
+
+.pal-detail-actions a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.pal-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.pal-detail-section {
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: rgb(255 255 255 / 0.02);
+}
+
+.pal-detail-section h3 {
+  margin: 0 0 0.65rem;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.pal-detail-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pal-detail-chip,
+.pal-detail-stat {
+  padding: 0.3rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--detail-tint, #71808e) 35%, var(--border));
+  border-radius: 0.4rem;
+  background: color-mix(in srgb, var(--detail-tint, #71808e) 6%, transparent);
+  color: var(--text-soft);
+  font-size: 0.75rem;
+}
+
+.pal-detail-stat {
+  display: grid;
+  min-width: 4.5rem;
+  text-align: center;
+}
+
+.pal-detail-stat small {
+  color: var(--muted);
+}
+
+.pal-detail-stat strong {
+  color: #fff;
+}
+
+.pal-breeding-power-note {
+  margin-top: 0.55rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
 @media (max-width: 767.98px) {
   .work-filters {
     display: grid;
@@ -218,5 +386,23 @@
   .pal-portrait-sprite {
     width: 3.6rem;
     height: 3.6rem;
+  }
+
+  .pal-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pal-detail-header {
+    align-items: flex-start;
+  }
+
+  .pal-detail-portrait {
+    width: 4.75rem;
+    height: 4.75rem;
+  }
+
+  .pal-detail-sprite {
+    width: 4.25rem;
+    height: 4.25rem;
   }
 }

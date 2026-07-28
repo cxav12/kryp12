@@ -1,7 +1,11 @@
 const BREEDING_DATA_URL = "../data/breeding.json?v=20260725-clean1";
-const PAL_DATA_URL = "../data/pal-index.json?v=20260725-clean1";
+const PAL_DATA_URL = "../data/pal-index.json?v=20260727-bp1";
 const INITIAL_RESULT_LIMIT = 60;
-const { applySpriteStyle, formatPalNumber } = window.PalworldUI;
+const {
+  applySpriteStyle,
+  formatPalNumber,
+  updateUrlParams,
+} = window.PalworldUI;
 
 const modes = document.querySelector("#breeding-modes");
 const parentsControls = document.querySelector("#parents-controls");
@@ -188,6 +192,14 @@ function createPalChip(name, gender = 0, emphasis = false) {
     identity.append(number);
   }
 
+  if (Number.isInteger(pal?.breedingPower)) {
+    const power = document.createElement("span");
+    power.className = "breeding-power-badge";
+    power.textContent = `BP ${pal.breedingPower.toLocaleString()}`;
+    power.title = "Breeding Power";
+    identity.append(power);
+  }
+
   if (gender) {
     const genderLabel = document.createElement("small");
     genderLabel.textContent = gender === 1 ? "Male required" : "Female required";
@@ -329,7 +341,10 @@ function renderChildResults() {
   const matches = childResults.get(child) || [];
 
   if (matches.length === 0) {
-    showEmpty(`No parent combinations are available for ${childName}.`, "×");
+    showEmpty(
+      `No parent combinations are available for ${childName}.`,
+      "×",
+    );
     return;
   }
 
@@ -340,7 +355,8 @@ function renderChildResults() {
   const title = document.createElement("h1");
   title.textContent = `Parents for ${childName}`;
   const count = document.createElement("span");
-  count.textContent = `${matches.length.toLocaleString()} combinations`;
+  count.textContent =
+    `${matches.length.toLocaleString()} combination${matches.length === 1 ? "" : "s"}`;
   heading.append(title, count);
   wrapper.append(heading);
 
@@ -373,6 +389,41 @@ function renderCurrentMode() {
   } else {
     renderChildResults();
   }
+
+  updateUrlParams({
+    mode: currentMode === "child" ? null : currentMode,
+    target:
+      currentMode === "child" ? getSelectedName(childInput) : null,
+    parentA:
+      currentMode === "parents" ? getSelectedName(parentAInput) : null,
+    parentB:
+      currentMode === "parents" ? getSelectedName(parentBInput) : null,
+  });
+}
+
+function restoreBreedingFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  currentMode = params.get("mode") === "parents" ? "parents" : "child";
+  childInput.value =
+    breedingNameByLowercase.get(
+      (params.get("target") || "").toLowerCase(),
+    ) || "";
+  parentAInput.value =
+    breedingNameByLowercase.get(
+      (params.get("parentA") || "").toLowerCase(),
+    ) || "";
+  parentBInput.value =
+    breedingNameByLowercase.get(
+      (params.get("parentB") || "").toLowerCase(),
+    ) || "";
+  modes.querySelectorAll("[data-mode]").forEach((button) => {
+    const active = button.dataset.mode === currentMode;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  parentsControls.hidden = currentMode !== "parents";
+  childControls.hidden = currentMode !== "child";
+  renderCurrentMode();
 }
 
 function buildIndexes() {
@@ -422,7 +473,6 @@ modes.addEventListener("click", (event) => {
 
 childInput.addEventListener("input", renderCurrentMode);
 childInput.addEventListener("change", renderCurrentMode);
-
 quickSelectToggle.addEventListener("click", () => {
   const opening = quickSelectContent.hidden;
   quickSelectContent.hidden = !opening;
@@ -497,7 +547,7 @@ async function loadBreedingCalculator() {
       `Source data: ${breedingData.metadata.sourceExportedAt}`;
     status.replaceChildren(statusCopy, statusMeta);
     status.hidden = false;
-    renderCurrentMode();
+    restoreBreedingFromUrl();
   } catch (error) {
     console.error("Unable to load breeding data.", error);
     showEmpty("The local breeding dataset could not be loaded.", "×");

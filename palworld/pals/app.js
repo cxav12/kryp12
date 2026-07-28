@@ -1,10 +1,16 @@
 const DATA_URL = "../data/pal-cards.json?v=20260725-clean1";
+const FULL_DATA_URL = "../data/pals.json?v=20260727-bp1";
 const {
   applySpriteStyle,
   createDataStatusController,
   formatDate,
+  formatGameText,
+  formatPalNumber,
   getElementDisplayName,
   getRarityDetails,
+  hasPalPreference,
+  setPalPreference,
+  updateUrlParams,
 } = window.PalworldUI;
 
 const statusPanel = document.querySelector("#data-status");
@@ -21,6 +27,9 @@ const secondElementToggle = document.querySelector("#second-element-toggle");
 const secondElementPanel = document.querySelector("#second-element-panel");
 const secondElementFilters = document.querySelector("#second-element-filters");
 const palSearchInput = document.querySelector("#pal-search-input");
+const palDetailDialog = document.querySelector("#pal-detail-dialog");
+const palDetailContent = document.querySelector("#pal-detail-content");
+const palDetailClose = document.querySelector("#pal-detail-close");
 const showStatus = createDataStatusController({
   panel: statusPanel,
   titleElement: statusTitle,
@@ -29,14 +38,32 @@ const showStatus = createDataStatusController({
 });
 
 let allPals = [];
+let fullPalByName = new Map();
+let fullPalDataPromise = null;
 let selectedWork = null;
 let selectedRarity = null;
+let selectedCollection = null;
+let activeView = "all";
 let defaultWork = null;
 let selectedElements = [];
 let defaultElement = null;
 let palSprite = null;
 let palIconSprite = null;
 const palCardCache = new Map();
+
+function updatePreferenceMarker(card, palName) {
+  const favorite = hasPalPreference(palName, "favorites");
+  card.dataset.favorite = String(favorite);
+
+  const marker = card.querySelector(".pal-preference-marker");
+  if (!marker) {
+    return;
+  }
+
+  marker.textContent = favorite ? "★" : "";
+  marker.hidden = !favorite;
+  marker.title = favorite ? "Favorite" : "";
+}
 
 function resolveAssetUrl(url) {
   if (!url || !url.startsWith("./")) {
@@ -135,8 +162,15 @@ function createPalCard(pal, workName = null) {
 
   const card = document.createElement("article");
   card.className = "tinted-card pal-card";
+  card.tabIndex = 0;
+  card.setAttribute("role", "button");
+  card.setAttribute("aria-label", `View details for ${pal.name}`);
   const rarity = getRarityDetails(pal.rarity);
   card.dataset.rarity = rarity.key;
+
+  const preferenceMarker = document.createElement("span");
+  preferenceMarker.className = "pal-preference-marker";
+  preferenceMarker.hidden = true;
 
   const topRow = document.createElement("div");
   topRow.className = "pal-card-top";
@@ -205,7 +239,15 @@ function createPalCard(pal, workName = null) {
   rarityLabel.textContent = rarity.label;
   rarityBadge.append(rarityNumber, rarityLabel);
 
-  card.append(topRow, media, identity, rarityBadge);
+  card.append(preferenceMarker, topRow, media, identity, rarityBadge);
+  card.addEventListener("click", () => openPalDetails(pal));
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openPalDetails(pal);
+    }
+  });
+  updatePreferenceMarker(card, pal.name);
   column.append(card);
 
   return { column, work };
@@ -242,6 +284,237 @@ function renderPals(pals, workName = null) {
 
   palsGrid.replaceChildren(fragment);
   palsGrid.setAttribute("aria-busy", "false");
+}
+
+function createDetailList(items, renderItem) {
+  const list = document.createElement("div");
+  list.className = "pal-detail-list";
+  items.forEach((item) => list.append(renderItem(item)));
+  return list;
+}
+
+function createDetailSection(title, content) {
+  const section = document.createElement("section");
+  section.className = "pal-detail-section";
+  const heading = document.createElement("h3");
+  heading.textContent = title;
+  section.append(heading, content);
+  return section;
+}
+
+function createPreferenceButton(palName, preference, label, activeLabel) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "filter-button pal-preference-button";
+
+  const update = () => {
+    const active = hasPalPreference(palName, preference);
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+    button.textContent = active ? activeLabel : label;
+  };
+
+  button.addEventListener("click", () => {
+    const active = hasPalPreference(palName, preference);
+    setPalPreference(palName, preference, !active);
+    update();
+    const cardEntry = [...palCardCache.entries()].find(
+      ([pal]) => pal.name === palName,
+    )?.[1];
+    if (cardEntry) {
+      updatePreferenceMarker(
+        cardEntry.column.querySelector(".pal-card"),
+        palName,
+      );
+    }
+    applyFilters();
+  });
+  update();
+  return button;
+}
+
+async function loadFullPalData() {
+  if (!fullPalDataPromise) {
+    fullPalDataPromise = fetch(FULL_DATA_URL)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Full Pal data could not be loaded.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        fullPalByName = new Map(
+          data.pals.map((pal) => [pal.name, pal]),
+        );
+      });
+  }
+  return fullPalDataPromise;
+}
+
+async function openPalDetails(palSummary) {
+  updateUrlParams({ detail: palSummary.name });
+  if (!fullPalByName.size) {
+    const loading = document.createElement("p");
+    loading.className = "empty-state-message";
+    loading.textContent = `Loading details for ${palSummary.name}...`;
+    palDetailContent.replaceChildren(loading);
+    if (!palDetailDialog.open) {
+      palDetailDialog.showModal();
+    }
+
+    try {
+      await loadFullPalData();
+    } catch {
+      loading.textContent = "Pal details could not be loaded.";
+      return;
+    }
+  }
+
+  const pal = fullPalByName.get(palSummary.name) || palSummary;
+  const rarity = getRarityDetails(pal.rarity);
+  const header = document.createElement("header");
+  header.className = "pal-detail-header";
+
+  const portrait = document.createElement("div");
+  portrait.className = "pal-detail-portrait";
+  if (palSprite && palSummary.sprite) {
+    const sprite = document.createElement("span");
+    sprite.className = "pal-detail-sprite";
+    applySpriteStyle(
+      sprite,
+      palSprite,
+      palSummary.sprite,
+      resolveAssetUrl(palSprite.image),
+    );
+    sprite.setAttribute("role", "img");
+    sprite.setAttribute("aria-label", pal.name);
+    portrait.append(sprite);
+  }
+
+  const identity = document.createElement("div");
+  const eyebrow = document.createElement("span");
+  eyebrow.className = "pal-detail-eyebrow";
+  eyebrow.textContent =
+    `#${formatPalNumber(pal.dexKey)} · ${rarity.label}`;
+  const title = document.createElement("h2");
+  title.textContent = pal.name;
+  const elements = document.createElement("p");
+  elements.textContent = pal.elements
+    .map((element) => getElementDisplayName(element.name))
+    .join(" · ");
+  identity.append(eyebrow, title, elements);
+  header.append(portrait, identity);
+
+  const actions = document.createElement("div");
+  actions.className = "pal-detail-actions";
+  actions.append(
+    createPreferenceButton(
+      pal.name,
+      "favorites",
+      "☆ Add Favorite",
+      "★ Favorite",
+    ),
+  );
+  const breedingLink = document.createElement("a");
+  breedingLink.className = "filter-button active";
+  breedingLink.href = `../breeding/?target=${encodeURIComponent(pal.name)}`;
+  breedingLink.textContent = "Find breeding pairs";
+  actions.append(breedingLink);
+
+  const body = document.createElement("div");
+  body.className = "pal-detail-grid";
+
+  if (pal.partnerSkill?.name) {
+    const partner = document.createElement("div");
+    const partnerName = document.createElement("strong");
+    partnerName.textContent = pal.partnerSkill.name;
+    const partnerDescription = document.createElement("p");
+    partnerDescription.textContent =
+      formatGameText(pal.partnerSkill.description) ||
+      "No description available.";
+    partner.append(partnerName, partnerDescription);
+    body.append(createDetailSection("Partner Skill", partner));
+  }
+
+  if (pal.workSuitability?.length) {
+    body.append(
+      createDetailSection(
+        "Work Suitability",
+        createDetailList(pal.workSuitability, (work) => {
+          const item = document.createElement("span");
+          item.className = "pal-detail-chip";
+          item.textContent = `${work.name} Lv. ${work.level}`;
+          return item;
+        }),
+      ),
+    );
+  }
+
+  if (pal.drops?.length) {
+    body.append(
+      createDetailSection(
+        "Item Drops",
+        createDetailList(pal.drops, (drop) => {
+          const item = document.createElement("span");
+          item.className = "pal-detail-chip";
+          item.textContent =
+            `${drop.name} · ${drop.dropRate}% · ${drop.min}-${drop.max}`;
+          return item;
+        }),
+      ),
+    );
+  }
+
+  if (Number.isInteger(pal.breedingPower)) {
+    const breeding = document.createElement("div");
+    const power = document.createElement("span");
+    power.className = "pal-detail-stat";
+    const powerLabel = document.createElement("small");
+    powerLabel.textContent = "Breeding Power";
+    const powerValue = document.createElement("strong");
+    powerValue.textContent = pal.breedingPower.toLocaleString();
+    power.append(powerLabel, powerValue);
+
+    const explanation = document.createElement("p");
+    explanation.className = "pal-breeding-power-note";
+    explanation.textContent =
+      "Used with the other parent's value to determine standard offspring.";
+    breeding.append(power, explanation);
+    body.append(createDetailSection("Breeding", breeding));
+  }
+
+  if (pal.stats) {
+    body.append(
+      createDetailSection(
+        "Base Stats",
+        createDetailList(
+          [
+            ["HP", pal.stats.hp],
+            ["Attack", pal.stats.rangedattack],
+            ["Defense", pal.stats.defense],
+            ["Stamina", pal.stats.stamina],
+            ["Work Speed", pal.stats.craftspeed],
+          ],
+          ([label, value]) => {
+            const item = document.createElement("span");
+            item.className = "pal-detail-stat";
+            const statLabel = document.createElement("small");
+            statLabel.textContent = label;
+            const statValue = document.createElement("strong");
+            statValue.textContent = value;
+            item.append(statLabel, statValue);
+            return item;
+          },
+        ),
+      ),
+    );
+  }
+
+  palDetailDialog.dataset.rarity = rarity.key;
+  palDetailContent.replaceChildren(header, actions, body);
+  if (!palDetailDialog.open) {
+    palDetailDialog.showModal();
+  }
 }
 
 function createWorkFilter(name, icon = null) {
@@ -415,12 +688,21 @@ function applyFilters() {
     const matchesRarity =
       !selectedRarity ||
       getRarityDetails(pal.rarity).key === selectedRarity;
+    const matchesCollection =
+      !selectedCollection ||
+      hasPalPreference(pal.name, selectedCollection);
 
-    return matchesSearch && matchesElement && matchesRarity;
+    return (
+      matchesSearch &&
+      matchesElement &&
+      matchesRarity &&
+      matchesCollection
+    );
   });
 
   if (!selectedWork) {
     renderPals(searchedPals);
+    syncPalsUrl();
     return;
   }
 
@@ -445,6 +727,58 @@ function applyFilters() {
     });
 
   renderPals(rankedPals, selectedWork);
+  syncPalsUrl();
+}
+
+function syncPalsUrl() {
+  updateUrlParams({
+    view: activeView === "all" ? null : activeView,
+    q: palSearchInput.value.trim() || null,
+    work: activeView === "workers" ? selectedWork : null,
+    rarity: activeView === "rarity" ? selectedRarity : null,
+    element:
+      activeView === "elements" ? selectedElements[0] : null,
+    element2:
+      activeView === "elements" ? selectedElements[1] : null,
+  });
+}
+
+function restorePalsFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const requestedView = params.get("view") || "all";
+  const viewButton =
+    [...palsViewFilters.querySelectorAll("[data-view]")].find(
+      (button) => button.dataset.view === requestedView,
+    ) || palsViewFilters.querySelector('[data-view="all"]');
+
+  palSearchInput.value = params.get("q") || "";
+  if (
+    requestedView === "workers" &&
+    workFilters.querySelector(
+      `[data-work="${CSS.escape(params.get("work") || "")}"]`,
+    )
+  ) {
+    selectedWork = params.get("work");
+  }
+  if (
+    requestedView === "rarity" &&
+    [...rarityFilters.querySelectorAll("[data-rarity]")].some(
+      (button) => button.dataset.rarity === params.get("rarity"),
+    )
+  ) {
+    selectedRarity = params.get("rarity");
+  }
+  if (requestedView === "elements" && params.get("element")) {
+    const availableElements = new Set(
+      [...elementFilters.querySelectorAll("[data-element]")].map(
+        (button) => button.dataset.element,
+      ),
+    );
+    selectedElements = [params.get("element"), params.get("element2")]
+      .filter((element) => availableElements.has(element));
+    secondElementPanel.hidden = selectedElements.length < 2;
+  }
+  viewButton.click();
 }
 
 palsViewFilters.addEventListener("click", (event) => {
@@ -458,6 +792,8 @@ palsViewFilters.addEventListener("click", (event) => {
   const showElements = button.dataset.view === "elements";
   const showAll = button.dataset.view === "all";
   const showRarity = button.dataset.view === "rarity";
+  const showCollection = button.dataset.view === "favorites";
+  activeView = button.dataset.view;
 
   palsViewFilters.querySelectorAll("[data-view]").forEach((viewButton) => {
     const isActive = viewButton === button;
@@ -472,6 +808,7 @@ palsViewFilters.addEventListener("click", (event) => {
   if (showAll) {
     selectedWork = null;
     selectedRarity = null;
+    selectedCollection = null;
     selectedElements = [];
     secondElementPanel.hidden = true;
     updateElementControls();
@@ -480,6 +817,7 @@ palsViewFilters.addEventListener("click", (event) => {
   }
 
   if (showWorkers) {
+    selectedCollection = null;
     selectedRarity = null;
     selectedElements = [];
     secondElementPanel.hidden = true;
@@ -496,6 +834,7 @@ palsViewFilters.addEventListener("click", (event) => {
   if (showElements) {
     selectedWork = null;
     selectedRarity = null;
+    selectedCollection = null;
     if (selectedElements.length === 0 && defaultElement) {
       selectedElements = [defaultElement];
     }
@@ -505,6 +844,7 @@ palsViewFilters.addEventListener("click", (event) => {
 
   if (showRarity) {
     selectedWork = null;
+    selectedCollection = null;
     selectedElements = [];
     secondElementPanel.hidden = true;
     updateElementControls();
@@ -515,6 +855,15 @@ palsViewFilters.addEventListener("click", (event) => {
       filterButton.classList.toggle("active", isActive);
       filterButton.setAttribute("aria-pressed", String(isActive));
     });
+  }
+
+  if (showCollection) {
+    selectedWork = null;
+    selectedRarity = null;
+    selectedElements = [];
+    selectedCollection = button.dataset.view;
+    secondElementPanel.hidden = true;
+    updateElementControls();
   }
 
   applyFilters();
@@ -598,6 +947,23 @@ secondElementFilters.addEventListener("click", (event) => {
 });
 
 palSearchInput.addEventListener("input", applyFilters);
+palDetailClose.addEventListener("click", () => palDetailDialog.close());
+palDetailDialog.addEventListener("close", () => {
+  updateUrlParams({ detail: null });
+});
+palDetailDialog.addEventListener("click", (event) => {
+  if (event.target === palDetailDialog) {
+    palDetailDialog.close();
+  }
+});
+window.addEventListener("palworld:preferences-changed", () => {
+  palCardCache.forEach((entry, pal) => {
+    updatePreferenceMarker(
+      entry.column.querySelector(".pal-card"),
+      pal.name,
+    );
+  });
+});
 
 async function loadPals() {
   try {
@@ -622,7 +988,14 @@ async function loadPals() {
     palIconSprite = metadata.palIconSprite || null;
     renderWorkFilters(allPals);
     renderElementFilters(allPals);
-    applyFilters();
+    restorePalsFromUrl();
+    const detailName = new URLSearchParams(window.location.search).get(
+      "detail",
+    );
+    const detailPal = allPals.find((pal) => pal.name === detailName);
+    if (detailPal) {
+      openPalDetails(detailPal);
+    }
   } catch (error) {
     console.error("Unable to load Palworld Pals.", error);
     showStatus({

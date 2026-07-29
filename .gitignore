@@ -7,5 +7,6 @@ start-mysite.command
 palworld/start-palworld.cmd
 palworld/start-palworld.command
 yankees/start-yankees.command
+yankees/start-yankees-site.cmd
 server-out.log
 server-err.log

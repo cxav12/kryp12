@@ -3,6 +3,7 @@
 **/.local-url
 start-local-site.cmd
 start-local-site.ps1
+start-mysite.command
 palworld/start-palworld.cmd
 palworld/start-palworld.command
 yankees/start-yankees.command

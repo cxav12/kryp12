@@ -1,0 +1,2391 @@
+{
+  "metadata": {
+    "datasetVersion": 2,
+    "gameVersion": "1.0",
+    "lastUpdated": "2026-07-29",
+    "description": "Curated local Palworld map dataset with toggleable layers for route planning.",
+    "source": {
+      "name": "Palworld Guide map data with local starter curation",
+      "url": "https://www.palworldguide.net/map",
+      "reviewedAt": "2026-07-29"
+    },
+    "maps": [
+      {
+        "id": "palpagos",
+        "label": "Palpagos",
+        "description": "Main Palpagos Islands map.",
+        "mapSource": {
+          "name": "ARXII-13/Palworld-Interactive-Map",
+          "url": "https://github.com/ARXII-13/Palworld-Interactive-Map",
+          "asset": "pal-map/frontend/src/assets/map/T_WorldMap_85.webp",
+          "note": "Map texture is Palworld game artwork owned by Pocketpair; source project code is Apache-2.0."
+        },
+        "mapImage": {
+          "url": "../assets/map/T_WorldMap_85.webp",
+          "width": 8192,
+          "height": 8192
+        },
+        "coordinateBounds": {
+          "minX": -1951,
+          "maxX": 1198,
+          "minY": -1893,
+          "maxY": 1243
+        },
+        "initialView": {
+          "coordinates": {
+            "x": -250,
+            "y": -210
+          },
+          "zoom": -2.25
+        }
+      },
+      {
+        "id": "world-tree",
+        "label": "World Tree",
+        "description": "World Tree area map.",
+        "mapSource": {
+          "name": "Palworld Guide / PalDB World Tree tiles",
+          "url": "https://www.palworldguide.net/map",
+          "asset": "assets.palworldguide.net/map/world-tree-z3",
+          "note": "World Tree tiles and game artwork remain the property of their respective owners."
+        },
+        "mapImage": {
+          "url": "../assets/map/world-tree-map.png",
+          "width": 2048,
+          "height": 2048
+        },
+        "coordinateBounds": {
+          "minX": -645,
+          "maxX": 690.9375,
+          "minY": 128,
+          "maxY": 1463.9375
+        },
+        "initialView": {
+          "coordinates": {
+            "x": 0,
+            "y": 790
+          },
+          "zoom": -1.25
+        }
+      }
+    ],
+    "categories": [
+      {
+        "id": "fast-travel",
+        "label": "Fast Travel",
+        "color": "#54e295"
+      },
+      {
+        "id": "alpha-boss",
+        "label": "Alpha Bosses",
+        "color": "#ff747c"
+      },
+      {
+        "id": "tower",
+        "label": "Towers",
+        "color": "#f1ea00"
+      },
+      {
+        "id": "resource",
+        "label": "Resources",
+        "color": "#ffae4f"
+      },
+      {
+        "id": "effigy",
+        "label": "Lifmunk Effigies",
+        "color": "#8ec8ff"
+      },
+      {
+        "id": "pal-habitat",
+        "label": "Pals",
+        "color": "#bc82ff"
+      },
+      {
+        "id": "npc",
+        "label": "NPCs",
+        "color": "#7dd3fc"
+      },
+      {
+        "id": "dungeon",
+        "label": "Dungeons",
+        "color": "#a78bfa"
+      },
+      {
+        "id": "skill-fruit",
+        "label": "Skill Fruit Trees",
+        "color": "#f7c948"
+      }
+    ]
+  },
+  "locations": [
+    {
+      "id": "anubis-alpha",
+      "mapId": "palpagos",
+      "name": "Anubis Alpha",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -134,
+        "y": -95
+      },
+      "recommendedLevel": "45+",
+      "summary": "A desert Alpha Pal target for late-game combat and capture planning.",
+      "nearby": [
+        "Desert resources",
+        "Ground Pals"
+      ]
+    },
+    {
+      "id": "palpagos-alpha-boss-born-of-the-thunderclouds-dazzi-noct--1201--855",
+      "mapId": "palpagos",
+      "name": "Born Of The Thunderclouds Dazzi Noct",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -1201,
+        "y": -855
+      },
+      "recommendedLevel": "60+",
+      "summary": "Alpha Pal encounter around level 60.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-cursed-tyrant-blazamut--737--332",
+      "mapId": "palpagos",
+      "name": "Cursed Tyrant Blazamut",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -737,
+        "y": -332
+      },
+      "recommendedLevel": "52+",
+      "summary": "Alpha Pal encounter around level 52.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-empress-of-lilies-lyleen--632-302",
+      "mapId": "palpagos",
+      "name": "Empress Of Lilies Lyleen",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -632,
+        "y": 302
+      },
+      "recommendedLevel": "58+",
+      "summary": "Alpha Pal encounter around level 58.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-enraptured-by-the-frozen-moonlight-loupmoon-cryst--1147--1414",
+      "mapId": "palpagos",
+      "name": "Enraptured By The Frozen Moonlight Loupmoon Cryst",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -1147,
+        "y": -1414
+      },
+      "recommendedLevel": "66+",
+      "summary": "Alpha Pal encounter around level 66.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-fire-licked-furball-wixen-161--223",
+      "mapId": "palpagos",
+      "name": "Fire-Licked Furball Wixen",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": 161,
+        "y": -223
+      },
+      "recommendedLevel": "28+",
+      "summary": "Alpha Pal encounter around level 28.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "frostallion-alpha",
+      "mapId": "palpagos",
+      "name": "Frostallion Alpha",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -357,
+        "y": 508
+      },
+      "recommendedLevel": "50+",
+      "summary": "A legendary Alpha Pal target in the northern cold region.",
+      "nearby": [
+        "Snow region",
+        "Cold-weather prep"
+      ]
+    },
+    {
+      "id": "palpagos-alpha-boss-gentle-sky-dragon-elphidran-44--284",
+      "mapId": "palpagos",
+      "name": "Gentle Sky Dragon Elphidran",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": 44,
+        "y": -284
+      },
+      "recommendedLevel": "30+",
+      "summary": "Alpha Pal encounter around level 30.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-guardian-of-the-dark-sun-anubis--134--94",
+      "mapId": "palpagos",
+      "name": "Guardian Of The Dark Sun Anubis",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -134,
+        "y": -94
+      },
+      "recommendedLevel": "55+",
+      "summary": "Alpha Pal encounter around level 55.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-guardian-of-the-grassy-fields-wumpo-botan-449--51",
+      "mapId": "palpagos",
+      "name": "Guardian Of The Grassy Fields Wumpo Botan",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": 449,
+        "y": -51
+      },
+      "recommendedLevel": "38+",
+      "summary": "Alpha Pal encounter around level 38.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-hundred-faced-apostle-omascul--708--930",
+      "mapId": "palpagos",
+      "name": "Hundred-Faced Apostle Omascul",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -708,
+        "y": -930
+      },
+      "recommendedLevel": "60+",
+      "summary": "Alpha Pal encounter around level 60.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-icy-blossom-voyager-foxparks-cryst--411--55",
+      "mapId": "palpagos",
+      "name": "Icy Blossom Voyager Foxparks Cryst",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -411,
+        "y": -55
+      },
+      "recommendedLevel": "15+",
+      "summary": "Alpha Pal encounter around level 15.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "jetragon-alpha",
+      "mapId": "palpagos",
+      "name": "Jetragon Alpha",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -789,
+        "y": -321
+      },
+      "recommendedLevel": "50+",
+      "summary": "A legendary Alpha Pal route for endgame preparation.",
+      "nearby": [
+        "Volcano region",
+        "High-level route"
+      ]
+    },
+    {
+      "id": "palpagos-alpha-boss-legendary-steed-of-darkness-frostallion-noct-689-648",
+      "mapId": "palpagos",
+      "name": "Legendary Steed Of Darkness Frostallion Noct",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": 689,
+        "y": 648
+      },
+      "recommendedLevel": "65+",
+      "summary": "Alpha Pal encounter around level 65.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-marshmallow-body-grintale-356--246",
+      "mapId": "palpagos",
+      "name": "Marshmallow Body Grintale",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": 356,
+        "y": -246
+      },
+      "recommendedLevel": "17+",
+      "summary": "Alpha Pal encounter around level 17.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-night-shade-hunter-nyafia--920--917",
+      "mapId": "palpagos",
+      "name": "Night Shade Hunter Nyafia",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -920,
+        "y": -917
+      },
+      "recommendedLevel": "60+",
+      "summary": "Alpha Pal encounter around level 60.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-sandsea-monolith-tetroise-435-380",
+      "mapId": "palpagos",
+      "name": "Sandsea Monolith Tetroise",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": 435,
+        "y": 380
+      },
+      "recommendedLevel": "55+",
+      "summary": "Alpha Pal encounter around level 55.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-sandsea-wardenstone-tetroise-primo--1082--1320",
+      "mapId": "palpagos",
+      "name": "Sandsea Wardenstone Tetroise Primo",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -1082,
+        "y": -1320
+      },
+      "recommendedLevel": "60+",
+      "summary": "Alpha Pal encounter around level 60.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-self-serving-seer-flaracle--244--1520",
+      "mapId": "palpagos",
+      "name": "Self-Serving Seer Flaracle",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -244,
+        "y": -1520
+      },
+      "recommendedLevel": "68+",
+      "summary": "Alpha Pal encounter around level 68.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-sentinel-of-the-tides-faleris-aqua--1306--1620",
+      "mapId": "palpagos",
+      "name": "Sentinel Of The Tides Faleris Aqua",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -1306,
+        "y": -1620
+      },
+      "recommendedLevel": "66+",
+      "summary": "Alpha Pal encounter around level 66.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-shambling-vein-pierdon-819-467",
+      "mapId": "palpagos",
+      "name": "Shambling Vein Pierdon",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": 819,
+        "y": 467
+      },
+      "recommendedLevel": "50+",
+      "summary": "Alpha Pal encounter around level 50.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-shockingly-laid-back-slowatt--367--1357",
+      "mapId": "palpagos",
+      "name": "Shockingly Laid-Back Slowatt",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -367,
+        "y": -1357
+      },
+      "recommendedLevel": "66+",
+      "summary": "Alpha Pal encounter around level 66.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-swift-deity-univolt--117--543",
+      "mapId": "palpagos",
+      "name": "Swift Deity Univolt",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -117,
+        "y": -543
+      },
+      "recommendedLevel": "31+",
+      "summary": "Alpha Pal encounter around level 31.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-tactician-of-the-thread-realm-tarantriss--343--252",
+      "mapId": "palpagos",
+      "name": "Tactician Of The Thread Realm Tarantriss",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -343,
+        "y": -252
+      },
+      "recommendedLevel": "35+",
+      "summary": "Alpha Pal encounter around level 35.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-tainted-farm-caprity-noct--147--659",
+      "mapId": "palpagos",
+      "name": "Tainted Farm Caprity Noct",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -147,
+        "y": -659
+      },
+      "recommendedLevel": "23+",
+      "summary": "Alpha Pal encounter around level 23.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-twinhearted-azure-construct-dualith-910--99",
+      "mapId": "palpagos",
+      "name": "Twinhearted Azure Construct Dualith",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": 910,
+        "y": -99
+      },
+      "recommendedLevel": "55+",
+      "summary": "Alpha Pal encounter around level 55.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-alpha-boss-voice-of-the-violets-vaelet--19--265",
+      "mapId": "palpagos",
+      "name": "Voice Of The Violets Vaelet",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": -19,
+        "y": -265
+      },
+      "recommendedLevel": "27+",
+      "summary": "Alpha Pal encounter around level 27.",
+      "nearby": [
+        "Alpha Pal",
+        "Combat prep"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Alpha Pals"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-astral-mountains-cavern--228-263",
+      "mapId": "palpagos",
+      "name": "Astral Mountains Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -228,
+        "y": 263
+      },
+      "recommendedLevel": "39+",
+      "summary": "Dungeon entrance with an approximate level 39.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-astral-mountains-cavern--204-564",
+      "mapId": "palpagos",
+      "name": "Astral Mountains Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -204,
+        "y": 564
+      },
+      "recommendedLevel": "39+",
+      "summary": "Dungeon entrance with an approximate level 39.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-astral-mountains-cavern--365-373",
+      "mapId": "palpagos",
+      "name": "Astral Mountains Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -365,
+        "y": 373
+      },
+      "recommendedLevel": "39+",
+      "summary": "Dungeon entrance with an approximate level 39.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-astral-mountains-cavern--121-315",
+      "mapId": "palpagos",
+      "name": "Astral Mountains Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -121,
+        "y": 315
+      },
+      "recommendedLevel": "39+",
+      "summary": "Dungeon entrance with an approximate level 39.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-astral-mountains-cavern-32-275",
+      "mapId": "palpagos",
+      "name": "Astral Mountains Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": 32,
+        "y": 275
+      },
+      "recommendedLevel": "39+",
+      "summary": "Dungeon entrance with an approximate level 39.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-astral-mountains-cavern--303-491",
+      "mapId": "palpagos",
+      "name": "Astral Mountains Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -303,
+        "y": 491
+      },
+      "recommendedLevel": "39+",
+      "summary": "Dungeon entrance with an approximate level 39.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-cavern-of-the-dunes-362-574",
+      "mapId": "palpagos",
+      "name": "Cavern Of The Dunes",
+      "category": "dungeon",
+      "coordinates": {
+        "x": 362,
+        "y": 574
+      },
+      "recommendedLevel": "33+",
+      "summary": "Dungeon entrance with an approximate level 33.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-cavern-of-the-dunes-428-212",
+      "mapId": "palpagos",
+      "name": "Cavern Of The Dunes",
+      "category": "dungeon",
+      "coordinates": {
+        "x": 428,
+        "y": 212
+      },
+      "recommendedLevel": "33+",
+      "summary": "Dungeon entrance with an approximate level 33.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-cavern-of-the-dunes-555-133",
+      "mapId": "palpagos",
+      "name": "Cavern Of The Dunes",
+      "category": "dungeon",
+      "coordinates": {
+        "x": 555,
+        "y": 133
+      },
+      "recommendedLevel": "33+",
+      "summary": "Dungeon entrance with an approximate level 33.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-feybreak-cavern--1176--1426",
+      "mapId": "palpagos",
+      "name": "Feybreak Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -1176,
+        "y": -1426
+      },
+      "recommendedLevel": "50+",
+      "summary": "Dungeon entrance with an approximate level 50.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-feybreak-cavern--1349--1510",
+      "mapId": "palpagos",
+      "name": "Feybreak Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -1349,
+        "y": -1510
+      },
+      "recommendedLevel": "50+",
+      "summary": "Dungeon entrance with an approximate level 50.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-feybreak-cavern--1204--1189",
+      "mapId": "palpagos",
+      "name": "Feybreak Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -1204,
+        "y": -1189
+      },
+      "recommendedLevel": "50+",
+      "summary": "Dungeon entrance with an approximate level 50.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-mountain-stream-grotto-234--199",
+      "mapId": "palpagos",
+      "name": "Mountain Stream Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": 234,
+        "y": -199
+      },
+      "recommendedLevel": "22+",
+      "summary": "Dungeon entrance with an approximate level 22.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-mountain-stream-grotto-301--68",
+      "mapId": "palpagos",
+      "name": "Mountain Stream Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": 301,
+        "y": -68
+      },
+      "recommendedLevel": "22+",
+      "summary": "Dungeon entrance with an approximate level 22.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-mountain-stream-grotto-12--124",
+      "mapId": "palpagos",
+      "name": "Mountain Stream Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": 12,
+        "y": -124
+      },
+      "recommendedLevel": "22+",
+      "summary": "Dungeon entrance with an approximate level 22.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-mountain-stream-grotto--43--203",
+      "mapId": "palpagos",
+      "name": "Mountain Stream Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -43,
+        "y": -203
+      },
+      "recommendedLevel": "22+",
+      "summary": "Dungeon entrance with an approximate level 22.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-mountain-stream-grotto-154-144",
+      "mapId": "palpagos",
+      "name": "Mountain Stream Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": 154,
+        "y": 144
+      },
+      "recommendedLevel": "22+",
+      "summary": "Dungeon entrance with an approximate level 22.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-ravine-grotto--162--440",
+      "mapId": "palpagos",
+      "name": "Ravine Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -162,
+        "y": -440
+      },
+      "recommendedLevel": "14+",
+      "summary": "Dungeon entrance with an approximate level 14.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-ravine-grotto--148--174",
+      "mapId": "palpagos",
+      "name": "Ravine Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -148,
+        "y": -174
+      },
+      "recommendedLevel": "14+",
+      "summary": "Dungeon entrance with an approximate level 14.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-ravine-grotto--111--418",
+      "mapId": "palpagos",
+      "name": "Ravine Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -111,
+        "y": -418
+      },
+      "recommendedLevel": "14+",
+      "summary": "Dungeon entrance with an approximate level 14.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-ravine-grotto--230--389",
+      "mapId": "palpagos",
+      "name": "Ravine Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -230,
+        "y": -389
+      },
+      "recommendedLevel": "14+",
+      "summary": "Dungeon entrance with an approximate level 14.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-ravine-grotto--122--339",
+      "mapId": "palpagos",
+      "name": "Ravine Grotto",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -122,
+        "y": -339
+      },
+      "recommendedLevel": "14+",
+      "summary": "Dungeon entrance with an approximate level 14.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-volcanic-cavern--793--458",
+      "mapId": "palpagos",
+      "name": "Volcanic Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -793,
+        "y": -458
+      },
+      "recommendedLevel": "32+",
+      "summary": "Dungeon entrance with an approximate level 32.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "palpagos-dungeon-volcanic-cavern--573--461",
+      "mapId": "palpagos",
+      "name": "Volcanic Cavern",
+      "category": "dungeon",
+      "coordinates": {
+        "x": -573,
+        "y": -461
+      },
+      "recommendedLevel": "32+",
+      "summary": "Dungeon entrance with an approximate level 32.",
+      "nearby": [
+        "Dungeon route",
+        "Loot run"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Dungeons"
+      }
+    },
+    {
+      "id": "natural-bridge-effigy",
+      "mapId": "palpagos",
+      "name": "Natural Bridge Effigy",
+      "category": "effigy",
+      "coordinates": {
+        "x": 173,
+        "y": -417
+      },
+      "recommendedLevel": "1+",
+      "summary": "A reviewed Lifmunk Effigy near the natural bridge route.",
+      "nearby": [
+        "Pengullet coast",
+        "Early exploration"
+      ]
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-1--172-33",
+      "mapId": "palpagos",
+      "name": "Fast Travel 1",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -172,
+        "y": 33
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-10--405-505",
+      "mapId": "palpagos",
+      "name": "Fast Travel 10",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -405,
+        "y": 505
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-11-447--713",
+      "mapId": "palpagos",
+      "name": "Fast Travel 11",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 447,
+        "y": -713
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-12--268--246",
+      "mapId": "palpagos",
+      "name": "Fast Travel 12",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -268,
+        "y": -246
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-13-421-9",
+      "mapId": "palpagos",
+      "name": "Fast Travel 13",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 421,
+        "y": 9
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-14--1083--1045",
+      "mapId": "palpagos",
+      "name": "Fast Travel 14",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -1083,
+        "y": -1045
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-15--1112--1616",
+      "mapId": "palpagos",
+      "name": "Fast Travel 15",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -1112,
+        "y": -1616
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-16--353-77",
+      "mapId": "palpagos",
+      "name": "Fast Travel 16",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -353,
+        "y": 77
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-17-548--102",
+      "mapId": "palpagos",
+      "name": "Fast Travel 17",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 548,
+        "y": -102
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-18--14--488",
+      "mapId": "palpagos",
+      "name": "Fast Travel 18",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -14,
+        "y": -488
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-19--235--365",
+      "mapId": "palpagos",
+      "name": "Fast Travel 19",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -235,
+        "y": -365
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-2--803--565",
+      "mapId": "palpagos",
+      "name": "Fast Travel 2",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -803,
+        "y": -565
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-20--1272--1101",
+      "mapId": "palpagos",
+      "name": "Fast Travel 20",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -1272,
+        "y": -1101
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-21--224--441",
+      "mapId": "palpagos",
+      "name": "Fast Travel 21",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -224,
+        "y": -441
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-22-16--212",
+      "mapId": "palpagos",
+      "name": "Fast Travel 22",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 16,
+        "y": -212
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-23-149--208",
+      "mapId": "palpagos",
+      "name": "Fast Travel 23",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 149,
+        "y": -208
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-24-181--390",
+      "mapId": "palpagos",
+      "name": "Fast Travel 24",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 181,
+        "y": -390
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-3-4-184",
+      "mapId": "palpagos",
+      "name": "Fast Travel 3",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 4,
+        "y": 184
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-4--214--1512",
+      "mapId": "palpagos",
+      "name": "Fast Travel 4",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -214,
+        "y": -1512
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-5--464-132",
+      "mapId": "palpagos",
+      "name": "Fast Travel 5",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -464,
+        "y": 132
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-6--897--1011",
+      "mapId": "palpagos",
+      "name": "Fast Travel 6",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -897,
+        "y": -1011
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-7--720--1194",
+      "mapId": "palpagos",
+      "name": "Fast Travel 7",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": -720,
+        "y": -1194
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-8-610--161",
+      "mapId": "palpagos",
+      "name": "Fast Travel 8",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 610,
+        "y": -161
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "palpagos-fast-travel-fast-travel-9-541-187",
+      "mapId": "palpagos",
+      "name": "Fast Travel 9",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 541,
+        "y": 187
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Fast travel point for route planning and regional navigation.",
+      "nearby": [
+        "Route anchor",
+        "Regional travel"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Fast Travel"
+      }
+    },
+    {
+      "id": "plateau-of-beginnings",
+      "mapId": "palpagos",
+      "name": "Plateau of Beginnings",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 230,
+        "y": -488
+      },
+      "recommendedLevel": "1+",
+      "summary": "The safest first fast travel point and a useful early capture loop.",
+      "nearby": [
+        "Lamball",
+        "Cattiva",
+        "Chikipi"
+      ]
+    },
+    {
+      "id": "pengullet-coastal-habitat",
+      "mapId": "palpagos",
+      "name": "Pengullet Coastal Habitat",
+      "category": "pal-habitat",
+      "coordinates": {
+        "x": 138,
+        "y": -418
+      },
+      "recommendedLevel": "1+",
+      "summary": "A coastal early-game area for finding Pengullet.",
+      "nearby": [
+        "Pengullet",
+        "Coastal route"
+      ]
+    },
+    {
+      "id": "oil-rig-stronghold",
+      "mapId": "palpagos",
+      "name": "Oil Rig Stronghold",
+      "category": "resource",
+      "coordinates": {
+        "x": 608,
+        "y": -435
+      },
+      "recommendedLevel": "50+",
+      "summary": "A high-risk resource objective for late-game farming routes.",
+      "nearby": [
+        "Oil rig",
+        "Endgame materials"
+      ]
+    },
+    {
+      "id": "palpagos-skill-fruit-darkisland-fruit-tree-1--668--932",
+      "mapId": "palpagos",
+      "name": "DarkIsland Fruit Tree 1",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -668,
+        "y": -932
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-darkisland-fruit-tree-2--1408--1027",
+      "mapId": "palpagos",
+      "name": "DarkIsland Fruit Tree 2",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -1408,
+        "y": -1027
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-darkisland-fruit-tree-3--1423--1673",
+      "mapId": "palpagos",
+      "name": "DarkIsland Fruit Tree 3",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -1423,
+        "y": -1673
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-darkisland-fruit-tree-4--872--1472",
+      "mapId": "palpagos",
+      "name": "DarkIsland Fruit Tree 4",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -872,
+        "y": -1472
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-darkisland-fruit-tree-5--972--921",
+      "mapId": "palpagos",
+      "name": "DarkIsland Fruit Tree 5",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -972,
+        "y": -921
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-darkisland-fruit-tree-6--968--1169",
+      "mapId": "palpagos",
+      "name": "DarkIsland Fruit Tree 6",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -968,
+        "y": -1169
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-darkisland-fruit-tree-7--1251--1399",
+      "mapId": "palpagos",
+      "name": "DarkIsland Fruit Tree 7",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -1251,
+        "y": -1399
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-desert-fruit-tree-8-328-484",
+      "mapId": "palpagos",
+      "name": "Desert Fruit Tree 8",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": 328,
+        "y": 484
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-desert-fruit-tree-9-290-254",
+      "mapId": "palpagos",
+      "name": "Desert Fruit Tree 9",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": 290,
+        "y": 254
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-10-203--452",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 10",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": 203,
+        "y": -452
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-11--245--203",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 11",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -245,
+        "y": -203
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-12--5--90",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 12",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -5,
+        "y": -90
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-13-146--24",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 13",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": 146,
+        "y": -24
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-14-362--316",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 14",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": 362,
+        "y": -316
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-15--193--518",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 15",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -193,
+        "y": -518
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-16--453--33",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 16",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -453,
+        "y": -33
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-17--187--404",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 17",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -187,
+        "y": -404
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-18-51--50",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 18",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": 51,
+        "y": -50
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-grass-fruit-tree-19-334--39",
+      "mapId": "palpagos",
+      "name": "Grass Fruit Tree 19",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": 334,
+        "y": -39
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-sakurajima-fruit-tree-20--462-227",
+      "mapId": "palpagos",
+      "name": "Sakurajima Fruit Tree 20",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -462,
+        "y": 227
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-sakurajima-fruit-tree-21--599-310",
+      "mapId": "palpagos",
+      "name": "Sakurajima Fruit Tree 21",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -599,
+        "y": 310
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-sakurajima-fruit-tree-22--575-163",
+      "mapId": "palpagos",
+      "name": "Sakurajima Fruit Tree 22",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -575,
+        "y": 163
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-sakurajima-fruit-tree-23--682-184",
+      "mapId": "palpagos",
+      "name": "Sakurajima Fruit Tree 23",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -682,
+        "y": 184
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-skyisland-fruit-tree-24--543--1432",
+      "mapId": "palpagos",
+      "name": "SkyIsland Fruit Tree 24",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -543,
+        "y": -1432
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-skyisland-fruit-tree-25--555--1295",
+      "mapId": "palpagos",
+      "name": "SkyIsland Fruit Tree 25",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -555,
+        "y": -1295
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-skyisland-fruit-tree-26--417--1376",
+      "mapId": "palpagos",
+      "name": "SkyIsland Fruit Tree 26",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -417,
+        "y": -1376
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-skyisland-fruit-tree-27--385--1352",
+      "mapId": "palpagos",
+      "name": "SkyIsland Fruit Tree 27",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -385,
+        "y": -1352
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-snow-fruit-tree-28-183-429",
+      "mapId": "palpagos",
+      "name": "Snow Fruit Tree 28",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": 183,
+        "y": 429
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-snow-fruit-tree-29--150-582",
+      "mapId": "palpagos",
+      "name": "Snow Fruit Tree 29",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -150,
+        "y": 582
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-volcano-fruit-tree-30--555--624",
+      "mapId": "palpagos",
+      "name": "Volcano Fruit Tree 30",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -555,
+        "y": -624
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "palpagos-skill-fruit-volcano-fruit-tree-31--623--260",
+      "mapId": "palpagos",
+      "name": "Volcano Fruit Tree 31",
+      "category": "skill-fruit",
+      "coordinates": {
+        "x": -623,
+        "y": -260
+      },
+      "recommendedLevel": "Route point",
+      "summary": "Skill Fruit Tree location for active skill farming routes.",
+      "nearby": [
+        "Skill Fruit",
+        "Farming route"
+      ],
+      "source": {
+        "name": "Palworld Guide map data",
+        "category": "Skill Fruit Trees"
+      }
+    },
+    {
+      "id": "rayne-syndicate-tower",
+      "mapId": "palpagos",
+      "name": "Rayne Syndicate Tower",
+      "category": "tower",
+      "coordinates": {
+        "x": 113,
+        "y": -431
+      },
+      "recommendedLevel": "10+",
+      "summary": "An early tower objective near the first major travel route.",
+      "nearby": [
+        "Early-game Pals",
+        "Fast travel route"
+      ]
+    },
+    {
+      "id": "world-tree-dualith-alpha",
+      "mapId": "world-tree",
+      "name": "Dualith Alpha",
+      "category": "alpha-boss",
+      "coordinates": {
+        "x": 15,
+        "y": 775
+      },
+      "recommendedLevel": "75",
+      "summary": "A World Tree Alpha Pal marker for the Twinhearted Azure Construct route.",
+      "nearby": [
+        "Paloxite nodes",
+        "World Tree field route"
+      ]
+    },
+    {
+      "id": "world-tree-sacred-green-meadow",
+      "mapId": "world-tree",
+      "name": "Sacred Green Meadow",
+      "category": "fast-travel",
+      "coordinates": {
+        "x": 102,
+        "y": 771
+      },
+      "recommendedLevel": "75+",
+      "summary": "A World Tree fast travel point and useful starting anchor for this map view.",
+      "nearby": [
+        "World Tree Guardian",
+        "Northern route"
+      ]
+    },
+    {
+      "id": "world-tree-guardian",
+      "mapId": "world-tree",
+      "name": "World Tree Guardian",
+      "category": "npc",
+      "coordinates": {
+        "x": 102,
+        "y": 772
+      },
+      "recommendedLevel": "77",
+      "summary": "A World Tree NPC location near the Sacred Green Meadow fast travel point.",
+      "nearby": [
+        "Sacred Green Meadow",
+        "World Tree route"
+      ]
+    },
+    {
+      "id": "world-tree-paloxite-node",
+      "mapId": "world-tree",
+      "name": "Paloxite Node",
+      "category": "resource",
+      "coordinates": {
+        "x": 16,
+        "y": 794
+      },
+      "recommendedLevel": "75+",
+      "summary": "A starter Paloxite resource marker for the World Tree map.",
+      "nearby": [
+        "Dualith Alpha",
+        "World Tree materials"
+      ]
+    },
+    {
+      "id": "world-tree-corrosion-mist-source",
+      "mapId": "world-tree",
+      "name": "Corrosion Mist Source",
+      "category": "tower",
+      "coordinates": {
+        "x": 26,
+        "y": 860
+      },
+      "recommendedLevel": "75+",
+      "summary": "A World Tree tower objective paired with a nearby fast travel point.",
+      "nearby": [
+        "Fast travel",
+        "Northern World Tree sector"
+      ]
+    }
+  ]
+}

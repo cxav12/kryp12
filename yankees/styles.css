@@ -563,7 +563,7 @@
   border-top: 1px solid rgba(196, 206, 211, 0.18);
   background: var(--card-bg);
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 1fr);
   overflow: hidden;
 }
 
@@ -724,20 +724,21 @@
 }
 
 .scoring-plays-list {
-  max-height: 190px;
-  overflow-y: auto;
   display: grid;
-  gap: 8px;
-  padding-right: 4px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+  padding-right: 0;
 }
 
 .scoring-play {
   min-width: 0;
   display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-columns: auto auto auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 7px;
-  padding: 3px 0;
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 4px;
 }
 
 .scoring-play:last-child {
@@ -756,6 +757,11 @@
   color: var(--ink);
 }
 
+.scoring-play-team {
+  color: var(--yankees-silver);
+  font-variant-numeric: tabular-nums;
+}
+
 .scoring-play p,
 .scoring-play-empty {
   margin: 0;
@@ -767,6 +773,52 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.game-notes-panel {
+  min-width: 0;
+  padding: 14px 0 14px 18px;
+  border-left: 1px solid rgba(196, 206, 211, 0.18);
+}
+
+.game-notes-panel > h3 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: var(--text-normal);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.game-notes-groups {
+  display: grid;
+  gap: 12px;
+}
+
+.game-notes-groups section {
+  display: grid;
+  gap: 3px;
+}
+
+.game-notes-groups h4,
+.game-notes-groups p {
+  margin: 0;
+  font-size: var(--text-normal);
+}
+
+.game-notes-groups h4 {
+  margin-bottom: 2px;
+  color: var(--yankees-silver);
+  font-weight: 800;
+}
+
+.game-notes-groups p {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.game-notes-groups p strong {
+  color: var(--ink);
 }
 
 .game-player-stats {
@@ -1265,6 +1317,12 @@
     grid-template-columns: 1fr;
   }
 
+  .game-notes-panel {
+    padding: 14px 0 0;
+    border-top: 1px solid rgba(196, 206, 211, 0.18);
+    border-left: 0;
+  }
+
   .current-matchup-panel {
     border: 0;
   }
@@ -1279,8 +1337,14 @@
 
 @media (max-width: 575.98px) {
   .current-matchup-panel,
-  .scoring-plays-panel {
+  .scoring-plays-panel,
+  .game-notes-panel {
     padding: 12px;
+  }
+
+  .scoring-plays-list {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .current-matchup-grid {

@@ -333,12 +333,14 @@ function renderBaseDiamond(linescore) {
   `;
 }
 
-function renderScoringPlays(feed) {
+function scoringPlayRows(feed, game) {
   const plays = feed.liveData?.plays || {};
   const scoring = (plays.scoringPlays || []).map((index) => plays.allPlays?.[index]).filter(Boolean).reverse();
   if (!scoring.length) return `<p class="scoring-play-empty">No scoring plays yet.</p>`;
   return scoring.map((play) => {
     const half = play.about?.halfInning === "bottom" ? "Bot" : "Top";
+    const side = play.about?.halfInning === "bottom" ? "home" : "away";
+    const team = game.teams?.[side]?.team || feed.gameData?.teams?.[side] || {};
     const inning = ordinalInning(play.about?.inning);
     const result = play.result || {};
     const description = String(result.description || "").replace(/^.*?challenged.*?:\s*/i, "");
@@ -356,6 +358,7 @@ function renderScoringPlays(feed) {
       <article class="scoring-play">
         <strong class="scoring-play-inning">${escapeHtml(`${half} ${inning}`)}</strong>
         <span class="scoring-play-separator" aria-hidden="true">|</span>
+        <strong class="scoring-play-team">${escapeHtml(teamAbbreviation(team))}</strong>
         <p>${escapeHtml(conciseDescription || "Scoring play")}</p>
         <strong class="scoring-play-score">${escapeHtml(`${result.awayScore ?? "-"}-${result.homeScore ?? "-"}`)}</strong>
       </article>
@@ -363,13 +366,84 @@ function renderScoringPlays(feed) {
   }).join("");
 }
 
+function renderScoringPlays(feed, game) {
+  return scoringPlayRows(feed, game);
+}
+
+function playerStatSummary(teamBox, statKey) {
+  return Object.values(teamBox.players || {})
+    .map((player) => ({
+      name: player.person?.fullName || "Player",
+      value: Number(player.stats?.batting?.[statKey] || 0),
+    }))
+    .filter((entry) => entry.value > 0)
+    .map((entry) => `${entry.name} (${entry.value})`)
+    .join(", ") || "None";
+}
+
+function renderGameNotes(feed, game) {
+  const side = yankeesSide(game);
+  const teamBox = feed.liveData?.boxscore?.teams?.[side] || {};
+  const officialGroups = (teamBox.info || []).filter((group) =>
+    ["batting", "baserunning", "fielding"].includes(String(group.title || "").toLowerCase())
+  );
+  const batting = teamBox.teamStats?.batting || {};
+  const fielding = teamBox.teamStats?.fielding || {};
+  const lineTeam = feed.liveData?.linescore?.teams?.[side] || {};
+  const stat = (key, fallback = 0) => statValue(batting, key, fallback);
+  const detailRow = (label, value) => `<p><strong>${escapeHtml(label)}</strong> ${escapeHtml(value)}</p>`;
+
+  if (officialGroups.length) {
+    return `
+      <aside class="game-notes-panel" aria-label="Yankees game notes">
+        <h3>NYY Game Notes</h3>
+        <div class="game-notes-groups">
+          ${officialGroups.map((group) => `
+            <section>
+              <h4>${escapeHtml(group.title)}</h4>
+              ${(group.fieldList || []).map((field) => detailRow(field.label, field.value)).join("")}
+            </section>
+          `).join("")}
+        </div>
+      </aside>
+    `;
+  }
+
+  return `
+    <aside class="game-notes-panel" aria-label="Yankees game notes">
+      <h3>NYY Game Notes</h3>
+      <div class="game-notes-groups">
+        <section>
+          <h4>Batting</h4>
+          ${detailRow("2B", playerStatSummary(teamBox, "doubles"))}
+          ${detailRow("3B", playerStatSummary(teamBox, "triples"))}
+          ${detailRow("HR", playerStatSummary(teamBox, "homeRuns"))}
+          ${detailRow("RBI", playerStatSummary(teamBox, "rbi"))}
+          ${detailRow("Team RISP", `${stat("hitsRisp")}-${stat("atBatsRisp")}`)}
+          ${detailRow("Team LOB", lineTeam.leftOnBase ?? stat("leftOnBase"))}
+        </section>
+        <section>
+          <h4>Baserunning</h4>
+          ${detailRow("SB", playerStatSummary(teamBox, "stolenBases"))}
+          ${detailRow("CS", playerStatSummary(teamBox, "caughtStealing"))}
+        </section>
+        <section>
+          <h4>Fielding</h4>
+          ${detailRow("DP", statValue(fielding, "doublePlays", stat("groundIntoDoublePlay")))}
+        </section>
+      </div>
+    </aside>
+  `;
+}
+
 function renderGameSituation(feed, game) {
   return `
     <section class="game-situation" aria-label="Scoring plays">
       <div class="scoring-plays-panel">
         <h3>Scoring Plays</h3>
-        <div class="scoring-plays-list">${renderScoringPlays(feed)}</div>
+        <div class="scoring-plays-list">${renderScoringPlays(feed, game)}</div>
       </div>
+      ${renderGameNotes(feed, game)}
     </section>
   `;
 }

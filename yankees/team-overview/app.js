@@ -67,6 +67,18 @@ function ordinal(value) {
   return `${number}${suffix}`;
 }
 
+function rankTone(rank, total = 30) {
+  const position = Number(rank);
+  const fieldSize = Number(total);
+  if (!Number.isFinite(position) || !Number.isFinite(fieldSize) || fieldSize < 2) return "rank-neutral";
+
+  const percentile = position / fieldSize;
+  if (percentile <= 0.2) return "rank-strong";
+  if (percentile > 0.8) return "rank-weak";
+  if (percentile > 0.6) return "rank-watch";
+  return "rank-neutral";
+}
+
 function statNumber(value) {
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
@@ -300,7 +312,7 @@ function renderStandingsRows() {
     if (record.teamId === TEAM_ID) row.classList.add("is-yankees");
     const rank = Number.isFinite(rankValue(record, state.standingsView.mode)) ? rankValue(record, state.standingsView.mode) : index + 1;
     row.innerHTML = `
-      <td data-label="Rank">${rank}</td>
+      <td data-label="Rank"><span class="rank-indicator ${rankTone(rank, records.length)}">${rank}</span></td>
       <td data-label="Team"><span>${record.teamName}</span></td>
       <td data-label="W">${record.wins}</td>
       <td data-label="L">${record.losses}</td>
@@ -340,7 +352,9 @@ function renderMetric(teamId, metric) {
   node.querySelector(".metric-badge").textContent = metric.badge;
   node.querySelector("strong").textContent = metric.label;
   node.querySelector(".metric-value span").textContent = formatStat(metric.key, value);
-  node.querySelector(".metric-value small").textContent = rank ? ordinal(rank) : "-";
+  const rankLabel = node.querySelector(".metric-value small");
+  rankLabel.textContent = rank ? ordinal(rank) : "-";
+  rankLabel.classList.add(rankTone(rank, state.ranks.get(metric.key)?.size || 30));
   return node;
 }
 

@@ -23,6 +23,8 @@
 .recap-selector-section {
   display: grid;
   gap: 10px;
+  padding-top: 0;
+  padding-bottom: 14px;
 }
 
 .recap-selector-header {
@@ -177,7 +179,7 @@
   width: clamp(44px, 5vw, 62px);
   height: clamp(44px, 5vw, 62px);
   border-radius: 8px;
-  background: rgba(247, 248, 255, 0.78);
+  background: var(--logo-surface);
   object-fit: contain;
   opacity: 1;
   padding: 6px;
@@ -225,8 +227,8 @@
   background: var(--card-bg);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) minmax(460px, 1.35fr) minmax(180px, 1fr);
-  align-items: center;
+  grid-template-columns: minmax(310px, 0.9fr) minmax(540px, 1.6fr) minmax(260px, 0.85fr);
+  align-items: stretch;
 }
 
 .last-game-card::before {
@@ -237,14 +239,19 @@
   background: linear-gradient(90deg, rgba(196, 206, 212, 0.04), transparent 32%, rgba(196, 206, 212, 0.06));
 }
 
-.game-result-badge {
-  height: 100%;
+.game-score-box {
+  min-width: 0;
   border-right: 1px solid rgba(96, 126, 166, 0.36);
+  display: grid;
+  align-content: center;
+}
+
+.game-result-badge {
   color: #67e8a2;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 18px;
+  padding: 16px 18px 2px;
   font-weight: 800;
   letter-spacing: 0.14em;
   line-height: 1.35;
@@ -263,21 +270,21 @@
 
 .game-score-strip {
   min-width: 0;
-  width: 100%;
+  width: min(100%, 310px);
   display: grid;
-  grid-template-columns: 64px minmax(48px, auto) minmax(34px, auto) 18px minmax(34px, auto) minmax(48px, auto) 64px;
-  gap: clamp(8px, 1.4vw, 16px);
+  grid-template-columns: 48px 50px 24px 12px 24px 50px 48px;
+  gap: 6px;
   align-items: center;
   justify-content: center;
   justify-self: center;
-  padding: 18px clamp(18px, 4vw, 38px);
+  padding: 12px 8px 18px;
 }
 
 .team-logo {
-  width: clamp(44px, 5vw, 64px);
-  height: clamp(44px, 5vw, 64px);
+  width: 48px;
+  height: 48px;
   border-radius: 8px;
-  background: rgba(247, 248, 255, 0.78);
+  background: var(--logo-surface);
   object-fit: contain;
   padding: 6px;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.22));
@@ -315,16 +322,61 @@
   text-transform: uppercase;
 }
 
+.game-linescore-box {
+  min-width: 0;
+  border-right: 1px solid rgba(96, 126, 166, 0.38);
+  display: flex;
+  align-items: center;
+  padding: 18px;
+}
+
+.linescore-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.linescore-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  color: #f7f8ff;
+}
+
+.linescore-table th,
+.linescore-table td {
+  min-width: 30px;
+  padding: 5px 7px;
+  font-size: var(--text-small);
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.linescore-table thead th {
+  color: var(--muted);
+}
+
+.linescore-table tbody th {
+  min-width: 62px;
+  color: #fff;
+  font-weight: 800;
+  text-align: left;
+}
+
+.linescore-table .line-total {
+  color: #f1b434;
+  font-weight: 800;
+}
+
 .game-decisions {
   min-width: 0;
   height: 100%;
-  border-left: 1px solid rgba(96, 126, 166, 0.38);
   display: grid;
   align-content: center;
-  justify-items: center;
+  justify-items: start;
   gap: 14px;
-  padding: 22px clamp(22px, 3vw, 36px);
-  text-align: center;
+  padding: 22px;
+  text-align: left;
 }
 
 .game-decisions p {
@@ -334,7 +386,7 @@
   font-weight: 800;
   letter-spacing: 0.04em;
   line-height: 1.1;
-  text-align: center;
+  text-align: left;
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
@@ -357,6 +409,517 @@
 .game-decisions .live-label,
 .game-decisions .inning-label {
   color: #f6d365;
+}
+
+.last-game-card {
+  display: block;
+  min-height: 0;
+  padding: 16px;
+  background: #111920;
+}
+
+.game-live-status-row {
+  border-bottom: 1px solid rgba(196, 206, 211, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 10px 12px;
+  color: var(--ink);
+  text-align: center;
+}
+
+.game-live-status-row strong {
+  color: #f6d365;
+}
+
+.game-live-status-row i {
+  color: var(--muted);
+  font-style: normal;
+}
+
+.game-live-status-row + .game-scoreboard-top {
+  padding-top: 14px;
+}
+
+.game-scoreboard-top {
+  min-height: 64px;
+  border-bottom: 1px solid rgba(196, 206, 211, 0.18);
+  display: grid;
+  grid-template-columns: minmax(190px, 1fr) minmax(56px, 0.35fr) minmax(120px, 0.7fr) minmax(56px, 0.35fr) minmax(190px, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 0 14px 14px;
+}
+
+.scoreboard-team {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scoreboard-team.away {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.scoreboard-team.home {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.scoreboard-team img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--logo-surface);
+  object-fit: contain;
+  padding: 6px;
+}
+
+.scoreboard-team.is-yankees img {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.scoreboard-team-copy {
+  min-width: 0;
+  display: grid;
+  line-height: 1.2;
+}
+
+.scoreboard-team-copy strong {
+  overflow: hidden;
+  color: #fff;
+  font-size: var(--text-normal);
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scoreboard-team-copy small {
+  color: #dfe4f4;
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.scoreboard-score {
+  color: #fff;
+  font-size: clamp(2rem, 3vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+}
+
+.scoreboard-state {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.game-scoreboard-top.in-progress .scoreboard-state {
+  color: #f6d365;
+}
+
+.scoreboard-mobile-score {
+  display: none;
+}
+
+.game-scoreboard-lower {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+  align-items: stretch;
+}
+
+.game-scoreboard-lower .game-linescore-box {
+  border-right: 1px solid rgba(196, 206, 211, 0.18);
+  padding: 14px 18px 0 0;
+}
+
+.game-scoreboard-lower .game-decisions {
+  gap: 10px;
+  padding: 16px 0 0 18px;
+}
+
+.game-scoreboard-lower .game-decisions p {
+  font-size: var(--text-normal);
+  text-transform: none;
+}
+
+.game-decisions.live-matchup-slot {
+  display: block;
+  padding-top: 14px;
+}
+
+.live-matchup-slot .current-matchup-grid {
+  height: 100%;
+}
+
+.game-situation {
+  margin-top: 14px;
+  border-top: 1px solid rgba(196, 206, 211, 0.18);
+  background: var(--card-bg);
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+  overflow: hidden;
+}
+
+.current-matchup-panel,
+.scoring-plays-panel {
+  min-width: 0;
+  padding: 14px 16px;
+}
+
+.scoring-plays-panel {
+  padding-left: 0;
+  padding-right: 18px;
+}
+
+.current-matchup-panel {
+  padding-left: 18px;
+  padding-right: 0;
+}
+
+.current-matchup-panel h3,
+.scoring-plays-panel h3 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: var(--text-normal);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.current-matchup-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 62px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.matchup-player {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+.matchup-player.batter {
+  text-align: center;
+}
+
+.matchup-player img {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: 50%;
+  background: #2b3034;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.matchup-player-copy {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: baseline;
+  justify-content: stretch;
+  gap: 2px 6px;
+  text-align: center;
+}
+
+.matchup-player.batter .matchup-player-copy {
+  justify-content: stretch;
+}
+
+.matchup-player-copy strong {
+  overflow: visible;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.matchup-player-copy span,
+.matchup-player-copy small {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.matchup-player-copy small {
+  grid-column: 1 / -1;
+  overflow-wrap: anywhere;
+}
+
+.matchup-player-copy span {
+  display: none;
+}
+
+.matchup-state {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+
+.base-diamond {
+  position: relative;
+  width: 54px;
+  height: 32px;
+}
+
+.base {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #cbd1d5;
+  background: transparent;
+  transform: rotate(45deg);
+}
+
+.base.occupied {
+  background: #f1b434;
+  border-color: #f1b434;
+  box-shadow: 0 0 8px rgba(241, 180, 52, 0.42);
+}
+
+.base.second {
+  top: 0;
+  left: 21px;
+}
+
+.base.third {
+  top: 14px;
+  left: 7px;
+}
+
+.base.first {
+  top: 14px;
+  right: 7px;
+}
+
+.matchup-state > strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.out-lights {
+  display: flex;
+  gap: 4px;
+}
+
+.out-lights span {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+}
+
+.out-lights span.active {
+  background: #d7dde1;
+}
+
+.scoring-plays-list {
+  max-height: 190px;
+  overflow-y: auto;
+  display: grid;
+  gap: 8px;
+  padding-right: 4px;
+}
+
+.scoring-play {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 0;
+}
+
+.scoring-play:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.scoring-play-inning,
+.scoring-play-score,
+.scoring-play-separator {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.scoring-play-score {
+  color: var(--ink);
+}
+
+.scoring-play p,
+.scoring-play-empty {
+  margin: 0;
+  color: var(--ink);
+}
+
+.scoring-play p {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.game-player-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.game-player-team-switcher {
+  grid-column: 1 / -1;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.game-player-team-button {
+  min-height: 38px;
+  border: 0;
+  color: var(--ink);
+  background: var(--card-bg-strong);
+  padding: 0 16px;
+  font-size: var(--text-small);
+  font-weight: 800;
+}
+
+.game-player-team-button + .game-player-team-button {
+  border-left: 1px solid var(--line);
+}
+
+.game-player-team-button:hover,
+.game-player-team-button:focus {
+  color: #fff;
+  background: rgba(196, 206, 211, 0.12);
+}
+
+.game-player-team-button.active {
+  color: #06152e;
+  background: #f1b434;
+}
+
+.game-player-column {
+  min-width: 0;
+  border: 1px solid rgba(77, 127, 190, 0.5);
+  border-radius: 8px;
+  background: var(--card-bg);
+  overflow: hidden;
+}
+
+.game-player-column h3 {
+  margin: 0;
+  border-bottom: 1px solid rgba(96, 126, 166, 0.36);
+  color: #f4f7ff;
+  background: rgba(12, 35, 64, 0.3);
+  padding: 14px 16px;
+  font-size: var(--text-normal);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.game-player-table-scroll {
+  overflow-x: auto;
+}
+
+.game-player-table {
+  width: 100%;
+  min-width: 660px;
+  border-collapse: collapse;
+}
+
+.game-player-table th,
+.game-player-table td {
+  border-bottom: 1px solid rgba(196, 206, 212, 0.1);
+  padding: 9px 8px;
+  color: #dfe4f4;
+  font-size: var(--text-small);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.game-player-table thead th {
+  color: var(--muted);
+  background: rgba(2, 4, 16, 0.5);
+  font-weight: 800;
+}
+
+.game-player-table th:first-child {
+  min-width: 160px;
+  text-align: left;
+}
+
+.game-player-table tbody th {
+  position: relative;
+  color: #fff;
+  font-size: var(--text-normal);
+  font-weight: 800;
+}
+
+.game-player-table tbody tr.is-substitute th:first-child {
+  padding-left: 28px;
+}
+
+.game-player-table tbody tr.is-substitute th:first-child::before {
+  content: "↳";
+  position: absolute;
+  left: 10px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.game-player-table tbody td {
+  font-size: var(--stat-number-size);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.game-player-table tbody tr:last-child th,
+.game-player-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.game-player-table a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.game-player-table a:hover,
+.game-player-table a:focus {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.game-player-table small {
+  margin-left: 6px;
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.game-player-loading,
+.game-player-empty,
+.game-player-unavailable p {
+  margin: 0;
+  color: var(--muted);
+  padding: 18px 16px;
+}
+
+.game-player-unavailable {
+  grid-column: 1 / -1;
 }
 
 .recap-loading {
@@ -527,11 +1090,17 @@
   }
 
   .last-game-card {
-    grid-template-columns: minmax(150px, 1fr) minmax(360px, 1.35fr) minmax(150px, 1fr);
+    grid-template-columns: 1fr;
   }
 
-  .game-decisions {
-    border-left: 1px solid rgba(96, 126, 166, 0.38);
+  .game-score-box,
+  .game-linescore-box {
+    border-right: 0;
+    border-bottom: 1px solid rgba(96, 126, 166, 0.36);
+  }
+
+  .game-player-stats {
+    grid-template-columns: 1fr;
   }
 
   .recap-grid {
@@ -552,14 +1121,14 @@
     grid-template-columns: 1fr;
   }
 
-  .game-result-badge {
-    min-height: 54px;
+  .game-score-box,
+  .game-linescore-box {
     border-right: 0;
     border-bottom: 1px solid rgba(96, 126, 166, 0.36);
   }
 
   .game-score-strip {
-    grid-template-columns: 42px minmax(34px, auto) minmax(24px, auto) 14px minmax(24px, auto) minmax(34px, auto) 42px;
+    grid-template-columns: 44px 48px 22px 12px 22px 48px 44px;
     padding: 22px 16px;
   }
 
@@ -602,13 +1171,18 @@
   }
 
   .game-score-strip {
-    grid-template-columns: 34px minmax(30px, auto) minmax(22px, auto) 12px minmax(22px, auto) minmax(30px, auto) 34px;
+    width: min(100%, 296px);
+    grid-template-columns: 40px 44px 22px 10px 22px 44px 40px;
     gap: 6px;
   }
 
+  .game-score-strip span {
+    letter-spacing: 0.08em;
+  }
+
   .team-logo {
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
   }
 
   .recent-game-matchup {
@@ -631,4 +1205,221 @@
     min-height: 44px;
   }
 
+}
+
+@media (max-width: 899.98px) {
+  .last-game-card {
+    padding: 14px;
+  }
+
+  .game-scoreboard-top {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 10px;
+    padding-inline: 0;
+  }
+
+  .game-scoreboard-top > .scoreboard-score {
+    display: none;
+  }
+
+  .scoreboard-mobile-score {
+    display: block;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  .scoreboard-team.away {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .scoreboard-team.home {
+    justify-content: flex-start;
+  }
+
+  .scoreboard-team-copy {
+    flex: 1 1 auto;
+  }
+
+  .scoreboard-state {
+    font-size: var(--text-normal);
+  }
+
+  .game-scoreboard-lower {
+    grid-template-columns: 1fr;
+  }
+
+  .game-scoreboard-lower .game-linescore-box {
+    border-right: 0;
+    border-bottom: 1px solid rgba(196, 206, 211, 0.18);
+    padding: 14px 0;
+  }
+
+  .game-scoreboard-lower .game-decisions {
+    padding: 14px 0 0;
+  }
+
+  .game-situation {
+    grid-template-columns: 1fr;
+  }
+
+  .current-matchup-panel {
+    border: 0;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .game-scoreboard-lower .game-linescore-box {
+    border-right: 1px solid rgba(196, 206, 211, 0.18);
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .current-matchup-panel,
+  .scoring-plays-panel {
+    padding: 12px;
+  }
+
+  .current-matchup-grid {
+    grid-template-columns: minmax(0, 1fr) 62px minmax(0, 1fr);
+    gap: 7px;
+  }
+
+  .matchup-player,
+  .matchup-player.batter {
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .matchup-player img {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+  }
+
+  .matchup-player-copy,
+  .matchup-player.batter .matchup-player-copy {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    text-align: center;
+  }
+
+  .matchup-player-copy span {
+    display: none;
+  }
+
+  .matchup-player-copy small {
+    overflow-wrap: anywhere;
+  }
+
+  .linescore-scroll,
+  .game-player-table-scroll {
+    overflow-x: visible;
+  }
+
+  .linescore-table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .linescore-table th,
+  .linescore-table td {
+    min-width: 0;
+    padding: 5px 1px;
+    font-size: 0.62rem;
+  }
+
+  .linescore-table tbody th {
+    width: 58px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .game-player-table {
+    min-width: 0;
+  }
+
+  .game-player-table thead {
+    display: none;
+  }
+
+  .game-player-table tbody,
+  .game-player-table tr,
+  .game-player-table th,
+  .game-player-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .game-player-table tbody {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .game-player-table tr {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    border: 1px solid rgba(196, 206, 212, 0.14);
+    border-radius: 6px;
+    padding: 10px;
+  }
+
+  .game-player-table th:first-child {
+    grid-column: 1 / -1;
+    min-width: 0;
+    border-bottom: 1px solid rgba(196, 206, 212, 0.12);
+    padding: 0 0 8px;
+  }
+
+  .game-player-table tbody tr.is-substitute th:first-child {
+    padding-left: 20px;
+  }
+
+  .game-player-table tbody tr.is-substitute th:first-child::before {
+    left: 0;
+  }
+
+  .game-player-table td {
+    border: 0;
+    padding: 0;
+    white-space: normal;
+  }
+
+  .game-player-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-weight: 800;
+  }
+
+  .scoreboard-team {
+    gap: 7px;
+  }
+
+  .scoreboard-team img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .scoreboard-team-copy strong {
+    font-size: var(--text-small);
+  }
+
+  .scoreboard-team-copy small:last-child {
+    display: none;
+  }
+
+  .scoreboard-mobile-score {
+    font-size: 1.25rem;
+  }
 }

@@ -119,6 +119,10 @@
 }
 
 .metric-value {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
   text-align: right;
   white-space: nowrap;
 }
@@ -130,11 +134,42 @@
 }
 
 .metric-value small {
-  margin-left: 4px;
+  margin-left: 0;
+  border-left: 1px solid rgba(196, 206, 211, 0.28);
+  padding-left: 8px;
   color: var(--ink);
   font-size: var(--text-small);
   font-weight: 700;
+  line-height: 1;
   text-transform: uppercase;
+}
+
+.metric-value small::before {
+  content: "Rank";
+  margin-right: 4px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.rank-indicator {
+  font-weight: 800;
+}
+
+.rank-strong {
+  color: #86efac !important;
+}
+
+.rank-watch {
+  color: #f6cc70 !important;
+}
+
+.rank-weak {
+  color: #fca5a5 !important;
+}
+
+.rank-neutral {
+  color: var(--yankees-silver);
 }
 
 .standings-panel {
@@ -288,6 +323,7 @@
   }
 
   .metric-value {
+    justify-content: flex-start;
     text-align: left;
     white-space: normal;
   }

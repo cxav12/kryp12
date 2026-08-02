@@ -1,26 +1,27 @@
 :root {
   color-scheme: dark;
-  --yankees-navy: #0c2340;
-  --yankees-silver: #c4ced4;
-  --swatch-deep: #06152e;
-  --swatch-mid: #1b4f8f;
-  --swatch-shadow: #08213f;
-  --bs-body-color: #f7f8ff;
+  --yankees-navy: #171d22;
+  --yankees-silver: #c7ccd0;
+  --swatch-deep: #0b0f12;
+  --swatch-mid: #5d656b;
+  --swatch-shadow: #050708;
+  --bs-body-color: #d7dde1;
   --bs-body-bg: #000;
-  --ink: #f7f8ff;
-  --muted: var(--yankees-silver);
-  --quiet: #8f9aa2;
-  --line: rgba(196, 206, 211, 0.18);
-  --line-bright: rgba(196, 206, 211, 0.48);
-  --panel: rgba(12, 35, 64, 0.84);
-  --panel-strong: rgba(6, 21, 46, 0.94);
-  --card-bg: rgba(3, 6, 20, 0.72);
-  --card-bg-strong: rgba(5, 10, 28, 0.82);
+  --ink: #d7dde1;
+  --muted: #aeb6bb;
+  --quiet: #858e94;
+  --line: rgba(205, 211, 215, 0.17);
+  --line-bright: rgba(205, 211, 215, 0.42);
+  --panel: #12191f;
+  --panel-strong: #0f151a;
+  --card-bg: #11181e;
+  --card-bg-strong: #0e1419;
+  --logo-surface: #d6d9dd;
   --green: #4db38a;
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
   --text-normal: 0.8125rem;
-  --text-small: 0.6875rem;
-  --stat-number-size: 1rem;
+  --text-small: 0.8125rem;
+  --stat-number-size: 0.8125rem;
 }
 
 body {
@@ -39,6 +40,7 @@ body {
 
 strong,
 b {
+  color: #e3e7ea;
   font-weight: 700;
 }
 
@@ -52,7 +54,8 @@ b {
   min-height: 86px;
   padding: 22px clamp(20px, 4vw, 54px);
   border-bottom: 1px solid var(--line);
-  background: rgba(6, 21, 46, 0.76);
+  border-radius: 8px 8px 0 0;
+  background: #11181e;
 }
 
 .brand-lockup {
@@ -70,9 +73,9 @@ b {
   flex: 0 0 auto;
   object-fit: contain;
   border: 0;
-  border-radius: 0;
-  background: transparent;
-  padding: 0;
+  border-radius: 50%;
+  background: var(--logo-surface);
+  padding: 0.45rem;
   filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.28));
 }
 
@@ -80,8 +83,9 @@ b {
   display: none;
   overflow: hidden;
   border: 0;
-  border-radius: 0;
-  background: rgba(3, 6, 20, 0.5);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 8px 8px;
+  background: #0e1419;
 }
 
 .site-nav summary {
@@ -155,7 +159,7 @@ b {
 .site-nav-link:focus,
 .site-nav-link.active {
   color: #fff;
-  background: rgba(27, 79, 143, 0.38);
+  background: rgba(205, 211, 215, 0.14);
 }
 
 .site-nav-link:hover,
@@ -167,8 +171,9 @@ b {
   min-height: 68px;
   overflow: hidden;
   border: 0;
-  border-radius: 0;
-  background: rgba(3, 6, 20, 0.5);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 8px 8px;
+  background: #0e1419;
   padding: 0;
 }
 
@@ -204,7 +209,7 @@ b {
 .desktop-site-nav .nav-link:focus,
 .desktop-site-nav .nav-link.active {
   color: #fff;
-  background: rgba(27, 79, 143, 0.38);
+  background: rgba(205, 211, 215, 0.14);
 }
 
 .desktop-site-nav .nav-link:hover,
@@ -222,6 +227,43 @@ b {
 
 .site-page-title {
   margin: 0 0 14px;
+}
+
+.page-intro-card {
+  margin: 14px 0;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045), transparent 38%),
+    var(--card-bg-strong);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.page-intro-card .page-heading {
+  margin: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.page-intro-description {
+  max-width: 58rem;
+  margin: 7px 0 0;
+  color: var(--yankees-silver);
+  font-size: var(--text-normal);
+  line-height: 1.5;
+}
+
+.selected-recap-section,
+.schedule-body,
+.moves-body,
+.overview-body,
+.player-stats-body {
+  padding-top: 0;
 }
 
 .page-heading,
@@ -559,6 +601,151 @@ b {
   }
 }
 
+/* Neutral MLB Gameday-inspired surface theme. */
+.recent-game-button,
+.last-game-card,
+.game-player-column,
+.recap-column,
+.month-calendar,
+.calendar-day,
+.transaction-card,
+.overview-card,
+.detail-card,
+.detail-quick-table-shell,
+.table-shell,
+.stats-card {
+  border-color: var(--line) !important;
+  background-color: var(--card-bg) !important;
+}
+
+.recent-game-button,
+.recap-column,
+.transaction-card,
+.overview-card {
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 58%) !important;
+}
+
+.game-player-column h3,
+.calendar-weekdays,
+.detail-quick-table th,
+.player-stats-table th,
+.player-stats-table th:first-child {
+  background-color: #171e24 !important;
+}
+
+.game-score-box,
+.game-linescore-box,
+.game-scoreboard-top,
+.game-scoreboard-lower .game-linescore-box,
+.game-player-column h3 {
+  border-color: var(--line) !important;
+}
+
+.last-game-card {
+  background: #12191f !important;
+}
+
+.game-player-table thead th,
+.player-stats-table thead tr {
+  background: #0d1216 !important;
+}
+
+.form-control,
+.form-select {
+  background-color: #0d1216;
+}
+
+.brand-title,
+.page-heading,
+.display-title,
+.section-card h2,
+.panel-heading,
+.month-title,
+.team-name,
+.insight-panel h3,
+.stats-view-title,
+.scoreboard-state,
+.scoreboard-score,
+.scoreboard-mobile-score,
+.scoreboard-team-copy strong,
+.game-player-column h3,
+.detail-player-name,
+.detail-number,
+.player-name,
+.mobile-player-identity strong,
+.mobile-stat-value {
+  color: #e4e8eb !important;
+}
+
+.site-nav-link,
+.desktop-site-nav .nav-link,
+.player-stats-table td,
+.game-player-table td,
+.detail-table,
+.detail-quick-table {
+  color: #cbd1d5;
+}
+
+.scoreboard-team-copy small,
+.stats-summary,
+.page-intro-description,
+.team-code,
+.mobile-player-identity small {
+  color: #aeb6bb !important;
+}
+
+.linescore-table th,
+.linescore-table td,
+.game-player-table th,
+.game-player-table td,
+.player-stats-table th,
+.player-stats-table td,
+.standings-table th,
+.standings-table td,
+.detail-table th,
+.detail-table td,
+.detail-quick-table th,
+.detail-quick-table td,
+.recap-row,
+.bar-stat-heading,
+.metric-feature,
+button,
+input,
+select,
+textarea,
+small {
+  font-size: var(--text-normal);
+}
+
+.game-player-table small,
+.game-player-table tbody th,
+.game-player-table tbody td {
+  font-size: var(--text-normal);
+}
+
+@media (max-width: 575.98px) {
+  .linescore-table th,
+  .linescore-table td,
+  .game-player-table td::before,
+  .player-stats-table tbody td:nth-child(n + 3)::before,
+  .detail-quick-table td::before,
+  .detail-tab-panel .detail-table td::before,
+  .mobile-stat-category,
+  .mobile-stat-rank,
+  .mobile-player-identity small {
+    font-size: var(--text-normal) !important;
+  }
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus,
+.site-nav-link.active,
+.desktop-site-nav .nav-link:hover,
+.desktop-site-nav .nav-link:focus,
+.desktop-site-nav .nav-link.active {
+  color: #e8ebed;
+}
+
 .schedule-panel .month-summary,
 .schedule-panel .game-detail,
 .schedule-panel .empty-day,
@@ -596,5 +783,13 @@ b {
 
   .schedule-panel .day-number::before {
     font-size: var(--text-small);
+  }
+
+  .site-nav summary {
+    background: #0e1419;
+  }
+
+  .site-nav-link.active {
+    background: rgba(205, 211, 215, 0.14);
   }
 }

@@ -1,0 +1,534 @@
+.player-stats-panel {
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.player-stats-body {
+  padding: 14px 0 0;
+}
+
+.stats-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card-bg);
+  overflow: hidden;
+}
+
+.stats-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.stats-view-title {
+  color: var(--ink);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.stats-summary {
+  color: var(--muted);
+  font-size: var(--text-normal);
+}
+
+.stats-toggle,
+.stats-scope-toggle {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(110px, 1fr));
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.stats-toolbar-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qualified-filter {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+  background: var(--card-bg-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px;
+  font-size: var(--text-small);
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.qualified-filter input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #f1b434;
+}
+
+.stats-toggle-button,
+.stats-scope-button {
+  min-height: 38px;
+  border: 0;
+  color: var(--ink);
+  background: var(--card-bg-strong);
+  padding: 0 16px;
+  font-size: var(--text-small);
+  font-weight: 800;
+}
+
+.stats-toggle-button + .stats-toggle-button,
+.stats-scope-button + .stats-scope-button {
+  border-left: 1px solid var(--line);
+}
+
+.stats-toggle-button:hover,
+.stats-toggle-button:focus,
+.stats-scope-button:hover,
+.stats-scope-button:focus {
+  color: #fff;
+  background: rgba(196, 206, 211, 0.12);
+}
+
+.stats-toggle-button.active,
+.stats-scope-button.active {
+  color: #06152e;
+  background: #f1b434;
+}
+
+.stats-table-shell {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-color: var(--line-bright) var(--card-bg-strong);
+}
+
+.mobile-stat-leaderboard {
+  display: none;
+}
+
+.player-stats-table {
+  width: 100%;
+  min-width: 1450px;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.player-stats-table th,
+.player-stats-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 9px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.player-stats-table th {
+  color: var(--muted);
+  background: #111522;
+  font-size: var(--text-small);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.player-stats-table td {
+  color: #dfe4f4;
+  font-size: var(--text-normal);
+}
+
+.player-stats-table tbody tr:hover td {
+  background: rgba(196, 206, 211, 0.06);
+}
+
+.player-stats-table th.is-sort-column {
+  color: #f1b434;
+  background: rgba(241, 180, 52, 0.14);
+}
+
+.player-stats-table td.is-sort-column {
+  color: #fff;
+  background: rgba(241, 180, 52, 0.08);
+  font-weight: 800;
+}
+
+.player-stats-table tbody tr:hover td.is-sort-column {
+  background: rgba(241, 180, 52, 0.14);
+}
+
+.player-stats-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.player-stats-table th:first-child,
+.player-stats-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  min-width: 215px;
+  text-align: left;
+  background: var(--card-bg-strong);
+}
+
+.player-stats-table th:first-child {
+  z-index: 3;
+  background: #111522;
+}
+
+.player-cell {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.player-cell a {
+  overflow: hidden;
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+  text-overflow: ellipsis;
+}
+
+.player-cell a:hover,
+.player-cell a:focus {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.team-code {
+  color: var(--yankees-silver) !important;
+  font-size: var(--text-small);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.sort-button {
+  width: 100%;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+.sort-button:hover,
+.sort-button:focus,
+.sort-button.active {
+  color: #f1b434;
+}
+
+.stats-pagination {
+  min-height: 62px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 10px 14px;
+}
+
+.stats-source {
+  margin: -6px 14px 14px;
+  color: var(--muted);
+  font-size: var(--text-small);
+  text-align: center;
+}
+
+.page-button,
+.page-ellipsis {
+  min-width: 38px;
+  height: 38px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  font-size: var(--text-normal);
+  font-weight: 800;
+}
+
+.page-button:hover,
+.page-button:focus {
+  color: #fff;
+}
+
+.page-button.active {
+  border-bottom-color: #f1b434;
+  color: #f1b434;
+}
+
+.page-button.next {
+  width: auto;
+  margin-left: 4px;
+  color: #4ea1ff;
+}
+
+.page-button:disabled {
+  color: rgba(167, 174, 196, 0.35);
+  cursor: default;
+}
+
+.stats-message {
+  padding: 30px !important;
+  color: var(--muted) !important;
+  text-align: center !important;
+}
+
+@media (max-width: 767.98px) {
+  .stats-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .stats-toggle {
+    width: 100%;
+  }
+
+  .stats-scope-toggle {
+    width: 100%;
+  }
+
+  .stats-toolbar-actions {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .qualified-filter {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .player-stats-body {
+    padding-inline: 0;
+  }
+
+  .stats-card {
+    overflow: hidden;
+  }
+
+  .stats-table-shell {
+    display: none;
+  }
+
+  .mobile-stat-leaderboard {
+    display: block;
+  }
+
+  .mobile-stat-list {
+    margin: 0;
+    padding: 0 12px 8px;
+    list-style: none;
+  }
+
+  .mobile-stat-row {
+    min-height: 64px;
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .mobile-stat-rank {
+    color: var(--muted);
+    font-size: var(--text-small);
+    font-weight: 800;
+    text-align: right;
+  }
+
+  .mobile-player-link {
+    min-width: 0;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .mobile-player-link img {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    border-radius: 50%;
+    background: #2b3034;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .mobile-player-link img.team-logo-image {
+    background: var(--logo-surface);
+    object-fit: contain;
+    object-position: center;
+    padding: 6px;
+  }
+
+  .mobile-player-link img.is-missing {
+    visibility: hidden;
+  }
+
+  .mobile-player-identity {
+    min-width: 0;
+    display: grid;
+    line-height: 1.2;
+  }
+
+  .mobile-player-identity strong {
+    overflow: hidden;
+    color: #fff;
+    font-size: var(--text-normal);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-player-identity small {
+    color: var(--muted);
+    font-size: var(--text-small);
+    font-weight: 700;
+  }
+
+  .mobile-stat-value {
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-align: right;
+  }
+
+  .mobile-stat-categories {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line-bright);
+    background: rgba(20, 23, 26, 0.97);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    padding: 9px;
+    backdrop-filter: blur(10px);
+  }
+
+  .mobile-stat-category {
+    min-width: 0;
+    min-height: 34px;
+    border: 1px solid var(--line-bright);
+    border-radius: 999px;
+    color: #fff;
+    background: transparent;
+    padding: 0 7px;
+    font-size: var(--text-small);
+    font-weight: 800;
+  }
+
+  .mobile-stat-category.active {
+    border-color: #f1b434;
+    color: #111;
+    background: #f1b434;
+  }
+
+  .player-stats-table {
+    min-width: 0;
+  }
+
+  .player-stats-table thead,
+  .player-stats-table thead tr {
+    display: block;
+  }
+
+  .player-stats-table thead tr {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    padding: 10px;
+    background: #111522;
+  }
+
+  .player-stats-table thead th {
+    display: block;
+    border: 0;
+    padding: 7px 3px;
+  }
+
+  .player-stats-table thead th:first-child,
+  .player-stats-table thead th:nth-child(2) {
+    display: none;
+  }
+
+  .player-stats-table tbody {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .player-stats-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.035);
+    padding: 10px;
+  }
+
+  .player-stats-table tbody td {
+    display: block;
+    border: 0;
+    padding: 4px 2px;
+    white-space: normal;
+  }
+
+  .player-stats-table tbody td:first-child {
+    position: static;
+    grid-column: 1 / span 3;
+    min-width: 0;
+    padding: 4px 2px;
+    background: transparent;
+  }
+
+  .player-stats-table tbody td:nth-child(2) {
+    align-self: center;
+    text-align: right;
+  }
+
+  .player-stats-table tbody td:nth-child(n + 3)::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .player-stats-table tbody td.is-sort-column {
+    border-radius: 4px;
+  }
+
+  .page-button,
+  .page-ellipsis {
+    min-width: 32px;
+    padding-inline: 6px;
+  }
+
+  .header-actions,
+  .status-pill {
+    width: 100%;
+  }
+}

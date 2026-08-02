@@ -175,7 +175,7 @@
 .detail-name-lockup {
   min-width: 0;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 12px;
 }
 
@@ -221,6 +221,20 @@
   font-weight: 800;
   line-height: 1;
   white-space: nowrap;
+}
+
+.detail-player-status {
+  border-left: 1px solid var(--line-bright);
+  padding-left: 12px;
+  color: var(--muted);
+  font-size: var(--text-small);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.detail-player-status strong {
+  color: #9af0c8;
+  font-weight: 800;
 }
 
 .detail-divider {
@@ -323,26 +337,6 @@
 
 .detail-quick-table tr:last-child td {
   border-bottom: 0;
-}
-
-.detail-quick-footer {
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  color: var(--ink);
-  font-size: var(--text-normal);
-}
-
-.detail-quick-footer > span + span {
-  border-left: 1px solid var(--line-bright);
-  padding-left: 12px;
-}
-
-.detail-quick-footer strong {
-  color: #fff;
-  font-weight: 800;
 }
 
 .detail-split-controls,
@@ -504,6 +498,57 @@
   font-weight: 700;
 }
 
+.contract-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.contract-item,
+.contract-unavailable {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card-bg-strong);
+  padding: 14px;
+}
+
+.contract-item {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+
+.contract-item span {
+  color: var(--muted);
+  font-size: var(--text-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contract-item strong {
+  color: var(--ink);
+  font-size: var(--text-normal);
+  line-height: 1.35;
+}
+
+.contract-source,
+.contract-unavailable p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+.contract-source a,
+.contract-unavailable a {
+  color: var(--yankees-silver);
+  font-weight: 700;
+}
+
+.contract-unavailable strong {
+  color: var(--ink);
+}
+
 @media (max-width: 575.98px) {
   .player-spotlight-page .player-name {
     font-size: clamp(2rem, 12vw, 3.3rem);
@@ -537,7 +582,7 @@
   }
 
   .detail-name-lockup {
-    align-items: baseline;
+    align-items: center;
     gap: 8px;
   }
 
@@ -565,17 +610,11 @@
     gap: 8px;
   }
 
-  .detail-quick-recent,
-  .detail-quick-footer {
+  .detail-quick-recent {
     align-items: flex-start;
   }
 
-  .detail-quick-footer {
-    display: grid;
-    gap: 6px;
-  }
-
-  .detail-quick-footer > span + span {
+  .detail-player-status {
     border-left: 0;
     padding-left: 0;
   }
@@ -636,6 +675,101 @@
     grid-template-columns: 1fr;
     gap: 4px;
   }
+
+  .contract-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .detail-card,
+  .detail-header {
+    padding: 12px;
+  }
+
+  .detail-quick-table tbody {
+    gap: 10px;
+    padding: 0;
+  }
+
+  .detail-quick-table tr {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px 8px;
+    padding: 10px;
+  }
+
+  .detail-quick-table td,
+  .detail-quick-table td:first-child {
+    display: grid !important;
+    justify-content: stretch !important;
+    gap: 2px !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  .detail-quick-table td::before {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .detail-quick-table .quick-row-label {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 7px;
+    color: #fff;
+    font-weight: 800;
+  }
+
+  .detail-quick-table .quick-row-label::before {
+    display: none;
+  }
+
+  .detail-tab-panel .detail-table tbody {
+    gap: 10px;
+  }
+
+  .detail-tab-panel .detail-table tr {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 8px;
+    padding: 10px;
+  }
+
+  .detail-tab-panel .detail-table td {
+    min-width: 0;
+    display: grid;
+    justify-content: stretch;
+    gap: 2px;
+    padding: 0;
+    text-align: left;
+  }
+
+  .detail-tab-panel .detail-table td::before {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .detail-tab-panel .detail-table td:nth-child(2) {
+    overflow-wrap: anywhere;
+  }
+
+  .detail-tab-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .detail-tab-controls .detail-tab {
+    width: 100%;
+  }
+
+  .detail-tab-controls .detail-tab:last-child {
+    grid-column: 1 / -1;
+  }
 }
 
 .player-spotlight-header {
@@ -673,15 +807,6 @@
 
 .player-title-band {
   display: block;
-  padding: 14px 0 0;
-  margin: 0 0 14px;
-  background: transparent;
-}
-
-.player-title-band .site-page-title {
-  margin: 0;
-  padding: 0;
-  background: transparent;
 }
 
 .player-search-panel {
@@ -872,6 +997,52 @@
 }
 
 @media (max-width: 575.98px) {
+  .detail-quick-table-shell {
+    overflow-x: visible;
+  }
+
+  .detail-quick-table thead {
+    display: none;
+  }
+
+  .detail-quick-table tbody,
+  .detail-quick-table tr,
+  .detail-quick-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .detail-quick-table tbody {
+    display: grid;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .detail-quick-table tr {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+
+  .detail-quick-table td,
+  .detail-quick-table td:first-child {
+    min-width: 0;
+    border: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 5px 0;
+    text-align: right;
+    white-space: normal;
+  }
+
+  .detail-quick-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-weight: 700;
+    text-align: left;
+  }
+
   .spotlight-body {
     padding: 14px;
   }

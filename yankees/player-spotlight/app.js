@@ -1,5 +1,4 @@
 const SEASON = new Date().getFullYear();
-const TEAM_ID = 147;
 const DEFAULT_PLAYER = 592450;
 const RECENT_TABLE_GAMES = 10;
 const MLB_API = "https://statsapi.mlb.com/api/v1";
@@ -36,13 +35,48 @@ const PACE_ITEMS = [
   ["SB", "stolenBases"],
 ];
 
+const PLAYER_CONTRACTS = {
+  592450: {
+    type: "Guaranteed veteran contract",
+    signed: "December 20, 2022",
+    years: "9 years",
+    term: "2023–2031",
+    total: "$360,000,000",
+    guaranteed: "$360,000,000",
+    average: "$40,000,000",
+    currentSalary: "$40,000,000",
+    freeAgency: "After the 2031 season",
+    options: "None",
+    clauses: "Full no-trade protection",
+    sourceLabel: "Spotrac",
+    sourceUrl: "https://www.spotrac.com/mlb/player/_/id/18499/aaron-judge",
+    verified: "July 2026",
+  },
+  700250: {
+    type: "Pre-arbitration contract",
+    signed: "2026 season",
+    years: "1 year",
+    term: "2026",
+    total: "$845,800",
+    guaranteed: "$845,800",
+    average: "$845,800",
+    currentSalary: "$845,800",
+    freeAgency: "Projected after the 2029 season",
+    options: "None reported",
+    clauses: "Pre-arbitration in 2026; projected arbitration eligibility from 2027–2029",
+    sourceLabel: "FanGraphs RosterResource",
+    sourceUrl: "https://www.fangraphs.com/roster-resource/payroll/yankees?season=2026",
+    verified: "July 2026",
+  },
+};
+
 const state = {
   selectedPlayerId: DEFAULT_PLAYER,
   currentGroup: "hitting",
   recentWindow: 5,
   gameLogSplits: [],
   detailSplit: "season",
-  detailTab: "pace",
+  detailTab: "recent",
   detailStats: {
     season: {},
     risp: {},
@@ -54,7 +88,6 @@ const state = {
     transactions: [],
   },
   selectedPerson: null,
-  nextGame: null,
 };
 
 const els = {
@@ -71,8 +104,6 @@ const els = {
   recentStats: document.querySelector("#recent-line-stats"),
   quickRecentStats: document.querySelector("#quick-recent-line-stats"),
   quickStatsBody: document.querySelector("#quick-stats-body"),
-  quickPlayerStatus: document.querySelector("#quick-player-status"),
-  quickNextGame: document.querySelector("#quick-next-game"),
   recentButtons: document.querySelectorAll(".recent-window-button"),
   searchInput: document.querySelector("#player-search"),
   searchButton: document.querySelector("#search-button"),
@@ -82,6 +113,7 @@ const els = {
   detailLastName: document.querySelector("#player-detail-title"),
   detailMeta: document.querySelector("#detail-meta") || { textContent: "" },
   detailNumber: document.querySelector("#detail-number"),
+  detailPlayerStatus: document.querySelector("#detail-player-status"),
   detailBio: document.querySelector("#detail-bio"),
   detailSplitControls: document.querySelector("#detail-split-controls"),
   detailTabControls: document.querySelector("#detail-tab-controls"),
@@ -120,18 +152,6 @@ const api = {
   },
   async searchPlayer(query) {
     return this.get("/people/search", { names: query, sportId: 1 });
-  },
-  async nextYankeesGame() {
-    const today = new Date();
-    const end = new Date(today);
-    end.setDate(today.getDate() + 30);
-    return this.get("/schedule", {
-      sportId: 1,
-      teamId: TEAM_ID,
-      startDate: isoDate(today),
-      endDate: isoDate(end),
-      hydrate: "team",
-    });
   },
 };
 
@@ -176,32 +196,6 @@ function statValue(stats, key, fallback = "-") {
 
 function setText(target, value) {
   if (target) target.textContent = value;
-}
-
-function teamAbbreviation(team) {
-  return team?.abbreviation || team?.teamName || team?.name || "TBD";
-}
-
-function isYankeesHome(game) {
-  return Number(game?.teams?.home?.team?.id) === TEAM_ID;
-}
-
-function nextGameFromSchedule(schedule) {
-  const games = (schedule?.dates || []).flatMap((dateEntry) => dateEntry.games || []);
-  return games.find((game) => game.status?.abstractGameState !== "Final") || games[0] || null;
-}
-
-function compactDate(value) {
-  if (!value) return "--/--";
-  const date = new Date(value);
-  return `${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
-}
-
-function formatNextGame(game) {
-  if (!game) return "Unavailable";
-  const opponent = isYankeesHome(game) ? game.teams?.away?.team : game.teams?.home?.team;
-  const prefix = isYankeesHome(game) ? "vs" : "@";
-  return `${compactDate(game.gameDate)} ${prefix} ${teamAbbreviation(opponent)}`;
 }
 
 function playerStatusLabel(person) {
@@ -274,16 +268,12 @@ function renderQuickStats(seasonStats = {}, careerStats = {}, group = state.curr
     values.forEach((value, index) => {
       const cell = document.createElement("td");
       cell.textContent = value ?? "-";
+      cell.dataset.label = headers[index];
       if (index === 0) cell.className = "quick-row-label";
       row.append(cell);
     });
     els.quickStatsBody.append(row);
   });
-}
-
-function renderQuickFooter(person) {
-  setText(els.quickPlayerStatus, playerStatusLabel(person));
-  setText(els.quickNextGame, formatNextGame(state.nextGame));
 }
 
 function firstStatSplit(data) {
@@ -336,6 +326,7 @@ function renderDetailHeader(person) {
   els.detailFirstName.textContent = first;
   els.detailLastName.textContent = last;
   els.detailNumber.textContent = person.primaryNumber || "--";
+  els.detailPlayerStatus.textContent = playerStatusLabel(person);
   els.detailMeta.textContent = [
     playerPosition(person),
     `${person.batSide?.code || "-"} / ${person.pitchHand?.code || "-"}`,
@@ -465,10 +456,55 @@ function renderCareerTab() {
   els.detailTabPanel.append(grid);
 }
 
+function renderContractTab() {
+  const person = state.selectedPerson;
+  const contract = PLAYER_CONTRACTS[person?.id];
+  els.detailTabPanel.replaceChildren();
+
+  if (!contract) {
+    const unavailable = document.createElement("div");
+    unavailable.className = "contract-unavailable";
+    unavailable.innerHTML = `
+      <strong>Contract details are not available for ${person?.fullName || "this player"} yet.</strong>
+      <p>This page only displays manually verified contract figures. It will not estimate or invent missing salary terms.</p>
+      <a href="https://www.spotrac.com/mlb/contracts" target="_blank" rel="noopener noreferrer">Browse current MLB contracts</a>
+    `;
+    els.detailTabPanel.append(unavailable);
+    return;
+  }
+
+  const fields = [
+    ["Contract type", contract.type],
+    ["Signed", contract.signed],
+    ["Length", contract.years],
+    ["Contract term", contract.term],
+    ["Total value", contract.total],
+    ["Guaranteed", contract.guaranteed],
+    ["Average annual value", contract.average],
+    ["2026 salary", contract.currentSalary],
+    ["Free agency", contract.freeAgency],
+    ["Options", contract.options],
+    ["Clauses & control", contract.clauses],
+  ];
+  const grid = document.createElement("div");
+  grid.className = "contract-grid";
+  fields.forEach(([label, value]) => {
+    const item = document.createElement("article");
+    item.className = "contract-item";
+    item.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
+    grid.append(item);
+  });
+  const source = document.createElement("p");
+  source.className = "contract-source";
+  source.innerHTML = `Source: <a href="${contract.sourceUrl}" target="_blank" rel="noopener noreferrer">${contract.sourceLabel}</a> · Verified ${contract.verified}. Figures may exclude incentives, tax-payroll adjustments, or later amendments unless stated.`;
+  els.detailTabPanel.append(grid, source);
+}
+
 function renderDetailTab() {
   if (state.detailTab === "recent") renderRecentActionTab();
   else if (state.detailTab === "season-log") renderSeasonLogTab();
   else if (state.detailTab === "career") renderCareerTab();
+  else if (state.detailTab === "contract") renderContractTab();
   else renderPaceTab();
 }
 
@@ -505,11 +541,6 @@ async function loadDetailData(id, seasonStats, group = "hitting") {
     career: firstStatSplit(careerData),
     transactions: transactionsData.transactions || [],
   };
-}
-
-async function loadNextYankeesGame() {
-  const schedule = await api.nextYankeesGame().catch(() => null);
-  state.nextGame = nextGameFromSchedule(schedule);
 }
 
 function playerPosition(person) {
@@ -626,7 +657,7 @@ async function loadPlayer(id) {
     state.currentGroup = chooseGroup(person, hittingStats, pitchingStats);
     state.selectedPerson = person;
     state.detailSplit = "season";
-    state.detailTab = "pace";
+    state.detailTab = "recent";
     const activeStats = state.currentGroup === "pitching" ? pitchingStats : hittingStats;
 
     renderPlayerHeader(person);
@@ -634,15 +665,12 @@ async function loadPlayer(id) {
     renderDetailBio(person);
     renderStatBlocks(activeStats, state.currentGroup);
     renderQuickStats(activeStats, {}, state.currentGroup);
-    renderQuickFooter(person);
     renderDetailLoading();
     await Promise.all([
       renderGameLog(id, state.currentGroup),
       loadDetailData(id, activeStats, state.currentGroup),
-      loadNextYankeesGame(),
     ]);
     renderQuickStats(activeStats, state.detailStats.career, state.currentGroup);
-    renderQuickFooter(person);
     renderDetail();
     setStatus("Live MLB data", "good");
   } catch (error) {

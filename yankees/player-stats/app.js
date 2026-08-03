@@ -1,4 +1,5 @@
 const MLB_API = "https://statsapi.mlb.com/api/v1";
+const YANKEES_TEAM_ID = 147;
 const SEASON = new Date().getFullYear();
 const PAGE_SIZE = 25;
 
@@ -153,6 +154,7 @@ async function loadGroup(group) {
       playerId: split.player.id,
       playerName: split.player.fullName || "Unknown Player",
       position: split.player.primaryPosition?.abbreviation || "",
+      teamId: split.team?.id,
       team: split.team?.abbreviation || "—",
       stat: split.stat || {},
     }));
@@ -171,9 +173,12 @@ function sortedRows() {
   const direction = state.sortDirection === "asc" ? 1 : -1;
   const qualifiedIds = state.qualifiedIds[state.group];
   const sourceRows = state.scope === "team" ? state.teamRows[state.group] : state.rows[state.group];
-  const rows = state.scope === "player" && state.qualifiedOnly && qualifiedIds?.size
-    ? (sourceRows || []).filter((row) => qualifiedIds.has(Number(row.playerId)))
-    : (sourceRows || []);
+  let rows = sourceRows || [];
+  if (state.scope === "yankees") {
+    rows = rows.filter((row) => Number(row.teamId) === YANKEES_TEAM_ID || row.team === "NYY");
+  } else if (state.scope === "player" && state.qualifiedOnly && qualifiedIds?.size) {
+    rows = rows.filter((row) => qualifiedIds.has(Number(row.playerId)));
+  }
   return [...rows].sort((a, b) => {
     const aValue = numberValue(a, state.sortKey);
     const bValue = numberValue(b, state.sortKey);
@@ -239,7 +244,7 @@ function renderBody(rows) {
       ? `<div class="player-cell"><strong>${item.playerName}</strong></div>`
       : `<div class="player-cell"><a href="../player-spotlight/?player=${item.playerId}">${item.playerName}</a></div>`;
     row.append(playerCell);
-    if (!item.isTeam) {
+    if (!item.isTeam && state.scope === "player") {
       const teamCell = document.createElement("td");
       teamCell.className = "team-code";
       teamCell.textContent = item.team;
@@ -275,7 +280,7 @@ function renderMobileLeaderboard(rows, start) {
     if (item.isTeam) image.classList.add("team-logo-image");
     image.src = item.isTeam
       ? `https://www.mlbstatic.com/team-logos/${item.playerId}.svg`
-      : `https://img.mlbstatic.com/mlb-photos/image/upload/w_80,q_auto:best/v1/people/${item.playerId}/headshot/67/current`;
+      : `https://img.mlbstatic.com/mlb-photos/image/upload/w_80,q_auto:best/v1/people/${item.playerId}/headshot/silo/current`;
     image.alt = "";
     image.loading = "lazy";
     image.addEventListener("error", () => image.classList.add("is-missing"), { once: true });
@@ -357,10 +362,14 @@ function render() {
   const visibleRows = rows.slice(start, start + PAGE_SIZE);
   const groupLabel = state.group === "hitting" ? "Batting" : "Pitching";
 
-  els.title.textContent = groupLabel;
-  const subject = state.scope === "team" ? "teams" : `${state.qualifiedOnly ? "qualified " : ""}players`;
+  els.title.textContent = state.scope === "yankees" ? `Yankees ${groupLabel}` : groupLabel;
+  const subject = state.scope === "team"
+    ? "teams"
+    : state.scope === "yankees"
+      ? "Yankees players"
+      : `${state.qualifiedOnly ? "qualified " : ""}players`;
   els.summary.textContent = `${rows.length.toLocaleString()} ${subject} · ${SEASON} regular season · 25 per page`;
-  els.qualifiedOnly.closest(".qualified-filter").hidden = state.scope === "team";
+  els.qualifiedOnly.closest(".qualified-filter").hidden = state.scope !== "player";
   els.scopes.forEach((button) => {
     const active = button.dataset.scope === state.scope;
     button.classList.toggle("active", active);

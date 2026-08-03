@@ -117,9 +117,9 @@
 }
 
 .roster-tab.active {
-  border-color: rgba(241, 180, 52, 0.72);
-  color: #06152e;
-  background: #f1b434;
+  border-color: var(--control-active-border);
+  color: var(--control-active-ink);
+  background: var(--control-active-bg);
 }
 
 .roster-groups {

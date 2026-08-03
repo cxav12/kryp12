@@ -2,7 +2,7 @@ const SEASON = new Date().getFullYear();
 const DEFAULT_PLAYER = 592450;
 const RECENT_TABLE_GAMES = 10;
 const MLB_API = "https://statsapi.mlb.com/api/v1";
-const HEADSHOT = (id) => `https://img.mlbstatic.com/mlb-photos/image/upload/w_426,q_auto:best/v1/people/${id}/headshot/67/current`;
+const HEADSHOT = (id) => `https://img.mlbstatic.com/mlb-photos/image/upload/w_426,q_auto:best/v1/people/${id}/headshot/silo/current`;
 const DRAFT_FALLBACKS = {
   592450: { year: 2013, team: "New York Yankees", round: "1", pick: "32" },
 };

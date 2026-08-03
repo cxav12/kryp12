@@ -37,7 +37,7 @@
 
 .recap-button-row {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -50,9 +50,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
-  padding: 0 12px;
+  padding: 0 10px;
   font-size: var(--text-normal);
   font-weight: 700;
   white-space: nowrap;
@@ -70,6 +70,11 @@
   background:
     linear-gradient(135deg, rgba(149, 45, 53, 0.24), transparent 62%),
     var(--card-bg);
+}
+
+.recap-selector-button.upcoming {
+  border-color: rgba(196, 206, 212, 0.34);
+  background: rgba(196, 206, 212, 0.06);
 }
 
 .recap-selector-button:hover,
@@ -98,8 +103,14 @@
 }
 
 .recap-selector-button .selector-date,
-.recap-selector-button .selector-score {
+.recap-selector-button .selector-score,
+.recap-selector-button .selector-time {
   color: #f7f8ff;
+}
+
+.recap-selector-button .selector-time {
+  color: var(--muted);
+  font-size: var(--text-small);
 }
 
 .recap-selector-button .selector-result {
@@ -530,7 +541,7 @@
 
 .game-scoreboard-lower {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+  grid-template-columns: var(--game-detail-columns);
   align-items: stretch;
 }
 
@@ -563,7 +574,7 @@
   border-top: 1px solid rgba(196, 206, 211, 0.18);
   background: var(--card-bg);
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 1fr);
+  grid-template-columns: var(--game-detail-columns);
   overflow: hidden;
 }
 
@@ -617,10 +628,11 @@
   width: 46px;
   height: 46px;
   flex: 0 0 46px;
-  border-radius: 50%;
-  background: #2b3034;
-  object-fit: cover;
-  object-position: center top;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .matchup-player-copy {
@@ -859,8 +871,9 @@
 }
 
 .game-player-team-button.active {
-  color: #06152e;
-  background: #f1b434;
+  border-color: var(--control-active-border);
+  color: var(--control-active-ink);
+  background: var(--control-active-bg);
 }
 
 .game-player-column {
@@ -1134,7 +1147,7 @@
 
 @media (max-width: 1199.98px) {
   .recap-button-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .recent-games-grid {
@@ -1201,6 +1214,14 @@
 }
 
 @media (max-width: 575.98px) {
+  .game-decisions.live-matchup-slot {
+    padding: 14px 12px 16px;
+  }
+
+  .live-matchup-slot .current-matchup-grid {
+    height: auto;
+  }
+
   .recap-button-row {
     grid-template-columns: 1fr;
   }
@@ -1348,8 +1369,8 @@
   }
 
   .current-matchup-grid {
-    grid-template-columns: minmax(0, 1fr) 62px minmax(0, 1fr);
-    gap: 7px;
+    grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
+    gap: 10px;
   }
 
   .matchup-player,

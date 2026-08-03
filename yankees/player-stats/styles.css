@@ -47,6 +47,10 @@
   overflow: hidden;
 }
 
+.stats-scope-toggle {
+  grid-template-columns: repeat(3, minmax(90px, 1fr));
+}
+
 .stats-toolbar-actions {
   flex: 0 0 auto;
   display: flex;
@@ -74,7 +78,7 @@
   width: 16px;
   height: 16px;
   margin: 0;
-  accent-color: #f1b434;
+  accent-color: var(--control-active-border);
 }
 
 .stats-toggle-button,
@@ -103,8 +107,8 @@
 
 .stats-toggle-button.active,
 .stats-scope-button.active {
-  color: #06152e;
-  background: #f1b434;
+  color: var(--control-active-ink);
+  background: var(--control-active-bg);
 }
 
 .stats-table-shell {
@@ -229,7 +233,7 @@
 .sort-button:hover,
 .sort-button:focus,
 .sort-button.active {
-  color: #f1b434;
+  color: var(--control-active-ink);
 }
 
 .stats-pagination {
@@ -272,8 +276,8 @@
 }
 
 .page-button.active {
-  border-bottom-color: #f1b434;
-  color: #f1b434;
+  border-bottom-color: var(--control-active-border);
+  color: var(--control-active-ink);
 }
 
 .page-button.next {
@@ -370,13 +374,15 @@
     width: 44px;
     height: 44px;
     flex: 0 0 44px;
-    border-radius: 50%;
-    background: #2b3034;
-    object-fit: cover;
-    object-position: center top;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    object-fit: contain;
+    object-position: center bottom;
   }
 
   .mobile-player-link img.team-logo-image {
+    border-radius: 50%;
     background: var(--logo-surface);
     object-fit: contain;
     object-position: center;
@@ -438,9 +444,9 @@
   }
 
   .mobile-stat-category.active {
-    border-color: #f1b434;
-    color: #111;
-    background: #f1b434;
+    border-color: var(--control-active-border);
+    color: var(--control-active-ink);
+    background: var(--control-active-bg);
   }
 
   .player-stats-table {

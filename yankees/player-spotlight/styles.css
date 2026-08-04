@@ -1,3 +1,16 @@
+#search-button {
+  border-color: var(--control-active-border);
+  color: #fff;
+  background: var(--control-active-bg);
+}
+
+#search-button:hover,
+#search-button:focus {
+  border-color: var(--line-bright);
+  color: #fff;
+  background: var(--swatch-mid);
+}
+
 .player-spotlight-page .player-name {
   font-size: clamp(2rem, 5vw, 4.8rem);
   font-weight: 800;

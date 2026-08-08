@@ -9,9 +9,6 @@ const FANGRAPHS_TEAM_IDS = {
   118: 7, 119: 22, 120: 24, 121: 25, 133: 10, 134: 27, 135: 29, 136: 11, 137: 30, 138: 28,
   139: 12, 140: 13, 141: 14, 142: 8, 143: 26, 144: 16, 145: 4, 146: 20, 147: 9, 158: 23,
 };
-const DRAFT_FALLBACKS = {
-  592450: { year: 2013, team: "New York Yankees", round: "1", pick: "32" },
-};
 const HITTING_DETAIL_PRIMARY_ITEMS = [
   ["AVG", "avg"],
   ["OBP", "obp"],
@@ -192,6 +189,21 @@ const api = {
   },
   async searchPlayer(query) {
     return this.get("/people/search", { names: query, sportId: 1 });
+  },
+  async draftDetails(id, year) {
+    if (!id || !year) return null;
+    const data = await this.get(`/draft/${year}`, { playerId: id });
+    const rounds = data.drafts?.rounds || [];
+    const pick = rounds
+      .flatMap((round) => (round.picks || []).map((item) => ({ ...item, draftRound: round })))
+      .find((item) => Number(item.person?.id) === Number(id));
+    if (!pick) return null;
+    return {
+      year: Number(year),
+      team: pick.team?.name || "",
+      round: pick.pickRound || pick.round || pick.draftRound?.roundNumber || pick.draftRound?.round || "",
+      pick: pick.pickNumber || pick.overallPickNumber || "",
+    };
   },
   async teamGamesPlayed(teamId) {
     if (!teamId) return 0;
@@ -705,11 +717,11 @@ function bornLabel(person) {
 }
 
 function draftLabel(person) {
-  const fallback = DRAFT_FALLBACKS[person.id] || {};
-  const year = person.draftYear || person.draft?.year || fallback.year;
-  const round = person.draftRound || person.draftRoundNumber || person.draft?.round || fallback.round;
-  const pick = person.draftPick || person.pickNumber || person.draftNumber || person.draft?.pickNumber || fallback.pick;
-  const team = person.draftTeam?.name || person.draftedBy?.name || person.draft?.team?.name || fallback.team;
+  const details = person.draftDetails || {};
+  const year = details.year || person.draftYear || person.draft?.year;
+  const round = details.round || person.draftRound || person.draftRoundNumber || person.draft?.round;
+  const pick = details.pick || person.draftPick || person.pickNumber || person.draftNumber || person.draft?.pickNumber;
+  const team = details.team || person.draftTeam?.name || person.draftedBy?.name || person.draft?.team?.name;
   if (!year && !round && !pick && !team) return "Details unavailable";
   return `${year || "Year unavailable"}, ${team || "Team unavailable"}, Round: ${round || "-"}, Overall Pick: ${pick || "-"}`;
 }
@@ -776,6 +788,7 @@ async function loadPlayer(id) {
     ]);
     const person = profile.people?.[0];
     if (!person) throw new Error("Player not found");
+    person.draftDetails = await api.draftDetails(person.id, person.draftYear).catch(() => null);
     const hittingStats = hitting.stats?.[0]?.splits?.[0]?.stat || {};
     const pitchingStats = pitching.stats?.[0]?.splits?.[0]?.stat || {};
     state.currentGroup = chooseGroup(person, hittingStats, pitchingStats);

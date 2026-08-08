@@ -312,7 +312,7 @@ function renderStandingsRows() {
     if (record.teamId === TEAM_ID) row.classList.add("is-yankees");
     const rank = Number.isFinite(rankValue(record, state.standingsView.mode)) ? rankValue(record, state.standingsView.mode) : index + 1;
     row.innerHTML = `
-      <td data-label="Rank"><span class="rank-indicator ${rankTone(rank, records.length)}">${rank}</span></td>
+      <td data-label="Rank"><span class="rank-indicator">${rank}</span></td>
       <td data-label="Team"><span>${record.teamName}</span></td>
       <td data-label="W">${record.wins}</td>
       <td data-label="L">${record.losses}</td>

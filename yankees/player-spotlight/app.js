@@ -2,19 +2,27 @@ const SEASON = new Date().getFullYear();
 const DEFAULT_PLAYER = 592450;
 const RECENT_TABLE_GAMES = 10;
 const MLB_API = "https://statsapi.mlb.com/api/v1";
+const FANGRAPHS_API = "https://www.fangraphs.com/api/leaders/major-league/data";
 const HEADSHOT = (id) => `https://img.mlbstatic.com/mlb-photos/image/upload/w_426,q_auto:best/v1/people/${id}/headshot/silo/current`;
+const FANGRAPHS_TEAM_IDS = {
+  108: 1, 109: 15, 110: 2, 111: 3, 112: 17, 113: 18, 114: 5, 115: 19, 116: 6, 117: 21,
+  118: 7, 119: 22, 120: 24, 121: 25, 133: 10, 134: 27, 135: 29, 136: 11, 137: 30, 138: 28,
+  139: 12, 140: 13, 141: 14, 142: 8, 143: 26, 144: 16, 145: 4, 146: 20, 147: 9, 158: 23,
+};
 const DRAFT_FALLBACKS = {
   592450: { year: 2013, team: "New York Yankees", round: "1", pick: "32" },
 };
-const DETAIL_PRIMARY_ITEMS = [
+const HITTING_DETAIL_PRIMARY_ITEMS = [
   ["AVG", "avg"],
-  ["HR", "homeRuns"],
-  ["RBI", "rbi"],
   ["OBP", "obp"],
   ["SLG", "slg"],
   ["OPS", "ops"],
+  ["wRC+", "wrcPlus"],
+  ["WAR", "war"],
 ];
-const DETAIL_SECONDARY_ITEMS = [
+const HITTING_DETAIL_SECONDARY_ITEMS = [
+  ["HR", "homeRuns"],
+  ["RBI", "rbi"],
   ["AB", "atBats"],
   ["H", "hits"],
   ["2B", "doubles"],
@@ -24,7 +32,27 @@ const DETAIL_SECONDARY_ITEMS = [
   ["K%", "kRate"],
   ["PA", "plateAppearances"],
 ];
-const PACE_ITEMS = [
+const PITCHING_DETAIL_PRIMARY_ITEMS = [
+  ["ERA", "calculatedEra"],
+  ["WHIP", "whip"],
+  ["SO", "strikeOuts"],
+  ["BB", "baseOnBalls"],
+  ["AVG", "avg"],
+  ["IP", "inningsPitched"],
+];
+const PITCHING_DETAIL_SECONDARY_ITEMS = [
+  ["W", "wins"],
+  ["L", "losses"],
+  ["SV", "saves"],
+  ["G", "gamesPlayed"],
+  ["GS", "gamesStarted"],
+  ["H", "hits"],
+  ["ER", "earnedRuns"],
+  ["HR", "homeRuns"],
+  ["P", "numberOfPitches"],
+  ["K/9", "strikeoutsPer9Inn"],
+];
+const HITTING_PACE_ITEMS = [
   ["HR", "homeRuns"],
   ["RBI", "rbi"],
   ["R", "runs"],
@@ -33,6 +61,17 @@ const PACE_ITEMS = [
   ["BB", "baseOnBalls"],
   ["K", "strikeOuts"],
   ["SB", "stolenBases"],
+];
+
+const PITCHING_PACE_ITEMS = [
+  ["W", "wins"],
+  ["L", "losses"],
+  ["SV", "saves"],
+  ["GS", "gamesStarted"],
+  ["IP", "inningsPitched"],
+  ["SO", "strikeOuts"],
+  ["BB", "baseOnBalls"],
+  ["ER", "earnedRuns"],
 ];
 
 const PLAYER_CONTRACTS = {
@@ -77,6 +116,7 @@ const state = {
   gameLogSplits: [],
   detailSplit: "season",
   detailTab: "recent",
+  teamGamesPlayed: 0,
   detailStats: {
     season: {},
     risp: {},
@@ -153,6 +193,38 @@ const api = {
   async searchPlayer(query) {
     return this.get("/people/search", { names: query, sportId: 1 });
   },
+  async teamGamesPlayed(teamId) {
+    if (!teamId) return 0;
+    const data = await this.get("/standings", {
+      leagueId: "103,104",
+      season: SEASON,
+      standingsTypes: "regularSeason",
+    });
+    const teamRecord = data.records
+      ?.flatMap((record) => record.teamRecords || [])
+      .find((record) => Number(record.team?.id) === Number(teamId));
+    return Number(teamRecord?.wins || 0) + Number(teamRecord?.losses || 0) + Number(teamRecord?.ties || 0);
+  },
+  async advancedHitting(id, mlbTeamId) {
+    const team = FANGRAPHS_TEAM_IDS[Number(mlbTeamId)];
+    if (!team) return null;
+    const url = new URL(FANGRAPHS_API);
+    Object.entries({
+      pos: "all", stats: "bat", lg: "all", qual: 0, type: 8, season: SEASON,
+      season1: SEASON, ind: 0, team, pageitems: 200, pagenum: 1,
+    }).forEach(([key, value]) => url.searchParams.set(key, value));
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`FanGraphs API returned ${response.status}`);
+    const data = await response.json();
+    const player = data.data?.find((row) => Number(row.xMLBAMID) === Number(id));
+    if (!player) return null;
+    const wrcPlus = Number(player["wRC+"]);
+    const war = Number(player.WAR);
+    return {
+      wrcPlus: Number.isFinite(wrcPlus) ? Math.round(wrcPlus) : null,
+      war: Number.isFinite(war) ? Number(war.toFixed(1)) : null,
+    };
+  },
 };
 
 function isoDate(date) {
@@ -187,6 +259,12 @@ function outsToInnings(outs) {
 function setStatus(message, tone = "neutral") {
   els.status.textContent = message;
   els.status.style.color = tone === "error" ? "#ffbec4" : tone === "good" ? "#9af0c8" : "";
+}
+
+function persistPlayerInUrl(id) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("player", String(id));
+  window.history.replaceState({ playerId: id }, "", url);
 }
 
 function statValue(stats, key, fallback = "-") {
@@ -291,9 +369,9 @@ function homeAwayStat(data, key) {
   return match?.stat || {};
 }
 
-async function splitStat(id, sitCodes) {
+async function splitStat(id, group, sitCodes) {
   for (const code of sitCodes) {
-    const data = await api.stats(id, "hitting", "statSplits", { sitCodes: code }).catch(() => null);
+    const data = await api.stats(id, group, "statSplits", { sitCodes: code }).catch(() => null);
     const stat = firstStatSplit(data);
     if (Object.keys(stat).length) return stat;
   }
@@ -308,7 +386,19 @@ function kRate(stats) {
 
 function detailStatValue(stats, key) {
   if (key === "kRate") return kRate(stats);
+  if (key === "calculatedEra") {
+    if (stats?.era !== undefined && stats?.era !== null && stats?.era !== "") return stats.era;
+    const outs = inningsToOuts(stats?.inningsPitched);
+    const earnedRuns = Number(stats?.earnedRuns);
+    return outs && Number.isFinite(earnedRuns) ? ((earnedRuns * 27) / outs).toFixed(2) : "-";
+  }
   return statValue(stats, key);
+}
+
+function detailItems(group = state.currentGroup) {
+  return group === "pitching"
+    ? { primary: PITCHING_DETAIL_PRIMARY_ITEMS, secondary: PITCHING_DETAIL_SECONDARY_ITEMS }
+    : { primary: HITTING_DETAIL_PRIMARY_ITEMS, secondary: HITTING_DETAIL_SECONDARY_ITEMS };
 }
 
 function playerNameParts(fullName) {
@@ -348,39 +438,60 @@ function detailStatCard(label, value, featured = false) {
   const card = document.createElement("article");
   card.className = `detail-stat-card${featured ? " featured" : ""}`;
   card.innerHTML = `<span>${label}</span><strong class="stat-number">${value}</strong>`;
+  if (label === "wRC+") card.title = "FanGraphs wRC+: 100 is league average; higher is better.";
+  if (label === "WAR") card.title = "FanGraphs WAR: estimated wins above a replacement-level player.";
   return card;
 }
 
 function renderDetailStats() {
   const stats = state.detailStats[state.detailSplit] || {};
+  const items = detailItems();
   els.detailPrimaryStats.replaceChildren();
   els.detailSecondaryStats.replaceChildren();
-  DETAIL_PRIMARY_ITEMS.forEach(([label, key]) => {
+  items.primary.forEach(([label, key]) => {
     els.detailPrimaryStats.append(detailStatCard(label, detailStatValue(stats, key), true));
   });
-  DETAIL_SECONDARY_ITEMS.forEach(([label, key]) => {
+  items.secondary.forEach(([label, key]) => {
     els.detailSecondaryStats.append(detailStatCard(label, detailStatValue(stats, key)));
   });
 }
 
-function paceValue(stats, key) {
-  const gamesPlayed = Number(stats?.gamesPlayed || 0);
+function paceValue(stats, key, gamesPlayed, targetGames) {
+  if (!gamesPlayed) return "-";
+  if (key === "inningsPitched") {
+    return outsToInnings(Math.round((inningsToOuts(stats?.[key]) / gamesPlayed) * targetGames));
+  }
   const value = Number(stats?.[key] || 0);
-  return gamesPlayed ? Math.round((value / gamesPlayed) * 152) : "-";
+  return Math.round((value / gamesPlayed) * targetGames);
 }
 
 function renderPaceTab() {
   const stats = state.detailStats.season || {};
-  const gamesPlayed = statValue(stats, "gamesPlayed");
-  const paceCards = PACE_ITEMS.map(([label, key]) => detailStatCard(label, paceValue(stats, key)));
+  const isPitcher = state.currentGroup === "pitching";
+  const playerGames = Number(stats.gamesPlayed || 0);
+  const elapsedGames = isPitcher ? state.teamGamesPlayed : playerGames;
+  const targetGames = isPitcher ? 162 : 152;
+  const paceItems = isPitcher ? PITCHING_PACE_ITEMS : HITTING_PACE_ITEMS;
+  const paceCards = paceItems.map(([label, key]) => detailStatCard(label, paceValue(stats, key, elapsedGames, targetGames)));
   els.detailTabPanel.replaceChildren();
   const intro = document.createElement("p");
   intro.className = "detail-tab-note";
-  intro.textContent = `${gamesPlayed} games played. Counting stats are paced across a 152-game season.`;
+  intro.textContent = isPitcher
+    ? `${elapsedGames || "-"} team games played. Pitching totals are projected through the 162-game regular season.`
+    : `${playerGames || "-"} games played. Counting stats are paced across a 152-game season.`;
   const grid = document.createElement("div");
   grid.className = "detail-tab-grid";
   grid.append(...paceCards);
   els.detailTabPanel.append(intro, grid);
+}
+
+function pitchingDecision(split) {
+  const stat = split?.stat || {};
+  if (Number(stat.wins || 0) > 0) return "W";
+  if (Number(stat.losses || 0) > 0) return "L";
+  const decisionText = String(stat.decision || stat.note || split?.note || "").toUpperCase();
+  const decision = decisionText.match(/(?:^|\W)(W|L)(?:\W|$)/)?.[1];
+  return decision || "ND";
 }
 
 function renderRecentActionTab() {
@@ -394,16 +505,18 @@ function renderRecentActionTab() {
   const table = document.createElement("table");
   table.className = "detail-table";
   const headers = state.currentGroup === "pitching"
-    ? ["Date", "Opp", "IP", "ER", "K", "BB"]
+    ? ["Date", "Opp", "IP", "ER", "SO", "BB", "DEC"]
     : ["Date", "Opp", "H-AB", "HR", "RBI", "R"];
   table.innerHTML = `<thead><tr>${headers.map((item) => `<th>${item}</th>`).join("")}</tr></thead>`;
   const body = document.createElement("tbody");
   games.forEach((split) => {
     const stat = split.stat || {};
+    const decision = state.currentGroup === "pitching" ? pitchingDecision(split) : "";
     const values = state.currentGroup === "pitching"
-      ? [niceDate(split.date), split.opponent?.abbreviation || split.opponent?.name || "-", stat.inningsPitched, stat.earnedRuns, stat.strikeOuts, stat.baseOnBalls]
+      ? [niceDate(split.date), split.opponent?.abbreviation || split.opponent?.name || "-", stat.inningsPitched, stat.earnedRuns, stat.strikeOuts, stat.baseOnBalls, decision]
       : [niceDate(split.date), split.opponent?.abbreviation || split.opponent?.name || "-", `${stat.hits || 0}-${stat.atBats || 0}`, stat.homeRuns, stat.rbi, stat.runs];
     const row = document.createElement("tr");
+    if (decision) row.classList.add(`decision-${decision.toLowerCase()}`);
     row.innerHTML = values.map((value, index) => `<td data-label="${headers[index]}">${value ?? "-"}</td>`).join("");
     body.append(row);
   });
@@ -447,11 +560,12 @@ function renderSeasonLogTab() {
 
 function renderCareerTab() {
   const stats = state.detailStats.career || {};
+  const items = detailItems();
   els.detailTabPanel.replaceChildren();
   const grid = document.createElement("div");
   grid.className = "detail-tab-grid";
-  [...DETAIL_PRIMARY_ITEMS, ...DETAIL_SECONDARY_ITEMS].forEach(([label, key], index) => {
-    grid.append(detailStatCard(label, detailStatValue(stats, key), index < DETAIL_PRIMARY_ITEMS.length));
+  [...items.primary, ...items.secondary].forEach(([label, key], index) => {
+    grid.append(detailStatCard(label, detailStatValue(stats, key), index < items.primary.length));
   });
   els.detailTabPanel.append(grid);
 }
@@ -515,24 +629,34 @@ function renderDetailLoading() {
 }
 
 function renderDetail() {
+  const paceButton = els.detailTabControls?.querySelector('[data-detail-tab="pace"]');
+  if (paceButton) paceButton.textContent = state.currentGroup === "pitching" ? "Season Pace" : "152-Game Pace";
   setActiveButtons(els.detailSplitControls, "detail-split", state.detailSplit);
   setActiveButtons(els.detailTabControls, "detail-tab", state.detailTab);
   renderDetailStats();
   renderDetailTab();
 }
 
-async function loadDetailData(id, seasonStats, group = "hitting") {
-  const [careerData, homeAwayData, risp, vsLhp, vsRhp, transactionsData] = await Promise.all([
+async function loadDetailData(id, seasonStats, group = "hitting", mlbTeamId) {
+  const [careerData, homeAwayData, risp, vsLhp, vsRhp, transactionsData, advancedHitting, teamGamesPlayed] = await Promise.all([
     api.stats(id, group, "career").catch(() => ({ stats: [] })),
     api.stats(id, group, "homeAndAway").catch(() => ({ stats: [] })),
-    splitStat(id, ["risp", "risp2out"]).catch(() => ({})),
-    splitStat(id, ["vl", "vsl", "vsLHP"]).catch(() => ({})),
-    splitStat(id, ["vr", "vsr", "vsRHP"]).catch(() => ({})),
+    splitStat(id, group, ["risp", "risp2out"]).catch(() => ({})),
+    splitStat(id, group, ["vl", "vsl", "vsLHP"]).catch(() => ({})),
+    splitStat(id, group, ["vr", "vsr", "vsRHP"]).catch(() => ({})),
     api.transactions(id).catch(() => ({ transactions: [] })),
+    group === "hitting" ? api.advancedHitting(id, mlbTeamId).catch(() => null) : Promise.resolve(null),
+    group === "pitching" ? api.teamGamesPlayed(mlbTeamId).catch(() => 0) : Promise.resolve(0),
   ]);
 
+  state.teamGamesPlayed = teamGamesPlayed;
+
   state.detailStats = {
-    season: seasonStats || {},
+    season: {
+      ...(seasonStats || {}),
+      wrcPlus: advancedHitting?.wrcPlus ?? "-",
+      war: advancedHitting?.war ?? "-",
+    },
     risp,
     "vs-lhp": vsLhp,
     "vs-rhp": vsRhp,
@@ -668,10 +792,11 @@ async function loadPlayer(id) {
     renderDetailLoading();
     await Promise.all([
       renderGameLog(id, state.currentGroup),
-      loadDetailData(id, activeStats, state.currentGroup),
+      loadDetailData(id, activeStats, state.currentGroup, person.currentTeam?.id),
     ]);
     renderQuickStats(activeStats, state.detailStats.career, state.currentGroup);
     renderDetail();
+    persistPlayerInUrl(id);
     setStatus("Live MLB data", "good");
   } catch (error) {
     setStatus("Data connection issue", "error");

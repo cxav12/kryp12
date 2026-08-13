@@ -49,11 +49,7 @@ searchInput.value = initialParams.get("q") || "";
 [typeFilters, tierFilters].forEach((group) => {
   const dataName = group === typeFilters ? "type" : "tier";
   const activeValue = dataName === "type" ? activeType : activeTier;
-  group.querySelectorAll(".filter-button").forEach((button) => {
-    const active = button.dataset[dataName] === activeValue;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
+  setActiveFilter(group, dataName, activeValue);
 });
 
 const skillTypeMatchers = {
@@ -75,21 +71,28 @@ const skillTypeMatchers = {
   economy: (skill, effects) =>
     /value of items|dropped items/i.test(effects),
 };
+const tierByRank = {
+  5: "s",
+  4: "a",
+  3: "b",
+  2: "c",
+  1: "d",
+};
 
 function getTierKey(rank) {
   if (rank < 0) {
     return "f";
   }
 
-  const tierByRank = {
-    5: "s",
-    4: "a",
-    3: "b",
-    2: "c",
-    1: "d",
-  };
-
   return tierByRank[rank] ?? "unranked";
+}
+
+function setActiveFilter(group, dataName, activeValue) {
+  group.querySelectorAll(".filter-button").forEach((button) => {
+    const active = button.dataset[dataName] === activeValue;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
 }
 
 function createRankIcon(rank) {
@@ -217,12 +220,7 @@ typeFilters.addEventListener("click", (event) => {
   }
 
   activeType = button.dataset.type;
-
-  typeFilters.querySelectorAll(".filter-button").forEach((filterButton) => {
-    const isActive = filterButton === button;
-    filterButton.classList.toggle("active", isActive);
-    filterButton.setAttribute("aria-pressed", String(isActive));
-  });
+  setActiveFilter(typeFilters, "type", activeType);
 
   applyFilters();
 });
@@ -235,12 +233,7 @@ tierFilters.addEventListener("click", (event) => {
   }
 
   activeTier = button.dataset.tier;
-
-  tierFilters.querySelectorAll(".filter-button").forEach((filterButton) => {
-    const isActive = filterButton === button;
-    filterButton.classList.toggle("active", isActive);
-    filterButton.setAttribute("aria-pressed", String(isActive));
-  });
+  setActiveFilter(tierFilters, "tier", activeTier);
 
   applyFilters();
 });

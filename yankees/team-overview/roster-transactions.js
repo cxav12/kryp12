@@ -2,30 +2,19 @@ const TEAM_ID = 147;
 const MLB_API = "https://statsapi.mlb.com/api/v1";
 const TRANSACTIONS_PER_PAGE = 6;
 const POSITION_ORDER = ["C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH", "OF", "IF", "UTIL"];
-const POSITION_LABELS = {
-  C: "C (2)",
-  "1B": "1B (3)",
-  "2B": "2B (4)",
-  "3B": "3B (5)",
-  SS: "SS (6)",
-  LF: "LF (7)",
-  CF: "CF (8)",
-  RF: "RF (9)",
-  DH: "DH",
-  OF: "OF",
-  IF: "IF",
-  UTIL: "UTIL",
-};
+const POSITION_KEYS = new Set(POSITION_ORDER);
+const shortDateFormatter = new Intl.DateTimeFormat("en", {
+  month: "short",
+  day: "numeric",
+});
 
 const state = {
   transactions: [],
   transactionPage: 1,
-  activeRosterTab: "batters",
 };
 
 const els = {
   status: document.querySelector("#data-status"),
-  roster: document.querySelector("#roster-list"),
   rosterTabs: document.querySelectorAll(".roster-tab"),
   rosterGroups: document.querySelectorAll(".roster-group"),
   batters: document.querySelector("#batters-list"),
@@ -70,7 +59,7 @@ function formatDate(date) {
 
 function niceDate(value) {
   if (!value) return "Unknown";
-  return new Intl.DateTimeFormat("en", { month: "short", day: "numeric" }).format(new Date(`${value}T12:00:00`));
+  return shortDateFormatter.format(new Date(`${value}T12:00:00`));
 }
 
 function setStatus(message, tone = "neutral") {
@@ -103,7 +92,7 @@ function isPitcher(entry) {
 
 function positionKey(entry) {
   const abbr = entry.position?.abbreviation || "";
-  if (POSITION_LABELS[abbr]) return abbr;
+  if (POSITION_KEYS.has(abbr)) return abbr;
   if (abbr.includes("OF")) return "OF";
   if (abbr.includes("IF")) return "IF";
   return "UTIL";
@@ -117,8 +106,16 @@ function positionRank(entry) {
 function rosterCard(entry) {
   const link = document.createElement("a");
   link.className = "roster-link";
-  link.href = `../player-spotlight/?player=${entry.person.id}`;
-  link.innerHTML = `<span>${entry.person.fullName}</span><small>${entry.jerseyNumber ? `#${entry.jerseyNumber} - ` : ""}${entry.position?.abbreviation || "NYY"}</small>`;
+  link.href = `../player-profile/?player=${entry.person.id}`;
+  const playerId = Number(entry.person.id);
+  if (Number.isInteger(playerId)) {
+    link.style.setProperty("--roster-headshot", `url("https://img.mlbstatic.com/mlb-photos/image/upload/w_96,q_auto:best/v1/people/${playerId}/headshot/silo/current")`);
+  }
+  const name = document.createElement("span");
+  name.textContent = entry.person.fullName;
+  const details = document.createElement("small");
+  details.textContent = `${entry.jerseyNumber ? `#${entry.jerseyNumber} - ` : ""}${entry.position?.abbreviation || "NYY"}`;
+  link.append(name, details);
   return link;
 }
 
@@ -147,17 +144,19 @@ async function renderRoster() {
     if (!roster.length) {
       els.batters.innerHTML = `<p class="empty">No active roster entries were returned.</p>`;
       els.pitchers.replaceChildren();
-      return;
+      return true;
     }
 
     renderRosterGroup(els.batters, batters);
     renderRosterGroup(els.pitchers, pitchers);
+    return true;
   } catch (error) {
     els.batters.innerHTML = `<p class="error">Roster data is unavailable right now.</p>`;
     els.pitchers.replaceChildren();
     els.rosterCount.textContent = "Unavailable";
     els.battersCount.textContent = "--";
     els.pitchersCount.textContent = "--";
+    return false;
   }
 }
 
@@ -239,10 +238,11 @@ async function renderTransactions() {
     state.transactions = transactions;
     state.transactionPage = 1;
     renderTransactionPage();
-
+    return true;
   } catch (error) {
     els.transactionFeed.innerHTML = `<p class="error">Transactions are unavailable right now.</p>`;
     els.transactionPagination.replaceChildren();
+    return false;
   }
 }
 
@@ -260,7 +260,6 @@ function bindEvents() {
 }
 
 function setRosterTab(tab) {
-  state.activeRosterTab = tab;
   els.rosterTabs.forEach((button) => {
     const active = button.dataset.rosterTab === tab;
     button.classList.toggle("active", active);
@@ -276,8 +275,8 @@ function setRosterTab(tab) {
 async function init() {
   bindEvents();
   setStatus("Loading roster");
-  await Promise.all([renderRoster(), renderTransactions()]);
-  setStatus("Live MLB data", "good");
+  const results = await Promise.all([renderRoster(), renderTransactions()]);
+  setStatus(results.every(Boolean) ? "Live MLB data" : "Some MLB data is unavailable", results.every(Boolean) ? "good" : "error");
 }
 
 init();

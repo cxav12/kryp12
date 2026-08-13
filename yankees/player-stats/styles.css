@@ -247,13 +247,6 @@
   padding: 10px 14px;
 }
 
-.stats-source {
-  margin: -6px 14px 14px;
-  color: var(--muted);
-  font-size: var(--text-small);
-  text-align: center;
-}
-
 .page-button,
 .page-ellipsis {
   min-width: 38px;
@@ -386,7 +379,7 @@
     background: var(--logo-surface);
     object-fit: contain;
     object-position: center;
-    padding: 6px;
+    padding: 4px;
   }
 
   .mobile-player-link img.is-missing {

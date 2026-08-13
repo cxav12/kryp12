@@ -27,46 +27,6 @@
   padding-inline: 0;
 }
 
-.page-copy {
-  max-width: 760px;
-  color: #dfe4f4;
-}
-
-.summary-strip {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card-bg);
-  overflow: hidden;
-}
-
-.summary-strip div {
-  min-height: 96px;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 5px;
-  padding: 12px;
-  border-right: 1px solid var(--line);
-}
-
-.summary-strip div:last-child {
-  border-right: 0;
-}
-
-.summary-strip span {
-  color: var(--quiet);
-  font-size: var(--text-small);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.summary-strip strong {
-  font-size: 1.25rem;
-  line-height: 1;
-}
-
 .panel {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -131,31 +91,6 @@
   min-width: 0;
 }
 
-.position-roster-list {
-  display: grid;
-  gap: 16px;
-}
-
-.position-group {
-  min-width: 0;
-}
-
-.position-heading {
-  width: fit-content;
-  min-height: 28px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--yankees-silver);
-  background: rgba(255, 255, 255, 0.055);
-  display: inline-flex;
-  align-items: center;
-  margin: 0 0 8px;
-  padding: 0 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .roster-list,
 .feed {
   overflow: visible;
@@ -186,6 +121,39 @@
 .roster-link span,
 .roster-link small {
   overflow-wrap: anywhere;
+}
+
+.overview-body .roster-link {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.overview-body .roster-link::before,
+.overview-body .roster-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.overview-body .roster-link::before {
+  background-image: var(--roster-headshot);
+  background-position: right 4px bottom;
+  background-repeat: no-repeat;
+  background-size: auto 96%;
+  filter: grayscale(100%) saturate(45%);
+  opacity: 0.5;
+}
+
+.overview-body .roster-link::after {
+  background: linear-gradient(90deg, rgba(17, 24, 30, 0.98) 0%, rgba(17, 24, 30, 0.9) 55%, rgba(17, 24, 30, 0.58) 100%);
+}
+
+.overview-body .roster-link:hover::before,
+.overview-body .roster-link:focus::before {
+  opacity: 0.58;
 }
 
 .roster-link:hover,
@@ -251,9 +219,6 @@
 
 .feed article.transaction-card {
   border-left-color: var(--transaction-accent, var(--line-bright));
-}
-
-.feed article.transaction-card {
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--transaction-accent, var(--line-bright)) 18%, transparent), rgba(6, 21, 46, 0.94) 62%),
     var(--card-bg-strong);
@@ -368,22 +333,8 @@
   }
 
   .header-actions,
-  .status-pill,
-  .nav-home-link {
+  .status-pill {
     width: 100%;
-  }
-
-  .summary-strip {
-    grid-template-columns: 1fr;
-  }
-
-  .summary-strip div {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .summary-strip div:last-child {
-    border-bottom: 0;
   }
 
   .roster-list {

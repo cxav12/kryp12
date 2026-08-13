@@ -3,37 +3,51 @@ const SEASON = new Date().getFullYear();
 const MLB_API = "https://statsapi.mlb.com/api/v1";
 
 const metricConfig = [
-  { key: "runs", label: "Runs Scored", badge: "RS", group: "hitting", rank: "desc" },
-  { key: "runsAllowed", label: "Runs Allowed", badge: "RA", group: "pitching", rank: "asc" },
-  { key: "avg", label: "Team AVG", badge: "AVG", group: "hitting", rank: "desc" },
-  { key: "ops", label: "Team OPS", badge: "OPS", group: "hitting", rank: "desc" },
-  { key: "obp", label: "OBP", badge: "OBP", group: "hitting", rank: "desc" },
-  { key: "homeRuns", label: "Home Runs", badge: "HR", group: "hitting", rank: "desc" },
-  { key: "era", label: "Team ERA", badge: "ERA", group: "pitching", rank: "asc" },
+  { key: "runDifferential", label: "Run Differential", badge: "DIFF", group: "derived", category: "performance", rank: "desc" },
+  { key: "oneRun", label: "One-Run Record", badge: "1R", group: "standings", category: "performance", rank: "desc", record: true },
+  { key: "home", label: "Home Record", badge: "HOME", group: "standings", category: "performance", rank: "desc", record: true },
+  { key: "away", label: "Away Record", badge: "AWAY", group: "standings", category: "performance", rank: "desc", record: true },
+  { key: "extraInning", label: "Extra-Inning Record", badge: "XI", group: "standings", category: "performance", rank: "desc", record: true },
+  { key: "runs", label: "Runs Scored", badge: "RS", group: "hitting", category: "offense", rank: "desc" },
+  { key: "avg", label: "Team AVG", badge: "AVG", group: "hitting", category: "offense", rank: "desc" },
+  { key: "obp", label: "OBP", badge: "OBP", group: "hitting", category: "offense", rank: "desc" },
+  { key: "ops", label: "Team OPS", badge: "OPS", group: "hitting", category: "offense", rank: "desc" },
+  { key: "homeRuns", label: "Home Runs", badge: "HR", group: "hitting", category: "offense", rank: "desc" },
+  { key: "stolenBases", label: "Stolen Bases", badge: "SB", group: "hitting", category: "offense", rank: "desc" },
+  { key: "runsAllowed", label: "Runs Allowed", badge: "RA", group: "pitching", category: "pitching", rank: "asc" },
+  { key: "era", label: "Team ERA", badge: "ERA", group: "pitching", category: "pitching", rank: "asc" },
+  { key: "whip", label: "Team WHIP", badge: "WHIP", group: "pitching", category: "pitching", rank: "asc" },
+  { key: "qualityStarts", label: "Quality Starts", badge: "QS", group: "qualityStarts", category: "pitching", rank: "desc" },
+  { key: "saves", label: "Saves", badge: "SV", group: "pitching", category: "pitching", rank: "desc" },
+  { key: "fielding", label: "Fielding Percentage", badge: "FLD", group: "fielding", category: "defense", rank: "desc" },
+  { key: "errors", label: "Errors", badge: "E", group: "fielding", category: "defense", rank: "asc" },
+  { key: "throwingErrors", label: "Throwing Errors", badge: "TE", group: "fielding", category: "defense", rank: "asc" },
+  { key: "doublePlays", label: "Double Plays", badge: "DP", group: "fielding", category: "defense", rank: "desc" },
+  { key: "caughtStealingPercentage", label: "Caught-Stealing Percentage", badge: "CS%", group: "fielding", category: "defense", rank: "desc" },
+];
+
+const metricCategories = [
+  { key: "performance", label: "Team Performance" },
+  { key: "offense", label: "Offense" },
+  { key: "pitching", label: "Pitching" },
+  { key: "defense", label: "Defense" },
 ];
 
 const els = {
   status: document.querySelector("#data-status"),
-  viewTitle: document.querySelector("#view-title"),
   yankeesCard: document.querySelector("#yankees-card"),
-  standingsContext: document.querySelector("#standings-context"),
-  standingsModeControls: document.querySelector("#standings-mode-controls"),
-  standingsFilterControls: document.querySelector("#standings-filter-controls"),
-  standingsBody: document.querySelector("#standings-body"),
+  metricTemplate: document.querySelector("#metric-template"),
 };
 
 const state = {
   teams: [],
   teamMap: new Map(),
   standings: new Map(),
-  standingsRecords: [],
   hitting: new Map(),
   pitching: new Map(),
+  fielding: new Map(),
+  qualityStarts: new Map(),
   ranks: new Map(),
-  standingsView: {
-    mode: "division",
-    filter: "American League East",
-  },
 };
 
 const api = {
@@ -52,6 +66,20 @@ const api = {
   },
   standings() {
     return this.get("/standings", { leagueId: "103,104", season: SEASON, standingsTypes: "regularSeason" });
+  },
+  qualityStartCandidates() {
+    return this.get("/stats", {
+      stats: "season", group: "pitching", gameType: "R", season: SEASON,
+      sportIds: 1, playerPool: "ALL", limit: 1000, hydrate: "team",
+      fields: "stats,splits,stat,gamesStarted,player,id,fullName,team,id,name",
+    });
+  },
+  pitcherGameLogs(personIds) {
+    return this.get("/people", {
+      personIds: personIds.join(","),
+      hydrate: `stats(group=[pitching],type=[gameLog],season=${SEASON})`,
+      fields: "people,id,stats,splits,stat,gamesStarted,outs,earnedRuns,team,id,name",
+    });
   },
 };
 
@@ -86,12 +114,13 @@ function statNumber(value) {
 
 function formatStat(key, value) {
   if (value === undefined || value === null || value === "") return "-";
-  if (["avg", "ops", "obp"].includes(key)) return String(value).replace(/^0/, "");
+  if (["avg", "ops", "obp", "fielding", "caughtStealingPercentage"].includes(key)) return String(value).replace(/^0/, "");
+  if (key === "runDifferential" && Number(value) > 0) return `+${value}`;
   return String(value);
 }
 
 function storeStats(group, data) {
-  const target = group === "hitting" ? state.hitting : state.pitching;
+  const target = group === "hitting" ? state.hitting : group === "pitching" ? state.pitching : state.fielding;
   const splits = data.stats?.[0]?.splits || [];
   splits.forEach((split) => {
     target.set(split.team.id, split.stat || {});
@@ -99,56 +128,56 @@ function storeStats(group, data) {
 }
 
 function storeStandings(data) {
-  const records = [];
   (data.records || []).forEach((division) => {
     (division.teamRecords || []).forEach((record) => {
       const teamId = record.team?.id;
       if (!teamId) return;
       const team = state.teamMap.get(teamId);
-      const leagueName = division.league?.name || team?.league?.name || "";
       const divisionName = division.division?.name || team?.division?.name || "";
       const wins = record.leagueRecord?.wins ?? record.wins ?? "-";
       const losses = record.leagueRecord?.losses ?? record.losses ?? "-";
-      const item = {
-        teamId,
-        teamName: record.team?.name || team?.name || "Team",
-        abbreviation: team?.abbreviation || "",
-        wins,
-        losses,
-        pct: record.leagueRecord?.pct || record.winningPercentage || "-",
-        divisionGamesBack: record.divisionGamesBack ?? record.gamesBack ?? "-",
-        leagueGamesBack: record.leagueGamesBack ?? record.gamesBack ?? "-",
-        sportGamesBack: record.sportGamesBack ?? record.leagueGamesBack ?? record.gamesBack ?? "-",
-        divisionRank: Number(record.divisionRank),
-        leagueRank: Number(record.leagueRank),
-        sportRank: Number(record.sportRank),
-        divisionId: division.division?.id || team?.division?.id || "",
-        divisionName,
-        leagueId: division.league?.id || team?.league?.id || "",
-        leagueName,
-      };
-      records.push(item);
+      const splitRecords = new Map((record.records?.splitRecords || []).map((split) => [split.type, split]));
       state.standings.set(teamId, {
         wins,
         losses,
-        divisionRank: item.divisionRank,
+        divisionRank: Number(record.divisionRank),
         divisionName,
+        oneRun: splitRecords.get("oneRun"),
+        home: splitRecords.get("home"),
+        away: splitRecords.get("away"),
+        extraInning: splitRecords.get("extraInning"),
       });
     });
   });
-  state.standingsRecords = records;
 }
 
 function metricValue(teamId, metric) {
-  const stats = metric.group === "hitting" ? state.hitting.get(teamId) : state.pitching.get(teamId);
+  if (metric.group === "standings") return state.standings.get(teamId)?.[metric.key];
+  if (metric.group === "qualityStarts") return state.qualityStarts.get(teamId) ?? 0;
+  if (metric.key === "runDifferential") {
+    const runs = statNumber(state.hitting.get(teamId)?.runs);
+    const runsAllowed = statNumber(state.pitching.get(teamId)?.runs);
+    return runs === null || runsAllowed === null ? null : runs - runsAllowed;
+  }
+  const stats = metric.group === "hitting"
+    ? state.hitting.get(teamId)
+    : metric.group === "fielding" ? state.fielding.get(teamId) : state.pitching.get(teamId);
   if (metric.key === "runsAllowed") return stats?.runs;
   return stats?.[metric.key];
+}
+
+function metricRankValue(teamId, metric) {
+  const value = metricValue(teamId, metric);
+  if (!metric.record) return statNumber(value);
+  const wins = statNumber(value?.wins);
+  const losses = statNumber(value?.losses);
+  return wins === null || losses === null || wins + losses === 0 ? null : wins / (wins + losses);
 }
 
 function calculateRanks() {
   metricConfig.forEach((metric) => {
     const ranked = state.teams
-      .map((team) => ({ teamId: team.id, value: statNumber(metricValue(team.id, metric)) }))
+      .map((team) => ({ teamId: team.id, value: metricRankValue(team.id, metric) }))
       .filter((item) => item.value !== null)
       .sort((a, b) => metric.rank === "asc" ? a.value - b.value : b.value - a.value);
 
@@ -166,172 +195,6 @@ function divisionShortName(name) {
     .replace("National League", "NL");
 }
 
-function leagueShortName(name) {
-  if (name.includes("American")) return "American League";
-  if (name.includes("National")) return "National League";
-  return name || "League";
-}
-
-function leagueOrder(name) {
-  return name.includes("American") ? 0 : name.includes("National") ? 1 : 2;
-}
-
-function divisionOrder(name) {
-  const normalized = divisionShortName(name);
-  const order = ["AL East", "AL Central", "AL West", "NL East", "NL Central", "NL West"];
-  const index = order.indexOf(normalized);
-  return index === -1 ? order.length : index;
-}
-
-function rankValue(record, mode) {
-  if (mode === "division") return record.divisionRank;
-  if (mode === "league") return record.leagueRank;
-  return record.sportRank;
-}
-
-function gamesBackValue(record, mode) {
-  if (mode === "division") return record.divisionGamesBack;
-  if (mode === "league") return record.leagueGamesBack;
-  return record.sportGamesBack;
-}
-
-function standingsFallbackSort(a, b) {
-  const pct = Number(b.pct) - Number(a.pct);
-  if (Number.isFinite(pct) && pct !== 0) return pct;
-  const wins = Number(b.wins) - Number(a.wins);
-  if (Number.isFinite(wins) && wins !== 0) return wins;
-  return Number(a.losses) - Number(b.losses);
-}
-
-function sortStandings(records, mode) {
-  return [...records].sort((a, b) => {
-    const aRank = rankValue(a, mode);
-    const bRank = rankValue(b, mode);
-    if (Number.isFinite(aRank) && Number.isFinite(bRank)) return aRank - bRank;
-    return standingsFallbackSort(a, b);
-  });
-}
-
-function uniqueOptions(key, labeler, sorter) {
-  const options = new Map();
-  state.standingsRecords.forEach((record) => {
-    if (!record[key]) return;
-    options.set(record[key], labeler(record[key]));
-  });
-  return [...options.entries()]
-    .map(([value, label]) => ({ value, label }))
-    .sort(sorter);
-}
-
-function divisionOptions() {
-  return uniqueOptions(
-    "divisionName",
-    divisionShortName,
-    (a, b) => divisionOrder(a.value) - divisionOrder(b.value),
-  );
-}
-
-function leagueOptions() {
-  return uniqueOptions(
-    "leagueName",
-    leagueShortName,
-    (a, b) => leagueOrder(a.value) - leagueOrder(b.value),
-  );
-}
-
-function currentStandingsLabel() {
-  const { mode, filter } = state.standingsView;
-  if (mode === "division") return divisionShortName(filter);
-  if (mode === "league") return leagueShortName(filter);
-  return "MLB";
-}
-
-function filteredStandings() {
-  const { mode, filter } = state.standingsView;
-  if (mode === "division") {
-    return sortStandings(state.standingsRecords.filter((record) => record.divisionName === filter), mode);
-  }
-  if (mode === "league") {
-    return sortStandings(state.standingsRecords.filter((record) => record.leagueName === filter), mode);
-  }
-  return sortStandings(state.standingsRecords, mode);
-}
-
-function standingsButton(label, value, active) {
-  const button = document.createElement("button");
-  button.className = `standings-option${active ? " active" : ""}`;
-  button.type = "button";
-  button.dataset.standingsFilter = value;
-  button.textContent = label;
-  return button;
-}
-
-function setStandingsMode(mode) {
-  state.standingsView.mode = mode;
-  if (mode === "division") {
-    const yankeesStanding = state.standings.get(TEAM_ID);
-    state.standingsView.filter = yankeesStanding?.divisionName || divisionOptions()[0]?.value || "";
-  } else if (mode === "league") {
-    state.standingsView.filter = leagueOptions()[0]?.value || "";
-  } else {
-    state.standingsView.filter = "MLB";
-  }
-  renderStandings();
-}
-
-function setStandingsFilter(filter) {
-  state.standingsView.filter = filter;
-  renderStandings();
-}
-
-function renderStandingsFilters() {
-  els.standingsFilterControls.replaceChildren();
-  if (state.standingsView.mode === "mlb") {
-    els.standingsFilterControls.hidden = true;
-    return;
-  }
-
-  els.standingsFilterControls.hidden = false;
-  const options = state.standingsView.mode === "division" ? divisionOptions() : leagueOptions();
-  options.forEach((option) => {
-    els.standingsFilterControls.append(standingsButton(option.label, option.value, option.value === state.standingsView.filter));
-  });
-}
-
-function renderStandingsRows() {
-  const records = filteredStandings();
-  els.standingsBody.replaceChildren();
-
-  if (!records.length) {
-    els.standingsBody.innerHTML = `<tr><td colspan="6">Standings unavailable</td></tr>`;
-    return;
-  }
-
-  records.forEach((record, index) => {
-    const row = document.createElement("tr");
-    if (record.teamId === TEAM_ID) row.classList.add("is-yankees");
-    const rank = Number.isFinite(rankValue(record, state.standingsView.mode)) ? rankValue(record, state.standingsView.mode) : index + 1;
-    row.innerHTML = `
-      <td data-label="Rank"><span class="rank-indicator">${rank}</span></td>
-      <td data-label="Team"><span>${record.teamName}</span></td>
-      <td data-label="W">${record.wins}</td>
-      <td data-label="L">${record.losses}</td>
-      <td data-label="PCT">${record.pct}</td>
-      <td data-label="GB">${gamesBackValue(record, state.standingsView.mode) ?? "-"}</td>
-    `;
-    els.standingsBody.append(row);
-  });
-}
-
-function renderStandings() {
-  els.standingsContext.textContent = currentStandingsLabel();
-  els.standingsModeControls.querySelectorAll("[data-standings-mode]").forEach((button) => {
-    button.classList.toggle("active", button.dataset.standingsMode === state.standingsView.mode);
-  });
-  renderStandingsFilters();
-  renderStandingsRows();
-}
-
 function teamOverview(teamId) {
   const team = state.teamMap.get(teamId);
   const standing = state.standings.get(teamId) || {};
@@ -345,13 +208,14 @@ function teamOverview(teamId) {
 }
 
 function renderMetric(teamId, metric) {
-  const template = document.querySelector("#metric-template");
-  const node = template.content.firstElementChild.cloneNode(true);
+  const node = els.metricTemplate.content.firstElementChild.cloneNode(true);
   const value = metricValue(teamId, metric);
   const rank = state.ranks.get(metric.key)?.get(teamId);
   node.querySelector(".metric-badge").textContent = metric.badge;
   node.querySelector("strong").textContent = metric.label;
-  node.querySelector(".metric-value span").textContent = formatStat(metric.key, value);
+  node.querySelector(".metric-value span").textContent = metric.record && value
+    ? `${value.wins}-${value.losses}`
+    : formatStat(metric.key, value);
   const rankLabel = node.querySelector(".metric-value small");
   rankLabel.textContent = rank ? ordinal(rank) : "-";
   rankLabel.classList.add(rankTone(rank, state.ranks.get(metric.key)?.size || 30));
@@ -370,57 +234,79 @@ function renderCard(target, teamId) {
   header.className = "team-header";
   header.innerHTML = `
     <h3 class="team-name">${overview.team.name}</h3>
-    <div class="team-record-row mt-3">
+    <div class="team-record-row">
       <div class="record-line stat-number">${overview.record}</div>
       <div class="standing-line">${overview.standingLine}</div>
     </div>
   `;
 
   const list = document.createElement("section");
-  list.className = "metric-list";
-  metricConfig.forEach((metric) => list.append(renderMetric(teamId, metric)));
+  list.className = "metric-groups";
+  metricCategories.forEach((category) => {
+    const group = document.createElement("section");
+    group.className = "metric-group";
+    const heading = document.createElement("h4");
+    heading.className = "metric-group-title";
+    heading.textContent = category.label;
+    const metrics = document.createElement("div");
+    metrics.className = "metric-list";
+    metricConfig
+      .filter((metric) => metric.category === category.key)
+      .forEach((metric) => metrics.append(renderMetric(teamId, metric)));
+    group.append(heading, metrics);
+    list.append(group);
+  });
 
   target.append(header, list);
 }
 
-function bindEvents() {
-  els.standingsModeControls.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-standings-mode]");
-    if (button) setStandingsMode(button.dataset.standingsMode);
-  });
-
-  els.standingsFilterControls.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-standings-filter]");
-    if (button) setStandingsFilter(button.dataset.standingsFilter);
+function storeQualityStarts(candidates, logs) {
+  const candidateTeam = new Map((candidates.stats?.[0]?.splits || [])
+    .map((split) => [Number(split.player?.id), split.team?.id]));
+  state.teams.forEach((team) => state.qualityStarts.set(team.id, 0));
+  (logs.people || []).forEach((person) => {
+    (person.stats?.[0]?.splits || []).forEach((split) => {
+      if (statNumber(split.stat?.gamesStarted) < 1
+        || statNumber(split.stat?.outs) < 18
+        || statNumber(split.stat?.earnedRuns) > 3) return;
+      const teamId = split.team?.id || candidateTeam.get(Number(person.id));
+      if (teamId) state.qualityStarts.set(teamId, (state.qualityStarts.get(teamId) || 0) + 1);
+    });
   });
 }
 
 async function init() {
-  bindEvents();
   setStatus("Loading team data");
   try {
-    const [teams, hitting, pitching, standings] = await Promise.all([
+    const [teams, hitting, pitching, fielding, standings, qualityStartCandidates] = await Promise.all([
       api.teams(),
       api.stats("hitting"),
       api.stats("pitching"),
+      api.stats("fielding"),
       api.standings(),
+      api.qualityStartCandidates(),
     ]);
 
     state.teams = (teams.teams || []).filter((team) => team.active);
     state.teams.forEach((team) => state.teamMap.set(team.id, team));
     storeStats("hitting", hitting);
     storeStats("pitching", pitching);
+    storeStats("fielding", fielding);
     storeStandings(standings);
+    const starterIds = (qualityStartCandidates.stats?.[0]?.splits || [])
+      .filter((split) => split.player?.id && statNumber(split.stat?.gamesStarted) > 0)
+      .map((split) => split.player.id);
+    storeQualityStarts(qualityStartCandidates, await api.pitcherGameLogs(starterIds));
     calculateRanks();
-    state.standingsView.filter = state.standings.get(TEAM_ID)?.divisionName || divisionOptions()[0]?.value || state.standingsView.filter;
 
     renderCard(els.yankeesCard, TEAM_ID);
-    renderStandings();
     setStatus("Live MLB data", "good");
   } catch (error) {
     setStatus("Data connection issue", "error");
-    els.yankeesCard.innerHTML = `<p class="error mb-0">Could not load team overview data. ${error.message}</p>`;
-    els.standingsBody.innerHTML = `<tr><td colspan="6">Could not load standings.</td></tr>`;
+    const message = document.createElement("p");
+    message.className = "error mb-0";
+    message.textContent = `Could not load team overview data. ${error.message}`;
+    els.yankeesCard.replaceChildren(message);
   }
 }
 

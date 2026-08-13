@@ -1,5 +1,18 @@
 const TEAM_ID = 147;
 const MLB_API = "https://statsapi.mlb.com/api/v1";
+const monthFormatter = new Intl.DateTimeFormat("en", {
+  month: "long",
+  year: "numeric",
+});
+const agendaDateFormatter = new Intl.DateTimeFormat("en", {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+});
+const timeFormatter = new Intl.DateTimeFormat("en", {
+  hour: "numeric",
+  minute: "2-digit",
+});
 
 const els = {
   status: document.querySelector("#data-status"),
@@ -33,15 +46,15 @@ function dateKey(date) {
 }
 
 function monthLabel(date) {
-  return new Intl.DateTimeFormat("en", { month: "long", year: "numeric" }).format(date);
+  return monthFormatter.format(date);
 }
 
 function agendaDateLabel(date) {
-  return new Intl.DateTimeFormat("en", { weekday: "short", month: "short", day: "numeric" }).format(date);
+  return agendaDateFormatter.format(date);
 }
 
 function timeLabel(value) {
-  return new Intl.DateTimeFormat("en", { hour: "numeric", minute: "2-digit" }).format(new Date(value));
+  return timeFormatter.format(new Date(value));
 }
 
 function setStatus(message, tone = "neutral") {

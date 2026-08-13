@@ -22,6 +22,11 @@
     venom: "Venom Gland",
     wool: "Wool",
   };
+  const longDateFormatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   function humanizeGameToken(token) {
     const normalizedToken = String(token)
@@ -106,11 +111,7 @@
         ? new Date(`${dateString}T00:00:00`)
         : new Date(dateString);
 
-    return new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }).format(localDate);
+    return longDateFormatter.format(localDate);
   }
 
   function createDataStatusController({

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/yankees/around-the-league/" />
+    <title>Yankees Around the League</title>
+    <link rel="preconnect" href="https://statsapi.mlb.com" />
+    <link rel="preconnect" href="https://www.mlbstatic.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css?v=20260811-yankees-leaders1" />
+    <link rel="stylesheet" href="../shared.css?v=20260809-logo-audit1" />
+  </head>
+  <body>
+    <main class="site-shell container-fluid">
+      <section class="around-league-panel position-relative" aria-labelledby="page-title">
+        <header class="topbar d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
+          <div class="brand-lockup d-flex align-items-center gap-3">
+            <img class="brand-logo" src="../assets/new-york-yankees.svg" alt="New York Yankees logo" />
+            <div>
+              <p class="kicker brand-kicker mb-1">New York</p>
+              <h1 class="display-title brand-title mb-0">Yankees</h1>
+            </div>
+          </div>
+          <div class="header-actions d-flex flex-column flex-sm-row gap-2">
+            <span class="status-pill" id="data-status">Connecting to MLB data</span>
+          </div>
+        </header>
+
+        <details class="site-nav">
+          <summary><span>Menu</span><span class="site-nav-icon" aria-hidden="true"></span></summary>
+          <nav class="site-nav-links" aria-label="Yankees sections">
+            <a class="site-nav-link" href="../">Home</a>
+            <a class="site-nav-link" href="../player-profile/">Player Profile</a>
+            <a class="site-nav-link" href="../player-stats/">Stats</a>
+            <a class="site-nav-link" href="../schedule/">Schedule</a>
+            <a class="site-nav-link" href="../team-overview/">Team Overview</a>
+            <a class="site-nav-link active" href="../around-the-league/" aria-current="page">Around the League</a>
+          </nav>
+        </details>
+        <nav class="desktop-site-nav navbar navbar-expand" aria-label="Yankees sections">
+          <div class="navbar-nav">
+            <a class="nav-link" href="../">Home</a>
+            <a class="nav-link" href="../player-profile/">Player Profile</a>
+            <a class="nav-link" href="../player-stats/">Stats</a>
+            <a class="nav-link" href="../schedule/">Schedule</a>
+            <a class="nav-link" href="../team-overview/">Team Overview</a>
+            <a class="nav-link active" href="../around-the-league/" aria-current="page">Around the League</a>
+          </div>
+        </nav>
+
+        <section class="league-body">
+          <header class="page-intro-card">
+            <h2 class="page-heading" id="page-title">Around the League</h2>
+            <p class="page-intro-description">Follow scores and updates from across Major League Baseball.</p>
+          </header>
+
+          <div class="league-dashboard-grid">
+            <section class="league-panel scores-panel" aria-labelledby="mlb-scores-title">
+              <header class="league-section-header">
+                <h2 class="panel-heading mb-0" id="mlb-scores-title">MLB Scores</h2>
+              </header>
+
+              <nav class="scores-date-picker" aria-label="Select MLB scores date">
+                <button class="scores-date-arrow" id="previous-score-date" type="button" aria-label="Previous day">&#8249;</button>
+                <div class="scores-date-list" id="scores-date-list" aria-live="polite"></div>
+                <button class="scores-date-arrow" id="next-score-date" type="button" aria-label="Next day">&#8250;</button>
+              </nav>
+
+              <div class="scores-grid" id="score-cards" aria-live="polite" aria-busy="true">
+                <p class="scores-message">Loading MLB scores...</p>
+              </div>
+            </section>
+
+            <section class="league-panel notables-panel" aria-labelledby="mlb-headlines-title">
+              <header class="league-section-header">
+                <h2 class="panel-heading mb-0" id="mlb-headlines-title">Notable Performances</h2>
+              </header>
+              <ul class="notables-list" id="notable-events" aria-live="polite" aria-busy="true">
+                <li class="notables-message">Finding notable performances...</li>
+              </ul>
+            </section>
+
+            <section class="league-panel standings-panel" aria-labelledby="standings-title">
+              <header class="league-section-header standings-head">
+                <h2 class="panel-heading mb-0" id="standings-title">Standings</h2>
+                <span class="standings-context" id="standings-context">AL East</span>
+              </header>
+              <div class="standings-controls mb-2" id="standings-mode-controls" role="group" aria-label="Standings view">
+                <button class="standings-option active" type="button" data-standings-mode="division" aria-pressed="true">Division</button>
+                <button class="standings-option" type="button" data-standings-mode="league" aria-pressed="false">League</button>
+                <button class="standings-option" type="button" data-standings-mode="mlb" aria-pressed="false">MLB</button>
+                <button class="standings-option" type="button" data-standings-mode="wild-card" aria-pressed="false">Wild Card</button>
+              </div>
+              <div class="standings-controls standings-filter-controls mb-3" id="standings-filter-controls" role="group" aria-label="Standings filter"></div>
+              <div class="standings-table-shell">
+                <table class="standings-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Rank</th>
+                      <th scope="col">Team</th>
+                      <th scope="col">W</th>
+                      <th scope="col">L</th>
+                      <th scope="col">PCT</th>
+                      <th scope="col">GB</th>
+                      <th scope="col" aria-label="Last 10 games">L10</th>
+                      <th scope="col">Streak</th>
+                    </tr>
+                  </thead>
+                  <tbody id="standings-body">
+                    <tr>
+                      <td colspan="8">Loading standings</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="league-panel whos-hot-panel" aria-label="Who's hot and who's not across MLB">
+              <div class="form-columns">
+                <section class="form-column" aria-labelledby="whos-hot-title">
+                  <header class="league-section-header">
+                    <h2 class="panel-heading mb-0" id="whos-hot-title">Who's Hot</h2>
+                  </header>
+                  <div class="whos-hot-list" id="whos-hot" aria-live="polite" aria-busy="true">
+                    <p class="hot-message">Finding MLB's hottest team and players...</p>
+                  </div>
+                </section>
+                <section class="form-column" aria-labelledby="whos-not-title">
+                  <header class="league-section-header">
+                    <h2 class="panel-heading mb-0" id="whos-not-title">Who's Not</h2>
+                  </header>
+                  <div class="whos-hot-list whos-not-list" id="whos-not" aria-live="polite" aria-busy="true">
+                    <p class="hot-message">Finding MLB's coldest team and players...</p>
+                  </div>
+                </section>
+              </div>
+            </section>
+
+            <section class="league-panel leaderboard-panel" aria-labelledby="league-leaders-title">
+              <header class="league-section-header leaderboard-header">
+                <h2 class="panel-heading mb-0" id="league-leaders-title">League Leaders</h2>
+                <div class="leaderboard-toggle" id="leaderboard-toggle" role="group" aria-label="League leader type">
+                  <button class="standings-option active" type="button" data-leader-view="players" aria-pressed="true">Players</button>
+                  <button class="standings-option" type="button" data-leader-view="teams" aria-pressed="false">Teams</button>
+                </div>
+              </header>
+              <div class="leaderboard-content" id="league-leaders" aria-live="polite" aria-busy="true">
+                <p class="leaderboard-message">Loading league leaders...</p>
+              </div>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js?v=20260811-yankees-leaders1" defer></script>
+  </body>
+</html>

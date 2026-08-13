@@ -87,6 +87,7 @@ const els = {
   mobileList: document.querySelector("#mobile-stat-list"),
   mobileCategories: document.querySelector("#mobile-stat-categories"),
   qualifiedOnly: document.querySelector("#qualified-only"),
+  statsCard: document.querySelector(".stats-card"),
   scopes: document.querySelectorAll("[data-scope]"),
   toggles: document.querySelectorAll("[data-group]"),
 };
@@ -195,6 +196,16 @@ function formatValue(row, key) {
   return value === undefined || value === null || value === "" ? "—" : value;
 }
 
+function setTableMessage(message, colspan = COLUMNS[state.group].length + 2) {
+  const row = document.createElement("tr");
+  const cell = document.createElement("td");
+  cell.className = "stats-message";
+  cell.colSpan = colspan;
+  cell.textContent = message;
+  row.append(cell);
+  els.body.replaceChildren(row);
+}
+
 function renderHead() {
   const row = document.createElement("tr");
   const playerHead = document.createElement("th");
@@ -229,20 +240,22 @@ function renderHead() {
 }
 
 function renderBody(rows) {
-  els.body.replaceChildren();
   if (!rows.length) {
-    const row = document.createElement("tr");
-    row.innerHTML = `<td class="stats-message" colspan="${COLUMNS[state.group].length + 2}">No ${state.group === "hitting" ? "batting" : "pitching"} statistics are available.</td>`;
-    els.body.append(row);
+    setTableMessage(`No ${state.group === "hitting" ? "batting" : "pitching"} statistics are available.`);
     return;
   }
 
+  const fragment = document.createDocumentFragment();
   rows.forEach((item) => {
     const row = document.createElement("tr");
     const playerCell = document.createElement("td");
-    playerCell.innerHTML = item.isTeam
-      ? `<div class="player-cell"><strong>${item.playerName}</strong></div>`
-      : `<div class="player-cell"><a href="../player-spotlight/?player=${item.playerId}">${item.playerName}</a></div>`;
+    const player = document.createElement("div");
+    player.className = "player-cell";
+    const identity = document.createElement(item.isTeam ? "strong" : "a");
+    identity.textContent = item.playerName;
+    if (!item.isTeam) identity.href = `../player-profile/?player=${item.playerId}`;
+    player.append(identity);
+    playerCell.append(player);
     row.append(playerCell);
     if (!item.isTeam && state.scope === "player") {
       const teamCell = document.createElement("td");
@@ -257,15 +270,16 @@ function renderBody(rows) {
       cell.classList.toggle("is-sort-column", key === state.sortKey);
       row.append(cell);
     });
-    els.body.append(row);
+    fragment.append(row);
   });
+  els.body.replaceChildren(fragment);
 }
 
 function renderMobileLeaderboard(rows, start) {
   const categories = MOBILE_COLUMNS[state.group];
   const activeCategory = categories.find(([key]) => key === state.sortKey) || categories[0];
   const [activeKey] = activeCategory;
-  els.mobileList.replaceChildren();
+  const listFragment = document.createDocumentFragment();
 
   rows.forEach((item, index) => {
     const row = document.createElement("li");
@@ -275,11 +289,11 @@ function renderMobileLeaderboard(rows, start) {
     rank.textContent = start + index + 1;
     const link = document.createElement(item.isTeam ? "div" : "a");
     link.className = "mobile-player-link";
-    if (!item.isTeam) link.href = `../player-spotlight/?player=${item.playerId}`;
+    if (!item.isTeam) link.href = `../player-profile/?player=${item.playerId}`;
     const image = document.createElement("img");
-    if (item.isTeam) image.classList.add("team-logo-image");
+    if (item.isTeam) image.classList.add("team-logo-image", "team-logo");
     image.src = item.isTeam
-      ? `https://www.mlbstatic.com/team-logos/${item.playerId}.svg`
+      ? `https://www.mlbstatic.com/team-logos/team-cap-on-light/${item.playerId}.svg`
       : `https://img.mlbstatic.com/mlb-photos/image/upload/w_80,q_auto:best/v1/people/${item.playerId}/headshot/silo/current`;
     image.alt = "";
     image.loading = "lazy";
@@ -296,10 +310,11 @@ function renderMobileLeaderboard(rows, start) {
     value.className = "mobile-stat-value";
     value.textContent = formatValue(item, activeKey);
     row.append(rank, link, value);
-    els.mobileList.append(row);
+    listFragment.append(row);
   });
+  els.mobileList.replaceChildren(listFragment);
 
-  els.mobileCategories.replaceChildren();
+  const categoryFragment = document.createDocumentFragment();
   categories.forEach(([key, label, description, direction]) => {
     const button = document.createElement("button");
     button.type = "button";
@@ -309,8 +324,9 @@ function renderMobileLeaderboard(rows, start) {
     button.textContent = label;
     button.setAttribute("aria-label", `Show leaders in ${description}`);
     button.setAttribute("aria-pressed", String(key === activeKey));
-    els.mobileCategories.append(button);
+    categoryFragment.append(button);
   });
+  els.mobileCategories.replaceChildren(categoryFragment);
 }
 
 function pageItems(current, total) {
@@ -338,20 +354,22 @@ function pageButton(label, page, className = "") {
 function renderPagination(totalPages) {
   els.pagination.replaceChildren();
   if (totalPages <= 1) return;
+  const fragment = document.createDocumentFragment();
   pageItems(state.page, totalPages).forEach((item) => {
     if (item === "ellipsis") {
       const ellipsis = document.createElement("span");
       ellipsis.className = "page-ellipsis";
       ellipsis.textContent = "…";
       ellipsis.setAttribute("aria-hidden", "true");
-      els.pagination.append(ellipsis);
+      fragment.append(ellipsis);
     } else {
-      els.pagination.append(pageButton(String(item), item));
+      fragment.append(pageButton(String(item), item));
     }
   });
   const next = pageButton("Next", Math.min(state.page + 1, totalPages), "next");
   next.disabled = state.page === totalPages;
-  els.pagination.append(next);
+  fragment.append(next);
+  els.pagination.append(fragment);
 }
 
 function render() {
@@ -388,12 +406,12 @@ function render() {
 
 async function setGroup(group) {
   const loadedRows = state.scope === "team" ? state.teamRows[group] : state.rows[group];
-  if (!COLUMNS[group] || group === state.group && loadedRows) return;
+  if (!COLUMNS[group] || (group === state.group && loadedRows)) return;
   state.group = group;
   state.page = 1;
   const defaultColumn = group === "hitting" ? ["homeRuns", "desc"] : ["strikeOuts", "desc"];
   [state.sortKey, state.sortDirection] = defaultColumn;
-  els.body.innerHTML = `<tr><td class="stats-message" colspan="${COLUMNS[group].length + 2}">Loading ${group === "hitting" ? "batting" : "pitching"} statistics</td></tr>`;
+  setTableMessage(`Loading ${group === "hitting" ? "batting" : "pitching"} statistics`, COLUMNS[group].length + 2);
   els.pagination.replaceChildren();
   try {
     if (state.scope === "team") await loadTeamGroup(group);
@@ -402,7 +420,7 @@ async function setGroup(group) {
     setStatus("Live MLB data", "good");
   } catch (error) {
     setStatus("Data connection issue", "error");
-    els.body.innerHTML = `<tr><td class="stats-message" colspan="${COLUMNS[group].length + 2}">Could not load player statistics. ${error.message}</td></tr>`;
+    setTableMessage(`Could not load player statistics. ${error.message}`, COLUMNS[group].length + 2);
   }
 }
 
@@ -453,7 +471,7 @@ function bindEvents() {
     if (!button || button.disabled) return;
     state.page = Number(button.dataset.page);
     render();
-    document.querySelector(".stats-card").scrollIntoView({ behavior: "smooth", block: "start" });
+    els.statsCard.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
 
@@ -465,7 +483,7 @@ async function init() {
     setStatus("Live MLB data", "good");
   } catch (error) {
     setStatus("Data connection issue", "error");
-    els.body.innerHTML = `<tr><td class="stats-message">Could not load player statistics. ${error.message}</td></tr>`;
+    setTableMessage(`Could not load player statistics. ${error.message}`);
   }
 }
 

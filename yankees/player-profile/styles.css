@@ -11,152 +11,6 @@
   background: var(--swatch-mid);
 }
 
-.player-spotlight-page .player-name {
-  font-size: clamp(2rem, 5vw, 4.8rem);
-  font-weight: 800;
-  line-height: 0.96;
-}
-
-.player-spotlight-page .player-name a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.player-spotlight-page .player-name a:hover,
-.player-spotlight-page .player-name a:focus {
-  color: #ffffff;
-  text-decoration: underline;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.12em;
-}
-
-.player-spotlight-page .portrait-wrap {
-  display: grid;
-  place-items: center;
-  padding: 0;
-  background: transparent;
-}
-
-.player-spotlight-page .portrait-wrap img {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  max-width: none;
-  object-fit: contain;
-  object-position: center bottom;
-  transform: none;
-}
-
-.player-spotlight-page .player-bio {
-  gap: 0.5rem !important;
-  margin-top: 0.75rem !important;
-}
-
-.player-spotlight-page .bio-row {
-  grid-template-columns: 54px 1fr;
-  gap: 8px;
-  line-height: 1.25;
-}
-
-.player-spotlight-page .bio-row span:first-child {
-  font-size: var(--text-small);
-  font-weight: 700;
-}
-
-.player-spotlight-page .stat-card {
-  justify-items: center;
-  align-items: center;
-  align-content: center;
-  gap: 8px;
-}
-
-.player-spotlight-page .compact .stat-card {
-  min-height: 72px;
-  padding-block: 10px;
-}
-
-.player-spotlight-page .stat-card strong,
-.player-spotlight-page .compact .stat-card strong {
-  line-height: 1;
-}
-
-.player-spotlight-page .compact .stat-card strong {
-  font-size: var(--stat-number-size);
-}
-
-.player-spotlight-page .stat-card span {
-  line-height: 1;
-}
-
-.recent-window-controls {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px;
-}
-
-.recent-window-button {
-  width: 34px;
-  height: 30px;
-  min-height: 0;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: var(--ink);
-  background: var(--card-bg);
-  display: inline-grid;
-  place-items: center;
-  font-weight: 800;
-  line-height: 1;
-  padding: 0;
-}
-
-.recent-window-button:hover,
-.recent-window-button:focus {
-  border-color: var(--line-bright);
-  color: #ffffff;
-  background: rgba(196, 206, 211, 0.12);
-}
-
-.recent-window-button.active {
-  border-color: var(--control-active-border);
-  color: var(--control-active-ink);
-  background: var(--control-active-bg);
-}
-
-.recent-form-bar {
-  min-height: 42px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: #f5f7ff;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
-    var(--card-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  padding: 8px 12px;
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.recent-form-bar strong {
-  color: #f1b434;
-  font-weight: 800;
-}
-
-.recent-form-bar span,
-#recent-line-stats span {
-  color: var(--muted);
-}
-
-#recent-line-stats {
-  color: #f5f7ff;
-}
-
 .player-detail-preview {
   padding: 0;
   display: grid;
@@ -174,7 +28,6 @@
 
 .detail-header {
   display: grid;
-  gap: 16px;
 }
 
 .detail-title-row {
@@ -202,19 +55,34 @@
   min-width: 0;
   display: grid;
   grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1.2fr);
-  align-items: stretch;
+  align-items: center;
   gap: clamp(16px, 3vw, 28px);
+}
+
+.detail-profile-summary {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 16px;
 }
 
 .detail-headshot {
   width: 100%;
-  aspect-ratio: 1;
+  height: auto;
+  aspect-ratio: 6 / 5;
   border: 0;
   border-radius: 0;
   background: none;
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center;
   flex: 0 0 auto;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.detail-headshot.is-loaded {
+  opacity: 1;
+  visibility: visible;
 }
 
 .detail-player-name {
@@ -248,10 +116,6 @@
   font-weight: 800;
 }
 
-.detail-divider {
-  display: none;
-}
-
 .detail-bio {
   min-width: 0;
   display: grid;
@@ -282,33 +146,8 @@
 .detail-quick-stats {
   min-width: 0;
   display: grid;
-  align-content: start;
+  align-content: center;
   gap: 10px;
-}
-
-.detail-quick-recent {
-  min-width: 0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card-bg);
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px 12px;
-  color: var(--ink);
-  font-size: var(--text-small);
-  font-weight: 700;
-}
-
-.detail-quick-recent strong {
-  color: #f1d45f;
-  text-transform: uppercase;
-}
-
-.detail-quick-recent #quick-recent-line-stats {
-  min-width: 0;
-  color: var(--ink);
 }
 
 .detail-quick-table-shell {
@@ -342,8 +181,44 @@
 
 .detail-quick-table th:first-child,
 .detail-quick-table td:first-child {
-  min-width: 150px;
+  min-width: 185px;
   text-align: left;
+}
+
+.quick-season-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.quick-season-button {
+  min-height: 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: var(--muted);
+  background: transparent;
+  padding: 1px 0 2px;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.quick-season-button:hover,
+.quick-season-button:focus {
+  color: var(--ink);
+  background: transparent;
+}
+
+.quick-season-button.active {
+  border-bottom-color: var(--control-active-border);
+  color: var(--ink);
+}
+
+.quick-season-divider {
+  color: var(--quiet);
+  font-weight: 600;
 }
 
 .detail-quick-table tr:last-child td {
@@ -461,6 +336,42 @@
   gap: 8px;
 }
 
+.recent-summary-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.recent-summary-grid.pitching {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.recent-form-card {
+  gap: 6px;
+}
+
+.recent-form-icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.recent-form-card strong {
+  color: var(--ink);
+  font-size: var(--text-small);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.recent-summary-grid.hot .detail-stat-card:not(.recent-form-card) {
+  border-color: rgba(242, 13, 36, 0.58);
+  background: rgba(242, 13, 36, 0.13);
+}
+
+.recent-summary-grid.cold .detail-stat-card:not(.recent-form-card) {
+  border-color: rgba(18, 155, 222, 0.58);
+  background: rgba(18, 155, 222, 0.13);
+}
+
 .detail-table {
   width: 100%;
   color: var(--ink);
@@ -537,75 +448,7 @@
   font-weight: 700;
 }
 
-.contract-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.contract-item,
-.contract-unavailable {
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--card-bg-strong);
-  padding: 14px;
-}
-
-.contract-item {
-  display: grid;
-  align-content: start;
-  gap: 6px;
-}
-
-.contract-item span {
-  color: var(--muted);
-  font-size: var(--text-small);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.contract-item strong {
-  color: var(--ink);
-  font-size: var(--text-normal);
-  line-height: 1.35;
-}
-
-.contract-source,
-.contract-unavailable p {
-  margin: 12px 0 0;
-  color: var(--muted);
-  font-size: var(--text-small);
-}
-
-.contract-source a,
-.contract-unavailable a {
-  color: var(--yankees-silver);
-  font-weight: 700;
-}
-
-.contract-unavailable strong {
-  color: var(--ink);
-}
-
 @media (max-width: 575.98px) {
-  .player-spotlight-page .player-name {
-    font-size: clamp(2rem, 12vw, 3.3rem);
-  }
-
-  .player-spotlight-page .bio-row {
-    grid-template-columns: 50px 1fr;
-  }
-
-  .recent-window-controls {
-    display: inline-flex;
-  }
-
-  .recent-form-bar {
-    justify-content: center;
-    text-align: center;
-  }
-
   .player-detail-preview {
     padding-inline: 0;
   }
@@ -649,10 +492,6 @@
     gap: 8px;
   }
 
-  .detail-quick-recent {
-    align-items: flex-start;
-  }
-
   .detail-player-status {
     border-left: 0;
     padding-left: 0;
@@ -663,7 +502,9 @@
   }
 
   .detail-stat-grid,
-  .detail-tab-grid {
+  .detail-tab-grid,
+  .recent-summary-grid,
+  .recent-summary-grid.pitching {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -723,9 +564,6 @@
     gap: 4px;
   }
 
-  .contract-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 575.98px) {
@@ -814,9 +652,6 @@
     width: 100%;
   }
 
-  .detail-tab-controls .detail-tab:last-child {
-    grid-column: 1 / -1;
-  }
 }
 
 .player-spotlight-header {
@@ -830,26 +665,6 @@
 
 .player-spotlight-header::after {
   display: none;
-}
-
-.spotlight-body {
-  --bs-gutter-x: 0;
-  --bs-gutter-y: 0;
-  display: grid !important;
-  grid-template-columns: 1fr;
-  gap: clamp(16px, 3vw, 32px);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card-bg-strong);
-  box-shadow: none;
-  margin: 0;
-  padding: 18px;
-}
-
-.spotlight-body > * {
-  width: auto;
-  max-width: none;
-  padding-inline: 0;
 }
 
 .player-title-band {
@@ -873,39 +688,6 @@
 
 .player-search-panel .search-results {
   margin-top: 10px;
-}
-
-.portrait-wrap {
-  aspect-ratio: 1 / 1;
-  border-radius: 0;
-  border: 0;
-  background: none;
-  overflow: hidden;
-  display: grid;
-  place-items: end center;
-}
-
-.portrait-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
-}
-
-.player-bio {
-  color: var(--ink);
-}
-
-.bio-row {
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 8px;
-  align-items: center;
-}
-
-.bio-row span:first-child {
-  color: var(--yankees-silver);
-  font-size: var(--text-normal);
 }
 
 .search-results .result-shell {
@@ -936,71 +718,6 @@
   font-weight: 800;
 }
 
-.stat-grid {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--card-bg);
-}
-
-.stat-card {
-  min-width: 0;
-  min-height: 96px;
-  background: var(--card-bg);
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 8px;
-  border-right: 1px solid var(--line);
-}
-
-.compact .stat-card {
-  min-height: 56px;
-}
-
-.stat-card:last-child {
-  border-right: 0;
-}
-
-.stat-card strong {
-  line-height: 1;
-}
-
-.compact .stat-card strong {
-  font-size: var(--stat-number-size);
-}
-
-.stat-card span {
-  color: var(--quiet);
-  font-size: var(--text-small);
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.table-shell {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card-bg);
-}
-
-.table {
-  --bs-table-bg: transparent;
-  --bs-table-color: #dfe4f4;
-  --bs-table-border-color: rgba(255, 255, 255, 0.08);
-  min-width: 620px;
-}
-
-.table th {
-  color: var(--yankees-silver);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-#recent-summary {
-  color: var(--muted);
-}
-
 .empty,
 .error {
   color: var(--muted);
@@ -1010,32 +727,6 @@
 
 .error {
   color: #ffbec4;
-}
-
-@media (max-width: 991.98px) {
-  .portrait-wrap {
-    max-width: 300px;
-  }
-
-  .stat-card {
-    flex: 0 0 50%;
-  }
-
-  .compact .stat-card {
-    flex-basis: 33.333%;
-  }
-}
-
-@media (min-width: 992px) {
-  .spotlight-body {
-    grid-template-columns: minmax(220px, 0.8fr) minmax(0, 2fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .spotlight-body {
-    grid-template-columns: minmax(240px, 0.72fr) minmax(0, 2.28fr);
-  }
 }
 
 @media (max-width: 991.98px) {
@@ -1049,14 +740,9 @@
     overflow-x: visible;
   }
 
-  .detail-quick-table thead {
-    display: none;
-  }
-
   .detail-quick-table tbody,
   .detail-quick-table tr,
   .detail-quick-table td {
-    display: block;
     width: 100%;
   }
 
@@ -1076,11 +762,6 @@
   .detail-quick-table td:first-child {
     min-width: 0;
     border: 0;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 5px 0;
-    text-align: right;
     white-space: normal;
   }
 
@@ -1091,79 +772,30 @@
     text-align: left;
   }
 
-  .spotlight-body {
-    padding: 14px;
+  .detail-quick-table thead {
+    display: block;
   }
 
-  .player-name {
-    font-size: clamp(2rem, 12vw, 3.3rem);
+  .detail-quick-table thead tr {
+    border: 0;
+    display: block !important;
+    padding: 8px 8px 0;
   }
 
-  .portrait-wrap {
-    margin-inline: auto;
-  }
-
-  .table-shell {
-    overflow: visible;
-  }
-
-  .table {
-    min-width: 0;
-  }
-
-  .table thead {
+  .detail-quick-table thead th {
     display: none;
   }
 
-  .table tbody,
-  .table tr,
-  .table td {
-    display: block;
-    width: 100%;
-  }
-
-  .table tbody {
-    display: grid;
-    gap: 10px;
-    padding: 10px;
-  }
-
-  .table tr {
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.045);
-    padding: 8px 10px;
-  }
-
-  .table td {
+  .detail-quick-table thead .quick-season-heading {
+    min-width: 0;
     border: 0;
-    padding: 6px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    text-align: right;
-  }
-
-  .table td::before {
-    content: attr(data-label);
-    color: var(--muted);
-    font-size: var(--text-small);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    display: block;
+    padding: 8px 10px;
     text-align: left;
   }
 
   .header-actions,
-  .status-pill,
-  .nav-home-link,
-  .btn-outline-light {
+  .status-pill {
     width: 100%;
-  }
-
-  .stat-card,
-  .compact .stat-card {
-    flex-basis: 50%;
   }
 }

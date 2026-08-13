@@ -27,14 +27,7 @@
   padding-inline: 0;
 }
 
-.page-copy,
-.insight-panel p {
-  max-width: 760px;
-  color: #dfe4f4;
-}
-
-.team-card,
-.insight-panel {
+.team-card {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--card-bg);
@@ -43,8 +36,12 @@
 
 .team-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding-bottom: 16px;
-  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  padding-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .team-name {
@@ -54,51 +51,81 @@
 .team-record-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.team-header .record-line,
+.team-header .standing-line {
+  font-size: var(--text-small);
+  line-height: 1.2;
 }
 
 .record-line {
   color: var(--ink);
   font-weight: 800;
-  line-height: 0.95;
 }
 
 .standing-line {
+  border-left: 1px solid rgba(196, 206, 211, 0.35);
   color: #dfe4f4;
-  font-size: 1.25rem;
+  padding-left: 10px;
   font-weight: 600;
-  text-align: right;
+  text-align: left;
   white-space: nowrap;
+}
+
+.metric-groups {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: 14px;
+}
+
+.metric-group {
+  min-width: 0;
+}
+
+.metric-group-title {
+  margin: 0 0 7px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .metric-list {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 8px;
 }
 
+.team-card .metric-list {
+  grid-template-columns: 1fr;
+}
+
 .metric-row {
-  min-height: 58px;
+  min-height: 48px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 6px;
   background: var(--card-bg-strong);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  padding: 10px 12px;
+  gap: 8px;
+  padding: 7px 8px;
 }
 
 .metric-row > div:first-child {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
 }
 
 .metric-badge {
-  width: 34px;
-  height: 34px;
+  width: 46px;
+  height: 30px;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.08);
   color: var(--yankees-silver);
@@ -106,6 +133,7 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
+  padding-inline: 4px;
   font-size: var(--text-small);
   font-weight: 700;
 }
@@ -114,8 +142,7 @@
   color: var(--muted);
   font-size: var(--text-small);
   font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: normal;
 }
 
 .metric-value {
@@ -145,15 +172,23 @@
 }
 
 .metric-value small::before {
-  content: "Rank";
+  content: "#";
   margin-right: 4px;
   color: var(--muted);
   font-size: 0.68rem;
-  letter-spacing: 0.08em;
+  letter-spacing: normal;
 }
 
-.rank-indicator {
-  font-weight: 800;
+@media (max-width: 1399.98px) {
+  .metric-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991.98px) {
+  .metric-groups {
+    grid-template-columns: 1fr;
+  }
 }
 
 .rank-strong {
@@ -172,130 +207,6 @@
   color: var(--yankees-silver);
 }
 
-.standings-panel {
-  display: flex;
-  flex-direction: column;
-}
-
-.standings-context {
-  min-height: 28px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--yankees-silver);
-  background: var(--card-bg-strong);
-  display: inline-flex;
-  align-items: center;
-  padding: 0 10px;
-  font-size: var(--text-small);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.standings-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.standings-option {
-  min-height: 34px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--ink);
-  background: var(--card-bg-strong);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 12px;
-  font-size: var(--text-small);
-  font-weight: 700;
-}
-
-.standings-option:hover,
-.standings-option:focus {
-  border-color: var(--line-bright);
-  color: #fff;
-  background: rgba(196, 206, 211, 0.12);
-}
-
-.standings-option.active {
-  border-color: var(--control-active-border);
-  color: var(--control-active-ink);
-  background: var(--control-active-bg);
-}
-
-.standings-table-shell {
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card-bg-strong);
-}
-
-.standings-table {
-  width: 100%;
-  margin: 0;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-
-.standings-table th,
-.standings-table td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 10px 8px;
-  vertical-align: middle;
-}
-
-.standings-table th {
-  color: var(--muted);
-  font-size: var(--text-small);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.standings-table td {
-  color: #dfe4f4;
-}
-
-.standings-table tr:last-child td {
-  border-bottom: 0;
-}
-
-.standings-table th:first-child,
-.standings-table td:first-child {
-  width: 56px;
-  text-align: center;
-}
-
-.standings-table th:nth-child(2),
-.standings-table td:nth-child(2) {
-  width: auto;
-  text-align: left;
-}
-
-.standings-table th:not(:nth-child(2)),
-.standings-table td:not(:nth-child(2)) {
-  text-align: center;
-}
-
-.standings-table td span {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.standings-table .is-yankees td {
-  color: #fff;
-  background: rgba(196, 206, 212, 0.08);
-  font-weight: 700;
-}
-
-.standings-table .is-yankees td:first-child {
-  box-shadow: inset 3px 0 0 #f1c400;
-}
-
 .error {
   color: #ffbec4;
   font-weight: 700;
@@ -306,10 +217,19 @@
     padding-inline: 0;
   }
 
-  .team-record-row {
+  .team-header {
     align-items: flex-start;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+  }
+
+  .team-record-row {
+    align-items: center;
+    gap: 8px;
+  }
+
+  .standing-line {
+    padding-left: 8px;
   }
 
   .standing-line {
@@ -328,34 +248,12 @@
     white-space: normal;
   }
 
-  .standings-head {
-    align-items: stretch !important;
-  }
-
-  .standings-context {
-    justify-content: center;
-  }
-
-  .standings-option {
-    flex: 1 1 calc(33.333% - 8px);
-    min-width: 0;
-    padding-inline: 8px;
-  }
-
-  .standings-table th,
-  .standings-table td {
-    padding: 9px 5px;
-  }
-
-  .standings-table th:first-child,
-  .standings-table td:first-child {
-    width: 42px;
+  .team-card .metric-list {
+    grid-template-columns: 1fr;
   }
 
   .header-actions,
-  .status-pill,
-  .nav-home-link,
-  .btn-control {
+  .status-pill {
     width: 100%;
   }
 }

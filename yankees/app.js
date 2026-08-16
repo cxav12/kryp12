@@ -11,6 +11,19 @@ const MLB_TEAM_PRIMARY_COLORS = {
   139: "#8FBCE6", 140: "#C0111F", 141: "#134A8E", 142: "#D31145", 143: "#E81828",
   144: "#CE1141", 145: "#C4CED4", 146: "#00A3E0", 147: "#C4CED3", 158: "#FFC52F",
 };
+const MLB_TEAM_ABBREVIATIONS = {
+  "arizona diamondbacks": "AZ", "atlanta braves": "ATL", "baltimore orioles": "BAL",
+  "boston red sox": "BOS", "chicago cubs": "CHC", "chicago white sox": "CWS",
+  "cincinnati reds": "CIN", "cleveland guardians": "CLE", "colorado rockies": "COL",
+  "detroit tigers": "DET", "houston astros": "HOU", "kansas city royals": "KC",
+  "los angeles angels": "LAA", "los angeles dodgers": "LAD", "miami marlins": "MIA",
+  "milwaukee brewers": "MIL", "minnesota twins": "MIN", "new york mets": "NYM",
+  "new york yankees": "NYY", "athletics": "ATH", "oakland athletics": "OAK",
+  "philadelphia phillies": "PHI", "pittsburgh pirates": "PIT", "san diego padres": "SD",
+  "san francisco giants": "SF", "seattle mariners": "SEA", "st. louis cardinals": "STL",
+  "tampa bay rays": "TB", "texas rangers": "TEX", "toronto blue jays": "TOR",
+  "washington nationals": "WSH",
+};
 const niceDateFormatter = new Intl.DateTimeFormat("en", {
   weekday: "short",
   month: "short",
@@ -103,7 +116,16 @@ function gameTime(value) {
 }
 
 function teamAbbreviation(team) {
-  return team?.abbreviation || team?.teamName || team?.name || "TBD";
+  if (typeof team === "string") {
+    const name = team.trim();
+    return MLB_TEAM_ABBREVIATIONS[name.toLowerCase()] || name || "TBD";
+  }
+
+  const abbreviation = team?.abbreviation;
+  if (abbreviation) return abbreviation;
+
+  const name = team?.teamName || team?.name;
+  return MLB_TEAM_ABBREVIATIONS[String(name || "").trim().toLowerCase()] || name || "TBD";
 }
 
 function teamLogoUrl(team) {
@@ -469,11 +491,19 @@ function renderGameNotes(feed, game) {
   const lineTeam = feed.liveData?.linescore?.teams?.[side] || {};
   const stat = (key, fallback = 0) => statValue(batting, key, fallback);
   const detailRow = (label, value) => `<p><strong>${escapeHtml(label)}</strong> ${escapeHtml(value)}</p>`;
+  const shouldShowDetailField = (field) => {
+    const label = String(field?.label || "").toLowerCase();
+    return !(
+      label.includes("runners left in scoring position")
+      && label.includes("2 out")
+    );
+  };
   const officialGroup = (title) => officialGroups.find((group) =>
     String(group.title || "").toLowerCase() === title.toLowerCase()
   );
   const detailGroup = (title, fallbackFields) => {
-    const fields = title === "Pitching" ? fallbackFields : (officialGroup(title)?.fieldList || fallbackFields);
+    const fields = (title === "Pitching" ? fallbackFields : (officialGroup(title)?.fieldList || fallbackFields))
+      .filter(shouldShowDetailField);
     return `
       <section>
         <h4>${escapeHtml(title)}</h4>
@@ -899,7 +929,7 @@ function gameNoteFeature(label, detail) {
         ${lines.map((line) => {
           const text = String(line);
           const separator = text.indexOf(":");
-          const outcomeClass = text.includes("✓ Successful")
+          const outcomeClass = text.includes("✓")
             ? " challenge-success"
             : text.includes("✕") ? " challenge-unsuccessful" : "";
           if (separator < 0) return `<p class="${outcomeClass.trim()}">${escapeHtml(text)}</p>`;
@@ -910,17 +940,57 @@ function gameNoteFeature(label, detail) {
   `;
 }
 
-function formatAbsChallenge(challenge) {
+function lastName(name) {
+  const suffixes = new Set(["jr", "jr.", "sr", "sr.", "ii", "iii", "iv", "v"]);
+  const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "Challenge";
+
+  const suffix = suffixes.has(parts[parts.length - 1].toLowerCase()) ? parts.pop() : "";
+  const familyName = parts.length ? parts[parts.length - 1] : suffix;
+  return suffix && familyName !== suffix ? `${familyName} ${suffix}` : familyName;
+}
+
+function boxscorePlayerByName(feed, name) {
+  const target = String(name || "").trim().toLowerCase();
+  if (!target) return null;
+
+  const teams = feed.liveData?.boxscore?.teams || {};
+  return ["away", "home"]
+    .flatMap((side) => Object.values(teams[side]?.players || {}).map((player) => ({ ...player, side })))
+    .find((player) => String(player.person?.fullName || "").trim().toLowerCase() === target)
+    || null;
+}
+
+function playerTeamAbbr(feed, player) {
+  if (!player) return "";
+  const team = feed.liveData?.boxscore?.teams?.[player.side]?.team
+    || feed.gameData?.teams?.[player.side];
+  return teamAbbreviation(team);
+}
+
+function absChallengePlayerLabel(feed, challenger) {
+  const rawName = challenger?.fullName || challenger?.person?.fullName || challenger;
+  const [namePart, teamPart] = String(rawName || "").split(",").map((part) => part.trim());
+  const player = typeof challenger === "string"
+    ? boxscorePlayerByName(feed, namePart)
+    : { person: challenger, side: boxscorePlayerByName(feed, namePart)?.side };
+  const team = playerTeamAbbr(feed, player) || (teamPart ? teamAbbreviation(teamPart) : "");
+
+  return `${lastName(namePart)}${team ? ` (${team})` : ""}`;
+}
+
+function formatAbsChallenge(challenge, feed) {
   const text = String(challenge || "").trim().replace(/[.;]+$/, "");
   const result = text.match(/^(.*?)\s*\((ball|strike)-(confirmed|overturned)\)$/i);
   if (!result) return text;
 
   const [, challenger, call, ruling] = result;
   const normalizedCall = call.toLowerCase();
+  const challengerLabel = absChallengePlayerLabel(feed, challenger.trim());
   if (ruling.toLowerCase() === "overturned") {
-    return `${challenger.trim()}: ✓ Successful — ${normalizedCall} call overturned`;
+    return `${challengerLabel}: ✓ ${normalizedCall} call overturned`;
   }
-  return `${challenger.trim()}: ✕ ${normalizedCall} call upheld`;
+  return `${challengerLabel}: ✕ ${normalizedCall} call upheld`;
 }
 
 function absChallengePlayNotes(feed) {
@@ -937,11 +1007,11 @@ function absChallengePlayNotes(feed) {
       const inningLabel = Number.isFinite(inning)
         ? `${half ? `${half[0].toUpperCase()}${half.slice(1)}` : "Inning"} ${ordinal(inning)}`
         : "Inning unavailable";
-      const challenger = review.player?.fullName || "Challenge";
+      const challenger = absChallengePlayerLabel(feed, review.player?.fullName || "Challenge");
 
       if (review.isOverturned) {
         const originalCall = finalCall === "strike" ? "ball" : finalCall === "ball" ? "strike" : "original";
-        notes.push(`${challenger}: ✓ Successful — ${originalCall} call overturned to ${finalCall} · ${inningLabel}`);
+        notes.push(`${challenger}: ✓ ${originalCall} call overturned to ${finalCall} · ${inningLabel}`);
       } else {
         notes.push(`${challenger}: ✕ ${finalCall} call upheld · ${inningLabel}`);
       }
@@ -995,7 +1065,7 @@ function absChallengeNotes(feed) {
     .split(/(?<=\))\.\s*|;\s*|(?<=\)),\s*(?=[^,]+,\s*[A-Z]\s*\()/)
     .map((challenge) => challenge.trim().replace(/[.;]+$/, ""))
     .filter(Boolean)
-    .map(formatAbsChallenge);
+    .map((challenge) => formatAbsChallenge(challenge, feed));
 }
 
 function absChallengeNote(feed) {

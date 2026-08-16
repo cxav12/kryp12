@@ -62,6 +62,7 @@ const state = {
   divisionRanks: {},
   playerStatsTeam: "yankees",
   liveRefreshTimer: null,
+  absChallengeEvents: [],
 };
 
 async function getJson(path, params = {}) {
@@ -1057,15 +1058,10 @@ function gameClockTime(value, fallback = "Unavailable") {
 }
 
 function absChallengeNotes(feed) {
-  const playNotes = absChallengePlayNotes(feed);
-  if (playNotes.length) return playNotes;
-  const note = (feed.liveData?.boxscore?.info || []).find((item) => String(item.label || "").toLowerCase() === "abs challenge");
-  if (!note?.value) return [absChallengeNote(feed)];
-  return String(note.value)
-    .split(/(?<=\))\.\s*|;\s*|(?<=\)),\s*(?=[^,]+,\s*[A-Z]\s*\()/)
-    .map((challenge) => challenge.trim().replace(/[.;]+$/, ""))
-    .filter(Boolean)
-    .map((challenge) => formatAbsChallenge(challenge, feed));
+  const events = AbsChallenges.events(feed);
+  state.absChallengeEvents = events;
+  if (events.length) return events.map((event) => event.display).filter(Boolean);
+  return [absChallengeNote(feed)];
 }
 
 function absChallengeNote(feed) {

@@ -8,6 +8,7 @@ const metricConfig = [
   { key: "home", label: "Home Record", badge: "HOME", group: "standings", category: "performance", rank: "desc", record: true },
   { key: "away", label: "Away Record", badge: "AWAY", group: "standings", category: "performance", rank: "desc", record: true },
   { key: "extraInning", label: "Extra-Inning Record", badge: "XI", group: "standings", category: "performance", rank: "desc", record: true },
+  { key: "winningPercentage", label: "Winning Percentage", badge: "WIN%", group: "standings", category: "performance", rank: "desc" },
   { key: "runs", label: "Runs Scored", badge: "RS", group: "hitting", category: "offense", rank: "desc" },
   { key: "avg", label: "Team AVG", badge: "AVG", group: "hitting", category: "offense", rank: "desc" },
   { key: "obp", label: "OBP", badge: "OBP", group: "hitting", category: "offense", rank: "desc" },
@@ -19,11 +20,13 @@ const metricConfig = [
   { key: "whip", label: "Team WHIP", badge: "WHIP", group: "pitching", category: "pitching", rank: "asc" },
   { key: "qualityStarts", label: "Quality Starts", badge: "QS", group: "qualityStarts", category: "pitching", rank: "desc" },
   { key: "saves", label: "Saves", badge: "SV", group: "pitching", category: "pitching", rank: "desc" },
+  { key: "strikeOuts", label: "Strikeouts", badge: "SO", group: "pitching", category: "pitching", rank: "desc" },
   { key: "fielding", label: "Fielding Percentage", badge: "FLD", group: "fielding", category: "defense", rank: "desc" },
   { key: "errors", label: "Errors", badge: "E", group: "fielding", category: "defense", rank: "asc" },
   { key: "throwingErrors", label: "Throwing Errors", badge: "TE", group: "fielding", category: "defense", rank: "asc" },
   { key: "doublePlays", label: "Double Plays", badge: "DP", group: "fielding", category: "defense", rank: "desc" },
-  { key: "caughtStealingPercentage", label: "Caught-Stealing Percentage", badge: "CS%", group: "fielding", category: "defense", rank: "desc" },
+  { key: "caughtStealingPercentage", label: "Caught-Stealing", badge: "CS%", group: "fielding", category: "defense", rank: "desc" },
+  { key: "assists", label: "Assists", badge: "A", group: "fielding", category: "defense", rank: "desc" },
 ];
 
 const metricCategories = [
@@ -114,7 +117,7 @@ function statNumber(value) {
 
 function formatStat(key, value) {
   if (value === undefined || value === null || value === "") return "-";
-  if (["avg", "ops", "obp", "fielding", "caughtStealingPercentage"].includes(key)) return String(value).replace(/^0/, "");
+  if (["avg", "ops", "obp", "fielding", "caughtStealingPercentage", "winningPercentage"].includes(key)) return String(value).replace(/^0/, "");
   if (key === "runDifferential" && Number(value) > 0) return `+${value}`;
   return String(value);
 }
@@ -137,9 +140,11 @@ function storeStandings(data) {
       const wins = record.leagueRecord?.wins ?? record.wins ?? "-";
       const losses = record.leagueRecord?.losses ?? record.losses ?? "-";
       const splitRecords = new Map((record.records?.splitRecords || []).map((split) => [split.type, split]));
+      const gamesPlayed = Number(wins) + Number(losses);
       state.standings.set(teamId, {
         wins,
         losses,
+        winningPercentage: gamesPlayed > 0 ? (Number(wins) / gamesPlayed).toFixed(3) : null,
         divisionRank: Number(record.divisionRank),
         divisionName,
         oneRun: splitRecords.get("oneRun"),

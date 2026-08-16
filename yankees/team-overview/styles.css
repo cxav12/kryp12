@@ -131,7 +131,8 @@
   color: var(--yankees-silver);
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  text-align: left;
   flex: 0 0 auto;
   padding-inline: 4px;
   font-size: var(--text-small);

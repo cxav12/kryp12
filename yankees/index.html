@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://www.mlbstatic.com" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=20260816-deploy-refresh1" />
+    <link rel="stylesheet" href="./styles.css?v=20260816-cleanup1" />
     <link rel="stylesheet" href="./shared.css?v=20260816-deploy-refresh1" />
   </head>
   <body>
@@ -51,9 +51,7 @@
       </section>
 
       <section class="recent-games-section" aria-label="Previous Yankees game recaps" hidden>
-        <div class="recent-games-grid" id="recent-games-grid">
-          <button class="recent-game-button" type="button" disabled>Loading recent games...</button>
-        </div>
+        <div class="recent-games-grid" id="recent-games-grid"></div>
       </section>
 
       <section class="selected-recap-section" aria-label="Selected Yankees game recap">
@@ -62,68 +60,18 @@
           <p class="page-intro-description">Review the Yankees’ latest completed game with the final score, key performers, decisions, and inning-by-inning details.</p>
         </header>
         <section class="recap-selector-section" aria-label="Recent results and upcoming Yankees games">
-          <div class="recap-button-row" id="recap-button-row">
-            <button class="recap-selector-button" type="button" disabled>Loading recent games...</button>
-          </div>
+          <div class="recap-button-row" id="recap-button-row"></div>
         </section>
-        <h2 class="visually-hidden" id="recap-title">Loading Yankees recap</h2>
-        <p class="visually-hidden" id="recap-subtitle">
-          Pulling the latest completed game, boxscore totals, and play-by-play metrics.
-        </p>
-        <div class="last-game-card" id="recap-scoreboard" aria-live="polite">
-          <div class="game-scoreboard-top">
-            <div class="scoreboard-team away"><span>Yankees</span></div>
-            <strong class="scoreboard-score">-</strong>
-            <div class="scoreboard-state">Loading</div>
-            <strong class="scoreboard-score">-</strong>
-            <div class="scoreboard-team home"><span>Opponent</span></div>
-          </div>
-          <div class="game-scoreboard-lower">
-            <div class="game-linescore-box"><span>Loading box score</span></div>
-            <div class="game-decisions">
-              <p><span>W:</span> Loading winner</p>
-              <p><span>L:</span> Loading loser</p>
-              <p><span>SV:</span> Loading save</p>
-            </div>
-          </div>
-        </div>
-        <section class="game-player-stats" id="game-player-stats" aria-label="Yankees player statistics for this game" aria-live="polite">
-          <div class="game-player-team-switcher" role="group" aria-label="Team player statistics">
-            <button class="game-player-team-button active" type="button" data-player-stats-team="yankees" aria-pressed="true">Yankees</button>
-            <button class="game-player-team-button" type="button" data-player-stats-team="opponent" aria-pressed="false">Opponent</button>
-          </div>
-          <article class="game-player-column">
-            <h3>Yankees Batting</h3>
-            <p class="game-player-loading">Loading game batting statistics</p>
-          </article>
-          <article class="game-player-column">
-            <h3>Yankees Pitching</h3>
-            <p class="game-player-loading">Loading game pitching statistics</p>
-          </article>
-        </section>
+        <h2 class="visually-hidden" id="recap-title"></h2>
+        <p class="visually-hidden" id="recap-subtitle"></p>
+        <div class="last-game-card" id="recap-scoreboard" aria-live="polite"></div>
+        <section class="game-player-stats" id="game-player-stats" aria-label="Yankees player statistics for this game" aria-live="polite"></section>
       </section>
 
       <section class="recap-section" aria-label="Latest Yankees game recap">
-        <div class="recap-grid" id="recap-grid">
-          <article class="recap-column">
-            <h3>NYY Hitting</h3>
-            <p class="recap-loading mb-0">Loading hitting totals...</p>
-          </article>
-          <article class="recap-column">
-            <h3>NYY Batted Balls</h3>
-            <p class="recap-loading mb-0">Loading batted-ball mix...</p>
-          </article>
-          <article class="recap-column">
-            <h3>NYY Pitching</h3>
-            <p class="recap-loading mb-0">Loading pitching totals...</p>
-          </article>
-          <article class="recap-column">
-            <h3>NYY Metrics</h3>
-            <p class="recap-loading mb-0">Loading game metrics...</p>
-          </article>
-        </div>
+        <div class="recap-grid" id="recap-grid"></div>
       </section>
     </main>
-    <script src="./app.js?v=20260816-deploy-refresh1" defer></script>
+    <script src="./app.js?v=20260816-cleanup1" defer></script>
   </body>
 </html>

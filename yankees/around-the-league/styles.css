@@ -112,69 +112,114 @@
 
 .score-card {
   min-width: 0;
-  min-height: 106px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--card-bg);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(62px, auto);
+  grid-template-rows: 5px auto auto auto;
+  align-content: start;
   overflow: hidden;
 }
 
-.score-matchup {
-  min-width: 0;
+.score-team-colors {
   display: grid;
-  align-content: center;
-  padding: 6px 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
 }
 
-.score-team-row {
+.score-team-colors span {
+  min-width: 0;
+}
+
+.score-matchup-row {
   min-width: 0;
   display: grid;
-  grid-template-columns: 38px minmax(28px, auto) auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: start;
-  gap: 8px;
-  padding: 5px 0;
+  gap: 6px;
+  padding: 13px 10px 7px;
 }
 
-.score-team-row + .score-team-row {
-  border-top: 1px solid rgba(205, 211, 215, 0.1);
+.score-matchup-row > .score-team-logo {
+  justify-self: center;
+}
+
+.score-matchup-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
 }
 
 .score-team-logo {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: var(--logo-surface);
+  width: 42px;
+  height: 42px;
   object-fit: contain;
-  padding: 2px;
 }
 
-.score-team-abbreviation,
-.score-team-score {
+.score-versus,
+.score-team-score,
+.score-separator {
   color: var(--ink);
   font-weight: 800;
   line-height: 1;
 }
 
-.score-team-abbreviation {
-  letter-spacing: 0.04em;
+.score-versus {
+  color: var(--muted);
+  font-size: var(--text-small);
+  text-transform: lowercase;
 }
 
 .score-team-score {
-  justify-self: start;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+}
+
+.score-separator {
+  color: var(--muted);
+}
+
+.score-records-row {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 6px;
+  padding: 0 8px 8px;
+  color: var(--muted);
+  font-size: 0.63rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.score-record-separator {
+  color: rgba(205, 211, 215, 0.45);
+}
+
+.score-team-record {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.card-record-divider {
+  width: 1px;
+  height: 8px;
+  flex: 0 0 1px;
+  background: rgba(205, 211, 215, 0.5);
 }
 
 .score-card-status {
-  min-width: 62px;
-  border-left: 1px solid var(--line);
+  min-width: 0;
+  border-top: 1px solid rgba(205, 211, 215, 0.1);
   color: var(--muted);
   background: rgba(255, 255, 255, 0.025);
   display: grid;
   place-items: center;
-  padding: 6px;
+  padding: 8px;
   text-align: center;
 }
 
@@ -242,6 +287,88 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.standings-switcher {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(92px, 0.72fr);
+  gap: 4px;
+  border-radius: 999px;
+  background: #1b222d;
+  padding: 4px;
+}
+
+.standings-switch,
+.standings-season-control {
+  min-width: 0;
+  min-height: 36px;
+  border: 0;
+  border-radius: 999px;
+  color: #aebfe5;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.standings-switch {
+  padding: 0 12px;
+}
+
+.standings-switch:hover,
+.standings-switch:focus-visible {
+  color: #fff;
+  background: rgba(10, 15, 22, 0.55);
+}
+
+.standings-switch.active {
+  color: #fff;
+  background: #101720;
+  box-shadow: inset 0 0 0 1px rgba(196, 206, 211, 0.08);
+  font-weight: 800;
+}
+
+.standings-season-control {
+  background: #101720;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 36px minmax(48px, 1fr) 36px;
+}
+
+.standings-season-control output {
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.standings-season-arrow {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  outline: 0;
+  color: #aebfe5;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  padding: 0 0 3px;
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.standings-season-arrow:hover,
+.standings-season-arrow:focus-visible {
+  color: #fff;
+  background: rgba(196, 206, 211, 0.1);
+}
+
+.standings-season-arrow:disabled {
+  color: #4f5a6c;
+  cursor: default;
+  opacity: 0.55;
 }
 
 .standings-option {
@@ -367,6 +494,10 @@
   font-weight: 800;
 }
 
+.standings-table .team-standing-row td:first-child {
+  box-shadow: inset 5px 0 0 var(--standing-team-color, #60798f);
+}
+
 .standings-table .is-yankees td {
   color: #fff;
   background: rgba(196, 206, 212, 0.08);
@@ -374,7 +505,18 @@
 }
 
 .standings-table .is-yankees td:first-child {
-  box-shadow: inset 3px 0 0 #f1c400;
+  box-shadow: inset 5px 0 0 var(--standing-team-color, #0c2340);
+}
+
+.standings-league-divider th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--yankees-silver);
+  background: #101720;
+  padding: 9px 12px;
+  font-size: var(--text-small);
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
 }
 
 .standings-empty {
@@ -386,14 +528,6 @@
 .notables-panel,
 .whos-hot-panel {
   align-self: stretch;
-}
-
-.notables-context {
-  color: var(--muted);
-  font-size: var(--text-small);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .notables-list {
@@ -408,6 +542,7 @@
 .notable-item {
   min-width: 0;
   border: 1px solid var(--line);
+  border-left: 5px solid var(--notable-team-color, #60798f);
   border-radius: 6px;
   color: var(--ink);
   background: var(--card-bg);
@@ -421,10 +556,7 @@
 .notable-team-logo {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
-  background: var(--logo-surface);
   object-fit: contain;
-  padding: 2px;
 }
 
 .notable-headline {
@@ -496,6 +628,7 @@
 .hot-item {
   min-width: 0;
   border: 1px solid var(--line);
+  border-left: 5px solid var(--hot-team-color, #60798f);
   border-radius: 6px;
   background: var(--card-bg);
   display: grid;
@@ -515,10 +648,7 @@
 .hot-team-logo {
   width: 44px;
   height: 44px;
-  border-radius: 50%;
-  background: var(--logo-surface);
   object-fit: contain;
-  padding: 3px;
   justify-self: center;
 }
 
@@ -557,6 +687,7 @@
 
 .whos-not-list .hot-item {
   border-color: rgba(255, 116, 128, 0.25);
+  border-left-color: var(--hot-team-color, #60798f);
 }
 
 .leaderboard-panel {
@@ -665,9 +796,7 @@
 }
 
 .leader-image.team-logo {
-  border-radius: 50%;
-  background: var(--logo-surface);
-  padding: 2px;
+  object-fit: contain;
 }
 
 .leader-identity {
@@ -738,6 +867,15 @@
 }
 
 @media (max-width: 575.98px) {
+  .score-matchup-row,
+  .score-records-row {
+    grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
+  }
+
+  .score-record-separator {
+    justify-self: center;
+  }
+
   .form-columns {
     grid-template-columns: 1fr;
   }
@@ -792,6 +930,20 @@
 
   .standings-context {
     justify-content: center;
+  }
+
+  .standings-switcher {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-radius: 16px;
+  }
+
+  .standings-season-control {
+    grid-column: 1 / -1;
+  }
+
+  .standings-switch {
+    min-height: 42px;
+    padding-inline: 5px;
   }
 
   .standings-option {

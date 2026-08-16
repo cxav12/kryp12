@@ -103,32 +103,14 @@
 }
 
 .game-card {
+  min-width: 0;
   border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--card-bg-strong);
-  padding: 9px;
-}
-
-.game-card.final {
-  border-color: rgba(154, 240, 200, 0.22);
-}
-
-.game-card.live {
-  border-color: rgba(241, 180, 52, 0.72);
-}
-
-.game-card.win {
-  border-color: rgba(77, 179, 138, 0.72);
-  background:
-    linear-gradient(135deg, rgba(77, 179, 138, 0.2), rgba(4, 8, 24, 0.94) 62%),
-    var(--card-bg-strong);
-}
-
-.game-card.loss {
-  border-color: rgba(196, 206, 211, 0.44);
-  background:
-    linear-gradient(135deg, rgba(12, 35, 64, 0.32), rgba(6, 21, 46, 0.94) 62%),
-    var(--card-bg-strong);
+  border-radius: 8px;
+  background: var(--card-bg);
+  display: grid;
+  grid-template-rows: 5px auto auto auto;
+  align-content: start;
+  overflow: hidden;
 }
 
 .game-card.win .game-status {
@@ -139,23 +121,105 @@
   color: #ffbec4;
 }
 
+.game-card.live .game-status {
+  color: #9af0c8;
+}
+
 .game-status {
+  min-width: 0;
+  border-top: 1px solid rgba(205, 211, 215, 0.1);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.025);
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  font-size: var(--text-small);
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.game-team-colors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.game-matchup-row {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  padding: 13px 10px 7px;
+}
+
+.game-team-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  justify-self: center;
+}
+
+.game-matchup-center {
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.game-matchup-center strong {
+  font-size: 1.2rem;
+}
+
+.game-matchup-center > span {
+  color: var(--muted);
+}
+
+.game-versus {
   color: var(--muted);
   font-size: var(--text-small);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 
-.matchup {
-  color: var(--ink);
-  font-size: var(--text-normal);
+.game-records-row {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 6px;
+  padding: 0 4px 8px;
+  color: var(--muted);
+  font-size: 0.55rem;
   font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
 }
 
-.game-detail {
-  color: #dfe4f4;
-  font-size: var(--text-normal);
+.game-records-row i {
+  color: rgba(205, 211, 215, 0.45);
+  font-style: normal;
+}
+
+.game-records-row span {
+  white-space: nowrap;
+}
+
+.game-record-summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.card-record-divider {
+  width: 1px;
+  height: 8px;
+  flex: 0 0 1px;
+  background: rgba(205, 211, 215, 0.5);
 }
 
 .empty-day {
@@ -193,6 +257,15 @@
 }
 
 @media (max-width: 575.98px) {
+  .game-matchup-row,
+  .game-records-row {
+    grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
+  }
+
+  .game-records-row > i {
+    justify-self: center;
+  }
+
   .schedule-body {
     padding-inline: 0;
   }

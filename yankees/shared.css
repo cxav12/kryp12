@@ -22,6 +22,120 @@
   --stat-number-size: 0.8125rem;
 }
 
+/* Shared segmented-control language used across Yankees pages. */
+:is(
+  .month-controls,
+  .stats-toggle,
+  .stats-scope-toggle,
+  .game-player-team-switcher,
+  .roster-tabs,
+  .leaderboard-toggle,
+  .quick-season-toggle,
+  .detail-split-controls,
+  .detail-tab-controls,
+  .pagination-controls,
+  .stats-pagination
+) {
+  gap: 4px !important;
+  border-radius: 999px !important;
+  background: #1b222d !important;
+  padding: 4px !important;
+}
+
+:is(
+  .btn-control,
+  .stats-toggle-button,
+  .stats-scope-button,
+  .game-player-team-button,
+  .roster-tab,
+  .standings-option,
+  .quick-season-button,
+  .detail-toggle,
+  .detail-tab,
+  .pagination-button,
+  .page-button,
+  .mobile-stat-category,
+  .sort-button
+) {
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: #aebfe5 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+:is(
+  .btn-control,
+  .stats-toggle-button,
+  .stats-scope-button,
+  .game-player-team-button,
+  .roster-tab,
+  .standings-option,
+  .quick-season-button,
+  .detail-toggle,
+  .detail-tab,
+  .pagination-button,
+  .page-button,
+  .mobile-stat-category,
+  .sort-button
+):is(:hover, :focus-visible) {
+  color: #fff !important;
+  background: rgba(10, 15, 22, 0.55) !important;
+}
+
+:is(
+  .btn-control,
+  .stats-toggle-button,
+  .stats-scope-button,
+  .game-player-team-button,
+  .roster-tab,
+  .standings-option,
+  .quick-season-button,
+  .detail-toggle,
+  .detail-tab,
+  .pagination-button,
+  .page-button,
+  .mobile-stat-category,
+  .sort-button
+).active,
+.roster-tab[aria-selected="true"] {
+  color: #fff !important;
+  background: #101720 !important;
+  box-shadow: inset 0 0 0 1px rgba(196, 206, 211, 0.08) !important;
+  font-weight: 800;
+}
+
+:is(.pagination-button, .page-button):disabled {
+  color: #4f5a6c !important;
+  background: transparent !important;
+  cursor: default;
+  opacity: 0.55;
+}
+
+.pagination-summary {
+  border: 0 !important;
+  color: #fff;
+  background: transparent !important;
+}
+
+.quick-season-divider {
+  display: none;
+}
+
+.btn-yankees,
+#search-button {
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: #fff !important;
+  background: #101720 !important;
+  box-shadow: inset 0 0 0 1px rgba(196, 206, 211, 0.12);
+}
+
+.btn-yankees:is(:hover, :focus-visible),
+#search-button:is(:hover, :focus-visible) {
+  background: #1b2633 !important;
+}
+
 body {
   min-height: 100vh;
   color: var(--ink);
@@ -71,9 +185,7 @@ b {
   flex: 0 0 auto;
   object-fit: contain;
   border: 0;
-  border-radius: 50%;
-  background: var(--logo-surface);
-  padding: 0.45rem;
+  object-fit: contain;
   filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.28));
 }
 
@@ -81,8 +193,6 @@ b {
   display: block;
   flex: 0 0 auto;
   max-width: none;
-  border-radius: 50%;
-  background: var(--logo-surface);
   object-fit: contain;
   object-position: center;
   image-rendering: auto;

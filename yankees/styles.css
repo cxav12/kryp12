@@ -186,11 +186,8 @@
 .recent-game-matchup img {
   width: clamp(44px, 5vw, 62px);
   height: clamp(44px, 5vw, 62px);
-  border-radius: 50%;
-  background: var(--logo-surface);
   object-fit: contain;
   opacity: 1;
-  padding: 4px;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.22));
 }
 
@@ -338,8 +335,8 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 0 10px 12px;
+  gap: 12px;
+  padding: 12px 16px 14px;
   color: var(--ink);
   text-align: center;
 }
@@ -364,7 +361,19 @@
   grid-template-columns: minmax(190px, 1fr) minmax(56px, 0.35fr) minmax(120px, 0.7fr) minmax(56px, 0.35fr) minmax(190px, 1fr);
   align-items: center;
   gap: 14px;
-  padding: 0 14px 14px;
+  padding: 8px 14px 14px;
+}
+
+.home-score-team-colors {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
 }
 
 .scoreboard-team {
@@ -387,14 +396,11 @@
 .scoreboard-team img {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  background: var(--logo-surface);
   object-fit: contain;
-  padding: 4px;
 }
 
 .scoreboard-team.is-yankees img {
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
 }
 
 .scoreboard-team-copy {
@@ -432,6 +438,14 @@
   font-weight: 800;
   text-align: center;
   text-transform: uppercase;
+}
+
+.game-scoreboard-top.win .scoreboard-state {
+  color: #9af0c8;
+}
+
+.game-scoreboard-top.loss .scoreboard-state {
+  color: #ff8f8f;
 }
 
 .game-scoreboard-top.in-progress .scoreboard-state {
@@ -478,15 +492,13 @@
   border-top: 1px solid rgba(196, 206, 211, 0.18);
   background: var(--card-bg);
   display: grid;
-  grid-template-columns: var(--game-detail-columns);
+  grid-template-columns: 1fr;
   overflow: hidden;
 }
 
 .scoring-plays-panel {
   min-width: 0;
   padding: 14px 16px;
-  padding-left: 0;
-  padding-right: 18px;
 }
 
 .scoring-plays-panel h3 {
@@ -640,28 +652,29 @@
 
 .scoring-play {
   min-width: 0;
+  border-left: 4px solid var(--scoring-team-color, var(--team-opponent));
+  border-top: 1px solid rgba(196, 206, 211, 0.12);
+  border-right: 1px solid rgba(196, 206, 211, 0.12);
+  border-bottom: 1px solid rgba(196, 206, 211, 0.12);
   display: grid;
   grid-template-columns: auto auto auto minmax(0, 1fr) auto;
   align-items: start;
   gap: 7px;
   padding: 7px 10px;
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(196, 206, 211, 0.12);
   border-radius: 4px;
 }
 
 .scoring-play.is-yankees {
-  border-left: 4px solid var(--team-yankees);
-  background: rgba(76, 118, 176, 0.14);
+  background: rgba(196, 206, 211, 0.12);
 }
 
 .scoring-play.is-opponent {
-  border-left: 4px solid var(--team-opponent);
-  background: rgba(199, 92, 92, 0.1);
+  background: rgba(196, 206, 211, 0.12);
 }
 
 .scoring-play:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
+  padding-bottom: 7px;
 }
 
 .scoring-play-inning,
@@ -742,17 +755,42 @@
 .game-player-stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  column-gap: 14px;
+  row-gap: 0;
   margin-top: 14px;
 }
 
-.game-player-team-switcher {
+.game-player-stats-toolbar {
   grid-column: 1 / -1;
-  justify-self: center;
+  min-height: 52px;
+  border: 1px solid rgba(77, 127, 190, 0.5);
+  border-radius: 8px;
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 6px 8px 6px 16px;
+}
+
+.game-player-stats-toolbar h2 {
+  margin: 0;
+  color: #f4f7ff;
+  font-size: var(--text-normal);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.game-player-stats-toolbar p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+.game-player-team-switcher {
   display: grid;
   grid-template-columns: repeat(2, minmax(120px, 1fr));
-  border: 1px solid var(--line);
-  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -776,10 +814,11 @@
   background: rgba(196, 206, 211, 0.12);
 }
 
-.game-player-team-button.active {
+.game-player-stats-toolbar .game-player-team-switcher .game-player-team-button.active {
   border-color: var(--control-active-border);
-  color: var(--control-active-ink);
-  background: var(--control-active-bg);
+  color: var(--team-toggle-text, var(--control-active-ink)) !important;
+  background: var(--team-toggle-color, var(--control-active-bg)) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16) !important;
 }
 
 .game-player-column {
@@ -788,6 +827,45 @@
   border-radius: 8px;
   background: var(--card-bg);
   overflow: hidden;
+  margin-top: 10px;
+}
+
+.game-player-stats > .game-notes-panel {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  border: 1px solid rgba(77, 127, 190, 0.5);
+  border-radius: 8px;
+  background: var(--card-bg);
+  padding: 14px 16px;
+}
+
+.game-player-stats > .game-notes-panel .game-notes-groups {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+}
+
+.recap-grid-heading {
+  grid-column: 1 / -1;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card-bg);
+  padding: 12px 16px;
+}
+
+.recap-grid-heading h2 {
+  margin: 0;
+  color: #f4f7ff;
+  font-size: var(--text-normal);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.recap-grid-heading p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: var(--text-small);
 }
 
 .game-player-column h3 {
@@ -881,7 +959,6 @@
   font-size: 0.68rem;
 }
 
-.game-player-loading,
 .game-player-empty,
 .game-player-unavailable p {
   margin: 0;
@@ -903,7 +980,7 @@
 
 .recap-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -937,7 +1014,6 @@
 }
 
 .comparison-legend,
-.comparison-stat-values,
 .comparison-stat-details {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -976,12 +1052,12 @@
 
 .comparison-team.yankees i,
 .comparison-fill.yankees {
-  background: var(--team-yankees);
+  background: var(--comparison-yankees-color, var(--team-yankees));
 }
 
 .comparison-team.opponent i,
 .comparison-fill.opponent {
-  background: var(--team-opponent);
+  background: var(--comparison-opponent-color, var(--team-opponent));
 }
 
 .comparison-stat {
@@ -995,19 +1071,6 @@
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-
-.comparison-stat-values strong {
-  min-width: 0;
-  color: #f7f8ff;
-  font-weight: 800;
-  line-height: 1.1;
-  text-align: center;
-}
-
-.comparison-stat-values strong.yankees,
-.comparison-stat-values strong.opponent {
-  color: #f7f8ff;
 }
 
 .comparison-stat-details small {
@@ -1026,18 +1089,37 @@
 }
 
 .comparison-track {
-  height: 7px;
+  height: 26px;
   overflow: hidden;
   border-radius: 999px;
   background: rgba(196, 206, 212, 0.12);
   display: flex;
+  gap: 4px;
 }
 
 .comparison-fill {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
-  min-width: 0;
+  min-width: 36px;
   border-radius: 0;
+}
+
+.comparison-fill strong {
+  padding-inline: 5px;
+  font-size: var(--text-small);
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.comparison-fill.yankees strong {
+  color: var(--comparison-yankees-text, #fff);
+}
+
+.comparison-fill.opponent strong {
+  color: var(--comparison-opponent-text, #fff);
 }
 
 .metrics-column .comparison-list {
@@ -1047,7 +1129,7 @@
 .metric-feature span {
   min-width: 0;
   overflow-wrap: anywhere;
-  color: rgba(196, 206, 212, 0.78);
+  color: #fff;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1057,11 +1139,10 @@
   display: grid;
   gap: 8px;
   padding: 18px 0;
-  border-bottom: 1px solid rgba(196, 206, 212, 0.1);
 }
 
 .metric-feature strong {
-  color: #fff;
+  color: var(--yankees-silver);
   font-weight: 800;
   line-height: 1;
 }
@@ -1080,12 +1161,42 @@
   text-transform: uppercase;
 }
 
+.game-note-feature p {
+  margin: 0;
+  color: var(--yankees-silver);
+  font-size: var(--text-small);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.game-note-lines {
+  display: grid;
+  gap: 5px;
+}
+
+.game-note-lines p strong {
+  color: #fff;
+  line-height: inherit;
+}
+
+.game-note-lines .challenge-success {
+  color: #9af0c8;
+}
+
+.game-note-lines .challenge-unsuccessful {
+  color: #ffbec4;
+}
+
 .recap-error {
   min-height: 220px;
   grid-column: 1 / -1;
 }
 
 @media (max-width: 1199.98px) {
+  .game-player-stats > .game-notes-panel .game-notes-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .recap-button-row {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1117,6 +1228,10 @@
 }
 
 @media (max-width: 767.98px) {
+  .game-player-stats > .game-notes-panel .game-notes-groups {
+    grid-template-columns: 1fr;
+  }
+
   .recent-games-grid {
     grid-template-columns: 1fr;
   }
@@ -1270,6 +1385,22 @@
 }
 
 @media (max-width: 575.98px) {
+  .game-player-stats-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .game-player-stats-toolbar h2 {
+    text-align: center;
+  }
+
+  .game-player-team-switcher {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .scoring-plays-panel,
   .game-notes-panel {
     padding: 12px;

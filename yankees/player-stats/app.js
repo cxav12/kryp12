@@ -293,7 +293,7 @@ function renderMobileLeaderboard(rows, start) {
     const image = document.createElement("img");
     if (item.isTeam) image.classList.add("team-logo-image", "team-logo");
     image.src = item.isTeam
-      ? `https://www.mlbstatic.com/team-logos/team-cap-on-light/${item.playerId}.svg`
+      ? `https://www.mlbstatic.com/team-logos/team-cap-on-dark/${item.playerId}.svg`
       : `https://img.mlbstatic.com/mlb-photos/image/upload/w_80,q_auto:best/v1/people/${item.playerId}/headshot/silo/current`;
     image.alt = "";
     image.loading = "lazy";

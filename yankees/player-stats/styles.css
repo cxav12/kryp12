@@ -375,8 +375,6 @@
   }
 
   .mobile-player-link img.team-logo-image {
-    border-radius: 50%;
-    background: var(--logo-surface);
     object-fit: contain;
     object-position: center;
     padding: 4px;

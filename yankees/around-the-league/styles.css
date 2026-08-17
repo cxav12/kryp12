@@ -628,7 +628,6 @@
 .hot-item {
   min-width: 0;
   border: 1px solid var(--line);
-  border-left: 5px solid var(--hot-team-color, #60798f);
   border-radius: 6px;
   background: var(--card-bg);
   display: grid;
@@ -686,8 +685,7 @@
 }
 
 .whos-not-list .hot-item {
-  border-color: rgba(255, 116, 128, 0.25);
-  border-left-color: var(--hot-team-color, #60798f);
+  border-color: var(--line);
 }
 
 .leaderboard-panel {

@@ -1,5 +1,6 @@
 const MLB_API = "https://statsapi.mlb.com/api/v1";
 const TEAM_ID = 147;
+const AL_EAST_TEAM_IDS = new Set([110, 111, 139, 141, 147]);
 const SEASON = new Date().getFullYear();
 const LIVE_REFRESH_MS = 30000;
 const MLB_TEAM_PRIMARY_COLORS = {
@@ -12,13 +13,11 @@ const MLB_TEAM_PRIMARY_COLORS = {
 };
 const NOTABLE_CACHE_MS = 5 * 60 * 1000;
 const HOT_PLAYERS_CACHE_MS = 6 * 60 * 60 * 1000;
-const HOT_PLAYERS_CACHE_KEY = `kryp12-hot-players-${SEASON}`;
+const HOT_PLAYERS_CACHE_KEY = `kryp12-hot-players-${SEASON}-v4`;
 const NOTABLE_LIMIT = 10;
 const HOT_HITTER_MIN_PA = 25;
 const HOT_HITTER_MIN_GAMES = 7;
 const HOT_HITTER_MIN_AT_BATS = 15;
-const HOT_PITCHER_LOOKBACK_DAYS = 21;
-const HOT_RELIEVER_LOOKBACK_DAYS = 14;
 const HOT_RELIEVER_MIN_GAMES = 5;
 const PLAYER_HEADSHOT_URL = (id) => `https://img.mlbstatic.com/mlb-photos/image/upload/w_336,h_280,c_fill,g_face,q_auto:best/v1/people/${id}/headshot/silo/current`;
 const BOX_SCORE_FIELDS = [
@@ -117,7 +116,6 @@ const els = {
   previousDate: document.querySelector("#previous-score-date"),
   nextDate: document.querySelector("#next-score-date"),
   scoreCards: document.querySelector("#score-cards"),
-  notableEvents: document.querySelector("#notable-events"),
   whosHot: document.querySelector("#whos-hot"),
   whosNot: document.querySelector("#whos-not"),
   standingsModeControls: document.querySelector("#standings-mode-controls"),
@@ -247,6 +245,8 @@ function standingsRecordsFromData(data) {
       const divisionName = division.division?.name || record.team.division?.name || "";
       const leagueName = division.league?.name || record.team.league?.name || "";
       const lastTen = record.records?.splitRecords?.find((split) => split.type === "lastTen");
+      const home = record.records?.splitRecords?.find((split) => split.type === "home");
+      const away = record.records?.splitRecords?.find((split) => split.type === "away");
       records.push({
         teamId: record.team.id,
         teamName: record.team.name || "Team",
@@ -254,6 +254,11 @@ function standingsRecordsFromData(data) {
         losses: record.leagueRecord?.losses ?? record.losses ?? "-",
         pct: record.leagueRecord?.pct || record.winningPercentage || "-",
         lastTen: lastTen ? `${lastTen.wins}-${lastTen.losses}` : "-",
+        homeRecord: home ? `${home.wins}-${home.losses}` : "-",
+        awayRecord: away ? `${away.wins}-${away.losses}` : "-",
+        runsScored: record.runsScored ?? "-",
+        runsAllowed: record.runsAllowed ?? "-",
+        runDifferential: record.runDifferential ?? "-",
         divisionGamesBack: record.divisionGamesBack ?? record.gamesBack ?? "-",
         leagueGamesBack: record.leagueGamesBack ?? record.gamesBack ?? "-",
         sportGamesBack: record.sportGamesBack ?? record.leagueGamesBack ?? record.gamesBack ?? "-",
@@ -319,12 +324,16 @@ function divisionOrder(name) {
 }
 
 function rankValue(record, mode) {
+  if (mode === "divisions") return record.divisionRank;
+  if (mode === "mlb") return record.sportRank;
   if (mode === "al" || mode === "nl") return record.leagueRank;
   if (mode === "wild-card") return record.wildCardRank;
   return record.leagueRank;
 }
 
 function gamesBackValue(record, mode) {
+  if (mode === "divisions") return record.divisionGamesBack;
+  if (mode === "mlb") return record.sportGamesBack;
   if (mode === "al" || mode === "nl") return record.leagueGamesBack;
   if (mode === "wild-card") return record.wildCardGamesBack;
   return record.leagueGamesBack;
@@ -349,6 +358,17 @@ function sortStandings(records, mode) {
 
 function filteredStandings() {
   const { mode } = state.standingsView;
+  if (mode === "mlb") return sortStandings(state.standingsRecords, mode);
+  if (mode === "divisions") {
+    return [...state.standingsRecords].sort((a, b) => {
+      const divisionDifference = divisionOrder(a.divisionName) - divisionOrder(b.divisionName);
+      if (divisionDifference) return divisionDifference;
+      const aRank = rankValue(a, mode);
+      const bRank = rankValue(b, mode);
+      if (Number.isFinite(aRank) && Number.isFinite(bRank)) return aRank - bRank;
+      return standingsFallbackSort(a, b);
+    });
+  }
   if (mode === "al") return sortStandings(state.standingsRecords.filter((record) => record.leagueName.includes("American")), mode);
   if (mode === "nl") return sortStandings(state.standingsRecords.filter((record) => record.leagueName.includes("National")), mode);
   if (mode === "wild-card") {
@@ -385,6 +405,12 @@ function standingsCell(label, value, className = "") {
   return cell;
 }
 
+function signedStandingsValue(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return value ?? "-";
+  return number > 0 ? `+${number}` : String(number);
+}
+
 function renderStandingsRows() {
   const records = filteredStandings();
   els.standingsBody.replaceChildren();
@@ -392,7 +418,7 @@ function renderStandingsRows() {
   if (!records.length) {
     const row = element("tr");
     const cell = element("td", "standings-empty", "Standings unavailable");
-    cell.colSpan = 8;
+    cell.colSpan = 14;
     row.append(cell);
     els.standingsBody.append(row);
     return;
@@ -400,15 +426,25 @@ function renderStandingsRows() {
 
   const fragment = document.createDocumentFragment();
   let activeLeague = "";
+  let activeDivision = "";
   records.forEach((record, index) => {
     if (state.standingsView.mode === "wild-card" && record.leagueName !== activeLeague) {
       activeLeague = record.leagueName;
       const leagueRow = element("tr", "standings-league-divider");
       const leagueCell = element("th", "", leagueShortName(activeLeague));
-      leagueCell.colSpan = 8;
+      leagueCell.colSpan = 14;
       leagueCell.scope = "rowgroup";
       leagueRow.append(leagueCell);
       fragment.append(leagueRow);
+    }
+    if (state.standingsView.mode === "divisions" && record.divisionName !== activeDivision) {
+      activeDivision = record.divisionName;
+      const divisionRow = element("tr", "standings-league-divider standings-division-divider");
+      const divisionCell = element("th", "", divisionShortName(activeDivision));
+      divisionCell.colSpan = 14;
+      divisionCell.scope = "rowgroup";
+      divisionRow.append(divisionCell);
+      fragment.append(divisionRow);
     }
     const row = element("tr", "team-standing-row");
     row.style.setProperty("--standing-team-color", teamPrimaryColor({ id: record.teamId }));
@@ -422,8 +458,14 @@ function renderStandingsRows() {
       standingsCell("L", record.losses),
       standingsCell("PCT", record.pct),
       standingsCell("GB", gamesBackValue(record, state.standingsView.mode)),
+      standingsCell("Wild Card Games Back", record.divisionRank === 1 ? "-" : record.wildCardGamesBack),
       standingsCell("Last 10", record.lastTen),
       standingsCell("Streak", streakValue(record)),
+      standingsCell("Home", record.homeRecord),
+      standingsCell("Away", record.awayRecord),
+      standingsCell("Runs Scored", record.runsScored),
+      standingsCell("Runs Against", record.runsAllowed),
+      standingsCell("Run Differential", signedStandingsValue(record.runDifferential)),
     );
     fragment.append(row);
   });
@@ -454,7 +496,7 @@ async function loadStandings() {
   } catch (error) {
     const row = element("tr");
     const cell = element("td", "standings-empty", "Could not load standings.");
-    cell.colSpan = 8;
+    cell.colSpan = 14;
     row.append(cell);
     els.standingsBody.replaceChildren(row);
     setDataStatus("standings", "error");
@@ -528,7 +570,7 @@ function renderWhosHot() {
   const loading = teamLoading || status === "loading";
   if (loading && els.whosHot.querySelector(".hot-message") && els.whosNot.querySelector(".hot-message")) return;
 
-  const playerName = (player) => player ? `${player.playerName} | ${player.teamAbbreviation}` : "Unavailable";
+  const playerName = (player) => player ? `${player.playerName} · ${player.teamAbbreviation}` : "Unavailable";
   const playerImage = (player) => player
     ? mediaImage(PLAYER_HEADSHOT_URL(player.playerId), "hot-player-headshot", `${player.playerName} headshot`, 48, 44)
     : null;
@@ -537,7 +579,7 @@ function renderWhosHot() {
     : null;
   const hitterStats = (player) => player
     ? `AVG ${player.avg} | ${player.homeRuns} HR | ${player.rbi} RBI | OPS ${player.ops}`
-    : "10-game hitting data is unavailable";
+    : "15-game hitting data is unavailable";
   const pitcherStats = (player) => player
     ? `${player.era} ERA | ${player.whip} WHIP | ${player.strikeouts} K | ${player.inningsPitched} IP`
     : "Recent starting-pitching data is unavailable";
@@ -546,18 +588,18 @@ function renderWhosHot() {
     : "Recent relief data is unavailable";
 
   els.whosHot.replaceChildren(
-    hotItem("Longest Winning Streak", hotTeam?.teamName || "Unavailable", hotTeam ? `${hotTeam.streakNumber}W | Longest active streak` : "Winning-streak data is unavailable", teamImage(hotTeam), hotTeam),
-    hotItem("Best Hitter | Last 10", playerName(hitters?.best), hitterStats(hitters?.best), playerImage(hitters?.best), hitters?.best),
-    hotItem("Best Pitcher | Last 21 Days", playerName(pitchers?.best), pitcherStats(pitchers?.best), playerImage(pitchers?.best), pitchers?.best),
-    hotItem("Best Reliever | Last 14 Days", playerName(relievers?.best), relieverStats(relievers?.best), playerImage(relievers?.best), relievers?.best),
-    hotItem("Saves Leader | Last 14 Days", playerName(relievers?.saveLeader), relievers?.saveLeader ? `${relievers.saveLeader.saves} SV | ${relievers.saveLeader.era} ERA | ${relievers.saveLeader.strikeouts} K` : "Recent saves data is unavailable", playerImage(relievers?.saveLeader), relievers?.saveLeader),
+    hotItem("Longest Winning Streak", hotTeam?.teamName || "Unavailable", hotTeam ? `${hotTeam.streakNumber} ${hotTeam.streakNumber === 1 ? "Win" : "Wins"}` : "Winning-streak data is unavailable", teamImage(hotTeam), hotTeam),
+    hotItem("Best Hitter (Last 15 games)", playerName(hitters?.best), hitterStats(hitters?.best), playerImage(hitters?.best), hitters?.best),
+    hotItem("Best Pitcher (Last 5 games)", playerName(pitchers?.best), pitcherStats(pitchers?.best), playerImage(pitchers?.best), pitchers?.best),
+    hotItem("Best Reliever (Last 5 games)", playerName(relievers?.best), relieverStats(relievers?.best), playerImage(relievers?.best), relievers?.best),
+    hotItem("Saves Leader (Last 5 games)", playerName(relievers?.saveLeader), relievers?.saveLeader ? `${relievers.saveLeader.saves} SV | ${relievers.saveLeader.era} ERA | ${relievers.saveLeader.strikeouts} K` : "Recent saves data is unavailable", playerImage(relievers?.saveLeader), relievers?.saveLeader),
   );
   els.whosNot.replaceChildren(
-    hotItem("Longest Losing Streak", coldTeam?.teamName || "Unavailable", coldTeam ? `${coldTeam.streakNumber}L | Longest active streak` : "Losing-streak data is unavailable", teamImage(coldTeam), coldTeam),
-    hotItem("Worst Hitter | Last 10", playerName(hitters?.worst), hitterStats(hitters?.worst), playerImage(hitters?.worst), hitters?.worst),
-    hotItem("Worst Pitcher | Last 21 Days", playerName(pitchers?.worst), pitcherStats(pitchers?.worst), playerImage(pitchers?.worst), pitchers?.worst),
-    hotItem("Worst Reliever | Last 14 Days", playerName(relievers?.worst), relieverStats(relievers?.worst), playerImage(relievers?.worst), relievers?.worst),
-    hotItem("Blown Saves Leader | Last 14 Days", playerName(relievers?.blownSaveLeader), relievers?.blownSaveLeader ? `${relievers.blownSaveLeader.blownSaves} BS | ${relievers.blownSaveLeader.era} ERA | ${relievers.blownSaveLeader.whip} WHIP` : "Recent blown-save data is unavailable", playerImage(relievers?.blownSaveLeader), relievers?.blownSaveLeader),
+    hotItem("Longest Losing Streak", coldTeam?.teamName || "Unavailable", coldTeam ? `${coldTeam.streakNumber} ${coldTeam.streakNumber === 1 ? "Loss" : "Losses"}` : "Losing-streak data is unavailable", teamImage(coldTeam), coldTeam),
+    hotItem("Worst Hitter (Last 15 games)", playerName(hitters?.worst), hitterStats(hitters?.worst), playerImage(hitters?.worst), hitters?.worst),
+    hotItem("Worst Pitcher (Last 5 games)", playerName(pitchers?.worst), pitcherStats(pitchers?.worst), playerImage(pitchers?.worst), pitchers?.worst),
+    hotItem("Worst Reliever (Last 5 games)", playerName(relievers?.worst), relieverStats(relievers?.worst), playerImage(relievers?.worst), relievers?.worst),
+    hotItem("Blown Saves Leader (Last 5 games)", playerName(relievers?.blownSaveLeader), relievers?.blownSaveLeader ? `${relievers.blownSaveLeader.blownSaves} BS | ${relievers.blownSaveLeader.era} ERA | ${relievers.blownSaveLeader.whip} WHIP` : "Recent blown-save data is unavailable", playerImage(relievers?.blownSaveLeader), relievers?.blownSaveLeader),
   );
   els.whosHot.setAttribute("aria-busy", String(loading));
   els.whosNot.setAttribute("aria-busy", String(loading));
@@ -583,7 +625,7 @@ async function getHitterRankings() {
   url.searchParams.set("season", SEASON);
   url.searchParams.set("sportIds", "1");
   url.searchParams.set("playerPool", "QUALIFIED");
-  url.searchParams.set("numGames", "10");
+  url.searchParams.set("numGames", "15");
   url.searchParams.set("limit", "1000");
   url.searchParams.set("sortStat", "onBasePlusSlugging");
   url.searchParams.set("hydrate", "team");
@@ -599,7 +641,7 @@ async function getHitterRankings() {
     .sort((a, b) => statNumber(b.stat?.ops) - statNumber(a.stat?.ops)
       || statNumber(b.stat?.homeRuns) - statNumber(a.stat?.homeRuns)
       || statNumber(b.stat?.rbi) - statNumber(a.stat?.rbi));
-  if (!hitters.length) throw new Error("No qualified 10-game hitters found");
+  if (!hitters.length) throw new Error("No qualified 15-game hitters found");
   return {
     best: hitterSummary(hitters[0]),
     worst: hitterSummary(hitters[hitters.length - 1]),
@@ -607,10 +649,8 @@ async function getHitterRankings() {
 }
 
 async function getPitcherCandidates() {
-  const endDate = localNoon(new Date());
-  const startDate = addDays(endDate, -HOT_PITCHER_LOOKBACK_DAYS);
   const url = new URL(`${MLB_API}/stats`);
-  url.searchParams.set("stats", "byDateRange");
+  url.searchParams.set("stats", "lastXGames");
   url.searchParams.set("group", "pitching");
   url.searchParams.set("gameType", "R");
   url.searchParams.set("season", SEASON);
@@ -618,8 +658,7 @@ async function getPitcherCandidates() {
   url.searchParams.set("playerPool", "QUALIFIED");
   url.searchParams.set("limit", "1000");
   url.searchParams.set("sortStat", "earnedRunAverage");
-  url.searchParams.set("startDate", dateKey(startDate));
-  url.searchParams.set("endDate", dateKey(endDate));
+  url.searchParams.set("numGames", "5");
   url.searchParams.set("hydrate", "team");
   url.searchParams.set("fields", HOT_PITCHER_CANDIDATE_FIELDS);
 
@@ -718,39 +757,86 @@ function relieverSummary(split) {
   };
 }
 
+function recentRelieverSummary(person, candidate) {
+  const appearances = (person.stats?.[0]?.splits || [])
+    .filter((split) => statNumber(split.stat?.gamesStarted) === 0)
+    .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")))
+    .slice(0, 5);
+  if (appearances.length < HOT_RELIEVER_MIN_GAMES) return null;
+
+  const totals = appearances.reduce((sum, appearance) => {
+    sum.outs += statNumber(appearance.stat?.outs);
+    sum.earnedRuns += statNumber(appearance.stat?.earnedRuns);
+    sum.strikeouts += statNumber(appearance.stat?.strikeOuts);
+    sum.walks += statNumber(appearance.stat?.baseOnBalls);
+    sum.hits += statNumber(appearance.stat?.hits);
+    sum.saves += statNumber(appearance.stat?.saves);
+    sum.blownSaves += statNumber(appearance.stat?.blownSaves);
+    return sum;
+  }, { outs: 0, earnedRuns: 0, strikeouts: 0, walks: 0, hits: 0, saves: 0, blownSaves: 0 });
+
+  if (totals.outs < 1) return null;
+  const innings = totals.outs / 3;
+  const eraValue = totals.earnedRuns * 9 / innings;
+  const whipValue = (totals.walks + totals.hits) / innings;
+  return {
+    playerId: person.id,
+    playerName: person.fullName || candidate?.player?.fullName || "Player",
+    teamAbbreviation: teamAbbreviation(candidate?.team || person.currentTeam),
+    eraValue,
+    whipValue,
+    era: eraValue.toFixed(2),
+    whip: whipValue.toFixed(2),
+    strikeouts: totals.strikeouts,
+    saves: totals.saves,
+    blownSaves: totals.blownSaves,
+  };
+}
+
 async function getRelieverRankings() {
-  const endDate = localNoon(new Date());
-  const startDate = addDays(endDate, -HOT_RELIEVER_LOOKBACK_DAYS);
   const url = new URL(`${MLB_API}/stats`);
-  url.searchParams.set("stats", "byDateRange");
+  url.searchParams.set("stats", "season");
   url.searchParams.set("group", "pitching");
   url.searchParams.set("gameType", "R");
   url.searchParams.set("season", SEASON);
   url.searchParams.set("sportIds", "1");
   url.searchParams.set("playerPool", "ALL");
   url.searchParams.set("limit", "1000");
-  url.searchParams.set("startDate", dateKey(startDate));
-  url.searchParams.set("endDate", dateKey(endDate));
   url.searchParams.set("hydrate", "team");
   url.searchParams.set("fields", HOT_RELIEVER_FIELDS);
 
   const response = await fetch(url);
   if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
   const data = await response.json();
-  const relievers = (data.stats?.[0]?.splits || [])
+  const candidates = (data.stats?.[0]?.splits || [])
     .filter((split) => split.player?.id
       && statNumber(split.stat?.gamesStarted) === 0
-      && statNumber(split.stat?.gamesPlayed) >= HOT_RELIEVER_MIN_GAMES
-      && statNumber(split.stat?.outs) >= 9)
-    .map(relieverSummary)
+      && statNumber(split.stat?.gamesPlayed) >= HOT_RELIEVER_MIN_GAMES);
+  if (!candidates.length) throw new Error("No qualified recent relievers found");
+
+  const logsUrl = new URL(`${MLB_API}/people`);
+  logsUrl.searchParams.set("personIds", candidates.map((split) => split.player.id).join(","));
+  logsUrl.searchParams.set("hydrate", `stats(group=[pitching],type=[gameLog],season=${SEASON}),currentTeam`);
+  logsUrl.searchParams.set("fields", "people,id,fullName,currentTeam,stats,splits,date,stat,gamesStarted,outs,earnedRuns,strikeOuts,baseOnBalls,hits,saves,blownSaves,team,name,abbreviation,teamCode,fileCode,shortName");
+  const logsResponse = await fetch(logsUrl);
+  if (!logsResponse.ok) throw new Error(`MLB API returned ${logsResponse.status}`);
+  const logsData = await logsResponse.json();
+  const candidateLookup = new Map(candidates.map((split) => [Number(split.player.id), split]));
+  const relievers = (logsData.people || [])
+    .map((person) => recentRelieverSummary(person, candidateLookup.get(Number(person.id))))
+    .filter(Boolean)
     .sort((a, b) => a.eraValue - b.eraValue || a.whipValue - b.whipValue || b.strikeouts - a.strikeouts);
   if (!relievers.length) throw new Error("No qualified recent relievers found");
   const saveLeader = relievers
     .filter((reliever) => reliever.saves > 0)
-    .sort((a, b) => b.saves - a.saves || a.eraValue - b.eraValue)[0] || null;
+    .sort((a, b) => b.saves - a.saves
+      || a.eraValue - b.eraValue
+      || a.whipValue - b.whipValue)[0] || null;
   const blownSaveLeader = relievers
     .filter((reliever) => reliever.blownSaves > 0)
-    .sort((a, b) => b.blownSaves - a.blownSaves || b.eraValue - a.eraValue)[0] || null;
+    .sort((a, b) => b.blownSaves - a.blownSaves
+      || a.eraValue - b.eraValue
+      || a.whipValue - b.whipValue)[0] || null;
   return { best: relievers[0], worst: relievers[relievers.length - 1], saveLeader, blownSaveLeader };
 }
 
@@ -1110,6 +1196,28 @@ function renderMessage(message, className = "scores-message") {
   els.scoreCards.replaceChildren(element("p", className, message));
 }
 
+function isAlEastGame(game) {
+  const awayTeamId = Number(game.teams?.away?.team?.id);
+  const homeTeamId = Number(game.teams?.home?.team?.id);
+  return AL_EAST_TEAM_IDS.has(awayTeamId) || AL_EAST_TEAM_IDS.has(homeTeamId);
+}
+
+function scoreGroup(title, games, { showEmpty = false } = {}) {
+  const section = element("section", "scores-group");
+  const heading = element("h3", "scores-group-title", title);
+  section.append(heading);
+
+  if (!games.length && showEmpty) {
+    section.append(element("p", "scores-group-empty", "No AL East games are scheduled for this date."));
+    return section;
+  }
+
+  const grid = element("div", "scores-grid");
+  games.forEach((game) => grid.append(scoreCard(game)));
+  section.append(grid);
+  return section;
+}
+
 function renderScores(games, { preserveExisting = false } = {}) {
   state.currentScoreGames = games;
   if (!games.length) {
@@ -1120,15 +1228,21 @@ function renderScores(games, { preserveExisting = false } = {}) {
   if (preserveExisting) {
     const existingCards = [...els.scoreCards.querySelectorAll(".score-card")];
     const sameGames = existingCards.length === games.length
-      && existingCards.every((card, index) => card.dataset.gamePk === String(games[index].gamePk));
+      && games.every((game) => existingCards.some((card) => card.dataset.gamePk === String(game.gamePk)));
     if (sameGames) {
-      existingCards.forEach((card, index) => updateScoreCard(card, games[index]));
+      games.forEach((game) => {
+        const card = existingCards.find((candidate) => candidate.dataset.gamePk === String(game.gamePk));
+        if (card) updateScoreCard(card, game);
+      });
       return;
     }
   }
 
+  const alEastGames = games.filter(isAlEastGame);
+  const otherGames = games.filter((game) => !isAlEastGame(game));
   const fragment = document.createDocumentFragment();
-  games.forEach((game) => fragment.append(scoreCard(game)));
+  fragment.append(scoreGroup("AL East Games", alEastGames, { showEmpty: true }));
+  if (otherGames.length) fragment.append(scoreGroup("Other MLB Games", otherGames));
   els.scoreCards.replaceChildren(fragment);
 }
 
@@ -1414,14 +1528,11 @@ async function loadScores({ silent = false } = {}) {
     els.scoreCards.setAttribute("aria-busy", "false");
     setDataStatus("scores", "ready");
     scheduleLiveRefresh(games);
-    loadNotableEvents(games, requestId, state.abortController.signal, { silent });
   } catch (error) {
     if (error.name === "AbortError" || requestId !== state.requestId) return;
     els.scoreCards.setAttribute("aria-busy", "false");
     if (!silent) {
       renderMessage("MLB scores are unavailable right now.", "scores-message error");
-      els.notableEvents.setAttribute("aria-busy", "false");
-      renderNotableMessage("Notable performances are unavailable right now.", "error");
     }
     setDataStatus("scores", "error");
   }
@@ -1430,8 +1541,6 @@ async function loadScores({ silent = false } = {}) {
 function selectDate(date) {
   state.selectedDate = localNoon(date);
   renderDatePicker();
-  els.notableEvents.setAttribute("aria-busy", "true");
-  renderNotableMessage("Finding notable performances...");
   loadScores();
 }
 

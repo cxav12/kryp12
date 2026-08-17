@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://www.mlbstatic.com" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=20260817-accent-only-cards1" />
-    <link rel="stylesheet" href="../shared.css?v=20260817-borderless-inner-cards1" />
+    <link rel="stylesheet" href="./styles.css?v=20260817-standings-order2" />
+    <link rel="stylesheet" href="../shared.css?v=20260817-muted-footer2" />
   </head>
   <body>
     <main class="site-shell container-fluid">
@@ -68,54 +68,8 @@
                 <button class="scores-date-arrow" id="next-score-date" type="button" aria-label="Next day">&#8250;</button>
               </nav>
 
-              <div class="scores-grid" id="score-cards" aria-live="polite" aria-busy="true">
+              <div class="scores-groups" id="score-cards" aria-live="polite" aria-busy="true">
                 <p class="scores-message">Loading MLB scores...</p>
-              </div>
-            </section>
-
-            <section class="league-panel notables-panel" aria-labelledby="mlb-headlines-title">
-              <header class="league-section-header">
-                <h2 class="panel-heading mb-0" id="mlb-headlines-title">Notable Performances</h2>
-              </header>
-              <ul class="notables-list" id="notable-events" aria-live="polite" aria-busy="true">
-                <li class="notables-message">Finding notable performances...</li>
-              </ul>
-            </section>
-
-            <section class="league-panel standings-panel" aria-labelledby="standings-title">
-              <header class="league-section-header standings-head">
-                <h2 class="panel-heading mb-0" id="standings-title">Standings</h2>
-              </header>
-              <div class="standings-switcher mb-3" id="standings-mode-controls" role="group" aria-label="Standings view and season">
-                <button class="standings-switch active" type="button" data-standings-mode="al" aria-pressed="true">American League</button>
-                <button class="standings-switch" type="button" data-standings-mode="nl" aria-pressed="false">National League</button>
-                <button class="standings-switch" type="button" data-standings-mode="wild-card" aria-pressed="false">Wild Card</button>
-                <div class="standings-season-control" aria-label="Standings season selector">
-                  <button class="standings-season-arrow" id="previous-standings-season" type="button" aria-label="Previous standings season">‹</button>
-                  <output id="standings-season" aria-live="polite">2026</output>
-                  <button class="standings-season-arrow" id="next-standings-season" type="button" aria-label="Next standings season">›</button>
-                </div>
-              </div>
-              <div class="standings-table-shell">
-                <table class="standings-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Rank</th>
-                      <th scope="col">Team</th>
-                      <th scope="col">W</th>
-                      <th scope="col">L</th>
-                      <th scope="col">PCT</th>
-                      <th scope="col">GB</th>
-                      <th scope="col" aria-label="Last 10 games">L10</th>
-                      <th scope="col">Streak</th>
-                    </tr>
-                  </thead>
-                  <tbody id="standings-body">
-                    <tr>
-                      <td colspan="8">Loading standings</td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
             </section>
 
@@ -140,6 +94,51 @@
               </div>
             </section>
 
+            <section class="league-panel standings-panel" aria-labelledby="standings-title">
+              <header class="league-section-header standings-head">
+                <h2 class="panel-heading mb-0" id="standings-title">Standings</h2>
+              </header>
+              <div class="standings-switcher mb-3" id="standings-mode-controls" role="group" aria-label="Standings view and season">
+                <button class="standings-switch" type="button" data-standings-mode="divisions" aria-pressed="false">Division</button>
+                <button class="standings-switch active" type="button" data-standings-mode="al" aria-pressed="true">American League</button>
+                <button class="standings-switch" type="button" data-standings-mode="nl" aria-pressed="false">National League</button>
+                <button class="standings-switch" type="button" data-standings-mode="mlb" aria-pressed="false">MLB</button>
+                <button class="standings-switch" type="button" data-standings-mode="wild-card" aria-pressed="false">Wild Card</button>
+                <div class="standings-season-control" aria-label="Standings season selector">
+                  <button class="standings-season-arrow" id="previous-standings-season" type="button" aria-label="Previous standings season">‹</button>
+                  <output id="standings-season" aria-live="polite">2026</output>
+                  <button class="standings-season-arrow" id="next-standings-season" type="button" aria-label="Next standings season">›</button>
+                </div>
+              </div>
+              <div class="standings-table-shell">
+                <table class="standings-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Rank</th>
+                      <th scope="col">Team</th>
+                      <th scope="col">W</th>
+                      <th scope="col">L</th>
+                      <th scope="col">PCT</th>
+                      <th scope="col">GB</th>
+                      <th scope="col" aria-label="Wild Card Games Back">WCGB</th>
+                      <th scope="col" aria-label="Last 10 games">L10</th>
+                      <th scope="col">Streak</th>
+                      <th scope="col">Home</th>
+                      <th scope="col">Away</th>
+                      <th scope="col" aria-label="Runs Scored">RS</th>
+                      <th scope="col" aria-label="Runs Against">RA</th>
+                      <th scope="col" aria-label="Run Differential">Diff</th>
+                    </tr>
+                  </thead>
+                  <tbody id="standings-body">
+                    <tr>
+                      <td colspan="14">Loading standings</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             <section class="league-panel leaderboard-panel" aria-labelledby="league-leaders-title">
               <header class="league-section-header leaderboard-header">
                 <h2 class="panel-heading mb-0" id="league-leaders-title">League Leaders</h2>
@@ -157,12 +156,16 @@
       </section>
       <footer class="site-footer">
         <nav class="site-footer-links" aria-label="Footer">
-          <a class="site-footer-link" href="/yankees/contact/">Contact</a>
-          <a class="site-footer-link" href="/yankees/legal-disclaimer/">Legal Disclaimer</a>
+          <span class="site-footer-item">© <span data-current-year>2026</span> kryp12.com</span>
+          <span class="site-footer-item">Unofficial Yankees fan site</span>
+          <a class="site-footer-link site-footer-item" href="/yankees/">Home</a>
+          <a class="site-footer-link site-footer-item" href="/yankees/contact/">Contact</a>
+          <a class="site-footer-link site-footer-item" href="/yankees/legal-disclaimer/">Legal Disclaimer</a>
         </nav>
       </footer>
     </main>
 
-    <script src="./app.js?v=20260817-hot-cache1" defer></script>
+    <script src="../shared.js?v=20260817-dynamic-year1" defer></script>
+    <script src="./app.js?v=20260817-reliever-game-logs1" defer></script>
   </body>
 </html>

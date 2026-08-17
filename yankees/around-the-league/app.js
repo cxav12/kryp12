@@ -11,25 +11,13 @@ const MLB_TEAM_PRIMARY_COLORS = {
   139: "#8FBCE6", 140: "#C0111F", 141: "#134A8E", 142: "#D31145", 143: "#E81828",
   144: "#CE1141", 145: "#C4CED4", 146: "#00A3E0", 147: "#C4CED3", 158: "#FFC52F",
 };
-const NOTABLE_CACHE_MS = 5 * 60 * 1000;
 const HOT_PLAYERS_CACHE_MS = 6 * 60 * 60 * 1000;
 const HOT_PLAYERS_CACHE_KEY = `kryp12-hot-players-${SEASON}-v4`;
-const NOTABLE_LIMIT = 10;
 const HOT_HITTER_MIN_PA = 25;
 const HOT_HITTER_MIN_GAMES = 7;
 const HOT_HITTER_MIN_AT_BATS = 15;
 const HOT_RELIEVER_MIN_GAMES = 5;
 const PLAYER_HEADSHOT_URL = (id) => `https://img.mlbstatic.com/mlb-photos/image/upload/w_336,h_280,c_fill,g_face,q_auto:best/v1/people/${id}/headshot/silo/current`;
-const BOX_SCORE_FIELDS = [
-  "teams", "away", "home", "team", "id", "name", "abbreviation", "teamStats", "players", "person", "fullName",
-  "stats", "batting", "atBats", "runs", "hits", "doubles", "triples", "homeRuns", "rbi", "baseOnBalls",
-  "strikeOuts", "stolenBases", "pitching", "inningsPitched", "earnedRuns", "completeGames", "shutouts", "saves",
-].join(",");
-const PLAY_BY_PLAY_FIELDS = [
-  "allPlays", "result", "type", "event", "eventType", "description", "rbi", "awayScore", "homeScore", "about",
-  "isScoringPlay", "inning", "halfInning", "isComplete", "matchup", "batter", "id", "fullName",
-].join(",");
-const NOTABLE_FEED_FIELDS = `liveData,boxscore,${BOX_SCORE_FIELDS},plays,${PLAY_BY_PLAY_FIELDS}`;
 const HOT_HITTER_FIELDS = "stats,splits,stat,gamesPlayed,plateAppearances,atBats,avg,homeRuns,rbi,ops,player,id,fullName,team,name,abbreviation";
 const HOT_PITCHER_CANDIDATE_FIELDS = "stats,splits,stat,gamesStarted,outs,inningsPitched,earnedRuns,strikeOuts,baseOnBalls,hits,era,whip,player,id,fullName,team,name,abbreviation";
 const HOT_RELIEVER_FIELDS = "stats,splits,stat,gamesPlayed,gamesStarted,outs,inningsPitched,earnedRuns,strikeOuts,baseOnBalls,hits,era,whip,saves,blownSaves,player,id,fullName,team,name,abbreviation";
@@ -83,8 +71,6 @@ const state = {
   requestId: 0,
   abortController: null,
   refreshTimer: null,
-  notableCache: new Map(),
-  notableSignature: "",
   hotPlayers: {
     hitters: null,
     pitchers: null,
@@ -226,15 +212,6 @@ async function getStandings(season = state.standingsView.season) {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
   return response.json();
-}
-
-async function getNotableGameData(game, signal) {
-  const url = new URL(`https://statsapi.mlb.com/api/v1.1/game/${game.gamePk}/feed/live`);
-  url.searchParams.set("fields", NOTABLE_FEED_FIELDS);
-  const response = await fetch(url, { signal });
-  if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
-  const data = await response.json();
-  return { game, boxscore: data.liveData?.boxscore || {}, playByPlay: data.liveData?.plays || {} };
 }
 
 function standingsRecordsFromData(data) {
@@ -737,26 +714,6 @@ function persistHotPlayersCache() {
   }
 }
 
-function relieverSummary(split) {
-  const outs = statNumber(split.stat?.outs);
-  const innings = outs / 3;
-  const whipValue = split.stat?.whip
-    ? statNumber(split.stat.whip)
-    : innings ? (statNumber(split.stat?.baseOnBalls) + statNumber(split.stat?.hits)) / innings : Number.POSITIVE_INFINITY;
-  return {
-    playerId: split.player.id,
-    playerName: split.player?.fullName || "Player",
-    teamAbbreviation: teamAbbreviation(split.team),
-    eraValue: statNumber(split.stat?.era),
-    whipValue,
-    era: split.stat?.era || "-",
-    whip: split.stat?.whip || (Number.isFinite(whipValue) ? whipValue.toFixed(2) : "-"),
-    strikeouts: statNumber(split.stat?.strikeOuts),
-    saves: statNumber(split.stat?.saves),
-    blownSaves: statNumber(split.stat?.blownSaves),
-  };
-}
-
 function recentRelieverSummary(person, candidate) {
   const appearances = (person.stats?.[0]?.splits || [])
     .filter((split) => statNumber(split.stat?.gamesStarted) === 0)
@@ -1249,254 +1206,6 @@ function renderScores(games, { preserveExisting = false } = {}) {
 function statNumber(value) {
   const number = Number(value);
   return Number.isFinite(number) ? number : 0;
-}
-
-function isFinalGame(game) {
-  const abstractState = String(game.status?.abstractGameState || "").toLowerCase();
-  return abstractState === "final" || game.status?.codedGameState === "F";
-}
-
-function isStartedGame(game) {
-  return isFinalGame(game) || isLiveGame(game);
-}
-
-function gameScore(game) {
-  const away = game.teams?.away || {};
-  const home = game.teams?.home || {};
-  return `${teamAbbreviation(away.team)} ${away.score ?? "-"} - ${teamAbbreviation(home.team)} ${home.score ?? "-"}`;
-}
-
-function notableTeam(boxscore, game, side) {
-  return { ...(game.teams?.[side]?.team || {}), ...(boxscore.teams?.[side]?.team || {}) };
-}
-
-function playerRecords(boxscore, game) {
-  return ["away", "home"].flatMap((side) => {
-    const boxTeam = boxscore.teams?.[side] || {};
-    const team = notableTeam(boxscore, game, side);
-    return Object.values(boxTeam.players || {}).map((player) => ({ player, side, team }));
-  });
-}
-
-function notableEventsFromGame({ game, boxscore, playByPlay }) {
-  const events = [];
-  const players = playerRecords(boxscore, game);
-  const hitTypes = new Map();
-  const grandSlams = new Map();
-  const plays = playByPlay.allPlays || [];
-  const hitEvents = new Set(["single", "double", "triple", "home_run"]);
-  const addEvent = (headline, priority, key, team) => {
-    events.push({ headline, priority, key, score: gameScore(game), team });
-  };
-
-  plays.forEach((play) => {
-    const batterId = Number(play.matchup?.batter?.id);
-    if (!Number.isFinite(batterId)) return;
-    const eventType = play.result?.eventType;
-    if (hitEvents.has(eventType)) {
-      if (!hitTypes.has(batterId)) hitTypes.set(batterId, new Set());
-      hitTypes.get(batterId).add(eventType);
-    }
-    if (eventType === "home_run" && statNumber(play.result?.rbi) >= 4) {
-      grandSlams.set(batterId, (grandSlams.get(batterId) || 0) + 1);
-    }
-  });
-
-  players.forEach(({ player, side, team }) => {
-    const playerId = Number(player.person?.id);
-    const name = player.person?.fullName || "A player";
-    const abbreviation = teamAbbreviation(team);
-    const batting = player.stats?.batting || {};
-    const pitching = player.stats?.pitching || {};
-    const homeRuns = statNumber(batting.homeRuns);
-    const hits = statNumber(batting.hits);
-    const rbi = statNumber(batting.rbi);
-    const stolenBases = statNumber(batting.stolenBases);
-    const slamCount = grandSlams.get(playerId) || 0;
-    const cycle = hitTypes.get(playerId)?.size === hitEvents.size;
-
-    if (cycle) {
-      addEvent(`${name} hits for the cycle for ${abbreviation}`, 0, `cycle-${game.gamePk}-${playerId}`, team);
-    } else if (slamCount || homeRuns >= 2) {
-      let performance;
-      if (slamCount >= 2) {
-        performance = `hits ${slamCount} grand slams`;
-      } else if (homeRuns >= 3) {
-        performance = `hits ${homeRuns} home runs${slamCount ? ", including a grand slam" : ""}`;
-      } else if (homeRuns === 2) {
-        performance = `homers twice${slamCount ? ", including a grand slam" : ""}`;
-      } else {
-        performance = "hits a grand slam";
-      }
-      const rbiText = rbi >= 5 ? ` and drives in ${rbi}` : "";
-      addEvent(`${name} ${performance}${rbiText} for ${abbreviation}`, slamCount >= 2 || homeRuns >= 3 ? 0 : 1, `power-${game.gamePk}-${playerId}`, team);
-    } else if (hits >= 4) {
-      const details = rbi >= 5 ? ` and drives in ${rbi}` : stolenBases >= 3 ? ` and steals ${stolenBases} bases` : "";
-      addEvent(`${name} collects ${hits} hits${details} for ${abbreviation}`, hits >= 5 ? 1 : 2, `hits-${game.gamePk}-${playerId}`, team);
-    } else if (rbi >= 5) {
-      addEvent(`${name} drives in ${rbi} runs for ${abbreviation}`, rbi >= 6 ? 1 : 2, `rbi-${game.gamePk}-${playerId}`, team);
-    } else if (stolenBases >= 3) {
-      addEvent(`${name} steals ${stolenBases} bases for ${abbreviation}`, 3, `steals-${game.gamePk}-${playerId}`, team);
-    }
-
-    const innings = Number.parseFloat(pitching.inningsPitched || "0");
-    const strikeouts = statNumber(pitching.strikeOuts);
-    const runs = statNumber(pitching.runs);
-    const hitsAllowed = statNumber(pitching.hits);
-    const scheduledInnings = statNumber(game.scheduledInnings) || 9;
-    const opponentSide = side === "away" ? "home" : "away";
-    const opponentHits = statNumber(boxscore.teams?.[opponentSide]?.teamStats?.batting?.hits);
-    const teamScore = statNumber(game.teams?.[side]?.score);
-    const opponentScore = statNumber(game.teams?.[opponentSide]?.score);
-    const completeNoHitter = isFinalGame(game) && teamScore > opponentScore && innings >= scheduledInnings && hitsAllowed === 0 && opponentHits === 0;
-
-    if (completeNoHitter) {
-      addEvent(`${name} throws a no-hitter for ${abbreviation}`, 0, `no-hitter-${game.gamePk}`, team);
-    } else if (statNumber(pitching.completeGames) && statNumber(pitching.shutouts)) {
-      const strikeoutText = strikeouts >= 10 ? ` with ${strikeouts} strikeouts` : "";
-      addEvent(`${name} fires a complete-game shutout${strikeoutText} for ${abbreviation}`, 0, `pitching-${game.gamePk}-${playerId}`, team);
-    } else if (strikeouts >= 10 && runs === 0 && innings >= 6) {
-      addEvent(`${name} strikes out ${strikeouts} over ${innings} scoreless innings for ${abbreviation}`, 1, `pitching-${game.gamePk}-${playerId}`, team);
-    } else if (strikeouts >= 10) {
-      addEvent(`${name} strikes out ${strikeouts} for ${abbreviation}`, strikeouts >= 14 ? 1 : 2, `pitching-${game.gamePk}-${playerId}`, team);
-    } else if (runs === 0 && innings >= 7) {
-      addEvent(`${name} throws ${innings} scoreless innings for ${abbreviation}`, innings >= 8 ? 1 : 3, `pitching-${game.gamePk}-${playerId}`, team);
-    }
-  });
-
-  if (isFinalGame(game)) {
-    ["away", "home"].forEach((side) => {
-      const opponentSide = side === "away" ? "home" : "away";
-      const teamScore = statNumber(game.teams?.[side]?.score);
-      const opponentScore = statNumber(game.teams?.[opponentSide]?.score);
-      const opponentHits = statNumber(boxscore.teams?.[opponentSide]?.teamStats?.batting?.hits);
-      const scheduledInnings = statNumber(game.scheduledInnings) || 9;
-      const hasCompleteNoHitter = players.some(({ player, side: playerSide }) =>
-        playerSide === side && Number.parseFloat(player.stats?.pitching?.inningsPitched || "0") >= scheduledInnings && statNumber(player.stats?.pitching?.hits) === 0,
-      );
-      if (teamScore > opponentScore && opponentHits === 0 && !hasCompleteNoHitter) {
-        const team = notableTeam(boxscore, game, side);
-        const opponent = notableTeam(boxscore, game, opponentSide);
-        addEvent(`${teamAbbreviation(team)} combines to no-hit ${teamAbbreviation(opponent)}`, 0, `no-hitter-${game.gamePk}`, team);
-      }
-    });
-
-    const scoringPlays = plays.filter((play) => play.about?.isScoringPlay);
-    const lastScoringPlay = scoringPlays.at(-1);
-    const homeScore = statNumber(game.teams?.home?.score);
-    const awayScore = statNumber(game.teams?.away?.score);
-    if (homeScore > awayScore && lastScoringPlay?.about?.halfInning === "bottom" && statNumber(lastScoringPlay.about.inning) >= 9) {
-      const batter = lastScoringPlay.matchup?.batter?.fullName;
-      const eventLabels = { single: "single", double: "double", triple: "triple", home_run: "home run", walk: "walk", sac_fly: "sacrifice fly" };
-      const eventLabel = eventLabels[lastScoringPlay.result?.eventType];
-      const home = teamAbbreviation(game.teams?.home?.team);
-      const away = teamAbbreviation(game.teams?.away?.team);
-      const headline = batter && eventLabel
-        ? `${batter} delivers a walk-off ${eventLabel} for ${home}`
-        : `${home} walks off ${away} in the ${ordinal(lastScoringPlay.about.inning)} inning`;
-      addEvent(headline, 1, `walkoff-${game.gamePk}`, game.teams?.home?.team);
-    }
-
-    const winnerSide = statNumber(game.teams?.away?.score) > statNumber(game.teams?.home?.score) ? "away" : "home";
-    const loserSide = winnerSide === "away" ? "home" : "away";
-    const winnerScore = statNumber(game.teams?.[winnerSide]?.score);
-    const loserScore = statNumber(game.teams?.[loserSide]?.score);
-    const winner = teamAbbreviation(game.teams?.[winnerSide]?.team);
-    const loser = teamAbbreviation(game.teams?.[loserSide]?.team);
-    const innings = Math.max(0, ...plays.map((play) => statNumber(play.about?.inning)));
-    if (winnerScore >= 15) {
-      addEvent(`${winner} erupts for ${winnerScore} runs in a win over ${loser}`, 3, `team-${game.gamePk}`, game.teams?.[winnerSide]?.team);
-    } else if (winnerScore - loserScore >= 10) {
-      addEvent(`${winner} rolls past ${loser}, ${winnerScore}-${loserScore}`, 4, `team-${game.gamePk}`, game.teams?.[winnerSide]?.team);
-    } else if (innings >= 12) {
-      addEvent(`${winner} outlasts ${loser} in ${innings} innings`, 4, `team-${game.gamePk}`, game.teams?.[winnerSide]?.team);
-    }
-  }
-
-  return events;
-}
-
-function uniqueNotableEvents(events) {
-  const seen = new Set();
-  return events.filter((event) => {
-    if (seen.has(event.key)) return false;
-    seen.add(event.key);
-    return true;
-  });
-}
-
-function notableListItem(notable) {
-  const item = element("li", "notable-item");
-  item.style.setProperty("--notable-team-color", teamPrimaryColor(notable.team));
-  const logo = mediaImage(teamLogoUrl(notable.team), "notable-team-logo team-logo", `${notable.team?.name || "Team"} logo`, 32, 32);
-  if (logo) item.append(logo);
-  item.append(
-    element("strong", "notable-headline", notable.headline),
-    element("span", "notable-game", notable.score),
-  );
-  return item;
-}
-
-function renderNotableMessage(message, tone = "") {
-  const className = `notables-message${tone ? ` ${tone}` : ""}`;
-  state.notableSignature = `message:${tone}:${message}`;
-  els.notableEvents.replaceChildren(element("li", className, message));
-}
-
-function renderNotableEvents(events, { preserveIfSame = false } = {}) {
-  if (!events.length) {
-    const message = `No games have been played yet on ${fullDateLabel(state.selectedDate)}.`;
-    const signature = `message::${message}`;
-    if (preserveIfSame && signature === state.notableSignature) return;
-    renderNotableMessage(message);
-    return;
-  }
-  const signature = events.map((notable) => `${notable.key}:${notable.team?.id || ""}:${notable.headline}:${notable.score}`).join("|");
-  if (preserveIfSame && signature === state.notableSignature) return;
-  const fragment = document.createDocumentFragment();
-  events.slice(0, NOTABLE_LIMIT).forEach((notable) => fragment.append(notableListItem(notable)));
-  state.notableSignature = signature;
-  els.notableEvents.replaceChildren(fragment);
-}
-
-async function fetchNotableEvents(games, signal) {
-  const candidates = games.filter(isStartedGame);
-  const events = [];
-  const results = await Promise.allSettled(candidates.map((game) => getNotableGameData(game, signal)));
-  if (signal.aborted) throw new DOMException("Aborted", "AbortError");
-  const successfulRequests = results.filter((result) => result.status === "fulfilled");
-  successfulRequests.forEach((result) => events.push(...notableEventsFromGame(result.value)));
-
-  if (candidates.length && !successfulRequests.length) throw new Error("MLB performance data is unavailable");
-  return uniqueNotableEvents(events)
-    .sort((a, b) => a.priority - b.priority)
-    .slice(0, NOTABLE_LIMIT);
-}
-
-async function loadNotableEvents(games, requestId, signal, { silent = false } = {}) {
-  const key = dateKey(state.selectedDate);
-  const cached = state.notableCache.get(key);
-  const cacheDuration = cached?.hasLiveGames ? LIVE_REFRESH_MS - 1000 : NOTABLE_CACHE_MS;
-  if (cached && Date.now() - cached.cachedAt < cacheDuration) {
-    renderNotableEvents(cached.events, { preserveIfSame: silent });
-    els.notableEvents.setAttribute("aria-busy", "false");
-    return;
-  }
-
-  els.notableEvents.setAttribute("aria-busy", "true");
-  if (!silent) renderNotableMessage("Finding notable performances...");
-
-  try {
-    const events = games.length ? await fetchNotableEvents(games, signal) : [];
-    if (requestId !== state.requestId) return;
-    state.notableCache.set(key, { events, cachedAt: Date.now(), hasLiveGames: games.some(isLiveGame) });
-    renderNotableEvents(events, { preserveIfSame: silent });
-  } catch (error) {
-    if (error.name === "AbortError" || requestId !== state.requestId) return;
-    if (!silent) renderNotableMessage("Notable performances are unavailable right now.", "error");
-  } finally {
-    if (requestId === state.requestId) els.notableEvents.setAttribute("aria-busy", "false");
-  }
 }
 
 function isLiveGame(game) {

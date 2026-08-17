@@ -343,7 +343,7 @@ svg.metric-feature-icon {
   border: 0 !important;
 }
 
-:is(.notable-item, .hot-item, .feed article, .scoring-play) {
+:is(.hot-item, .feed article, .scoring-play) {
   border-top: 0 !important;
   border-right: 0 !important;
   border-bottom: 0 !important;
@@ -590,7 +590,6 @@ b {
 
 .selected-recap-section,
 .schedule-body,
-.moves-body,
 .overview-body,
 .player-stats-body {
   padding-top: 0;
@@ -599,8 +598,7 @@ b {
 .page-heading,
 .panel-heading,
 .month-title,
-.team-name,
-.insight-panel h3 {
+.team-name {
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.25;
@@ -718,24 +716,20 @@ b {
 }
 
 .month-summary,
-.game-detail,
 .empty-day,
 .result-button span,
 .form-control,
 .feed p,
 .roster-link span,
-.insight-panel p,
 .game-decisions p {
   font-size: var(--text-normal);
 }
 
 .month-summary,
-.game-detail,
 .empty-day,
 .form-control,
 .feed p,
-.roster-link span,
-.insight-panel p {
+.roster-link span {
   font-weight: 400;
 }
 
@@ -903,7 +897,6 @@ b {
 .panel-heading,
 .month-title,
 .team-name,
-.insight-panel h3,
 .stats-view-title,
 .scoreboard-state,
 .scoreboard-score,
@@ -976,7 +969,6 @@ small {
 }
 
 .schedule-panel .month-summary,
-.schedule-panel .game-detail,
 .schedule-panel .empty-day,
 .schedule-panel .btn-control,
 .schedule-panel .matchup {

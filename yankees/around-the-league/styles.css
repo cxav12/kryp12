@@ -294,27 +294,6 @@
   align-self: stretch;
 }
 
-.standings-context {
-  min-height: 28px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--yankees-silver);
-  background: var(--card-bg);
-  display: inline-flex;
-  align-items: center;
-  padding: 0 10px;
-  font-size: var(--text-small);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.standings-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
 .standings-switcher {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr)) minmax(92px, 0.72fr);
@@ -570,72 +549,8 @@
   text-align: center !important;
 }
 
-.notables-panel,
 .whos-hot-panel {
   align-self: stretch;
-}
-
-.notables-list {
-  min-width: 0;
-  display: grid;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.notable-item {
-  min-width: 0;
-  border: 1px solid var(--line);
-  border-left: 5px solid var(--notable-team-color, #60798f);
-  border-radius: 6px;
-  color: var(--ink);
-  background: var(--card-bg);
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
-}
-
-.notable-team-logo {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-}
-
-.notable-headline {
-  min-width: 0;
-  color: var(--ink);
-  font-weight: 800;
-  line-height: 1.35;
-}
-
-.notable-game {
-  min-width: 0;
-  color: var(--muted);
-  font-size: var(--text-small);
-  font-weight: 700;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.notables-message {
-  min-height: 96px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--muted);
-  background: var(--card-bg);
-  display: grid;
-  place-items: center;
-  padding: 18px;
-  font-weight: 700;
-  text-align: center;
-}
-
-.notables-message.error {
-  color: #ffbec4;
 }
 
 .whos-hot-panel {
@@ -940,15 +855,6 @@
     gap: 4px;
   }
 
-  .notable-item {
-    grid-template-columns: 32px minmax(0, 1fr);
-    gap: 4px;
-  }
-
-  .notable-game {
-    grid-column: 2;
-  }
-
   .whos-hot-list {
     grid-template-rows: none;
   }
@@ -966,10 +872,6 @@
 
   .standings-head {
     align-items: stretch;
-  }
-
-  .standings-context {
-    justify-content: center;
   }
 
   .standings-switcher {

@@ -229,6 +229,7 @@ body {
 
 .contact-form {
   max-width: 860px;
+  margin-inline: auto;
 }
 
 .contact-form-grid {

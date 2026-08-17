@@ -277,7 +277,7 @@
   min-height: 76px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--card-bg);
+  background: var(--inner-card-bg, #0a1015);
   display: grid;
   place-items: center;
   align-content: center;
@@ -288,7 +288,7 @@
 
 .detail-stat-card.featured {
   border-color: var(--line);
-  background: var(--card-bg);
+  background: var(--inner-card-bg, #0a1015);
 }
 
 .detail-stat-card span {
@@ -308,11 +308,13 @@
   color: inherit;
 }
 
+.detail-split-controls,
 .detail-tab-controls {
   justify-content: stretch;
   margin: 18px 0 12px;
 }
 
+.detail-toggle,
 .detail-tab {
   flex: 1 1 150px;
 }
@@ -643,11 +645,13 @@
     overflow-wrap: anywhere;
   }
 
+  .detail-split-controls,
   .detail-tab-controls {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .detail-split-controls .detail-toggle,
   .detail-tab-controls .detail-tab {
     width: 100%;
   }

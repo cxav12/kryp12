@@ -139,7 +139,7 @@
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--card-bg);
+  background: var(--inner-card-bg, #0a1015);
   display: grid;
   grid-template-rows: 5px auto auto auto;
   align-content: start;
@@ -675,7 +675,7 @@
   border: 0;
   border-left: 5px solid var(--hot-team-color, #60798f);
   border-radius: 6px;
-  background: var(--card-bg);
+  background: var(--inner-card-bg, #0a1015);
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr);
   align-items: center;

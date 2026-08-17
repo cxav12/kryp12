@@ -312,6 +312,34 @@ svg.metric-feature-icon {
   flex: 0 0 19px !important;
 }
 
+/* Borderless repeated cards. Main page and section containers retain their
+   borders; colored left accents remain available as visual identifiers. */
+:is(
+  .score-card,
+  .game-card,
+  .leader-stat-card,
+  .detail-stat-card,
+  .detail-log-row,
+  .result-button,
+  .metric-row,
+  .roster-link,
+  .game-notes-groups section
+) {
+  border: 0 !important;
+}
+
+:is(.notable-item, .hot-item, .feed article, .scoring-play) {
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+}
+
+@media (max-width: 767.98px) {
+  :is(.day-cell, .player-stats-table tbody tr, .game-player-table tr, .detail-table tr, .detail-quick-table tr) {
+    border: 0 !important;
+  }
+}
+
 [hidden] {
   display: none !important;
 }

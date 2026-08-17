@@ -301,6 +301,16 @@ body {
   white-space: nowrap !important;
 }
 
+/* Keep inline metric SVGs compact even when an older page stylesheet is cached. */
+svg.metric-feature-icon {
+  display: inline-block !important;
+  width: 19px !important;
+  height: 19px !important;
+  min-width: 19px !important;
+  max-width: 19px !important;
+  flex: 0 0 19px !important;
+}
+
 [hidden] {
   display: none !important;
 }

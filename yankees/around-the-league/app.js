@@ -11,11 +11,12 @@ const MLB_TEAM_PRIMARY_COLORS = {
   144: "#CE1141", 145: "#C4CED4", 146: "#00A3E0", 147: "#C4CED3", 158: "#FFC52F",
 };
 const NOTABLE_CACHE_MS = 5 * 60 * 1000;
+const HOT_PLAYERS_CACHE_MS = 6 * 60 * 60 * 1000;
+const HOT_PLAYERS_CACHE_KEY = `kryp12-hot-players-${SEASON}`;
 const NOTABLE_LIMIT = 10;
 const HOT_HITTER_MIN_PA = 25;
 const HOT_HITTER_MIN_GAMES = 7;
 const HOT_HITTER_MIN_AT_BATS = 15;
-const HOT_PITCHER_CANDIDATE_LIMIT = 20;
 const HOT_PITCHER_LOOKBACK_DAYS = 21;
 const HOT_RELIEVER_LOOKBACK_DAYS = 14;
 const HOT_RELIEVER_MIN_GAMES = 5;
@@ -31,8 +32,7 @@ const PLAY_BY_PLAY_FIELDS = [
 ].join(",");
 const NOTABLE_FEED_FIELDS = `liveData,boxscore,${BOX_SCORE_FIELDS},plays,${PLAY_BY_PLAY_FIELDS}`;
 const HOT_HITTER_FIELDS = "stats,splits,stat,gamesPlayed,plateAppearances,atBats,avg,homeRuns,rbi,ops,player,id,fullName,team,name,abbreviation";
-const HOT_PITCHER_CANDIDATE_FIELDS = "stats,splits,stat,gamesStarted,era,inningsPitched,player,id,fullName,team,name,abbreviation";
-const HOT_PITCHER_LOG_FIELDS = "stats,splits,date,stat,gamesStarted,outs,inningsPitched,earnedRuns,strikeOuts,baseOnBalls,hits,wins,losses,team,id,name,abbreviation,player,fullName";
+const HOT_PITCHER_CANDIDATE_FIELDS = "stats,splits,stat,gamesStarted,outs,inningsPitched,earnedRuns,strikeOuts,baseOnBalls,hits,era,whip,player,id,fullName,team,name,abbreviation";
 const HOT_RELIEVER_FIELDS = "stats,splits,stat,gamesPlayed,gamesStarted,outs,inningsPitched,earnedRuns,strikeOuts,baseOnBalls,hits,era,whip,saves,blownSaves,player,id,fullName,team,name,abbreviation";
 const PLAYER_LEADER_STATS = {
   hitting: [
@@ -540,7 +540,7 @@ function renderWhosHot() {
     : "10-game hitting data is unavailable";
   const pitcherStats = (player) => player
     ? `${player.era} ERA | ${player.whip} WHIP | ${player.strikeouts} K | ${player.inningsPitched} IP`
-    : "Three-start pitching data is unavailable";
+    : "Recent starting-pitching data is unavailable";
   const relieverStats = (player) => player
     ? `${player.era} ERA | ${player.whip} WHIP | ${player.strikeouts} K | ${player.saves} SV`
     : "Recent relief data is unavailable";
@@ -548,14 +548,14 @@ function renderWhosHot() {
   els.whosHot.replaceChildren(
     hotItem("Longest Winning Streak", hotTeam?.teamName || "Unavailable", hotTeam ? `${hotTeam.streakNumber}W | Longest active streak` : "Winning-streak data is unavailable", teamImage(hotTeam), hotTeam),
     hotItem("Best Hitter | Last 10", playerName(hitters?.best), hitterStats(hitters?.best), playerImage(hitters?.best), hitters?.best),
-    hotItem("Best Pitcher | Last 3", playerName(pitchers?.best), pitcherStats(pitchers?.best), playerImage(pitchers?.best), pitchers?.best),
+    hotItem("Best Pitcher | Last 21 Days", playerName(pitchers?.best), pitcherStats(pitchers?.best), playerImage(pitchers?.best), pitchers?.best),
     hotItem("Best Reliever | Last 14 Days", playerName(relievers?.best), relieverStats(relievers?.best), playerImage(relievers?.best), relievers?.best),
     hotItem("Saves Leader | Last 14 Days", playerName(relievers?.saveLeader), relievers?.saveLeader ? `${relievers.saveLeader.saves} SV | ${relievers.saveLeader.era} ERA | ${relievers.saveLeader.strikeouts} K` : "Recent saves data is unavailable", playerImage(relievers?.saveLeader), relievers?.saveLeader),
   );
   els.whosNot.replaceChildren(
     hotItem("Longest Losing Streak", coldTeam?.teamName || "Unavailable", coldTeam ? `${coldTeam.streakNumber}L | Longest active streak` : "Losing-streak data is unavailable", teamImage(coldTeam), coldTeam),
     hotItem("Worst Hitter | Last 10", playerName(hitters?.worst), hitterStats(hitters?.worst), playerImage(hitters?.worst), hitters?.worst),
-    hotItem("Worst Pitcher | Last 3", playerName(pitchers?.worst), pitcherStats(pitchers?.worst), playerImage(pitchers?.worst), pitchers?.worst),
+    hotItem("Worst Pitcher | Last 21 Days", playerName(pitchers?.worst), pitcherStats(pitchers?.worst), playerImage(pitchers?.worst), pitchers?.worst),
     hotItem("Worst Reliever | Last 14 Days", playerName(relievers?.worst), relieverStats(relievers?.worst), playerImage(relievers?.worst), relievers?.worst),
     hotItem("Blown Saves Leader | Last 14 Days", playerName(relievers?.blownSaveLeader), relievers?.blownSaveLeader ? `${relievers.blownSaveLeader.blownSaves} BS | ${relievers.blownSaveLeader.era} ERA | ${relievers.blownSaveLeader.whip} WHIP` : "Recent blown-save data is unavailable", playerImage(relievers?.blownSaveLeader), relievers?.blownSaveLeader),
   );
@@ -631,69 +631,71 @@ async function getPitcherCandidates() {
     .sort((a, b) => statNumber(a.stat?.era) - statNumber(b.stat?.era));
 }
 
-function inningsFromOuts(outs) {
-  return `${Math.floor(outs / 3)}.${outs % 3}`;
-}
-
-async function getPitcherLastThreeStarts(candidate) {
-  const url = new URL(`${MLB_API}/people/${candidate.player.id}/stats`);
-  url.searchParams.set("stats", "gameLog");
-  url.searchParams.set("group", "pitching");
-  url.searchParams.set("gameType", "R");
-  url.searchParams.set("season", SEASON);
-  url.searchParams.set("hydrate", "team");
-  url.searchParams.set("fields", HOT_PITCHER_LOG_FIELDS);
-
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
-  const data = await response.json();
-  const starts = (data.stats?.[0]?.splits || [])
-    .filter((split) => statNumber(split.stat?.gamesStarted) > 0)
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 3);
-  if (starts.length < 3) return null;
-
-  const totals = starts.reduce((result, split) => {
-    result.outs += statNumber(split.stat?.outs);
-    result.earnedRuns += statNumber(split.stat?.earnedRuns);
-    result.strikeouts += statNumber(split.stat?.strikeOuts);
-    result.walks += statNumber(split.stat?.baseOnBalls);
-    result.hits += statNumber(split.stat?.hits);
-    return result;
-  }, { outs: 0, earnedRuns: 0, strikeouts: 0, walks: 0, hits: 0 });
-  if (totals.outs < 45) return null;
-
-  const innings = totals.outs / 3;
+function pitcherSummary(split) {
+  const outs = statNumber(split.stat?.outs);
+  const innings = outs / 3;
+  const calculatedWhip = innings
+    ? (statNumber(split.stat?.baseOnBalls) + statNumber(split.stat?.hits)) / innings
+    : Number.POSITIVE_INFINITY;
+  const eraValue = statNumber(split.stat?.era);
+  const whipValue = split.stat?.whip ? statNumber(split.stat.whip) : calculatedWhip;
   return {
-    playerId: candidate.player.id,
-    playerName: candidate.player.fullName,
-    teamAbbreviation: teamAbbreviation(starts[0].team || candidate.team),
-    eraValue: totals.earnedRuns * 9 / innings,
-    whipValue: (totals.walks + totals.hits) / innings,
-    era: (totals.earnedRuns * 9 / innings).toFixed(2),
-    whip: ((totals.walks + totals.hits) / innings).toFixed(2),
-    strikeouts: totals.strikeouts,
-    inningsPitched: inningsFromOuts(totals.outs),
-    outs: totals.outs,
+    playerId: split.player.id,
+    playerName: split.player?.fullName || "Player",
+    teamAbbreviation: teamAbbreviation(split.team),
+    eraValue,
+    whipValue,
+    era: split.stat?.era || (innings ? (statNumber(split.stat?.earnedRuns) * 9 / innings).toFixed(2) : "-"),
+    whip: split.stat?.whip || (Number.isFinite(calculatedWhip) ? calculatedWhip.toFixed(2) : "-"),
+    strikeouts: statNumber(split.stat?.strikeOuts),
+    inningsPitched: split.stat?.inningsPitched || "-",
+    outs,
   };
 }
 
 async function getPitcherRankings() {
   const candidates = await getPitcherCandidates();
-  const candidatePool = [
-    ...candidates.slice(0, HOT_PITCHER_CANDIDATE_LIMIT),
-    ...candidates.slice(-HOT_PITCHER_CANDIDATE_LIMIT),
-  ];
-  const results = await Promise.allSettled(candidatePool.map(getPitcherLastThreeStarts));
-  const pitchers = results
-    .filter((result) => result.status === "fulfilled" && result.value)
-    .map((result) => result.value)
+  const pitchers = candidates
+    .filter((split) => split.player?.id
+      && statNumber(split.stat?.gamesStarted) >= 3
+      && statNumber(split.stat?.outs) >= 45)
+    .map(pitcherSummary)
     .sort((a, b) => a.eraValue - b.eraValue
       || a.whipValue - b.whipValue
       || b.outs - a.outs
       || b.strikeouts - a.strikeouts);
   if (!pitchers.length) throw new Error("No qualified three-start pitchers found");
   return { best: pitchers[0], worst: pitchers[pitchers.length - 1] };
+}
+
+function restoreHotPlayersCache() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(HOT_PLAYERS_CACHE_KEY) || "null");
+    if (!cached || Date.now() - cached.cachedAt > HOT_PLAYERS_CACHE_MS) return false;
+    if (!cached.hitters || !cached.pitchers || !cached.relievers) return false;
+    state.hotPlayers = {
+      hitters: cached.hitters,
+      pitchers: cached.pitchers,
+      relievers: cached.relievers,
+      status: "ready",
+    };
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function persistHotPlayersCache() {
+  try {
+    localStorage.setItem(HOT_PLAYERS_CACHE_KEY, JSON.stringify({
+      hitters: state.hotPlayers.hitters,
+      pitchers: state.hotPlayers.pitchers,
+      relievers: state.hotPlayers.relievers,
+      cachedAt: Date.now(),
+    }));
+  } catch (error) {
+    // Storage can be unavailable in private browsing; live data still works.
+  }
 }
 
 function relieverSummary(split) {
@@ -762,6 +764,9 @@ async function loadHotPlayers() {
   if (pitcherResult.status === "fulfilled") state.hotPlayers.pitchers = pitcherResult.value;
   if (relieverResult.status === "fulfilled") state.hotPlayers.relievers = relieverResult.value;
   state.hotPlayers.status = "ready";
+  if (state.hotPlayers.hitters && state.hotPlayers.pitchers && state.hotPlayers.relievers) {
+    persistHotPlayersCache();
+  }
   renderWhosHot();
 }
 
@@ -1449,6 +1454,7 @@ function init() {
   bindEvents();
   renderDatePicker();
   renderStandingsSeason();
+  restoreHotPlayersCache();
   loadScores();
   loadStandings();
   loadHotPlayers();

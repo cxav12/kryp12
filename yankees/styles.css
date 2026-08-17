@@ -841,8 +841,35 @@
 
 .game-player-stats > .game-notes-panel .game-notes-groups {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: start;
-  gap: 18px;
+  grid-template-areas:
+    "batting batting baserunning baserunning"
+    "batting batting fielding pitching";
+  align-items: stretch;
+  gap: 10px;
+}
+
+.game-player-stats > .game-notes-panel .game-notes-groups section {
+  align-content: start;
+  padding: 12px 14px;
+  border: 1px solid rgba(196, 206, 211, 0.12);
+  border-radius: 7px;
+  background: rgba(6, 12, 17, 0.28);
+}
+
+.game-notes-group-batting {
+  grid-area: batting;
+}
+
+.game-notes-group-baserunning {
+  grid-area: baserunning;
+}
+
+.game-notes-group-fielding {
+  grid-area: fielding;
+}
+
+.game-notes-group-pitching {
+  grid-area: pitching;
 }
 
 .recap-grid-heading {
@@ -1126,13 +1153,23 @@
   display: block;
 }
 
-.metric-feature span {
+.metric-feature-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   min-width: 0;
   overflow-wrap: anywhere;
   color: #fff;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.metric-feature-icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  color: #f1b434;
 }
 
 .metric-feature {
@@ -1195,6 +1232,10 @@
 @media (max-width: 1199.98px) {
   .game-player-stats > .game-notes-panel .game-notes-groups {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "batting batting"
+      "baserunning baserunning"
+      "fielding pitching";
   }
 
   .recap-button-row {
@@ -1230,6 +1271,11 @@
 @media (max-width: 767.98px) {
   .game-player-stats > .game-notes-panel .game-notes-groups {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "batting"
+      "baserunning"
+      "fielding"
+      "pitching";
   }
 
   .recent-games-grid {

@@ -505,8 +505,9 @@ function renderGameNotes(feed, game) {
   const detailGroup = (title, fallbackFields) => {
     const fields = (title === "Pitching" ? fallbackFields : (officialGroup(title)?.fieldList || fallbackFields))
       .filter(shouldShowDetailField);
+    const groupClass = `game-notes-group-${title.toLowerCase()}`;
     return `
-      <section>
+      <section class="${groupClass}">
         <h4>${escapeHtml(title)}</h4>
         ${fields.map((field) => detailRow(field.label, field.value)).join("")}
       </section>
@@ -911,21 +912,35 @@ function comparisonRow(label, yankeesValue, opponentValue, options = {}) {
   `;
 }
 
-function metricFeature(label, value, unit, detail) {
+function tablerMetricIcon(name) {
+  const paths = {
+    "ruler-measure": '<path d="M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75"/><path d="M9 12v2M6 12v3M12 12v3M18 12v3M15 12v2M3 3v4M3 5h18M21 3v4"/>',
+    gauge: '<path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0M13.41 10.59l2.59 -2.59M7 12a5 5 0 0 1 5 -5"/>',
+    "ball-baseball": '<path d="M5.636 18.364a9 9 0 1 0 12.728 -12.728a9 9 0 0 0 -12.728 12.728M12.495 3.02a9 9 0 0 1 -9.475 9.475M20.98 11.505a9 9 0 0 0 -9.475 9.475M9 9l2 2M13 13l2 2M11 7l2 1M7 11l1 2M16 11l1 2M11 16l2 1"/>',
+    trophy: '<path d="M8 21h8M12 17v4M7 4h10M17 4v8a5 5 0 0 1 -10 0v-8M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>',
+    scale: '<path d="M7 20h10M6 6l6 -1l6 1M12 3v17M9 12l-3 -6l-3 6a3 3 0 0 0 6 0M21 12l-3 -6l-3 6a3 3 0 0 0 6 0"/>',
+    "info-circle": '<path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0M12 9h.01M11 12h1v4h1"/>',
+  };
+  const iconPaths = paths[name];
+  if (!iconPaths) return "";
+  return `<svg class="metric-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPaths}</svg>`;
+}
+
+function metricFeature(label, value, unit, detail, icon) {
   return `
     <div class="metric-feature">
-      <span>${escapeHtml(label)}</span>
+      <span class="metric-feature-label">${tablerMetricIcon(icon)}${escapeHtml(label)}</span>
       <strong class="stat-number">${escapeHtml(value)}${unit ? ` <small>${escapeHtml(unit)}</small>` : ""}</strong>
       <em>${escapeHtml(detail)}</em>
     </div>
   `;
 }
 
-function gameNoteFeature(label, detail) {
+function gameNoteFeature(label, detail, icon) {
   const lines = Array.isArray(detail) ? detail : [detail];
   return `
     <div class="metric-feature game-note-feature">
-      <span>${escapeHtml(label)}</span>
+      <span class="metric-feature-label">${tablerMetricIcon(icon)}${escapeHtml(label)}</span>
       <div class="game-note-lines">
         ${lines.map((line) => {
           const text = String(line);
@@ -1218,12 +1233,12 @@ function renderRecap(game, feed) {
       comparisonRow("Strike %", yankeesComparison.strikePercentage, opponentComparison.strikePercentage, { ...comparisonOptions, yankeesDisplay: yankeesComparison.strikePercentage ? `${yankeesComparison.strikePercentage}%` : "-", opponentDisplay: opponentComparison.strikePercentage ? `${opponentComparison.strikePercentage}%` : "-" }),
     ].join("")),
     renderRecapColumn("Metrics and Game Notes", [
-      metricFeature("Longest Home Run", gameMetrics.longestHomeRun ? Math.round(gameMetrics.longestHomeRun.value) : "-", gameMetrics.longestHomeRun ? "FT" : "", gameMetrics.longestHomeRun ? `${gameMetrics.longestHomeRun.player} (${gameMetrics.longestHomeRun.team}) - ${gameMetrics.longestHomeRun.detail}` : "No tracked home run"),
-      metricFeature("Max Exit Velo", gameMetrics.maxExit ? gameMetrics.maxExit.value.toFixed(1) : "-", "MPH", gameMetrics.maxExit ? `${gameMetrics.maxExit.player} (${gameMetrics.maxExit.team}) - ${gameMetrics.maxExit.detail}` : "No tracked batted balls"),
-      metricFeature("Max Pitch Velo", gameMetrics.maxPitch ? gameMetrics.maxPitch.value.toFixed(1) : "-", "MPH", gameMetrics.maxPitch ? `${gameMetrics.maxPitch.player} (${gameMetrics.maxPitch.team}) - ${gameMetrics.maxPitch.detail}` : "No tracked pitches"),
-      ...milestoneNotes.map((note) => gameNoteFeature("Player Milestone", note)),
-      gameNoteFeature("ABS Challenges", absChallenges),
-      gameNoteFeature("Game Information", gameInformation),
+      metricFeature("Longest Home Run", gameMetrics.longestHomeRun ? Math.round(gameMetrics.longestHomeRun.value) : "-", gameMetrics.longestHomeRun ? "FT" : "", gameMetrics.longestHomeRun ? `${gameMetrics.longestHomeRun.player} (${gameMetrics.longestHomeRun.team}) - ${gameMetrics.longestHomeRun.detail}` : "No tracked home run", "ruler-measure"),
+      metricFeature("Max Exit Velo", gameMetrics.maxExit ? gameMetrics.maxExit.value.toFixed(1) : "-", "MPH", gameMetrics.maxExit ? `${gameMetrics.maxExit.player} (${gameMetrics.maxExit.team}) - ${gameMetrics.maxExit.detail}` : "No tracked batted balls", "gauge"),
+      metricFeature("Max Pitch Velo", gameMetrics.maxPitch ? gameMetrics.maxPitch.value.toFixed(1) : "-", "MPH", gameMetrics.maxPitch ? `${gameMetrics.maxPitch.player} (${gameMetrics.maxPitch.team}) - ${gameMetrics.maxPitch.detail}` : "No tracked pitches", "ball-baseball"),
+      ...milestoneNotes.map((note) => gameNoteFeature("Player Milestone", note, "trophy")),
+      gameNoteFeature("ABS Challenges", absChallenges, "scale"),
+      gameNoteFeature("Game Information", gameInformation, "info-circle"),
     ].join(""), "metrics-column"),
   ].join("");
 }

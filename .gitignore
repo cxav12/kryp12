@@ -10,3 +10,9 @@ yankees/start-yankees.command
 yankees/start-yankees-site.cmd
 server-out.log
 server-err.log
+# Contact-form secrets
+contact-config.php
+**/contact-config.php
+.env
+.env.*
+!.env.example

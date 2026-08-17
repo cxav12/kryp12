@@ -73,7 +73,7 @@ $notice = $messages[$status] ?? null;
 
       <header class="page-intro-card">
         <h2 class="page-heading">Contact</h2>
-        <p class="page-intro-description">Send a message to the site administrator.</p>
+        <p class="page-intro-description">Questions, comments, or a suggestion from the dugout? Send me a message.</p>
       </header>
 
       <section class="contact-card" aria-labelledby="contact-form-title">

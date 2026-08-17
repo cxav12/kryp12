@@ -33,7 +33,7 @@ $notice = $messages[$status] ?? null;
     <base href="/yankees/contact/" />
     <title>Contact | Yankees Fan Site</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../shared.css?v=20260817-contact-center1" />
+    <link rel="stylesheet" href="../shared.css?v=20260817-compact-footer1" />
   </head>
   <body>
     <main class="container-fluid app-shell">

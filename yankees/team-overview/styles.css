@@ -239,14 +239,51 @@
   }
 
   .metric-row {
-    align-items: stretch;
-    flex-direction: column;
+    min-height: 44px;
+    display: grid;
+    grid-template-columns: minmax(140px, 1.1fr) minmax(104px, 0.9fr);
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+  }
+
+  .metric-row > div:first-child {
+    display: block;
+  }
+
+  .metric-badge {
+    display: none;
+  }
+
+  .metric-row strong {
+    display: block;
+    white-space: nowrap;
   }
 
   .metric-value {
-    justify-content: flex-start;
-    text-align: left;
-    white-space: normal;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    justify-content: flex-end;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .metric-value::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 14px;
+    background: rgba(196, 206, 211, 0.28);
+    transform: translate(-50%, -50%);
+  }
+
+  .metric-value small {
+    border-left: 0;
+    padding-left: 0;
   }
 
   .team-card .metric-list {

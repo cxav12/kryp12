@@ -329,47 +329,28 @@ function renderMobileLeaderboard(rows, start) {
   els.mobileCategories.replaceChildren(categoryFragment);
 }
 
-function pageItems(current, total) {
-  if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1);
-  if (current <= 4) return [1, 2, 3, 4, 5, "ellipsis", total];
-  if (current >= total - 3) return [1, "ellipsis", total - 4, total - 3, total - 2, total - 1, total];
-  return [1, "ellipsis", current - 1, current, current + 1, "ellipsis", total];
-}
-
-function pageButton(label, page, className = "") {
+function pageButton(label, accessibleLabel, page) {
   const button = document.createElement("button");
   button.type = "button";
-  button.className = `page-button${className ? ` ${className}` : ""}${page === state.page ? " active" : ""}`;
+  button.className = "page-button";
   button.textContent = label;
   button.dataset.page = page;
-  if (page === state.page) {
-    button.setAttribute("aria-current", "page");
-    button.setAttribute("aria-label", `Page ${page}, current page`);
-  } else {
-    button.setAttribute("aria-label", label === "Next" ? "Next page" : `Go to page ${page}`);
-  }
+  button.setAttribute("aria-label", accessibleLabel);
   return button;
 }
 
 function renderPagination(totalPages) {
   els.pagination.replaceChildren();
   if (totalPages <= 1) return;
-  const fragment = document.createDocumentFragment();
-  pageItems(state.page, totalPages).forEach((item) => {
-    if (item === "ellipsis") {
-      const ellipsis = document.createElement("span");
-      ellipsis.className = "page-ellipsis";
-      ellipsis.textContent = "…";
-      ellipsis.setAttribute("aria-hidden", "true");
-      fragment.append(ellipsis);
-    } else {
-      fragment.append(pageButton(String(item), item));
-    }
-  });
-  const next = pageButton("Next", Math.min(state.page + 1, totalPages), "next");
+  const previous = pageButton("‹", "Previous page", Math.max(state.page - 1, 1));
+  previous.disabled = state.page === 1;
+  const summary = document.createElement("span");
+  summary.className = "pagination-summary";
+  summary.textContent = `Page ${state.page} of ${totalPages}`;
+  summary.setAttribute("aria-live", "polite");
+  const next = pageButton("›", "Next page", Math.min(state.page + 1, totalPages));
   next.disabled = state.page === totalPages;
-  fragment.append(next);
-  els.pagination.append(fragment);
+  els.pagination.append(previous, summary, next);
 }
 
 function render() {

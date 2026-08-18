@@ -25,16 +25,15 @@ const timeFormatter = new Intl.DateTimeFormat("en", {
 const els = {
   status: document.querySelector("#data-status"),
   monthTitle: document.querySelector("#month-title"),
+  monthControlLabel: document.querySelector("#month-control-label"),
   monthSummary: document.querySelector("#month-summary"),
   grid: document.querySelector("#calendar-grid"),
   prev: document.querySelector("#prev-month"),
-  current: document.querySelector("#current-month"),
   next: document.querySelector("#next-month"),
 };
 
 const state = {
   selectedDate: startOfMonth(new Date()),
-  currentMonth: startOfMonth(new Date()),
   standings: new Map(),
 };
 
@@ -302,6 +301,7 @@ function summarize(schedule, monthDate) {
 async function loadMonth(monthDate) {
   state.selectedDate = startOfMonth(monthDate);
   els.monthTitle.textContent = monthLabel(state.selectedDate);
+  els.monthControlLabel.textContent = monthLabel(state.selectedDate);
   els.grid.innerHTML = `<p class="error p-3 mb-0">Loading schedule...</p>`;
   setStatus("Loading schedule");
 
@@ -323,7 +323,6 @@ async function loadMonth(monthDate) {
 
 function bindEvents() {
   els.prev.addEventListener("click", () => loadMonth(addMonths(state.selectedDate, -1)));
-  els.current.addEventListener("click", () => loadMonth(state.currentMonth));
   els.next.addEventListener("click", () => loadMonth(addMonths(state.selectedDate, 1)));
 }
 

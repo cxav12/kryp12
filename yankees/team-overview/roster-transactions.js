@@ -228,7 +228,7 @@ function renderTransactionPagination(totalPages) {
   const controls = document.createElement("div");
   controls.className = "pagination-controls";
 
-  const prev = transactionPageButton("Previous", state.transactionPage - 1, state.transactionPage === 1);
+  const prev = transactionPageButton("‹", "Previous page", state.transactionPage - 1, state.transactionPage === 1);
   controls.append(prev);
 
   const label = document.createElement("span");
@@ -236,16 +236,17 @@ function renderTransactionPagination(totalPages) {
   label.textContent = `Page ${state.transactionPage} of ${totalPages}`;
   controls.append(label);
 
-  const next = transactionPageButton("Next", state.transactionPage + 1, state.transactionPage === totalPages);
+  const next = transactionPageButton("›", "Next page", state.transactionPage + 1, state.transactionPage === totalPages);
   controls.append(next);
   els.transactionPagination.append(controls);
 }
 
-function transactionPageButton(label, page, disabled) {
+function transactionPageButton(label, accessibleLabel, page, disabled) {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "pagination-button";
   button.textContent = label;
+  button.setAttribute("aria-label", accessibleLabel);
   button.disabled = disabled;
   button.dataset.page = page;
   return button;

@@ -911,6 +911,10 @@
   overflow-x: auto;
 }
 
+.game-player-mobile-list {
+  display: none;
+}
+
 .game-player-table {
   width: 100%;
   min-width: 660px;
@@ -1491,8 +1495,7 @@
     overflow-wrap: anywhere;
   }
 
-  .linescore-scroll,
-  .game-player-table-scroll {
+  .linescore-scroll {
     overflow-x: visible;
   }
 
@@ -1515,65 +1518,128 @@
     text-overflow: ellipsis;
   }
 
-  .game-player-table {
-    min-width: 0;
-  }
-
-  .game-player-table thead {
+  .game-player-table-scroll {
     display: none;
   }
 
-  .game-player-table tbody,
-  .game-player-table tr,
-  .game-player-table th,
-  .game-player-table td {
-    display: block;
-    width: 100%;
-  }
-
-  .game-player-table tbody {
+  .game-player-mobile-list {
     display: grid;
-    gap: 10px;
-    padding: 10px;
+    padding: 0 10px;
   }
 
-  .game-player-table tr {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
-    border: 1px solid rgba(196, 206, 212, 0.14);
-    border-radius: 6px;
-    padding: 10px;
-  }
-
-  .game-player-table th:first-child {
-    grid-column: 1 / -1;
-    min-width: 0;
+  .game-player-mobile-row {
     border-bottom: 1px solid rgba(196, 206, 212, 0.12);
-    padding: 0 0 8px;
   }
 
-  .game-player-table tbody tr.is-substitute th:first-child {
-    padding-left: 20px;
+  .game-player-mobile-row:last-child {
+    border-bottom: 0;
   }
 
-  .game-player-table tbody tr.is-substitute th:first-child::before {
-    left: 0;
+  .game-player-mobile-row summary {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) repeat(4, minmax(32px, 42px));
+    align-items: center;
+    gap: 4px;
+    min-height: 54px;
+    padding: 7px 0;
+    cursor: pointer;
+    list-style: none;
   }
 
-  .game-player-table td {
-    border: 0;
-    padding: 0;
-    white-space: normal;
+  .game-player-mobile-row summary::-webkit-details-marker {
+    display: none;
   }
 
-  .game-player-table td::before {
-    content: attr(data-label);
-    display: block;
-    margin-bottom: 2px;
-    color: var(--muted);
-    font-size: 0.62rem;
+  .mobile-player-identity {
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    padding-right: 4px;
+  }
+
+  .mobile-player-identity strong {
+    overflow: hidden;
+    color: #fff;
+    font-size: var(--text-normal);
     font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-player-identity small {
+    flex: 0 0 auto;
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  .game-player-mobile-row.is-substitute .mobile-player-identity {
+    padding-left: 14px;
+  }
+
+  .game-player-mobile-row.is-substitute .mobile-player-identity::before {
+    content: "↳";
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  .mobile-expand-icon::before {
+    content: "+";
+    color: var(--muted);
+    font-weight: 800;
+  }
+
+  .game-player-mobile-row[open] .mobile-expand-icon::before {
+    content: "−";
+  }
+
+  .mobile-game-stat {
+    min-width: 0;
+    display: grid;
+    justify-items: center;
+    gap: 1px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mobile-game-stat small {
+    color: var(--muted);
+    font-size: 0.6rem;
+    font-weight: 800;
+  }
+
+  .mobile-game-stat strong {
+    color: var(--ink);
+    font-size: var(--stat-number-size);
+    font-weight: 800;
+  }
+
+  .mobile-game-stat-details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px 6px;
+    margin: 0 0 9px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.035);
+    padding: 10px;
+  }
+
+  .mobile-player-profile-link {
+    grid-column: 1 / -1;
+    color: var(--muted);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .mobile-player-profile-link:hover,
+  .mobile-player-profile-link:focus {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .scoreboard-team {

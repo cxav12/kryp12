@@ -351,13 +351,56 @@ function quickStatRows(group, data, mode) {
   };
 }
 
+function renderMobileQuickStats(table, headers, rows, group) {
+  const existing = table.parentElement?.querySelector(".mobile-quick-stat-list");
+  existing?.remove();
+
+  const primaryLabels = group === "pitching" ? ["IP", "ERA", "SO", "WHIP"] : ["AB", "H", "RBI", "AVG"];
+  const primaryIndexes = primaryLabels.map((label) => headers.indexOf(label)).filter((index) => index > 0);
+  const primaryIndexSet = new Set(primaryIndexes);
+  const list = document.createElement("div");
+  list.className = "mobile-quick-stat-list";
+
+  rows.forEach((values) => {
+    const details = document.createElement("details");
+    details.className = "mobile-quick-stat-row";
+    const summary = document.createElement("summary");
+    const season = elementWithText("strong", values[0] ?? "Season", "mobile-quick-season");
+    const icon = document.createElement("span");
+    icon.className = "mobile-quick-expand-icon";
+    icon.setAttribute("aria-hidden", "true");
+    season.append(icon);
+    summary.append(season);
+
+    primaryIndexes.forEach((index) => {
+      const stat = document.createElement("span");
+      stat.className = "mobile-quick-stat";
+      stat.append(elementWithText("small", headers[index]), elementWithText("span", values[index] ?? "-"));
+      summary.append(stat);
+    });
+
+    const secondary = document.createElement("div");
+    secondary.className = "mobile-quick-stat-details";
+    headers.forEach((label, index) => {
+      if (index === 0 || primaryIndexSet.has(index)) return;
+      const stat = document.createElement("span");
+      stat.className = "mobile-quick-stat";
+      stat.append(elementWithText("small", label), elementWithText("span", values[index] ?? "-"));
+      secondary.append(stat);
+    });
+    details.append(summary, secondary);
+    list.append(details);
+  });
+
+  table.insertAdjacentElement("afterend", list);
+}
+
 function quickSeasonToggle() {
   const control = document.createElement("div");
   control.className = "quick-season-toggle";
   control.setAttribute("role", "group");
   control.setAttribute("aria-label", "Stats season type");
-  [["regular", "Regular"], ["postseason", "Postseason"]].forEach(([mode, label], index) => {
-    if (index) control.append(elementWithText("span", "|", "quick-season-divider"));
+  [["regular", "Regular"], ["postseason", "Postseason"]].forEach(([mode, label]) => {
     const button = elementWithText("button", label, "quick-season-button");
     button.type = "button";
     button.dataset.quickSeason = mode;
@@ -401,6 +444,7 @@ function renderQuickStats(group = state.currentGroup) {
     });
     els.quickStatsBody.append(row);
   });
+  if (table) renderMobileQuickStats(table, headers, rows, group);
 }
 
 function firstStatSplit(data) {
@@ -530,6 +574,51 @@ function pitchingDecision(split) {
   return decision || "ND";
 }
 
+function mobileRecentActionList(headers, rows) {
+  const primaryLabels = state.currentGroup === "pitching" ? ["Date", "Opp", "IP"] : ["Date", "Opp", "H-AB"];
+  const primaryIndexes = primaryLabels.map((label) => headers.indexOf(label));
+  const primaryIndexSet = new Set(primaryIndexes);
+  const list = document.createElement("div");
+  list.className = "mobile-recent-action-list";
+
+  rows.forEach(({ values, decision }) => {
+    const details = document.createElement("details");
+    details.className = "mobile-recent-action-row";
+    if (decision) details.classList.add(`decision-${decision.toLowerCase()}`);
+    const summary = document.createElement("summary");
+    primaryIndexes.forEach((index, position) => {
+      const stat = document.createElement("span");
+      stat.className = "mobile-recent-action-stat";
+      stat.append(elementWithText("small", headers[index]));
+      if (position === 0) {
+        const dateLine = document.createElement("span");
+        dateLine.className = "mobile-recent-action-date";
+        const icon = document.createElement("i");
+        icon.className = "mobile-recent-action-icon";
+        icon.setAttribute("aria-hidden", "true");
+        dateLine.append(elementWithText("strong", values[index] ?? "-"), icon);
+        stat.append(dateLine);
+      } else {
+        stat.append(elementWithText("span", values[index] ?? "-"));
+      }
+      summary.append(stat);
+    });
+
+    const secondary = document.createElement("div");
+    secondary.className = "mobile-recent-action-details";
+    headers.forEach((label, index) => {
+      if (primaryIndexSet.has(index)) return;
+      const stat = document.createElement("span");
+      stat.className = "mobile-recent-action-stat";
+      stat.append(elementWithText("small", label), elementWithText("span", values[index] ?? "-"));
+      secondary.append(stat);
+    });
+    details.append(summary, secondary);
+    list.append(details);
+  });
+  return list;
+}
+
 function renderRecentActionTab() {
   const games = state.gameLogSplits.slice(-RECENT_ACTION_GAMES).reverse();
   els.detailTabPanel.replaceChildren();
@@ -549,12 +638,14 @@ function renderRecentActionTab() {
   headers.forEach((label) => headRow.append(elementWithText("th", label)));
   head.append(headRow);
   const body = document.createElement("tbody");
+  const mobileRows = [];
   games.forEach((split) => {
     const stat = split.stat || {};
     const decision = state.currentGroup === "pitching" ? pitchingDecision(split) : "";
     const values = state.currentGroup === "pitching"
       ? [niceDate(split.date), split.opponent?.abbreviation || split.opponent?.name || "-", stat.inningsPitched, stat.earnedRuns, stat.strikeOuts, stat.baseOnBalls, decision]
       : [niceDate(split.date), split.opponent?.abbreviation || split.opponent?.name || "-", `${stat.hits || 0}-${stat.atBats || 0}`, stat.homeRuns, stat.rbi, stat.runs, stat.baseOnBalls, stat.strikeOuts, stat.stolenBases];
+    mobileRows.push({ values, decision });
     const row = document.createElement("tr");
     if (decision) row.classList.add(`decision-${decision.toLowerCase()}`);
     values.forEach((value, index) => {
@@ -565,7 +656,7 @@ function renderRecentActionTab() {
     body.append(row);
   });
   table.append(head, body);
-  els.detailTabPanel.append(table);
+  els.detailTabPanel.append(table, mobileRecentActionList(headers, mobileRows));
 }
 
 function sumGameStats(games, key) {
@@ -985,11 +1076,26 @@ async function searchPlayers(options = {}) {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "result-button";
+      const headshot = document.createElement("span");
+      headshot.className = "result-headshot";
+      const fallback = elementWithText("span", person.fullName?.trim()?.[0] || "?", "result-headshot-fallback");
+      fallback.setAttribute("aria-hidden", "true");
+      const image = document.createElement("img");
+      image.src = HEADSHOT(person.id);
+      image.alt = "";
+      image.loading = "lazy";
+      image.decoding = "async";
+      image.addEventListener("load", () => headshot.classList.add("is-loaded"));
+      image.addEventListener("error", () => image.remove());
+      headshot.append(fallback, image);
+      const copy = document.createElement("span");
+      copy.className = "result-copy";
       const name = document.createElement("span");
       name.textContent = person.fullName;
       const details = document.createElement("small");
       details.textContent = `${person.primaryPosition?.abbreviation || "Player"} - ${person.currentTeam?.name || "MLB"}`;
-      button.append(name, details);
+      copy.append(name, details);
+      button.append(headshot, copy);
       button.addEventListener("click", () => {
         els.searchResults.hidden = true;
         els.searchInput.value = "";

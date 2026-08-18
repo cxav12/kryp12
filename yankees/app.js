@@ -654,7 +654,45 @@ function renderScoreboardTeam(details, side, score) {
   `;
 }
 
-function renderGameStatTable(headers, rows, emptyMessage) {
+function renderMobileGameStatList(entries, primaryLabels) {
+  const primaryLabelSet = new Set(primaryLabels);
+  return `
+    <div class="game-player-mobile-list">
+      ${entries.map((entry) => {
+        const statValueByLabel = new Map(entry.stats);
+        const secondaryStats = entry.stats.filter(([label]) => !primaryLabelSet.has(label));
+        return `
+          <details class="game-player-mobile-row${entry.isSubstitute ? " is-substitute" : ""}">
+            <summary>
+              <span class="mobile-player-identity">
+                <strong>${escapeHtml(entry.name)}</strong>
+                ${entry.position ? `<small>${escapeHtml(entry.position)}</small>` : ""}
+                <span class="mobile-expand-icon" aria-hidden="true"></span>
+              </span>
+              ${primaryLabels.map((label) => `
+                <span class="mobile-game-stat">
+                  <small>${escapeHtml(label)}</small>
+                  <strong>${escapeHtml(statValueByLabel.get(label) ?? 0)}</strong>
+                </span>
+              `).join("")}
+            </summary>
+            <div class="mobile-game-stat-details">
+              ${secondaryStats.map(([label, value]) => `
+                <span class="mobile-game-stat">
+                  <small>${escapeHtml(label)}</small>
+                  <strong>${escapeHtml(value ?? 0)}</strong>
+                </span>
+              `).join("")}
+              <a class="mobile-player-profile-link" href="./player-profile/?player=${escapeHtml(entry.playerId)}">View player profile</a>
+            </div>
+          </details>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function renderGameStatTable(headers, rows, mobileEntries, primaryLabels, emptyMessage) {
   if (!rows.length) return `<p class="game-player-empty">${escapeHtml(emptyMessage)}</p>`;
   return `
     <div class="game-player-table-scroll">
@@ -663,6 +701,7 @@ function renderGameStatTable(headers, rows, emptyMessage) {
         <tbody>${rows.join("")}</tbody>
       </table>
     </div>
+    ${renderMobileGameStatList(mobileEntries, primaryLabels)}
   `;
 }
 
@@ -681,7 +720,7 @@ function renderGamePlayerStats(feed, yankeesTeamSide, game) {
   const players = teamBox.players || {};
   const battingHeaders = ["Player", "AB", "R", "H", "2B", "3B", "HR", "RBI", "BB", "SO", "AVG"];
   const pitchingHeaders = ["Player", "IP", "H", "R", "ER", "BB", "SO", "HR", "P", "ERA"];
-  const battingRows = (teamBox.batters || []).map((playerId) => players[`ID${playerId}`]).filter((player) => {
+  const battingEntries = (teamBox.batters || []).map((playerId) => players[`ID${playerId}`]).filter((player) => {
     const stats = player?.stats?.batting || {};
     return player?.person && (Number(stats.plateAppearances || 0) > 0 || Number(stats.atBats || 0) > 0);
   }).map((player) => {
@@ -690,21 +729,41 @@ function renderGamePlayerStats(feed, yankeesTeamSide, game) {
     const values = [stats.atBats, stats.runs, stats.hits, stats.doubles, stats.triples, stats.homeRuns, stats.rbi, stats.baseOnBalls, stats.strikeOuts, seasonAverage];
     const battingOrder = String(player.battingOrder || "");
     const isSubstitute = battingOrder.length >= 3 && Number.parseInt(battingOrder.slice(-2), 10) > 0;
+    return {
+      playerId: player.person.id,
+      name: player.person.fullName,
+      position: player.position?.abbreviation || "",
+      isSubstitute,
+      values,
+      stats: values.map((value, index) => [battingHeaders[index + 1], value]),
+    };
+  });
+  const battingRows = battingEntries.map((entry) => {
     return `
-      <tr class="${isSubstitute ? "is-substitute" : ""}">
-        <th scope="row"><a href="./player-profile/?player=${escapeHtml(player.person.id)}">${escapeHtml(player.person.fullName)}</a><small>${escapeHtml(player.position?.abbreviation || "")}</small></th>
-        ${values.map((value, index) => `<td data-label="${escapeHtml(battingHeaders[index + 1])}">${escapeHtml(value ?? 0)}</td>`).join("")}
+      <tr class="${entry.isSubstitute ? "is-substitute" : ""}">
+        <th scope="row"><a href="./player-profile/?player=${escapeHtml(entry.playerId)}">${escapeHtml(entry.name)}</a><small>${escapeHtml(entry.position)}</small></th>
+        ${entry.values.map((value, index) => `<td data-label="${escapeHtml(battingHeaders[index + 1])}">${escapeHtml(value ?? 0)}</td>`).join("")}
       </tr>
     `;
   });
-  const pitchingRows = (teamBox.pitchers || []).map((playerId) => players[`ID${playerId}`]).filter((player) => player?.person && player.stats?.pitching).map((player) => {
+  const pitchingEntries = (teamBox.pitchers || []).map((playerId) => players[`ID${playerId}`]).filter((player) => player?.person && player.stats?.pitching).map((player) => {
     const stats = player.stats.pitching || {};
     const seasonEra = player.seasonStats?.pitching?.era || "-";
     const values = [stats.inningsPitched, stats.hits, stats.runs, stats.earnedRuns, stats.baseOnBalls, stats.strikeOuts, stats.homeRuns, stats.numberOfPitches ?? stats.pitchesThrown, seasonEra];
+    return {
+      playerId: player.person.id,
+      name: player.person.fullName,
+      position: "",
+      isSubstitute: false,
+      values,
+      stats: values.map((value, index) => [pitchingHeaders[index + 1], value]),
+    };
+  });
+  const pitchingRows = pitchingEntries.map((entry) => {
     return `
       <tr>
-        <th scope="row"><a href="./player-profile/?player=${escapeHtml(player.person.id)}">${escapeHtml(player.person.fullName)}</a></th>
-        ${values.map((value, index) => `<td data-label="${escapeHtml(pitchingHeaders[index + 1])}">${escapeHtml(value ?? 0)}</td>`).join("")}
+        <th scope="row"><a href="./player-profile/?player=${escapeHtml(entry.playerId)}">${escapeHtml(entry.name)}</a></th>
+        ${entry.values.map((value, index) => `<td data-label="${escapeHtml(pitchingHeaders[index + 1])}">${escapeHtml(value ?? 0)}</td>`).join("")}
       </tr>
     `;
   });
@@ -723,11 +782,11 @@ function renderGamePlayerStats(feed, yankeesTeamSide, game) {
     ${renderGameNotes(feed, game)}
     <article class="game-player-column">
       <h3>${escapeHtml(selectedTeamName)} Batting</h3>
-      ${renderGameStatTable(battingHeaders, battingRows, `No ${selectedTeamName} batting statistics are available yet.`)}
+      ${renderGameStatTable(battingHeaders, battingRows, battingEntries, ["AB", "H", "RBI", "AVG"], `No ${selectedTeamName} batting statistics are available yet.`)}
     </article>
     <article class="game-player-column">
       <h3>${escapeHtml(selectedTeamName)} Pitching</h3>
-      ${renderGameStatTable(pitchingHeaders, pitchingRows, `No ${selectedTeamName} pitching statistics are available yet.`)}
+      ${renderGameStatTable(pitchingHeaders, pitchingRows, pitchingEntries, ["IP", "H", "ER", "SO"], `No ${selectedTeamName} pitching statistics are available yet.`)}
     </article>
   `;
   els.playerStats.setAttribute("aria-label", `${selectedTeamName} player statistics for this game`);

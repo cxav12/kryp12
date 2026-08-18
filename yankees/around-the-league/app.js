@@ -22,34 +22,34 @@ const HOT_PITCHER_CANDIDATE_FIELDS = "stats,splits,stat,gamesStarted,outs,inning
 const HOT_RELIEVER_FIELDS = "stats,splits,stat,gamesPlayed,gamesStarted,outs,inningsPitched,earnedRuns,strikeOuts,baseOnBalls,hits,era,whip,saves,blownSaves,player,id,fullName,team,name,abbreviation";
 const PLAYER_LEADER_STATS = {
   hitting: [
-    { key: "battingAverage", label: "Batting Average", group: "hitting" },
-    { key: "homeRuns", label: "Home Runs", group: "hitting" },
-    { key: "runsBattedIn", label: "RBI", group: "hitting" },
-    { key: "hits", label: "Hits", group: "hitting" },
-    { key: "stolenBases", label: "Stolen Bases", group: "hitting" },
+    { key: "battingAverage", label: "Batting Average", toggleLabel: "AVG", group: "hitting" },
+    { key: "homeRuns", label: "Home Runs", toggleLabel: "HR", group: "hitting" },
+    { key: "runsBattedIn", label: "RBI", toggleLabel: "RBI", group: "hitting" },
+    { key: "hits", label: "Hits", toggleLabel: "H", group: "hitting" },
+    { key: "stolenBases", label: "Stolen Bases", toggleLabel: "SB", group: "hitting" },
   ],
   pitching: [
-    { key: "wins", label: "Wins", group: "pitching" },
-    { key: "earnedRunAverage", label: "ERA", group: "pitching", ascending: true },
-    { key: "saves", label: "Saves", group: "pitching" },
-    { key: "strikeouts", label: "Strikeouts", group: "pitching" },
-    { key: "qualityStarts", label: "Quality Starts", group: "pitching" },
+    { key: "wins", label: "Wins", toggleLabel: "W", group: "pitching" },
+    { key: "earnedRunAverage", label: "ERA", toggleLabel: "ERA", group: "pitching", ascending: true },
+    { key: "saves", label: "Saves", toggleLabel: "SV", group: "pitching" },
+    { key: "strikeouts", label: "Strikeouts", toggleLabel: "SO", group: "pitching" },
+    { key: "qualityStarts", label: "Quality Starts", toggleLabel: "QS", group: "pitching" },
   ],
 };
 const TEAM_LEADER_STATS = {
   hitting: [
-    { key: "avg", label: "Batting Average" },
-    { key: "homeRuns", label: "Home Runs" },
-    { key: "rbi", label: "RBI" },
-    { key: "hits", label: "Hits" },
-    { key: "stolenBases", label: "Stolen Bases" },
+    { key: "avg", label: "Batting Average", toggleLabel: "AVG" },
+    { key: "homeRuns", label: "Home Runs", toggleLabel: "HR" },
+    { key: "rbi", label: "RBI", toggleLabel: "RBI" },
+    { key: "hits", label: "Hits", toggleLabel: "H" },
+    { key: "stolenBases", label: "Stolen Bases", toggleLabel: "SB" },
   ],
   pitching: [
-    { key: "wins", label: "Wins" },
-    { key: "era", label: "ERA", ascending: true },
-    { key: "saves", label: "Saves" },
-    { key: "strikeOuts", label: "Strikeouts" },
-    { key: "qualityStarts", label: "Quality Starts" },
+    { key: "wins", label: "Wins", toggleLabel: "W" },
+    { key: "era", label: "ERA", toggleLabel: "ERA", ascending: true },
+    { key: "saves", label: "Saves", toggleLabel: "SV" },
+    { key: "strikeOuts", label: "Strikeouts", toggleLabel: "SO" },
+    { key: "qualityStarts", label: "Quality Starts", toggleLabel: "QS" },
   ],
 };
 const EASTERN_TIME_ZONE = "America/New_York";
@@ -91,6 +91,7 @@ const state = {
     players: null,
     teams: null,
     view: "players",
+    selectedStats: { hitting: 1, pitching: 0 },
     status: "loading",
   },
 };
@@ -564,7 +565,7 @@ function renderWhosHot() {
   const { hitters, pitchers, relievers, status } = state.hotPlayers;
   const teamLoading = state.dataStatus.standings === "loading";
   const loading = teamLoading || status === "loading";
-  const hasInstantContent = (list) => list.hasAttribute("data-hot-snapshot") || list.querySelector(".hot-item");
+  const hasInstantContent = (list) => list.querySelector(".hot-item");
   if (loading && hasInstantContent(els.whosHot) && hasInstantContent(els.whosNot)) return;
 
   const playerName = (player) => player ? `${player.playerName} · ${player.teamAbbreviation}` : "Unavailable";
@@ -727,7 +728,6 @@ function persistHotPlayersCache() {
       hitters: state.hotPlayers.hitters,
       pitchers: state.hotPlayers.pitchers,
       relievers: state.hotPlayers.relievers,
-      cachedAt: Date.now(),
     }));
   } catch (error) {
     // Storage can be unavailable in private browsing; live data still works.
@@ -853,8 +853,9 @@ function leaderEntry(entry, index, type) {
   return item;
 }
 
-function leaderStatCard(definition, entries, type) {
+function leaderStatCard(definition, entries, type, selected = false) {
   const card = element("section", "leader-stat-card");
+  card.classList.toggle("is-selected", selected);
   card.append(element("h4", "leader-stat-title", definition.label));
   if (!entries?.length) {
     card.append(element("p", "leader-stat-empty", "Unavailable"));
@@ -866,24 +867,44 @@ function leaderStatCard(definition, entries, type) {
   return card;
 }
 
-function leaderGroup(title, definitions, leaders, type) {
+function leaderGroup(title, groupName, definitions, leaders, type, selectedIndex) {
   const group = element("section", "leader-group");
+  const header = element("div", "leader-group-header");
+  const controls = element("div", "leader-stat-toggle");
+  controls.setAttribute("role", "group");
+  controls.setAttribute("aria-label", `${title} statistic`);
+  const toggleOrder = groupName === "hitting" ? [1, 0, 2, 3, 4] : [0, 1, 2, 3, 4];
+  toggleOrder.forEach((index) => {
+    const definition = definitions[index];
+    const button = element("button", "leader-stat-toggle-button", definition.toggleLabel);
+    const active = index === selectedIndex;
+    button.type = "button";
+    button.dataset.leaderStatGroup = groupName;
+    button.dataset.leaderStatIndex = String(index);
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+    button.setAttribute("aria-label", definition.label);
+    controls.append(button);
+  });
   const grid = element("div", "leader-stat-grid");
-  definitions.forEach((definition) => grid.append(leaderStatCard(definition, leaders?.[definition.key], type)));
-  group.append(element("h3", "leader-group-title", title), grid);
+  definitions.forEach((definition, index) => {
+    grid.append(leaderStatCard(definition, leaders?.[definition.key], type, index === selectedIndex));
+  });
+  header.append(element("h3", "leader-group-title", title), controls);
+  group.append(header, grid);
   return group;
 }
 
 function renderLeagueLeaders() {
-  const { players, teams, view, status } = state.leagueLeaders;
+  const { players, teams, view, selectedStats, status } = state.leagueLeaders;
   if (status === "loading") return;
   const showingPlayers = view === "players";
   const data = showingPlayers ? players : teams;
   const definitions = showingPlayers ? PLAYER_LEADER_STATS : TEAM_LEADER_STATS;
   const type = showingPlayers ? "player" : "team";
   els.leagueLeaders.replaceChildren(
-    leaderGroup(showingPlayers ? "Hitters" : "Hitting", definitions.hitting, data?.hitting, type),
-    leaderGroup(showingPlayers ? "Pitchers" : "Pitching", definitions.pitching, data?.pitching, type),
+    leaderGroup(showingPlayers ? "Hitters" : "Hitting", "hitting", definitions.hitting, data?.hitting, type, selectedStats.hitting),
+    leaderGroup(showingPlayers ? "Pitchers" : "Pitching", "pitching", definitions.pitching, data?.pitching, type, selectedStats.pitching),
   );
   els.leaderboardToggle.querySelectorAll("[data-leader-view]").forEach((button) => {
     const active = button.dataset.leaderView === view;
@@ -896,6 +917,14 @@ function renderLeagueLeaders() {
 function setLeagueLeaderView(view) {
   if (view !== "players" && view !== "teams") return;
   state.leagueLeaders.view = view;
+  renderLeagueLeaders();
+}
+
+function setLeagueLeaderStat(group, index) {
+  if (!(group in state.leagueLeaders.selectedStats)) return;
+  const selectedIndex = Number(index);
+  if (!Number.isInteger(selectedIndex) || selectedIndex < 0 || selectedIndex > 4) return;
+  state.leagueLeaders.selectedStats[group] = selectedIndex;
   renderLeagueLeaders();
 }
 
@@ -1285,6 +1314,10 @@ function bindEvents() {
   els.leaderboardToggle.addEventListener("click", (event) => {
     const button = event.target.closest("[data-leader-view]");
     if (button) setLeagueLeaderView(button.dataset.leaderView);
+  });
+  els.leagueLeaders.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-leader-stat-group]");
+    if (button) setLeagueLeaderStat(button.dataset.leaderStatGroup, button.dataset.leaderStatIndex);
   });
 }
 

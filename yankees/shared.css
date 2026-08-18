@@ -12,10 +12,10 @@
   --card-bg: #11181e;
   --card-bg-strong: #0e1419;
   --inner-card-bg: #0a1015;
-  --logo-surface: #d6d9dd;
   --control-active-bg: #3b4650;
   --control-active-border: #697680;
   --control-active-ink: #f2f5f7;
+  --control-arrow-hover-bg: rgba(196, 206, 211, 0.12);
   --game-detail-columns: minmax(0, 1.46fr) minmax(280px, 1fr);
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
   --text-normal: 0.8125rem;
@@ -113,14 +113,22 @@
   opacity: 0.55;
 }
 
-.pagination-summary {
-  border: 0 !important;
-  color: #fff;
-  background: transparent !important;
+:is(
+  .scores-date-arrow,
+  .month-arrow,
+  .standings-season-arrow,
+  .pagination-controls .pagination-button,
+  .stats-pagination .page-button
+):is(:hover, :focus-visible):not(:disabled) {
+  color: #fff !important;
+  background: var(--control-arrow-hover-bg) !important;
 }
 
-.quick-season-divider {
-  display: none;
+.pagination-summary {
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: #fff;
+  background: #101720 !important;
 }
 
 .btn-yankees,
@@ -394,7 +402,6 @@ b {
   flex: 0 0 auto;
   object-fit: contain;
   border: 0;
-  object-fit: contain;
   filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.28));
 }
 
@@ -984,8 +991,9 @@ small {
 @media (max-width: 575.98px) {
   .schedule-panel .month-controls {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px !important;
+    grid-template-columns: 36px minmax(0, 180px) 36px;
+    justify-content: center;
+    gap: 4px !important;
     width: 100%;
   }
 

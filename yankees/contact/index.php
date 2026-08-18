@@ -1,6 +1,12 @@
 <?php
 declare(strict_types=1);
 
+const CONTACT_PAGE_ENABLED = false;
+if (!CONTACT_PAGE_ENABLED) {
+    header('Location: /yankees/', true, 302);
+    exit;
+}
+
 $isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 session_set_cookie_params([
     'lifetime' => 0,
@@ -112,7 +118,7 @@ $notice = $messages[$status] ?? null;
             <div class="contact-field contact-field-full">
               <label for="message">Message</label>
               <textarea class="form-control" id="message" name="message" maxlength="5000" required></textarea>
-              <p class="contact-help">Maximum 5,000 characters. Your email address is used only to reply to your message.</p>
+              <p class="contact-help">Maximum 5,000 characters. Your email address is used only to reply to your message. See the <a href="../privacy-policy/">Privacy Policy</a>.</p>
             </div>
           </div>
 
@@ -127,6 +133,7 @@ $notice = $messages[$status] ?? null;
           <a class="site-footer-link site-footer-item" href="/yankees/">Home</a>
           <a class="site-footer-link site-footer-item" href="./" aria-current="page">Contact</a>
           <a class="site-footer-link site-footer-item" href="../legal-disclaimer/">Legal Disclaimer</a>
+          <a class="site-footer-link site-footer-item" href="../privacy-policy/">Privacy Policy</a>
         </nav>
       </footer>
     </main>

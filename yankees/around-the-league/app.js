@@ -81,7 +81,7 @@ const state = {
   liveStandingsRecords: [],
   currentScoreGames: [],
   standingsView: {
-    mode: "al",
+    mode: "divisions",
     season: SEASON,
   },
   dataStatus: {
@@ -105,6 +105,7 @@ const els = {
   whosHot: document.querySelector("#whos-hot"),
   whosNot: document.querySelector("#whos-not"),
   standingsModeControls: document.querySelector("#standings-mode-controls"),
+  standingsTable: document.querySelector("#standings-table"),
   standingsSeason: document.querySelector("#standings-season"),
   previousStandingsSeason: document.querySelector("#previous-standings-season"),
   nextStandingsSeason: document.querySelector("#next-standings-season"),
@@ -284,12 +285,6 @@ function divisionCardCode(name) {
   }[shortName] || shortName;
 }
 
-function leagueShortName(name) {
-  if (name.includes("American")) return "American League";
-  if (name.includes("National")) return "National League";
-  return name || "League";
-}
-
 function leagueOrder(name) {
   return name.includes("American") ? 0 : name.includes("National") ? 1 : 2;
 }
@@ -304,7 +299,7 @@ function rankValue(record, mode) {
   if (mode === "divisions") return record.divisionRank;
   if (mode === "mlb") return record.sportRank;
   if (mode === "al" || mode === "nl") return record.leagueRank;
-  if (mode === "wild-card") return record.wildCardRank;
+  if (mode === "wild-card") return record.divisionRank === 1 ? record.leagueRank : record.wildCardRank;
   return record.leagueRank;
 }
 
@@ -312,7 +307,7 @@ function gamesBackValue(record, mode) {
   if (mode === "divisions") return record.divisionGamesBack;
   if (mode === "mlb") return record.sportGamesBack;
   if (mode === "al" || mode === "nl") return record.leagueGamesBack;
-  if (mode === "wild-card") return record.wildCardGamesBack;
+  if (mode === "wild-card") return record.divisionRank === 1 ? record.leagueGamesBack : record.wildCardGamesBack;
   return record.leagueGamesBack;
 }
 
@@ -350,10 +345,11 @@ function filteredStandings() {
   if (mode === "nl") return sortStandings(state.standingsRecords.filter((record) => record.leagueName.includes("National")), mode);
   if (mode === "wild-card") {
     return [...state.standingsRecords]
-      .filter((record) => record.divisionRank !== 1)
       .sort((a, b) => {
         const leagueDifference = leagueOrder(a.leagueName) - leagueOrder(b.leagueName);
         if (leagueDifference) return leagueDifference;
+        const leaderDifference = Number(b.divisionRank === 1) - Number(a.divisionRank === 1);
+        if (leaderDifference) return leaderDifference;
         const aRank = rankValue(a, mode);
         const bRank = rankValue(b, mode);
         if (Number.isFinite(aRank) && Number.isFinite(bRank)) return aRank - bRank;
@@ -402,17 +398,40 @@ function renderStandingsRows() {
   }
 
   const fragment = document.createDocumentFragment();
-  let activeLeague = "";
   let activeDivision = "";
+  let activeWildCardGroup = "";
+  let renderedWildCardGroups = 0;
   records.forEach((record, index) => {
-    if (state.standingsView.mode === "wild-card" && record.leagueName !== activeLeague) {
-      activeLeague = record.leagueName;
-      const leagueRow = element("tr", "standings-league-divider");
-      const leagueCell = element("th", "", leagueShortName(activeLeague));
-      leagueCell.colSpan = 14;
-      leagueCell.scope = "rowgroup";
-      leagueRow.append(leagueCell);
-      fragment.append(leagueRow);
+    if (state.standingsView.mode === "wild-card") {
+      const leaguePrefix = record.leagueName.includes("American") ? "AL" : "NL";
+      const wildCardGroup = record.divisionRank === 1
+        ? `${leaguePrefix} Division Leaders`
+        : `${leaguePrefix} Wild Card Standings`;
+      if (wildCardGroup !== activeWildCardGroup) {
+        activeWildCardGroup = wildCardGroup;
+        if (renderedWildCardGroups > 0) {
+          const spacerRow = element("tr", "standings-section-spacer");
+          const spacerCell = element("td");
+          spacerCell.colSpan = 14;
+          spacerCell.setAttribute("aria-hidden", "true");
+          spacerRow.append(spacerCell);
+          fragment.append(spacerRow);
+        }
+        const groupRow = element("tr", "standings-subgroup-divider");
+        const groupCell = element("th", "", wildCardGroup);
+        groupCell.colSpan = 2;
+        groupCell.scope = "rowgroup";
+        groupRow.append(
+          groupCell,
+          ...["W", "L", "PCT", "GB", "WCGB", "L10", "Streak", "Home", "Away", "RS", "RA", "Diff"].map((label) => {
+            const heading = element("th", "", label);
+            heading.scope = "col";
+            return heading;
+          }),
+        );
+        fragment.append(groupRow);
+        renderedWildCardGroups += 1;
+      }
     }
     if (state.standingsView.mode === "divisions" && record.divisionName !== activeDivision) {
       activeDivision = record.divisionName;
@@ -450,6 +469,7 @@ function renderStandingsRows() {
 }
 
 function renderStandings() {
+  els.standingsTable.classList.toggle("is-wild-card-view", state.standingsView.mode === "wild-card");
   els.standingsModeControls.querySelectorAll("[data-standings-mode]").forEach((button) => {
     const active = button.dataset.standingsMode === state.standingsView.mode;
     button.classList.toggle("active", active);

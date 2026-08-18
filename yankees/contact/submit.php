@@ -3,6 +3,12 @@ declare(strict_types=1);
 
 use PHPMailer\PHPMailer\PHPMailer;
 
+const CONTACT_PAGE_ENABLED = false;
+if (!CONTACT_PAGE_ENABLED) {
+    header('Location: /yankees/', true, 303);
+    exit;
+}
+
 function redirectWithStatus(string $status): void
 {
     header('Location: /yankees/contact/?status=' . rawurlencode($status), true, 303);

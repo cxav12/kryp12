@@ -320,10 +320,10 @@
 }
 
 .detail-tab-panel {
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg);
-  padding: 14px;
+  padding: 0;
 }
 
 .detail-tab-note {
@@ -334,7 +334,7 @@
 
 .detail-tab-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -343,7 +343,7 @@
 }
 
 .recent-summary-grid.pitching {
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .recent-form-card {

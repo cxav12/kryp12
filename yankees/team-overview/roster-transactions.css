@@ -16,7 +16,7 @@
 
 .roster-tabs {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -116,6 +116,7 @@
   background-size: auto 96%;
   filter: grayscale(100%) saturate(45%);
   opacity: 0.5;
+  transition: filter 180ms ease, opacity 180ms ease;
 }
 
 .overview-body .roster-link::after {
@@ -124,7 +125,8 @@
 
 .overview-body .roster-link:hover::before,
 .overview-body .roster-link:focus::before {
-  opacity: 0.58;
+  filter: grayscale(20%) saturate(95%) brightness(1.08);
+  opacity: 0.74;
 }
 
 .roster-link:hover,

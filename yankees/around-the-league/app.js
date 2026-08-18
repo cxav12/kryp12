@@ -11,7 +11,6 @@ const MLB_TEAM_PRIMARY_COLORS = {
   139: "#8FBCE6", 140: "#C0111F", 141: "#134A8E", 142: "#D31145", 143: "#E81828",
   144: "#CE1141", 145: "#C4CED4", 146: "#00A3E0", 147: "#C4CED3", 158: "#FFC52F",
 };
-const HOT_PLAYERS_CACHE_MS = 6 * 60 * 60 * 1000;
 const HOT_PLAYERS_CACHE_KEY = `kryp12-hot-players-${SEASON}-v4`;
 const HOT_HITTER_MIN_PA = 25;
 const HOT_HITTER_MIN_GAMES = 7;
@@ -565,7 +564,8 @@ function renderWhosHot() {
   const { hitters, pitchers, relievers, status } = state.hotPlayers;
   const teamLoading = state.dataStatus.standings === "loading";
   const loading = teamLoading || status === "loading";
-  if (loading && els.whosHot.querySelector(".hot-message") && els.whosNot.querySelector(".hot-message")) return;
+  const hasInstantContent = (list) => list.hasAttribute("data-hot-snapshot") || list.querySelector(".hot-item");
+  if (loading && hasInstantContent(els.whosHot) && hasInstantContent(els.whosNot)) return;
 
   const playerName = (player) => player ? `${player.playerName} · ${player.teamAbbreviation}` : "Unavailable";
   const playerImage = (player) => player
@@ -707,7 +707,7 @@ async function getPitcherRankings() {
 function restoreHotPlayersCache() {
   try {
     const cached = JSON.parse(localStorage.getItem(HOT_PLAYERS_CACHE_KEY) || "null");
-    if (!cached || Date.now() - cached.cachedAt > HOT_PLAYERS_CACHE_MS) return false;
+    if (!cached) return false;
     if (!cached.hitters || !cached.pitchers || !cached.relievers) return false;
     state.hotPlayers = {
       hitters: cached.hitters,

@@ -306,6 +306,10 @@
   margin: 0;
   overflow: hidden;
   color: #f7f8ff;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 6px;
   font-weight: 800;
   letter-spacing: 0.04em;
   line-height: 1.1;
@@ -316,9 +320,15 @@
   width: 100%;
 }
 
-.game-decisions span {
-  margin-right: 10px;
+.game-decisions :is(.win-label, .loss-label, .save-label) {
   color: #57f091;
+}
+
+.game-decisions .decision-pitcher {
+  min-width: 0;
+  overflow: hidden;
+  color: inherit;
+  text-overflow: ellipsis;
 }
 
 .game-decisions .loss-label {

@@ -1259,9 +1259,9 @@ function renderRecap(game, feed) {
         ${isLiveGame(game) ? `
           ${renderCurrentMatchup(feed, liveCurrentPlay.matchup || {})}
         ` : `
-          <p><span class="win-label">W:</span> ${escapeHtml(formatDecisionPitcher(decisions.winner, feed))}</p>
-          <p><span class="loss-label">L:</span> ${escapeHtml(formatDecisionPitcher(decisions.loser, feed))}</p>
-          <p><span class="save-label">SV:</span> ${escapeHtml(formatDecisionPitcher(decisions.save, feed))}</p>
+          <p><span class="win-label">W:</span><span class="decision-pitcher">${escapeHtml(formatDecisionPitcher(decisions.winner, feed))}</span></p>
+          <p><span class="loss-label">L:</span><span class="decision-pitcher">${escapeHtml(formatDecisionPitcher(decisions.loser, feed))}</span></p>
+          <p><span class="save-label">SV:</span><span class="decision-pitcher">${escapeHtml(formatDecisionPitcher(decisions.save, feed))}</span></p>
         `}
       </div>
     </div>
@@ -1375,9 +1375,9 @@ async function init() {
       <div class="game-scoreboard-lower">
         <div class="game-linescore-box"><span>Box score unavailable</span></div>
         <div class="game-decisions">
-          <p><span class="win-label">W:</span> Try again shortly</p>
-          <p><span class="loss-label">L:</span> ${escapeHtml(error.message)}</p>
-          <p><span class="save-label">SV:</span> None</p>
+          <p><span class="win-label">W:</span><span class="decision-pitcher">Try again shortly</span></p>
+          <p><span class="loss-label">L:</span><span class="decision-pitcher">${escapeHtml(error.message)}</span></p>
+          <p><span class="save-label">SV:</span><span class="decision-pitcher">None</span></p>
         </div>
       </div>
     `;

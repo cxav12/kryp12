@@ -22,9 +22,6 @@
               <h1 class="display-title brand-title mb-0">Yankees</h1>
             </div>
           </div>
-          <div class="header-actions d-flex flex-column flex-sm-row gap-2">
-            <span class="status-pill" id="data-status">Connecting to MLB data</span>
-          </div>
         </header>
 
         <details class="site-nav">
@@ -50,9 +47,12 @@
         </nav>
 
         <section class="player-stats-body">
-          <header class="page-intro-card">
-            <h2 class="page-heading" id="page-title">MLB Stats</h2>
-            <p class="page-intro-description">Compare player and team batting or pitching totals across Major League Baseball. Select any statistic to sort the rankings.</p>
+          <header class="page-intro-card page-intro-with-status">
+            <div class="page-intro-copy">
+              <h2 class="page-heading" id="page-title">MLB Stats</h2>
+              <p class="page-intro-description">Compare player and team batting or pitching totals across Major League Baseball. Select any statistic to sort the rankings.</p>
+            </div>
+            <span class="status-pill page-intro-status" id="data-status">Connecting to MLB data</span>
           </header>
 
           <section class="stats-card" aria-labelledby="stats-view-title">

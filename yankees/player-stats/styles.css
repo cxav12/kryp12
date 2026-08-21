@@ -11,7 +11,7 @@
 }
 
 .stats-card {
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg);
   overflow: hidden;
@@ -42,7 +42,7 @@
   flex: 0 0 auto;
   display: grid;
   grid-template-columns: repeat(2, minmax(110px, 1fr));
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 6px;
   overflow: hidden;
 }
@@ -110,7 +110,7 @@
   height: 12px;
   border-radius: 50%;
   background: #d7dde1;
-  transition: transform 160ms ease;
+  transition: background-color 160ms ease, transform 160ms ease;
 }
 
 .qualified-filter input:checked + span {
@@ -124,6 +124,7 @@
 }
 
 .qualified-filter input:checked + span::after {
+  background: #67e8a2;
   transform: translateX(12px);
 }
 
@@ -145,11 +146,6 @@
   padding: 0 16px;
   font-size: var(--text-small);
   font-weight: 800;
-}
-
-.stats-toggle-button + .stats-toggle-button,
-.stats-scope-button + .stats-scope-button {
-  border-left: 1px solid var(--line);
 }
 
 .stats-toggle-button:hover,

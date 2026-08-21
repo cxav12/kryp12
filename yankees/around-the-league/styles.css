@@ -24,7 +24,7 @@
 }
 
 .league-panel {
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   color: var(--ink);
   background: var(--card-bg-strong);
@@ -147,7 +147,7 @@
 
 .score-card {
   min-width: 0;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   background: var(--inner-card-bg, #0a1015);
   display: grid;
@@ -280,7 +280,7 @@
 .scores-message {
   grid-column: 1 / -1;
   min-height: 110px;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   color: var(--muted);
   background: var(--card-bg);
@@ -865,7 +865,7 @@
 
 .leaderboard-message {
   min-height: 180px;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 6px;
   color: var(--muted);
   background: var(--card-bg);

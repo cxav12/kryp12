@@ -22,9 +22,6 @@
               <h1 class="display-title brand-title mb-0">Yankees</h1>
             </div>
           </div>
-          <div class="header-actions d-flex flex-column flex-sm-row gap-2">
-            <div class="badge status-pill" id="data-status">Connecting to MLB data</div>
-          </div>
         </header>
 
         <details class="site-nav">
@@ -50,15 +47,18 @@
         </nav>
       </section>
 
-      <section class="player-title-band page-intro-card" aria-labelledby="page-title">
-        <h2 class="page-heading" id="page-title">Player Profile</h2>
-        <p class="page-intro-description">Search for any MLB player and explore their profile, season statistics, recent performance, and game-by-game results.</p>
+      <section class="player-title-band page-intro-card page-intro-with-status" aria-labelledby="page-title">
+        <div class="page-intro-copy">
+          <h2 class="page-heading" id="page-title">Player Profile</h2>
+          <p class="page-intro-description">Search for any MLB player and explore their profile, season statistics, recent performance, and game-by-game results.</p>
+        </div>
+        <div class="badge status-pill page-intro-status" id="data-status">Connecting to MLB data</div>
       </section>
       <section class="player-search-panel" aria-label="Player search">
         <div class="player-search-form">
           <label class="player-search-field" for="player-search">
-            <span class="visually-hidden">Search any player</span>
-            <input id="player-search" class="form-control form-control-lg" type="search" placeholder="Search for player" autocomplete="off" />
+            <span class="visually-hidden">Search MLB players by name</span>
+            <input id="player-search" class="form-control form-control-lg" type="search" placeholder="Search MLB players by name, e.g. Aaron Judge" autocomplete="off" />
           </label>
           <button id="search-button" class="btn btn-yankees btn-lg" type="button">
             <span class="search-button-text">Search</span>

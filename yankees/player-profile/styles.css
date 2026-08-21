@@ -22,6 +22,21 @@
   min-width: 0;
 }
 
+#player-search {
+  border: 0;
+  border-radius: 999px;
+  color: var(--ink);
+  background: #101720;
+  padding-inline: 16px;
+  box-shadow: none;
+}
+
+#player-search:focus {
+  color: #fff;
+  background: #151f29;
+  box-shadow: 0 0 0 2px rgba(196, 206, 211, 0.2);
+}
+
 .search-button-icon {
   display: none;
 }
@@ -34,7 +49,7 @@
 
 .detail-profile-card,
 .detail-card {
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg-strong);
   box-shadow: var(--shadow);
@@ -168,7 +183,7 @@
 .detail-quick-table-shell {
   min-width: 0;
   overflow-x: auto;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg);
 }
@@ -422,7 +437,8 @@
   border-left: 3px solid #7f8b94;
 }
 
-.detail-table tr[class*="decision-"] td:last-child {
+.detail-table tr[class*="decision-"] td[data-label="DEC"],
+.detail-table td[data-label="Game Score"] {
   font-weight: 800;
 }
 
@@ -530,7 +546,7 @@
     min-height: 36px;
     display: grid;
     place-items: center;
-    border-radius: 7px;
+    border-radius: 999px;
     padding: 0;
   }
 
@@ -845,7 +861,7 @@
 
 .player-search-panel {
   margin: 0 0 14px;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg-strong);
   padding: 14px;

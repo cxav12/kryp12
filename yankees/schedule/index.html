@@ -23,9 +23,6 @@
               <h1 class="display-title brand-title mb-0">Yankees</h1>
             </div>
           </div>
-          <div class="header-actions d-flex flex-column flex-sm-row gap-2">
-            <span class="status-pill" id="data-status">Connecting to MLB data</span>
-          </div>
         </header>
 
         <details class="site-nav">
@@ -51,9 +48,12 @@
         </nav>
 
         <section class="schedule-body">
-          <header class="page-intro-card">
-            <h2 class="page-heading" id="page-title">Schedule</h2>
-            <p class="page-intro-description">Browse the Yankees’ monthly schedule with completed scores, live game status, and upcoming matchup details.</p>
+          <header class="page-intro-card page-intro-with-status">
+            <div class="page-intro-copy">
+              <h2 class="page-heading" id="page-title">Schedule</h2>
+              <p class="page-intro-description">Browse the Yankees’ monthly schedule with completed scores, live game status, and upcoming matchup details.</p>
+            </div>
+            <span class="status-pill page-intro-status" id="data-status">Connecting to MLB data</span>
           </header>
           <div class="schedule-toolbar">
             <div class="month-info">

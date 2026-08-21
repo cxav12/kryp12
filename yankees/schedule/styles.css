@@ -16,7 +16,7 @@
 }
 
 .schedule-toolbar {
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg-strong);
   display: flex;
@@ -98,7 +98,7 @@
 }
 
 .calendar-shell {
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   overflow: hidden;
   background: var(--card-bg);
@@ -137,6 +137,13 @@
   gap: 8px;
 }
 
+@media (min-width: 768px) {
+  .weekday-row span:nth-child(7n),
+  .day-cell:nth-child(7n) {
+    border-right: 0;
+  }
+}
+
 .day-cell.outside-month {
   background: rgba(255, 255, 255, 0.025);
 }
@@ -153,7 +160,7 @@
 
 .game-card {
   min-width: 0;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg);
   display: grid;

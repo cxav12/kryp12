@@ -23,7 +23,6 @@
               <h1 class="display-title brand-title mb-0">Yankees</h1>
             </div>
           </div>
-          <span class="status-pill" id="recap-status">Loading latest final</span>
         </header>
 
         <details class="site-nav">
@@ -55,9 +54,12 @@
       </section>
 
       <section class="selected-recap-section" aria-label="Selected Yankees game recap">
-        <header class="page-intro-card">
-          <h2 class="page-heading recap-visible-title">Game Recap</h2>
-          <p class="page-intro-description">Review the Yankees’ latest completed game with the final score, key performers, decisions, and inning-by-inning details.</p>
+        <header class="page-intro-card page-intro-with-status">
+          <div class="page-intro-copy">
+            <h2 class="page-heading recap-visible-title">Game Recap</h2>
+            <p class="page-intro-description">Review the Yankees’ latest completed game with the final score, key performers, decisions, and inning-by-inning details.</p>
+          </div>
+          <span class="status-pill page-intro-status" id="recap-status">Loading latest final</span>
         </header>
         <section class="recap-selector-section" aria-label="Recent results and upcoming Yankees games">
           <div class="recap-button-row" id="recap-button-row"></div>

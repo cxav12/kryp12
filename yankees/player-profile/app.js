@@ -574,6 +574,20 @@ function pitchingDecision(split) {
   return decision || "ND";
 }
 
+function pitchingGameScore(stats) {
+  const outs = inningsToOuts(stats?.inningsPitched);
+  if (!outs) return "-";
+  const completedInningsAfterFourth = Math.max(0, Math.floor(outs / 3) - 4);
+  const hits = Number(stats?.hits || 0);
+  const earnedRuns = Number(stats?.earnedRuns || 0);
+  const runs = Number(stats?.runs ?? earnedRuns);
+  const unearnedRuns = Math.max(0, runs - earnedRuns);
+  const walks = Number(stats?.baseOnBalls || 0);
+  const strikeouts = Number(stats?.strikeOuts || 0);
+  return 50 + outs + (completedInningsAfterFourth * 2) + strikeouts
+    - (hits * 2) - (earnedRuns * 4) - (unearnedRuns * 2) - walks;
+}
+
 function mobileRecentActionList(headers, rows) {
   const primaryLabels = state.currentGroup === "pitching" ? ["Date", "Opp", "IP"] : ["Date", "Opp", "H-AB"];
   const primaryIndexes = primaryLabels.map((label) => headers.indexOf(label));
@@ -631,7 +645,7 @@ function renderRecentActionTab() {
   table.className = "detail-table";
   table.setAttribute("aria-label", `Last ${games.length} games`);
   const headers = state.currentGroup === "pitching"
-    ? ["Date", "Opp", "IP", "ER", "SO", "BB", "DEC"]
+    ? ["Date", "Opp", "IP", "ER", "SO", "BB", "DEC", "Game Score"]
     : ["Date", "Opp", "H-AB", "HR", "RBI", "R", "BB", "K", "SB"];
   const head = document.createElement("thead");
   const headRow = document.createElement("tr");
@@ -643,7 +657,7 @@ function renderRecentActionTab() {
     const stat = split.stat || {};
     const decision = state.currentGroup === "pitching" ? pitchingDecision(split) : "";
     const values = state.currentGroup === "pitching"
-      ? [niceDate(split.date), split.opponent?.abbreviation || split.opponent?.name || "-", stat.inningsPitched, stat.earnedRuns, stat.strikeOuts, stat.baseOnBalls, decision]
+      ? [niceDate(split.date), split.opponent?.abbreviation || split.opponent?.name || "-", stat.inningsPitched, stat.earnedRuns, stat.strikeOuts, stat.baseOnBalls, decision, pitchingGameScore(stat)]
       : [niceDate(split.date), split.opponent?.abbreviation || split.opponent?.name || "-", `${stat.hits || 0}-${stat.atBats || 0}`, stat.homeRuns, stat.rbi, stat.runs, stat.baseOnBalls, stat.strikeOuts, stat.stolenBases];
     mobileRows.push({ values, decision });
     const row = document.createElement("tr");

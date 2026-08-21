@@ -3,6 +3,10 @@
   --team-opponent: #c75c5c;
 }
 
+.site-footer {
+  margin-top: 14px;
+}
+
 .hero-panel {
   min-height: 0;
   border: 1px solid var(--line);
@@ -40,10 +44,10 @@
 
 .recap-selector-button {
   min-height: 38px;
-  border: 1px solid rgba(196, 206, 212, 0.22);
-  border-radius: 6px;
+  border: 0;
+  border-radius: 999px;
   color: var(--ink);
-  background: var(--card-bg);
+  background: rgba(196, 206, 212, 0.06);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -56,47 +60,30 @@
 }
 
 .recap-selector-button.win {
-  border-color: rgba(103, 232, 162, 0.38);
-  background:
-    linear-gradient(135deg, rgba(31, 122, 75, 0.22), transparent 62%),
-    var(--card-bg);
+  color: #67e8a2;
 }
 
 .recap-selector-button.loss {
-  border-color: rgba(255, 143, 143, 0.42);
-  background:
-    linear-gradient(135deg, rgba(149, 45, 53, 0.24), transparent 62%),
-    var(--card-bg);
+  color: #ff8f8f;
 }
 
 .recap-selector-button.upcoming {
-  border-color: rgba(196, 206, 212, 0.34);
-  background: rgba(196, 206, 212, 0.06);
+  color: #aeb9c3;
+}
+
+.recap-selector-button.in-progress {
+  color: #f6d365;
+}
+
+.recap-selector-button.in-progress .selector-time {
+  color: #f6d365;
+  text-transform: uppercase;
 }
 
 .recap-selector-button:hover,
 .recap-selector-button:focus,
 .recap-selector-button.active {
-  border-color: rgba(247, 248, 255, 0.72);
   background: rgba(196, 206, 212, 0.14);
-}
-
-.recap-selector-button.win:hover,
-.recap-selector-button.win:focus,
-.recap-selector-button.win.active {
-  border-color: rgba(103, 232, 162, 0.76);
-  background:
-    linear-gradient(135deg, rgba(31, 122, 75, 0.3), transparent 62%),
-    var(--card-bg);
-}
-
-.recap-selector-button.loss:hover,
-.recap-selector-button.loss:focus,
-.recap-selector-button.loss.active {
-  border-color: rgba(255, 143, 143, 0.78);
-  background:
-    linear-gradient(135deg, rgba(149, 45, 53, 0.32), transparent 62%),
-    var(--card-bg);
 }
 
 .recap-selector-button .selector-date,
@@ -108,6 +95,18 @@
 .recap-selector-button .selector-time {
   color: var(--muted);
   font-size: var(--text-small);
+}
+
+.recap-selector-button.upcoming :is(.selector-date, .selector-score, .selector-time) {
+  color: #aeb9c3;
+}
+
+.recap-selector-button.win :is(.selector-date, .selector-result, .selector-score, .selector-time) {
+  color: #67e8a2;
+}
+
+.recap-selector-button.loss :is(.selector-date, .selector-result, .selector-score, .selector-time) {
+  color: #ff8f8f;
 }
 
 .recap-selector-button .selector-result {
@@ -227,7 +226,7 @@
   position: relative;
   overflow: hidden;
   min-height: 0;
-  border: 1px solid rgba(77, 127, 190, 0.5);
+  border: 0;
   border-radius: 8px;
   background: #111920;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -366,12 +365,21 @@
 
 .game-scoreboard-top {
   min-height: 64px;
+  margin-inline: -16px;
   border-bottom: 1px solid rgba(196, 206, 211, 0.18);
   display: grid;
   grid-template-columns: minmax(190px, 1fr) minmax(56px, 0.35fr) minmax(120px, 0.7fr) minmax(56px, 0.35fr) minmax(190px, 1fr);
   align-items: center;
   gap: 14px;
-  padding: 8px 14px 14px;
+  padding: 8px 30px 14px;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--scoreboard-left-color, transparent) 34%, transparent) 0%,
+      transparent 42%,
+      transparent 58%,
+      color-mix(in srgb, var(--scoreboard-right-color, transparent) 34%, transparent) 100%
+    );
 }
 
 .home-score-team-colors {
@@ -485,6 +493,113 @@
 .game-scoreboard-lower .game-decisions p {
   font-size: var(--text-normal);
   text-transform: none;
+}
+
+.pregame-info-row strong,
+.game-scoreboard-top.upcoming .scoreboard-state {
+  color: #9ac7ff;
+}
+
+.pregame-details {
+  border-right: 1px solid rgba(196, 206, 211, 0.18);
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 18px 22px 18px 0;
+}
+
+.pregame-details h3,
+.probable-pitchers-slot h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-normal);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pregame-details p {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 10px;
+  color: var(--muted);
+}
+
+.pregame-details p strong {
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.game-decisions.probable-pitchers-slot {
+  align-content: stretch;
+  gap: 12px;
+}
+
+.probable-pitchers-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.probable-pitcher {
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.probable-pitcher img,
+.probable-pitcher-placeholder {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.probable-pitcher-placeholder {
+  border: 1px solid rgba(196, 206, 211, 0.3);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 1.5rem;
+}
+
+.probable-pitcher-team {
+  color: #9ac7ff;
+  font-size: var(--text-small);
+  font-weight: 800;
+}
+
+.probable-pitcher-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.probable-pitcher-copy strong {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.probable-pitcher-copy small {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.probable-pitcher-copy i {
+  padding: 0 2px;
+  color: rgba(196, 206, 211, 0.45);
+  font-style: normal;
+}
+
+.probable-versus {
+  color: #f6d365;
+  font-size: var(--text-small);
+  text-align: center;
 }
 
 .game-decisions.live-matchup-slot {
@@ -770,10 +885,14 @@
   margin-top: 14px;
 }
 
+.game-player-stats:empty {
+  display: none;
+}
+
 .game-player-stats-toolbar {
   grid-column: 1 / -1;
   min-height: 52px;
-  border: 1px solid rgba(77, 127, 190, 0.5);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg);
   display: flex;
@@ -833,7 +952,7 @@
 
 .game-player-column {
   min-width: 0;
-  border: 1px solid rgba(77, 127, 190, 0.5);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg);
   overflow: hidden;
@@ -843,7 +962,7 @@
 .game-player-stats > .game-notes-panel {
   grid-column: 1 / -1;
   margin-top: 10px;
-  border: 1px solid rgba(77, 127, 190, 0.5);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg);
   padding: 14px 16px;
@@ -884,7 +1003,7 @@
 
 .recap-grid-heading {
   grid-column: 1 / -1;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 8px;
   background: var(--card-bg);
   padding: 12px 16px;
@@ -1019,6 +1138,10 @@
   padding-top: 18px;
 }
 
+.recap-section:has(.recap-grid:empty) {
+  display: none;
+}
+
 .recap-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1028,7 +1151,7 @@
 .recap-column {
   min-width: 0;
   min-height: 600px;
-  border: 1px solid rgba(77, 127, 190, 0.46);
+  border: 0;
   border-radius: 8px;
   background:
     linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
@@ -1315,6 +1438,20 @@
     white-space: normal;
   }
 
+  .pregame-scoreboard-lower {
+    grid-template-columns: 1fr;
+  }
+
+  .pregame-details {
+    border-right: 0;
+    border-bottom: 1px solid rgba(196, 206, 211, 0.18);
+    padding: 18px;
+  }
+
+  .game-decisions.probable-pitchers-slot {
+    padding: 18px;
+  }
+
   .recap-grid {
     grid-template-columns: 1fr;
   }
@@ -1380,7 +1517,8 @@
   .game-scoreboard-top {
     grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr);
     gap: 8px;
-    padding-inline: 0;
+    margin-inline: -14px;
+    padding-inline: 14px;
   }
 
   .game-scoreboard-top > .scoreboard-score {

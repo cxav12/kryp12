@@ -1,7 +1,3 @@
-document.querySelectorAll("[data-current-year]").forEach((year) => {
-  year.textContent = String(new Date().getFullYear());
-});
-
 const yankeesBrandCopies = document.querySelectorAll(".brand-lockup > div");
 
 function standingsOrdinal(value) {

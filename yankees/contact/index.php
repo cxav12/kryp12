@@ -39,7 +39,7 @@ $notice = $messages[$status] ?? null;
     <base href="/yankees/contact/" />
     <title>Contact | Yankees Fan Site</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../shared.css?v=20260817-code-cleanup1" />
+    <link rel="stylesheet" href="../shared.css?v=20260821-solid-header1" />
   </head>
   <body>
     <main class="container-fluid app-shell">
@@ -128,15 +128,11 @@ $notice = $messages[$status] ?? null;
 
       <footer class="site-footer">
         <nav class="site-footer-links" aria-label="Footer">
-          <span class="site-footer-item">© <span data-current-year>2026</span> kryp12.com</span>
-          <span class="site-footer-item">Unofficial Yankees fan site</span>
           <a class="site-footer-link site-footer-item" href="/yankees/">Home</a>
-          <a class="site-footer-link site-footer-item" href="./" aria-current="page">Contact</a>
           <a class="site-footer-link site-footer-item" href="../legal-disclaimer/">Legal Disclaimer</a>
-          <a class="site-footer-link site-footer-item" href="../privacy-policy/">Privacy Policy</a>
         </nav>
       </footer>
     </main>
-    <script src="../shared.js?v=20260817-dynamic-year1" defer></script>
+    <script src="../shared.js?v=20260821-footer-cleanup1" defer></script>
   </body>
 </html>

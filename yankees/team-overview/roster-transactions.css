@@ -16,7 +16,7 @@
 
 .roster-tabs {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -38,6 +38,12 @@
 .roster-tab span {
   color: currentColor;
   font-weight: 800;
+}
+
+#optioned-tab {
+  padding-inline: 8px;
+  font-size: var(--text-small);
+  white-space: nowrap;
 }
 
 .roster-tab:hover,
@@ -310,6 +316,42 @@
 
 .error {
   color: #ffbec4;
+}
+
+@media (max-width: 767.98px) {
+  .overview-body .roster-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px !important;
+    border-radius: 10px !important;
+    background: #1b222d !important;
+    padding: 4px !important;
+  }
+
+  .overview-body .roster-tab {
+    min-height: 44px;
+    border: 0 !important;
+    border-radius: 6px !important;
+    color: #aebfe5 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding-inline: 8px;
+    font-size: var(--text-small);
+  }
+
+  .overview-body .roster-tab:hover,
+  .overview-body .roster-tab:focus {
+    border: 0 !important;
+    color: #fff !important;
+    background: rgba(16, 23, 32, 0.62) !important;
+  }
+
+  .overview-body .roster-tab.active,
+  .overview-body .roster-tab[aria-selected="true"] {
+    border: 0 !important;
+    color: #fff !important;
+    background: #101720 !important;
+    box-shadow: none !important;
+  }
 }
 
 @media (max-width: 575.98px) {

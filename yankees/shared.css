@@ -387,26 +387,7 @@ b {
   padding: 22px clamp(20px, 4vw, 54px);
   border-bottom: 1px solid var(--line);
   border-radius: 8px 8px 0 0;
-  background:
-    linear-gradient(90deg, #11181e 0%, rgba(17, 24, 30, 0.94) 46%, rgba(8, 28, 54, 0.7) 100%),
-    radial-gradient(circle at 76% 45%, rgba(76, 118, 176, 0.28), transparent 38%),
-    repeating-linear-gradient(90deg, transparent 0 22px, rgba(196, 206, 212, 0.045) 22px 23px),
-    #11181e;
-}
-
-.topbar::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 52%;
-  background: url("/yankees/assets/yankees-header-artwork.png") right center / cover no-repeat;
-  opacity: 0.72;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.18) 14%, #000 38%, #000 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.18) 14%, #000 38%, #000 100%);
-  pointer-events: none;
+  background: #11181e;
 }
 
 .topbar > * {
@@ -932,19 +913,6 @@ b {
 
   .contact-form-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .topbar::after {
-    width: 46%;
-    opacity: 0.58;
-  }
-}
-
-@media (max-width: 767.98px) {
-  .topbar::after {
-    display: none;
   }
 }
 

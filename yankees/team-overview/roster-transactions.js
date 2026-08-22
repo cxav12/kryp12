@@ -20,10 +20,12 @@ const els = {
   batters: document.querySelector("#batters-list"),
   pitchers: document.querySelector("#pitchers-list"),
   injuredList: document.querySelector("#injured-list"),
+  optioned: document.querySelector("#optioned-list"),
   rosterCount: document.querySelector("#roster-count"),
   battersCount: document.querySelector("#batters-count"),
   pitchersCount: document.querySelector("#pitchers-count"),
   injuredListCount: document.querySelector("#injured-list-count"),
+  optionedCount: document.querySelector("#optioned-count"),
   transactionFeed: document.querySelector("#transaction-feed"),
   transactionPagination: document.querySelector("#transaction-pagination"),
   transactionWindow: document.querySelector("#transaction-window"),
@@ -98,6 +100,12 @@ function isInjuredListEntry(entry) {
   return /^D\d+$/i.test(code) || /injured/i.test(description);
 }
 
+function isOptionedEntry(entry) {
+  const code = entry.status?.code || "";
+  const description = entry.status?.description || "";
+  return /^MIN$/i.test(code) || /minor|option/i.test(description);
+}
+
 function positionKey(entry) {
   const abbr = entry.position?.abbreviation || "";
   if (POSITION_KEYS.has(abbr)) return abbr;
@@ -111,7 +119,7 @@ function positionRank(entry) {
   return index === -1 ? POSITION_ORDER.length : index;
 }
 
-function rosterCard(entry, showStatus = false) {
+function rosterCard(entry, showStatus = false, statusOverride = "") {
   const link = document.createElement("a");
   link.className = "roster-link";
   link.href = `../player-profile/?player=${entry.person.id}`;
@@ -123,21 +131,22 @@ function rosterCard(entry, showStatus = false) {
   name.textContent = entry.person.fullName;
   const details = document.createElement("small");
   const position = entry.position?.abbreviation || "NYY";
-  const status = entry.status?.description || "Injured List";
+  const status = statusOverride || entry.status?.description || "Injured List";
+  const number = entry.jerseyNumber ? `#${entry.jerseyNumber} - ` : "";
   details.textContent = showStatus
-    ? `${position} - ${status}`
-    : `${entry.jerseyNumber ? `#${entry.jerseyNumber} - ` : ""}${position}`;
+    ? `${number}${position} - ${status}`
+    : `${number}${position}`;
   link.append(name, details);
   return link;
 }
 
-function renderRosterGroup(target, entries, showStatus = false) {
+function renderRosterGroup(target, entries, showStatus = false, statusOverride = "") {
   target.replaceChildren();
   if (!entries.length) {
     target.innerHTML = `<p class="empty">No players returned.</p>`;
     return;
   }
-  entries.forEach((entry) => target.append(rosterCard(entry, showStatus)));
+  entries.forEach((entry) => target.append(rosterCard(entry, showStatus, statusOverride)));
 }
 
 async function renderRoster() {
@@ -147,35 +156,45 @@ async function renderRoster() {
     const injuredList = (fortyManData.roster || [])
       .filter(isInjuredListEntry)
       .sort((a, b) => a.person.fullName.localeCompare(b.person.fullName));
+    const activeIds = new Set(roster.map((entry) => Number(entry.person.id)));
+    const optioned = (fortyManData.roster || [])
+      .filter((entry) => !activeIds.has(Number(entry.person.id)))
+      .filter((entry) => !isInjuredListEntry(entry) && isOptionedEntry(entry))
+      .sort((a, b) => a.person.fullName.localeCompare(b.person.fullName));
     const pitchers = roster.filter(isPitcher);
     const batters = roster
       .filter((entry) => !isPitcher(entry))
       .sort((a, b) => positionRank(a) - positionRank(b) || a.person.fullName.localeCompare(b.person.fullName));
 
-    els.rosterCount.textContent = `${roster.length} active - ${injuredList.length} IL`;
+    els.rosterCount.textContent = `${roster.length} active - ${injuredList.length} IL - ${optioned.length} AAA`;
     els.battersCount.textContent = `${batters.length}`;
     els.pitchersCount.textContent = `${pitchers.length}`;
     els.injuredListCount.textContent = `${injuredList.length}`;
+    els.optionedCount.textContent = `${optioned.length}`;
 
     if (!roster.length) {
       els.batters.innerHTML = `<p class="empty">No active roster entries were returned.</p>`;
       els.pitchers.replaceChildren();
       renderRosterGroup(els.injuredList, injuredList, true);
+      renderRosterGroup(els.optioned, optioned, true, "Optioned to AAA");
       return true;
     }
 
     renderRosterGroup(els.batters, batters);
     renderRosterGroup(els.pitchers, pitchers);
     renderRosterGroup(els.injuredList, injuredList, true);
+    renderRosterGroup(els.optioned, optioned, true, "Optioned to AAA");
     return true;
   } catch (error) {
     els.batters.innerHTML = `<p class="error">Roster data is unavailable right now.</p>`;
     els.pitchers.replaceChildren();
     els.injuredList.replaceChildren();
+    els.optioned.replaceChildren();
     els.rosterCount.textContent = "Unavailable";
     els.battersCount.textContent = "--";
     els.pitchersCount.textContent = "--";
     els.injuredListCount.textContent = "--";
+    els.optionedCount.textContent = "--";
     return false;
   }
 }

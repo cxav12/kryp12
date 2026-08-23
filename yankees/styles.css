@@ -1811,3 +1811,130 @@
     font-size: 1.25rem;
   }
 }
+.breaking-news {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  border: 0;
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045), transparent 38%),
+    var(--card-bg-strong);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  padding: 20px 22px;
+}
+
+.breaking-news::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: #f1b434;
+}
+
+.breaking-news-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.breaking-news-header > div {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.breaking-news-header h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.breaking-news-item strong {
+  color: var(--alert-color, #c4ced4);
+  font-size: var(--text-small);
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.breaking-news-item.recalled {
+  --alert-color: #4db38a;
+}
+
+.breaking-news-item.activated {
+  --alert-color: #58a6ff;
+}
+
+.breaking-news-item.il {
+  --alert-color: #d85c6a;
+}
+
+.breaking-news-item.optioned {
+  --alert-color: #f1b434;
+}
+
+.breaking-news-item.game {
+  --alert-color: #ff9b7c;
+}
+
+.breaking-news-item.weather {
+  --alert-color: #9cc7ff;
+}
+
+.breaking-news-items {
+  display: grid;
+  gap: 8px;
+}
+
+.breaking-news-item time {
+  color: var(--muted);
+  font-size: var(--text-small);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.breaking-news-marker {
+  color: rgba(196, 206, 211, 0.5);
+  font-size: 0.75rem;
+}
+
+.breaking-news-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+}
+
+.breaking-news-item p {
+  margin: 0;
+  color: var(--yankees-silver);
+  line-height: 1.45;
+}
+
+.breaking-news-close {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(241, 180, 52, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--yankees-silver);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 2px;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.breaking-news-close:hover,
+.breaking-news-close:focus-visible {
+  border-color: #f1b434;
+  color: #fff;
+  background: rgba(241, 180, 52, 0.14);
+}

@@ -3,6 +3,7 @@ const MLB_API = "https://statsapi.mlb.com/api/v1";
 const MLB_LIVE_API = "https://statsapi.mlb.com/api/v1.1";
 const HARD_HIT_MPH = 95;
 const LIVE_REFRESH_MS = 15000;
+const DISMISSED_ALERTS_KEY = "yankees-dismissed-alerts";
 const MLB_TEAM_PRIMARY_COLORS = {
   108: "#BA0021", 109: "#A71930", 110: "#DF4601", 111: "#BD3039", 112: "#CC3433",
   113: "#C6011F", 114: "#D50032", 115: "#C4CED4", 116: "#FA4616", 117: "#EB6E1F",
@@ -35,6 +36,10 @@ const compactDateFormatter = new Intl.DateTimeFormat("en-US", {
   day: "numeric",
   timeZone: "America/New_York",
 });
+const alertDateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+});
 const gameTimeFormatter = new Intl.DateTimeFormat("en-US", {
   hour: "numeric",
   minute: "2-digit",
@@ -51,6 +56,9 @@ const els = {
   recent: document.querySelector("#recent-games-grid"),
   recapButtons: document.querySelector("#recap-button-row"),
   grid: document.querySelector("#recap-grid"),
+  breakingNews: document.querySelector("#breaking-news"),
+  breakingNewsItems: document.querySelector("#breaking-news-items"),
+  breakingNewsClose: document.querySelector("#breaking-news-close"),
 };
 
 const state = {
@@ -64,6 +72,7 @@ const state = {
   playerStatsTeam: "yankees",
   liveRefreshTimer: null,
   absChallengeEvents: [],
+  breakingNewsKey: "",
 };
 
 async function getJson(path, params = {}) {
@@ -870,6 +879,86 @@ async function getUpcomingGames() {
     .slice(0, 3);
 }
 
+async function getBreakingTransactions() {
+  const end = new Date();
+  const start = new Date(end);
+  start.setDate(start.getDate() - 2);
+  const data = await getJson("/transactions", {
+    teamId: TEAM_ID,
+    startDate: formatDate(start),
+    endDate: formatDate(end),
+  });
+  return data.transactions || [];
+}
+
+function renderBreakingNews(alerts) {
+  els.breakingNewsItems.replaceChildren();
+  if (!alerts.length) {
+    state.breakingNewsKey = "";
+    els.breakingNews.hidden = true;
+    return;
+  }
+
+  state.breakingNewsKey = alerts.map((alert) => alert.id || `${alert.label}:${alert.text}`).join("|");
+  try {
+    if (localStorage.getItem(DISMISSED_ALERTS_KEY) === state.breakingNewsKey) {
+      els.breakingNews.hidden = true;
+      return;
+    }
+  } catch (error) {
+    // Storage can be unavailable; dismissal still works for the current page view.
+  }
+
+  alerts.forEach((alert) => {
+    const item = document.createElement("article");
+    item.className = `breaking-news-item ${alert.kind || "team-news"}`;
+    const label = document.createElement("strong");
+    label.textContent = alert.label;
+    item.append(label);
+    if (alert.date) {
+      const marker = document.createElement("span");
+      marker.className = "breaking-news-marker";
+      marker.setAttribute("aria-hidden", "true");
+      marker.textContent = "•";
+      const date = document.createElement("time");
+      date.dateTime = alert.date;
+      const parsedDate = new Date(`${alert.date}T12:00:00`);
+      date.textContent = Number.isNaN(parsedDate.getTime()) ? alert.date : alertDateFormatter.format(parsedDate);
+      item.append(marker, date);
+    }
+    const marker = document.createElement("span");
+    marker.className = "breaking-news-marker";
+    marker.setAttribute("aria-hidden", "true");
+    marker.textContent = "•";
+    const description = document.createElement("p");
+    description.textContent = alert.text;
+    item.append(marker, description);
+    els.breakingNewsItems.append(item);
+  });
+  els.breakingNews.hidden = false;
+}
+
+async function loadBreakingNews(todayGame, upcomingGames, transactions) {
+  const games = [todayGame, ...upcomingGames]
+    .filter(Boolean)
+    .filter((game, index, list) => list.findIndex((item) => Number(item.gamePk) === Number(game.gamePk)) === index);
+  const weatherGame = upcomingGames[0]
+    || games.find((game) => !["Final", "Live"].includes(game.status?.abstractGameState))
+    || null;
+  const timeUntilStart = new Date(weatherGame?.gameDate).getTime() - Date.now();
+  let weatherFeed = null;
+
+  if (weatherGame && timeUntilStart >= 0 && timeUntilStart <= 12 * 60 * 60 * 1000) {
+    try {
+      weatherFeed = await getLiveJson(`/game/${weatherGame.gamePk}/feed/live`);
+    } catch (error) {
+      weatherFeed = null;
+    }
+  }
+
+  renderBreakingNews(HomeAlerts.build({ games, transactions, weatherGame, weatherFeed }));
+}
+
 function battedBallCategory(play) {
   const events = (play.playEvents || []).slice().reverse();
   const hitEvent = events.find((event) => event.hitData || event.details?.isInPlay);
@@ -1626,10 +1715,11 @@ async function loadGameRecap(game, { live = false } = {}) {
 async function init() {
   try {
     const divisionRanks = loadDivisionRanks().catch(() => null);
-    const [todayGame, games, upcomingGames] = await Promise.all([
+    const [todayGame, games, upcomingGames, transactions] = await Promise.all([
       getTodaysGame().catch(() => null),
       getRecentFinalGames(),
       getUpcomingGames().catch(() => []),
+      getBreakingTransactions().catch(() => []),
     ]);
     await divisionRanks;
     const liveGame = isLiveGame(todayGame) ? todayGame : null;
@@ -1645,6 +1735,7 @@ async function init() {
     state.upcomingGames = upcomingGames;
     renderRecentGames(games, selectedGame?.gamePk, { includeLatest: selectedIsCurrent });
     renderRecapButtons(games, selectedGame?.gamePk);
+    loadBreakingNews(todayGame, upcomingGames, transactions).catch(() => renderBreakingNews([]));
     if (!selectedGame) throw new Error("No Yankees games found.");
     await loadGameRecap(selectedGame, { live: isLiveGame(selectedGame) });
   } catch (error) {
@@ -1717,6 +1808,14 @@ els.playerStats.addEventListener("click", (event) => {
   if (!button || !state.currentFeed || !state.selectedGame) return;
   state.playerStatsTeam = button.dataset.playerStatsTeam;
   renderRecap(state.selectedGame, state.currentFeed);
+});
+els.breakingNewsClose.addEventListener("click", () => {
+  try {
+    if (state.breakingNewsKey) localStorage.setItem(DISMISSED_ALERTS_KEY, state.breakingNewsKey);
+  } catch (error) {
+    // Keep dismissal functional for this page view even when storage is unavailable.
+  }
+  els.breakingNews.hidden = true;
 });
 
 init();

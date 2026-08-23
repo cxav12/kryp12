@@ -1632,8 +1632,12 @@ async function init() {
       getUpcomingGames().catch(() => []),
     ]);
     await divisionRanks;
-    const selectedGame = games[0] || todayGame || upcomingGames[0];
     const liveGame = isLiveGame(todayGame) ? todayGame : null;
+    const selectedGame = HomeGameSelection.featuredGame({
+      todayGame,
+      recentGames: games,
+      upcomingGames,
+    });
     const selectedIsCurrent = selectedGame?.status?.abstractGameState !== "Final";
     state.todayGame = todayGame;
     state.liveGame = liveGame;

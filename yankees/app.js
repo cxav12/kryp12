@@ -1506,8 +1506,8 @@ function renderRecap(game, feed) {
   els.subtitle.textContent = `${niceDate(game.officialDate)} - ${game.venue?.name || "Ballpark"} - ${scoreLine(game)}`;
   els.scoreboard.innerHTML = `
     <div class="home-score-team-colors" aria-hidden="true">
-      <span style="background-color: ${awayPrimaryColor}"></span>
       <span style="background-color: ${homePrimaryColor}"></span>
+      <span style="background-color: ${awayPrimaryColor}"></span>
     </div>
     ${isLiveGame(game) ? `
       <div class="game-live-status-row">
@@ -1520,12 +1520,12 @@ function renderRecap(game, feed) {
         ` : ""}
       </div>
     ` : ""}
-    <div class="game-scoreboard-top ${gameResultClass}" style="--scoreboard-left-color:${awayPrimaryColor};--scoreboard-right-color:${homePrimaryColor}">
-      ${renderScoreboardTeam(awayScoreDetails, "away", scoreForSide(game, feed, "away"))}
-      <strong class="scoreboard-score">${escapeHtml(scoreForSide(game, feed, "away"))}</strong>
-      <div class="scoreboard-state">${escapeHtml(scoreboardState(feed, game))}</div>
+    <div class="game-scoreboard-top ${gameResultClass}" style="--scoreboard-left-color:${homePrimaryColor};--scoreboard-right-color:${awayPrimaryColor}">
+      ${renderScoreboardTeam(homeScoreDetails, "away", scoreForSide(game, feed, "home"))}
       <strong class="scoreboard-score">${escapeHtml(scoreForSide(game, feed, "home"))}</strong>
-      ${renderScoreboardTeam(homeScoreDetails, "home", scoreForSide(game, feed, "home"))}
+      <div class="scoreboard-state">${escapeHtml(scoreboardState(feed, game))}</div>
+      <strong class="scoreboard-score">${escapeHtml(scoreForSide(game, feed, "away"))}</strong>
+      ${renderScoreboardTeam(awayScoreDetails, "home", scoreForSide(game, feed, "away"))}
     </div>
     <div class="game-scoreboard-lower">
       <div class="game-linescore-box">${renderLinescore(feed, game)}</div>

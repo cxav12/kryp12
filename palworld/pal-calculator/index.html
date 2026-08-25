@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Configure a Pal's level, condensation, souls, ascension, IVs, and passive skills to estimate its final stats.">
+    <title>Palworld Reference | Pal Calculator</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles.css?v=20260727-tools1">
+    <link rel="stylesheet" href="./styles.css?v=20260825-pal-calculator13">
+    <link rel="preload" href="../assets/paldeck/pal-portraits.webp" as="image" type="image/webp">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-brand">
+        <a class="brand-logo-frame" href="../" aria-label="Palworld reference">
+          <img class="brand-logo" src="../assets/palworld-logo.png" alt="Palworld" width="2400" height="1500" decoding="async">
+        </a>
+      </div>
+      <nav class="palworld-nav navbar" aria-label="Palworld navigation">
+        <div class="nav-accent" aria-hidden="true"></div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="palworld-nav-links" aria-label="Open navigation">
+          <span>Menu</span><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+        <ul id="palworld-nav-links" class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="../pals/">Pals</a></li>
+          <li class="nav-item"><a class="nav-link" href="../passive-skills/">Passive Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="../breeding/">Breeding</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="./">Pal Calculator</a></li>
+          <li class="nav-item"><a class="nav-link" href="../ranch/">Ranch</a></li>
+          <li class="nav-item"><a class="nav-link" href="../base-planner/">Base Planner</a></li>
+          <li class="nav-item"><a class="nav-link" href="../party-guides/">Party Guides</a></li>
+          <li class="nav-item"><a class="nav-link" href="../items/">Items</a></li>
+          <li class="nav-item"><a class="nav-link" href="../type-chart/">Type Chart</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="site-content">
+      <section class="content-section" aria-labelledby="calculator-title">
+        <div class="page-intro tinted-card">
+          <div>
+            <h1 id="calculator-title">Pal Calculator</h1>
+            <p class="page-intro-copy">Choose a Pal, configure its upgrades in one place, and see every affected stat update immediately.</p>
+          </div>
+        </div>
+
+        <section id="pal-stat-overview" class="pal-stat-overview" aria-label="Selected Pal core stats" aria-live="polite">
+          <p class="pal-overview-empty">Choose a Pal to view its core stats.</p>
+        </section>
+
+        <section class="calculator-controls" aria-label="Pal configuration">
+          <div class="pal-choice">
+            <label for="pal-select">Choose your Pal</label>
+            <input
+              id="pal-select"
+              class="form-control calculator-select"
+              type="search"
+              placeholder="Loading Pals..."
+              autocomplete="off"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-controls="pal-options"
+              aria-expanded="false"
+              aria-describedby="calculator-status"
+            >
+            <div id="pal-options" class="pal-autocomplete" role="listbox" hidden></div>
+          </div>
+
+          <div class="primary-settings">
+            <label>Condensation Level
+              <select id="condensation-select" class="form-select calculator-select">
+                <option value="5" selected>Level 5 · Max (+20%)</option>
+                <option value="4">Level 4 (+15%)</option>
+                <option value="3">Level 3 (+10%)</option>
+                <option value="2">Level 2 (+5%)</option>
+                <option value="1">Level 1 (Base)</option>
+              </select>
+            </label>
+            <label>Soul Rank
+              <select id="souls-select" class="form-select calculator-select"></select>
+            </label>
+            <label>Pal Level
+              <select id="combat-level-select" class="form-select calculator-select"></select>
+            </label>
+            <label class="toggle-field">
+              <span>Ascended</span>
+              <span class="toggle-setting">
+                <small>World Tree awakening</small>
+                <input id="ascended-input" type="checkbox" checked>
+                <span class="toggle-track" aria-hidden="true"></span>
+              </span>
+            </label>
+            <label class="toggle-field">
+              <span>Alpha Pal</span>
+              <span class="toggle-setting">
+                <small>+20% Health</small>
+                <input id="alpha-input" type="checkbox">
+                <span class="toggle-track" aria-hidden="true"></span>
+              </span>
+            </label>
+          </div>
+
+          <fieldset class="iv-settings">
+            <legend>IVs</legend>
+            <div class="iv-mode" role="group" aria-label="IV configuration">
+              <button class="iv-mode-button active" type="button" data-iv-mode="perfect" aria-pressed="true">Perfect · 100 / 100 / 100</button>
+              <button class="iv-mode-button" type="button" data-iv-mode="custom" aria-pressed="false">Set exact IVs</button>
+            </div>
+            <div id="iv-sliders" class="iv-sliders" hidden>
+              <label>Health <output id="hp-iv-output">100</output><input id="hp-iv" type="range" min="0" max="100" value="100"></label>
+              <label>Attack <output id="attack-iv-output">100</output><input id="attack-iv" type="range" min="0" max="100" value="100"></label>
+              <label>Defense <output id="defense-iv-output">100</output><input id="defense-iv" type="range" min="0" max="100" value="100"></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="passive-settings">
+            <legend>Passive Skills <small>Optional · up to four</small></legend>
+            <div id="passive-selects" class="passive-selects"></div>
+            <div class="passive-save-controls">
+              <button id="save-passives" class="save-passives-button" type="button" disabled>Save selected passives</button>
+              <div id="saved-passives-status" class="saved-passives-status" hidden>
+                <span>Saved passive loadout active</span>
+                <button id="clear-saved-passives" type="button" aria-label="Stop saving this passive loadout">×</button>
+              </div>
+            </div>
+          </fieldset>
+        </section>
+
+        <section id="pal-build" class="pal-build" aria-live="polite" aria-busy="true">
+          <div class="calculator-empty"><span aria-hidden="true">◎</span><p id="calculator-status">Loading calculator data...</p></div>
+        </section>
+
+        <p class="calculator-note">Calculated values use the Pal species coefficients in this site's local Paldeck dataset. Damage and resistance cards show passive modifiers; exact hit damage also depends on the selected active skill and the target.</p>
+      </section>
+    </main>
+
+    <script src="../shared.js?v=20260727-passivepath1"></script>
+    <script src="./app.js?v=20260825-pal-calculator9"></script>
+  </body>
+</html>

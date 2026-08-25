@@ -16,7 +16,7 @@
       crossorigin="anonymous"
     >
     <link rel="stylesheet" href="../styles.css?v=20260727-tools1">
-    <link rel="stylesheet" href="./styles.css?v=20260727-bpguide1">
+    <link rel="stylesheet" href="./styles.css?v=20260825-single-parent2">
     <link
       rel="preload"
       href="../assets/paldeck/pal-portraits.webp"
@@ -69,6 +69,9 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="../pal-calculator/">Pal Calculator</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="../ranch/">Ranch</a>
           </li>
           <li class="nav-item">
@@ -94,7 +97,8 @@
             <h1 id="breeding-title">Breeding</h1>
             <p class="page-intro-copy">
               Find every parent pair for a target Pal, or combine two parents
-              to see the child they produce.
+              to see the child they produce. You can also select one Pal to
+              explore every possible partner and offspring.
             </p>
           </div>
         </div>
@@ -159,6 +163,14 @@
             aria-pressed="false"
           >
             Breed two Pals
+          </button>
+          <button
+            class="breeding-mode"
+            type="button"
+            data-mode="single"
+            aria-pressed="false"
+          >
+            Explore one Pal
           </button>
         </div>
 
@@ -225,6 +237,19 @@
               </section>
             </div>
           </div>
+
+          <div id="single-controls" class="row g-3" hidden>
+            <div class="col-12 breeding-field">
+              <label for="single-pal-input">I already have...</label>
+              <input
+                id="single-pal-input"
+                class="form-control breeding-input"
+                type="search"
+                placeholder="Search any Pal..."
+                autocomplete="off"
+              >
+            </div>
+          </div>
         </div>
 
         <div
@@ -252,6 +277,6 @@
     </footer>
 
     <script src="../shared.js?v=20260727-passivepath1"></script>
-    <script src="./app.js?v=20260727-bp1"></script>
+    <script src="./app.js?v=20260825-single-parent1"></script>
   </body>
 </html>

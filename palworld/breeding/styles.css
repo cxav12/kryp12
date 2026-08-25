@@ -95,8 +95,8 @@
 
 .breeding-modes {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: min(100%, 28rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(100%, 42rem);
   margin: 0 auto 2rem;
   overflow: hidden;
   border: 1px solid #353a45;
@@ -442,6 +442,7 @@
 }
 
 .breeding-combination.parent-pair .breeding-pal-chip,
+.breeding-offspring-combination .breeding-pal-chip,
 .breeding-pal-child {
   min-height: 4.75rem;
   padding: 0.75rem 1rem;
@@ -549,6 +550,21 @@
   text-shadow: 0 0 0.6rem rgb(84 226 149 / 0.45);
 }
 
+.breeding-offspring-combination {
+  grid-template-columns:
+    minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+.breeding-produces {
+  color: #aebdff;
+  font-size: 1.4rem;
+}
+
+.breeding-offspring-child {
+  border-color: #3c559f !important;
+  background: #151c36 !important;
+}
+
 .breeding-show-more {
   justify-self: center;
   margin-top: 0.5rem;
@@ -562,6 +578,45 @@
 
   .breeding-quick-picks {
     display: none;
+  }
+
+  .breeding-mode {
+    padding-inline: 0.45rem;
+    font-size: 0.72rem;
+  }
+
+  .breeding-offspring-combination {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .breeding-produces,
+  .breeding-offspring-child {
+    grid-column: 1 / -1;
+  }
+
+  .breeding-produces {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+
+  .breeding-selected-parent,
+  .breeding-partner {
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.6rem 0.35rem !important;
+    text-align: center;
+  }
+
+  .breeding-selected-parent .breeding-pal-portrait,
+  .breeding-partner .breeding-pal-portrait {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .breeding-selected-parent .breeding-pal-sprite,
+  .breeding-partner .breeding-pal-sprite {
+    width: 2.25rem;
+    height: 2.25rem;
   }
 }
 

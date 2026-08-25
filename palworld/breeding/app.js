@@ -10,9 +10,11 @@ const {
 const modes = document.querySelector("#breeding-modes");
 const parentsControls = document.querySelector("#parents-controls");
 const childControls = document.querySelector("#child-controls");
+const singleControls = document.querySelector("#single-controls");
 const parentAInput = document.querySelector("#parent-a-input");
 const parentBInput = document.querySelector("#parent-b-input");
 const childInput = document.querySelector("#child-input");
+const singlePalInput = document.querySelector("#single-pal-input");
 const sTierPals = document.querySelector("#s-tier-pals");
 const aTierPals = document.querySelector("#a-tier-pals");
 const quickSelectToggle = document.querySelector("#quick-select-toggle");
@@ -29,6 +31,7 @@ let breedingNameByLowercase = new Map();
 let breedingIndexByName = new Map();
 let pairResults = new Map();
 let childResults = new Map();
+let parentResults = new Map();
 let visibleResultLimit = INITIAL_RESULT_LIMIT;
 const autocompleteMenus = new Map();
 
@@ -286,6 +289,42 @@ function createCombinationRow(combination) {
   return row;
 }
 
+function createOffspringRow(combination, selectedParent) {
+  const [parentA, parentB, child, genderA, genderB] = combination;
+  const selectedIsParentA = parentA === selectedParent;
+  const partner = selectedIsParentA ? parentB : parentA;
+  const selectedGender = selectedIsParentA ? genderA : genderB;
+  const partnerGender = selectedIsParentA ? genderB : genderA;
+  const row = document.createElement("article");
+  row.className = "breeding-combination breeding-offspring-combination";
+
+  const selectedChip = createPalChip(
+    breedingData.pals[selectedParent],
+    selectedGender,
+  );
+  selectedChip.classList.add("breeding-selected-parent");
+
+  const plus = document.createElement("span");
+  plus.className = "breeding-operator breeding-plus";
+  plus.textContent = "+";
+
+  const partnerChip = createPalChip(
+    breedingData.pals[partner],
+    partnerGender,
+  );
+  partnerChip.classList.add("breeding-partner");
+
+  const produces = document.createElement("span");
+  produces.className = "breeding-operator breeding-produces";
+  produces.textContent = "→";
+  produces.setAttribute("aria-label", "produces");
+
+  const childChip = createPalChip(breedingData.pals[child], 0, true);
+  childChip.classList.add("breeding-offspring-child");
+  row.append(selectedChip, plus, partnerChip, produces, childChip);
+  return row;
+}
+
 function renderParentResult() {
   const parentAName = getSelectedName(parentAInput);
   const parentBName = getSelectedName(parentBInput);
@@ -381,11 +420,80 @@ function renderChildResults() {
   results.setAttribute("aria-busy", "false");
 }
 
+function renderSinglePalResults() {
+  const selectedName = getSelectedName(singlePalInput);
+
+  if (!selectedName) {
+    showEmpty(
+      "Pick one Pal to see every partner and child it can produce.",
+    );
+    return;
+  }
+
+  const selectedParent = breedingIndexByName.get(selectedName);
+  const matches = parentResults.get(selectedParent) || [];
+
+  if (matches.length === 0) {
+    showEmpty(
+      `No breeding outcomes are available for ${selectedName}.`,
+      "×",
+    );
+    return;
+  }
+
+  const uniqueChildren = new Set(
+    matches.map((combination) => combination[2]),
+  );
+  const uniquePartners = new Set(
+    matches.map((combination) =>
+      combination[0] === selectedParent
+        ? combination[1]
+        : combination[0],
+    ),
+  );
+  const wrapper = document.createElement("div");
+  wrapper.className = "breeding-result-list";
+  const heading = document.createElement("div");
+  heading.className = "breeding-results-heading";
+  const title = document.createElement("h1");
+  title.textContent = `Breeding outcomes for ${selectedName}`;
+  const count = document.createElement("span");
+  count.textContent =
+    `${uniqueChildren.size.toLocaleString()} possible ` +
+    `child${uniqueChildren.size === 1 ? "" : "ren"} · ` +
+    `${uniquePartners.size.toLocaleString()} ` +
+    `partner${uniquePartners.size === 1 ? "" : "s"}`;
+  heading.append(title, count);
+  wrapper.append(heading);
+
+  matches.slice(0, visibleResultLimit).forEach((combination) =>
+    wrapper.append(createOffspringRow(combination, selectedParent)),
+  );
+
+  if (visibleResultLimit < matches.length) {
+    const showMore = document.createElement("button");
+    showMore.className = "filter-button breeding-show-more";
+    showMore.type = "button";
+    showMore.textContent =
+      `Show more (${(matches.length - visibleResultLimit).toLocaleString()} remaining)`;
+    showMore.addEventListener("click", () => {
+      visibleResultLimit += INITIAL_RESULT_LIMIT;
+      renderSinglePalResults();
+    });
+    wrapper.append(showMore);
+  }
+
+  results.replaceChildren(wrapper);
+  results.setAttribute("aria-busy", "false");
+}
+
 function renderCurrentMode() {
   visibleResultLimit = INITIAL_RESULT_LIMIT;
 
   if (currentMode === "parents") {
     renderParentResult();
+  } else if (currentMode === "single") {
+    renderSinglePalResults();
   } else {
     renderChildResults();
   }
@@ -398,12 +506,16 @@ function renderCurrentMode() {
       currentMode === "parents" ? getSelectedName(parentAInput) : null,
     parentB:
       currentMode === "parents" ? getSelectedName(parentBInput) : null,
+    pal:
+      currentMode === "single" ? getSelectedName(singlePalInput) : null,
   });
 }
 
 function restoreBreedingFromUrl() {
   const params = new URLSearchParams(window.location.search);
-  currentMode = params.get("mode") === "parents" ? "parents" : "child";
+  currentMode = ["parents", "single"].includes(params.get("mode"))
+    ? params.get("mode")
+    : "child";
   childInput.value =
     breedingNameByLowercase.get(
       (params.get("target") || "").toLowerCase(),
@@ -416,6 +528,10 @@ function restoreBreedingFromUrl() {
     breedingNameByLowercase.get(
       (params.get("parentB") || "").toLowerCase(),
     ) || "";
+  singlePalInput.value =
+    breedingNameByLowercase.get(
+      (params.get("pal") || "").toLowerCase(),
+    ) || "";
   modes.querySelectorAll("[data-mode]").forEach((button) => {
     const active = button.dataset.mode === currentMode;
     button.classList.toggle("active", active);
@@ -423,6 +539,7 @@ function restoreBreedingFromUrl() {
   });
   parentsControls.hidden = currentMode !== "parents";
   childControls.hidden = currentMode !== "child";
+  singleControls.hidden = currentMode !== "single";
   renderCurrentMode();
 }
 
@@ -445,6 +562,19 @@ function buildIndexes() {
       childResults.set(child, []);
     }
     childResults.get(child).push(combination);
+
+    [parentA, parentB].forEach((parent) => {
+      if (!parentResults.has(parent)) {
+        parentResults.set(parent, []);
+      }
+
+      if (
+        parentA !== parentB ||
+        !parentResults.get(parent).includes(combination)
+      ) {
+        parentResults.get(parent).push(combination);
+      }
+    });
   });
 }
 
@@ -463,6 +593,7 @@ modes.addEventListener("click", (event) => {
   });
   parentsControls.hidden = currentMode !== "parents";
   childControls.hidden = currentMode !== "child";
+  singleControls.hidden = currentMode !== "single";
   renderCurrentMode();
 });
 
@@ -473,6 +604,8 @@ modes.addEventListener("click", (event) => {
 
 childInput.addEventListener("input", renderCurrentMode);
 childInput.addEventListener("change", renderCurrentMode);
+singlePalInput.addEventListener("input", renderCurrentMode);
+singlePalInput.addEventListener("change", renderCurrentMode);
 quickSelectToggle.addEventListener("click", () => {
   const opening = quickSelectContent.hidden;
   quickSelectContent.hidden = !opening;
@@ -528,6 +661,7 @@ async function loadBreedingCalculator() {
       parentAInput,
       parentBInput,
       childInput,
+      singlePalInput,
     ].forEach(setupAutocomplete);
 
     const statusCopy = document.createElement("div");

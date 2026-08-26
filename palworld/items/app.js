@@ -4,6 +4,12 @@ const searchInput = document.querySelector("#item-search");
 const grid = document.querySelector("#items-grid");
 const status = document.querySelector("#items-status");
 const initialParams = new URLSearchParams(window.location.search);
+const hiddenFilterCategories = new Set([
+  "Ammo",
+  "Ingots",
+  "Key Items",
+  "Ores",
+]);
 
 let allItems = [];
 let activeCategory = initialParams.get("category") || "all";
@@ -22,7 +28,9 @@ function createFilter(category) {
 }
 
 function renderFilters() {
-  const available = [...new Set(allItems.map((item) => item.category))].sort();
+  const available = [...new Set(allItems.map((item) => item.category))]
+    .filter((category) => !hiddenFilterCategories.has(category))
+    .sort();
   if (activeCategory !== "all" && !available.includes(activeCategory)) {
     activeCategory = "all";
   }

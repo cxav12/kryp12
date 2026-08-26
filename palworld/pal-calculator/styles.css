@@ -10,7 +10,7 @@
 .pal-overview-empty { grid-column: 1 / -1; align-self: center; margin: 0; padding: 1.5rem; color: var(--muted); text-align: center; }
 .pal-overview-identity,
 .pal-overview-stat { display: flex; align-items: center; gap: 0.85rem; padding: 1rem 1.25rem; }
-.pal-overview-identity { justify-content: center; gap: 1rem; }
+.pal-overview-identity { grid-row: 1 / span 2; justify-content: center; gap: 1rem; }
 .pal-overview-identity .calculator-portrait { flex: 0 0 auto; width: 4.75rem; height: 4.75rem; }
 .pal-overview-identity .calculator-pal-sprite { width: 4.35rem; height: 4.35rem; }
 .pal-overview-identity h2 { margin: 0; color: #fff; font-size: clamp(1.45rem, 2vw, 1.75rem); }
@@ -23,7 +23,7 @@
 .pal-overview-health .pal-overview-icon { color: #ff8cae; }
 .pal-overview-attack .pal-overview-icon { color: #ffbd78; }
 .pal-overview-defense .pal-overview-icon { color: #87ccec; }
-.pal-overview-badges { display: flex; grid-column: 1 / -1; flex-wrap: wrap; justify-content: center; gap: 0.4rem; padding: 0 1.25rem 1rem; }
+.pal-overview-badges { display: flex; grid-column: 2 / -1; flex-wrap: wrap; justify-content: center; gap: 0.4rem; padding: 0 1.25rem 1rem; }
 
 .calculator-controls { display: grid; gap: 1.35rem; padding: 1.4rem; border-radius: 0.85rem; background: var(--surface-1); }
 .calculator-controls label, .calculator-controls legend { color: #fff; font-size: 0.82rem; font-weight: 750; }
@@ -35,7 +35,7 @@
 .calculator-favorites { margin: 0.8rem 0 0.75rem; }
 .calculator-favorites h2 { margin: 0 0 0.65rem; color: #b8bec8; font-size: 0.78rem; font-weight: 700; }
 .calculator-favorite-pals { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr)); gap: 0.65rem; }
-.calculator-favorite-pal { display: grid; place-items: center; align-content: start; gap: 0.45rem; min-width: 0; padding: 0.65rem 0.35rem; border: 0; border-radius: 0.7rem; background: var(--surface-2); color: #fff; }
+.calculator-favorite-pal { display: grid; place-items: center; align-content: center; gap: 0.45rem; min-width: 0; padding: 0.65rem 0.35rem; border: 0; border-radius: 0.7rem; background: var(--surface-2); color: #fff; }
 .calculator-favorite-pal:hover,
 .calculator-favorite-pal:focus-visible { outline: 0; background: var(--surface-3); transform: translateY(-1px); }
 .calculator-favorite-pal .calculator-portrait { width: 3.75rem; height: 3.75rem; }
@@ -79,7 +79,7 @@
 .primary-settings { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; }
 .primary-settings select.calculator-select { font-size: 0.75rem; }
 .toggle-field { display: block; }
-.toggle-setting { display: grid; grid-template-columns: 1fr auto; align-items: center; min-height: 2.8rem; margin-top: 0.45rem; padding: 0.45rem 0.85rem; border: 0; border-radius: 999px; background: #11181e; }
+.toggle-setting { display: grid; grid-template-columns: 1fr auto; align-items: center; min-height: 2.8rem; margin-top: 0.45rem; padding: 0.45rem 0.85rem; border: 0; border-radius: 999px; background: var(--search-control-bg); }
 .toggle-setting input { position: absolute; opacity: 0; }
 .toggle-setting small { color: var(--muted); font-size: 0.75rem; }
 .toggle-track { position: relative; width: 2.5rem; height: 1.35rem; border-radius: 999px; background: #343a45; }
@@ -166,6 +166,7 @@
   .calculator-pal-sprite { width: 4.1rem; height: 4.1rem; }
   .iv-mode-button { padding: 0.45rem; font-size: 0.68rem; }
   .pal-stat-overview { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .pal-overview-identity { grid-column: 1 / -1; }
+  .pal-overview-identity { grid-column: 1 / -1; grid-row: auto; }
+  .pal-overview-badges { grid-column: 1 / -1; }
   .pal-overview-stat { --overview-stat-size: clamp(1.35rem, 6vw, 2rem); gap: 0.45rem; padding: 0.85rem 0.45rem; }
 }

@@ -1,12 +1,28 @@
 .items-toolbar {
-  align-items: flex-start;
+  align-items: center;
+  min-width: 0;
 }
 
 .items-toolbar .filter-group {
   flex: 1 1 auto;
+  flex-wrap: nowrap;
+  min-width: 0;
+  overflow-x: auto;
+  border-radius: 999px;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+.items-toolbar .filter-group::-webkit-scrollbar {
+  display: none;
+}
+
+.items-toolbar .filter-button {
+  flex: 0 0 auto;
 }
 
 .items-toolbar .site-search {
+  flex: 0 1 32rem;
   max-width: 32rem;
 }
 
@@ -87,7 +103,16 @@
 }
 
 @media (max-width: 1199.98px) {
+  .items-toolbar {
+    align-items: stretch;
+  }
+
+  .items-toolbar .filter-group {
+    width: 100%;
+  }
+
   .items-toolbar .site-search {
+    flex-basis: auto;
     max-width: none;
   }
 }

@@ -201,7 +201,7 @@ html { scroll-behavior: smooth; }
 .party-size { display: inline-flex; align-items: center; min-height: 1.7rem; flex: 0 0 auto; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--surface-1); color: var(--text-soft); font-size: 0.7rem; font-weight: 700; }
 .party-members { display: grid; gap: 0.55rem; margin-top: 0.8rem; }
 .party-member { display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 0.1rem 0.7rem; min-width: 0; padding: 0.65rem; border-radius: 0.65rem; background: rgb(7 9 12 / 0.52); }
-.party-pal-portrait { display: grid; grid-row: 1 / span 3; width: 3.25rem; height: 3.25rem; overflow: hidden; place-items: center; align-self: center; border: 2px solid #35404b; border-radius: 50%; background: #11161b; color: var(--text-soft); font-weight: 800; }
+.party-pal-portrait { display: grid; grid-row: 1 / span 3; width: 3.25rem; height: 3.25rem; overflow: hidden; place-items: center; align-self: center; border: 2px solid var(--pal-element-color, #71808e); border-radius: 50%; background: #11161b; color: var(--text-soft); font-weight: 800; }
 .party-pal-portrait.is-flexible { border-style: dashed; color: var(--text-soft); font-size: 1.15rem; }
 .party-pal-sprite { display: block; width: 100%; height: 100%; border-radius: inherit; background-repeat: no-repeat; }
 .party-member-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 0.7rem; min-width: 0; }

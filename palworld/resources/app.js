@@ -2,7 +2,12 @@ const ITEM_DATA_URL = "../data/items.json?v=20260727-tools1";
 const PARTY_DATA_URL = "../data/party-guides.json?v=20260727-party2";
 const PAL_DATA_URL = "../data/pal-index.json?v=20260826-elements1";
 const ICON_SPRITE_URL = "../assets/paldeck/pal-icons.webp";
-const { applySpriteStyle, formatPalNumber, stylePalName } = window.PalworldUI;
+const {
+  applySpriteStyle,
+  formatPalNumber,
+  stylePalName,
+  stylePalPortraitRing,
+} = window.PalworldUI;
 
 const typeSummary = document.querySelector("#type-summary");
 const itemSearch = document.querySelector("#resource-item-search");
@@ -159,6 +164,7 @@ function createPortrait(name, flexible = false) {
     return frame;
   }
   const pal = palByName.get(name);
+  stylePalPortraitRing(frame, pal);
   if (!pal?.sprite || !palSprite) {
     frame.textContent = name.slice(0, 1);
     frame.setAttribute("aria-label", name);

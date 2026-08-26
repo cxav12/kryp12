@@ -7,6 +7,7 @@ const {
   formatPalNumber,
   getPalPreferences,
   stylePalName,
+  stylePalPortraitRing,
   updateUrlParams,
 } = window.PalworldUI;
 
@@ -237,6 +238,7 @@ function setupAutocomplete(input) {
 function createPortrait(pal, name) {
   const frame = document.createElement("div");
   frame.className = "breeding-pal-portrait";
+  stylePalPortraitRing(frame, pal);
 
   if (!pal || !palSprite || !pal.sprite) {
     frame.textContent = name.slice(0, 1);

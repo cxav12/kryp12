@@ -5,6 +5,7 @@ const {
   formatPalNumber,
   getPalPreferences,
   stylePalName,
+  stylePalPortraitRing,
 } = window.PalworldUI;
 
 const palSelect = document.querySelector("#pal-select");
@@ -452,6 +453,7 @@ function finalStat(flatBase, scaling, rate, level, iv, condensation, soul, passi
 function createPortrait(pal) {
   const frame = document.createElement("div");
   frame.className = "calculator-portrait";
+  stylePalPortraitRing(frame, pal);
   const sprite = document.createElement("span");
   sprite.className = "calculator-pal-sprite";
   applySpriteStyle(sprite, palSprite, pal.sprite, `../${palSprite.image.slice(2)}`);

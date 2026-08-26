@@ -1,5 +1,5 @@
 const DATA_URL = "../data/pal-cards.json?v=20260725-clean1";
-const { applySpriteStyle, stylePalName } = window.PalworldUI;
+const { applySpriteStyle, stylePalName, stylePalPortraitRing } = window.PalworldUI;
 
 const jobsContainer = document.querySelector("#planner-jobs");
 const teamContainer = document.querySelector("#planner-team");
@@ -152,6 +152,7 @@ function createTeamCard(pal) {
 
   const portrait = document.createElement("div");
   portrait.className = "planner-pal-portrait";
+  stylePalPortraitRing(portrait, pal);
   if (palSprite && pal.sprite) {
     const sprite = document.createElement("span");
     sprite.className = "planner-pal-sprite";

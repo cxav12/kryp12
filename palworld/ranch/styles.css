@@ -85,7 +85,7 @@
   width: 4.5rem;
   height: 4.5rem;
   flex: 0 0 4.5rem;
-  border: 3px solid color-mix(in srgb, var(--card-tint) 48%, #3a4149);
+  border: 3px solid var(--pal-element-color, #71808e);
   border-radius: 50%;
   background-color: #182027;
   background-repeat: no-repeat;

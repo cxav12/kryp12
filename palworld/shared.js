@@ -128,6 +128,15 @@
     return element;
   }
 
+  function stylePalPortraitRing(element, pal) {
+    if (element) {
+      const color = getPalElementColor(pal);
+      element.style.setProperty("--pal-element-color", color);
+      element.style.borderColor = color;
+    }
+    return element;
+  }
+
   function formatDate(dateString) {
     const localDate =
       /^\d{4}-\d{2}-\d{2}$/.test(dateString)
@@ -315,6 +324,7 @@
     hasPalPreference,
     setPalPreference,
     stylePalName,
+    stylePalPortraitRing,
     updateUrlParams,
   });
 })();

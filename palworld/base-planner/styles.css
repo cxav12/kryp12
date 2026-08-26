@@ -138,7 +138,7 @@
   height: 3rem;
   overflow: hidden;
   place-items: center;
-  border: 2px solid #465364;
+  border: 2px solid var(--pal-element-color, #71808e);
   border-radius: 50%;
   background: #171a1d;
 }

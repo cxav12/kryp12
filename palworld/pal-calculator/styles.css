@@ -183,7 +183,7 @@
 .iv-sliders label { display: grid; grid-template-columns: 1fr auto; gap: 0.35rem; }
 .iv-sliders output { color: #aebdff; }
 .iv-sliders input { grid-column: 1 / -1; width: 100%; accent-color: #7187ee; }
-.calculator-portrait { display: grid; width: 6rem; height: 6rem; overflow: hidden; place-items: center; border: 2px solid #52618b; border-radius: 50%; background: #171b23; }
+.calculator-portrait { display: grid; width: 6rem; height: 6rem; overflow: hidden; place-items: center; border: 2px solid var(--pal-element-color, #71808e); border-radius: 50%; background: #171b23; }
 .calculator-pal-sprite { width: 5.5rem; height: 5.5rem; background-repeat: no-repeat; }
 .build-badge { padding: 0.28rem 0.55rem; border: 0; border-radius: 999px; background: #171d31; color: #aebdff; font-size: 0.73rem; font-weight: 700; }
 

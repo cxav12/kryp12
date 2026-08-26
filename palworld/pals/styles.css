@@ -215,7 +215,7 @@
   height: 4.75rem;
   margin-top: 2.2rem;
   overflow: hidden;
-  border: 3px solid color-mix(in srgb, var(--card-tint) 45%, #20242a);
+  border: 3px solid var(--pal-element-color, #71808e);
   border-radius: 50%;
   background: #171a1d;
 }
@@ -327,7 +327,7 @@
   height: 6rem;
   overflow: hidden;
   place-items: center;
-  border: 3px solid color-mix(in srgb, var(--detail-tint, #71808e) 55%, #20242a);
+  border: 3px solid var(--pal-element-color, #71808e);
   border-radius: 50%;
   background: #171a1d;
 }

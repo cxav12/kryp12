@@ -11,6 +11,7 @@ const {
   hasPalPreference,
   setPalPreference,
   stylePalName,
+  stylePalPortraitRing,
   updateUrlParams,
 } = window.PalworldUI;
 
@@ -182,6 +183,7 @@ function createPalCard(pal, workName = null) {
 
   const media = document.createElement("div");
   media.className = "pal-card-media";
+  stylePalPortraitRing(media, pal);
 
   if (palSprite && pal.sprite) {
     const portrait = document.createElement("div");
@@ -375,6 +377,7 @@ async function openPalDetails(palSummary) {
 
   const portrait = document.createElement("div");
   portrait.className = "pal-detail-portrait";
+  stylePalPortraitRing(portrait, pal);
   if (palSprite && palSummary.sprite) {
     const sprite = document.createElement("span");
     sprite.className = "pal-detail-sprite";

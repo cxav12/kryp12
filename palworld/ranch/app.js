@@ -86,6 +86,7 @@
 
     const portrait = document.createElement("div");
     portrait.className = "ranch-pal-portrait";
+    PalworldUI.stylePalPortraitRing(portrait, pal);
     portrait.setAttribute("role", "img");
     portrait.setAttribute("aria-label", `${pal.name} portrait`);
     PalworldUI.applySpriteStyle(

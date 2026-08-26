@@ -6,6 +6,17 @@
     Electricity: "Electric",
     Earth: "Ground",
   };
+  const palElementColors = {
+    Normal: "#d9dde3",
+    Leaf: "#78d66d",
+    Water: "#69baff",
+    Fire: "#ff806d",
+    Electricity: "#f2d45c",
+    Dark: "#bd8cff",
+    Earth: "#d6a16c",
+    Ice: "#7bdce8",
+    Dragon: "#d991ff",
+  };
   const gameTokenDisplayNames = {
     berries: "Red Berries",
     cavemushroom: "Cave Mushroom",
@@ -105,6 +116,18 @@
     return `${match[1].padStart(3, "0")}${match[2]}`;
   }
 
+  function getPalElementColor(pal) {
+    const primaryElement = pal?.elements?.[0]?.name;
+    return palElementColors[primaryElement] || "#d9dde3";
+  }
+
+  function stylePalName(element, pal) {
+    if (element) {
+      element.style.color = getPalElementColor(pal);
+    }
+    return element;
+  }
+
   function formatDate(dateString) {
     const localDate =
       /^\d{4}-\d{2}-\d{2}$/.test(dateString)
@@ -120,6 +143,10 @@
     messageElement,
     metaElement,
   }) {
+    if (!panel || !titleElement || !messageElement || !metaElement) {
+      return () => {};
+    }
+
     return ({ state, title, message, meta = "" }) => {
       panel.dataset.state = state;
       titleElement.textContent = title;
@@ -281,11 +308,13 @@
     formatDate,
     formatGameText,
     formatPalNumber,
+    getPalElementColor,
     getPalPreferences,
     getElementDisplayName,
     getRarityDetails,
     hasPalPreference,
     setPalPreference,
+    stylePalName,
     updateUrlParams,
   });
 })();

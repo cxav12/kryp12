@@ -1,60 +1,20 @@
 .passive-toolbar {
-  align-items: flex-start;
+  align-items: end;
+  gap: 0.75rem;
   padding: 1rem;
   border-radius: 0.85rem;
   background: var(--surface-1);
 }
 
-.passive-filter-stack {
+.passive-filter-control {
   display: grid;
-  flex: 1 1 auto;
-  gap: 0.55rem;
-  width: 100%;
-  min-width: 0;
-}
-
-.passive-filter-row {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 3.25rem minmax(0, 1fr);
-  gap: 0.65rem;
-}
-
-.passive-filter-label {
-  padding-top: 0;
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.passive-type-controls,
-.passive-tier-controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  min-width: 0;
-}
-
-.passive-type-controls .filter-group,
-.passive-tier-controls .filter-group {
-  flex: 0 0 auto;
-}
-
-.passive-type-controls .filter-group {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  width: 100%;
-}
-
-.passive-tier-controls .filter-group {
   width: 0;
-  flex: 3 1 0;
+  min-width: 9rem;
+  flex: 1.5 1 0;
+  margin: 0;
 }
 
-.passive-tier-controls .site-search {
+.passive-toolbar .site-search {
   width: 0;
   min-width: 0;
   flex: 2 1 0;
@@ -132,6 +92,7 @@
   overflow: hidden;
   border: 0;
   border-left: 0.32rem solid var(--tag-color);
+  border-radius: 0.3rem;
   background:
     linear-gradient(
       115deg,
@@ -162,11 +123,11 @@
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
-  width: 2.15rem;
-  min-width: 2.15rem;
-  min-height: 2.05rem;
+  width: 1.72rem;
+  min-width: 1.72rem;
+  min-height: 1.64rem;
   margin-left: auto;
-  padding: 0.3rem 0.4rem;
+  padding: 0.24rem 0.32rem;
   color: var(--tag-color);
   filter: drop-shadow(
     0 0 0.22rem color-mix(in srgb, var(--tag-color) 42%, transparent)
@@ -179,23 +140,23 @@
 }
 
 .rank-chevron {
-  width: 0.72rem;
-  height: 0.72rem;
-  margin-bottom: -0.42rem;
-  border-top: 0.18rem solid currentColor;
-  border-left: 0.18rem solid currentColor;
+  width: 0.576rem;
+  height: 0.576rem;
+  margin-bottom: -0.336rem;
+  border-top: 0.144rem solid currentColor;
+  border-left: 0.144rem solid currentColor;
   transform: rotate(45deg);
 }
 
 .passive-rank-icon[data-direction="negative"] .rank-chevron {
-  margin-top: -0.42rem;
+  margin-top: -0.336rem;
   margin-bottom: 0;
   transform: rotate(225deg);
 }
 
 .rank-sign {
-  margin-top: 0.22rem;
-  font-size: 1rem;
+  margin-top: 0.176rem;
+  font-size: 0.8rem;
   font-weight: 900;
   line-height: 0.7;
 }
@@ -203,7 +164,7 @@
 .passive-rank-icon[data-direction="negative"] .rank-sign {
   order: -1;
   margin-top: 0;
-  margin-bottom: 0.22rem;
+  margin-bottom: 0.176rem;
 }
 
 .passive-rank-icon.rank-icon-single .rank-sign {
@@ -241,36 +202,23 @@
 
 @media (max-width: 1199.98px) {
   .passive-toolbar {
-    flex-direction: column;
-  }
-
-  .passive-tier-controls {
-    flex-wrap: wrap;
-  }
-
-  .passive-tier-controls .filter-group,
-  .passive-tier-controls .site-search {
-    flex-basis: 100%;
-    max-width: none;
+    align-items: end;
+    flex-direction: row;
   }
 }
 
 @media (max-width: 767.98px) {
-  .passive-filter-row {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
+  .passive-toolbar {
+    flex-wrap: wrap;
   }
 
-  .passive-filter-label {
-    padding-top: 0;
+  .passive-filter-control {
+    width: calc(50% - 0.375rem);
+    flex: 1 1 calc(50% - 0.375rem);
   }
 
-  .passive-filter-row .filter-group {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .passive-filter-row .filter-button {
-    text-align: left;
+  .passive-toolbar .site-search {
+    width: 100%;
+    flex-basis: 100%;
   }
 }

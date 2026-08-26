@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore useful Palworld charts, item drop information, and party recommendations.">
+    <title>Palworld Reference | Resources</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles.css?v=20260826-pal-identity1">
+    <link rel="stylesheet" href="./styles.css?v=20260826-pal-identity1">
+    <link rel="preload" href="../assets/paldeck/pal-icons.webp" as="image" type="image/webp">
+    <link rel="preload" href="../assets/paldeck/pal-portraits.webp" as="image" type="image/webp">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-brand">
+        <a class="brand-logo-frame" href="../" aria-label="Palworld reference">
+          <img class="brand-logo" src="../assets/palworld-logo.png" alt="Palworld" width="2400" height="1500" decoding="async">
+        </a>
+      </div>
+      <nav class="palworld-nav navbar" aria-label="Palworld navigation">
+        <div class="nav-accent" aria-hidden="true"></div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="palworld-nav-links" aria-label="Open navigation">
+          <span>Menu</span><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+        <ul id="palworld-nav-links" class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="../pals/">Pals</a></li>
+          <li class="nav-item"><a class="nav-link" href="../passive-skills/">Passive Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="../breeding/">Breeding</a></li>
+          <li class="nav-item"><a class="nav-link" href="../pal-calculator/">Pal Calculator</a></li>
+          <li class="nav-item"><a class="nav-link" href="../ranch/">Ranch</a></li>
+          <li class="nav-item"><a class="nav-link" href="../base-planner/">Base Planner</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="./">Resources</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="site-content">
+      <section class="content-section" aria-labelledby="resources-title">
+        <div class="page-intro tinted-card">
+          <div>
+            <h1 id="resources-title">Resources</h1>
+            <p class="page-intro-copy">Find helpful charts, searchable game information, and practical recommendations gathered in one place.</p>
+          </div>
+        </div>
+
+        <nav class="resource-navigation" aria-label="Resources page sections">
+          <a class="filter-button active" href="#type-chart">Type Chart</a>
+          <a class="filter-button" href="#item-guide">Item Guide</a>
+          <a class="filter-button" href="#party-guides">Party Guides</a>
+        </nav>
+
+        <section id="type-chart" class="resource-section" aria-labelledby="type-chart-title">
+          <header class="resource-section-heading">
+            <h2 id="type-chart-title">Type Chart</h2>
+            <p>Compare every element’s strengths and weaknesses to plan better matchups.</p>
+          </header>
+          <div id="type-summary" class="row g-2 g-xl-3"></div>
+        </section>
+
+        <section id="item-guide" class="resource-section" aria-labelledby="item-guide-title">
+          <header class="resource-section-heading">
+            <h2 id="item-guide-title">Item Guide</h2>
+            <p>Search indexed items to see which Pals drop them in the wild or produce them at a Ranch.</p>
+          </header>
+          <div class="resource-item-search site-search" role="search">
+            <label class="visually-hidden" for="resource-item-search">Search indexed items</label>
+            <input id="resource-item-search" class="form-control" type="search" placeholder="Search indexed items..." autocomplete="off">
+          </div>
+          <div id="resource-item-results" class="resource-item-results" aria-live="polite">
+            <p class="resource-placeholder">Enter an item name to find the Pals that drop or produce it.</p>
+          </div>
+        </section>
+
+        <section id="party-guides" class="resource-section" aria-labelledby="party-guides-title">
+          <header class="resource-section-heading">
+            <h2 id="party-guides-title">Party Guides</h2>
+            <p>Select a guide to view its complete recommended party and strategy notes.</p>
+          </header>
+          <div id="resource-party-grid" class="resource-party-grid" aria-live="polite">
+            <p class="resource-placeholder">Loading party guides...</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="party-guide-dialog" class="party-guide-dialog" aria-labelledby="party-dialog-title">
+      <button id="party-guide-close" class="party-guide-close" type="button" aria-label="Close party guide">×</button>
+      <div id="party-guide-content"></div>
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <a class="footer-link" href="../">Home</a>
+        <a class="footer-link" href="../legal-disclaimer/">Legal Disclaimer</a>
+      </div>
+    </footer>
+
+    <script src="../shared.js?v=20260826-pal-identity1"></script>
+    <script src="./app.js?v=20260826-pal-identity1"></script>
+  </body>
+</html>

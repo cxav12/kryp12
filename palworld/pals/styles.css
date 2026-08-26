@@ -244,10 +244,14 @@
 }
 
 .pal-card-number {
-  color: var(--link);
+  color: #fff;
   font-size: 0.68rem;
   font-weight: 700;
   line-height: 1;
+}
+
+.pal-detail-eyebrow .pal-id {
+  color: #fff;
 }
 
 .pal-rarity {

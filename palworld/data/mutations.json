@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "gameVersion": "1.0",
+    "reviewedAt": "2026-08-26",
+    "normalCakeChance": 0.01,
+    "extravagantCakeChance": 0.03,
+    "description": "Mutation-eligible Pal species for the Palworld 1.0 breeding mutation model."
+  },
+  "eligiblePals": [
+    "Aegidron", "Anubis", "Astegon", "Azurmane", "Azurobe", "Azurobe Cryst",
+    "Bakemi", "Beakon", "Beakon Cryst", "Blazamut", "Blazehowl", "Blazehowl Noct",
+    "Braloha", "Broncherry", "Broncherry Aqua", "Bulldosu", "Bushi", "Bushi Noct",
+    "Carnibora", "Celesdir", "Celesdir Noct", "Croajiro Noct", "Cryolinx",
+    "Cryolinx Terra", "Digtoise", "Dogen", "Dualith", "Dualith Noct", "Dumud Gild",
+    "Dupin", "Dynamoff", "Eidrolon", "Eidrolon Ignis", "Elgrove Cryst", "Elizabee",
+    "Elphidran Aqua", "Felbat", "Fenglope Lux", "Flaracle", "Frostplume", "Ghangler",
+    "Ghangler Ignis", "Gildane", "Gildra", "Gloopie Primo", "Helzephyr", "Helzephyr Lux",
+    "Hoodle", "Icelyn", "Incineram", "Incineram Noct", "Jormuntide", "Jormuntide Ignis",
+    "Katress Ignis", "Kingpaca Cryst", "Kitsun", "Kitsun Noct", "Knocklem",
+    "Knocklem Ignis", "Lapiron", "Lapure", "Leafan", "Loomen", "Loupmoon Cryst",
+    "Majex", "Mammorest", "Mammorest Cryst", "Maraith", "Menasting", "Menasting Terra",
+    "Moldron", "Moldron Cryst", "Mossanda Lux", "Mycora", "Needoll Noct", "Nitemary",
+    "Nitemary Botan", "Nyafia", "Omascul", "Ophydia", "Palumba", "Penking Lux",
+    "Petallia", "Petallia Ignis", "Pierdon", "Pierdon Cryst", "Polapup", "Polapup Terra",
+    "Prixter", "Prixter Lux", "Prunelia", "Quivern", "Quivern Botan", "Ragnahawk",
+    "Rayhound Cryst", "Relaxaurus", "Relaxaurus Lux", "Renjishi", "Reptyro",
+    "Reptyro Cryst", "Roujay", "Sekhmet", "Shroomer", "Shroomer Noct", "Sibelyx",
+    "Sibelyx Primo", "Silvegis", "Skutlass", "Skutlass Ignis", "Slowatt", "Smokie",
+    "Smokie Cryst", "Snock", "Snock Lux", "Solenne", "Solmora", "Solmora Lux",
+    "Sootseer", "Splatterina", "Starryon", "Starryon Primo", "Surfent Terra", "Suzaku",
+    "Suzaku Aqua", "Tarantriss", "Tetroise", "Tetroise Primo", "Tropicaw",
+    "Turtacle Terra", "Univolt Cryst", "Vaelet", "Vanwyrm", "Vanwyrm Cryst", "Venusa",
+    "Verdash", "Warsect", "Warsect Terra", "Whalaska", "Whalaska Ignis", "Wistella",
+    "Wixen Noct", "Wumpo", "Wumpo Botan"
+  ]
+}

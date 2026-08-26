@@ -101,9 +101,10 @@
     const title = document.createElement("h2");
     title.className = "card-title";
     title.textContent = pal.name;
+    PalworldUI.stylePalName(title, pal);
 
     const number = document.createElement("span");
-    number.className = "ranch-pal-number";
+    number.className = "ranch-pal-number pal-id";
     number.textContent = `#${PalworldUI.formatPalNumber(pal.dexKey)}`;
     title.append(number);
 
@@ -244,6 +245,7 @@
           return {
             ...ranchPal,
             dexKey: pal.dexKey,
+            elements: pal.elements,
             sprite: pal.sprite,
             ranchLevel: farming.level,
           };

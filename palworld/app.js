@@ -31,26 +31,18 @@ const requestedType = initialParams.get("type");
 const requestedTier = initialParams.get("tier");
 
 if (
-  [...typeFilters.querySelectorAll("[data-type]")].some(
-    (button) => button.dataset.type === requestedType,
-  )
+  [...typeFilters.options].some((option) => option.value === requestedType)
 ) {
   activeType = requestedType;
 }
 if (
-  [...tierFilters.querySelectorAll("[data-tier]")].some(
-    (button) => button.dataset.tier === requestedTier,
-  )
+  [...tierFilters.options].some((option) => option.value === requestedTier)
 ) {
   activeTier = requestedTier;
 }
+typeFilters.value = activeType;
+tierFilters.value = activeTier;
 searchInput.value = initialParams.get("q") || "";
-
-[typeFilters, tierFilters].forEach((group) => {
-  const dataName = group === typeFilters ? "type" : "tier";
-  const activeValue = dataName === "type" ? activeType : activeTier;
-  setActiveFilter(group, dataName, activeValue);
-});
 
 const skillTypeMatchers = {
   player: (skill) => skill.affectsPlayer === true,
@@ -85,14 +77,6 @@ function getTierKey(rank) {
   }
 
   return tierByRank[rank] ?? "unranked";
-}
-
-function setActiveFilter(group, dataName, activeValue) {
-  group.querySelectorAll(".filter-button").forEach((button) => {
-    const active = button.dataset[dataName] === activeValue;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
 }
 
 function createRankIcon(rank) {
@@ -212,29 +196,13 @@ function applyFilters() {
   });
 }
 
-typeFilters.addEventListener("click", (event) => {
-  const button = event.target.closest(".filter-button");
-
-  if (!button) {
-    return;
-  }
-
-  activeType = button.dataset.type;
-  setActiveFilter(typeFilters, "type", activeType);
-
+typeFilters.addEventListener("change", () => {
+  activeType = typeFilters.value;
   applyFilters();
 });
 
-tierFilters.addEventListener("click", (event) => {
-  const button = event.target.closest(".filter-button");
-
-  if (!button) {
-    return;
-  }
-
-  activeTier = button.dataset.tier;
-  setActiveFilter(tierFilters, "tier", activeTier);
-
+tierFilters.addEventListener("change", () => {
+  activeTier = tierFilters.value;
   applyFilters();
 });
 

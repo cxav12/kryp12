@@ -15,8 +15,8 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     >
-    <link rel="stylesheet" href="../styles.css?v=20260825-redesign12">
-    <link rel="stylesheet" href="./styles.css?v=20260825-redesign7">
+    <link rel="stylesheet" href="../styles.css?v=20260826-pal-identity1">
+    <link rel="stylesheet" href="./styles.css?v=20260826-pal-identity1">
     <link
       rel="preload"
       href="../assets/paldeck/pal-portraits.webp"
@@ -78,13 +78,7 @@
             <a class="nav-link" href="../base-planner/">Base Planner</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../party-guides/">Party Guides</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../items/">Items</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../type-chart/">Type Chart</a>
+            <a class="nav-link" href="../resources/">Resources</a>
           </li>
         </ul>
       </nav>
@@ -98,7 +92,8 @@
             <p class="page-intro-copy">
               Find every parent pair for a target Pal, or combine two parents
               to see the child they produce. You can also select one Pal to
-              explore every possible partner and offspring.
+              explore every possible partner and offspring, or calculate
+              possible mutated egg outcomes.
             </p>
           </div>
         </div>
@@ -115,6 +110,7 @@
               type="button"
               data-mode="child"
               aria-pressed="true"
+              aria-describedby="child-mode-description"
             >
               Find parent combinations
             </button>
@@ -123,6 +119,7 @@
               type="button"
               data-mode="parents"
               aria-pressed="false"
+              aria-describedby="parents-mode-description"
             >
               Breed two Pals
             </button>
@@ -131,9 +128,46 @@
               type="button"
               data-mode="single"
               aria-pressed="false"
+              aria-describedby="single-mode-description"
             >
               Explore one Pal
             </button>
+            <button
+              class="breeding-mode"
+              type="button"
+              data-mode="mutations"
+              aria-pressed="false"
+              aria-describedby="mutations-mode-description"
+            >
+              Mutations
+            </button>
+            <button
+              class="breeding-mode"
+              type="button"
+              data-mode="mutation-parents"
+              aria-pressed="false"
+              aria-describedby="mutation-parents-mode-description"
+            >
+              Find mutation parents
+            </button>
+          </div>
+
+          <div class="breeding-mode-descriptions">
+            <p id="child-mode-description" data-mode-description="child">
+              Choose the child you want and find every parent pair that can produce it.
+            </p>
+            <p id="parents-mode-description" data-mode-description="parents" hidden>
+              Choose two parents and see their expected normal offspring.
+            </p>
+            <p id="single-mode-description" data-mode-description="single" hidden>
+              Choose one Pal and explore every partner and child available to it.
+            </p>
+            <p id="mutations-mode-description" data-mode-description="mutations" hidden>
+              Choose two parents and calculate their possible mutated egg outcomes.
+            </p>
+            <p id="mutation-parents-mode-description" data-mode-description="mutation-parents" hidden>
+              Choose a known mutated Pal and find the parent pairs that can create it.
+            </p>
           </div>
 
           <div id="parents-controls" class="row g-3" hidden>
@@ -198,6 +232,66 @@
               >
             </div>
           </div>
+
+          <div id="mutation-controls" class="row g-3" hidden>
+            <div class="col-12 col-md-4 breeding-field">
+              <label class="visually-hidden" for="mutation-parent-a-input">
+                First mutation parent
+              </label>
+              <input
+                id="mutation-parent-a-input"
+                class="form-control breeding-input"
+                type="search"
+                placeholder="First parent"
+                autocomplete="off"
+              >
+            </div>
+            <div class="col-12 col-md-4 breeding-field">
+              <label class="visually-hidden" for="mutation-parent-b-input">
+                Second mutation parent
+              </label>
+              <input
+                id="mutation-parent-b-input"
+                class="form-control breeding-input"
+                type="search"
+                placeholder="Second parent"
+                autocomplete="off"
+              >
+            </div>
+            <div class="col-12 col-md-4 breeding-field">
+              <label class="visually-hidden" for="mutation-cake-select">
+                Cake type
+              </label>
+              <select id="mutation-cake-select" class="form-select breeding-input">
+                <option value="normal">Normal Cake · 1%</option>
+                <option value="extravagant">Extravagant Vegetable Cake · 3%</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="mutation-parent-controls" class="row g-3" hidden>
+            <div class="col-12 col-md-8 breeding-field">
+              <label class="visually-hidden" for="mutation-target-input">
+                Mutated Pal
+              </label>
+              <input
+                id="mutation-target-input"
+                class="form-control breeding-input"
+                type="search"
+                placeholder="Choose the mutated Pal..."
+                autocomplete="off"
+              >
+            </div>
+            <div class="col-12 col-md-4 breeding-field">
+              <label class="visually-hidden" for="reverse-mutation-cake-select">
+                Cake type
+              </label>
+              <select id="reverse-mutation-cake-select" class="form-select breeding-input">
+                <option value="normal">Normal Cake · 1%</option>
+                <option value="extravagant">Extravagant Vegetable Cake · 3%</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         <div
@@ -215,16 +309,13 @@
     </main>
 
     <footer class="site-footer">
-      <section
-        id="breeding-data-status"
-        class="data-status alert"
-        data-state="current"
-        role="status"
-        hidden
-      ></section>
+      <div class="site-footer-inner">
+        <a class="footer-link" href="../">Home</a>
+        <a class="footer-link" href="../legal-disclaimer/">Legal Disclaimer</a>
+      </div>
     </footer>
 
-    <script src="../shared.js?v=20260727-passivepath1"></script>
-    <script src="./app.js?v=20260825-favorites1"></script>
+    <script src="../shared.js?v=20260826-pal-identity1"></script>
+    <script src="./app.js?v=20260826-pal-identity1"></script>
   </body>
 </html>

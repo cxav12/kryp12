@@ -10,6 +10,7 @@ const {
   getRarityDetails,
   hasPalPreference,
   setPalPreference,
+  stylePalName,
   updateUrlParams,
 } = window.PalworldUI;
 
@@ -209,6 +210,7 @@ function createPalCard(pal, workName = null) {
   const title = document.createElement("h2");
   title.className = "card-title";
   title.textContent = pal.name;
+  stylePalName(title, pal);
 
   identity.append(title);
 
@@ -220,7 +222,7 @@ function createPalCard(pal, workName = null) {
 
   if (hasPalNumber) {
     const number = document.createElement("span");
-    number.className = "pal-card-number";
+    number.className = "pal-card-number pal-id";
     number.textContent = `#${pal.dexKey}`;
     identity.append(number);
   }
@@ -388,12 +390,17 @@ async function openPalDetails(palSummary) {
   }
 
   const identity = document.createElement("div");
-  const eyebrow = document.createElement("span");
+  const eyebrow = document.createElement("div");
   eyebrow.className = "pal-detail-eyebrow";
-  eyebrow.textContent =
-    `#${formatPalNumber(pal.dexKey)} · ${rarity.label}`;
+  const detailNumber = document.createElement("span");
+  detailNumber.className = "pal-id";
+  detailNumber.textContent = `#${formatPalNumber(pal.dexKey)}`;
+  const detailRarity = document.createElement("span");
+  detailRarity.textContent = rarity.label;
+  eyebrow.append(detailNumber, " · ", detailRarity);
   const title = document.createElement("h2");
   title.textContent = pal.name;
+  stylePalName(title, pal);
   const elements = document.createElement("p");
   elements.textContent = pal.elements
     .map((element) => getElementDisplayName(element.name))

@@ -48,8 +48,9 @@ python scripts/build-pal-sprite.py
 The Pals page uses the generated `data/pal-cards.json` file, which only contains
 the fields needed to render and filter cards. Breeding uses the even smaller
 generated `data/pal-index.json` because it only needs Pal names, numbers,
-rarities, and portrait coordinates. `data/pals.json` remains the complete
-imported dataset.
+rarities, elements, breeding power, and portrait coordinates. Element data
+supports the shared element-colored Pal-name treatment. `data/pals.json`
+remains the complete imported dataset.
 
 Breeding combinations can be regenerated with:
 
@@ -57,8 +58,12 @@ Breeding combinations can be regenerated with:
 python scripts/build-breeding-data.py
 ```
 
-The Item Guide is generated from the verified Pal drop and Ranch source
-data:
+The Breeding page's mutation mode uses the Palworld 1.0 mutation rank formula
+with the reviewed eligible-species list in `data/mutations.json`. Update that
+file when game patches change mutation eligibility or cake chances.
+
+The Item Guide resource is generated from the verified Pal drop and Ranch
+source data:
 
 ```sh
 python scripts/build-item-data.py
@@ -66,7 +71,8 @@ python scripts/build-item-data.py
 
 Party Guides are stored as curated recommendations in
 `data/party-guides.json`. Pal names in those guides resolve against
-`data/pal-index.json` so the page can reuse the shared Pal portrait sprite.
+`data/pal-index.json` so the Resources page can reuse the shared Pal portrait
+sprite.
 
 The generated `data/items.json` intentionally contains only items with a known
 Pal drop or Ranch source in the local datasets.

@@ -107,7 +107,9 @@ def main():
                 "name": pal["name"],
                 "dexKey": pal.get("dexKey"),
                 "rarity": pal["rarity"],
+                "breedingPower": pal.get("breedingPower"),
                 "sprite": pal.get("sprite"),
+                "elements": pal["elements"],
             }
             for pal in data["pals"]
         ],

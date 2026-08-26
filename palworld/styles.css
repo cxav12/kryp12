@@ -116,7 +116,7 @@ textarea {
 .palworld-nav .navbar-nav {
   display: grid;
   align-self: stretch;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   width: 100%;
 }
 
@@ -201,40 +201,34 @@ textarea {
   margin-bottom: 2rem;
 }
 
-.data-status {
+.site-footer-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin: 0;
-  padding: 0.8rem 1rem;
-  border: 0;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
   border-radius: var(--card-radius);
-  background: #151719;
-  color: var(--text);
+  background: var(--surface-2);
 }
 
-.data-status[data-state="current"] {
-  border-left: var(--accent-bar-width) solid #4dba78;
-}
-
-.data-status[data-state="update"] {
-  border-left: var(--accent-bar-width) solid var(--accent);
-}
-
-.data-status[data-state="error"] {
-  border-left: var(--accent-bar-width) solid var(--danger);
-}
-
-.data-status p,
-.data-status-meta {
-  color: var(--muted);
+.footer-link {
+  display: inline;
+  color: var(--text-soft);
   font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.data-status-meta {
-  text-align: right;
-  white-space: nowrap;
+.footer-link:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.footer-link:focus-visible {
+  border-radius: 0.1rem;
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 0.2rem;
 }
 
 .site-toolbar {
@@ -340,6 +334,11 @@ input.form-control[type="search"]:focus {
   box-shadow: 0 0 0 0.2rem rgb(100 123 231 / 0.16);
 }
 
+/* Pal identity standard: element-colored names with stable white Paldeck IDs. */
+.pal-id {
+  color: #fff;
+}
+
 select.form-select {
   height: var(--pill-control-height);
   min-height: var(--pill-control-height);
@@ -366,8 +365,10 @@ select.form-select:focus {
   background-image: none !important;
 }
 
-/* Apply this to a panel containing search or select controls so they remain
-   visibly layered above the panel without introducing borders. */
+/* Pill controls inside raised surfaces always use the brighter control layer.
+   Standard toolbars inherit this automatically; use .control-surface for any
+   other container that holds search, select, autocomplete, or toggle pills. */
+.site-toolbar,
 .control-surface {
   --search-control-bg: var(--search-control-surface-bg);
   --search-control-focus-bg: var(--search-control-surface-focus-bg);
@@ -539,7 +540,6 @@ select.form-select:focus {
     --site-width: calc(100% - 2rem);
   }
 
-  .data-status,
   .site-toolbar {
     align-items: stretch;
     flex-direction: column;
@@ -549,10 +549,6 @@ select.form-select:focus {
     align-items: stretch;
     flex-direction: column;
     gap: 1rem;
-  }
-
-  .data-status-meta {
-    text-align: left;
   }
 
   .site-search {

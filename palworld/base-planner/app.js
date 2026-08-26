@@ -1,5 +1,5 @@
 const DATA_URL = "../data/pal-cards.json?v=20260725-clean1";
-const { applySpriteStyle } = window.PalworldUI;
+const { applySpriteStyle, stylePalName } = window.PalworldUI;
 
 const jobsContainer = document.querySelector("#planner-jobs");
 const teamContainer = document.querySelector("#planner-team");
@@ -169,6 +169,7 @@ function createTeamCard(pal) {
   const content = document.createElement("div");
   const title = document.createElement("h3");
   title.textContent = pal.name;
+  stylePalName(title, pal);
   const jobs = document.createElement("div");
   jobs.className = "planner-pal-jobs";
   pal.workSuitability

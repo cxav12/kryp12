@@ -1,6 +1,6 @@
 .breeding-modes {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   width: 100%;
   margin: 0 0 1.25rem;
   overflow: hidden;
@@ -32,6 +32,36 @@
   box-shadow: none;
 }
 
+.breeding-mode-descriptions {
+  margin: -0.55rem 0 1.25rem;
+  padding-inline: 0.65rem;
+}
+
+.breeding-mode-descriptions p {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.breeding-mode-descriptions p::before {
+  display: inline-grid;
+  flex: 0 0 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "i";
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
 .breeding-controls,
 .breeding-results {
   border: 0;
@@ -56,6 +86,75 @@
   position: relative;
 }
 
+.breeding-input.has-selected-pal:not(:focus) {
+  color: transparent;
+}
+
+.breeding-selected-pal {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: calc(var(--bs-gutter-x) * 0.5 + 2.6rem);
+  left: calc(var(--bs-gutter-x) * 0.5 + 1rem);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.breeding-selected-pal[hidden] {
+  display: none;
+}
+
+.breeding-field:focus-within .breeding-selected-pal {
+  display: none;
+}
+
+.breeding-selected-pal .breeding-pal-portrait {
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  background: transparent;
+}
+
+.breeding-selected-pal .breeding-pal-sprite {
+  width: 1.85rem;
+  height: 1.85rem;
+}
+
+.breeding-selected-identity,
+.breeding-autocomplete-identity {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.breeding-selected-identity strong {
+  overflow: hidden;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breeding-selected-identity span,
+.breeding-autocomplete-identity span {
+  flex: 0 0 auto;
+  color: #737c89;
+  font-size: 0.68rem;
+  font-weight: 650;
+}
+
+.breeding-selected-identity .pal-id,
+.breeding-autocomplete-identity .pal-id {
+  color: #fff;
+}
+
 .breeding-autocomplete {
   position: absolute;
   z-index: 50;
@@ -73,7 +172,7 @@
 
 .breeding-autocomplete-option {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 0.65rem;
   width: 100%;
@@ -105,17 +204,11 @@
   height: 2rem;
 }
 
-.breeding-autocomplete-option strong {
+.breeding-autocomplete-identity strong {
   overflow: hidden;
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.breeding-autocomplete-option > span:last-child {
-  color: #737c89;
-  font-size: 0.68rem;
-  font-weight: 650;
 }
 
 .breeding-autocomplete-empty {
@@ -266,8 +359,8 @@
 }
 
 .breeding-pal-child {
-  border-color: #3c559f;
-  background: #151c36;
+  border-color: transparent;
+  background: var(--surface-3);
 }
 
 .breeding-child-only {
@@ -326,7 +419,7 @@
 }
 
 .breeding-pal-chip > div:last-child > span {
-  color: var(--link);
+  color: #fff;
   font-size: 0.67rem;
   font-weight: 700;
 }
@@ -337,8 +430,8 @@
   padding: 0.12rem 0.38rem;
   border: 0;
   border-radius: 999px;
-  background: #171d31;
-  color: #aebdff;
+  background: #1b222d;
+  color: var(--text-soft);
   font-size: 0.62rem;
   line-height: 1.2;
 }
@@ -372,13 +465,99 @@
 }
 
 .breeding-offspring-child {
-  border-color: #3c559f !important;
-  background: #151c36 !important;
+  border-color: transparent !important;
+  background: var(--surface-3) !important;
 }
 
 .breeding-show-more {
   justify-self: center;
   margin-top: 0.5rem;
+}
+
+.mutation-normal-result {
+  display: grid;
+  grid-template-columns: auto repeat(auto-fit, minmax(14rem, 20rem));
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border-radius: 0.7rem;
+  background: var(--surface-2);
+}
+
+.mutation-normal-result > strong {
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.mutation-normal-result .breeding-pal-chip {
+  min-height: 4.5rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.65rem;
+  background: transparent;
+}
+
+.mutation-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.mutation-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.75rem;
+}
+
+.mutation-outcome-card {
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+  padding: 0.8rem;
+  border-radius: 0.7rem;
+  background: var(--surface-2);
+}
+
+.mutation-outcome-card .breeding-pal-chip {
+  min-width: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mutation-outcome-card > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.mutation-outcome-card > p strong {
+  color: var(--text-soft);
+}
+
+.reverse-mutation-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) minmax(11rem, auto);
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem;
+  border-radius: 0.7rem;
+  background: var(--surface-2);
+}
+
+.reverse-mutation-pair .breeding-pal-chip {
+  min-width: 0;
+}
+
+.reverse-mutation-pair > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.reverse-mutation-pair > p strong {
+  color: var(--text-soft);
 }
 
 @media (max-width: 767.98px) {
@@ -390,6 +569,26 @@
   .breeding-mode {
     padding-inline: 0.45rem;
     font-size: 0.72rem;
+  }
+
+  .breeding-modes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-radius: 0.85rem;
+  }
+
+  .breeding-mode-descriptions { margin-top: -0.45rem; }
+
+  .mutation-normal-result {
+    grid-template-columns: 1fr;
+  }
+
+  .reverse-mutation-pair {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .reverse-mutation-pair > p {
+    grid-column: 1 / -1;
+    text-align: center;
   }
 
   .breeding-offspring-combination {

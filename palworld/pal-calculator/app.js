@@ -4,9 +4,11 @@ const {
   applySpriteStyle,
   formatPalNumber,
   getPalPreferences,
+  stylePalName,
 } = window.PalworldUI;
 
 const palSelect = document.querySelector("#pal-select");
+const palSelectedDisplay = document.querySelector("#pal-selected-display");
 const palOptions = document.querySelector("#pal-options");
 const calculatorFavorites = document.querySelector("#calculator-favorites");
 const calculatorFavoritePals = document.querySelector(
@@ -99,11 +101,9 @@ function setupStaticControls() {
 }
 
 function setupPalOptions() {
-  orderedPals = [...pals].sort((first, second) => {
-    const numberDifference =
-      Number.parseInt(first.dexKey, 10) - Number.parseInt(second.dexKey, 10);
-    return numberDifference || String(first.dexKey).localeCompare(String(second.dexKey));
-  });
+  orderedPals = [...pals].sort((first, second) =>
+    first.name.localeCompare(second.name),
+  );
   palSelect.placeholder = "Type or choose a Pal...";
 }
 
@@ -128,11 +128,14 @@ function renderFavoritePals() {
     button.append(createPortrait(pal));
     const name = document.createElement("span");
     name.textContent = pal.name;
+    stylePalName(name, pal);
     button.append(name);
     button.addEventListener("click", () => {
       palSelect.value = pal.name;
       closePalOptions();
       renderBuild();
+      updateSelectedPalDisplay();
+      palSelect.blur();
     });
     fragment.append(button);
   });
@@ -146,8 +149,38 @@ function closePalOptions() {
   palSelect.setAttribute("aria-expanded", "false");
 }
 
-function updatePalOptions() {
-  const searchTerm = palSelect.value.trim().toLocaleLowerCase();
+function positionAutocomplete(menu, input, preferredHeight) {
+  const viewportGap = 8;
+  const inputBounds = input.getBoundingClientRect();
+  const spaceBelow = window.innerHeight - inputBounds.bottom - viewportGap;
+  const spaceAbove = inputBounds.top - viewportGap;
+  const requiredHeight = Math.min(preferredHeight, menu.scrollHeight);
+  const opensUpward = spaceBelow < requiredHeight && spaceAbove > spaceBelow;
+  const availableSpace = opensUpward ? spaceAbove : spaceBelow;
+
+  menu.classList.toggle("opens-upward", opensUpward);
+  menu.style.setProperty(
+    "--autocomplete-max-height",
+    `${Math.max(96, Math.min(preferredHeight, availableSpace))}px`,
+  );
+}
+
+function repositionOpenAutocompletes() {
+  if (!palOptions.hidden) {
+    positionAutocomplete(palOptions, palSelect, 288);
+  }
+
+  document.querySelectorAll(".passive-autocomplete:not([hidden])").forEach((menu) => {
+    const input = menu.parentElement.querySelector(".passive-input");
+    if (input) positionAutocomplete(menu, input, 272);
+  });
+}
+
+window.addEventListener("resize", repositionOpenAutocompletes);
+window.addEventListener("scroll", repositionOpenAutocompletes, true);
+
+function updatePalOptions(showAll = false) {
+  const searchTerm = showAll ? "" : palSelect.value.trim().toLocaleLowerCase();
   const matches = orderedPals
     .filter((pal) => !searchTerm || pal.name.toLocaleLowerCase().includes(searchTerm))
     .sort((first, second) => {
@@ -155,8 +188,7 @@ function updatePalOptions() {
       const firstStarts = first.name.toLocaleLowerCase().startsWith(searchTerm);
       const secondStarts = second.name.toLocaleLowerCase().startsWith(searchTerm);
       return firstStarts === secondStarts ? first.name.localeCompare(second.name) : firstStarts ? -1 : 1;
-    })
-    .slice(0, 12);
+    });
   const fragment = document.createDocumentFragment();
 
   matches.forEach((pal) => {
@@ -165,16 +197,23 @@ function updatePalOptions() {
     button.className = "pal-autocomplete-option";
     button.setAttribute("role", "option");
     button.append(createPortrait(pal));
+    const identity = document.createElement("span");
+    identity.className = "pal-autocomplete-identity";
     const name = document.createElement("strong");
     name.textContent = pal.name;
+    stylePalName(name, pal);
     const number = document.createElement("span");
+    number.className = "pal-id";
     number.textContent = `#${formatPalNumber(pal.dexKey)}`;
-    button.append(name, number);
+    identity.append(name, number);
+    button.append(identity);
     button.addEventListener("mousedown", (event) => event.preventDefault());
     button.addEventListener("click", () => {
       palSelect.value = pal.name;
       closePalOptions();
       renderBuild();
+      updateSelectedPalDisplay();
+      palSelect.blur();
     });
     fragment.append(button);
   });
@@ -187,6 +226,7 @@ function updatePalOptions() {
   }
   palOptions.replaceChildren(fragment);
   palOptions.hidden = false;
+  positionAutocomplete(palOptions, palSelect, 288);
   palSelect.setAttribute("aria-expanded", "true");
 }
 
@@ -198,7 +238,7 @@ window.addEventListener("storage", (event) => {
 
 function setupPassiveOptions() {
   orderedPassives = [...passives].sort((first, second) =>
-    second.rank - first.rank || first.name.localeCompare(second.name),
+    first.name.localeCompare(second.name),
   );
   for (let slot = 0; slot < 4; slot += 1) {
     const wrapper = document.createElement("div");
@@ -221,8 +261,14 @@ function setupPassiveOptions() {
       menu.hidden = true;
       input.setAttribute("aria-expanded", "false");
     };
-    const updateMenu = () => {
-      const searchTerm = input.value.trim().toLocaleLowerCase();
+    const selectedPassive = () => {
+      const query = input.value.trim().toLocaleLowerCase();
+      return passives.find(
+        (passive) => passive.name.toLocaleLowerCase() === query,
+      ) || null;
+    };
+    const updateMenu = (showAll = false) => {
+      const searchTerm = showAll ? "" : input.value.trim().toLocaleLowerCase();
       const matches = orderedPassives
         .filter((passive) => !searchTerm || passive.name.toLocaleLowerCase().includes(searchTerm))
         .sort((first, second) => {
@@ -230,8 +276,7 @@ function setupPassiveOptions() {
           const firstStarts = first.name.toLocaleLowerCase().startsWith(searchTerm);
           const secondStarts = second.name.toLocaleLowerCase().startsWith(searchTerm);
           return firstStarts === secondStarts ? first.name.localeCompare(second.name) : firstStarts ? -1 : 1;
-        })
-        .slice(0, 12);
+        });
       const fragment = document.createDocumentFragment();
       matches.forEach((passive) => {
         const button = document.createElement("button");
@@ -250,6 +295,7 @@ function setupPassiveOptions() {
           renderBuild();
           updatePassiveSaveControls();
           persistPassiveLoadout();
+          input.blur();
         });
         fragment.append(button);
       });
@@ -261,16 +307,37 @@ function setupPassiveOptions() {
       }
       menu.replaceChildren(fragment);
       menu.hidden = false;
+      positionAutocomplete(menu, input, 272);
       input.setAttribute("aria-expanded", "true");
     };
     input.addEventListener("input", () => {
+      input.dataset.replaceOnType = "false";
       renderBuild();
       updateMenu();
       updatePassiveSaveControls();
     });
     input.addEventListener("change", persistPassiveLoadout);
-    input.addEventListener("focus", updateMenu);
-    input.addEventListener("blur", () => window.setTimeout(closeMenu, 100));
+    input.addEventListener("beforeinput", (event) => {
+      if (
+        input.dataset.replaceOnType === "true" &&
+        (event.inputType.startsWith("insert") || event.inputType.startsWith("delete"))
+      ) {
+        input.value = "";
+        input.dataset.replaceOnType = "false";
+      }
+    });
+    input.addEventListener("focus", () => {
+      const hasSelectedPassive = Boolean(selectedPassive());
+      input.dataset.replaceOnType = String(hasSelectedPassive);
+      if (hasSelectedPassive) {
+        input.setSelectionRange(input.value.length, input.value.length);
+      }
+      updateMenu(hasSelectedPassive);
+    });
+    input.addEventListener("blur", () => {
+      input.dataset.replaceOnType = "false";
+      window.setTimeout(closeMenu, 100);
+    });
     input.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeMenu();
     });
@@ -394,6 +461,33 @@ function createPortrait(pal) {
   return frame;
 }
 
+function selectedPal() {
+  const query = palSelect.value.trim().toLocaleLowerCase();
+  return pals.find((pal) => pal.name.toLocaleLowerCase() === query) || null;
+}
+
+function updateSelectedPalDisplay() {
+  const pal = selectedPal();
+  palSelectedDisplay.hidden = !pal;
+  palSelect.classList.toggle("has-selected-pal", Boolean(pal));
+
+  if (!pal) {
+    palSelectedDisplay.replaceChildren();
+    return;
+  }
+
+  const identity = document.createElement("span");
+  identity.className = "calculator-selected-identity";
+  const name = document.createElement("strong");
+  name.textContent = pal.name;
+  stylePalName(name, pal);
+  const number = document.createElement("span");
+  number.className = "pal-id";
+  number.textContent = `#${formatPalNumber(pal.dexKey)}`;
+  identity.append(name, number);
+  palSelectedDisplay.replaceChildren(createPortrait(pal), identity);
+}
+
 function overviewStat(label, value, icon) {
   const stat = document.createElement("article");
   stat.className = `pal-overview-stat pal-overview-${label.toLocaleLowerCase()}`;
@@ -423,7 +517,9 @@ function updatePalStatOverview(pal, hp, attack, defense, buildDetails = []) {
   const copy = document.createElement("div");
   const name = document.createElement("h2");
   name.textContent = pal.name;
+  stylePalName(name, pal);
   const number = document.createElement("p");
+  number.className = "pal-id";
   number.textContent = `Paldeck #${formatPalNumber(pal.dexKey)}`;
   copy.append(name, number);
   identity.append(copy);
@@ -495,11 +591,32 @@ Object.entries(ivInputs).forEach(([key, input]) => {
 });
 [condensationSelect, soulsSelect, combatLevelSelect, ascendedInput, alphaInput].forEach((control) => control.addEventListener("change", renderBuild));
 palSelect.addEventListener("input", () => {
+  palSelect.dataset.replaceOnType = "false";
+  updateSelectedPalDisplay();
   renderBuild();
   updatePalOptions();
 });
-palSelect.addEventListener("focus", updatePalOptions);
-palSelect.addEventListener("blur", () => window.setTimeout(closePalOptions, 100));
+palSelect.addEventListener("beforeinput", (event) => {
+  if (
+    palSelect.dataset.replaceOnType === "true" &&
+    (event.inputType.startsWith("insert") || event.inputType.startsWith("delete"))
+  ) {
+    palSelect.value = "";
+    palSelect.dataset.replaceOnType = "false";
+  }
+});
+palSelect.addEventListener("focus", () => {
+  const hasSelectedPal = Boolean(selectedPal());
+  palSelect.dataset.replaceOnType = String(hasSelectedPal);
+  if (hasSelectedPal) {
+    palSelect.setSelectionRange(palSelect.value.length, palSelect.value.length);
+  }
+  updatePalOptions(hasSelectedPal);
+});
+palSelect.addEventListener("blur", () => {
+  palSelect.dataset.replaceOnType = "false";
+  window.setTimeout(closePalOptions, 100);
+});
 palSelect.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closePalOptions();
 });
@@ -517,6 +634,7 @@ async function loadCalculator() {
     renderFavoritePals();
     setupPassiveOptions();
     renderBuild();
+    updateSelectedPalDisplay();
   } catch (error) {
     console.error("Unable to load the Pal Calculator.", error);
     palStatOverview.innerHTML = '<p class="pal-overview-empty">The local calculator data could not be loaded.</p>';

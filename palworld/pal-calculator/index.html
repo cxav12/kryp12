@@ -7,8 +7,8 @@
     <title>Palworld Reference | Pal Calculator</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles.css?v=20260825-redesign12">
-    <link rel="stylesheet" href="./styles.css?v=20260826-redesign10">
+    <link rel="stylesheet" href="../styles.css?v=20260826-pal-identity1">
+    <link rel="stylesheet" href="./styles.css?v=20260826-pal-identity1">
     <link rel="preload" href="../assets/paldeck/pal-portraits.webp" as="image" type="image/webp">
   </head>
   <body>
@@ -30,9 +30,7 @@
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="./">Pal Calculator</a></li>
           <li class="nav-item"><a class="nav-link" href="../ranch/">Ranch</a></li>
           <li class="nav-item"><a class="nav-link" href="../base-planner/">Base Planner</a></li>
-          <li class="nav-item"><a class="nav-link" href="../party-guides/">Party Guides</a></li>
-          <li class="nav-item"><a class="nav-link" href="../items/">Items</a></li>
-          <li class="nav-item"><a class="nav-link" href="../type-chart/">Type Chart</a></li>
+          <li class="nav-item"><a class="nav-link" href="../resources/">Resources</a></li>
         </ul>
       </nav>
     </header>
@@ -51,6 +49,12 @@
         </section>
 
         <section class="calculator-controls control-surface" aria-label="Pal configuration">
+          <p class="calculator-default-note">
+            <strong>Quick-start defaults:</strong> Upgrade settings begin at
+            their highest available levels to speed up stat lookups, since
+            most players compare fully upgraded Pals.
+          </p>
+
           <div class="pal-choice">
             <label class="visually-hidden" for="pal-select">
               Choose your Pal
@@ -66,6 +70,7 @@
               aria-controls="pal-options"
               aria-expanded="false"
             >
+            <div id="pal-selected-display" class="calculator-selected-pal" aria-hidden="true" hidden></div>
             <div id="pal-options" class="pal-autocomplete" role="listbox" hidden></div>
             <section id="calculator-favorites" class="calculator-favorites" hidden>
               <h2>Favorite Pals</h2>
@@ -139,7 +144,14 @@
       </section>
     </main>
 
-    <script src="../shared.js?v=20260727-passivepath1"></script>
-    <script src="./app.js?v=20260825-pal-calculator13"></script>
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <a class="footer-link" href="../">Home</a>
+        <a class="footer-link" href="../legal-disclaimer/">Legal Disclaimer</a>
+      </div>
+    </footer>
+
+    <script src="../shared.js?v=20260826-pal-identity1"></script>
+    <script src="./app.js?v=20260826-pal-identity1"></script>
   </body>
 </html>

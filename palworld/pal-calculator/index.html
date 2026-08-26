@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles.css?v=20260825-redesign12">
-    <link rel="stylesheet" href="./styles.css?v=20260825-redesign6">
+    <link rel="stylesheet" href="./styles.css?v=20260825-redesign7">
     <link rel="preload" href="../assets/paldeck/pal-portraits.webp" as="image" type="image/webp">
   </head>
   <body>
@@ -65,7 +65,6 @@
               aria-autocomplete="list"
               aria-controls="pal-options"
               aria-expanded="false"
-              aria-describedby="calculator-status"
             >
             <div id="pal-options" class="pal-autocomplete" role="listbox" hidden></div>
             <section id="calculator-favorites" class="calculator-favorites" hidden>
@@ -137,15 +136,10 @@
           </fieldset>
         </section>
 
-        <section id="pal-build" class="pal-build" aria-live="polite" aria-busy="true">
-          <div class="calculator-empty"><span aria-hidden="true">◎</span><p id="calculator-status">Loading calculator data...</p></div>
-        </section>
-
-        <p class="calculator-note">Calculated values use the Pal species coefficients in this site's local Paldeck dataset. Damage and resistance cards show passive modifiers; exact hit damage also depends on the selected active skill and the target.</p>
       </section>
     </main>
 
     <script src="../shared.js?v=20260727-passivepath1"></script>
-    <script src="./app.js?v=20260825-pal-calculator12"></script>
+    <script src="./app.js?v=20260825-pal-calculator13"></script>
   </body>
 </html>

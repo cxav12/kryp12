@@ -1,3 +1,61 @@
+.pals-toolbar {
+  padding: 1rem;
+  border-radius: 0.85rem;
+  background: var(--surface-1);
+}
+
+.pals-toolbar > .filter-group,
+.pals-toolbar > .site-search {
+  width: 0;
+  min-width: 0;
+}
+
+.pals-toolbar > .filter-group { flex: 3 1 0; }
+.pals-toolbar > .site-search { flex: 2 1 0; }
+
+.pals-toolbar > .filter-group {
+  justify-content: center;
+}
+
+.pals-toolbar > .filter-group .filter-button {
+  min-width: 0;
+  flex: 1 1 0;
+  text-align: center;
+}
+
+.pals-favorite-tip {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  gap: 0.75rem;
+  max-width: 26rem;
+  padding-left: 1rem;
+}
+
+.pals-favorite-tip > span {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  place-items: center;
+  border-radius: 0.45rem;
+  background: rgb(255 227 109 / 0.12);
+  color: #ffe36d;
+  font-size: 1rem;
+}
+
+.pals-favorite-tip p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.pals-favorite-tip strong {
+  color: var(--text-soft);
+  font-weight: 750;
+}
+
 .work-filters,
 .element-filters,
 .rarity-filters {
@@ -103,12 +161,14 @@
 .pal-card[data-rarity="legendary"] { --card-tint: #f0c643; }
 
 .pal-card-top {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  left: 0.65rem;
   display: flex;
   align-items: flex-start;
-  flex: 0 0 3.7rem;
   justify-content: space-between;
-  width: 100%;
-  height: 3.7rem;
+  pointer-events: none;
 }
 
 .pal-corner-elements {
@@ -117,8 +177,11 @@
 }
 
 .pal-corner-work {
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: max-content;
+  align-content: start;
+  justify-content: end;
+  gap: 0.12rem;
 }
 
 .pal-corner-icon {
@@ -150,7 +213,7 @@
   justify-items: center;
   width: 4.75rem;
   height: 4.75rem;
-  margin-top: -1.5rem;
+  margin-top: 2.2rem;
   overflow: hidden;
   border: 3px solid color-mix(in srgb, var(--card-tint) 45%, #20242a);
   border-radius: 50%;
@@ -359,6 +422,12 @@
 }
 
 @media (max-width: 767.98px) {
+  .pals-favorite-tip {
+    align-self: stretch;
+    max-width: none;
+    padding: 0.8rem 0 0;
+  }
+
   .work-filters {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -404,5 +473,13 @@
   .pal-detail-sprite {
     width: 4.25rem;
     height: 4.25rem;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .pals-toolbar > .filter-group,
+  .pals-toolbar > .site-search {
+    width: 100%;
+    flex: none;
   }
 }

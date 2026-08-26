@@ -22,7 +22,6 @@ const savePassivesButton = document.querySelector("#save-passives");
 const savedPassivesStatus = document.querySelector("#saved-passives-status");
 const clearSavedPassivesButton = document.querySelector("#clear-saved-passives");
 const palStatOverview = document.querySelector("#pal-stat-overview");
-const buildOutput = document.querySelector("#pal-build");
 const ivSliders = document.querySelector("#iv-sliders");
 const ivModeButtons = document.querySelectorAll("[data-iv-mode]");
 const ivInputs = {
@@ -395,43 +394,6 @@ function createPortrait(pal) {
   return frame;
 }
 
-function statCard(label, value, detail) {
-  const card = document.createElement("article");
-  card.className = "stat-card";
-  const name = document.createElement("span");
-  name.textContent = label;
-  const number = document.createElement("strong");
-  number.textContent = Number(value).toLocaleString();
-  const copy = document.createElement("small");
-  copy.textContent = detail;
-  card.append(name, number, copy);
-  return card;
-}
-
-function modifierCard(title, values, emptyText) {
-  const card = document.createElement("article");
-  card.className = "modifier-card";
-  const heading = document.createElement("h3");
-  heading.textContent = title;
-  const list = document.createElement("div");
-  list.className = "modifier-list";
-  if (!values.length) {
-    const empty = document.createElement("span");
-    empty.className = "modifier-empty";
-    empty.textContent = emptyText;
-    list.append(empty);
-  } else {
-    values.forEach((value) => {
-      const pill = document.createElement("span");
-      pill.className = "modifier-pill";
-      pill.textContent = value;
-      list.append(pill);
-    });
-  }
-  card.append(heading, list);
-  return card;
-}
-
 function overviewStat(label, value, icon) {
   const stat = document.createElement("article");
   stat.className = `pal-overview-stat pal-overview-${label.toLocaleLowerCase()}`;
@@ -450,7 +412,7 @@ function overviewStat(label, value, icon) {
   return stat;
 }
 
-function updatePalStatOverview(pal, hp, attack, defense) {
+function updatePalStatOverview(pal, hp, attack, defense, buildDetails = []) {
   if (!pal) {
     palStatOverview.innerHTML = '<p class="pal-overview-empty">Choose a Pal to view its core stats.</p>';
     return;
@@ -465,11 +427,20 @@ function updatePalStatOverview(pal, hp, attack, defense) {
   number.textContent = `Paldeck #${formatPalNumber(pal.dexKey)}`;
   copy.append(name, number);
   identity.append(copy);
+  const badges = document.createElement("div");
+  badges.className = "pal-overview-badges";
+  buildDetails.forEach((label) => {
+    const badge = document.createElement("span");
+    badge.className = "build-badge";
+    badge.textContent = label;
+    badges.append(badge);
+  });
   palStatOverview.replaceChildren(
     identity,
     overviewStat("Health", hp, "♥"),
     overviewStat("Attack", attack, "⚔"),
     overviewStat("Defense", defense, "⬟"),
+    badges,
   );
 }
 
@@ -478,8 +449,6 @@ function renderBuild() {
   const pal = pals.find((entry) => entry.name.toLocaleLowerCase() === query);
   if (!pal) {
     updatePalStatOverview(null);
-    buildOutput.innerHTML = '<div class="calculator-empty"><span aria-hidden="true">◎</span><p>Choose a Pal to calculate its build.</p></div>';
-    buildOutput.setAttribute("aria-busy", "false");
     return;
   }
   const level = Number(combatLevelSelect.value);
@@ -495,49 +464,14 @@ function renderBuild() {
   const hp = finalStat(500 + 5 * level, pal.stats.hp, 0.5, level, iv.hp, condensation, soul, (bonuses.hp + (alpha ? 20 : 0)) / 100, ascended);
   const attack = finalStat(100, pal.stats.rangedattack, 0.075, level, iv.attack, condensation, soul, bonuses.attack / 100, ascended);
   const defense = finalStat(50, pal.stats.defense, 0.075, level, iv.defense, condensation, soul, bonuses.defense / 100, ascended);
-  const workSpeed = Math.max(0, Math.floor(pal.stats.craftspeed * (1 + soul) * (1 + bonuses.work / 100)));
-  updatePalStatOverview(pal, hp, attack, defense);
-
-  const summary = document.createElement("header");
-  summary.className = "pal-summary";
-  summary.append(createPortrait(pal));
-  const identity = document.createElement("div");
-  const title = document.createElement("h2");
-  title.textContent = pal.name;
-  const subtitle = document.createElement("p");
-  subtitle.textContent = `Paldeck #${formatPalNumber(pal.dexKey)} · ${pal.elements.map((element) => element.name).join(" / ")} · ${pal.size}`;
-  identity.append(title, subtitle);
-  const badges = document.createElement("div");
-  badges.className = "build-badges";
-  [`Lv. ${level}`, `Condensation ${condensationLevel}`, `Souls ${soulRank}`, ascended ? "Ascended" : "Not Ascended", alpha ? "Alpha Pal" : "Standard Pal", `IV ${iv.hp}/${iv.attack}/${iv.defense}`].forEach((label) => {
-    const badge = document.createElement("span");
-    badge.className = "build-badge";
-    badge.textContent = label;
-    badges.append(badge);
-  });
-  summary.append(identity, badges);
-
-  const stats = document.createElement("div");
-  stats.className = "stat-grid";
-  stats.append(
-    statCard("Health", hp, `Base coefficient ${pal.stats.hp}`),
-    statCard("Attack", attack, `Base coefficient ${pal.stats.rangedattack}`),
-    statCard("Defense", defense, `Base coefficient ${pal.stats.defense}`),
-    statCard("Work Speed", workSpeed, `${bonuses.work >= 0 ? "+" : ""}${bonuses.work}% from passives`),
-    statCard("Damage Bonus", bonuses.attack + Math.max(0, ...bonuses.damage.values(), 0), "Attack plus strongest elemental passive"),
-    statCard("Resistance", Math.max(0, ...bonuses.resist.values(), 0), "Strongest passive damage reduction %"),
-  );
-
-  const modifiers = document.createElement("div");
-  modifiers.className = "modifier-grid";
-  modifiers.append(
-    modifierCard("Elemental Damage", [...bonuses.damage].map(([element, value]) => `${element} +${value}%`), "No elemental damage passives selected."),
-    modifierCard("Damage Resistance", [...bonuses.resist].map(([element, value]) => `${element} -${value}% incoming`), "No resistance passives selected."),
-    modifierCard("Selected Passives", skills.map((skill) => skill.name), "No passive skills selected."),
-    modifierCard("Other Passive Effects", [...new Set(bonuses.notes)], "No additional effects."),
-  );
-  buildOutput.replaceChildren(summary, stats, modifiers);
-  buildOutput.setAttribute("aria-busy", "false");
+  updatePalStatOverview(pal, hp, attack, defense, [
+    `Lv. ${level}`,
+    `Condensation ${condensationLevel}`,
+    `Souls ${soulRank}`,
+    ascended ? "Ascended" : "Not Ascended",
+    alpha ? "Alpha Pal" : "Standard Pal",
+    `IV ${iv.hp}/${iv.attack}/${iv.defense}`,
+  ]);
 }
 
 function updateIvMode(mode) {
@@ -585,7 +519,7 @@ async function loadCalculator() {
     renderBuild();
   } catch (error) {
     console.error("Unable to load the Pal Calculator.", error);
-    buildOutput.innerHTML = '<div class="calculator-empty"><span aria-hidden="true">×</span><p>The local calculator data could not be loaded.</p></div>';
+    palStatOverview.innerHTML = '<p class="pal-overview-empty">The local calculator data could not be loaded.</p>';
   }
 }
 

@@ -134,21 +134,17 @@ function createCornerIcons(items, className, showLevel = false) {
   return list;
 }
 
-function getDisplayedSuitability(pal, workName = null) {
-  if (workName) {
-    return getWorkSuitability(pal, workName);
-  }
-
-  return pal.workSuitability.reduce(
-    (best, work) => (!best || work.level > best.level ? work : best),
-    null,
-  );
+function getDisplayedSuitability(pal) {
+  return [...pal.workSuitability].sort(
+    (first, second) =>
+      second.level - first.level || first.name.localeCompare(second.name),
+  ).slice(0, 4);
 }
 
-function updatePalCardWork(cardEntry, pal, workName = null) {
-  const selectedSuitability = getDisplayedSuitability(pal, workName);
-  const replacement = selectedSuitability
-    ? createCornerIcons([selectedSuitability], "pal-corner-work", true)
+function updatePalCardWork(cardEntry, pal) {
+  const workSuitability = getDisplayedSuitability(pal);
+  const replacement = workSuitability.length
+    ? createCornerIcons(workSuitability, "pal-corner-work", true)
     : document.createElement("div");
 
   replacement.classList.add("pal-corner-work");
@@ -176,9 +172,9 @@ function createPalCard(pal, workName = null) {
   topRow.className = "pal-card-top";
 
   const elements = createCornerIcons(pal.elements, "pal-corner-elements");
-  const selectedSuitability = getDisplayedSuitability(pal, workName);
-  const work = selectedSuitability
-    ? createCornerIcons([selectedSuitability], "pal-corner-work", true)
+  const workSuitability = getDisplayedSuitability(pal);
+  const work = workSuitability.length
+    ? createCornerIcons(workSuitability, "pal-corner-work", true)
     : document.createElement("div");
   work.classList.add("pal-corner-work");
   topRow.append(elements, work);
@@ -260,7 +256,7 @@ function getPalCard(pal, workName = null) {
     cardEntry = createPalCard(pal, workName);
     palCardCache.set(pal, cardEntry);
   } else {
-    updatePalCardWork(cardEntry, pal, workName);
+    updatePalCardWork(cardEntry, pal);
   }
 
   return cardEntry.column;

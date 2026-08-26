@@ -1,8 +1,8 @@
 .breeding-modes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  width: min(100%, 42rem);
-  margin: 0 auto 2rem;
+  width: 100%;
+  margin: 0 0 1.25rem;
   overflow: hidden;
   gap: 0.25rem;
   padding: 0.3rem;

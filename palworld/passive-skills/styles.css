@@ -1,5 +1,8 @@
 .passive-toolbar {
   align-items: flex-start;
+  padding: 1rem;
+  border-radius: 0.85rem;
+  background: var(--surface-1);
 }
 
 .passive-filter-stack {
@@ -31,6 +34,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: 100%;
   min-width: 0;
 }
 
@@ -39,8 +43,21 @@
   flex: 0 0 auto;
 }
 
-.passive-type-controls .site-search {
-  flex: 1 1 auto;
+.passive-type-controls .filter-group {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  width: 100%;
+}
+
+.passive-tier-controls .filter-group {
+  width: 0;
+  flex: 3 1 0;
+}
+
+.passive-tier-controls .site-search {
+  width: 0;
+  min-width: 0;
+  flex: 2 1 0;
   max-width: none;
 }
 
@@ -227,12 +244,12 @@
     flex-direction: column;
   }
 
-  .passive-type-controls {
+  .passive-tier-controls {
     flex-wrap: wrap;
   }
 
-  .passive-type-controls .filter-group,
-  .passive-type-controls .site-search {
+  .passive-tier-controls .filter-group,
+  .passive-tier-controls .site-search {
     flex-basis: 100%;
     max-width: none;
   }

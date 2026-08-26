@@ -1,6 +1,7 @@
 .ranch-tip {
   display: flex;
   align-items: center;
+  align-self: center;
   gap: 0.75rem;
   max-width: 25rem;
   padding-left: 1rem;
@@ -29,10 +30,27 @@
 
 .ranch-toolbar {
   align-items: stretch;
+  padding: 1rem;
+  border-radius: 0.85rem;
+  background: var(--surface-1);
 }
 
-.ranch-toolbar .filter-group {
-  flex: 0 1 auto;
+.ranch-toolbar > .filter-group,
+.ranch-toolbar > .site-search {
+  width: 0;
+  min-width: 0;
+}
+
+.ranch-toolbar > .filter-group { flex: 3 1 0; }
+.ranch-toolbar > .site-search { flex: 2 1 0; }
+
+.ranch-toolbar .filter-button {
+  min-width: 0;
+  flex: 1 1 0;
+  padding-inline: 0.35rem;
+  font-size: clamp(0.68rem, 0.8vw, 0.8rem);
+  text-align: center;
+  white-space: nowrap;
 }
 
 .ranch-card {
@@ -179,10 +197,17 @@
   .ranch-toolbar {
     flex-direction: column;
   }
+
+  .ranch-toolbar > .filter-group,
+  .ranch-toolbar > .site-search {
+    width: 100%;
+    flex: none;
+  }
 }
 
 @media (max-width: 767.98px) {
   .ranch-tip {
+    align-self: stretch;
     max-width: none;
     padding: 0.8rem 0 0;
     border-top: 0;

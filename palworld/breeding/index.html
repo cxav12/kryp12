@@ -15,8 +15,8 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     >
-    <link rel="stylesheet" href="../styles.css?v=20260727-tools1">
-    <link rel="stylesheet" href="./styles.css?v=20260825-single-parent2">
+    <link rel="stylesheet" href="../styles.css?v=20260825-redesign12">
+    <link rel="stylesheet" href="./styles.css?v=20260825-redesign5">
     <link
       rel="preload"
       href="../assets/paldeck/pal-portraits.webp"
@@ -103,45 +103,6 @@
           </div>
         </div>
 
-        <details class="breeding-explainer">
-          <summary>
-            <span>
-              <strong>How Breeding Power Works</strong>
-              <small>Understand what the BP numbers mean</small>
-            </span>
-          </summary>
-          <div class="breeding-explainer-content">
-            <p>
-              Breeding Power is a hidden species value used to determine most
-              standard offspring. It is not a combat stat and does not make an
-              individual Pal stronger in battle.
-            </p>
-            <div class="breeding-formula" aria-label="Breeding Power formula">
-              Child BP = floor((Parent A BP + Parent B BP + 1) ÷ 2)
-            </div>
-            <ul>
-              <li>
-                The game averages both parents’ Breeding Power values.
-              </li>
-              <li>
-                The eligible child species nearest that result is normally
-                selected.
-              </li>
-              <li>
-                Internal game ordering resolves results that are equally close.
-              </li>
-              <li>
-                Fixed combinations and breeding restrictions can override the
-                normal formula.
-              </li>
-              <li>
-                Lower values generally correspond to rarer or more powerful
-                species.
-              </li>
-            </ul>
-          </div>
-        </details>
-
         <div
           id="breeding-modes"
           class="breeding-modes"
@@ -174,25 +135,29 @@
           </button>
         </div>
 
-        <div class="breeding-controls">
+        <div class="breeding-controls control-surface">
           <div id="parents-controls" class="row g-3" hidden>
             <div class="col-12 col-md-6 breeding-field">
-              <label for="parent-a-input">First parent</label>
+              <label class="visually-hidden" for="parent-a-input">
+                First parent
+              </label>
               <input
                 id="parent-a-input"
                 class="form-control breeding-input"
                 type="search"
-                placeholder="Search any Pal..."
+                placeholder="First parent"
                 autocomplete="off"
               >
             </div>
             <div class="col-12 col-md-6 breeding-field">
-              <label for="parent-b-input">Second parent</label>
+              <label class="visually-hidden" for="parent-b-input">
+                Second parent
+              </label>
               <input
                 id="parent-b-input"
                 class="form-control breeding-input"
                 type="search"
-                placeholder="Search any Pal..."
+                placeholder="Second parent"
                 autocomplete="off"
               >
             </div>
@@ -200,7 +165,9 @@
 
           <div id="child-controls" class="row g-3">
             <div class="col-12 breeding-field">
-              <label for="child-input">I want to breed...</label>
+              <label class="visually-hidden" for="child-input">
+                Choose a Pal to breed
+              </label>
               <input
                 id="child-input"
                 class="form-control breeding-input"
@@ -210,42 +177,23 @@
               >
             </div>
             <div class="col-12">
-              <section
-                class="breeding-quick-picks"
-                aria-labelledby="quick-select-toggle"
-              >
-                <div class="quick-select-heading">
-                  <button
-                    id="quick-select-toggle"
-                    class="quick-select-toggle"
-                    type="button"
-                    aria-expanded="false"
-                    aria-controls="quick-select-content"
-                  >
-                    Show Quick Select Pals
-                  </button>
-                </div>
-                <div id="quick-select-content" hidden>
-                  <h3>S-Tier Pals</h3>
-                  <div id="s-tier-pals" class="s-tier-pals"></div>
-                  <h3>A-Tier Pals</h3>
-                  <div
-                    id="a-tier-pals"
-                    class="s-tier-pals a-tier-pals"
-                  ></div>
-                </div>
+              <section id="favorite-pals-section" class="breeding-favorites" hidden>
+                <h2>Favorite Pals</h2>
+                <div id="favorite-pals" class="favorite-pals"></div>
               </section>
             </div>
           </div>
 
           <div id="single-controls" class="row g-3" hidden>
             <div class="col-12 breeding-field">
-              <label for="single-pal-input">I already have...</label>
+              <label class="visually-hidden" for="single-pal-input">
+                Choose a Pal to explore
+              </label>
               <input
                 id="single-pal-input"
                 class="form-control breeding-input"
                 type="search"
-                placeholder="Search any Pal..."
+                placeholder="Choose a Pal to see every possible partner and offspring..."
                 autocomplete="off"
               >
             </div>
@@ -277,6 +225,6 @@
     </footer>
 
     <script src="../shared.js?v=20260727-passivepath1"></script>
-    <script src="./app.js?v=20260825-single-parent1"></script>
+    <script src="./app.js?v=20260825-favorites1"></script>
   </body>
 </html>

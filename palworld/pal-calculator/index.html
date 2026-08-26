@@ -7,8 +7,8 @@
     <title>Palworld Reference | Pal Calculator</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles.css?v=20260727-tools1">
-    <link rel="stylesheet" href="./styles.css?v=20260825-pal-calculator13">
+    <link rel="stylesheet" href="../styles.css?v=20260825-redesign12">
+    <link rel="stylesheet" href="./styles.css?v=20260825-redesign6">
     <link rel="preload" href="../assets/paldeck/pal-portraits.webp" as="image" type="image/webp">
   </head>
   <body>
@@ -50,9 +50,11 @@
           <p class="pal-overview-empty">Choose a Pal to view its core stats.</p>
         </section>
 
-        <section class="calculator-controls" aria-label="Pal configuration">
+        <section class="calculator-controls control-surface" aria-label="Pal configuration">
           <div class="pal-choice">
-            <label for="pal-select">Choose your Pal</label>
+            <label class="visually-hidden" for="pal-select">
+              Choose your Pal
+            </label>
             <input
               id="pal-select"
               class="form-control calculator-select"
@@ -66,6 +68,10 @@
               aria-describedby="calculator-status"
             >
             <div id="pal-options" class="pal-autocomplete" role="listbox" hidden></div>
+            <section id="calculator-favorites" class="calculator-favorites" hidden>
+              <h2>Favorite Pals</h2>
+              <div id="calculator-favorite-pals" class="calculator-favorite-pals"></div>
+            </section>
           </div>
 
           <div class="primary-settings">
@@ -103,10 +109,13 @@
           </div>
 
           <fieldset class="iv-settings">
-            <legend>IVs</legend>
-            <div class="iv-mode" role="group" aria-label="IV configuration">
-              <button class="iv-mode-button active" type="button" data-iv-mode="perfect" aria-pressed="true">Perfect · 100 / 100 / 100</button>
-              <button class="iv-mode-button" type="button" data-iv-mode="custom" aria-pressed="false">Set exact IVs</button>
+            <legend class="visually-hidden">IVs</legend>
+            <div class="iv-settings-row">
+              <span class="iv-settings-title">IVs</span>
+              <div class="iv-mode" role="group" aria-label="IV configuration">
+                <button class="iv-mode-button active" type="button" data-iv-mode="perfect" aria-pressed="true">Perfect · 100 / 100 / 100</button>
+                <button class="iv-mode-button" type="button" data-iv-mode="custom" aria-pressed="false">Set exact IVs</button>
+              </div>
             </div>
             <div id="iv-sliders" class="iv-sliders" hidden>
               <label>Health <output id="hp-iv-output">100</output><input id="hp-iv" type="range" min="0" max="100" value="100"></label>
@@ -137,6 +146,6 @@
     </main>
 
     <script src="../shared.js?v=20260727-passivepath1"></script>
-    <script src="./app.js?v=20260825-pal-calculator9"></script>
+    <script src="./app.js?v=20260825-pal-calculator12"></script>
   </body>
 </html>

@@ -4,6 +4,7 @@ const INITIAL_RESULT_LIMIT = 60;
 const {
   applySpriteStyle,
   formatPalNumber,
+  getPalPreferences,
   updateUrlParams,
 } = window.PalworldUI;
 
@@ -15,10 +16,8 @@ const parentAInput = document.querySelector("#parent-a-input");
 const parentBInput = document.querySelector("#parent-b-input");
 const childInput = document.querySelector("#child-input");
 const singlePalInput = document.querySelector("#single-pal-input");
-const sTierPals = document.querySelector("#s-tier-pals");
-const aTierPals = document.querySelector("#a-tier-pals");
-const quickSelectToggle = document.querySelector("#quick-select-toggle");
-const quickSelectContent = document.querySelector("#quick-select-content");
+const favoritePalsSection = document.querySelector("#favorite-pals-section");
+const favoritePals = document.querySelector("#favorite-pals");
 const results = document.querySelector("#breeding-results");
 const status = document.querySelector("#breeding-data-status");
 
@@ -213,12 +212,24 @@ function createPalChip(name, gender = 0, emphasis = false) {
   return chip;
 }
 
-function renderQuickPickTier(container, pals, tierClass = "") {
+function renderFavoritePals() {
+  const favorites = getPalPreferences().favorites
+    .map((name) => palByName.get(name))
+    .filter(
+      (pal) =>
+        pal && breedingNameByLowercase.has(pal.name.toLowerCase()),
+    )
+    .sort(
+      (palA, palB) =>
+        Number.parseInt(palA.dexKey, 10) -
+          Number.parseInt(palB.dexKey, 10) ||
+        palA.name.localeCompare(palB.name),
+    );
   const fragment = document.createDocumentFragment();
 
-  pals.forEach((pal) => {
+  favorites.forEach((pal) => {
     const button = document.createElement("button");
-    button.className = `s-tier-pal ${tierClass}`.trim();
+    button.className = "favorite-pal";
     button.type = "button";
     button.title = `Find parents for ${pal.name}`;
     button.append(createPortrait(pal, pal.name));
@@ -235,29 +246,8 @@ function renderQuickPickTier(container, pals, tierClass = "") {
     fragment.append(button);
   });
 
-  container.replaceChildren(fragment);
-}
-
-function renderQuickPickPals() {
-  const eligiblePals = [...palByName.values()]
-    .filter((pal) =>
-      breedingNameByLowercase.has(pal.name.toLowerCase()),
-    )
-    .sort(
-      (palA, palB) =>
-        Number.parseInt(palA.dexKey, 10) -
-        Number.parseInt(palB.dexKey, 10),
-    );
-
-  renderQuickPickTier(
-    sTierPals,
-    eligiblePals.filter((pal) => pal.rarity >= 11),
-  );
-  renderQuickPickTier(
-    aTierPals,
-    eligiblePals.filter((pal) => pal.rarity >= 8 && pal.rarity <= 10),
-    "a-tier-pal",
-  );
+  favoritePals.replaceChildren(fragment);
+  favoritePalsSection.hidden = favorites.length === 0;
 }
 
 function showEmpty(message, symbol = "◎") {
@@ -606,13 +596,10 @@ childInput.addEventListener("input", renderCurrentMode);
 childInput.addEventListener("change", renderCurrentMode);
 singlePalInput.addEventListener("input", renderCurrentMode);
 singlePalInput.addEventListener("change", renderCurrentMode);
-quickSelectToggle.addEventListener("click", () => {
-  const opening = quickSelectContent.hidden;
-  quickSelectContent.hidden = !opening;
-  quickSelectToggle.textContent = opening
-    ? "Hide Quick Select Pals"
-    : "Show Quick Select Pals";
-  quickSelectToggle.setAttribute("aria-expanded", String(opening));
+window.addEventListener("storage", (event) => {
+  if (event.key === "palworld-pal-preferences-v1") {
+    renderFavoritePals();
+  }
 });
 
 async function loadBreedingCalculator() {
@@ -655,7 +642,7 @@ async function loadBreedingCalculator() {
       return String(palA.dexKey).localeCompare(String(palB.dexKey));
     });
     buildIndexes();
-    renderQuickPickPals();
+    renderFavoritePals();
 
     [
       parentAInput,

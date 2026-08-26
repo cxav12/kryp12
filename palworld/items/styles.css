@@ -21,7 +21,7 @@
   align-items: center;
   gap: 0.7rem;
   padding-bottom: 0.7rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 0;
 }
 
 .item-letter-icon {
@@ -30,7 +30,7 @@
   width: 2.4rem;
   height: 2.4rem;
   place-items: center;
-  border: 1px solid #486783;
+  border: 0;
   border-radius: 0.55rem;
   background: #172332;
   color: #9bcdf7;
@@ -64,7 +64,7 @@
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.42rem 0.55rem;
-  border: 1px solid var(--border);
+  border: 0;
   border-radius: 0.4rem;
   background: #111419;
   color: var(--text-soft);

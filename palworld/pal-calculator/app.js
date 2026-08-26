@@ -1,9 +1,17 @@
 const PAL_DATA_URL = "../data/pals.json?v=20260727-bp1";
 const PASSIVE_DATA_URL = "../data/passive-skills.json?v=20260726-current1";
-const { applySpriteStyle, formatPalNumber } = window.PalworldUI;
+const {
+  applySpriteStyle,
+  formatPalNumber,
+  getPalPreferences,
+} = window.PalworldUI;
 
 const palSelect = document.querySelector("#pal-select");
 const palOptions = document.querySelector("#pal-options");
+const calculatorFavorites = document.querySelector("#calculator-favorites");
+const calculatorFavoritePals = document.querySelector(
+  "#calculator-favorite-pals",
+);
 const condensationSelect = document.querySelector("#condensation-select");
 const soulsSelect = document.querySelector("#souls-select");
 const combatLevelSelect = document.querySelector("#combat-level-select");
@@ -100,6 +108,40 @@ function setupPalOptions() {
   palSelect.placeholder = "Type or choose a Pal...";
 }
 
+function renderFavoritePals() {
+  const palByName = new Map(pals.map((pal) => [pal.name, pal]));
+  const favorites = getPalPreferences().favorites
+    .map((name) => palByName.get(name))
+    .filter(Boolean)
+    .sort(
+      (first, second) =>
+        Number.parseInt(first.dexKey, 10) -
+          Number.parseInt(second.dexKey, 10) ||
+        first.name.localeCompare(second.name),
+    );
+  const fragment = document.createDocumentFragment();
+
+  favorites.forEach((pal) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "calculator-favorite-pal";
+    button.title = `Calculate stats for ${pal.name}`;
+    button.append(createPortrait(pal));
+    const name = document.createElement("span");
+    name.textContent = pal.name;
+    button.append(name);
+    button.addEventListener("click", () => {
+      palSelect.value = pal.name;
+      closePalOptions();
+      renderBuild();
+    });
+    fragment.append(button);
+  });
+
+  calculatorFavoritePals.replaceChildren(fragment);
+  calculatorFavorites.hidden = favorites.length === 0;
+}
+
 function closePalOptions() {
   palOptions.hidden = true;
   palSelect.setAttribute("aria-expanded", "false");
@@ -148,6 +190,12 @@ function updatePalOptions() {
   palOptions.hidden = false;
   palSelect.setAttribute("aria-expanded", "true");
 }
+
+window.addEventListener("storage", (event) => {
+  if (event.key === "palworld-pal-preferences-v1") {
+    renderFavoritePals();
+  }
+});
 
 function setupPassiveOptions() {
   orderedPassives = [...passives].sort((first, second) =>
@@ -532,6 +580,7 @@ async function loadCalculator() {
     passives = passiveData.passiveSkills;
     palSprite = palData.metadata.palSprite;
     setupPalOptions();
+    renderFavoritePals();
     setupPassiveOptions();
     renderBuild();
   } catch (error) {

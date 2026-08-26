@@ -12,13 +12,13 @@
 
 .passive-filter-row {
   display: grid;
-  align-items: start;
+  align-items: center;
   grid-template-columns: 3.25rem minmax(0, 1fr);
   gap: 0.65rem;
 }
 
 .passive-filter-label {
-  padding-top: 0.52rem;
+  padding-top: 0;
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 800;
@@ -113,7 +113,7 @@
   padding-right: 0.35rem;
   padding-left: 0.5rem;
   overflow: hidden;
-  border: 1px solid var(--tag-border);
+  border: 0;
   border-left: 0.32rem solid var(--tag-color);
   background:
     linear-gradient(

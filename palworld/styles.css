@@ -109,7 +109,7 @@ textarea {
 .palworld-nav .navbar-nav {
   display: grid;
   align-self: stretch;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   width: 100%;
 }
 

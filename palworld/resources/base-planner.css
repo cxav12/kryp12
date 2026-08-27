@@ -32,18 +32,29 @@
 }
 
 .planner-team-size {
-  min-width: 9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   color: var(--text-soft);
   font-size: 0.75rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
-.planner-team-size .form-select {
-  margin-top: 0.3rem;
+.planner-team-size .form-control {
+  width: 7.2rem;
+  margin-top: 0;
   border-color: transparent;
   border-radius: 999px;
-  background-color: #11181e;
+  background-color: var(--search-control-surface-bg);
   color: var(--text);
+}
+
+.planner-team-size .form-control:focus {
+  border-color: var(--border-strong);
+  background-color: var(--search-control-surface-focus-bg);
+  color: var(--text);
+  box-shadow: none;
 }
 
 .planner-jobs {

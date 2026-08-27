@@ -1,3 +1,4 @@
+(function initBasePlanner() {
 const DATA_URL = "../data/pal-cards.json?v=20260725-clean1";
 const { applySpriteStyle, stylePalName, stylePalPortraitRing } = window.PalworldUI;
 
@@ -16,11 +17,7 @@ const initialJobs = new Map(
 );
 
 const requestedTeamSize = initialParams.get("size");
-if (
-  [...teamSizeInput.options].some(
-    (option) => option.value === requestedTeamSize,
-  )
-) {
+if (Number.parseInt(requestedTeamSize, 10) > 0) {
   teamSizeInput.value = requestedTeamSize;
 }
 let allPals = [];
@@ -187,12 +184,14 @@ function createTeamCard(pal) {
 }
 
 function renderPlan() {
+  const teamSize = Math.max(1, Number.parseInt(teamSizeInput.value, 10) || 1);
+
   const activeJobs = [...requirements].filter(([, count]) => count > 0);
   PalworldUI.updateUrlParams({
     jobs: activeJobs.length
       ? activeJobs.map(([name, count]) => `${name}:${count}`).join(",")
       : null,
-    size: teamSizeInput.value === "10" ? null : teamSizeInput.value,
+    size: teamSize === 10 ? null : teamSize,
   });
 
   if (!activeJobs.length) {
@@ -201,7 +200,6 @@ function renderPlan() {
     return;
   }
 
-  const teamSize = Number.parseInt(teamSizeInput.value, 10);
   const { selected, remainingJobs } = buildTeam(allPals, teamSize);
   const unmet = [...remainingJobs]
     .filter(([, count]) => count > 0)
@@ -241,3 +239,4 @@ async function loadPlanner() {
 loadPlanner().catch(() => {
   summary.textContent = "Planner data could not be loaded.";
 });
+})();

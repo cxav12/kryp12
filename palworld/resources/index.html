@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles.css?v=20260826-pal-rings1">
     <link rel="stylesheet" href="./styles.css?v=20260826-pal-rings1">
+    <link rel="stylesheet" href="./base-planner.css?v=20260827-resources1">
     <link rel="preload" href="../assets/paldeck/pal-icons.webp" as="image" type="image/webp">
     <link rel="preload" href="../assets/paldeck/pal-portraits.webp" as="image" type="image/webp">
   </head>
@@ -33,7 +34,6 @@
           <li class="nav-item"><a class="nav-link" href="../breeding/">Breeding</a></li>
           <li class="nav-item"><a class="nav-link" href="../pal-calculator/">Pal Calculator</a></li>
           <li class="nav-item"><a class="nav-link" href="../ranch/">Ranch</a></li>
-          <li class="nav-item"><a class="nav-link" href="../base-planner/">Base Planner</a></li>
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="./">Resources</a></li>
         </ul>
       </nav>
@@ -53,6 +53,7 @@
             <a class="filter-button active" href="#type-chart">Type Chart</a>
             <a class="filter-button" href="#item-guide">Item Guide</a>
             <a class="filter-button" href="#party-guides">Party Guides</a>
+            <a class="filter-button" href="#base-planner">Base Planner</a>
           </nav>
         </div>
 
@@ -87,6 +88,44 @@
             <p class="resource-placeholder">Loading party guides...</p>
           </div>
         </section>
+
+        <section id="base-planner" class="resource-section" aria-labelledby="base-planner-title">
+          <header class="resource-section-heading">
+            <h2 id="base-planner-title">Base Team Planner</h2>
+            <p>Choose the jobs your base needs and build a balanced worker team ranked by suitability level and work speed.</p>
+          </header>
+
+          <div class="planner-layout">
+            <section class="planner-controls tinted-card" aria-labelledby="jobs-title">
+              <div class="planner-controls-heading">
+                <div>
+                  <h2 id="jobs-title">Job requirements</h2>
+                  <p>Set how many workers you want covering each job.</p>
+                </div>
+                <label class="planner-team-size">
+                  Team size
+                  <input id="team-size" class="form-control" type="number" min="1" step="1" value="10" inputmode="numeric">
+                </label>
+              </div>
+
+              <div id="planner-jobs" class="planner-jobs"></div>
+
+              <div class="planner-options">
+                <button id="planner-reset" class="filter-button" type="button">Reset jobs</button>
+              </div>
+            </section>
+
+            <section class="planner-results tinted-card" aria-labelledby="team-title">
+              <div class="planner-results-heading">
+                <div>
+                  <h2 id="team-title">Recommended team</h2>
+                  <p id="planner-summary">Choose at least one job to build a team.</p>
+                </div>
+              </div>
+              <div id="planner-team" class="planner-team" aria-live="polite"></div>
+            </section>
+          </div>
+        </section>
       </section>
     </main>
 
@@ -104,5 +143,6 @@
 
     <script src="../shared.js?v=20260826-pal-rings2"></script>
     <script src="./app.js?v=20260826-pal-rings1"></script>
+    <script src="./base-planner.js?v=20260827-resources1"></script>
   </body>
 </html>

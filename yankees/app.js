@@ -1297,6 +1297,30 @@ function renderRecapButtons(games, selectedGamePk) {
   els.recapButtons.innerHTML = upcomingItems + completedButtons;
 }
 
+function syncGameScoresFromFeed(game, feed) {
+  ["away", "home"].forEach((side) => {
+    const runs = Number(feed.liveData?.linescore?.teams?.[side]?.runs);
+    if (Number.isFinite(runs) && game.teams?.[side]) game.teams[side].score = runs;
+  });
+}
+
+function finalizeLiveGame(game) {
+  state.liveGame = null;
+  state.todayGame = game;
+  state.upcomingGames = state.upcomingGames.filter(
+    (item) => Number(item.gamePk) !== Number(game.gamePk),
+  );
+  state.recentGames = [
+    game,
+    ...state.recentGames.filter(
+      (item) => Number(item.gamePk) !== Number(game.gamePk),
+    ),
+  ].sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate));
+
+  renderRecentGames(state.recentGames, game.gamePk);
+  renderRecapButtons(state.recentGames, game.gamePk);
+}
+
 function probablePitcherForSide(game, feed, side) {
   return feed.gameData?.probablePitchers?.[side]
     || game.teams?.[side]?.probablePitcher
@@ -1680,9 +1704,14 @@ function startLiveRefresh(game) {
     }
 
     try {
+      const wasLive = isLiveGame(game);
       const feed = await getLiveJson(`/game/${game.gamePk}/feed/live`);
+      syncGameScoresFromFeed(game, feed);
       renderRecap(game, feed);
-      if (!isLiveGame(game)) stopLiveRefresh();
+      if (!isLiveGame(game)) {
+        stopLiveRefresh();
+        if (wasLive && game.status?.abstractGameState === "Final") finalizeLiveGame(game);
+      }
     } catch (error) {
       els.status.textContent = "Live update paused";
       els.status.style.color = "#ffbec4";
@@ -1696,6 +1725,7 @@ async function loadGameRecap(game, { live = false } = {}) {
   els.scoreboard.classList.add("loading");
 
   try {
+    const wasLive = isLiveGame(game);
     const feed = await getLiveJson(`/game/${game.gamePk}/feed/live`);
     if (!["Final", "Live"].includes(feed.gameData?.status?.abstractGameState || game.status?.abstractGameState)) {
       await Promise.all([
@@ -1704,7 +1734,9 @@ async function loadGameRecap(game, { live = false } = {}) {
         loadPossibleMilestones(game),
       ]);
     }
+    syncGameScoresFromFeed(game, feed);
     renderRecap(game, feed);
+    if (wasLive && game.status?.abstractGameState === "Final") finalizeLiveGame(game);
     if (live && isLiveGame(game)) startLiveRefresh(game);
     else stopLiveRefresh();
   } finally {

@@ -150,9 +150,12 @@ textarea {
   transition: opacity 180ms ease;
 }
 
-.palworld-nav .nav-link:hover,
-.palworld-nav .nav-link.active {
+.palworld-nav .nav-link:hover {
   color: var(--text);
+}
+
+.palworld-nav .nav-link.active {
+  color: var(--accent-green);
 }
 
 .palworld-nav .nav-link:hover::before,

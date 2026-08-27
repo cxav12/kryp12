@@ -1,6 +1,6 @@
 .planner-layout {
   display: grid;
-  gap: 1rem;
+  gap: var(--content-gap);
 }
 
 .planner-controls,

@@ -14,17 +14,20 @@
   </head>
   <body>
     <header class="site-header">
-      <div class="site-brand">
-        <a class="brand-logo-frame" href="../" aria-label="Palworld reference">
-          <img class="brand-logo" src="../assets/palworld-logo.png" alt="Palworld" width="2400" height="1500" decoding="async">
-        </a>
-      </div>
       <nav class="palworld-nav navbar" aria-label="Palworld navigation">
         <div class="nav-accent" aria-hidden="true"></div>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="palworld-nav-links" aria-label="Open navigation">
           <span>Menu</span><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
         </button>
         <ul id="palworld-nav-links" class="navbar-nav">
+          <li class="nav-item nav-home-item">
+            <a class="nav-link nav-home-link" href="/palworld/" aria-label="Palworld home">
+              <span class="nav-home-logo-frame" aria-hidden="true">
+                <img class="nav-home-logo" src="../assets/palworld-logo.png" alt="" width="2400" height="1500">
+              </span>
+              <span class="visually-hidden">Home</span>
+            </a>
+          </li>
           <li class="nav-item"><a class="nav-link" href="../pals/">Pals</a></li>
           <li class="nav-item"><a class="nav-link" href="../passive-skills/">Passive Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="../breeding/">Breeding</a></li>
@@ -45,11 +48,13 @@
           </div>
         </div>
 
-        <nav class="resource-navigation" aria-label="Resources page sections">
-          <a class="filter-button active" href="#type-chart">Type Chart</a>
-          <a class="filter-button" href="#item-guide">Item Guide</a>
-          <a class="filter-button" href="#party-guides">Party Guides</a>
-        </nav>
+        <div class="resource-navigation-container">
+          <nav class="resource-navigation" aria-label="Resources page sections">
+            <a class="filter-button active" href="#type-chart">Type Chart</a>
+            <a class="filter-button" href="#item-guide">Item Guide</a>
+            <a class="filter-button" href="#party-guides">Party Guides</a>
+          </nav>
+        </div>
 
         <section id="type-chart" class="resource-section" aria-labelledby="type-chart-title">
           <header class="resource-section-heading">

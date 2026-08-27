@@ -18,6 +18,7 @@
   --link: #8eb8e5;
   --danger: #dc5b63;
   --card-radius: 0.75rem;
+  --content-gap: 1.25rem;
   --accent-bar-width: 0.625rem;
   --pill-control-height: 3rem;
   --search-control-bg: #11181e;
@@ -61,31 +62,11 @@ textarea {
   padding-top: 1.4rem;
 }
 
-.site-brand,
 .palworld-nav,
 .site-content,
 .site-footer {
   width: var(--site-width);
   margin-inline: auto;
-}
-
-.site-brand {
-  margin-bottom: 0.85rem;
-}
-
-.brand-logo-frame {
-  display: block;
-  width: clamp(12rem, 22vw, 18rem);
-  aspect-ratio: 2047 / 581;
-  overflow: hidden;
-}
-
-.brand-logo {
-  display: block;
-  width: 117.24%;
-  max-width: none;
-  height: auto;
-  transform: translate(-8.5%, -28.93%);
 }
 
 .palworld-nav {
@@ -99,6 +80,18 @@ textarea {
   border-radius: var(--card-radius);
   background: var(--nav-bg);
   scrollbar-width: none;
+}
+
+.palworld-nav::after {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #65e58a 0%, #41c9d8 34%, #6678ff 66%, #b400ff 100%);
+  content: "";
+  pointer-events: none;
 }
 
 .palworld-nav::-webkit-scrollbar {
@@ -116,7 +109,7 @@ textarea {
 .palworld-nav .navbar-nav {
   display: grid;
   align-self: stretch;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   width: 100%;
 }
 
@@ -125,6 +118,7 @@ textarea {
 }
 
 .palworld-nav .nav-link {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,44 +132,81 @@ textarea {
   font-size: 1rem;
   font-weight: 700;
   white-space: nowrap;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.palworld-nav .nav-link::before {
+  position: absolute;
+  z-index: -1;
+  right: -12%;
+  bottom: -1.5rem;
+  left: -12%;
+  height: 3.5rem;
+  background: radial-gradient(ellipse at center bottom, rgb(202 28 255 / 0.63), rgb(118 32 255 / 0.23) 42%, transparent 72%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
 }
 
 .palworld-nav .nav-link:hover,
 .palworld-nav .nav-link.active {
-  background: #1b222d;
   color: var(--text);
+}
+
+.palworld-nav .nav-link:hover::before,
+.palworld-nav .nav-link.active::before,
+.palworld-nav .nav-link:focus-visible::before {
+  opacity: 1;
+}
+
+.nav-home-logo-frame {
+  display: block;
+  width: min(6.5rem, 100%);
+  aspect-ratio: 2047 / 581;
+  overflow: hidden;
+}
+
+.nav-home-logo {
+  display: block;
+  width: 117.24%;
+  max-width: none;
+  height: auto;
+  transform: translate(-8.5%, -28.93%);
 }
 
 .palworld-nav .nav-link:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: -3px;
-  background: #1b222d;
   color: var(--text);
 }
 
 .site-content {
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-top: var(--content-gap);
+  margin-bottom: var(--content-gap);
 }
 
 .content-section {
   width: 100%;
-  padding-top: 1rem;
 }
 
 .page-intro {
   --card-tint: #73d9a1;
 
   display: flex;
-  align-items: end;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 2rem;
-  margin-bottom: 1rem;
-  padding: 1.25rem 1.4rem;
+  margin-bottom: var(--content-gap);
+  padding: 0.9rem 1.2rem;
 }
 
 .page-intro h1 {
+  align-self: stretch;
   margin: 0;
+  padding-right: 1rem;
+  border-right: 1px solid var(--border-strong);
   color: var(--text);
   font-size: clamp(1.55rem, 3vw, 2.15rem);
   font-weight: 800;
@@ -183,13 +214,18 @@ textarea {
 }
 
 .page-intro > div:first-child {
+  display: grid;
+  align-items: start;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 1rem;
   min-width: 0;
   flex: 1 1 auto;
 }
 
 .page-intro-copy {
+  align-self: center;
   max-width: 48rem;
-  margin: 0.45rem 0 0;
+  margin: 0;
   color: var(--text-soft);
 }
 
@@ -236,7 +272,7 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: var(--content-gap);
 }
 
 .filter-group {
@@ -461,7 +497,7 @@ select.form-select:focus {
   }
 
   .nav-toggle:hover {
-    background: #2d2d2d;
+    background: transparent;
   }
 
   .nav-toggle:focus-visible {
@@ -557,6 +593,10 @@ select.form-select:focus {
 }
 
 @media (max-width: 767.98px) {
+  .page-intro > div:first-child {
+    grid-template-columns: minmax(7rem, 40%) minmax(0, 1fr);
+  }
+
   .filter-group {
     border-radius: 1rem;
   }

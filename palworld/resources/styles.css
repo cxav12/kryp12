@@ -9,7 +9,7 @@ html { scroll-behavior: smooth; }
 
 .resource-navigation {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.25rem;
   padding: 0.3rem;
   border-radius: 999px;
@@ -121,6 +121,146 @@ html { scroll-behavior: smooth; }
 [data-type="dark"] { --card-tint: #bc62e7; }
 [data-type="dragon"] { --card-tint: #e34cff; }
 
+.raid-boss-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.raid-boss-card {
+  --raid-accent: #657be5;
+
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.8fr) minmax(10rem, 0.9fr) minmax(11rem, 1fr) minmax(16rem, 2fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-left: 0.25rem solid var(--raid-accent);
+  border-radius: 0.7rem;
+  background: #0d1216;
+}
+
+.raid-boss-card.raid-boss-ultra { --raid-accent: #c452ee; }
+.raid-boss-card.raid-boss-mechanic { --raid-accent: #f0c643; }
+
+.raid-boss-name h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.raid-tier {
+  display: inline-block;
+  margin-top: 0.25rem;
+  color: var(--raid-accent);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.raid-matchup {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.raid-matchup > span {
+  color: var(--muted);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.raid-matchup strong {
+  color: var(--text);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.raid-element-sequence,
+.raid-army-counter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.raid-element {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+.raid-element .type-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.raid-separator {
+  color: var(--quiet);
+}
+
+.raid-boss-card > p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.raid-armies {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.raid-armies > header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.raid-armies > header p {
+  margin: 0.3rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
+.raid-army-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+}
+
+.raid-army-card {
+  padding: 1rem;
+  border-radius: 0.7rem;
+  background: #151b21;
+}
+
+.raid-army-counter {
+  margin-bottom: 0.55rem;
+  color: #d7b2ff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.raid-army-card h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.raid-army-card p {
+  margin: 0.4rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
 .resource-item-search { width: 100%; }
 .resource-item-results { display: grid; gap: 0.65rem; margin-top: 1rem; }
 .resource-placeholder { margin: 0; padding: 0.75rem; color: var(--muted); text-align: center; }
@@ -222,6 +362,20 @@ html { scroll-behavior: smooth; }
 .party-tip strong { color: var(--text-soft); }
 
 @media (max-width: 991.98px) {
+  .resource-navigation {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-radius: 1rem;
+  }
+
+  .raid-boss-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .raid-boss-card > p {
+    grid-column: 1 / -1;
+  }
+
+  .raid-army-grid { grid-template-columns: 1fr; }
   .resource-party-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -234,6 +388,8 @@ html { scroll-behavior: smooth; }
 
 @media (max-width: 479.98px) {
   .resource-navigation .filter-button { padding-inline: 0.35rem; font-size: 0.75rem; }
+  .raid-boss-card { grid-template-columns: 1fr; }
+  .raid-boss-card > p { grid-column: auto; }
   .resource-party-grid { grid-template-columns: 1fr; }
   .party-member { grid-template-columns: 2.85rem minmax(0, 1fr); padding: 0.55rem; }
   .party-pal-portrait { width: 2.85rem; height: 2.85rem; }

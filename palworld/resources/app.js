@@ -53,6 +53,23 @@ function createTypeIcon(type, labelled = true) {
   return icon;
 }
 
+function hydrateRaidTypeIcons() {
+  document.querySelectorAll("[data-raid-type]").forEach((icon) => {
+    const type = typeByKey.get(icon.dataset.raidType);
+    if (!type) return;
+    const badge = icon.closest(".raid-element");
+    if (badge) {
+      badge.classList.add("type-badge");
+      badge.dataset.type = type.key;
+    }
+    applySpriteStyle(icon, iconSprite, {
+      x: (type.icon % iconSprite.columns) * iconSprite.cellSize,
+      y: Math.floor(type.icon / iconSprite.columns) * iconSprite.cellSize,
+    }, ICON_SPRITE_URL);
+    icon.setAttribute("aria-hidden", "true");
+  });
+}
+
 function createTypeBadge(key) {
   const type = typeByKey.get(key);
   const badge = document.createElement("span");
@@ -284,6 +301,7 @@ partyDialog.addEventListener("click", (event) => {
 });
 
 async function initializeResources() {
+  hydrateRaidTypeIcons();
   renderTypeChart();
   try {
     const [itemResponse, partyResponse, palResponse] = await Promise.all([

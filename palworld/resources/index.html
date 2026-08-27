@@ -51,6 +51,7 @@
         <div class="resource-navigation-container">
           <nav class="resource-navigation" aria-label="Resources page sections">
             <a class="filter-button active" href="#type-chart">Type Chart</a>
+            <a class="filter-button" href="#raid-bosses">Raid Bosses</a>
             <a class="filter-button" href="#item-guide">Item Guide</a>
             <a class="filter-button" href="#party-guides">Party Guides</a>
             <a class="filter-button" href="#base-planner">Base Planner</a>
@@ -63,6 +64,82 @@
             <p>Compare every element’s strengths and weaknesses to plan better matchups.</p>
           </header>
           <div id="type-summary" class="row g-2 g-xl-3"></div>
+        </section>
+
+        <section id="raid-bosses" class="resource-section" aria-labelledby="raid-bosses-title">
+          <header class="resource-section-heading">
+            <h2 id="raid-bosses-title">Raid Bosses</h2>
+            <p>Plan counters around each boss’s elements, phase changes, and fight-specific mechanics.</p>
+          </header>
+
+          <div class="raid-boss-list">
+            <article class="raid-boss-card raid-boss-ultra">
+              <div class="raid-boss-name"><h3>Bellanoir Libero Ultra</h3><span class="raid-tier">Ultra</span></div>
+              <div class="raid-matchup"><span>Phases</span><strong class="raid-element-sequence"><span class="raid-element"><span class="type-icon" data-raid-type="dark"></span>Dark</span><span aria-hidden="true">→</span><span class="raid-element"><span class="type-icon" data-raid-type="ice"></span>Ice</span></strong></div>
+              <div class="raid-matchup"><span>Best counters</span><strong class="raid-element-sequence"><span class="raid-element"><span class="type-icon" data-raid-type="dragon"></span>Dragon</span><span aria-hidden="true">→</span><span class="raid-element"><span class="type-icon" data-raid-type="fire"></span>Fire</span></strong></div>
+              <p>Uses the same mechanics as Libero, but adds a major damage and survivability check.</p>
+            </article>
+
+            <article class="raid-boss-card raid-boss-ultra">
+              <div class="raid-boss-name"><h3>Blazamut Ryu Ultra</h3><span class="raid-tier">Ultra</span></div>
+              <div class="raid-matchup"><span>Phases</span><strong class="raid-element-sequence"><span class="raid-element"><span class="type-icon" data-raid-type="dragon"></span>Dragon</span><span class="raid-separator">/</span><span class="raid-element"><span class="type-icon" data-raid-type="fire"></span>Fire</span><span aria-hidden="true">→</span><span class="raid-element"><span class="type-icon" data-raid-type="electric"></span>Electric</span></strong></div>
+              <div class="raid-matchup"><span>Best counters</span><strong class="raid-element-sequence"><span class="raid-element"><span class="type-icon" data-raid-type="water"></span>Water</span><span class="raid-separator">/</span><span class="raid-element"><span class="type-icon" data-raid-type="ice"></span>Ice</span><span aria-hidden="true">→</span><span class="raid-element"><span class="type-icon" data-raid-type="ground"></span>Ground</span></strong></div>
+              <p>Follow the same phase strategy, but bring a specialized raid-base army instead of relying only on your five-party Pals.</p>
+            </article>
+
+            <article class="raid-boss-card raid-boss-ultra">
+              <div class="raid-boss-name"><h3>Xenolord Ultra</h3><span class="raid-tier">Ultra</span></div>
+              <div class="raid-matchup"><span>Element</span><strong class="raid-element-sequence"><span class="raid-element"><span class="type-icon" data-raid-type="dark"></span>Dark</span><span class="raid-separator">/</span><span class="raid-element"><span class="type-icon" data-raid-type="dragon"></span>Dragon</span></strong></div>
+              <div class="raid-matchup"><span>Best counter</span><strong class="raid-element-sequence"><span class="raid-element"><span class="type-icon" data-raid-type="ice"></span>Ice</span></strong></div>
+              <p>The same fight at much higher difficulty. A strong Ice army is the cleanest specialized approach.</p>
+            </article>
+
+            <article class="raid-boss-card raid-boss-ultra">
+              <div class="raid-boss-name"><h3>Hartalis Ultra</h3><span class="raid-tier">Ultra</span></div>
+              <div class="raid-matchup"><span>Phases</span><strong class="raid-element-sequence"><span class="raid-element"><span class="type-icon" data-raid-type="water"></span>Water</span><span class="raid-separator">/</span><span class="raid-element"><span class="type-icon" data-raid-type="grass"></span>Grass</span><span aria-hidden="true">→</span><span class="raid-element"><span class="type-icon" data-raid-type="neutral"></span>Neutral</span></strong></div>
+              <div class="raid-matchup"><span>Best counters</span><strong class="raid-element-sequence"><span class="raid-element"><span class="type-icon" data-raid-type="electric"></span>Electric</span><span aria-hidden="true">→</span><span class="raid-element"><span class="type-icon" data-raid-type="dark"></span>Dark</span></strong></div>
+              <p>Uses the same phase mechanic with dramatically higher health and damage reduction.</p>
+            </article>
+
+            <article class="raid-boss-card raid-boss-mechanic">
+              <div class="raid-boss-name"><h3>Moon Lord</h3><span class="raid-tier">Mechanic</span></div>
+              <div class="raid-matchup"><span>Element</span><strong>No Pal element</strong></div>
+              <div class="raid-matchup"><span>Best counter</span><strong>No elemental counter</strong></div>
+              <p>Destroy the eyes in the hands and head, then attack the exposed heart. Normal elemental team-building does not provide an advantage.</p>
+            </article>
+
+            <article class="raid-boss-card raid-boss-mechanic">
+              <div class="raid-boss-name"><h3>Moon Lord Master</h3><span class="raid-tier">Master</span></div>
+              <div class="raid-matchup"><span>Element</span><strong>No Pal element</strong></div>
+              <div class="raid-matchup"><span>Best counter</span><strong>No elemental counter</strong></div>
+              <p>Follow the same weak-point mechanic at much higher difficulty. Raw damage, survivability, and accurate focus on weak points are essential.</p>
+            </article>
+          </div>
+
+          <section class="raid-armies" aria-labelledby="raid-armies-title">
+            <header>
+              <h3 id="raid-armies-title">Specialized Raid Armies</h3>
+              <p>Three endgame fights benefit most from purpose-built teams instead of one generic army.</p>
+            </header>
+            <div class="raid-army-grid">
+              <article class="raid-army-card">
+                <span class="raid-army-counter"><span class="raid-element"><span class="type-icon" data-raid-type="ice"></span>Ice</span></span>
+                <h4>Xenolord Ultra</h4>
+                <p>Build around Ice for the Dragon advantage. Favor wide-area attacks to clear Xenovader and Xenogard adds.</p>
+              </article>
+              <article class="raid-army-card">
+                <span class="raid-army-counter"><span class="raid-element"><span class="type-icon" data-raid-type="water"></span>Water</span><span class="raid-separator">/</span><span class="raid-element"><span class="type-icon" data-raid-type="ice"></span>Ice</span><span aria-hidden="true">→</span><span class="raid-element"><span class="type-icon" data-raid-type="ground"></span>Ground</span></span>
+                <h4>Blazamut Ryu Ultra</h4>
+                <p>Use Water and Ice for the Dragon/Fire opening, then transition to Ground when Ryu enters its Electric phase.</p>
+              </article>
+              <article class="raid-army-card">
+                <span class="raid-army-counter"><span class="raid-element"><span class="type-icon" data-raid-type="dragon"></span>Dragon</span><span aria-hidden="true">→</span><span class="raid-element"><span class="type-icon" data-raid-type="fire"></span>Fire</span></span>
+                <h4>Bellanoir Libero Ultra</h4>
+                <p>Open with Dragon-oriented attackers, then have Fire attackers ready for the Ice phase.</p>
+              </article>
+            </div>
+          </section>
+
         </section>
 
         <section id="item-guide" class="resource-section" aria-labelledby="item-guide-title">

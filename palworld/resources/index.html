@@ -48,7 +48,7 @@
           </div>
         </div>
 
-        <div class="resource-navigation-container">
+        <div id="resources-navigation" class="resource-navigation-container">
           <nav class="resource-navigation" aria-label="Resources page sections">
             <a class="filter-button active" href="#type-chart">Type Chart</a>
             <a class="filter-button" href="#raid-bosses">Raid Bosses</a>
@@ -64,6 +64,7 @@
             <p>Compare every element’s strengths and weaknesses to plan better matchups.</p>
           </header>
           <div id="type-summary" class="row g-2 g-xl-3"></div>
+          <a class="resource-back-to-top" href="#resources-navigation"><span aria-hidden="true">↑</span> Back to top</a>
         </section>
 
         <section id="raid-bosses" class="resource-section" aria-labelledby="raid-bosses-title">
@@ -146,6 +147,8 @@
             </div>
           </section>
 
+          <a class="resource-back-to-top" href="#resources-navigation"><span aria-hidden="true">↑</span> Back to top</a>
+
         </section>
 
         <section id="item-guide" class="resource-section" aria-labelledby="item-guide-title">
@@ -155,11 +158,10 @@
           </header>
           <div class="resource-item-search site-search" role="search">
             <label class="visually-hidden" for="resource-item-search">Search indexed items</label>
-            <input id="resource-item-search" class="form-control" type="search" placeholder="Search indexed items..." autocomplete="off">
+            <input id="resource-item-search" class="form-control" type="search" placeholder="Enter an item name to find the Pals that drop or produce it." autocomplete="off">
           </div>
-          <div id="resource-item-results" class="resource-item-results" aria-live="polite">
-            <p class="resource-placeholder">Enter an item name to find the Pals that drop or produce it.</p>
-          </div>
+          <div id="resource-item-results" class="resource-item-results" aria-live="polite"></div>
+          <a class="resource-back-to-top" href="#resources-navigation"><span aria-hidden="true">↑</span> Back to top</a>
         </section>
 
         <section id="party-guides" class="resource-section" aria-labelledby="party-guides-title">
@@ -170,6 +172,7 @@
           <div id="resource-party-grid" class="resource-party-grid" aria-live="polite">
             <p class="resource-placeholder">Loading party guides...</p>
           </div>
+          <a class="resource-back-to-top" href="#resources-navigation"><span aria-hidden="true">↑</span> Back to top</a>
         </section>
 
         <section id="base-planner" class="resource-section" aria-labelledby="base-planner-title">
@@ -208,6 +211,7 @@
               <div id="planner-team" class="planner-team" aria-live="polite"></div>
             </section>
           </div>
+          <a class="resource-back-to-top" href="#resources-navigation"><span aria-hidden="true">↑</span> Back to top</a>
         </section>
       </section>
     </main>

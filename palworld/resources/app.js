@@ -160,7 +160,7 @@ function createItemResult(item) {
 function renderItemResults() {
   const query = itemSearch.value.trim().toLocaleLowerCase();
   if (!query) {
-    itemResults.innerHTML = '<p class="resource-placeholder">Enter an item name to find the Pals that drop or produce it.</p>';
+    itemResults.replaceChildren();
     return;
   }
   const matches = allItems.filter((item) => item.name.toLocaleLowerCase().includes(query));

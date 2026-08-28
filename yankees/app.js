@@ -193,9 +193,9 @@ function teamEntry(game, side) {
 }
 
 function scoreLine(game) {
-  const away = game.teams?.away;
-  const home = game.teams?.home;
-  return `${teamAbbreviation(away?.team)} ${away?.score ?? "-"}, ${teamAbbreviation(home?.team)} ${home?.score ?? "-"}`;
+  const yankees = game.teams?.[yankeesSide(game)];
+  const opponent = game.teams?.[opponentSide(game)];
+  return `NYY ${yankees?.score ?? "-"}, ${teamAbbreviation(opponent?.team)} ${opponent?.score ?? "-"}`;
 }
 
 function resultLabel(game) {
@@ -318,8 +318,8 @@ function renderLinescore(feed, game) {
   const displayedInnings = Array.from({ length: minimumInnings }, (_, index) => index + 1);
   const inningMap = new Map(innings.map((inning) => [inning.num, inning]));
   const teams = [
-    ["away", game.teams?.away?.team],
-    ["home", game.teams?.home?.team],
+    [yankeesSide(game), game.teams?.[yankeesSide(game)]?.team],
+    [opponentSide(game), game.teams?.[opponentSide(game)]?.team],
   ];
   const head = displayedInnings.map((inning) => `<th scope="col">${inning}</th>`).join("");
   const body = teams.map(([side, team]) => {
@@ -388,7 +388,7 @@ function renderMatchupPlayer(feed, person, role, hand) {
   `;
 }
 
-function renderBaseDiamond(linescore) {
+function renderBaseDiamond(linescore, game) {
   const offense = linescore.offense || {};
   const outs = Math.max(0, Math.min(3, Number(linescore.outs) || 0));
   return `
@@ -398,7 +398,7 @@ function renderBaseDiamond(linescore) {
         <span class="base third${offense.third ? " occupied" : ""}" aria-label="Third base${offense.third ? " occupied" : " empty"}"></span>
         <span class="base first${offense.first ? " occupied" : ""}" aria-label="First base${offense.first ? " occupied" : " empty"}"></span>
       </div>
-      <strong>${escapeHtml(linescore.teams?.away?.runs ?? 0)} - ${escapeHtml(linescore.teams?.home?.runs ?? 0)}</strong>
+      <strong>${escapeHtml(linescore.teams?.[yankeesSide(game)]?.runs ?? 0)} - ${escapeHtml(linescore.teams?.[opponentSide(game)]?.runs ?? 0)}</strong>
       <div class="out-lights" aria-hidden="true">
         ${[0, 1, 2].map((index) => `<span class="${index < outs ? "active" : ""}"></span>`).join("")}
       </div>
@@ -460,6 +460,8 @@ function scoringPlayRows(feed, game) {
     const scoringTeamClass = Number(team.id) === TEAM_ID ? "is-yankees" : "is-opponent";
     const inning = ordinalInning(play.about?.inning);
     const result = play.result || {};
+    const yankeesScore = yankeesSide(game) === "away" ? result.awayScore : result.homeScore;
+    const opponentScore = opponentSide(game) === "away" ? result.awayScore : result.homeScore;
     const conciseDescription = scoringPlaySummary(play);
     return `
       <article class="scoring-play ${scoringTeamClass}" style="--scoring-team-color: ${teamPrimaryColor(team)}">
@@ -467,7 +469,7 @@ function scoringPlayRows(feed, game) {
         <span class="scoring-play-separator" aria-hidden="true">|</span>
         <strong class="scoring-play-team">${escapeHtml(teamAbbreviation(team))}</strong>
         <p>${escapeHtml(conciseDescription || "Scoring play")}</p>
-        <strong class="scoring-play-score">${escapeHtml(`${result.awayScore ?? "-"}-${result.homeScore ?? "-"}`)}</strong>
+        <strong class="scoring-play-score">${escapeHtml(`${yankeesScore ?? "-"}-${opponentScore ?? "-"}`)}</strong>
       </article>
     `;
   }).join("");
@@ -618,11 +620,11 @@ function renderGameSituation(feed, game) {
   `;
 }
 
-function renderCurrentMatchup(feed, matchup, linescore = feed.liveData?.linescore || {}) {
+function renderCurrentMatchup(feed, game, matchup, linescore = feed.liveData?.linescore || {}) {
   return `
     <div class="current-matchup-grid">
       ${renderMatchupPlayer(feed, matchup.pitcher, "pitcher", matchup.pitchHand?.code ? `${matchup.pitchHand.code}HP` : "")}
-      ${renderBaseDiamond(linescore)}
+      ${renderBaseDiamond(linescore, game)}
       ${renderMatchupPlayer(feed, matchup.batter, "batter", matchup.batSide?.code ? `${matchup.batSide.code}HB` : "")}
     </div>
   `;
@@ -1579,10 +1581,10 @@ function renderRecap(game, feed) {
   const yankeesTeam = game.teams?.[side]?.team || feed.gameData?.teams?.[side] || { id: TEAM_ID };
   const opponentPrimaryColor = teamPrimaryColor(opponent);
   const yankeesPrimaryColor = teamPrimaryColor(yankeesTeam);
-  const awayScoreDetails = scoreboardTeamDetails(game, feed, "away");
-  const homeScoreDetails = scoreboardTeamDetails(game, feed, "home");
-  const awayPrimaryColor = teamPrimaryColor(awayScoreDetails.team);
-  const homePrimaryColor = teamPrimaryColor(homeScoreDetails.team);
+  const yankeesScoreDetails = scoreboardTeamDetails(game, feed, side);
+  const opponentScoreDetails = scoreboardTeamDetails(game, feed, opponentTeamSide);
+  const yankeesScoreColor = teamPrimaryColor(yankeesScoreDetails.team);
+  const opponentScoreColor = teamPrimaryColor(opponentScoreDetails.team);
 
   els.grid.style.setProperty("--comparison-yankees-color", yankeesPrimaryColor);
   els.grid.style.setProperty("--comparison-yankees-text", contrastTextColor(yankeesPrimaryColor));
@@ -1619,8 +1621,8 @@ function renderRecap(game, feed) {
   els.subtitle.textContent = `${niceDate(game.officialDate)} - ${game.venue?.name || "Ballpark"} - ${scoreLine(game)}`;
   els.scoreboard.innerHTML = `
     <div class="home-score-team-colors" aria-hidden="true">
-      <span style="background-color: ${homePrimaryColor}"></span>
-      <span style="background-color: ${awayPrimaryColor}"></span>
+      <span style="background-color: ${yankeesScoreColor}"></span>
+      <span style="background-color: ${opponentScoreColor}"></span>
     </div>
     ${isLiveGame(game) ? `
       <div class="game-live-status-row">
@@ -1633,18 +1635,18 @@ function renderRecap(game, feed) {
         ` : ""}
       </div>
     ` : ""}
-    <div class="game-scoreboard-top ${gameResultClass}" style="--scoreboard-left-color:${homePrimaryColor};--scoreboard-right-color:${awayPrimaryColor}">
-      ${renderScoreboardTeam(homeScoreDetails, "away", scoreForSide(game, feed, "home"))}
-      <strong class="scoreboard-score">${escapeHtml(scoreForSide(game, feed, "home"))}</strong>
+    <div class="game-scoreboard-top ${gameResultClass}" style="--scoreboard-left-color:${yankeesScoreColor};--scoreboard-right-color:${opponentScoreColor}">
+      ${renderScoreboardTeam(yankeesScoreDetails, "away", scoreForSide(game, feed, side))}
+      <strong class="scoreboard-score">${escapeHtml(scoreForSide(game, feed, side))}</strong>
       <div class="scoreboard-state">${escapeHtml(scoreboardState(feed, game))}</div>
-      <strong class="scoreboard-score">${escapeHtml(scoreForSide(game, feed, "away"))}</strong>
-      ${renderScoreboardTeam(awayScoreDetails, "home", scoreForSide(game, feed, "away"))}
+      <strong class="scoreboard-score">${escapeHtml(scoreForSide(game, feed, opponentTeamSide))}</strong>
+      ${renderScoreboardTeam(opponentScoreDetails, "home", scoreForSide(game, feed, opponentTeamSide))}
     </div>
     <div class="game-scoreboard-lower">
       <div class="game-linescore-box">${renderLinescore(feed, game)}</div>
       <div class="game-decisions${isLiveGame(game) ? " live-matchup-slot" : ""}">
         ${isLiveGame(game) ? `
-          ${renderCurrentMatchup(feed, liveCurrentPlay.matchup || {})}
+          ${renderCurrentMatchup(feed, game, liveCurrentPlay.matchup || {})}
         ` : `
           <p><span class="win-label">W:</span><span class="decision-pitcher">${escapeHtml(formatDecisionPitcher(decisions.winner, feed))}</span></p>
           <p><span class="loss-label">L:</span><span class="decision-pitcher">${escapeHtml(formatDecisionPitcher(decisions.loser, feed))}</span></p>

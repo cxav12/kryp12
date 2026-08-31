@@ -126,7 +126,7 @@
 }
 
 .overview-body .roster-link::after {
-  background: linear-gradient(90deg, rgba(17, 24, 30, 0.98) 0%, rgba(17, 24, 30, 0.9) 55%, rgba(17, 24, 30, 0.58) 100%);
+  background: rgba(17, 24, 30, 0.8);
 }
 
 .overview-body .roster-link:hover::before,
@@ -198,9 +198,7 @@
 
 .feed article.transaction-card {
   border-left-color: var(--transaction-accent, var(--line-bright));
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--transaction-accent, var(--line-bright)) 18%, transparent), rgba(6, 21, 46, 0.94) 62%),
-    var(--card-bg-strong);
+  background: var(--card-bg-strong);
 }
 
 .transaction-meta {

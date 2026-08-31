@@ -56,6 +56,15 @@
   padding: 4px;
 }
 
+.scores-head {
+  align-items: center;
+}
+
+.scores-head .scores-date-picker {
+  flex: 0 1 300px;
+  margin-left: auto;
+}
+
 @media (min-width: 576px) {
   .scores-date-picker {
     width: 300px;
@@ -305,6 +314,8 @@
 }
 
 .standings-switcher {
+  width: min(960px, 86%);
+  margin-left: auto;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr)) minmax(92px, 0.72fr);
   gap: 4px;
@@ -546,6 +557,10 @@
   box-shadow: inset 5px 0 0 var(--standing-team-color, #0c2340);
 }
 
+.standings-table.is-wild-card-view .wild-card-cutoff td {
+  border-bottom: 4px solid #9b8548;
+}
+
 .standings-league-divider th {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--yankees-silver);
@@ -634,6 +649,17 @@
   align-items: center;
   gap: 8px;
   padding: 8px;
+}
+
+a.hot-item.player-profile-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.hot-item.player-profile-link:hover,
+a.hot-item.player-profile-link:focus-visible {
+  border-left-color: color-mix(in srgb, var(--hot-team-color) 65%, white);
+  background: color-mix(in srgb, var(--inner-card-bg, #0a1015) 92%, white);
 }
 
 .hot-content {
@@ -841,6 +867,22 @@
   gap: 1px;
 }
 
+a.leader-identity,
+.leader-image-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.leader-identity:hover .leader-name,
+a.leader-identity:focus-visible .leader-name {
+  color: #fff;
+}
+
+.leader-image-link {
+  display: grid;
+  place-items: center;
+}
+
 .leader-name {
   overflow: hidden;
   color: var(--ink);
@@ -943,6 +985,12 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 4px;
+  }
+
+  .scores-head .scores-date-picker,
+  .standings-head .standings-switcher {
+    width: 100%;
+    margin-left: 0;
   }
 
   .whos-hot-list {

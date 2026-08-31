@@ -36,6 +36,11 @@ const compactDateFormatter = new Intl.DateTimeFormat("en-US", {
   day: "numeric",
   timeZone: "America/New_York",
 });
+const archiveMonthFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  year: "numeric",
+  timeZone: "America/New_York",
+});
 const alertDateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
   day: "numeric",
@@ -55,6 +60,7 @@ const els = {
   playerStats: document.querySelector("#game-player-stats"),
   recent: document.querySelector("#recent-games-grid"),
   recapButtons: document.querySelector("#recap-button-row"),
+  seasonGameSelect: document.querySelector("#season-game-select"),
   grid: document.querySelector("#recap-grid"),
   breakingNews: document.querySelector("#breaking-news"),
   breakingNewsItems: document.querySelector("#breaking-news-items"),
@@ -63,6 +69,7 @@ const els = {
 
 const state = {
   recentGames: [],
+  seasonGames: [],
   liveGame: null,
   todayGame: null,
   selectedGame: null,
@@ -297,17 +304,207 @@ function decisionPitchingStats(player, feed) {
     || {};
 }
 
-function formatDecisionPitcher(player, feed, fallback = "None") {
-  if (!player) return fallback;
-  const name = player.initLastName || player.lastName || player.fullName || fallback;
-  const stats = decisionPitchingStats(player, feed);
-  const wins = stats.wins;
-  const losses = stats.losses;
-  const era = stats.era;
-  const record = wins !== undefined && losses !== undefined && era !== undefined
-    ? ` (${wins}-${losses}, ${era} ERA)`
+function renderDecisionPitcher(label, labelClass, player, feed, detailOverride = "") {
+  const person = player?.person || player;
+  const name = person?.fullName || person?.initLastName || person?.lastName || "None";
+  const stats = player?.seasonStats?.pitching || decisionPitchingStats(person, feed);
+  const hasRecord = stats.wins !== undefined && stats.losses !== undefined;
+  const details = detailOverride || (player
+    ? [hasRecord ? `${stats.wins}-${stats.losses}` : "", stats.era !== undefined ? `${stats.era} ERA` : ""]
+      .filter(Boolean)
+      .join(", ") || "Stats unavailable"
+    : "No decision");
+  const image = playerHeadshotUrl(person?.id);
+  const tag = person?.id ? "a" : "article";
+  const link = person?.id ? ` href="./player-profile/?player=${escapeHtml(person.id)}"` : "";
+
+  return `
+    <${tag} class="decision-card"${link}>
+      ${image
+        ? `<img class="decision-player-portrait" src="${escapeHtml(image)}" alt="${escapeHtml(`${name} headshot`)}" />`
+        : `<span class="decision-player-portrait decision-player-placeholder" aria-hidden="true">&mdash;</span>`}
+      <span class="decision-player-copy">
+        <strong>${escapeHtml(name)}</strong>
+        <small>${escapeHtml(details)}</small>
+      </span>
+      <span class="decision-label ${labelClass}"${label === "POTG" ? ` title="Site-selected by Win Probability Added"` : ""}>${escapeHtml(label)}</span>
+    </${tag}>
+  `;
+}
+
+function pitcherGameScore(player, feed) {
+  const person = player?.person || player;
+  const pitching = boxscorePlayer(feed, person?.id)?.stats?.pitching;
+  if (!pitching?.inningsPitched) return null;
+
+  const inningsParts = String(pitching.inningsPitched).split(".");
+  const completedInnings = Number(inningsParts[0] || 0);
+  const outs = completedInnings * 3 + Number(inningsParts[1] || 0);
+  const earnedRuns = Number(pitching.earnedRuns || 0);
+  const unearnedRuns = Math.max(0, Number(pitching.runs || 0) - earnedRuns);
+  return 50
+    + outs
+    + Math.max(0, completedInnings - 4) * 2
+    + Number(pitching.strikeOuts || 0)
+    - Number(pitching.hits || 0) * 2
+    - earnedRuns * 4
+    - unearnedRuns * 2
+    - Number(pitching.baseOnBalls || 0);
+}
+
+function pitcherDecisionDetails(player, feed, gameScore) {
+  if (!player) return "No decision";
+  const person = player.person || player;
+  const season = player.seasonStats?.pitching || decisionPitchingStats(person, feed);
+  const record = season.wins !== undefined && season.losses !== undefined
+    ? `${season.wins}-${season.losses}`
     : "";
-  return `${name}${record}`;
+  const era = season.era !== undefined ? `${season.era} ERA` : "";
+  return [record, era, gameScore === null ? "GS unavailable" : `GS ${gameScore}`]
+    .filter(Boolean)
+    .join(" · ");
+}
+
+function playerGameSummary(player) {
+  const pitching = player?.stats?.pitching || {};
+  if (pitching.inningsPitched) {
+    return `${pitching.inningsPitched} IP, ${Number(pitching.earnedRuns || 0)} ER, ${Number(pitching.strikeOuts || 0)} K`;
+  }
+
+  const batting = player?.stats?.batting || {};
+  const hits = Number(batting.hits || 0);
+  const atBats = Number(batting.atBats || 0);
+  return [`${hits}-${atBats}`, Number(batting.homeRuns || 0) ? `${batting.homeRuns} HR` : "", Number(batting.rbi || 0) ? `${batting.rbi} RBI` : ""]
+    .filter(Boolean)
+    .join(", ");
+}
+
+function gamePlayerOfTheGame(feed) {
+  const boxscoreTeams = feed.liveData?.boxscore?.teams || {};
+  const playersById = new Map(Object.values(boxscoreTeams).flatMap((team) =>
+    Object.values(team?.players || {}).map((player) => [Number(player.person?.id), player])
+  ));
+  const playerWpa = new Map();
+
+  (feed._winProbability || []).forEach((play) => {
+    const homeChange = Number(play.homeTeamWinProbabilityAdded);
+    const batterId = Number(play.matchup?.batter?.id);
+    const pitcherId = Number(play.matchup?.pitcher?.id);
+    if (!Number.isFinite(homeChange) || !batterId || !pitcherId) return;
+    const batterChange = play.about?.isTopInning ? -homeChange : homeChange;
+    const pitcherChange = -batterChange;
+    playerWpa.set(batterId, (playerWpa.get(batterId) || 0) + batterChange);
+    playerWpa.set(pitcherId, (playerWpa.get(pitcherId) || 0) + pitcherChange);
+  });
+
+  const leader = [...playerWpa.entries()]
+    .filter(([playerId]) => playersById.has(playerId))
+    .sort((a, b) => b[1] - a[1])[0];
+  if (!leader) return null;
+  const player = playersById.get(leader[0]);
+  return {
+    player,
+    details: `${playerGameSummary(player)} · WPA ${leader[1] >= 0 ? "+" : ""}${leader[1].toFixed(1)}%`,
+  };
+}
+
+function renderWinProbabilityChart(feed, game) {
+  const plays = (feed._winProbability || []).filter((play) =>
+    Number.isFinite(Number(play.homeTeamWinProbability)) && Number(play.about?.inning) > 0
+  );
+  if (!plays.length) return "";
+
+  const yankeesAreHome = Number(game.teams?.home?.team?.id) === TEAM_ID;
+  const width = 1400;
+  const height = 220;
+  const plot = { left: 44, right: 16, top: 18, bottom: 34 };
+  const plotWidth = width - plot.left - plot.right;
+  const plotHeight = height - plot.top - plot.bottom;
+  const points = [{ probability: 50, x: plot.left, play: null }].concat(plays.map((play, index) => {
+    const homeProbability = Number(play.homeTeamWinProbability);
+    return {
+      probability: yankeesAreHome ? homeProbability : 100 - homeProbability,
+      x: plot.left + ((index + 1) / plays.length) * plotWidth,
+      play,
+    };
+  }));
+  const y = (probability) => plot.top + ((100 - probability) / 100) * plotHeight;
+  const linePoints = points.map((point) => `${point.x.toFixed(2)},${y(point.probability).toFixed(2)}`).join(" ");
+  const areaPoints = `${plot.left},${y(0)} ${linePoints} ${width - plot.right},${y(0)}`;
+  const innings = new Map();
+  plays.forEach((play, index) => {
+    const inning = Number(play.about.inning);
+    const entry = innings.get(inning) || { first: index, last: index };
+    entry.last = index;
+    innings.set(inning, entry);
+  });
+  const inningMarkup = [...innings.entries()].map(([inning, range], index, entries) => {
+    const startX = plot.left + (range.first / plays.length) * plotWidth;
+    const endX = plot.left + ((range.last + 1) / plays.length) * plotWidth;
+    const separator = index ? `<line x1="${startX.toFixed(2)}" y1="${plot.top}" x2="${startX.toFixed(2)}" y2="${y(0)}" class="win-probability-inning-line" />` : "";
+    return `${separator}<text x="${((startX + endX) / 2).toFixed(2)}" y="${height - 10}" class="win-probability-inning-label">${inning}</text>`;
+  }).join("");
+  const scoringEvents = points.filter((point) => point.play?.about?.isScoringPlay);
+  const scoringPoints = scoringEvents.map((point) => {
+    const play = point.play;
+    const title = `${play.about?.halfInning === "bottom" ? "Bot" : "Top"} ${play.about?.inning}: ${play.result?.description || play.result?.event || "Scoring play"} Yankees win probability ${point.probability.toFixed(1)}%`;
+    return `<circle cx="${point.x.toFixed(2)}" cy="${y(point.probability).toFixed(2)}" r="6" class="win-probability-scoring-point" tabindex="0" data-win-probability-tooltip="${escapeHtml(title)}" />`;
+  }).join("");
+  const finalProbability = points.at(-1).probability;
+  const displayedProbability = isLiveGame(game)
+    ? finalProbability.toFixed(1)
+    : finalProbability.toFixed(0);
+  const probabilityValues = points.map((point) => point.probability);
+  const lowestProbability = Math.min(...probabilityValues);
+  const highestProbability = Math.max(...probabilityValues);
+  const largestSwing = points.slice(1).map((point, index) => ({
+    point,
+    change: point.probability - points[index].probability,
+  })).sort((a, b) => Math.abs(b.change) - Math.abs(a.change))[0];
+  const largestSwingInning = largestSwing?.point.play?.about
+    ? `${largestSwing.point.play.about.halfInning === "bottom" ? "Bot" : "Top"} ${largestSwing.point.play.about.inning}`
+    : "Game";
+
+  return `
+    <section class="win-probability-panel" aria-labelledby="win-probability-title">
+      <header class="win-probability-header">
+        <div>
+          <h3 id="win-probability-title">Yankees Win Probability</h3>
+          <p>Plate-by-plate game momentum</p>
+        </div>
+        <strong>${displayedProbability}%</strong>
+      </header>
+      <div class="win-probability-chart-scroll">
+        <svg class="win-probability-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Yankees win probability by inning">
+          ${[100, 75, 50, 25, 0].map((value) => `
+            <line x1="${plot.left}" y1="${y(value)}" x2="${width - plot.right}" y2="${y(value)}" class="win-probability-grid-line${value === 50 ? " is-midline" : ""}" />
+            <text x="${plot.left - 9}" y="${y(value) + 4}" class="win-probability-axis-label">${value}%</text>
+          `).join("")}
+          ${inningMarkup}
+          <polygon points="${areaPoints}" class="win-probability-area" />
+          <polyline points="${linePoints}" class="win-probability-line" />
+          ${scoringPoints}
+        </svg>
+      </div>
+      <div class="win-probability-mobile-summary">
+        <div class="win-probability-mobile-metrics">
+          <span><small>Final</small><strong>${finalProbability.toFixed(1)}%</strong></span>
+          <span><small>Game range</small><strong>${lowestProbability.toFixed(1)}–${highestProbability.toFixed(1)}%</strong></span>
+          <span><small>Largest swing</small><strong>${largestSwing?.change >= 0 ? "+" : ""}${(largestSwing?.change || 0).toFixed(1)}%</strong><em>${escapeHtml(largestSwingInning)}</em></span>
+        </div>
+        ${scoringEvents.length ? `
+          <div class="win-probability-mobile-events">
+            <h4>After scoring plays</h4>
+            ${[...scoringEvents].reverse().map((point) => {
+              const play = point.play;
+              const inning = `${play.about?.halfInning === "bottom" ? "Bot" : "Top"} ${play.about?.inning}`;
+              return `<p><span><strong>${escapeHtml(inning)}</strong>${escapeHtml(play.result?.event || "Scoring play")}</span><b>${point.probability.toFixed(1)}%</b></p>`;
+            }).join("")}
+          </div>
+        ` : ""}
+      </div>
+    </section>
+  `;
 }
 
 function renderLinescore(feed, game) {
@@ -363,6 +560,27 @@ function playerHeadshotUrl(playerId) {
     : "";
 }
 
+function linkedPlayerText(value, feed) {
+  const players = Object.values(feed.liveData?.boxscore?.teams || {}).flatMap((team) =>
+    Object.values(team?.players || {})
+  );
+  const people = new Map(players
+    .filter((player) => player.person?.id && player.person?.fullName)
+    .map((player) => [player.person.fullName.toLowerCase(), player.person]));
+  if (!people.size) return escapeHtml(value);
+
+  const names = [...people.values()]
+    .map((person) => person.fullName)
+    .sort((a, b) => b.length - a.length);
+  const pattern = new RegExp(`(${names.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "gi");
+  return String(value).split(pattern).map((part) => {
+    const person = people.get(part.toLowerCase());
+    return person
+      ? `<a class="inline-player-profile-link" href="./player-profile/?player=${escapeHtml(person.id)}">${escapeHtml(part)}</a>`
+      : escapeHtml(part);
+  }).join("");
+}
+
 function matchupStatLine(player, role) {
   if (role === "pitcher") {
     const stats = player.stats?.pitching || {};
@@ -376,15 +594,17 @@ function renderMatchupPlayer(feed, person, role, hand) {
   const player = boxscorePlayer(feed, person?.id);
   const name = person?.fullName || player.person?.fullName || "TBD";
   const image = playerHeadshotUrl(person?.id);
+  const tag = person?.id ? "a" : "div";
+  const link = person?.id ? ` href="./player-profile/?player=${escapeHtml(person.id)}"` : "";
   return `
-    <div class="matchup-player ${role}">
+    <${tag} class="matchup-player ${role}"${link}>
       ${image ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(name)}" />` : ""}
       <div class="matchup-player-copy">
         <strong>${escapeHtml(name)}</strong>
         <span>${escapeHtml(hand || "")}</span>
         <small>${escapeHtml(matchupStatLine(player, role))}</small>
       </div>
-    </div>
+    </${tag}>
   `;
 }
 
@@ -458,18 +678,39 @@ function scoringPlayRows(feed, game) {
     const side = play.about?.halfInning === "bottom" ? "home" : "away";
     const team = game.teams?.[side]?.team || feed.gameData?.teams?.[side] || {};
     const scoringTeamClass = Number(team.id) === TEAM_ID ? "is-yankees" : "is-opponent";
+    const opponent = game.teams?.[opponentSide(game)]?.team || feed.gameData?.teams?.[opponentSide(game)] || {};
     const inning = ordinalInning(play.about?.inning);
     const result = play.result || {};
     const yankeesScore = yankeesSide(game) === "away" ? result.awayScore : result.homeScore;
     const opponentScore = opponentSide(game) === "away" ? result.awayScore : result.homeScore;
     const conciseDescription = scoringPlaySummary(play);
+    const probabilityPlay = (feed._winProbability || []).find((candidate) =>
+      Number(candidate.atBatIndex ?? candidate.about?.atBatIndex) === Number(play.about?.atBatIndex)
+    );
+    const homeProbability = Number(probabilityPlay?.homeTeamWinProbability);
+    const yankeesProbability = Number.isFinite(homeProbability)
+      ? (Number(game.teams?.home?.team?.id) === TEAM_ID ? homeProbability : 100 - homeProbability)
+      : null;
     return `
       <article class="scoring-play ${scoringTeamClass}" style="--scoring-team-color: ${teamPrimaryColor(team)}">
-        <strong class="scoring-play-inning">${escapeHtml(`${half} ${inning}`)}</strong>
-        <span class="scoring-play-separator" aria-hidden="true">|</span>
-        <strong class="scoring-play-team">${escapeHtml(teamAbbreviation(team))}</strong>
-        <p>${escapeHtml(conciseDescription || "Scoring play")}</p>
-        <strong class="scoring-play-score">${escapeHtml(`${yankeesScore ?? "-"}-${opponentScore ?? "-"}`)}</strong>
+        <div class="scoring-play-identity">
+          <img src="${escapeHtml(teamLogoUrl(team))}" alt="" aria-hidden="true" />
+          <span>
+            <strong class="scoring-play-team">${escapeHtml(teamAbbreviation(team))}</strong>
+            <small class="scoring-play-inning">${escapeHtml(`${half} ${inning}`)}</small>
+          </span>
+        </div>
+        <p>${linkedPlayerText(conciseDescription || "Scoring play", feed)}</p>
+        <div class="scoring-play-metrics">
+          <span class="scoring-play-scoreline">
+            <b>NYY</b>
+            <strong>${escapeHtml(yankeesScore ?? "-")}</strong>
+            <i aria-hidden="true">–</i>
+            <strong>${escapeHtml(opponentScore ?? "-")}</strong>
+            <b>${escapeHtml(teamAbbreviation(opponent))}</b>
+          </span>
+          ${yankeesProbability === null ? "" : `<small class="scoring-play-probability">NYY WP ${yankeesProbability.toFixed(1)}%</small>`}
+        </div>
       </article>
     `;
   }).join("");
@@ -490,7 +731,7 @@ function playerStatSummary(teamBox, statKey) {
     .join(", ") || "None";
 }
 
-function renderGameNotes(feed, game) {
+function renderGameNotes(feed, game, teamSwitcher = "") {
   const yankeesTeamSide = yankeesSide(game);
   const side = state.playerStatsTeam === "opponent" ? opponentSide(game) : yankeesTeamSide;
   const team = game.teams?.[side]?.team || feed.gameData?.teams?.[side] || {};
@@ -505,7 +746,7 @@ function renderGameNotes(feed, game) {
   const pitching = teamBox.teamStats?.pitching || {};
   const lineTeam = feed.liveData?.linescore?.teams?.[side] || {};
   const stat = (key, fallback = 0) => statValue(batting, key, fallback);
-  const detailRow = (label, value) => `<p><strong>${escapeHtml(label)}</strong> ${escapeHtml(value)}</p>`;
+  const detailRow = (label, value) => `<p><strong>${escapeHtml(label)}</strong> ${linkedPlayerText(value, feed)}</p>`;
   const shouldShowDetailField = (field) => {
     const label = String(field?.label || "").toLowerCase();
     return !(
@@ -583,7 +824,10 @@ function renderGameNotes(feed, game) {
 
   return `
     <aside class="game-notes-panel" aria-label="${escapeHtml(`${teamName} box score details`)}">
-      <h3>${escapeHtml(teamLabel)} Box Score Details</h3>
+      <header class="game-notes-panel-header">
+        <h3>${escapeHtml(teamLabel)} Box Score Details</h3>
+        ${teamSwitcher}
+      </header>
       <div class="game-notes-groups">
         ${detailGroup("Batting", [
           { label: "2B", value: playerStatSummary(teamBox, "doubles") },
@@ -817,18 +1061,15 @@ function renderGamePlayerStats(feed, yankeesTeamSide, game) {
     `;
   });
 
-  els.playerStats.innerHTML = `
-    <header class="game-player-stats-toolbar">
-      <div>
-        <h2>Team Details</h2>
-        <p>Box score details and player statistics</p>
-      </div>
-      <div class="game-player-team-switcher" role="group" aria-label="Team player statistics">
+  const teamSwitcher = `
+      <div class="game-player-team-switcher" role="group" aria-label="Team box score and player statistics">
         <button class="game-player-team-button${state.playerStatsTeam === "yankees" ? " active" : ""}" style="--team-toggle-color:${yankeesToggleColor};--team-toggle-text:${contrastTextColor(yankeesToggleColor)}" type="button" data-player-stats-team="yankees" aria-pressed="${state.playerStatsTeam === "yankees"}">Yankees</button>
         <button class="game-player-team-button${state.playerStatsTeam === "opponent" ? " active" : ""}" style="--team-toggle-color:${opponentToggleColor};--team-toggle-text:${contrastTextColor(opponentToggleColor)}" type="button" data-player-stats-team="opponent" aria-pressed="${state.playerStatsTeam === "opponent"}">${escapeHtml(opponentName)}</button>
       </div>
-    </header>
-    ${renderGameNotes(feed, game)}
+  `;
+
+  els.playerStats.innerHTML = `
+    ${renderGameNotes(feed, game, teamSwitcher)}
     <article class="game-player-column">
       <h3>${escapeHtml(selectedTeamName)} Batting</h3>
       ${renderGameStatTable(battingHeaders, battingRows, battingEntries, ["AB", "H", "RBI", "AVG"], `No ${selectedTeamName} batting statistics are available yet.`)}
@@ -860,6 +1101,22 @@ async function getRecentFinalGames() {
   }
 
   throw new Error("No completed Yankees games found.");
+}
+
+async function getSeasonFinalGames() {
+  const season = new Date().getFullYear();
+  const schedule = await getJson("/schedule", {
+    sportId: 1,
+    teamId: TEAM_ID,
+    startDate: `${season}-03-01`,
+    endDate: formatDate(new Date()),
+    hydrate: "team,venue,linescore",
+  });
+
+  return (schedule.dates || [])
+    .flatMap((dateEntry) => dateEntry.games || [])
+    .filter((game) => game.status?.abstractGameState === "Final" && ["R", "F", "D", "L", "W"].includes(game.gameType))
+    .sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate));
 }
 
 async function getUpcomingGames() {
@@ -1270,13 +1527,19 @@ function renderRecapButtons(games, selectedGamePk) {
     const result = resultShort(game);
     const tone = result.toLowerCase();
     const isSelected = Number(game.gamePk) === Number(selectedGamePk);
-    const location = isYankeesHome(game) ? teamAbbreviation(opponent) : `@${teamAbbreviation(opponent)}`;
-
     return `
       <button class="recap-selector-button ${tone}${isSelected ? " active" : ""}" type="button" data-game-pk="${escapeHtml(game.gamePk)}">
         <span class="selector-date">${escapeHtml(compactDate(game.officialDate))}</span>
         <span class="selector-result">${escapeHtml(resultLetter(game))}</span>
-        <span class="selector-score">${escapeHtml(yankees.score ?? "-")}-${escapeHtml(opponentEntry.score ?? "-")} ${escapeHtml(location)}</span>
+        <span class="selector-final-score">
+          <img src="${escapeHtml(teamLogoUrl(yankees.team))}" alt="" aria-hidden="true" />
+          <b>NYY</b>
+          <strong>${escapeHtml(yankees.score ?? "-")}</strong>
+          <i aria-hidden="true">–</i>
+          <strong>${escapeHtml(opponentEntry.score ?? "-")}</strong>
+          <b>${escapeHtml(teamAbbreviation(opponent))}</b>
+          <img src="${escapeHtml(teamLogoUrl(opponent))}" alt="" aria-hidden="true" />
+        </span>
       </button>
     `;
   }).join("");
@@ -1289,6 +1552,7 @@ function renderRecapButtons(games, selectedGamePk) {
     const timeLabel = live ? (game.status?.detailedState || "Live") : gameTime(game.gameDate);
     return `
       <button class="recap-selector-button ${live ? "in-progress" : "upcoming"}${isSelected ? " active" : ""}" type="button" data-game-pk="${escapeHtml(game.gamePk)}" aria-label="${live ? "Live" : "Upcoming"} game ${escapeHtml(compactDate(game.officialDate))} ${escapeHtml(matchup)} ${escapeHtml(timeLabel)}">
+        <img class="selector-opponent-logo" src="${escapeHtml(teamLogoUrl(opponent))}" alt="" aria-hidden="true" />
         <span class="selector-date">${escapeHtml(compactDate(game.officialDate))}</span>
         <span class="selector-score">${escapeHtml(matchup)}</span>
         <span class="selector-time">${escapeHtml(timeLabel)}</span>
@@ -1297,6 +1561,37 @@ function renderRecapButtons(games, selectedGamePk) {
   }).join("");
 
   els.recapButtons.innerHTML = upcomingItems + completedButtons;
+}
+
+function renderSeasonArchive(games, selectedGamePk) {
+  if (!els.seasonGameSelect) return;
+  if (!games.length) {
+    els.seasonGameSelect.innerHTML = `<option value="">Games Archive unavailable</option>`;
+    els.seasonGameSelect.disabled = true;
+    return;
+  }
+
+  const monthGroups = new Map();
+  games.forEach((game) => {
+    const yankees = teamEntry(game, yankeesSide(game));
+    const opponentEntry = teamEntry(game, opponentSide(game));
+    const opponent = opponentEntry.team;
+    const month = archiveMonthFormatter.format(new Date(game.gameDate));
+    const location = isYankeesHome(game) ? "vs" : "at";
+    const label = `${niceDate(game.officialDate)} · ${location} ${teamAbbreviation(opponent)} · ${resultLetter(game)} ${yankees.score ?? "-"}-${opponentEntry.score ?? "-"}`;
+    if (!monthGroups.has(month)) monthGroups.set(month, []);
+    monthGroups.get(month).push(`<option value="${escapeHtml(game.gamePk)}">${escapeHtml(label)}</option>`);
+  });
+
+  els.seasonGameSelect.innerHTML = `
+    <option value="">Games Archive</option>
+    ${[...monthGroups.entries()].map(([month, options]) => `
+      <optgroup label="${escapeHtml(month)}">${options.join("")}</optgroup>
+    `).join("")}
+  `;
+  els.seasonGameSelect.disabled = false;
+  const selectedValue = String(selectedGamePk || "");
+  els.seasonGameSelect.value = games.some((game) => String(game.gamePk) === selectedValue) ? selectedValue : "";
 }
 
 function syncGameScoresFromFeed(game, feed) {
@@ -1318,9 +1613,16 @@ function finalizeLiveGame(game) {
       (item) => Number(item.gamePk) !== Number(game.gamePk),
     ),
   ].sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate));
+  state.seasonGames = [
+    game,
+    ...state.seasonGames.filter(
+      (item) => Number(item.gamePk) !== Number(game.gamePk),
+    ),
+  ].sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate));
 
   renderRecentGames(state.recentGames, game.gamePk);
   renderRecapButtons(state.recentGames, game.gamePk);
+  renderSeasonArchive(state.seasonGames, game.gamePk);
 }
 
 function probablePitcherForSide(game, feed, side) {
@@ -1345,15 +1647,17 @@ function renderProbablePitcher(game, feed, side) {
   const era = stats.era !== undefined ? `${stats.era} ERA` : "ERA unavailable";
   const image = playerHeadshotUrl(pitcher?.id);
   const team = game.teams?.[side]?.team || feed.gameData?.teams?.[side] || {};
+  const tag = pitcher?.id ? "a" : "div";
+  const link = pitcher?.id ? ` href="./player-profile/?player=${escapeHtml(pitcher.id)}"` : "";
   return `
-    <div class="probable-pitcher ${side}">
+    <${tag} class="probable-pitcher ${side}"${link}>
       <span class="probable-pitcher-team">${escapeHtml(teamAbbreviation(team))}</span>
       ${image ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(`${name} headshot`)}" />` : `<span class="probable-pitcher-placeholder" aria-hidden="true">?</span>`}
       <div class="probable-pitcher-copy">
         <strong>${escapeHtml(name)}</strong>
         <small>${escapeHtml(record)} <i aria-hidden="true">|</i> ${escapeHtml(era)}</small>
       </div>
-    </div>
+    </${tag}>
   `;
 }
 
@@ -1562,6 +1866,10 @@ function renderRecap(game, feed) {
   const yankeesComparison = recapTeamComparisonData(feed, side);
   const opponentComparison = recapTeamComparisonData(feed, opponentTeamSide);
   const decisions = feed.liveData?.decisions || {};
+  const playerOfTheGame = gamePlayerOfTheGame(feed);
+  const winnerGameScore = pitcherGameScore(decisions.winner, feed);
+  const loserGameScore = pitcherGameScore(decisions.loser, feed);
+  const saveGameScore = pitcherGameScore(decisions.save, feed);
   const opponentAbbr = teamAbbreviation(opponent);
   const bestGameMetric = (key) => [
     yankeesComparison.metrics[key] ? { ...yankeesComparison.metrics[key], team: "NYY" } : null,
@@ -1602,10 +1910,15 @@ function renderRecap(game, feed) {
   const attendanceLabel = Number.isFinite(attendance) && attendance > 0 ? attendance.toLocaleString("en-US") : "Unavailable";
   const ballpark = feed.gameData?.venue?.name || game.venue?.name || "Ballpark unavailable";
   const allPlays = feed.liveData?.plays?.allPlays || [];
-  const firstPlayEvents = allPlays[0]?.playEvents || [];
+  const firstPlay = allPlays[0] || {};
+  const lastPlay = allPlays[allPlays.length - 1] || {};
   const lastPlayEvents = allPlays[allPlays.length - 1]?.playEvents || [];
-  const gameStart = firstPlayEvents[0]?.startTime || feed.gameData?.datetime?.dateTime || game.gameDate;
-  const gameEnd = lastPlayEvents[lastPlayEvents.length - 1]?.endTime;
+  const gameStart = feed.gameData?.gameInfo?.firstPitch
+    || firstPlay.about?.startTime
+    || feed.gameData?.datetime?.dateTime
+    || game.gameDate;
+  const gameEnd = lastPlay.about?.endTime
+    || lastPlayEvents[lastPlayEvents.length - 1]?.endTime;
   const gameDelay = gameDelayLabel(gameStart, gameEnd, gameDurationMinutes);
   const gameInformation = [
     `Game Start Time: ${gameClockTime(gameStart, "TBD")}`,
@@ -1644,16 +1957,18 @@ function renderRecap(game, feed) {
     </div>
     <div class="game-scoreboard-lower">
       <div class="game-linescore-box">${renderLinescore(feed, game)}</div>
-      <div class="game-decisions${isLiveGame(game) ? " live-matchup-slot" : ""}">
+      <div class="game-decisions${isLiveGame(game) ? " live-matchup-slot" : " decision-cards"}">
         ${isLiveGame(game) ? `
           ${renderCurrentMatchup(feed, game, liveCurrentPlay.matchup || {})}
         ` : `
-          <p><span class="win-label">W:</span><span class="decision-pitcher">${escapeHtml(formatDecisionPitcher(decisions.winner, feed))}</span></p>
-          <p><span class="loss-label">L:</span><span class="decision-pitcher">${escapeHtml(formatDecisionPitcher(decisions.loser, feed))}</span></p>
-          <p><span class="save-label">SV:</span><span class="decision-pitcher">${escapeHtml(formatDecisionPitcher(decisions.save, feed))}</span></p>
+          ${renderDecisionPitcher("W", "win-label", decisions.winner, feed, pitcherDecisionDetails(decisions.winner, feed, winnerGameScore))}
+          ${renderDecisionPitcher("L", "loss-label", decisions.loser, feed, pitcherDecisionDetails(decisions.loser, feed, loserGameScore))}
+          ${renderDecisionPitcher("SV", "save-label", decisions.save, feed, pitcherDecisionDetails(decisions.save, feed, saveGameScore))}
+          ${renderDecisionPitcher("POTG", "potg-label", playerOfTheGame?.player, feed, playerOfTheGame?.details || "WPA unavailable")}
         `}
       </div>
     </div>
+    ${renderWinProbabilityChart(feed, game)}
     ${renderGameSituation(feed, game)}
   `;
   renderGamePlayerStats(feed, side, game);
@@ -1707,7 +2022,11 @@ function startLiveRefresh(game) {
 
     try {
       const wasLive = isLiveGame(game);
-      const feed = await getLiveJson(`/game/${game.gamePk}/feed/live`);
+      const [feed, winProbability] = await Promise.all([
+        getLiveJson(`/game/${game.gamePk}/feed/live`),
+        getJson(`/game/${game.gamePk}/winProbability`).catch(() => []),
+      ]);
+      feed._winProbability = winProbability;
       syncGameScoresFromFeed(game, feed);
       renderRecap(game, feed);
       if (!isLiveGame(game)) {
@@ -1728,7 +2047,11 @@ async function loadGameRecap(game, { live = false } = {}) {
 
   try {
     const wasLive = isLiveGame(game);
-    const feed = await getLiveJson(`/game/${game.gamePk}/feed/live`);
+    const [feed, winProbability] = await Promise.all([
+      getLiveJson(`/game/${game.gamePk}/feed/live`),
+      getJson(`/game/${game.gamePk}/winProbability`).catch(() => []),
+    ]);
+    feed._winProbability = winProbability;
     if (!["Final", "Live"].includes(feed.gameData?.status?.abstractGameState || game.status?.abstractGameState)) {
       await Promise.all([
         loadProbablePitcherStats(game, feed),
@@ -1749,11 +2072,12 @@ async function loadGameRecap(game, { live = false } = {}) {
 async function init() {
   try {
     const divisionRanks = loadDivisionRanks().catch(() => null);
-    const [todayGame, games, upcomingGames, transactions] = await Promise.all([
+    const [todayGame, games, upcomingGames, transactions, seasonGames] = await Promise.all([
       getTodaysGame().catch(() => null),
       getRecentFinalGames(),
       getUpcomingGames().catch(() => []),
       getBreakingTransactions().catch(() => []),
+      getSeasonFinalGames().catch(() => []),
     ]);
     await divisionRanks;
     const liveGame = isLiveGame(todayGame) ? todayGame : null;
@@ -1766,9 +2090,11 @@ async function init() {
     state.todayGame = todayGame;
     state.liveGame = liveGame;
     state.recentGames = games;
+    state.seasonGames = seasonGames.length ? seasonGames : games;
     state.upcomingGames = upcomingGames;
     renderRecentGames(games, selectedGame?.gamePk, { includeLatest: selectedIsCurrent });
     renderRecapButtons(games, selectedGame?.gamePk);
+    renderSeasonArchive(state.seasonGames, selectedGame?.gamePk);
     loadBreakingNews(todayGame, upcomingGames, transactions).catch(() => renderBreakingNews([]));
     if (!selectedGame) throw new Error("No Yankees games found.");
     await loadGameRecap(selectedGame, { live: isLiveGame(selectedGame) });
@@ -1809,23 +2135,14 @@ async function init() {
   }
 }
 
-async function handleRecapButtonClick(event) {
-  const button = event.target.closest(".recent-game-button[data-game-pk]");
-  const selectorButton = event.target.closest(".recap-selector-button[data-game-pk]");
-  const selectedButton = button || selectorButton;
-  if (!selectedButton) return;
-
-  const gamePk = Number(selectedButton.dataset.gamePk);
-  const game = [state.liveGame, ...state.upcomingGames, ...state.recentGames]
-    .filter(Boolean)
-    .find((item) => Number(item.gamePk) === gamePk);
-  if (!game) return;
-
+async function selectRecapGame(game) {
+  hideWinProbabilityTooltip();
   els.status.textContent = "Loading selected recap";
   els.status.style.color = "";
   stopLiveRefresh();
-  renderRecentGames(state.recentGames, gamePk, { includeLatest: game.status?.abstractGameState !== "Final" });
-  renderRecapButtons(state.recentGames, gamePk);
+  renderRecentGames(state.recentGames, game.gamePk, { includeLatest: game.status?.abstractGameState !== "Final" });
+  renderRecapButtons(state.recentGames, game.gamePk);
+  renderSeasonArchive(state.seasonGames, game.gamePk);
 
   try {
     await loadGameRecap(game, { live: isLiveGame(game) });
@@ -1835,8 +2152,87 @@ async function handleRecapButtonClick(event) {
   }
 }
 
+async function handleRecapButtonClick(event) {
+  const button = event.target.closest(".recent-game-button[data-game-pk]");
+  const selectorButton = event.target.closest(".recap-selector-button[data-game-pk]");
+  const selectedButton = button || selectorButton;
+  if (!selectedButton) return;
+
+  const gamePk = Number(selectedButton.dataset.gamePk);
+  const game = [state.liveGame, ...state.upcomingGames, ...state.recentGames, ...state.seasonGames]
+    .filter(Boolean)
+    .find((item) => Number(item.gamePk) === gamePk);
+  if (game) await selectRecapGame(game);
+}
+
+async function handleSeasonGameChange(event) {
+  const gamePk = Number(event.currentTarget.value);
+  if (!gamePk) return;
+  const game = state.seasonGames.find((item) => Number(item.gamePk) === gamePk);
+  if (game) await selectRecapGame(game);
+}
+
 els.recent.addEventListener("click", handleRecapButtonClick);
 els.recapButtons.addEventListener("click", handleRecapButtonClick);
+els.seasonGameSelect?.addEventListener("change", handleSeasonGameChange);
+
+let winProbabilityTooltip = null;
+
+function getWinProbabilityTooltip() {
+  if (winProbabilityTooltip?.isConnected) return winProbabilityTooltip;
+  winProbabilityTooltip = document.createElement("div");
+  winProbabilityTooltip.className = "win-probability-tooltip";
+  winProbabilityTooltip.setAttribute("role", "tooltip");
+  winProbabilityTooltip.hidden = true;
+  document.body.append(winProbabilityTooltip);
+  return winProbabilityTooltip;
+}
+
+function showWinProbabilityTooltip(point, clientX, clientY) {
+  const tooltip = getWinProbabilityTooltip();
+  const pointRect = point.getBoundingClientRect();
+  const anchorX = clientX ?? pointRect.left + pointRect.width / 2;
+  const anchorY = clientY ?? pointRect.top;
+  tooltip.textContent = point.dataset.winProbabilityTooltip || "";
+  tooltip.hidden = false;
+  tooltip.style.transform = "translate(-50%, -100%)";
+  tooltip.style.left = `${anchorX}px`;
+  tooltip.style.top = `${anchorY - 10}px`;
+
+  const tooltipRect = tooltip.getBoundingClientRect();
+  const halfWidth = tooltipRect.width / 2;
+  const clampedX = Math.min(window.innerWidth - halfWidth - 10, Math.max(halfWidth + 10, anchorX));
+  tooltip.style.left = `${clampedX}px`;
+  if (tooltipRect.top < 10) {
+    tooltip.style.top = `${anchorY + 12}px`;
+    tooltip.style.transform = "translate(-50%, 0)";
+  }
+}
+
+function hideWinProbabilityTooltip() {
+  if (winProbabilityTooltip) winProbabilityTooltip.hidden = true;
+}
+
+els.scoreboard.addEventListener("pointerover", (event) => {
+  const point = event.target.closest?.("[data-win-probability-tooltip]");
+  if (point) showWinProbabilityTooltip(point, event.clientX, event.clientY);
+});
+els.scoreboard.addEventListener("pointermove", (event) => {
+  const point = event.target.closest?.("[data-win-probability-tooltip]");
+  if (point) showWinProbabilityTooltip(point, event.clientX, event.clientY);
+});
+els.scoreboard.addEventListener("pointerout", (event) => {
+  const point = event.target.closest?.("[data-win-probability-tooltip]");
+  if (point && !point.contains(event.relatedTarget)) hideWinProbabilityTooltip();
+});
+els.scoreboard.addEventListener("focusin", (event) => {
+  const point = event.target.closest?.("[data-win-probability-tooltip]");
+  if (point) showWinProbabilityTooltip(point);
+});
+els.scoreboard.addEventListener("focusout", (event) => {
+  const point = event.target.closest?.("[data-win-probability-tooltip]");
+  if (point) hideWinProbabilityTooltip();
+});
 els.playerStats.addEventListener("click", (event) => {
   const button = event.target.closest("[data-player-stats-team]");
   if (!button || !state.currentFeed || !state.selectedGame) return;

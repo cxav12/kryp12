@@ -258,8 +258,6 @@
 .player-cell a:hover,
 .player-cell a:focus {
   color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .team-code {

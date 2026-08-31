@@ -447,6 +447,13 @@ function renderStandingsRows() {
     const rankedValue = rankValue(record, state.standingsView.mode);
     const rank = Number.isFinite(rankedValue) ? rankedValue : index + 1;
     if (record.teamId === TEAM_ID) row.classList.add("is-yankees");
+    if (
+      state.standingsView.mode === "wild-card"
+      && record.divisionRank !== 1
+      && record.wildCardRank === 3
+    ) {
+      row.classList.add("wild-card-cutoff");
+    }
     row.append(
       standingsCell("Rank", rank, "rank-indicator"),
       standingsCell("Team", record.teamName),
@@ -546,7 +553,9 @@ function featuredTeamColor(featured) {
 }
 
 function hotItem(label, name, stats, media = null, featured = null) {
-  const item = element("article", "hot-item");
+  const isPlayer = Boolean(featured?.playerId);
+  const item = element(isPlayer ? "a" : "article", `hot-item${isPlayer ? " player-profile-link" : ""}`);
+  if (isPlayer) item.href = `../player-profile/?player=${featured.playerId}`;
   item.style.setProperty("--hot-team-color", featuredTeamColor(featured));
   const content = element("div", "hot-content");
   content.append(
@@ -838,18 +847,20 @@ function leaderEntry(entry, index, type) {
   if ((type === "player" && entry.abbreviation === "NYY") || (type === "team" && Number(entry.id) === TEAM_ID)) {
     item.classList.add("is-yankees");
   }
-  const identity = element("span", "leader-identity");
+  const identity = element(type === "player" ? "a" : "span", "leader-identity");
+  if (type === "player") identity.href = `../player-profile/?player=${entry.id}`;
   identity.append(element("strong", "leader-name", entry.name));
   if (type === "player") identity.append(element("span", "leader-team", entry.abbreviation || "MLB"));
   const image = type === "player"
     ? mediaImage(PLAYER_HEADSHOT_URL(entry.id), "leader-image", `${entry.name} headshot`, 32, 32)
     : mediaImage(teamLogoUrl({ id: entry.id }), "leader-image team-logo", `${entry.name} logo`, 32, 32);
-  item.append(
-    element("span", "leader-rank", index + 1),
-    image || element("span", "leader-image"),
-    identity,
-    element("strong", "leader-value", entry.value),
-  );
+  const media = image || element("span", "leader-image");
+  const linkedMedia = type === "player" ? element("a", "leader-image-link") : media;
+  if (type === "player") {
+    linkedMedia.href = `../player-profile/?player=${entry.id}`;
+    linkedMedia.append(media);
+  }
+  item.append(element("span", "leader-rank", index + 1), linkedMedia, identity, element("strong", "leader-value", entry.value));
   return item;
 }
 

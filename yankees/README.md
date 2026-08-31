@@ -16,8 +16,10 @@ Then visit `http://localhost:8080/yankees/`.
 ## Structure
 
 - `shared.css` contains site-wide tokens, typography, navigation, and common controls.
-- Root `index.html`, `styles.css`, and `app.js` power the game recap dashboard.
-- Each subdirectory contains the page-specific HTML, CSS, and JavaScript for that route.
+- Root `index.html`, `styles.css`, and `assets/js/app.js` power the game recap dashboard.
+- `assets/js/` contains the dashboard scripts and site-wide `shared.js`.
+- `tests/` contains JavaScript unit tests. Run them from the repository root with `node --test yankees/tests/*.test.js`.
+- Each route subdirectory contains its page-specific HTML, CSS, and JavaScript.
 - `team-overview/` keeps its roster and transaction module in `roster-transactions.js`; `around-the-league/` provides the league-wide daily scoreboard and standings views.
 
 ## GitHub Pages

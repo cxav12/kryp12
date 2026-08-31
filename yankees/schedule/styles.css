@@ -183,9 +183,7 @@
 
 .game-status {
   min-width: 0;
-  border-top: 1px solid rgba(205, 211, 215, 0.1);
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.025);
   display: grid;
   place-items: center;
   padding: 8px;
@@ -368,4 +366,15 @@
   .btn-control {
     width: 100%;
   }
+}
+
+.game-stats-link {
+  color: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.game-stats-link:hover,
+.game-stats-link:focus-visible {
+  color: #fff;
 }

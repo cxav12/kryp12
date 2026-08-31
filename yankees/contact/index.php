@@ -39,7 +39,7 @@ $notice = $messages[$status] ?? null;
     <base href="/yankees/contact/" />
     <title>Contact | Yankees Fan Site</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../shared.css?v=20260830-separated-header-nav1" />
+    <link rel="stylesheet" href="../shared.css?v=20260831-transparent-comparison-cards1" />
   </head>
   <body>
     <main class="container-fluid app-shell">
@@ -132,6 +132,6 @@ $notice = $messages[$status] ?? null;
         </nav>
       </footer>
     </main>
-    <script src="../shared.js?v=20260830-next-scheduled-game1" defer></script>
+    <script src="../assets/js/shared.js?v=20260830-next-scheduled-game1" defer></script>
   </body>
 </html>

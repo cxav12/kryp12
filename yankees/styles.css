@@ -1,4 +1,8 @@
 :root {
+  --home-content-inset: var(--site-content-inset);
+}
+
+:root {
   --team-yankees: #4c76b0;
   --team-opponent: #c75c5c;
 }
@@ -46,46 +50,6 @@
   gap: 8px;
 }
 
-.recap-archive {
-  min-width: 0;
-  flex: 0 1 270px;
-  display: flex;
-}
-
-.recap-archive-select {
-  appearance: none;
-  width: 100%;
-  min-height: 38px;
-  border: 0;
-  border-radius: 6px;
-  color: #eef2f5;
-  background-color: #18232c;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23c4ced4' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 12px 12px;
-  padding: 0 40px 0 13px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.recap-archive-select:hover,
-.recap-archive-select:focus-visible {
-  background-color: #1d2a34;
-}
-
-.recap-archive-select:focus-visible {
-  outline: 2px solid rgba(111, 155, 197, 0.72);
-  outline-offset: 2px;
-}
-
-.recap-archive-select:disabled {
-  color: #788690;
-  cursor: wait;
-  opacity: 0.72;
-}
-
 /* The previous compact pill treatment remains available in Git history. */
 .recap-selector-button {
   position: relative;
@@ -97,12 +61,12 @@
   color: var(--ink);
   background: #121b22;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   align-items: center;
   column-gap: 7px;
-  row-gap: 2px;
-  padding: 6px 10px;
+  row-gap: 5px;
+  padding: 10px 10px 8px;
   font-size: var(--text-normal);
   font-weight: 700;
   text-align: left;
@@ -113,9 +77,9 @@
   content: "";
   position: absolute;
   top: 0;
-  bottom: 0;
+  right: 0;
   left: 0;
-  width: 3px;
+  height: 3px;
   background: #70869a;
   opacity: 0.7;
 }
@@ -167,7 +131,7 @@
   grid-column: 1 / -1;
   color: #8293a1;
   padding-right: 34px;
-  font-size: 0.64rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   line-height: 1;
@@ -190,15 +154,15 @@
   font-weight: 800;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-right: 14px;
+  padding-right: 0;
 }
 
 .recap-selector-button .selector-final-score {
-  grid-column: 2 / 4;
+  grid-column: 1;
   width: 100%;
   min-width: 0;
   display: grid;
-  grid-template-columns: 22px auto auto auto auto auto 22px;
+  grid-template-columns: 21px 22px auto auto auto auto auto 22px;
   align-items: center;
   justify-content: center;
   gap: 4px;
@@ -229,14 +193,12 @@
   font-style: normal;
 }
 
-.recap-selector-button.upcoming .selector-score,
-.recap-selector-button.in-progress .selector-score {
-  grid-column: 1 / 3;
-}
-
-.recap-selector-button .selector-time {
-  grid-column: 3;
-  justify-self: end;
+.selector-matchup-row {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .recap-selector-button .selector-time {
@@ -355,7 +317,7 @@
 }
 
 .last-game-card {
-  --scoreboard-card-padding: 16px;
+  --scoreboard-card-padding: var(--home-content-inset);
   position: relative;
   overflow: hidden;
   min-height: 0;
@@ -494,7 +456,7 @@
 
 .game-scoreboard-top {
   min-height: 64px;
-  margin-inline: -16px;
+  margin-inline: calc(var(--scoreboard-card-padding) * -1);
   border-bottom: 0;
   display: grid;
   grid-template-columns: minmax(190px, 1fr) minmax(56px, 0.35fr) minmax(120px, 0.7fr) minmax(56px, 0.35fr) minmax(190px, 1fr);
@@ -671,14 +633,15 @@ a.decision-card:focus-visible {
 .decision-label {
   position: absolute;
   z-index: 0;
-  top: 7px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 8px;
   color: #57f091;
   font-size: clamp(1.35rem, 2.3vw, 2.5rem);
   font-weight: 900;
   letter-spacing: -0.06em;
   line-height: 0.8;
-  opacity: 0.05;
+  opacity: 0.12;
   pointer-events: none;
 }
 
@@ -894,7 +857,6 @@ a.matchup-player:focus-visible strong {
 .game-situation {
   margin-top: 14px;
   margin-inline: calc(var(--scoreboard-card-padding) * -1);
-  border-top: 1px solid rgba(196, 206, 211, 0.18);
   background: var(--card-bg);
   display: grid;
   grid-template-columns: 1fr;
@@ -914,7 +876,7 @@ a.matchup-player:focus-visible strong {
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 4px;
-  padding-inline: calc(var(--scoreboard-card-padding) + 16px);
+  padding-inline: var(--home-content-inset);
 }
 
 .win-probability-header h3,
@@ -1022,7 +984,7 @@ a.matchup-player:focus-visible strong {
 }
 
 .win-probability-axis-label {
-  text-anchor: end;
+  text-anchor: start;
 }
 
 .win-probability-inning-label {
@@ -1031,7 +993,7 @@ a.matchup-player:focus-visible strong {
 
 .scoring-plays-panel {
   min-width: 0;
-  padding: 14px calc(var(--scoreboard-card-padding) + 16px);
+  padding: 14px var(--home-content-inset);
 }
 
 .scoring-plays-panel h3 {
@@ -1256,7 +1218,7 @@ a.matchup-player:focus-visible strong {
 .scoring-play-scoreline {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
   gap: 5px;
   white-space: nowrap;
@@ -1421,7 +1383,7 @@ a.matchup-player:focus-visible strong {
 }
 
 .game-player-stats-toolbar .game-player-team-switcher .game-player-team-button.active,
-.game-notes-panel-header .game-player-team-switcher .game-player-team-button.active {
+.comparison-details-header .game-player-team-switcher .game-player-team-button.active {
   border-color: var(--control-active-border);
   color: var(--team-toggle-text, var(--control-active-ink)) !important;
   background: var(--team-toggle-color, var(--control-active-bg)) !important;
@@ -1432,51 +1394,56 @@ a.matchup-player:focus-visible strong {
   min-width: 0;
   border: 0;
   border-radius: 8px;
-  background: var(--card-bg);
+  background: transparent;
   overflow: hidden;
   margin-top: 10px;
 }
 
-.game-player-stats > .game-notes-panel {
+.comparison-details-header {
   grid-column: 1 / -1;
-  margin-top: 0;
-  border: 0;
-  border-radius: 8px;
-  background: var(--card-bg);
-  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.game-player-stats > .game-notes-panel .game-notes-groups {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-areas:
-    "batting batting baserunning baserunning"
-    "batting batting fielding pitching";
-  align-items: stretch;
-  gap: 10px;
+.comparison-details-header h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-normal);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.game-player-stats > .game-notes-panel .game-notes-groups section {
-  align-content: start;
+.comparison-details-header .game-player-team-switcher {
+  margin-left: auto;
+}
+
+.comparison-details {
+  margin-top: 18px;
+}
+
+.comparison-details section {
+  min-width: 0;
   padding: 12px 14px;
   border: 1px solid rgba(196, 206, 211, 0.12);
   border-radius: 7px;
   background: rgba(6, 12, 17, 0.28);
+  align-content: start;
+  overflow-wrap: anywhere;
 }
 
-.game-notes-group-batting {
-  grid-area: batting;
+.comparison-details :is(.game-notes-group-batting, .game-notes-group-baserunning, .game-notes-group-pitching) {
+  padding-left: 0;
+  border-left: 0;
 }
 
-.game-notes-group-baserunning {
-  grid-area: baserunning;
-}
-
-.game-notes-group-fielding {
-  grid-area: fielding;
-}
-
-.game-notes-group-pitching {
-  grid-area: pitching;
+.baserunning-fielding-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .recap-grid-heading {
@@ -1506,7 +1473,6 @@ a.matchup-player:focus-visible strong {
   margin: 0;
   border-bottom: 1px solid rgba(96, 126, 166, 0.36);
   color: #f4f7ff;
-  background: rgba(12, 35, 64, 0.3);
   padding: 14px 16px;
   font-size: var(--text-normal);
   font-weight: 800;
@@ -1524,14 +1490,15 @@ a.matchup-player:focus-visible strong {
 
 .game-player-table {
   width: 100%;
-  min-width: 660px;
+  min-width: 540px;
+  table-layout: fixed;
   border-collapse: collapse;
 }
 
 .game-player-table th,
 .game-player-table td {
   border-bottom: 1px solid rgba(196, 206, 212, 0.1);
-  padding: 9px 8px;
+  padding: 9px 5px;
   color: #dfe4f4;
   font-size: var(--text-small);
   text-align: center;
@@ -1545,7 +1512,9 @@ a.matchup-player:focus-visible strong {
 }
 
 .game-player-table th:first-child {
-  min-width: 160px;
+  width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-align: left;
 }
 
@@ -1621,7 +1590,7 @@ a.matchup-player:focus-visible strong {
 .recap-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 14px 28px;
 }
 
 .recap-column {
@@ -1629,8 +1598,7 @@ a.matchup-player:focus-visible strong {
   min-height: 600px;
   border: 0;
   border-radius: 8px;
-  background: var(--card-bg);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: transparent;
   padding: 18px 18px 22px;
 }
 
@@ -1644,10 +1612,8 @@ a.matchup-player:focus-visible strong {
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.36);
 }
 
-.recap-divider {
-  height: 2px;
-  margin: 14px 0 18px;
-  background: rgba(196, 206, 212, 0.42);
+.recap-column > .comparison-list {
+  margin-top: 36px;
 }
 
 .comparison-legend,
@@ -1704,10 +1670,13 @@ a.matchup-player:focus-visible strong {
 }
 
 .comparison-stat-label {
-  color: rgba(196, 206, 212, 0.78);
+  color: rgba(196, 206, 212, 0.88);
+  font-size: 0.625rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.02em;
+  text-align: center;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .comparison-stat-details small {
@@ -1722,40 +1691,66 @@ a.matchup-player:focus-visible strong {
 }
 
 .comparison-bars {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6.25rem minmax(0, 1fr);
+  align-items: center;
 }
 
 .comparison-track {
+  position: relative;
+  min-width: 0;
   height: 26px;
   overflow: hidden;
-  border-radius: 999px;
-  background: rgba(196, 206, 212, 0.12);
-  display: flex;
-  gap: 4px;
+  background: rgba(196, 206, 212, 0.10);
+}
+
+.comparison-track.yankees {
+  border-radius: 999px 0 0 999px;
+  text-align: right;
+}
+
+.comparison-track.opponent {
+  border-radius: 0 999px 999px 0;
+  text-align: left;
 }
 
 .comparison-fill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  top: 0;
   height: 100%;
-  min-width: 36px;
-  border-radius: 0;
 }
 
-.comparison-fill strong {
-  padding-inline: 5px;
-  font-size: var(--text-small);
+.comparison-track.has-value .comparison-fill {
+  min-width: min(32px, 100%);
+}
+
+.comparison-fill.yankees {
+  right: 0;
+  border-radius: 999px 0 0 999px;
+}
+
+.comparison-fill.opponent {
+  left: 0;
+  border-radius: 0 999px 999px 0;
+}
+
+.comparison-track strong {
+  position: relative;
+  display: inline-block;
+  padding-inline: 6px;
+  color: #fff;
+  font-size: 0.6875rem;
   font-weight: 800;
-  line-height: 1;
+  line-height: 26px;
+  text-shadow: none;
   white-space: nowrap;
 }
 
-.comparison-fill.yankees strong {
+.comparison-track.yankees.has-value strong {
   color: var(--comparison-yankees-text, #fff);
 }
 
-.comparison-fill.opponent strong {
+.comparison-track.opponent.has-value strong {
   color: var(--comparison-opponent-text, #fff);
 }
 
@@ -1773,13 +1768,6 @@ a.matchup-player:focus-visible strong {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-
-.metric-feature-icon {
-  width: 19px;
-  height: 19px;
-  flex: 0 0 19px;
-  color: #9ac7ff;
 }
 
 .metric-feature {
@@ -1839,14 +1827,15 @@ a.matchup-player:focus-visible strong {
   grid-column: 1 / -1;
 }
 
+/* Compact tables fit side by side once each has at least 540px. */
 @media (max-width: 1199.98px) {
-  .game-player-stats > .game-notes-panel .game-notes-groups {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      "batting batting"
-      "baserunning baserunning"
-      "fielding pitching";
+  .game-player-stats {
+    grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 1199.98px) {
+
 
   .recap-button-row {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1863,10 +1852,6 @@ a.matchup-player:focus-visible strong {
   .game-linescore-box {
     border-right: 0;
     border-bottom: 1px solid rgba(96, 126, 166, 0.36);
-  }
-
-  .game-player-stats {
-    grid-template-columns: 1fr;
   }
 
   .recap-grid {
@@ -1982,15 +1967,6 @@ a.matchup-player:focus-visible strong {
     grid-row: 1;
   }
 
-  .game-player-stats > .game-notes-panel .game-notes-groups {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "batting"
-      "baserunning"
-      "fielding"
-      "pitching";
-  }
-
   .recent-games-grid {
     grid-template-columns: 1fr;
   }
@@ -2051,16 +2027,6 @@ a.matchup-player:focus-visible strong {
     grid-template-columns: 1fr;
   }
 
-  .recap-archive {
-    width: 100%;
-    flex-basis: auto;
-    display: block;
-  }
-
-  .recap-archive-select {
-    width: 100%;
-  }
-
   .recap-selector-button {
     width: 100%;
     justify-content: stretch;
@@ -2096,14 +2062,14 @@ a.matchup-player:focus-visible strong {
 
 @media (max-width: 899.98px) {
   .last-game-card {
-    --scoreboard-card-padding: 14px;
+    --scoreboard-card-padding: var(--home-content-inset);
     padding: 14px;
   }
 
   .game-scoreboard-top {
     grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr);
     gap: 8px;
-    margin-inline: -14px;
+    margin-inline: calc(var(--scoreboard-card-padding) * -1);
     padding-inline: 14px;
   }
 
@@ -2170,7 +2136,6 @@ a.matchup-player:focus-visible strong {
   }
 
   .decision-label {
-    top: 5px;
     right: 5px;
     font-size: clamp(1.2rem, 5.5vw, 1.85rem);
   }
@@ -2461,8 +2426,8 @@ a.matchup-player:focus-visible strong {
 .breaking-news::before {
   content: "";
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
+  inset: 0 0 auto 0;
+  height: 4px;
   background: #f1b434;
 }
 
@@ -2483,7 +2448,7 @@ a.matchup-player:focus-visible strong {
 .breaking-news-header h2 {
   margin: 0;
   color: var(--ink);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 800;
 }
 
@@ -2569,4 +2534,185 @@ a.matchup-player:focus-visible strong {
   border-color: #f1b434;
   color: #fff;
   background: rgba(241, 180, 52, 0.14);
+}
+
+#team-comparison-header {
+  margin-top: 14px;
+}
+
+#team-comparison-header:empty,
+.game-details-container:not(:has(.game-player-column, .recap-column)) {
+  display: none;
+}
+
+.game-details-container {
+  min-width: 0;
+  margin-top: 14px;
+  padding: 18px var(--home-content-inset);
+  border: 0;
+  border-radius: 10px;
+  background: rgba(16, 25, 32, 0.6);
+}
+
+.game-details-container > .game-player-stats,
+.game-details-container .game-player-column {
+  margin-top: 0;
+}
+
+/* Keep section content on one shared inset, including narrower layouts. */
+.selected-recap-section > .page-intro-card,
+.breaking-news,
+.recap-grid-heading,
+.recap-selector-section,
+.last-game-card,
+.game-scoreboard-top,
+.scoring-plays-panel,
+.win-probability-mobile-summary {
+  padding-inline: var(--home-content-inset);
+}
+
+.linescore-table tr > :first-child {
+  padding-left: 0;
+}
+
+.win-probability-chart-scroll {
+  width: calc(100% - 2 * var(--home-content-inset));
+  margin-inline: var(--home-content-inset);
+}
+
+.win-probability-chart {
+  height: auto;
+  aspect-ratio: 1400 / 220;
+}
+
+.game-details-container .recap-column,
+.game-details-container .game-player-column > h3 {
+  padding-inline: 0;
+}
+
+.game-details-container .game-player-table tr > :first-child {
+  padding-left: 0;
+}
+
+.game-details-container .game-player-table tbody tr.is-substitute th:first-child {
+  padding-left: 20px;
+}
+
+.game-details-container .game-player-table tbody tr.is-substitute th:first-child::before {
+  left: 2px;
+}
+
+.linescore-table tr > :last-child {
+  padding-right: 0;
+}
+
+.game-details-container .game-player-table tr > :last-child {
+  padding-right: 0;
+}
+
+/* Consistent type scale for comparison bars, details, and game notes. */
+#recap-grid {
+  --recap-text-size: 0.8125rem;
+  --recap-compact-size: 0.75rem;
+}
+
+#recap-grid :is(h3, h4, .comparison-team, .metric-feature-label) {
+  font-size: var(--recap-text-size);
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-shadow: none;
+}
+
+#recap-grid .game-notes-groups h4 {
+  margin-bottom: 5px;
+}
+
+#recap-grid :is(.game-notes-groups p, .game-note-feature p, .metric-feature em, .metric-feature > strong, .metric-feature strong small) {
+  font-size: var(--recap-text-size);
+  line-height: 1.45;
+}
+
+#recap-grid :is(.game-notes-groups p, .game-note-feature p, .metric-feature em) {
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+#recap-grid :is(.game-notes-groups p strong, .game-note-feature p strong, .metric-feature > strong) {
+  font-weight: 700;
+}
+
+#recap-grid :is(.comparison-stat-label, .comparison-track strong, .comparison-stat-details small) {
+  font-size: var(--recap-compact-size);
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+#recap-grid .comparison-bars {
+  grid-template-columns: minmax(0, 1fr) 6.75rem minmax(0, 1fr);
+}
+
+/* Color links related information without changing the borderless layout. */
+.game-details-container .batting-column {
+  --section-heading-color: #9fdac5;
+}
+
+.game-details-container .pitching-column {
+  --section-heading-color: #a8caff;
+}
+
+.game-details-container .metrics-column {
+  --section-heading-color: #e4c58e;
+}
+
+.game-details-container .game-player-column > h3,
+#recap-grid .recap-column > h3 {
+  color: var(--section-heading-color, var(--ink)) !important;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+#recap-grid .game-notes-groups h4 {
+  color: var(--section-heading-color, var(--ink));
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+#recap-grid .game-notes-group-baserunning h4 {
+  color: #c5b5ec;
+}
+
+#recap-grid .game-notes-group-fielding h4 {
+  color: #dfbaaa;
+}
+
+#recap-grid .metric-feature-label {
+  color: var(--section-heading-color);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+#recap-grid .metric-feature > strong {
+  color: #edf1f5;
+}
+
+#recap-grid .metric-feature em {
+  color: #a2afb9;
+}
+
+.comparison-fill.yankees {
+  transform-origin: right center;
+}
+
+.comparison-fill.opponent {
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .comparison-awaiting-reveal .comparison-fill {
+    transform: scaleX(0);
+  }
 }

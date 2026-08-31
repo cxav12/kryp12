@@ -36,11 +36,6 @@ const compactDateFormatter = new Intl.DateTimeFormat("en-US", {
   day: "numeric",
   timeZone: "America/New_York",
 });
-const archiveMonthFormatter = new Intl.DateTimeFormat("en-US", {
-  month: "long",
-  year: "numeric",
-  timeZone: "America/New_York",
-});
 const alertDateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
   day: "numeric",
@@ -58,9 +53,9 @@ const els = {
   subtitle: document.querySelector("#recap-subtitle"),
   scoreboard: document.querySelector("#recap-scoreboard"),
   playerStats: document.querySelector("#game-player-stats"),
+  comparisonHeader: document.querySelector("#team-comparison-header"),
   recent: document.querySelector("#recent-games-grid"),
   recapButtons: document.querySelector("#recap-button-row"),
-  seasonGameSelect: document.querySelector("#season-game-select"),
   grid: document.querySelector("#recap-grid"),
   breakingNews: document.querySelector("#breaking-news"),
   breakingNewsItems: document.querySelector("#breaking-news-items"),
@@ -417,7 +412,7 @@ function renderWinProbabilityChart(feed, game) {
   const yankeesAreHome = Number(game.teams?.home?.team?.id) === TEAM_ID;
   const width = 1400;
   const height = 220;
-  const plot = { left: 44, right: 16, top: 18, bottom: 34 };
+  const plot = { left: 0, right: 0, top: 18, bottom: 34 };
   const plotWidth = width - plot.left - plot.right;
   const plotHeight = height - plot.top - plot.bottom;
   const points = [{ probability: 50, x: plot.left, play: null }].concat(plays.map((play, index) => {
@@ -478,7 +473,7 @@ function renderWinProbabilityChart(feed, game) {
         <svg class="win-probability-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Yankees win probability by inning">
           ${[100, 75, 50, 25, 0].map((value) => `
             <line x1="${plot.left}" y1="${y(value)}" x2="${width - plot.right}" y2="${y(value)}" class="win-probability-grid-line${value === 50 ? " is-midline" : ""}" />
-            <text x="${plot.left - 9}" y="${y(value) + 4}" class="win-probability-axis-label">${value}%</text>
+            <text x="${plot.left}" y="${y(value) - 5}" class="win-probability-axis-label">${value}%</text>
           `).join("")}
           ${inningMarkup}
           <polygon points="${areaPoints}" class="win-probability-area" />
@@ -731,7 +726,7 @@ function playerStatSummary(teamBox, statKey) {
     .join(", ") || "None";
 }
 
-function renderGameNotes(feed, game, teamSwitcher = "") {
+function renderGameNotes(feed, game) {
   const yankeesTeamSide = yankeesSide(game);
   const side = state.playerStatsTeam === "opponent" ? opponentSide(game) : yankeesTeamSide;
   const team = game.teams?.[side]?.team || feed.gameData?.teams?.[side] || {};
@@ -746,9 +741,11 @@ function renderGameNotes(feed, game, teamSwitcher = "") {
   const pitching = teamBox.teamStats?.pitching || {};
   const lineTeam = feed.liveData?.linescore?.teams?.[side] || {};
   const stat = (key, fallback = 0) => statValue(batting, key, fallback);
-  const detailRow = (label, value) => `<p><strong>${escapeHtml(label)}</strong> ${linkedPlayerText(value, feed)}</p>`;
+  const detailRow = (label, value) => `<p><strong>${escapeHtml(label)}</strong> ${linkedPlayerText(Array.isArray(value) ? value.join("; ") : value, feed)}</p>`;
   const shouldShowDetailField = (field) => {
-    const label = String(field?.label || "").toLowerCase();
+    const label = String(field?.label || "").trim().toLowerCase();
+    if (["sac", "sf"].includes(label.replace(/:$/, ""))) return false;
+    if (/\b2[\s-]*out\s+rbi\b/.test(label)) return false;
     return !(
       label.includes("runners left in scoring position")
       && label.includes("2 out")
@@ -799,8 +796,7 @@ function renderGameNotes(feed, game, teamSwitcher = "") {
       const pitches = Number(stats.numberOfPitches ?? stats.pitchesThrown ?? 0);
       return pitches > 0 ? `${player.person.fullName} (${pitches}-${Number(stats.strikes || 0)})` : "";
     })
-    .filter(Boolean)
-    .join(", ");
+    .filter(Boolean);
   const pitcherInheritedRunners = pitcherEntries
     .map((player) => {
       const stats = player.stats.pitching;
@@ -819,36 +815,29 @@ function renderGameNotes(feed, game, teamSwitcher = "") {
     positivePitchingStat("HLD", "holds") ? { label: "HLD", value: playerPitchingSummary("holds") } : null,
     positivePitchingStat("SV", "saves") ? { label: "SV", value: playerPitchingSummary("saves") } : null,
     positivePitchingStat("BS", "blownSaves") ? { label: "BS", value: playerPitchingSummary("blownSaves") } : null,
-    pitchCount > 0 ? { label: "P-S", value: pitcherPitchCounts || `${pitchCount}-${strikeCount}` } : null,
+    pitchCount > 0 ? { label: "P-S", value: pitcherPitchCounts.length ? pitcherPitchCounts : [`${pitchCount}-${strikeCount}`] } : null,
   ].filter(Boolean);
 
-  return `
-    <aside class="game-notes-panel" aria-label="${escapeHtml(`${teamName} box score details`)}">
-      <header class="game-notes-panel-header">
-        <h3>${escapeHtml(teamLabel)} Box Score Details</h3>
-        ${teamSwitcher}
-      </header>
-      <div class="game-notes-groups">
-        ${detailGroup("Batting", [
+  return {
+    heading: `${teamLabel} Box Score Details`,
+    batting: detailGroup("Batting", [
           { label: "2B", value: playerStatSummary(teamBox, "doubles") },
           { label: "3B", value: playerStatSummary(teamBox, "triples") },
           { label: "HR", value: playerStatSummary(teamBox, "homeRuns") },
           { label: "RBI", value: playerStatSummary(teamBox, "rbi") },
           { label: "Team RISP", value: `${stat("hitsRisp")}-${stat("atBatsRisp")}` },
           { label: "Team LOB", value: lineTeam.leftOnBase ?? stat("leftOnBase") },
-        ])}
-        ${detailGroup("Baserunning", [
+        ]),
+    baserunning: detailGroup("Baserunning", [
           { label: "SB", value: playerStatSummary(teamBox, "stolenBases") },
           { label: "CS", value: playerStatSummary(teamBox, "caughtStealing") },
-        ])}
-        ${detailGroup("Fielding", [
+        ]),
+    fielding: detailGroup("Fielding", [
           { label: "DP", value: `${statValue(fielding, "doublePlays", stat("groundIntoDoublePlay"))}; involved: ${playerFieldingSummary("doublePlays")}` },
           { label: "E", value: `${statValue(fielding, "errors", lineTeam.errors ?? 0)}; charged to: ${playerFieldingSummary("errors")}` },
-        ])}
-        ${detailGroup("Pitching", pitchingDetails)}
-      </div>
-    </aside>
-  `;
+        ]),
+    pitching: detailGroup("Pitching", pitchingDetails),
+  };
 }
 
 function renderGameSituation(feed, game) {
@@ -1011,15 +1000,15 @@ function renderGamePlayerStats(feed, yankeesTeamSide, game) {
   const opponentToggleColor = teamPrimaryColor(opponentTeam);
   const teamBox = feed.liveData?.boxscore?.teams?.[selectedSide] || {};
   const players = teamBox.players || {};
-  const battingHeaders = ["Player", "AB", "R", "H", "2B", "3B", "HR", "RBI", "BB", "SO", "AVG"];
-  const pitchingHeaders = ["Player", "IP", "H", "R", "ER", "BB", "SO", "HR", "P", "ERA"];
+  const battingHeaders = ["Player", "AB", "R", "H", "HR", "RBI", "BB", "SO", "AVG"];
+  const pitchingHeaders = ["Player", "IP", "H", "R", "ER", "BB", "SO", "HR", "ERA"];
   const battingEntries = (teamBox.batters || []).map((playerId) => players[`ID${playerId}`]).filter((player) => {
     const stats = player?.stats?.batting || {};
     return player?.person && (Number(stats.plateAppearances || 0) > 0 || Number(stats.atBats || 0) > 0);
   }).map((player) => {
     const stats = player.stats.batting || {};
     const seasonAverage = player.seasonStats?.batting?.avg || "-";
-    const values = [stats.atBats, stats.runs, stats.hits, stats.doubles, stats.triples, stats.homeRuns, stats.rbi, stats.baseOnBalls, stats.strikeOuts, seasonAverage];
+    const values = [stats.atBats, stats.runs, stats.hits, stats.homeRuns, stats.rbi, stats.baseOnBalls, stats.strikeOuts, seasonAverage];
     const battingOrder = String(player.battingOrder || "");
     const isSubstitute = battingOrder.length >= 3 && Number.parseInt(battingOrder.slice(-2), 10) > 0;
     return {
@@ -1042,7 +1031,7 @@ function renderGamePlayerStats(feed, yankeesTeamSide, game) {
   const pitchingEntries = (teamBox.pitchers || []).map((playerId) => players[`ID${playerId}`]).filter((player) => player?.person && player.stats?.pitching).map((player) => {
     const stats = player.stats.pitching || {};
     const seasonEra = player.seasonStats?.pitching?.era || "-";
-    const values = [stats.inningsPitched, stats.hits, stats.runs, stats.earnedRuns, stats.baseOnBalls, stats.strikeOuts, stats.homeRuns, stats.numberOfPitches ?? stats.pitchesThrown, seasonEra];
+    const values = [stats.inningsPitched, stats.hits, stats.runs, stats.earnedRuns, stats.baseOnBalls, stats.strikeOuts, stats.homeRuns, seasonEra];
     return {
       playerId: player.person.id,
       name: player.person.fullName,
@@ -1068,13 +1057,16 @@ function renderGamePlayerStats(feed, yankeesTeamSide, game) {
       </div>
   `;
 
+  els.comparisonHeader.innerHTML = `
+    <div><h2>Team Comparison</h2><p>Side-by-side totals, game-wide metrics, and notes</p></div>
+    ${teamSwitcher}
+  `;
   els.playerStats.innerHTML = `
-    ${renderGameNotes(feed, game, teamSwitcher)}
-    <article class="game-player-column">
+    <article class="game-player-column batting-column">
       <h3>${escapeHtml(selectedTeamName)} Batting</h3>
       ${renderGameStatTable(battingHeaders, battingRows, battingEntries, ["AB", "H", "RBI", "AVG"], `No ${selectedTeamName} batting statistics are available yet.`)}
     </article>
-    <article class="game-player-column">
+    <article class="game-player-column pitching-column">
       <h3>${escapeHtml(selectedTeamName)} Pitching</h3>
       ${renderGameStatTable(pitchingHeaders, pitchingRows, pitchingEntries, ["IP", "H", "ER", "SO"], `No ${selectedTeamName} pitching statistics are available yet.`)}
     </article>
@@ -1318,6 +1310,53 @@ function collectGameMetrics(feed, side) {
   };
 }
 
+const revealedComparisonColumns = new Set();
+let comparisonRevealObserver = null;
+
+function prepareComparisonReveal() {
+  comparisonRevealObserver?.disconnect();
+  const columns = [...els.grid.querySelectorAll(".batting-column, .pitching-column")];
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  columns.forEach((column) => column.classList.remove("comparison-awaiting-reveal"));
+  if (reducedMotion || !("IntersectionObserver" in window)) return;
+
+  comparisonRevealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      const column = target.closest(".recap-column");
+      const key = column.classList.contains("batting-column") ? "batting" : "pitching";
+      comparisonRevealObserver.unobserve(target);
+      column.classList.remove("comparison-awaiting-reveal");
+      if (revealedComparisonColumns.has(key)) return;
+      revealedComparisonColumns.add(key);
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      column.querySelectorAll(".comparison-stat").forEach((row, index) => {
+        row.querySelectorAll(".comparison-fill").forEach((bar) => {
+          bar.animate(
+            [{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }],
+            { duration: 700, delay: index * 45, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "backwards" }
+          );
+        });
+      });
+    });
+  }, { threshold: 0 });
+
+  columns.forEach((column) => {
+    const key = column.classList.contains("batting-column") ? "batting" : "pitching";
+    if (revealedComparisonColumns.has(key)) return;
+    const firstRow = column.querySelector(".comparison-stat");
+    if (!firstRow) return;
+    column.classList.add("comparison-awaiting-reveal");
+    comparisonRevealObserver.observe(firstRow);
+  });
+}
+
+window.addEventListener("pageshow", (event) => {
+  if (!event.persisted) return;
+  revealedComparisonColumns.clear();
+  prepareComparisonReveal();
+});
+
 function comparisonLegend(opponentLabel) {
   return `
     <div class="comparison-legend" aria-label="Team comparison colors">
@@ -1332,60 +1371,50 @@ function comparisonRow(label, yankeesValue, opponentValue, options = {}) {
   const opponentNumber = Number(opponentValue);
   const yankeesMagnitude = Number.isFinite(yankeesNumber) ? Math.max(0, Math.abs(yankeesNumber)) : 0;
   const opponentMagnitude = Number.isFinite(opponentNumber) ? Math.max(0, Math.abs(opponentNumber)) : 0;
-  const total = yankeesMagnitude + opponentMagnitude;
-  const yankeesWidth = total ? (yankeesMagnitude / total) * 100 : 50;
-  const opponentWidth = total ? (opponentMagnitude / total) * 100 : 50;
+  const scale = Math.max(yankeesMagnitude, opponentMagnitude);
+  const yankeesWidth = scale ? (yankeesMagnitude / scale) * 100 : 0;
+  const opponentWidth = scale ? (opponentMagnitude / scale) * 100 : 0;
   const yankeesDisplay = options.yankeesDisplay ?? yankeesValue ?? "-";
   const opponentDisplay = options.opponentDisplay ?? opponentValue ?? "-";
   const opponentLabel = options.opponentLabel || "Opponent";
   return `
-    <div class="comparison-stat">
-      <span class="comparison-stat-label">${escapeHtml(label)}</span>
+    <div class="comparison-stat" role="group" aria-label="${escapeHtml(`${label}: NYY ${yankeesDisplay}; ${opponentLabel} ${opponentDisplay}`)}">
+      <div class="comparison-bars">
+        <div class="comparison-track yankees${yankeesMagnitude > 0 ? " has-value" : ""}">
+          <span class="comparison-fill yankees" style="width:${yankeesWidth.toFixed(1)}%"></span>
+          <strong>${escapeHtml(yankeesDisplay)}</strong>
+        </div>
+        <span class="comparison-stat-label">${escapeHtml(label)}</span>
+        <div class="comparison-track opponent${opponentMagnitude > 0 ? " has-value" : ""}">
+          <span class="comparison-fill opponent" style="width:${opponentWidth.toFixed(1)}%"></span>
+          <strong>${escapeHtml(opponentDisplay)}</strong>
+        </div>
+      </div>
       ${(options.yankeesDetail || options.opponentDetail) ? `
         <div class="comparison-stat-details">
           <small>${escapeHtml(options.yankeesDetail || "No tracked data")}</small>
           <small>${escapeHtml(options.opponentDetail || "No tracked data")}</small>
         </div>
       ` : ""}
-      <div class="comparison-bars" aria-label="${escapeHtml(`${label}: NYY ${yankeesDisplay}; ${opponentLabel} ${opponentDisplay}`)}">
-        <div class="comparison-track">
-          <span class="comparison-fill yankees" style="width:${yankeesWidth.toFixed(1)}%"><strong>${escapeHtml(yankeesDisplay)}</strong></span>
-          <span class="comparison-fill opponent" style="width:${opponentWidth.toFixed(1)}%"><strong>${escapeHtml(opponentDisplay)}</strong></span>
-        </div>
-      </div>
     </div>
   `;
 }
 
-function tablerMetricIcon(name) {
-  const paths = {
-    "ruler-measure": '<path d="M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75"/><path d="M9 12v2M6 12v3M12 12v3M18 12v3M15 12v2M3 3v4M3 5h18M21 3v4"/>',
-    gauge: '<path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0M13.41 10.59l2.59 -2.59M7 12a5 5 0 0 1 5 -5"/>',
-    "ball-baseball": '<path d="M5.636 18.364a9 9 0 1 0 12.728 -12.728a9 9 0 0 0 -12.728 12.728M12.495 3.02a9 9 0 0 1 -9.475 9.475M20.98 11.505a9 9 0 0 0 -9.475 9.475M9 9l2 2M13 13l2 2M11 7l2 1M7 11l1 2M16 11l1 2M11 16l2 1"/>',
-    trophy: '<path d="M8 21h8M12 17v4M7 4h10M17 4v8a5 5 0 0 1 -10 0v-8M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>',
-    scale: '<path d="M7 20h10M6 6l6 -1l6 1M12 3v17M9 12l-3 -6l-3 6a3 3 0 0 0 6 0M21 12l-3 -6l-3 6a3 3 0 0 0 6 0"/>',
-    "info-circle": '<path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0M12 9h.01M11 12h1v4h1"/>',
-  };
-  const iconPaths = paths[name];
-  if (!iconPaths) return "";
-  return `<svg class="metric-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPaths}</svg>`;
-}
-
-function metricFeature(label, value, unit, detail, icon) {
+function metricFeature(label, value, unit, detail) {
   return `
     <div class="metric-feature">
-      <span class="metric-feature-label">${tablerMetricIcon(icon)}${escapeHtml(label)}</span>
+      <span class="metric-feature-label">${escapeHtml(label)}</span>
       <strong class="stat-number">${escapeHtml(value)}${unit ? ` <small>${escapeHtml(unit)}</small>` : ""}</strong>
       <em>${escapeHtml(detail)}</em>
     </div>
   `;
 }
 
-function gameNoteFeature(label, detail, icon) {
+function gameNoteFeature(label, detail) {
   const lines = Array.isArray(detail) ? detail : [detail];
   return `
     <div class="metric-feature game-note-feature">
-      <span class="metric-feature-label">${tablerMetricIcon(icon)}${escapeHtml(label)}</span>
+      <span class="metric-feature-label">${escapeHtml(label)}</span>
       <div class="game-note-lines">
         ${lines.map((line) => {
           const text = String(line);
@@ -1473,7 +1502,6 @@ function renderRecapColumn(title, body, className = "") {
   return `
     <article class="recap-column${className ? ` ${className}` : ""}">
       <h3>${escapeHtml(title)}</h3>
-      <div class="recap-divider"></div>
       <div class="comparison-list">${body}</div>
     </article>
   `;
@@ -1530,8 +1558,8 @@ function renderRecapButtons(games, selectedGamePk) {
     return `
       <button class="recap-selector-button ${tone}${isSelected ? " active" : ""}" type="button" data-game-pk="${escapeHtml(game.gamePk)}">
         <span class="selector-date">${escapeHtml(compactDate(game.officialDate))}</span>
-        <span class="selector-result">${escapeHtml(resultLetter(game))}</span>
         <span class="selector-final-score">
+          <span class="selector-result">${escapeHtml(resultLetter(game))}</span>
           <img src="${escapeHtml(teamLogoUrl(yankees.team))}" alt="" aria-hidden="true" />
           <b>NYY</b>
           <strong>${escapeHtml(yankees.score ?? "-")}</strong>
@@ -1554,44 +1582,15 @@ function renderRecapButtons(games, selectedGamePk) {
       <button class="recap-selector-button ${live ? "in-progress" : "upcoming"}${isSelected ? " active" : ""}" type="button" data-game-pk="${escapeHtml(game.gamePk)}" aria-label="${live ? "Live" : "Upcoming"} game ${escapeHtml(compactDate(game.officialDate))} ${escapeHtml(matchup)} ${escapeHtml(timeLabel)}">
         <img class="selector-opponent-logo" src="${escapeHtml(teamLogoUrl(opponent))}" alt="" aria-hidden="true" />
         <span class="selector-date">${escapeHtml(compactDate(game.officialDate))}</span>
-        <span class="selector-score">${escapeHtml(matchup)}</span>
-        <span class="selector-time">${escapeHtml(timeLabel)}</span>
+        <span class="selector-matchup-row">
+          <span class="selector-score">${escapeHtml(matchup)}</span>
+          <span class="selector-time">${escapeHtml(timeLabel)}</span>
+        </span>
       </button>
     `;
   }).join("");
 
   els.recapButtons.innerHTML = upcomingItems + completedButtons;
-}
-
-function renderSeasonArchive(games, selectedGamePk) {
-  if (!els.seasonGameSelect) return;
-  if (!games.length) {
-    els.seasonGameSelect.innerHTML = `<option value="">Games Archive unavailable</option>`;
-    els.seasonGameSelect.disabled = true;
-    return;
-  }
-
-  const monthGroups = new Map();
-  games.forEach((game) => {
-    const yankees = teamEntry(game, yankeesSide(game));
-    const opponentEntry = teamEntry(game, opponentSide(game));
-    const opponent = opponentEntry.team;
-    const month = archiveMonthFormatter.format(new Date(game.gameDate));
-    const location = isYankeesHome(game) ? "vs" : "at";
-    const label = `${niceDate(game.officialDate)} · ${location} ${teamAbbreviation(opponent)} · ${resultLetter(game)} ${yankees.score ?? "-"}-${opponentEntry.score ?? "-"}`;
-    if (!monthGroups.has(month)) monthGroups.set(month, []);
-    monthGroups.get(month).push(`<option value="${escapeHtml(game.gamePk)}">${escapeHtml(label)}</option>`);
-  });
-
-  els.seasonGameSelect.innerHTML = `
-    <option value="">Games Archive</option>
-    ${[...monthGroups.entries()].map(([month, options]) => `
-      <optgroup label="${escapeHtml(month)}">${options.join("")}</optgroup>
-    `).join("")}
-  `;
-  els.seasonGameSelect.disabled = false;
-  const selectedValue = String(selectedGamePk || "");
-  els.seasonGameSelect.value = games.some((game) => String(game.gamePk) === selectedValue) ? selectedValue : "";
 }
 
 function syncGameScoresFromFeed(game, feed) {
@@ -1622,7 +1621,7 @@ function finalizeLiveGame(game) {
 
   renderRecentGames(state.recentGames, game.gamePk);
   renderRecapButtons(state.recentGames, game.gamePk);
-  renderSeasonArchive(state.seasonGames, game.gamePk);
+
 }
 
 function probablePitcherForSide(game, feed, side) {
@@ -1737,6 +1736,7 @@ function renderPregamePreview(game, feed) {
     </div>
   `;
   els.playerStats.innerHTML = "";
+  els.comparisonHeader.innerHTML = "";
   els.playerStats.setAttribute("aria-label", "");
   els.grid.innerHTML = "";
 }
@@ -1971,10 +1971,19 @@ function renderRecap(game, feed) {
     ${renderWinProbabilityChart(feed, game)}
     ${renderGameSituation(feed, game)}
   `;
+  const metricsPanel = renderRecapColumn("Metrics and Game Notes", [
+      metricFeature("Longest Home Run", gameMetrics.longestHomeRun ? Math.round(gameMetrics.longestHomeRun.value) : "-", gameMetrics.longestHomeRun ? "FT" : "", gameMetrics.longestHomeRun ? `${gameMetrics.longestHomeRun.player} (${gameMetrics.longestHomeRun.team}) - ${gameMetrics.longestHomeRun.detail}` : "No tracked home run"),
+      metricFeature("Max Exit Velo", gameMetrics.maxExit ? gameMetrics.maxExit.value.toFixed(1) : "-", "MPH", gameMetrics.maxExit ? `${gameMetrics.maxExit.player} (${gameMetrics.maxExit.team}) - ${gameMetrics.maxExit.detail}` : "No tracked batted balls"),
+      metricFeature("Max Pitch Velo", gameMetrics.maxPitch ? gameMetrics.maxPitch.value.toFixed(1) : "-", "MPH", gameMetrics.maxPitch ? `${gameMetrics.maxPitch.player} (${gameMetrics.maxPitch.team}) - ${gameMetrics.maxPitch.detail}` : "No tracked pitches"),
+
+      gameNoteFeature("ABS Challenges", absChallenges),
+      gameNoteFeature("Game Information", gameInformation),
+      ...milestoneNotes.map((note) => gameNoteFeature("Player Milestone", note)),
+    ].join(""), "metrics-column");
   renderGamePlayerStats(feed, side, game);
+  const details = renderGameNotes(feed, game);
 
   els.grid.innerHTML = [
-    `<header class="recap-grid-heading"><h2>Team Comparison</h2><p>Side-by-side totals, game-wide metrics, and notes</p></header>`,
     renderRecapColumn("Hitting", [
       comparisonLegend(opponentAbbr),
       ...[
@@ -1983,27 +1992,22 @@ function renderRecap(game, feed) {
       ].map(([label, key]) => comparisonRow(label, statValue(yankeesComparison.batting, key), statValue(opponentComparison.batting, key), comparisonOptions)),
       comparisonRow("Team LOB", statValue(yankeesComparison.line, "leftOnBase", statValue(yankeesComparison.batting, "leftOnBase")), statValue(opponentComparison.line, "leftOnBase", statValue(opponentComparison.batting, "leftOnBase")), comparisonOptions),
       comparisonRow("Stolen Bases", statValue(yankeesComparison.batting, "stolenBases", 0), statValue(opponentComparison.batting, "stolenBases", 0), comparisonOptions),
-      comparisonRow("Caught Stealing", statValue(yankeesComparison.batting, "caughtStealing", 0), statValue(opponentComparison.batting, "caughtStealing", 0), comparisonOptions),
       comparisonRow("GIDP", statValue(yankeesComparison.batting, "groundIntoDoublePlay"), statValue(opponentComparison.batting, "groundIntoDoublePlay"), comparisonOptions),
-    ].join("")),
+      `<div class="comparison-details game-notes-groups">${details.batting}</div>`,
+    ].join(""), "batting-column"),
     renderRecapColumn("Pitching", [
       comparisonLegend(opponentAbbr),
       ...[
         ["Strikeouts", "strikeOuts"], ["Walks", "baseOnBalls"], ["Hits Allowed", "hits"], ["HR Allowed", "homeRuns"],
         ["Earned Runs", "earnedRuns"], ["Ground Balls", "groundOuts"], ["Fly Balls", "airOuts"],
-        ["Innings", "inningsPitched"], ["Pitches", "numberOfPitches"],
+        ["Pitches", "numberOfPitches"],
       ].map(([label, key]) => comparisonRow(label, statValue(yankeesComparison.pitching, key), statValue(opponentComparison.pitching, key), comparisonOptions)),
       comparisonRow("Strike %", yankeesComparison.strikePercentage, opponentComparison.strikePercentage, { ...comparisonOptions, yankeesDisplay: yankeesComparison.strikePercentage ? `${yankeesComparison.strikePercentage}%` : "-", opponentDisplay: opponentComparison.strikePercentage ? `${opponentComparison.strikePercentage}%` : "-" }),
-    ].join("")),
-    renderRecapColumn("Metrics and Game Notes", [
-      metricFeature("Longest Home Run", gameMetrics.longestHomeRun ? Math.round(gameMetrics.longestHomeRun.value) : "-", gameMetrics.longestHomeRun ? "FT" : "", gameMetrics.longestHomeRun ? `${gameMetrics.longestHomeRun.player} (${gameMetrics.longestHomeRun.team}) - ${gameMetrics.longestHomeRun.detail}` : "No tracked home run", "ruler-measure"),
-      metricFeature("Max Exit Velo", gameMetrics.maxExit ? gameMetrics.maxExit.value.toFixed(1) : "-", "MPH", gameMetrics.maxExit ? `${gameMetrics.maxExit.player} (${gameMetrics.maxExit.team}) - ${gameMetrics.maxExit.detail}` : "No tracked batted balls", "gauge"),
-      metricFeature("Max Pitch Velo", gameMetrics.maxPitch ? gameMetrics.maxPitch.value.toFixed(1) : "-", "MPH", gameMetrics.maxPitch ? `${gameMetrics.maxPitch.player} (${gameMetrics.maxPitch.team}) - ${gameMetrics.maxPitch.detail}` : "No tracked pitches", "ball-baseball"),
-      ...milestoneNotes.map((note) => gameNoteFeature("Player Milestone", note, "trophy")),
-      gameNoteFeature("ABS Challenges", absChallenges, "scale"),
-      gameNoteFeature("Game Information", gameInformation, "info-circle"),
-    ].join(""), "metrics-column"),
+      `<div class="comparison-details game-notes-groups">${details.pitching}<div class="baserunning-fielding-row">${details.baserunning}${details.fielding}</div></div>`,
+    ].join(""), "pitching-column"),
+    metricsPanel,
   ].join("");
+  prepareComparisonReveal();
 }
 
 function stopLiveRefresh() {
@@ -2081,7 +2085,18 @@ async function init() {
     ]);
     await divisionRanks;
     const liveGame = isLiveGame(todayGame) ? todayGame : null;
-    const selectedGame = HomeGameSelection.featuredGame({
+    const requestedGamePk = Number(new URLSearchParams(window.location.search).get("game"));
+    let archivedGame = seasonGames.find((game) => Number(game.gamePk) === requestedGamePk);
+    if (!archivedGame && Number.isSafeInteger(requestedGamePk) && requestedGamePk > 0) {
+      const archiveSchedule = await getJson("/schedule", { sportId: 1, gamePk: requestedGamePk, hydrate: "team,venue,linescore" });
+      archivedGame = (archiveSchedule.dates || []).flatMap((date) => date.games || []).find((game) =>
+        Number(game.gamePk) === requestedGamePk
+        && game.status?.abstractGameState === "Final"
+        && [game.teams?.home?.team?.id, game.teams?.away?.team?.id].some((id) => Number(id) === TEAM_ID)
+      );
+      if (!archivedGame) throw new Error("The requested archived Yankees game is unavailable.");
+    }
+    const selectedGame = archivedGame || HomeGameSelection.featuredGame({
       todayGame,
       recentGames: games,
       upcomingGames,
@@ -2094,7 +2109,7 @@ async function init() {
     state.upcomingGames = upcomingGames;
     renderRecentGames(games, selectedGame?.gamePk, { includeLatest: selectedIsCurrent });
     renderRecapButtons(games, selectedGame?.gamePk);
-    renderSeasonArchive(state.seasonGames, selectedGame?.gamePk);
+
     loadBreakingNews(todayGame, upcomingGames, transactions).catch(() => renderBreakingNews([]));
     if (!selectedGame) throw new Error("No Yankees games found.");
     await loadGameRecap(selectedGame, { live: isLiveGame(selectedGame) });
@@ -2142,7 +2157,7 @@ async function selectRecapGame(game) {
   stopLiveRefresh();
   renderRecentGames(state.recentGames, game.gamePk, { includeLatest: game.status?.abstractGameState !== "Final" });
   renderRecapButtons(state.recentGames, game.gamePk);
-  renderSeasonArchive(state.seasonGames, game.gamePk);
+
 
   try {
     await loadGameRecap(game, { live: isLiveGame(game) });
@@ -2165,16 +2180,8 @@ async function handleRecapButtonClick(event) {
   if (game) await selectRecapGame(game);
 }
 
-async function handleSeasonGameChange(event) {
-  const gamePk = Number(event.currentTarget.value);
-  if (!gamePk) return;
-  const game = state.seasonGames.find((item) => Number(item.gamePk) === gamePk);
-  if (game) await selectRecapGame(game);
-}
-
 els.recent.addEventListener("click", handleRecapButtonClick);
 els.recapButtons.addEventListener("click", handleRecapButtonClick);
-els.seasonGameSelect?.addEventListener("change", handleSeasonGameChange);
 
 let winProbabilityTooltip = null;
 
@@ -2233,7 +2240,7 @@ els.scoreboard.addEventListener("focusout", (event) => {
   const point = event.target.closest?.("[data-win-probability-tooltip]");
   if (point) hideWinProbabilityTooltip();
 });
-els.playerStats.addEventListener("click", (event) => {
+els.comparisonHeader.addEventListener("click", (event) => {
   const button = event.target.closest("[data-player-stats-team]");
   if (!button || !state.currentFeed || !state.selectedGame) return;
   state.playerStatsTeam = button.dataset.playerStatsTeam;

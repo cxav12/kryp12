@@ -197,8 +197,8 @@ function statusLabel(game) {
   const status = game.status?.abstractGameState;
   if (status === "Final") {
     const result = yankeesResult(game);
-    if (result === "win") return "Final · Win";
-    if (result === "loss") return "Final · Loss";
+    if (result === "win") return "Win";
+    if (result === "loss") return "Loss";
     return "Final";
   }
   if (status === "Live") {
@@ -245,7 +245,7 @@ function renderGame(game) {
       <i aria-hidden="true">·</i>
       ${teamRecordMarkup(home)}
     </div>
-    <div class="game-status">${statusLabel(game)}</div>
+    <div class="game-status"><span>${statusLabel(game)}${game.status?.abstractGameState === "Final" ? ` <span aria-hidden="true">·</span> <a class="game-stats-link" href="../?game=${encodeURIComponent(game.gamePk)}">View Stats</a>` : ""}</span></div>
   `;
   return card;
 }

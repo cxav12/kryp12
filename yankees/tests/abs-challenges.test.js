@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { events } = require("./abs-challenges.js");
+const { events } = require("../assets/js/abs-challenges.js");
 
 function feedFor(player) {
   return {

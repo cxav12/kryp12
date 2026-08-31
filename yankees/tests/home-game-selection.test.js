@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { featuredGame } = require("./home-game-selection.js");
+const { featuredGame } = require("../assets/js/home-game-selection.js");
 
 const now = new Date("2026-08-23T17:00:00Z");
 const game = (gamePk, abstractGameState, gameDate) => ({

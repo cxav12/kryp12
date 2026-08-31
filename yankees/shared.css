@@ -1,4 +1,5 @@
 :root {
+  --site-content-inset: 24px;
   color-scheme: dark;
   --yankees-silver: #c7ccd0;
   --swatch-mid: #5d656b;
@@ -1131,8 +1132,6 @@ b {
 /* Neutral MLB Gameday-inspired surface theme. */
 .recent-game-button,
 .last-game-card,
-.game-player-column,
-.recap-column,
 .transaction-card,
 .detail-card,
 .detail-quick-table-shell,
@@ -1147,7 +1146,6 @@ b {
   background-image: none !important;
 }
 
-.game-player-column h3,
 .detail-quick-table th,
 .player-stats-table th,
 .player-stats-table th:first-child {
@@ -1286,4 +1284,52 @@ small {
     font-size: var(--text-small);
   }
 
+}
+
+/* Main panel edges share one inset across every Yankees route and breakpoint.
+   Compact controls and nested cards retain their own internal spacing. */
+:is(.site-shell, .app-shell) :is(
+  .topbar,
+  .page-intro-card,
+  .site-footer,
+  .legal-disclaimer-card,
+  .contact-card,
+  .schedule-toolbar,
+  .stats-toolbar,
+  .league-panel,
+  .detail-profile-card,
+  .detail-card,
+  .player-search-panel,
+  .team-card
+),
+.overview-body .panel {
+  padding-inline: var(--site-content-inset);
+}
+
+:is(.site-shell, .app-shell) .contact-form {
+  max-width: none;
+}
+
+:is(.site-shell, .app-shell) .calendar-shell {
+  padding-inline: var(--site-content-inset);
+}
+
+:is(.site-shell, .app-shell) .mobile-stat-list {
+  padding-inline: var(--site-content-inset);
+}
+
+@media (min-width: 768px) {
+  :is(.site-shell, .app-shell) .player-stats-table tr > :first-child {
+    padding-left: var(--site-content-inset);
+  }
+
+  :is(.site-shell, .app-shell) .player-stats-table tr > :last-child {
+    padding-right: var(--site-content-inset);
+  }
+}
+
+@media (max-width: 767.98px) {
+  :is(.site-shell, .app-shell) .detail-profile-card .detail-header {
+    padding-inline: 0;
+  }
 }

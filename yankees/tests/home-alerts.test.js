@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { build, gameStatusAlert, transactionAlert, weatherAlert } = require("./home-alerts.js");
+const { build, gameStatusAlert, transactionAlert, weatherAlert } = require("../assets/js/home-alerts.js");
 
 test("creates alerts for important roster moves", () => {
   assert.equal(transactionAlert({ date: "2026-08-23", description: "Placed Aaron Judge on the 10-day injured list." }).label, "Injured List");

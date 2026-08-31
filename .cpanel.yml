@@ -3,5 +3,6 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/horacqou/public_html/
     - /bin/cp -f index.html $DEPLOYPATH
+    - /bin/cp -Rf assets $DEPLOYPATH
     - /bin/cp -Rf palworld $DEPLOYPATH
     - /bin/cp -Rf yankees $DEPLOYPATH

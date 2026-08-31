@@ -1,12 +1,63 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Coming Soon</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="KRYP12 — projects, tools and interests. Explore Yankees stats and analysis, Palworld guides, and more.">
+  <meta name="theme-color" content="#0b0d0f">
+  <title>KRYP12 — Projects, Tools &amp; Interests</title>
+  <link rel="stylesheet" href="/assets/landing/landing.css?v=1">
 </head>
 <body>
-  <h1>Coming Soon</h1>
-  <p>This site is currently under construction.</p>
+  <main class="hub">
+    <header class="hub-brand">
+      <h1>KRYP12</h1>
+      <p>Projects <span aria-hidden="true">•</span> Tools <span aria-hidden="true">•</span> Interests</p>
+      <span class="brand-rule" aria-hidden="true"></span>
+    </header>
+    <!-- Add another list item to extend the grid. See LANDING.md. -->
+    <ul class="project-grid" aria-label="Projects">
+      <li>
+        <a class="project-card project-card--yankees" href="/yankees/" aria-labelledby="yankees-title" aria-describedby="yankees-description">
+          <div class="project-art" aria-hidden="true">
+            <img class="project-logo yankees-logo" src="/yankees/assets/new-york-yankees.svg" alt="" width="500" height="500" decoding="async">
+          </div>
+          <div class="project-copy">
+            <span class="project-category">Sports</span>
+            <h2 id="yankees-title">New York Yankees</h2>
+            <p id="yankees-description">Stats, games, standings and analysis.</p>
+            <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="project-card project-card--palworld" href="/palworld/" aria-labelledby="palworld-title" aria-describedby="palworld-description">
+          <div class="project-art" aria-hidden="true">
+            <img class="project-logo palworld-logo" src="/palworld/assets/palworld-logo.png" alt="" width="2400" height="1500" decoding="async">
+          </div>
+          <div class="project-copy">
+            <span class="project-category">Gaming</span>
+            <h2 id="palworld-title">Palworld</h2>
+            <p id="palworld-description">Guides, resources, builds and calculators.</p>
+            <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <article class="project-card project-card--soon" aria-labelledby="soon-title">
+          <div class="project-art" aria-hidden="true">
+            <svg class="soon-icon" viewBox="0 0 64 64"><path d="M27 39 18 30C25 15 37 9 54 10c1 17-5 29-20 36l-9-9m-7-7-9 1 7-13 15-2M34 46l-1 9 13-7 2-15M18 43c-6 0-9 4-10 12 8-1 12-4 12-10"/><circle cx="40" cy="24" r="5"/></svg>
+          </div>
+          <div class="project-copy">
+            <span class="project-category">On the horizon</span>
+            <h2 id="soon-title">More Coming Soon</h2>
+            <p>More projects in the works.</p>
+            <span class="soon-status"><span aria-hidden="true"></span> In progress</span>
+          </div>
+        </article>
+      </li>
+    </ul>
+    <footer class="hub-footer"><span>KRYP12</span><span>A few interests. One place.</span></footer>
+  </main>
 </body>
 </html>

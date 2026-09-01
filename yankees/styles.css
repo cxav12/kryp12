@@ -2753,6 +2753,18 @@ a.matchup-player:focus-visible strong {
   margin-top: 0;
 }
 
+.game-details-container :is(.game-player-column, .recap-column) {
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  padding: 24px;
+}
+
+.game-details-container .game-player-column > h3 {
+  border-bottom: 0;
+  padding: 0 0 14px;
+}
+
 /* Keep section content on one shared inset, including narrower layouts. */
 .selected-recap-section > .page-intro-card,
 .breaking-news,
@@ -2767,11 +2779,6 @@ a.matchup-player:focus-visible strong {
 
 .linescore-table tr > :first-child {
   padding-left: 0;
-}
-
-.game-details-container .recap-column,
-.game-details-container .game-player-column > h3 {
-  padding-inline: 0;
 }
 
 .game-details-container .game-player-table tr > :first-child {

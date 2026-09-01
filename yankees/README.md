@@ -24,7 +24,7 @@ Then visit `http://localhost:8080/yankees/`.
 
 ## GitHub Pages
 
-All tracked files in this directory are static deployment assets. The primary routes are:
+GitHub Pages serves the static pages and assets in this directory. The `tests/` directory is for development; PHP contact handlers require a PHP server and are currently disabled. The primary routes are:
 
 - `/yankees/`
 - `/yankees/player-profile/`

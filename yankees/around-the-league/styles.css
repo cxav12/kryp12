@@ -989,6 +989,7 @@ a.leader-identity:focus-visible .leader-name {
 
   .scores-head .scores-date-picker,
   .standings-head .standings-switcher {
+    flex: 0 1 auto;
     width: 100%;
     margin-left: 0;
   }

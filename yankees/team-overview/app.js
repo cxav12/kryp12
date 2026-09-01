@@ -51,6 +51,9 @@ const state = {
   fielding: new Map(),
   qualityStarts: new Map(),
   ranks: new Map(),
+  previousRanks: new Map(),
+  trendStatus: "loading",
+  trendDate: "",
 };
 
 const api = {
@@ -81,7 +84,7 @@ const api = {
     return this.get("/people", {
       personIds: personIds.join(","),
       hydrate: `stats(group=[pitching],type=[gameLog],season=${SEASON})`,
-      fields: "people,id,stats,splits,stat,gamesStarted,outs,earnedRuns,team,id,name",
+      fields: "people,id,stats,splits,date,stat,gamesStarted,outs,earnedRuns,team,id,name",
     });
   },
 };
@@ -111,6 +114,7 @@ function rankTone(rank, total = 30) {
 }
 
 function statNumber(value) {
+  if (value === null || value === undefined || value === "") return null;
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
 }
@@ -122,15 +126,15 @@ function formatStat(key, value) {
   return String(value);
 }
 
-function storeStats(group, data) {
-  const target = group === "hitting" ? state.hitting : group === "pitching" ? state.pitching : state.fielding;
+function storeStats(group, data, snapshot = state) {
+  const target = snapshot[group];
   const splits = data.stats?.[0]?.splits || [];
   splits.forEach((split) => {
     target.set(split.team.id, split.stat || {});
   });
 }
 
-function storeStandings(data) {
+function storeStandings(data, snapshot = state) {
   (data.records || []).forEach((division) => {
     (division.teamRecords || []).forEach((record) => {
       const teamId = record.team?.id;
@@ -141,7 +145,7 @@ function storeStandings(data) {
       const losses = record.leagueRecord?.losses ?? record.losses ?? "-";
       const splitRecords = new Map((record.records?.splitRecords || []).map((split) => [split.type, split]));
       const gamesPlayed = Number(wins) + Number(losses);
-      state.standings.set(teamId, {
+      snapshot.standings.set(teamId, {
         wins,
         losses,
         winningPercentage: gamesPlayed > 0 ? (Number(wins) / gamesPlayed).toFixed(3) : null,
@@ -156,41 +160,36 @@ function storeStandings(data) {
   });
 }
 
-function metricValue(teamId, metric) {
-  if (metric.group === "standings") return state.standings.get(teamId)?.[metric.key];
-  if (metric.group === "qualityStarts") return state.qualityStarts.get(teamId) ?? 0;
+function metricValue(teamId, metric, snapshot = state) {
+  if (metric.group === "standings") return snapshot.standings.get(teamId)?.[metric.key];
+  if (metric.group === "qualityStarts") return snapshot.qualityStarts.get(teamId);
   if (metric.key === "runDifferential") {
-    const runs = statNumber(state.hitting.get(teamId)?.runs);
-    const runsAllowed = statNumber(state.pitching.get(teamId)?.runs);
+    const runs = statNumber(snapshot.hitting.get(teamId)?.runs);
+    const runsAllowed = statNumber(snapshot.pitching.get(teamId)?.runs);
     return runs === null || runsAllowed === null ? null : runs - runsAllowed;
   }
   const stats = metric.group === "hitting"
-    ? state.hitting.get(teamId)
-    : metric.group === "fielding" ? state.fielding.get(teamId) : state.pitching.get(teamId);
+    ? snapshot.hitting.get(teamId)
+    : metric.group === "fielding" ? snapshot.fielding.get(teamId) : snapshot.pitching.get(teamId);
   if (metric.key === "runsAllowed") return stats?.runs;
+  // Historical fielding splits omit this defensive rate; pitching splits
+  // expose the same opponent caught-stealing statistic.
+  if (metric.key === "caughtStealingPercentage") return stats?.caughtStealingPercentage ?? snapshot.pitching.get(teamId)?.caughtStealingPercentage;
   return stats?.[metric.key];
 }
 
-function metricRankValue(teamId, metric) {
-  const value = metricValue(teamId, metric);
+function metricRankValue(teamId, metric, snapshot = state) {
+  const value = metricValue(teamId, metric, snapshot);
   if (!metric.record) return statNumber(value);
   const wins = statNumber(value?.wins);
   const losses = statNumber(value?.losses);
   return wins === null || losses === null || wins + losses === 0 ? null : wins / (wins + losses);
 }
 
-function calculateRanks() {
+function calculateRanks(snapshot = state) {
   metricConfig.forEach((metric) => {
-    const ranked = state.teams
-      .map((team) => ({ teamId: team.id, value: metricRankValue(team.id, metric) }))
-      .filter((item) => item.value !== null)
-      .sort((a, b) => metric.rank === "asc" ? a.value - b.value : b.value - a.value);
-
-    const ranks = new Map();
-    ranked.forEach((item, index) => {
-      ranks.set(item.teamId, index + 1);
-    });
-    state.ranks.set(metric.key, ranks);
+    const entries = state.teams.map((team) => ({ teamId: team.id, value: metricRankValue(team.id, metric, snapshot) }));
+    snapshot.ranks.set(metric.key, RankTrends.ranks(entries, metric.rank));
   });
 }
 
@@ -224,6 +223,18 @@ function renderMetric(teamId, metric) {
   const rankLabel = node.querySelector(".metric-value small");
   rankLabel.textContent = rank ? ordinal(rank) : "-";
   rankLabel.classList.add(rankTone(rank, state.ranks.get(metric.key)?.size || 30));
+  const previous = state.previousRanks.get(metric.key)?.get(teamId);
+  const change = RankTrends.change(rank, previous);
+  const trend = document.createElement("i");
+  trend.className = `metric-trend trend-${change}`;
+  trend.textContent = { up: "↑", down: "↓", same: "–", unavailable: "?" }[change];
+  const description = change === "unavailable"
+    ? (state.trendStatus === "loading" ? "Loading 10-game ranking comparison" : "10-game ranking comparison unavailable")
+    : `${change === "same" ? "Unchanged" : change === "up" ? "Improved" : "Worsened"} MLB ranking: ${ordinal(previous)} to ${ordinal(rank)}, compared with ${state.trendDate} (before the last 10 completed games)`;
+  trend.title = description;
+  trend.setAttribute("role", "img");
+  trend.setAttribute("aria-label", description);
+  rankLabel.append(trend);
   return node;
 }
 
@@ -245,6 +256,17 @@ function renderCard(target, teamId) {
     </div>
   `;
 
+  const legend = document.createElement("p");
+  legend.className = "rank-trend-legend";
+  legend.innerHTML = '<span>MLB rank · last 10 games:</span> <span class="trend-up">↑ Better</span> <span class="trend-down">↓ Worse</span> <span class="trend-same">– Same</span>';
+  if (state.trendStatus !== "ready" || metricConfig.some((metric) => !state.previousRanks.get(metric.key)?.has(teamId))) {
+    const note = document.createElement("span");
+    note.textContent = state.trendStatus === "loading" ? "· Loading…" : "· ? Unavailable";
+    legend.append(note);
+  }
+  legend.title = state.trendDate ? `Compared with MLB rankings through ${state.trendDate}, before the Yankees' last 10 completed regular-season games. Tied values share a rank.` : "A historical baseline is required; missing data is not shown as unchanged.";
+  header.append(legend);
+
   const list = document.createElement("section");
   list.className = "metric-groups";
   metricCategories.forEach((category) => {
@@ -265,19 +287,54 @@ function renderCard(target, teamId) {
   target.append(header, list);
 }
 
-function storeQualityStarts(candidates, logs) {
+function storeQualityStarts(candidates, logs, snapshot = state, endDate = null) {
   const candidateTeam = new Map((candidates.stats?.[0]?.splits || [])
     .map((split) => [Number(split.player?.id), split.team?.id]));
-  state.teams.forEach((team) => state.qualityStarts.set(team.id, 0));
+  state.teams.forEach((team) => snapshot.qualityStarts.set(team.id, 0));
   (logs.people || []).forEach((person) => {
     (person.stats?.[0]?.splits || []).forEach((split) => {
+      if (endDate && (!split.date || split.date > endDate)) return;
       if (statNumber(split.stat?.gamesStarted) < 1
         || statNumber(split.stat?.outs) < 18
         || statNumber(split.stat?.earnedRuns) > 3) return;
       const teamId = split.team?.id || candidateTeam.get(Number(person.id));
-      if (teamId) state.qualityStarts.set(teamId, (state.qualityStarts.get(teamId) || 0) + 1);
+      if (teamId) snapshot.qualityStarts.set(teamId, (snapshot.qualityStarts.get(teamId) || 0) + 1);
     });
   });
+}
+
+async function loadRankTrends(candidates, logs) {
+  try {
+    const schedule = await api.get("/schedule", { sportId: 1, teamId: TEAM_ID, season: SEASON, gameType: "R" });
+    const baseline = RankTrends.cutoff((schedule.dates || []).flatMap((day) => day.games || []));
+    if (!baseline) throw new Error("No exact 10-game date boundary available");
+    const historical = { hitting: new Map(), pitching: new Map(), fielding: new Map(), standings: new Map(), qualityStarts: new Map(), ranks: new Map() };
+    const [hitting, pitching, fielding, standings] = await Promise.all([
+      ...["hitting", "pitching", "fielding"].map((group) => api.get("/teams/stats", {
+        stats: "byDateRange", group, sportIds: 1, gameType: "R", season: SEASON,
+        startDate: `${SEASON}-01-01`, endDate: baseline.date,
+      })),
+      api.get("/standings", { leagueId: "103,104", season: SEASON, standingsTypes: "regularSeason", date: baseline.date }),
+    ]);
+    storeStats("hitting", hitting, historical);
+    storeStats("pitching", pitching, historical);
+    storeStats("fielding", fielding, historical);
+    storeStandings(standings, historical);
+    const standing = historical.standings.get(TEAM_ID);
+    if (!standing || Number(standing.wins) + Number(standing.losses) !== baseline.expectedGames) throw new Error("Historical game count does not match the comparison window");
+    storeQualityStarts(candidates, logs, historical, baseline.date);
+    calculateRanks(historical);
+    // Incomplete league data cannot support a trustworthy MLB rank comparison.
+    metricConfig.forEach((metric) => {
+      if (historical.ranks.get(metric.key)?.size !== state.teams.length || state.ranks.get(metric.key)?.size !== state.teams.length) historical.ranks.delete(metric.key);
+    });
+    state.previousRanks = historical.ranks;
+    state.trendDate = baseline.date;
+    state.trendStatus = "ready";
+  } catch (error) {
+    state.trendStatus = "unavailable";
+  }
+  renderCard(els.yankeesCard, TEAM_ID);
 }
 
 async function init() {
@@ -301,11 +358,13 @@ async function init() {
     const starterIds = (qualityStartCandidates.stats?.[0]?.splits || [])
       .filter((split) => split.player?.id && statNumber(split.stat?.gamesStarted) > 0)
       .map((split) => split.player.id);
-    storeQualityStarts(qualityStartCandidates, await api.pitcherGameLogs(starterIds));
+    const pitcherLogs = await api.pitcherGameLogs(starterIds);
+    storeQualityStarts(qualityStartCandidates, pitcherLogs);
     calculateRanks();
 
     renderCard(els.yankeesCard, TEAM_ID);
     setStatus("Live MLB data", "good");
+    loadRankTrends(qualityStartCandidates, pitcherLogs);
   } catch (error) {
     setStatus("Data connection issue", "error");
     const message = document.createElement("p");

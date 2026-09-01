@@ -58,6 +58,7 @@ const els = {
   recapButtons: document.querySelector("#recap-button-row"),
   grid: document.querySelector("#recap-grid"),
   breakingNews: document.querySelector("#breaking-news"),
+  breakingNewsTitle: document.querySelector("#breaking-news-title"),
   breakingNewsItems: document.querySelector("#breaking-news-items"),
   breakingNewsClose: document.querySelector("#breaking-news-close"),
 };
@@ -477,7 +478,7 @@ function renderWinProbabilityChart(feed, game) {
           `).join("")}
           ${inningMarkup}
           <polygon points="${areaPoints}" class="win-probability-area" />
-          <polyline points="${linePoints}" class="win-probability-line" />
+          <polyline points="${linePoints}" pathLength="1000" class="win-probability-line" />
           ${scoringPoints}
         </svg>
       </div>
@@ -729,9 +730,6 @@ function playerStatSummary(teamBox, statKey) {
 function renderGameNotes(feed, game) {
   const yankeesTeamSide = yankeesSide(game);
   const side = state.playerStatsTeam === "opponent" ? opponentSide(game) : yankeesTeamSide;
-  const team = game.teams?.[side]?.team || feed.gameData?.teams?.[side] || {};
-  const teamLabel = teamAbbreviation(team) || (side === yankeesTeamSide ? "NYY" : "Opponent");
-  const teamName = team.teamName || team.name || teamLabel;
   const teamBox = feed.liveData?.boxscore?.teams?.[side] || {};
   const officialGroups = (teamBox.info || []).filter((group) =>
     ["batting", "baserunning", "fielding", "pitching"].includes(String(group.title || "").toLowerCase())
@@ -819,23 +817,22 @@ function renderGameNotes(feed, game) {
   ].filter(Boolean);
 
   return {
-    heading: `${teamLabel} Box Score Details`,
     batting: detailGroup("Batting", [
-          { label: "2B", value: playerStatSummary(teamBox, "doubles") },
-          { label: "3B", value: playerStatSummary(teamBox, "triples") },
-          { label: "HR", value: playerStatSummary(teamBox, "homeRuns") },
-          { label: "RBI", value: playerStatSummary(teamBox, "rbi") },
-          { label: "Team RISP", value: `${stat("hitsRisp")}-${stat("atBatsRisp")}` },
-          { label: "Team LOB", value: lineTeam.leftOnBase ?? stat("leftOnBase") },
-        ]),
+      { label: "2B", value: playerStatSummary(teamBox, "doubles") },
+      { label: "3B", value: playerStatSummary(teamBox, "triples") },
+      { label: "HR", value: playerStatSummary(teamBox, "homeRuns") },
+      { label: "RBI", value: playerStatSummary(teamBox, "rbi") },
+      { label: "Team RISP", value: `${stat("hitsRisp")}-${stat("atBatsRisp")}` },
+      { label: "Team LOB", value: lineTeam.leftOnBase ?? stat("leftOnBase") },
+    ]),
     baserunning: detailGroup("Baserunning", [
-          { label: "SB", value: playerStatSummary(teamBox, "stolenBases") },
-          { label: "CS", value: playerStatSummary(teamBox, "caughtStealing") },
-        ]),
+      { label: "SB", value: playerStatSummary(teamBox, "stolenBases") },
+      { label: "CS", value: playerStatSummary(teamBox, "caughtStealing") },
+    ]),
     fielding: detailGroup("Fielding", [
-          { label: "DP", value: `${statValue(fielding, "doublePlays", stat("groundIntoDoublePlay"))}; involved: ${playerFieldingSummary("doublePlays")}` },
-          { label: "E", value: `${statValue(fielding, "errors", lineTeam.errors ?? 0)}; charged to: ${playerFieldingSummary("errors")}` },
-        ]),
+      { label: "DP", value: `${statValue(fielding, "doublePlays", stat("groundIntoDoublePlay"))}; involved: ${playerFieldingSummary("doublePlays")}` },
+      { label: "E", value: `${statValue(fielding, "errors", lineTeam.errors ?? 0)}; charged to: ${playerFieldingSummary("errors")}` },
+    ]),
     pitching: detailGroup("Pitching", pitchingDetails),
   };
 }
@@ -1150,6 +1147,11 @@ function renderBreakingNews(alerts) {
     return;
   }
 
+  const hasGameAlerts = alerts.some((alert) => alert.kind === "game" || alert.kind === "weather");
+  const hasTransactions = alerts.some((alert) => alert.kind !== "game" && alert.kind !== "weather");
+  els.breakingNewsTitle.textContent = hasGameAlerts
+    ? (hasTransactions ? "Game Alerts & Transactions" : "Game Alerts")
+    : "Latest Transactions";
   state.breakingNewsKey = alerts.map((alert) => alert.id || `${alert.label}:${alert.text}`).join("|");
   try {
     if (localStorage.getItem(DISMISSED_ALERTS_KEY) === state.breakingNewsKey) {
@@ -1310,15 +1312,60 @@ function collectGameMetrics(feed, side) {
   };
 }
 
+let winProbabilityRevealed = false;
+let winProbabilityObserver = null;
+
+function prepareWinProbabilityReveal() {
+  winProbabilityObserver?.disconnect();
+  winProbabilityObserver = null;
+  const chart = els.scoreboard.querySelector(".win-probability-chart");
+  if (!chart) return;
+  chart.classList.remove("chart-awaiting-reveal");
+  if (winProbabilityRevealed || window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    || !("IntersectionObserver" in window) || !("animate" in Element.prototype)) return;
+  chart.classList.add("chart-awaiting-reveal");
+  winProbabilityObserver = new IntersectionObserver((entries) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    winProbabilityObserver.disconnect();
+    chart.classList.remove("chart-awaiting-reveal");
+    winProbabilityRevealed = true;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    chart.querySelector(".win-probability-line")?.animate(
+      [{ strokeDasharray: "1000", strokeDashoffset: "1000" }, { strokeDasharray: "1000", strokeDashoffset: "0" }],
+      { duration: 1000, easing: "ease-out" }
+    );
+    chart.querySelector(".win-probability-area")?.animate(
+      [{ opacity: 0 }, { opacity: 1 }], { duration: 1000, easing: "ease-out" }
+    );
+  }, { threshold: 0 });
+  winProbabilityObserver.observe(chart);
+}
+
+function highlightChangedScores(previousScores) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("animate" in Element.prototype)) return;
+  const scores = [...els.scoreboard.querySelectorAll(".game-scoreboard-top > .scoreboard-score")];
+  scores.forEach((score, index) => {
+    const previous = Number(previousScores[index]);
+    const current = Number(score.textContent.trim());
+    if (!previousScores[index]?.trim() || !Number.isFinite(previous) || !Number.isFinite(current) || previous === current) return;
+    const mobileScore = els.scoreboard.querySelector(`.scoreboard-team.${index === 0 ? "away" : "home"} .scoreboard-mobile-score`);
+    [score, mobileScore].filter(Boolean).forEach((node) => node.animate(
+      [{ backgroundColor: "rgba(154, 198, 235, 0.28)" }, { backgroundColor: "transparent" }],
+      { duration: 1100, easing: "ease-out" }
+    ));
+  });
+}
+
 const revealedComparisonColumns = new Set();
 let comparisonRevealObserver = null;
 
 function prepareComparisonReveal() {
   comparisonRevealObserver?.disconnect();
+  comparisonRevealObserver = null;
   const columns = [...els.grid.querySelectorAll(".batting-column, .pitching-column")];
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   columns.forEach((column) => column.classList.remove("comparison-awaiting-reveal"));
-  if (reducedMotion || !("IntersectionObserver" in window)) return;
+  if (reducedMotion || !("IntersectionObserver" in window) || !("animate" in Element.prototype)) return;
 
   comparisonRevealObserver = new IntersectionObserver((entries) => {
     entries.forEach(({ target, isIntersecting }) => {
@@ -1355,6 +1402,8 @@ window.addEventListener("pageshow", (event) => {
   if (!event.persisted) return;
   revealedComparisonColumns.clear();
   prepareComparisonReveal();
+  winProbabilityRevealed = false;
+  prepareWinProbabilityReveal();
 });
 
 function comparisonLegend(opponentLabel) {
@@ -1390,12 +1439,6 @@ function comparisonRow(label, yankeesValue, opponentValue, options = {}) {
           <strong>${escapeHtml(opponentDisplay)}</strong>
         </div>
       </div>
-      ${(options.yankeesDetail || options.opponentDetail) ? `
-        <div class="comparison-stat-details">
-          <small>${escapeHtml(options.yankeesDetail || "No tracked data")}</small>
-          <small>${escapeHtml(options.opponentDetail || "No tracked data")}</small>
-        </div>
-      ` : ""}
     </div>
   `;
 }
@@ -1661,6 +1704,7 @@ function renderProbablePitcher(game, feed, side) {
 }
 
 function renderPregamePreview(game, feed) {
+  winProbabilityObserver?.disconnect();
   const opponent = game.teams?.[opponentSide(game)]?.team || feed.gameData?.teams?.[opponentSide(game)] || {};
   const broadcastLabel = gameBroadcastLabel(game) || "Broadcast information unavailable";
   const venue = feed.gameData?.venue?.name || game.venue?.name || "Venue to be announced";
@@ -1738,6 +1782,7 @@ function renderPregamePreview(game, feed) {
   els.playerStats.innerHTML = "";
   els.comparisonHeader.innerHTML = "";
   els.playerStats.setAttribute("aria-label", "");
+  comparisonRevealObserver?.disconnect();
   els.grid.innerHTML = "";
 }
 
@@ -2008,6 +2053,7 @@ function renderRecap(game, feed) {
     metricsPanel,
   ].join("");
   prepareComparisonReveal();
+  prepareWinProbabilityReveal();
 }
 
 function stopLiveRefresh() {
@@ -2031,8 +2077,12 @@ function startLiveRefresh(game) {
         getJson(`/game/${game.gamePk}/winProbability`).catch(() => []),
       ]);
       feed._winProbability = winProbability;
+      if (Number(state.selectedGame?.gamePk) !== Number(game.gamePk)) return;
+      const previousScores = [...els.scoreboard.querySelectorAll(".game-scoreboard-top > .scoreboard-score")]
+        .map((score) => score.textContent.trim());
       syncGameScoresFromFeed(game, feed);
       renderRecap(game, feed);
+      highlightChangedScores(previousScores);
       if (!isLiveGame(game)) {
         stopLiveRefresh();
         if (wasLive && game.status?.abstractGameState === "Final") finalizeLiveGame(game);

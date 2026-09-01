@@ -50,7 +50,6 @@
   gap: 8px;
 }
 
-/* The previous compact pill treatment remains available in Git history. */
 .recap-selector-button {
   position: relative;
   overflow: hidden;
@@ -906,7 +905,8 @@ a.matchup-player:focus-visible strong {
 
 .win-probability-chart-scroll {
   position: relative;
-  width: 100%;
+  width: calc(100% - 2 * var(--home-content-inset));
+  margin-inline: var(--home-content-inset);
   overflow-x: auto;
 }
 
@@ -930,7 +930,8 @@ a.matchup-player:focus-visible strong {
   display: block;
   width: 100%;
   min-width: 680px;
-  height: 210px;
+  height: auto;
+  aspect-ratio: 1400 / 220;
   overflow: visible;
 }
 
@@ -1262,29 +1263,6 @@ a.matchup-player:focus-visible strong {
   white-space: normal;
 }
 
-.game-notes-panel {
-  min-width: 0;
-  padding: 14px 0 14px 18px;
-  border-left: 1px solid rgba(196, 206, 211, 0.18);
-}
-
-.game-notes-panel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 12px;
-}
-
-.game-notes-panel-header h3 {
-  margin: 0;
-  color: var(--ink);
-  font-size: var(--text-normal);
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 .game-notes-groups {
   display: grid;
   gap: 12px;
@@ -1328,34 +1306,6 @@ a.matchup-player:focus-visible strong {
   display: none;
 }
 
-.game-player-stats-toolbar {
-  grid-column: 1 / -1;
-  min-height: 52px;
-  border: 0;
-  border-radius: 8px;
-  background: var(--card-bg);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 6px 8px 6px 16px;
-}
-
-.game-player-stats-toolbar h2 {
-  margin: 0;
-  color: #f4f7ff;
-  font-size: var(--text-normal);
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.game-player-stats-toolbar p {
-  margin: 2px 0 0;
-  color: var(--muted);
-  font-size: var(--text-small);
-}
-
 .game-player-team-switcher {
   display: grid;
   grid-template-columns: repeat(2, minmax(120px, 1fr));
@@ -1382,7 +1332,6 @@ a.matchup-player:focus-visible strong {
   background: rgba(196, 206, 211, 0.12);
 }
 
-.game-player-stats-toolbar .game-player-team-switcher .game-player-team-button.active,
 .comparison-details-header .game-player-team-switcher .game-player-team-button.active {
   border-color: var(--control-active-border);
   color: var(--team-toggle-text, var(--control-active-ink)) !important;
@@ -1613,11 +1562,10 @@ a.matchup-player:focus-visible strong {
 }
 
 .recap-column > .comparison-list {
-  margin-top: 36px;
+  margin-top: 18px;
 }
 
-.comparison-legend,
-.comparison-stat-details {
+.comparison-legend {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
@@ -1679,17 +1627,6 @@ a.matchup-player:focus-visible strong {
   white-space: nowrap;
 }
 
-.comparison-stat-details small {
-  min-width: 0;
-  color: var(--muted);
-  font-size: 0.68rem;
-  font-weight: 700;
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-  text-align: center;
-  text-transform: uppercase;
-}
-
 .comparison-bars {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 6.25rem minmax(0, 1fr);
@@ -1725,11 +1662,13 @@ a.matchup-player:focus-visible strong {
 }
 
 .comparison-fill.yankees {
+  transform-origin: right center;
   right: 0;
   border-radius: 999px 0 0 999px;
 }
 
 .comparison-fill.opponent {
+  transform-origin: left center;
   left: 0;
   border-radius: 0 999px 999px 0;
 }
@@ -1774,6 +1713,10 @@ a.matchup-player:focus-visible strong {
   display: grid;
   gap: 8px;
   padding: 18px 0;
+}
+
+.metrics-column .metric-feature:first-child {
+  padding-top: 0;
 }
 
 .metric-feature strong {
@@ -1832,10 +1775,6 @@ a.matchup-player:focus-visible strong {
   .game-player-stats {
     grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 1199.98px) {
-
 
   .recap-button-row {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2152,16 +2091,6 @@ a.matchup-player:focus-visible strong {
     grid-template-columns: 1fr;
   }
 
-  .game-notes-panel {
-    padding: 14px 0 0;
-    border-top: 1px solid rgba(196, 206, 211, 0.18);
-    border-left: 0;
-  }
-
-  .win-probability-chart {
-    height: 175px;
-  }
-
 }
 
 @media (min-width: 900px) and (max-width: 1199.98px) {
@@ -2172,30 +2101,12 @@ a.matchup-player:focus-visible strong {
 }
 
 @media (max-width: 575.98px) {
-  .game-player-stats-toolbar {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 8px;
-    padding: 10px;
-  }
-
-  .game-player-stats-toolbar h2 {
-    text-align: center;
-  }
-
   .game-player-team-switcher {
     width: 100%;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .game-notes-panel-header {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .scoring-plays-panel,
-  .game-notes-panel {
+  .scoring-plays-panel {
     padding: 12px;
   }
 
@@ -2575,16 +2486,6 @@ a.matchup-player:focus-visible strong {
   padding-left: 0;
 }
 
-.win-probability-chart-scroll {
-  width: calc(100% - 2 * var(--home-content-inset));
-  margin-inline: var(--home-content-inset);
-}
-
-.win-probability-chart {
-  height: auto;
-  aspect-ratio: 1400 / 220;
-}
-
 .game-details-container .recap-column,
 .game-details-container .game-player-column > h3 {
   padding-inline: 0;
@@ -2644,7 +2545,7 @@ a.matchup-player:focus-visible strong {
   font-weight: 700;
 }
 
-#recap-grid :is(.comparison-stat-label, .comparison-track strong, .comparison-stat-details small) {
+#recap-grid :is(.comparison-stat-label, .comparison-track strong) {
   font-size: var(--recap-compact-size);
   font-weight: 700;
   letter-spacing: normal;
@@ -2703,15 +2604,16 @@ a.matchup-player:focus-visible strong {
   color: #a2afb9;
 }
 
-.comparison-fill.yankees {
-  transform-origin: right center;
-}
-
-.comparison-fill.opponent {
-  transform-origin: left center;
-}
-
 @media (prefers-reduced-motion: no-preference) {
+  .chart-awaiting-reveal .win-probability-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+
+  .chart-awaiting-reveal .win-probability-area {
+    opacity: 0;
+  }
+
   .comparison-awaiting-reveal .comparison-fill {
     transform: scaleX(0);
   }

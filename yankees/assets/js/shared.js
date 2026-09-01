@@ -127,7 +127,10 @@ async function renderYankeesBrandRecord() {
     const { record, teamRecord } = match;
     const position = standingsOrdinal(teamRecord.divisionRank);
     const division = record.division?.name || "American League East";
-    const label = `${position ? `${position} in ` : ""}${division} (${teamRecord.wins} - ${teamRecord.losses})`;
+    const rawGamesBack = teamRecord.divisionGamesBack ?? teamRecord.gamesBack;
+    const gamesBack = Number.parseFloat(rawGamesBack);
+    const showGamesBack = Number(teamRecord.divisionRank) > 1 && Number.isFinite(gamesBack) && gamesBack >= 0;
+    const label = `${position ? `${position} in ` : ""}${division}${showGamesBack ? ` · ${gamesBack} GB` : ""}`;
     recordLines.forEach((line) => {
       line.textContent = label;
       line.hidden = false;

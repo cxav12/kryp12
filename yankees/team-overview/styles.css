@@ -35,6 +35,7 @@
 }
 
 .team-header {
+  flex-wrap: wrap;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
@@ -131,8 +132,8 @@
   color: var(--yankees-silver);
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
-  text-align: left;
+  justify-content: center;
+  text-align: center;
   flex: 0 0 auto;
   padding-inline: 4px;
   font-size: var(--text-small);
@@ -178,6 +179,35 @@
   color: var(--muted);
   font-size: 0.68rem;
   letter-spacing: normal;
+}
+
+.rank-trend-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 0 auto;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.metric-trend {
+  display: inline-block;
+  width: 12px;
+  margin-left: 5px;
+  font-style: normal;
+  font-size: 14px;
+  text-align: center;
+}
+
+.team-card .trend-up { color: #69e9ad; }
+.team-card .trend-down { color: #ff858d; }
+.team-card .trend-same { color: #fff; }
+.team-card .trend-unavailable { color: var(--muted); }
+
+@media (max-width: 767.98px) {
+  .rank-trend-legend { width: 100%; margin-left: 0; }
 }
 
 @media (max-width: 1399.98px) {

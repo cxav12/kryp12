@@ -35,6 +35,10 @@
   gap: 14px;
 }
 
+.schedule-toolbar .month-title {
+  font-size: 1.125rem;
+}
+
 .month-summary {
   min-width: 0;
   max-width: 760px;

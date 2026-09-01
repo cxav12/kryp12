@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000" fill="none">
-  <g stroke="#98a6b2" stroke-opacity=".045" stroke-width="1">
+  <g stroke="#98a6b2" stroke-opacity=".07" stroke-width="1">
     <path id="a" d="M-120 840C300 740-80 470 250 360S380 70 790-60M-90 900C370 730-10 470 290 390S430 80 850-40M-60 950C400 770 20 510 340 420S490 90 910-20M-30 1010C450 810 80 540 390 450S550 100 970 0M0 1060C500 850 140 570 440 480S610 110 1030 20"/>
     <use href="#a" transform="translate(1440 1000) rotate(180)"/>
   </g>

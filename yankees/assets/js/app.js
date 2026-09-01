@@ -1131,32 +1131,78 @@ function renderBreakingNews(alerts) {
     // Storage can be unavailable; dismissal still works for the current page view.
   }
 
-  alerts.forEach((alert) => {
-    const item = document.createElement("article");
-    item.className = `breaking-news-item ${alert.kind || "team-news"}`;
+  const urgentAlerts = alerts.filter((alert) => alert.kind === "game" || alert.kind === "weather");
+  const transactionAlerts = alerts.filter((alert) => alert.kind !== "game" && alert.kind !== "weather");
+
+  const appendAlertMeta = (container, alert) => {
     const label = document.createElement("strong");
     label.textContent = alert.label;
-    item.append(label);
-    if (alert.date) {
-      const marker = document.createElement("span");
-      marker.className = "breaking-news-marker";
-      marker.setAttribute("aria-hidden", "true");
-      marker.textContent = "•";
-      const date = document.createElement("time");
-      date.dateTime = alert.date;
-      const parsedDate = new Date(`${alert.date}T12:00:00`);
-      date.textContent = Number.isNaN(parsedDate.getTime()) ? alert.date : alertDateFormatter.format(parsedDate);
-      item.append(marker, date);
-    }
-    const marker = document.createElement("span");
-    marker.className = "breaking-news-marker";
-    marker.setAttribute("aria-hidden", "true");
-    marker.textContent = "•";
-    const description = document.createElement("p");
-    description.textContent = alert.text;
-    item.append(marker, description);
-    els.breakingNewsItems.append(item);
-  });
+    container.append(label);
+    if (!alert.date) return;
+    const date = document.createElement("time");
+    date.dateTime = alert.date;
+    const parsedDate = new Date(`${alert.date}T12:00:00`);
+    date.textContent = Number.isNaN(parsedDate.getTime()) ? alert.date : alertDateFormatter.format(parsedDate);
+    container.append(date);
+  };
+
+  if (urgentAlerts.length) {
+    const alertList = document.createElement("div");
+    alertList.className = "breaking-news-alerts";
+    urgentAlerts.forEach((alert) => {
+      const item = document.createElement("article");
+      item.className = `breaking-news-alert ${alert.kind}`;
+      const meta = document.createElement("div");
+      meta.className = "breaking-news-alert-meta";
+      appendAlertMeta(meta, alert);
+      const description = document.createElement("p");
+      description.textContent = alert.text;
+      item.append(meta, description);
+      alertList.append(item);
+    });
+    els.breakingNewsItems.append(alertList);
+  }
+
+  if (transactionAlerts.length) {
+    const cardGrid = document.createElement("div");
+    cardGrid.className = "breaking-news-card-grid";
+    transactionAlerts.forEach((alert) => {
+      const item = document.createElement("article");
+      item.className = `breaking-news-card ${alert.kind || "team-news"}`;
+
+      const portrait = document.createElement("div");
+      portrait.className = "breaking-news-portrait";
+      const fallback = document.createElement("span");
+      fallback.className = "breaking-news-portrait-fallback";
+      fallback.setAttribute("aria-hidden", "true");
+      fallback.textContent = (alert.playerName || "NY").split(/\s+/).map((part) => part[0]).slice(0, 2).join("");
+      portrait.append(fallback);
+      if (alert.playerId) {
+        const image = document.createElement("img");
+        image.src = `https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_120,c_fill,g_face,q_auto:best/v1/people/${alert.playerId}/headshot/silo/current`;
+        image.alt = alert.playerName ? `${alert.playerName} headshot` : "Player headshot";
+        image.width = 68;
+        image.height = 68;
+        image.loading = "eager";
+        image.decoding = "async";
+        image.addEventListener("load", () => { fallback.hidden = true; }, { once: true });
+        image.addEventListener("error", () => { image.remove(); }, { once: true });
+        portrait.append(image);
+      }
+
+      const body = document.createElement("div");
+      body.className = "breaking-news-card-body";
+      const meta = document.createElement("div");
+      meta.className = "breaking-news-card-meta";
+      appendAlertMeta(meta, alert);
+      const description = document.createElement("p");
+      description.textContent = alert.text;
+      body.append(meta, description);
+      item.append(portrait, body);
+      cardGrid.append(item);
+    });
+    els.breakingNewsItems.append(cardGrid);
+  }
   els.breakingNews.hidden = false;
 }
 
@@ -1672,6 +1718,55 @@ function renderProbablePitcher(game, feed, side) {
   `;
 }
 
+function pregameLineupPlayers(feed, side) {
+  const teamBoxscore = feed.liveData?.boxscore?.teams?.[side] || {};
+  const players = teamBoxscore.players || {};
+  const gamePlayers = feed.gameData?.players || {};
+  return (teamBoxscore.battingOrder || []).map((playerId, index) => {
+    const key = `ID${playerId}`;
+    const boxscorePlayer = players[key] || {};
+    const gamePlayer = gamePlayers[key] || {};
+    return {
+      id: Number(playerId),
+      order: index + 1,
+      name: boxscorePlayer.person?.fullName || gamePlayer.fullName || "Player to be announced",
+      position: boxscorePlayer.position?.abbreviation || "--",
+      bats: gamePlayer.batSide?.code || boxscorePlayer.person?.batSide?.code || "",
+    };
+  });
+}
+
+function renderPregameLineup(feed, side) {
+  const team = feed.gameData?.teams?.[side] || {};
+  const players = pregameLineupPlayers(feed, side);
+  const teamName = team.teamName || team.name || (side === "away" ? "Away Team" : "Home Team");
+  const rows = players.length
+    ? players.map((player) => `
+      <li class="pregame-lineup-player">
+        <span class="pregame-lineup-order">${player.order}</span>
+        <img src="${escapeHtml(playerHeadshotUrl(player.id))}" alt="" width="46" height="46" loading="lazy" decoding="async" />
+        <a href="./player-profile/?player=${escapeHtml(player.id)}">
+          <strong>${escapeHtml(player.name)}</strong>
+          <small>${player.bats ? `Bats ${escapeHtml(player.bats)}` : "Batting order"}</small>
+        </a>
+        <span class="pregame-lineup-position">${escapeHtml(player.position)}</span>
+      </li>
+    `).join("")
+    : `<li class="pregame-lineup-empty">Lineup not yet announced</li>`;
+  return `
+    <section class="pregame-lineup-team" aria-label="${escapeHtml(`${teamName} starting lineup`)}">
+      <header>
+        <img src="${escapeHtml(teamLogoUrl(team))}" alt="" width="34" height="34" aria-hidden="true" />
+        <div>
+          <span>${escapeHtml(teamAbbreviation(team))}</span>
+          <h4>${escapeHtml(teamName)}</h4>
+        </div>
+      </header>
+      <ol class="pregame-lineup-list">${rows}</ol>
+    </section>
+  `;
+}
+
 function renderPregamePreview(game, feed) {
   winProbabilityObserver?.disconnect();
   const opponent = game.teams?.[opponentSide(game)]?.team || feed.gameData?.teams?.[opponentSide(game)] || {};
@@ -1747,6 +1842,16 @@ function renderPregamePreview(game, feed) {
         </div>
       </div>
     </div>
+    <section class="pregame-lineups" aria-labelledby="pregame-lineups-title">
+      <div class="pregame-lineups-heading">
+        <h3 id="pregame-lineups-title">Starting Lineups</h3>
+        <span>Official batting orders</span>
+      </div>
+      <div class="pregame-lineups-grid">
+        ${renderPregameLineup(feed, yankeesGameSide)}
+        ${renderPregameLineup(feed, opponentGameSide)}
+      </div>
+    </section>
   `;
   els.playerStats.innerHTML = "";
   els.comparisonHeader.innerHTML = "";

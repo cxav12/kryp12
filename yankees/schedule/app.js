@@ -245,7 +245,7 @@ function renderGame(game) {
       <i aria-hidden="true">·</i>
       ${teamRecordMarkup(home)}
     </div>
-    <div class="game-status"><span>${statusLabel(game)}${game.status?.abstractGameState === "Final" ? ` <span aria-hidden="true">·</span> <a class="game-stats-link" href="../?game=${encodeURIComponent(game.gamePk)}">View Stats</a>` : ""}</span></div>
+    <div class="game-status"><span>${statusLabel(game)}${game.status?.abstractGameState === "Final" ? ` <span aria-hidden="true">·</span> <a class="game-stats-link" href="../?game=${encodeURIComponent(game.gamePk)}">Game Recap</a>` : ""}</span></div>
   `;
   return card;
 }

@@ -38,6 +38,8 @@
       label: kind.label,
       text,
       date: item.effectiveDate || item.date || "",
+      playerId: item.person?.id || null,
+      playerName: String(item.person?.fullName || "").trim(),
       priority: kind.priority,
     };
   }

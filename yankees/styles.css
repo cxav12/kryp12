@@ -717,7 +717,16 @@ a.decision-card:focus-visible {
   display: grid;
   align-content: start;
   gap: 10px;
-  padding: 18px 22px 18px 0;
+  padding: 0;
+}
+
+.pregame-scoreboard-lower {
+  margin: 0;
+  gap: 24px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  padding: 24px;
 }
 
 .pregame-details h3,
@@ -750,6 +759,10 @@ a.decision-card:focus-visible {
 .game-decisions.probable-pitchers-slot {
   align-content: stretch;
   gap: 12px;
+}
+
+.game-scoreboard-lower .game-decisions.probable-pitchers-slot {
+  padding: 0;
 }
 
 .probable-pitchers-grid {
@@ -840,6 +853,152 @@ a.matchup-player:focus-visible strong {
 .probable-versus {
   color: #f6d365;
   font-size: var(--text-small);
+  text-align: center;
+}
+
+.pregame-lineups {
+  padding: 20px 0 22px;
+}
+
+.pregame-lineups-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.pregame-lineups-heading h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-normal);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pregame-lineups-heading span {
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+.pregame-lineups-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.pregame-lineup-team {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+}
+
+.pregame-lineup-team > header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.pregame-lineup-team > header > img {
+  object-fit: contain;
+}
+
+.pregame-lineup-team > header div {
+  display: grid;
+  gap: 1px;
+}
+
+.pregame-lineup-team > header span {
+  color: #9ac7ff;
+  font-size: var(--text-small);
+  font-weight: 800;
+}
+
+.pregame-lineup-team > header h4 {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-normal);
+}
+
+.pregame-lineup-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pregame-lineup-player {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 22px 46px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 9px;
+  min-height: 58px;
+  padding: 5px 14px;
+}
+
+.pregame-lineup-player:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.pregame-lineup-order {
+  color: var(--muted);
+  font-size: var(--text-small);
+  font-weight: 800;
+  text-align: center;
+}
+
+.pregame-lineup-player > img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.pregame-lineup-player > a {
+  min-width: 0;
+  display: grid;
+  color: inherit;
+  text-decoration: none;
+}
+
+.pregame-lineup-player > a strong,
+.pregame-lineup-player > a small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pregame-lineup-player > a strong {
+  color: var(--ink);
+}
+
+.pregame-lineup-player > a:hover strong,
+.pregame-lineup-player > a:focus-visible strong {
+  color: #fff;
+}
+
+.pregame-lineup-player > a small {
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+.pregame-lineup-position {
+  border-radius: 4px;
+  background: rgba(154, 199, 255, 0.1);
+  color: #9ac7ff;
+  padding: 4px;
+  font-size: var(--text-small);
+  font-weight: 800;
+  text-align: center;
+}
+
+.pregame-lineup-empty {
+  padding: 26px 14px;
+  color: var(--muted);
   text-align: center;
 }
 
@@ -1931,16 +2090,22 @@ a.matchup-player:focus-visible strong {
 
   .pregame-scoreboard-lower {
     grid-template-columns: 1fr;
+    padding: 24px;
   }
 
   .pregame-details {
     border-right: 0;
     border-bottom: 0;
-    padding: 18px;
+    padding: 0;
   }
 
-  .game-decisions.probable-pitchers-slot {
-    padding: 18px;
+  .game-scoreboard-lower .game-decisions.probable-pitchers-slot {
+    padding: 0;
+  }
+
+  .pregame-lineups-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .recap-grid {
@@ -1954,6 +2119,26 @@ a.matchup-player:focus-visible strong {
 }
 
 @media (max-width: 575.98px) {
+  .pregame-lineups {
+    padding: 18px 0;
+  }
+
+  .pregame-lineups-heading {
+    display: grid;
+    gap: 3px;
+  }
+
+  .pregame-lineup-player {
+    grid-template-columns: 20px 42px minmax(0, 1fr) 32px;
+    gap: 7px;
+    padding-inline: 10px;
+  }
+
+  .pregame-lineup-player > img {
+    width: 42px;
+    height: 42px;
+  }
+
   .game-decisions.live-matchup-slot {
     padding: 14px 12px 16px;
   }
@@ -2335,11 +2520,7 @@ a.matchup-player:focus-visible strong {
 }
 
 .breaking-news::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 4px;
-  background: #f1b434;
+  content: none;
 }
 
 .breaking-news-header {
@@ -2363,65 +2544,167 @@ a.matchup-player:focus-visible strong {
   font-weight: 800;
 }
 
-.breaking-news-item strong {
+.breaking-news-card,
+.breaking-news-alert {
+  --alert-color: #c4ced4;
+}
+
+.breaking-news-card strong,
+.breaking-news-alert strong {
   color: var(--alert-color, #c4ced4);
   font-size: var(--text-small);
   font-weight: 800;
   letter-spacing: normal;
 }
 
-.breaking-news-item.recalled {
+.breaking-news-card.recalled {
   --alert-color: #4db38a;
 }
 
-.breaking-news-item.activated {
+.breaking-news-card.activated {
   --alert-color: #58a6ff;
 }
 
-.breaking-news-item.il {
+.breaking-news-card.il {
   --alert-color: #d85c6a;
 }
 
-.breaking-news-item.optioned {
+.breaking-news-card.optioned {
   --alert-color: #f1b434;
 }
 
-.breaking-news-item.game {
+.breaking-news-alert.game {
   --alert-color: #ff9b7c;
 }
 
-.breaking-news-item.weather {
+.breaking-news-alert.weather {
   --alert-color: #9cc7ff;
 }
 
 .breaking-news-items {
   display: grid;
-  gap: 8px;
+  gap: 14px;
 }
 
-.breaking-news-item time {
+.breaking-news-card time,
+.breaking-news-alert time {
   color: var(--muted);
   font-size: var(--text-small);
   font-weight: 600;
   white-space: nowrap;
 }
 
-.breaking-news-marker {
-  color: rgba(196, 206, 211, 0.5);
-  font-size: 0.75rem;
+.breaking-news-alerts {
+  display: grid;
+  gap: 8px;
 }
 
-.breaking-news-item {
+.breaking-news-alert {
+  border-left: 3px solid var(--alert-color);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--alert-color) 8%, transparent);
+  padding: 14px 16px;
+}
+
+.breaking-news-alert-meta,
+.breaking-news-card-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 4px 8px;
+  gap: 6px 10px;
 }
 
-.breaking-news-item p {
+.breaking-news-alert p {
+  margin: 5px 0 0;
+  color: var(--ink);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.breaking-news-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.breaking-news-card {
+  position: relative;
+  min-width: 0;
+  min-height: 108px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  align-items: center;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+}
+
+.breaking-news-portrait {
+  position: relative;
+  align-self: stretch;
+  min-height: 104px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: none;
+}
+
+.breaking-news-portrait img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.breaking-news-portrait-fallback {
+  color: rgba(196, 206, 211, 0.55);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.breaking-news-card-body {
+  min-width: 0;
+  padding: 14px;
+}
+
+.breaking-news-card p {
   margin: 0;
+  margin-top: 8px;
   color: var(--yankees-silver);
-  line-height: 1.45;
+  line-height: 1.4;
+}
+
+@media (max-width: 1050px) {
+  .breaking-news-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .breaking-news {
+    padding-block: 18px;
+  }
+
+  .breaking-news-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .breaking-news-card {
+    grid-template-columns: 68px minmax(0, 1fr);
+    min-height: 108px;
+  }
+
+  .breaking-news-portrait {
+    min-height: 104px;
+  }
+
+  .breaking-news-alert {
+    padding: 12px;
+  }
 }
 
 .breaking-news-close {

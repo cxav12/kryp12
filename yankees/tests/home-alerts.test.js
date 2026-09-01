@@ -9,6 +9,17 @@ test("creates alerts for important roster moves", () => {
   assert.equal(transactionAlert({ date: "2026-08-23", description: "Activated Player Three from the injured list." }).label, "Activated");
 });
 
+test("keeps player identity data for transaction portraits", () => {
+  const alert = transactionAlert({
+    id: 42,
+    date: "2026-08-23",
+    description: "Recalled Luis Gil from Triple-A.",
+    person: { id: 661563, fullName: "Luis Gil" },
+  });
+  assert.equal(alert.playerId, 661563);
+  assert.equal(alert.playerName, "Luis Gil");
+});
+
 test("ignores routine transactions", () => {
   assert.equal(transactionAlert({ description: "Changed Player One's uniform number." }), null);
 });

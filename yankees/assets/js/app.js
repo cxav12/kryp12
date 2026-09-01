@@ -272,21 +272,25 @@ function scoreForSide(game, feed, side) {
   return lineScoreTeam(feed, side)?.runs ?? teamEntry(game, side).score ?? "-";
 }
 
-async function getTodaysGame() {
-  const { start, end } = todayWindow();
+async function getCurrentGames() {
+  const start = new Date();
+  const end = new Date(start);
+  end.setDate(end.getDate() + 45);
   const schedule = await getJson("/schedule", {
-    sportId: 1,
-    teamId: TEAM_ID,
-    startDate: start,
-    endDate: end,
-    hydrate: "team,venue,linescore,broadcasts(all)",
+    sportId: 1, teamId: TEAM_ID, startDate: formatDate(start), endDate: formatDate(end),
+    hydrate: "team,venue,linescore,broadcasts(all),probablePitcher",
   });
-
-  const games = (schedule.dates || []).flatMap((dateEntry) => dateEntry.games || []);
-  return games.find((game) => isLiveGame(game))
-    || games.find((game) => game.status?.abstractGameState === "Preview")
-    || [...games].sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate))[0]
+  const games = (schedule.dates || []).flatMap((day) => day.games || []);
+  const todaysGames = games.filter((game) => game.officialDate === formatDate(start));
+  const todayGame = todaysGames.find((game) => isLiveGame(game))
+    || todaysGames.find((game) => game.status?.abstractGameState === "Preview")
+    || [...todaysGames].sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate))[0]
     || null;
+  const upcomingGames = games
+    .filter((game) => !["Final", "Live"].includes(game.status?.abstractGameState))
+    .sort((a, b) => new Date(a.gameDate) - new Date(b.gameDate))
+    .slice(0, 3);
+  return { todayGame, upcomingGames };
 }
 
 function decisionPitchingStats(player, feed) {
@@ -1090,41 +1094,6 @@ async function getRecentFinalGames() {
   }
 
   throw new Error("No completed Yankees games found.");
-}
-
-async function getSeasonFinalGames() {
-  const season = new Date().getFullYear();
-  const schedule = await getJson("/schedule", {
-    sportId: 1,
-    teamId: TEAM_ID,
-    startDate: `${season}-03-01`,
-    endDate: formatDate(new Date()),
-    hydrate: "team,venue,linescore",
-  });
-
-  return (schedule.dates || [])
-    .flatMap((dateEntry) => dateEntry.games || [])
-    .filter((game) => game.status?.abstractGameState === "Final" && ["R", "F", "D", "L", "W"].includes(game.gameType))
-    .sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate));
-}
-
-async function getUpcomingGames() {
-  const start = new Date();
-  const end = new Date(start);
-  end.setDate(end.getDate() + 45);
-  const schedule = await getJson("/schedule", {
-    sportId: 1,
-    teamId: TEAM_ID,
-    startDate: formatDate(start),
-    endDate: formatDate(end),
-    hydrate: "team,venue,broadcasts(all),probablePitcher",
-  });
-
-  return (schedule.dates || [])
-    .flatMap((dateEntry) => dateEntry.games || [])
-    .filter((game) => !["Final", "Live"].includes(game.status?.abstractGameState))
-    .sort((a, b) => new Date(a.gameDate) - new Date(b.gameDate))
-    .slice(0, 3);
 }
 
 async function getBreakingTransactions() {
@@ -2106,15 +2075,17 @@ async function loadGameRecap(game, { live = false } = {}) {
       getJson(`/game/${game.gamePk}/winProbability`).catch(() => []),
     ]);
     feed._winProbability = winProbability;
+    syncGameScoresFromFeed(game, feed);
+    renderRecap(game, feed);
     if (!["Final", "Live"].includes(feed.gameData?.status?.abstractGameState || game.status?.abstractGameState)) {
       await Promise.all([
         loadProbablePitcherStats(game, feed),
         loadSeasonSeries(game),
         loadPossibleMilestones(game),
       ]);
+      if (Number(state.selectedGame?.gamePk) !== Number(game.gamePk)) return;
+      renderRecap(game, feed);
     }
-    syncGameScoresFromFeed(game, feed);
-    renderRecap(game, feed);
     if (wasLive && game.status?.abstractGameState === "Final") finalizeLiveGame(game);
     if (live && isLiveGame(game)) startLiveRefresh(game);
     else stopLiveRefresh();
@@ -2126,17 +2097,16 @@ async function loadGameRecap(game, { live = false } = {}) {
 async function init() {
   try {
     const divisionRanks = loadDivisionRanks().catch(() => null);
-    const [todayGame, games, upcomingGames, transactions, seasonGames] = await Promise.all([
-      getTodaysGame().catch(() => null),
+    const transactions = getBreakingTransactions().catch(() => []);
+    const [currentGames, games] = await Promise.all([
+      getCurrentGames().catch(() => ({ todayGame: null, upcomingGames: [] })),
       getRecentFinalGames(),
-      getUpcomingGames().catch(() => []),
-      getBreakingTransactions().catch(() => []),
-      getSeasonFinalGames().catch(() => []),
     ]);
+    const { todayGame, upcomingGames } = currentGames;
     await divisionRanks;
     const liveGame = isLiveGame(todayGame) ? todayGame : null;
     const requestedGamePk = Number(new URLSearchParams(window.location.search).get("game"));
-    let archivedGame = seasonGames.find((game) => Number(game.gamePk) === requestedGamePk);
+    let archivedGame = games.find((game) => Number(game.gamePk) === requestedGamePk);
     if (!archivedGame && Number.isSafeInteger(requestedGamePk) && requestedGamePk > 0) {
       const archiveSchedule = await getJson("/schedule", { sportId: 1, gamePk: requestedGamePk, hydrate: "team,venue,linescore" });
       archivedGame = (archiveSchedule.dates || []).flatMap((date) => date.games || []).find((game) =>
@@ -2155,14 +2125,15 @@ async function init() {
     state.todayGame = todayGame;
     state.liveGame = liveGame;
     state.recentGames = games;
-    state.seasonGames = seasonGames.length ? seasonGames : games;
+    state.seasonGames = games;
     state.upcomingGames = upcomingGames;
     renderRecentGames(games, selectedGame?.gamePk, { includeLatest: selectedIsCurrent });
     renderRecapButtons(games, selectedGame?.gamePk);
 
-    loadBreakingNews(todayGame, upcomingGames, transactions).catch(() => renderBreakingNews([]));
     if (!selectedGame) throw new Error("No Yankees games found.");
     await loadGameRecap(selectedGame, { live: isLiveGame(selectedGame) });
+    transactions.then((items) => loadBreakingNews(todayGame, upcomingGames, items))
+      .catch(() => renderBreakingNews([]));
   } catch (error) {
     els.status.textContent = "Recap unavailable";
     els.status.style.color = "#ffbec4";

@@ -103,27 +103,39 @@
 
 .calendar-shell {
   border: 0;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.calendar-card {
+  border: 0;
   border-radius: 8px;
-  overflow: hidden;
   background: var(--card-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  padding: 0;
 }
 
 .weekday-row,
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(130px, 1fr));
+  gap: 6px;
 }
 
 .weekday-row {
-  background: rgba(2, 4, 16, 0.72);
+  margin-bottom: 6px;
+  background: transparent;
 }
 
 .weekday-row span {
   min-height: 42px;
   display: flex;
   align-items: center;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.025);
   padding: 0 12px;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--yankees-silver);
   font-size: var(--text-small);
   font-weight: 700;
@@ -133,23 +145,25 @@
 
 .day-cell {
   min-height: 168px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border: 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.018);
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-@media (min-width: 768px) {
-  .weekday-row span:nth-child(7n),
-  .day-cell:nth-child(7n) {
-    border-right: 0;
-  }
+.day-cell:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .day-cell.outside-month {
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.008);
+}
+
+.day-cell.today {
+  box-shadow: inset 0 0 0 2px rgba(154, 199, 255, 0.28);
 }
 
 .day-number {
@@ -274,9 +288,10 @@
 }
 
 .card-record-divider {
-  width: 1px;
-  height: 8px;
-  flex: 0 0 1px;
+  width: 3px;
+  height: 3px;
+  flex: 0 0 3px;
+  border-radius: 50%;
   background: rgba(205, 211, 215, 0.5);
 }
 
@@ -346,10 +361,14 @@
 
   .day-cell {
     min-height: 0;
-    border: 1px solid var(--line);
+    border: 0;
     border-radius: 8px;
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.018);
     padding: 12px;
+  }
+
+  .day-cell:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .day-cell.outside-month {

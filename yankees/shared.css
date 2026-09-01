@@ -1,5 +1,7 @@
 :root {
-  --site-content-inset: 24px;
+  /* Standard spacing rule: every container gets one 24px content inset. */
+  --container-inset: 24px;
+  --site-content-inset: var(--container-inset);
   color-scheme: dark;
   --yankees-silver: #c7ccd0;
   --swatch-mid: #5d656b;
@@ -22,6 +24,11 @@
   --text-normal: 0.8125rem;
   --text-small: 0.8125rem;
   --stat-number-size: 0.8125rem;
+}
+
+/* Reusable inset for an inner container placed directly inside an outer container. */
+.inner-container {
+  margin: var(--container-inset);
 }
 
 /* Shared segmented-control language used across Yankees pages. */
@@ -1143,9 +1150,7 @@ b {
   background-image: none !important;
 }
 
-.detail-quick-table th,
-.player-stats-table th,
-.player-stats-table th:first-child {
+.detail-quick-table th {
   background-color: #171e24 !important;
 }
 
@@ -1161,7 +1166,9 @@ b {
 }
 
 .game-player-table thead th,
-.player-stats-table thead tr {
+.player-stats-table thead tr,
+.player-stats-table thead th,
+.player-stats-table thead th:first-child {
   background: #0d1216 !important;
 }
 
@@ -1305,10 +1312,6 @@ small {
 
 :is(.site-shell, .app-shell) .contact-form {
   max-width: none;
-}
-
-:is(.site-shell, .app-shell) .calendar-shell {
-  padding-inline: var(--site-content-inset);
 }
 
 :is(.site-shell, .app-shell) .mobile-stat-list {

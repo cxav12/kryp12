@@ -10,10 +10,24 @@
   padding: 14px 0 0;
 }
 
+.stats-controls-card,
 .stats-card {
+  margin-inline: 0;
   border: 0;
-  border-radius: 8px;
+  border-radius: 7px;
   background: var(--card-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  padding: 0;
+}
+
+.stats-controls-card {
+  margin-bottom: 24px;
+}
+
+.stats-content {
+  border-radius: 7px;
+  background: transparent;
   overflow: hidden;
 }
 
@@ -22,8 +36,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  padding: 16px;
-  border-bottom: 1px solid var(--line);
+  padding: 24px 0 16px;
+  border-bottom: 0;
 }
 
 .stats-view-title {
@@ -165,6 +179,9 @@
 .stats-table-shell {
   width: 100%;
   overflow-x: auto;
+  border-radius: 7px;
+  background: transparent;
+  padding-inline: 0;
   scrollbar-color: var(--line-bright) var(--card-bg-strong);
 }
 
@@ -181,7 +198,7 @@
 
 .player-stats-table th,
 .player-stats-table td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 0;
   padding: 10px 9px;
   text-align: center;
   white-space: nowrap;
@@ -189,7 +206,7 @@
 
 .player-stats-table th {
   color: var(--muted);
-  background: #111522;
+  background: rgba(255, 255, 255, 0.025);
   font-size: var(--text-small);
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -199,6 +216,19 @@
 .player-stats-table td {
   color: #dfe4f4;
   font-size: var(--text-normal);
+}
+
+.player-stats-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.player-stats-table tbody tr.is-yankees-row {
+  background: rgba(29, 79, 120, 0.24);
+}
+
+.player-stats-table tbody tr.is-yankees-row .player-cell :is(a, strong),
+.player-stats-table tbody tr.is-yankees-row .team-code {
+  color: #a8caff !important;
 }
 
 .player-stats-table tbody tr:hover td {
@@ -233,12 +263,20 @@
   min-width: 0;
   padding-right: 50px;
   text-align: left;
-  background: var(--card-bg-strong);
+  background: #0e1419;
 }
 
 .player-stats-table th:first-child {
   z-index: 3;
-  background: #111522;
+  background: #12191f;
+}
+
+.player-stats-table tbody tr:nth-child(even) td:first-child {
+  background: #11181e;
+}
+
+.player-stats-table tbody tr.is-yankees-row td:first-child {
+  background: #102235;
 }
 
 .player-cell {
@@ -393,7 +431,7 @@
 
   .mobile-stat-list {
     margin: 0;
-    padding: 0 12px 8px;
+    padding: 0 0 8px;
     list-style: none;
   }
 
@@ -403,7 +441,19 @@
     grid-template-columns: 24px minmax(0, 1fr) auto;
     align-items: center;
     gap: 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 0;
+  }
+
+  .mobile-stat-row:nth-child(even) {
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .mobile-stat-row.is-yankees-row {
+    background: rgba(29, 79, 120, 0.24);
+  }
+
+  .mobile-stat-row.is-yankees-row .mobile-player-identity strong {
+    color: #a8caff;
   }
 
   .mobile-stat-rank {
@@ -471,8 +521,7 @@
   }
 
   .mobile-stat-categories {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line-bright);
+    border: 0;
     background: rgba(20, 23, 26, 0.97);
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -484,7 +533,7 @@
   .mobile-stat-category {
     min-width: 0;
     min-height: 34px;
-    border: 1px solid var(--line-bright);
+    border: 0;
     border-radius: 999px;
     color: #fff;
     background: transparent;
@@ -537,10 +586,14 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
-    border: 1px solid var(--line);
+    border: 0;
     border-radius: 7px;
     background: rgba(255, 255, 255, 0.035);
     padding: 10px;
+  }
+
+  .player-stats-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.055);
   }
 
   .player-stats-table tbody td {

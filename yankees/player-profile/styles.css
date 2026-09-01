@@ -26,15 +26,20 @@
   border: 0;
   border-radius: 999px;
   color: var(--ink);
-  background: #101720;
+  background: #1a252f;
   padding-inline: 16px;
-  box-shadow: none;
+  box-shadow: inset 0 0 0 2px rgba(196, 206, 211, 0.045);
+}
+
+#player-search::placeholder {
+  color: #9baebe;
+  opacity: 1;
 }
 
 #player-search:focus {
   color: #fff;
-  background: #151f29;
-  box-shadow: 0 0 0 2px rgba(196, 206, 211, 0.2);
+  background: #202e39;
+  box-shadow: 0 0 0 2px rgba(154, 199, 255, 0.32);
 }
 
 .search-button-icon {
@@ -54,6 +59,28 @@
   background: var(--card-bg-strong);
   box-shadow: var(--shadow);
   padding: clamp(16px, 3vw, 28px);
+}
+
+.detail-card {
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+}
+
+.detail-inner-container {
+  min-width: 0;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  padding: 24px;
+}
+
+.detail-inner-container > :is(.detail-split-controls, .detail-tab-controls) {
+  margin-top: 0;
+}
+
+.detail-inner-container > .detail-tab-panel {
+  background: transparent;
 }
 
 .detail-header {
@@ -184,8 +211,9 @@
   min-width: 0;
   overflow-x: auto;
   border: 0;
-  border-radius: 8px;
-  background: var(--card-bg);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
 }
 
 .detail-quick-table {
@@ -197,7 +225,7 @@
 
 .detail-quick-table th,
 .detail-quick-table td {
-  border-bottom: 1px solid rgba(196, 206, 212, 0.12);
+  border-bottom: 0;
   padding: 8px 10px;
   text-align: right;
   white-space: nowrap;
@@ -205,8 +233,12 @@
 
 .detail-quick-table th {
   color: var(--muted);
-  background: rgba(196, 206, 212, 0.08);
+  background: rgba(255, 255, 255, 0.025);
   font-weight: 700;
+}
+
+.detail-quick-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
 }
 
 .detail-quick-table th:first-child,
@@ -230,10 +262,6 @@
   font: inherit;
   font-weight: 700;
   line-height: 1.2;
-}
-
-.detail-quick-table tr:last-child td {
-  border-bottom: 0;
 }
 
 .mobile-quick-stat-list {
@@ -437,6 +465,18 @@
   border-left: 3px solid #7f8b94;
 }
 
+.detail-activity-section .detail-table :is(th, td) {
+  border-bottom: 0;
+}
+
+.detail-activity-section .detail-table thead {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.detail-activity-section .detail-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
 .detail-table tr[class*="decision-"] td[data-label="DEC"],
 .detail-table td[data-label="Game Score"] {
   font-weight: 800;
@@ -603,6 +643,15 @@
     padding: 8px 10px;
   }
 
+  .detail-activity-section .detail-table tr {
+    border: 0;
+    background: rgba(255, 255, 255, 0.01);
+  }
+
+  .detail-activity-section .detail-table tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.025);
+  }
+
   .detail-table tr.decision-w { border-left: 3px solid #3fb970; }
   .detail-table tr.decision-l { border-left: 3px solid #d24c58; }
   .detail-table tr.decision-nd { border-left: 3px solid #7f8b94; }
@@ -639,6 +688,15 @@
   .detail-card,
   .detail-header {
     padding: 12px;
+  }
+
+  .detail-card {
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .detail-inner-container {
+    padding: 24px;
   }
 
   .detail-quick-table tbody {
@@ -721,11 +779,11 @@
   }
 
   .mobile-recent-action-row {
-    border-bottom: 1px solid var(--line);
+    border-bottom: 0;
   }
 
-  .mobile-recent-action-row:last-child {
-    border-bottom: 0;
+  .mobile-recent-action-row:nth-child(even) {
+    background: rgba(255, 255, 255, 0.018);
   }
 
   .mobile-recent-action-row summary {

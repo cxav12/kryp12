@@ -196,6 +196,12 @@ function formatValue(row, key) {
   return value === undefined || value === null || value === "" ? "—" : value;
 }
 
+function isYankeesEntry(row) {
+  return Number(row.teamId) === YANKEES_TEAM_ID
+    || Number(row.playerId) === YANKEES_TEAM_ID
+    || row.team === "NYY";
+}
+
 function setTableMessage(message, colspan = COLUMNS[state.group].length + 2) {
   const row = document.createElement("tr");
   const cell = document.createElement("td");
@@ -248,6 +254,7 @@ function renderBody(rows) {
   const fragment = document.createDocumentFragment();
   rows.forEach((item) => {
     const row = document.createElement("tr");
+    row.classList.toggle("is-yankees-row", isYankeesEntry(item));
     const playerCell = document.createElement("td");
     const player = document.createElement("div");
     player.className = "player-cell";
@@ -284,6 +291,7 @@ function renderMobileLeaderboard(rows, start) {
   rows.forEach((item, index) => {
     const row = document.createElement("li");
     row.className = "mobile-stat-row";
+    row.classList.toggle("is-yankees-row", isYankeesEntry(item));
     const rank = document.createElement("span");
     rank.className = "mobile-stat-rank";
     rank.textContent = start + index + 1;

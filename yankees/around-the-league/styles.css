@@ -433,7 +433,7 @@
   overflow-x: auto;
   border: 0;
   border-radius: 8px;
-  background: var(--card-bg);
+  background: transparent;
 }
 
 .standings-table {
@@ -446,13 +446,14 @@
 
 .standings-table th,
 .standings-table td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 0;
   padding: 10px 8px;
   vertical-align: middle;
 }
 
 .standings-table th {
   color: var(--muted);
+  background: #0d1216;
   font-size: var(--text-small);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -461,6 +462,14 @@
 
 .standings-table td {
   color: #dfe4f4;
+}
+
+.standings-table tbody .team-standing-row:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.standings-table tbody .team-standing-row:hover {
+  background: rgba(196, 206, 211, 0.06);
 }
 
 .standings-table tr:last-child td {
@@ -544,17 +553,21 @@
 }
 
 .standings-table .team-standing-row td:first-child {
-  box-shadow: inset 5px 0 0 var(--standing-team-color, #60798f);
+  box-shadow: none;
 }
 
 .standings-table .is-yankees td {
-  color: #fff;
-  background: rgba(196, 206, 212, 0.08);
+  color: #dfe4f4;
+  background: rgba(29, 79, 120, 0.24);
   font-weight: 700;
 }
 
+.standings-table .is-yankees td:nth-child(2) {
+  color: #a8caff;
+}
+
 .standings-table .is-yankees td:first-child {
-  box-shadow: inset 5px 0 0 var(--standing-team-color, #0c2340);
+  box-shadow: none;
 }
 
 .standings-table.is-wild-card-view .wild-card-cutoff td {
@@ -562,7 +575,7 @@
 }
 
 .standings-league-divider th {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 0;
   color: var(--yankees-silver);
   background: #101720;
   padding: 9px 12px;
@@ -572,10 +585,14 @@
   text-transform: uppercase;
 }
 
+.standings-table .standings-division-divider th {
+  background: transparent;
+}
+
 .standings-table .standings-subgroup-divider th {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 0;
   color: var(--muted);
-  background: #0d1319;
+  background: transparent;
   padding: 7px 12px;
   font-size: var(--text-small);
   font-weight: 700;
@@ -789,16 +806,16 @@ a.hot-item.player-profile-link:focus-visible {
 .leader-stat-card {
   min-width: 0;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 6px;
-  background: var(--card-bg);
+  background: transparent;
 }
 
 .leader-stat-title {
   margin: 0;
   border-bottom: 0;
   color: var(--ink);
-  background: rgba(196, 206, 212, 0.06);
+  background: #0d1216;
   padding: 7px 9px;
   font-size: var(--text-small);
   font-weight: 800;
@@ -825,8 +842,16 @@ a.hot-item.player-profile-link:focus-visible {
   grid-template-columns: 18px 32px minmax(0, 1fr) auto;
   align-items: center;
   gap: 6px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 0;
   padding: 6px 8px;
+}
+
+.leader-entry:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.leader-entry:hover {
+  background: rgba(196, 206, 211, 0.06);
 }
 
 .leader-entry:last-child {
@@ -834,13 +859,16 @@ a.hot-item.player-profile-link:focus-visible {
 }
 
 .leader-entry.is-yankees {
-  background: rgba(196, 206, 212, 0.1);
-  box-shadow: inset 3px 0 0 #f1c400;
+  background: rgba(29, 79, 120, 0.24);
+  box-shadow: none;
 }
 
-.leader-entry.is-yankees .leader-name,
+.leader-entry.is-yankees .leader-name {
+  color: #a8caff;
+}
+
 .leader-entry.is-yankees .leader-value {
-  color: #fff;
+  color: #dfe4f4;
 }
 
 .leader-rank {

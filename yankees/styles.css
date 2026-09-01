@@ -2801,6 +2801,30 @@ a.matchup-player:focus-visible strong {
   padding-right: 0;
 }
 
+.game-details-container .game-player-table :is(th, td) {
+  border-bottom: 0;
+}
+
+.game-details-container .game-player-table thead th {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.game-details-container .game-player-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.game-details-container .game-player-mobile-list {
+  padding-inline: 0;
+}
+
+.game-details-container .game-player-mobile-row {
+  border-bottom: 0;
+}
+
+.game-details-container .game-player-mobile-row:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
 /* Consistent type scale for comparison bars, details, and game notes. */
 #recap-grid {
   --recap-text-size: 0.8125rem;

@@ -11,7 +11,7 @@ $flashMessage = takeFlash();
   <meta name="description" content="A personal collection of products and gift ideas.">
   <meta name="theme-color" content="#f4f2ed">
   <title><?= e($pageTitle) ?></title>
-  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=4')) ?>">
+  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=5')) ?>">
 </head>
 <body class="<?= e($bodyClass) ?>">
   <header class="site-header">

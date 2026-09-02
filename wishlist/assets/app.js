@@ -13,6 +13,7 @@ document.querySelectorAll('.product-image').forEach((image) => {
 
 const tagline = document.querySelector('#wishlist-tagline');
 if (tagline) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const messages = [
     { text: 'Stuff I Definitely Don’t Need' },
     { text: 'Things Future Me Will Regret Buying' },
@@ -25,26 +26,54 @@ if (tagline) {
   ];
   let currentIndex = Math.floor(Math.random() * messages.length);
 
-  const renderTagline = (message) => {
+  const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+
+  const createTaglineContent = (message) => {
     const content = message.italic ? document.createElement('em') : document.createTextNode(message.text);
     if (message.italic) content.textContent = message.text;
-    tagline.replaceChildren(content);
+    return content;
   };
 
-  renderTagline(messages[currentIndex]);
+  const showTagline = async (message, transition = true) => {
+    if (reducedMotion.matches) {
+      tagline.replaceChildren(createTaglineContent(message));
+      return;
+    }
 
-  const showRandomTagline = () => {
+    if (transition) {
+      tagline.classList.add('is-changing');
+      await wait(180);
+    }
+
+    const content = createTaglineContent({ ...message, text: '' });
+    tagline.replaceChildren(content);
+    tagline.classList.remove('is-changing');
+    tagline.classList.add('is-typing');
+
+    for (const character of message.text) {
+      content.textContent += character;
+      await wait(character === '.' || character === '…' ? 90 : 26);
+    }
+
+    tagline.classList.remove('is-typing');
+  };
+
+  const nextRandomIndex = () => {
     let nextIndex;
     do nextIndex = Math.floor(Math.random() * messages.length);
     while (nextIndex === currentIndex);
-
-    tagline.classList.add('is-changing');
-    window.setTimeout(() => {
-      renderTagline(messages[nextIndex]);
-      tagline.classList.remove('is-changing');
-      currentIndex = nextIndex;
-    }, 240);
+    return nextIndex;
   };
 
-  window.setInterval(showRandomTagline, 5000);
+  const rotateTaglines = async () => {
+    await showTagline(messages[currentIndex], false);
+    while (true) {
+      await wait(5000);
+      const nextIndex = nextRandomIndex();
+      await showTagline(messages[nextIndex]);
+      currentIndex = nextIndex;
+    }
+  };
+
+  rotateTaglines();
 }

@@ -10,7 +10,7 @@ require __DIR__ . '/templates/header.php';
 <section class="hero">
   <div>
     <span class="eyebrow">Personal collection</span>
-    <h1>Things I’d love to have.</h1>
+    <h1 id="wishlist-tagline">Stuff I Definitely Don’t Need</h1>
   </div>
 </section>
 

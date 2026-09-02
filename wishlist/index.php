@@ -19,7 +19,6 @@ require __DIR__ . '/templates/header.php';
     <div>
       <span class="eyebrow">Quick add</span>
       <h2 id="add-item-title">Paste a product URL</h2>
-      <p>Details will be retrieved when available, and you can review everything before saving.</p>
     </div>
     <form class="url-form" action="<?= e(appUrl('admin/import.php')) ?>" method="post">
       <?= csrfField() ?>

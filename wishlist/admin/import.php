@@ -13,7 +13,7 @@ try {
     flash('error', $exception->getMessage());
     redirect('');
 }
-$item['visibility'] = 'private';
+$item['visibility'] = 'public';
 $item['quantity'] = 1;
 $item['priority'] = 0;
 $pageTitle = 'Review product · Wishlist';

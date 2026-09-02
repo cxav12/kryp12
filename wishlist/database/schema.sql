@@ -41,7 +41,7 @@ CREATE TABLE items (
   currency CHAR(3) NOT NULL DEFAULT 'USD',
   quantity SMALLINT UNSIGNED NOT NULL DEFAULT 1,
   priority TINYINT UNSIGNED NOT NULL DEFAULT 0,
-  visibility ENUM('public', 'private') NOT NULL DEFAULT 'private',
+  visibility ENUM('public', 'private') NOT NULL DEFAULT 'public',
   purchased_at DATETIME NULL,
   archived_at DATETIME NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

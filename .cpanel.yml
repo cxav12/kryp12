@@ -6,3 +6,4 @@ deployment:
     - /bin/cp -Rf assets $DEPLOYPATH
     - /bin/cp -Rf palworld $DEPLOYPATH
     - /bin/cp -Rf yankees $DEPLOYPATH
+    - /bin/cp -Rf wishlist $DEPLOYPATH

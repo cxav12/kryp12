@@ -1,0 +1,54 @@
+CREATE TABLE users (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(80) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  display_name VARCHAR(120) NOT NULL,
+  is_active TINYINT(1) NOT NULL DEFAULT 1,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE wishlists (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT UNSIGNED NOT NULL,
+  name VARCHAR(160) NOT NULL,
+  slug VARCHAR(100) NOT NULL UNIQUE,
+  description VARCHAR(500) NULL,
+  visibility ENUM('public', 'unlisted', 'private') NOT NULL DEFAULT 'public',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_wishlists_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX idx_wishlists_user (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE retailers (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  domain VARCHAR(255) NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE items (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  wishlist_id BIGINT UNSIGNED NOT NULL,
+  retailer_id BIGINT UNSIGNED NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description TEXT NULL,
+  product_url VARCHAR(2048) NOT NULL,
+  image_url VARCHAR(2048) NULL,
+  original_price DECIMAL(10,2) NULL,
+  current_price DECIMAL(10,2) NULL,
+  currency CHAR(3) NOT NULL DEFAULT 'USD',
+  quantity SMALLINT UNSIGNED NOT NULL DEFAULT 1,
+  priority TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  visibility ENUM('public', 'private') NOT NULL DEFAULT 'private',
+  purchased_at DATETIME NULL,
+  archived_at DATETIME NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_items_wishlist FOREIGN KEY (wishlist_id) REFERENCES wishlists(id) ON DELETE CASCADE,
+  CONSTRAINT fk_items_retailer FOREIGN KEY (retailer_id) REFERENCES retailers(id),
+  INDEX idx_items_list_visibility (wishlist_id, visibility),
+  INDEX idx_items_retailer (retailer_id),
+  INDEX idx_items_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

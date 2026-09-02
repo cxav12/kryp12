@@ -16,3 +16,4 @@ contact-config.php
 .env
 .env.*
 !.env.example
+/wishlist/config.php

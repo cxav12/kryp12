@@ -49,6 +49,8 @@ const gameTimeFormatter = new Intl.DateTimeFormat("en-US", {
 
 const els = {
   status: document.querySelector("#recap-status"),
+  gamePageTitle: document.querySelector("#game-page-title"),
+  gamePageDescription: document.querySelector("#game-page-description"),
   title: document.querySelector("#recap-title"),
   subtitle: document.querySelector("#recap-subtitle"),
   scoreboard: document.querySelector("#recap-scoreboard"),
@@ -62,6 +64,22 @@ const els = {
   breakingNewsItems: document.querySelector("#breaking-news-items"),
   breakingNewsClose: document.querySelector("#breaking-news-close"),
 };
+
+function updateGamePageIntro(game) {
+  const gameState = game.status?.abstractGameState;
+  if (gameState === "Final") {
+    els.gamePageTitle.textContent = "Game Recap";
+    els.gamePageDescription.textContent = "Review the final score, key performers, decisions, and inning-by-inning details.";
+    return;
+  }
+  if (gameState === "Live") {
+    els.gamePageTitle.textContent = "Live Game";
+    els.gamePageDescription.textContent = "Follow the live score, game situation, key plays, and updated team statistics.";
+    return;
+  }
+  els.gamePageTitle.textContent = "Game Preview";
+  els.gamePageDescription.textContent = "Review the upcoming matchup, pregame notes, probable pitchers, and starting lineups.";
+}
 
 const state = {
   recentGames: [],
@@ -273,16 +291,19 @@ function scoreForSide(game, feed, side) {
 }
 
 async function getCurrentGames() {
-  const start = new Date();
-  const end = new Date(start);
+  const today = new Date();
+  const start = new Date(today);
+  start.setDate(start.getDate() - 1);
+  const end = new Date(today);
   end.setDate(end.getDate() + 45);
   const schedule = await getJson("/schedule", {
     sportId: 1, teamId: TEAM_ID, startDate: formatDate(start), endDate: formatDate(end),
     hydrate: "team,venue,linescore,broadcasts(all),probablePitcher",
   });
   const games = (schedule.dates || []).flatMap((day) => day.games || []);
-  const todaysGames = games.filter((game) => game.officialDate === formatDate(start));
-  const todayGame = todaysGames.find((game) => isLiveGame(game))
+  const liveGame = games.find((game) => isLiveGame(game));
+  const todaysGames = games.filter((game) => game.officialDate === formatDate(today));
+  const todayGame = liveGame
     || todaysGames.find((game) => game.status?.abstractGameState === "Preview")
     || [...todaysGames].sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate))[0]
     || null;
@@ -1974,6 +1995,7 @@ async function loadPossibleMilestones(game) {
 
 function renderRecap(game, feed) {
   if (feed.gameData?.status) game.status = feed.gameData.status;
+  updateGamePageIntro(game);
   state.currentFeed = feed;
   if (!["Final", "Live"].includes(game.status?.abstractGameState)) {
     renderPregamePreview(game, feed);

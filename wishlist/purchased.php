@@ -43,7 +43,7 @@ require __DIR__ . '/templates/header.php';
           <?= csrfField() ?>
           <input type="hidden" name="id" value="<?= (int) $item['id'] ?>">
           <input type="hidden" name="action" value="restore">
-          <button class="button button-quiet" type="submit">Return to wishlist</button>
+          <button class="button button-quiet button-muted" type="submit">Return to wishlist</button>
         </form>
       </article>
     <?php endforeach; ?>

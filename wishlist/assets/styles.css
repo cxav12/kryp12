@@ -79,6 +79,9 @@ textarea { resize: vertical; }
 }
 .button:active { transform: translateY(0); }
 .button:focus-visible { outline: 3px solid rgba(83, 74, 230, .38); outline-offset: 3px; }
+.button-muted { color: #4f5962; background: #ebe9e3; box-shadow: none; }
+.button-muted:hover { background: #e2dfd8; transform: translateY(-1px); filter: none; box-shadow: 0 6px 14px rgba(48, 48, 42, .1); }
+.button-muted:active { transform: translateY(0); }
 
 .product-grid { margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 24px; }
 .item-summary + .product-grid { margin-top: 16px; }

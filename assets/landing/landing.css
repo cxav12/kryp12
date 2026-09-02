@@ -81,11 +81,6 @@ body {
   a.project-card:hover .project-art::before, a.project-card:hover .project-logo { transform: scale(1.025); }
   a.project-card:hover .project-arrow svg { transform: translateX(3px); }
 }
-.project-card--soon { --card-bg: #131619; border-style: dashed; box-shadow: none; }
-.project-card--soon .project-art::before { background: radial-gradient(ellipse at 50% 30%, #24292d66, transparent 70%); }
-.soon-icon { position: relative; z-index: 1; width: 64px; height: 64px; color: #69747c; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.soon-status { display: flex; align-items: center; gap: 8px; height: 36px; margin-top: auto; color: #929ba3; font-size: 11px; letter-spacing: .04em; }
-.soon-status span { width: 5px; height: 5px; background: #737e87; border-radius: 50%; }
 .hub-footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 54px; padding-top: 22px; border-top: 1px solid #ffffff0c; color: #7f8891; font-size: 11px; letter-spacing: .04em; }
 .hub-footer > span:first-child { letter-spacing: .18em; font-weight: 600; }
 

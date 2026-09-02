@@ -2628,6 +2628,14 @@ a.matchup-player:focus-visible strong {
   gap: 12px;
 }
 
+.breaking-news-card-grid:has(> :only-child) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.breaking-news-card-grid:has(> :nth-child(2):last-child) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .breaking-news-card {
   position: relative;
   min-width: 0;
@@ -2689,7 +2697,9 @@ a.matchup-player:focus-visible strong {
     padding-block: 18px;
   }
 
-  .breaking-news-card-grid {
+  .breaking-news-card-grid,
+  .breaking-news-card-grid:has(> :only-child),
+  .breaking-news-card-grid:has(> :nth-child(2):last-child) {
     grid-template-columns: 1fr;
   }
 

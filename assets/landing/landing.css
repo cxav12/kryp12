@@ -10,11 +10,23 @@
 }
 * { box-sizing: border-box; }
 body {
+  position: relative;
+  isolation: isolate;
   margin: 0;
   min-height: 100svh;
   background: radial-gradient(ellipse at 50% 0%, #1a1e2255, transparent 65%), url("./contours.svg?v=2") center / cover, var(--page-bg);
 }
-.hub { width: min(1180px, calc(100% - 64px)); margin-inline: auto; padding: clamp(56px, 9vh, 104px) 0 32px; }
+.contour-motion {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .42;
+}
+.contour-motion .trace { opacity: 0; }
+.hub { position: relative; z-index: 1; width: min(1180px, calc(100% - 64px)); margin-inline: auto; padding: clamp(56px, 9vh, 104px) 0 32px; }
 .hub-brand { text-align: center; margin-bottom: 52px; }
 .hub-brand h1 { margin: 0; padding-left: .24em; font-size: clamp(42px, 5.6vw, 72px); font-weight: 650; line-height: 1.1; letter-spacing: .24em; }
 .hub-brand p { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 20px 0 0; color: #aab0b6; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; }
@@ -91,6 +103,7 @@ body {
   .hub-footer { margin-top: 36px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .contour-motion { display: none; }
   .project-card, .project-art::before, .project-logo, .project-arrow svg { transition: none; }
   a.project-card:hover, a.project-card:hover .project-art::before, a.project-card:hover .project-logo, a.project-card:hover .project-arrow svg { transform: none; }
 }

@@ -3,6 +3,7 @@
 return [
     'app_url' => 'http://localhost:8080/wishlist',
     'session_name' => 'wishlist_session',
+    'timezone' => 'America/New_York',
     'install_key' => 'REPLACE_WITH_A_LONG_RANDOM_VALUE',
     'database' => [
         'host' => 'localhost',

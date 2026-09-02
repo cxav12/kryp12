@@ -16,7 +16,7 @@ function wishlistItems(bool $includePrivate): array
             FROM items i
             INNER JOIN wishlists w ON w.id = i.wishlist_id
             INNER JOIN retailers r ON r.id = i.retailer_id
-            WHERE i.archived_at IS NULL';
+            WHERE i.archived_at IS NULL AND i.purchased_at IS NULL';
     $params = [];
     if ($includePrivate) {
         $sql .= ' AND w.user_id = ?';
@@ -27,6 +27,18 @@ function wishlistItems(bool $includePrivate): array
     $sql .= ' ORDER BY i.priority DESC, i.created_at DESC';
     $statement = db()->prepare($sql);
     $statement->execute($params);
+    return $statement->fetchAll();
+}
+
+function purchasedItems(): array
+{
+    $statement = db()->prepare('SELECT i.*, r.name AS retailer_name
+        FROM items i
+        INNER JOIN wishlists w ON w.id = i.wishlist_id
+        INNER JOIN retailers r ON r.id = i.retailer_id
+        WHERE w.user_id = ? AND i.purchased_at IS NOT NULL
+        ORDER BY i.purchased_at DESC, i.updated_at DESC');
+    $statement->execute([(int) currentUser()['id']]);
     return $statement->fetchAll();
 }
 

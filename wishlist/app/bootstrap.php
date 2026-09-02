@@ -16,6 +16,8 @@ if (!is_array($config)) {
     exit('Wishlist configuration is invalid.');
 }
 
+date_default_timezone_set((string) ($config['timezone'] ?? 'America/New_York'));
+
 require_once __DIR__ . '/database.php';
 require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/auth.php';

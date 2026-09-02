@@ -12,7 +12,7 @@ $flashMessage = takeFlash();
   <meta name="theme-color" content="#f4f2ed">
   <title><?= e($pageTitle) ?></title>
   <link rel="icon" type="image/svg+xml" href="<?= e(appUrl('assets/wishlist-logo.svg')) ?>">
-  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=16')) ?>">
+  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=17')) ?>">
 </head>
 <body class="<?= e($bodyClass) ?>">
   <header class="site-header">
@@ -23,6 +23,7 @@ $flashMessage = takeFlash();
     <nav class="header-actions" aria-label="Account">
       <?php if (isLoggedIn()): ?>
         <span class="welcome">Hello, <?= e(currentUser()['display_name']) ?></span>
+        <a class="button button-quiet" href="<?= e(appUrl('purchased.php')) ?>">Purchased</a>
         <form action="<?= e(appUrl('logout.php')) ?>" method="post">
           <?= csrfField() ?>
           <button class="button button-quiet" type="submit">Sign out</button>

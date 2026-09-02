@@ -17,6 +17,12 @@
   <?php if (isLoggedIn()): ?>
     <div class="product-admin">
       <span class="visibility-badge visibility-<?= e($item['visibility']) ?>"><?= e(ucfirst($item['visibility'])) ?></span>
+      <form action="<?= e(appUrl('admin/purchase.php')) ?>" method="post">
+        <?= csrfField() ?>
+        <input type="hidden" name="id" value="<?= (int) $item['id'] ?>">
+        <input type="hidden" name="action" value="purchase">
+        <button class="text-action purchase-action" type="submit"><span aria-hidden="true">✓</span> Purchased</button>
+      </form>
       <a class="text-action" href="<?= e(appUrl('admin/edit.php?id=' . $item['id'])) ?>">Edit</a>
       <form action="<?= e(appUrl('admin/visibility.php')) ?>" method="post">
         <?= csrfField() ?>

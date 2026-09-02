@@ -60,6 +60,21 @@ textarea { resize: vertical; }
 .button { border: 0; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; font-weight: 750; text-decoration: none; cursor: pointer; }
 .button-primary { color: #fff; background: var(--accent); box-shadow: 0 7px 16px rgba(53, 107, 154, .2); }
 .button-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.button-add-item {
+  border-radius: 13px;
+  background: linear-gradient(105deg, #534ae6 0%, #665bed 50%, #776af3 100%);
+  box-shadow: 0 10px 25px rgba(91, 76, 230, .3), 0 5px 12px rgba(91, 76, 230, .18);
+  font-weight: 800;
+  transition: transform 200ms ease, filter 200ms ease, box-shadow 200ms ease;
+}
+.button-add-item:hover {
+  background: linear-gradient(105deg, #534ae6 0%, #665bed 50%, #776af3 100%);
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow: 0 14px 32px rgba(91, 76, 230, .38), 0 7px 16px rgba(91, 76, 230, .22);
+}
+.button-add-item:active { transform: translateY(0); }
+.button-add-item:focus-visible { outline: 3px solid rgba(83, 74, 230, .38); outline-offset: 3px; }
 .button-quiet { color: #4f5962; background: #ebe9e3; }
 
 .product-grid { margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 24px; }

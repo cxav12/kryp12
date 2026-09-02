@@ -55,6 +55,7 @@ body {
 }
 .project-card--yankees { --accent: #89b2d6; --card-bg: #0d1722; border-color: #6086a344; }
 .project-card--palworld { --accent: #a0c7a7; --card-bg: #111c17; border-color: #71977944; }
+.project-card--wishlist { --accent: #58cec4; --card-bg: #0d1b1a; border-color: #54bcb344; }
 .project-art { position: relative; display: grid; place-items: center; height: 220px; flex-shrink: 0; overflow: hidden; }
 .project-art::before {
   content: ""; position: absolute; inset: 0;
@@ -62,10 +63,12 @@ body {
   transition: transform 260ms ease;
 }
 .project-card--palworld .project-art::before { background: radial-gradient(ellipse at 50% 20%, #46654880, transparent 74%), url("./contours.svg?v=2") right center / cover; }
+.project-card--wishlist .project-art::before { background: radial-gradient(ellipse at 50% 20%, #287a7470, transparent 72%), url("./contours.svg?v=2") center / cover; }
 .project-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #0000000a 35%, var(--card-bg)); pointer-events: none; }
 .project-logo { position: relative; z-index: 1; display: block; object-fit: contain; transition: transform 260ms ease; opacity: .85; }
 .yankees-logo { width: 108px; height: 108px; }
 .palworld-logo { width: 82%; height: 180px; }
+.wishlist-logo { width: 112px; height: 112px; }
 .project-copy { position: relative; display: flex; flex-direction: column; align-items: flex-start; flex: 1; padding: 4px 30px 30px; }
 .project-category { color: var(--accent); font-size: 10px; font-weight: 700; line-height: 1.5; letter-spacing: .2em; text-transform: uppercase; }
 .project-copy h2 { margin: 13px 0 10px; font-size: clamp(21px, 1.9vw, 25px); line-height: 1.25; letter-spacing: -.035em; font-weight: 600; }

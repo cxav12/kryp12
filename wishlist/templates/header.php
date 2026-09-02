@@ -12,7 +12,7 @@ $flashMessage = takeFlash();
   <meta name="theme-color" content="#f4f2ed">
   <title><?= e($pageTitle) ?></title>
   <link rel="icon" type="image/svg+xml" href="<?= e(appUrl('assets/wishlist-logo.svg')) ?>">
-  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=15')) ?>">
+  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=16')) ?>">
 </head>
 <body class="<?= e($bodyClass) ?>">
   <header class="site-header">

@@ -20,10 +20,10 @@ button, input, textarea, select { font: inherit; }
 button, .button { min-height: 44px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 
-.site-header { width: min(1320px, calc(100% - 48px)); margin: 0 auto; min-height: 116px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.site-header { width: min(1320px, calc(100% - 48px)); margin: 0 auto; min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .site-identity { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .site-identity strong { font-size: 1.9rem; letter-spacing: -.025em; }
-.identity-mark { width: 92px; height: 92px; margin-left: -8px; display: block; object-fit: contain; }
+.identity-mark { width: 46px; height: 46px; margin-left: -4px; display: block; object-fit: contain; }
 .header-actions { display: flex; align-items: center; gap: 14px; }
 .header-actions form, .product-admin form { margin: 0; }
 .welcome { color: var(--muted); font-size: .84rem; }
@@ -101,7 +101,7 @@ textarea { resize: vertical; }
 
 @media (max-width: 760px) {
   .site-header, .page-shell, .site-footer, .flash { width: min(100% - 32px, 1320px); }
-  .site-header { min-height: 104px; }
+  .site-header { min-height: 78px; }
   .site-identity strong { font-size: 1.55rem; }
   .welcome { display: none; }
   .hero { min-height: 300px; align-items: flex-start; flex-direction: column; justify-content: center; border-radius: 20px; padding: 28px; }

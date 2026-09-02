@@ -12,7 +12,6 @@
       <h2><?= e($item['title']) ?></h2>
       <?php if ($item['current_price'] !== null): ?><strong class="product-price"><?= e(money($item['current_price'])) ?></strong><?php endif; ?>
       <?php if ($item['description']): ?><p><?= e($item['description']) ?></p><?php endif; ?>
-      <span class="open-product">View product <span aria-hidden="true">↗</span></span>
     </div>
   </a>
   <?php if (isLoggedIn()): ?>

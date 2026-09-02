@@ -24,7 +24,7 @@ if (tagline) {
     { text: 'Things I Absolutely Need According to Me' },
     { text: 'Proof I Have No Self-Control' },
   ];
-  let currentIndex = Math.floor(Math.random() * messages.length);
+  const currentIndex = Math.floor(Math.random() * messages.length);
 
   const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
 
@@ -58,22 +58,5 @@ if (tagline) {
     tagline.classList.remove('is-typing');
   };
 
-  const nextRandomIndex = () => {
-    let nextIndex;
-    do nextIndex = Math.floor(Math.random() * messages.length);
-    while (nextIndex === currentIndex);
-    return nextIndex;
-  };
-
-  const rotateTaglines = async () => {
-    await showTagline(messages[currentIndex], false);
-    while (true) {
-      await wait(5000);
-      const nextIndex = nextRandomIndex();
-      await showTagline(messages[nextIndex]);
-      currentIndex = nextIndex;
-    }
-  };
-
-  rotateTaglines();
+  showTagline(messages[currentIndex], false);
 }

@@ -12,13 +12,13 @@ $flashMessage = takeFlash();
   <meta name="theme-color" content="#f4f2ed">
   <title><?= e($pageTitle) ?></title>
   <link rel="icon" type="image/svg+xml" href="<?= e(appUrl('assets/wishlist-logo.svg')) ?>">
-  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=14')) ?>">
+  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=15')) ?>">
 </head>
 <body class="<?= e($bodyClass) ?>">
   <header class="site-header">
     <a class="site-identity" href="<?= e(appUrl()) ?>">
       <img class="identity-mark" src="<?= e(appUrl('assets/wishlist-logo.svg')) ?>" alt="">
-      <strong>Wishlist</strong>
+      <strong>My Wishlist</strong>
     </a>
     <nav class="header-actions" aria-label="Account">
       <?php if (isLoggedIn()): ?>

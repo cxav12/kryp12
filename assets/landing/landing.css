@@ -53,9 +53,9 @@ body {
   box-shadow: 0 12px 32px #00000026;
   transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
 }
-.project-card--yankees { --accent: #89b2d6; --card-bg: #0d1722; border-color: #6086a344; }
-.project-card--palworld { --accent: #e0bd62; --card-bg: #1c180f; border-color: #b997454d; }
-.project-card--wishlist { --accent: #58cec4; --card-bg: #0d1b1a; border-color: #54bcb344; }
+.project-card--yankees { --accent: #89b2d6; --card-bg: #0d1722; border-color: #253e50; }
+.project-card--palworld { --accent: #e0bd62; --card-bg: #1c180f; border-color: #4c4025; }
+.project-card--wishlist { --accent: #58cec4; --card-bg: #0d1b1a; border-color: #204643; }
 .project-art { position: relative; display: grid; place-items: center; height: 220px; flex-shrink: 0; overflow: hidden; }
 .project-art::before {
   content: ""; position: absolute; inset: 0;

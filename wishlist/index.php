@@ -11,9 +11,7 @@ require __DIR__ . '/templates/header.php';
   <div>
     <span class="eyebrow">Personal collection</span>
     <h1>Things I’d love to have.</h1>
-    <p>A thoughtfully collected list of products, useful finds, and gift ideas from across the web.</p>
   </div>
-  <span class="item-count"><?= count($items) ?> <?= count($items) === 1 ? 'item' : 'items' ?></span>
 </section>
 
 <?php if (isLoggedIn()): ?>
@@ -31,6 +29,10 @@ require __DIR__ . '/templates/header.php';
     </form>
   </section>
 <?php endif; ?>
+
+<div class="item-summary">
+  <span class="item-count"><?= count($items) ?> <?= count($items) === 1 ? 'item' : 'items' ?></span>
+</div>
 
 <?php if ($items): ?>
   <section class="product-grid" aria-label="Wishlist items">

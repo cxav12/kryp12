@@ -11,13 +11,14 @@ $flashMessage = takeFlash();
   <meta name="description" content="A personal collection of products and gift ideas.">
   <meta name="theme-color" content="#f4f2ed">
   <title><?= e($pageTitle) ?></title>
-  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=7')) ?>">
+  <link rel="icon" type="image/png" href="<?= e(appUrl('assets/wishlist-logo.png')) ?>">
+  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=8')) ?>">
 </head>
 <body class="<?= e($bodyClass) ?>">
   <header class="site-header">
     <a class="site-identity" href="<?= e(appUrl()) ?>">
-      <span class="identity-mark" aria-hidden="true">W</span>
-      <span><strong>Wishlist</strong><small>Things worth remembering</small></span>
+      <img class="identity-mark" src="<?= e(appUrl('assets/wishlist-logo.png')) ?>" alt="">
+      <strong>Wishlist</strong>
     </a>
     <nav class="header-actions" aria-label="Account">
       <?php if (isLoggedIn()): ?>

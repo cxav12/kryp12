@@ -22,10 +22,8 @@ button, .button { min-height: 44px; }
 
 .site-header { width: min(1320px, calc(100% - 48px)); margin: 0 auto; min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .site-identity { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.site-identity > span:last-child { display: grid; }
 .site-identity strong { font-size: 1.05rem; letter-spacing: -.01em; }
-.site-identity small { color: var(--muted); font-size: .75rem; }
-.identity-mark { width: 42px; height: 42px; border-radius: 13px; color: #fff; background: var(--accent); display: grid; place-items: center; font-family: Georgia, serif; font-size: 1.35rem; }
+.identity-mark { width: 46px; height: 46px; display: block; object-fit: contain; }
 .header-actions { display: flex; align-items: center; gap: 14px; }
 .header-actions form, .product-admin form { margin: 0; }
 .welcome { color: var(--muted); font-size: .84rem; }
@@ -100,7 +98,7 @@ textarea { resize: vertical; }
 @media (max-width: 760px) {
   .site-header, .page-shell, .site-footer, .flash { width: min(100% - 32px, 1320px); }
   .site-header { min-height: 78px; }
-  .site-identity small, .welcome { display: none; }
+  .welcome { display: none; }
   .hero { min-height: 300px; align-items: flex-start; flex-direction: column; justify-content: center; border-radius: 20px; padding: 28px; }
   .hero h1 { font-size: clamp(2.4rem, 12vw, 3.5rem); }
   .add-panel { grid-template-columns: 1fr; padding: 22px; }

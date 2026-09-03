@@ -9,7 +9,7 @@
   --accent: #356b9a;
   --accent-dark: #285577;
   --brand-gradient: linear-gradient(90deg, #17b3a6 0%, #58cec4 38%, #665bed 68%, #776af3 100%);
-  --card-accent: #aaa5a1;
+  --card-accent: #ebe8e1;
   --danger: #a44343;
   --shadow: 0 16px 38px rgba(48, 48, 42, 0.09);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -83,23 +83,23 @@ textarea { resize: vertical; }
 
 .product-grid { margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 24px; }
 .item-summary + .product-grid { margin-top: 16px; }
-.product-card { min-width: 0; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: 0 14px 32px rgba(48, 48, 42, .12); overflow: hidden; isolation: isolate; display: flex; flex-direction: column; transition: transform 600ms ease, border-color 600ms ease, box-shadow 600ms ease; }
+.product-card { min-width: 0; border: 1px solid #e3e0d9; border-radius: 20px; background: var(--surface); box-shadow: 0 10px 28px rgba(48, 48, 42, .06); overflow: hidden; isolation: isolate; display: flex; flex-direction: column; transition: transform 600ms ease, border-color 600ms ease, box-shadow 600ms ease; }
 .product-card:hover,
 .product-card:focus-within,
-.product-card.is-highlighted { border-color: rgba(138, 131, 125, .55); transform: translateY(-2px); box-shadow: 0 18px 35px rgba(112, 103, 96, .16), 0 8px 18px rgba(72, 67, 63, .09); }
+.product-card.is-highlighted { border-color: #e3e0d9; transform: translateY(-2px); box-shadow: var(--shadow); }
 .product-link:focus-visible { outline: 3px solid rgba(105, 85, 245, .42); outline-offset: -4px; }
 .product-link { display: flex; flex: 1 1 auto; flex-direction: column; color: inherit; text-decoration: none; }
-.product-image-wrap { position: relative; aspect-ratio: 4 / 3; background: #fff; display: grid; place-items: center; overflow: hidden; }
+.product-image-wrap { position: relative; aspect-ratio: 4 / 3; background: #f0eee9; display: grid; place-items: center; overflow: hidden; }
 .product-image-wrap::before { content: ""; position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; height: 3px; background: var(--card-accent); pointer-events: none; }
 .product-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; padding: 22px; transition: transform 240ms ease; }
 .product-card:hover .product-image { transform: scale(1.025); }
-.product-placeholder, .image-unavailable::after { color: #9aa1ab; font-size: 3rem; content: "♡"; }
-.product-copy { min-height: 220px; flex: 1 1 auto; background: #d8d4d1; display: flex; flex-direction: column; align-items: flex-start; padding: 22px; }
-.retailer-badge, .visibility-badge { border-radius: 999px; color: #59616c; background: #f1f3f5; padding: 5px 9px; font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.product-placeholder, .image-unavailable::after { color: #a5a098; font-size: 3rem; content: "♡"; }
+.product-copy { min-height: 220px; flex: 1 1 auto; background: #fff; display: flex; flex-direction: column; align-items: flex-start; padding: 22px; }
+.retailer-badge, .visibility-badge { border-radius: 999px; color: #5c6268; background: #eeece7; padding: 5px 9px; font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .product-copy h2 { margin: 14px 0 8px; font-size: 1.05rem; line-height: 1.35; }
 .product-price { margin-bottom: 8px; font-size: 1.22rem; }
 .product-copy p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin: 0 0 16px; color: var(--muted); font-size: .84rem; }
-.product-admin { border-top: 1px solid var(--line); background: var(--surface-soft); display: flex; flex-wrap: wrap; align-items: center; gap: 7px 12px; padding: 12px 16px; }
+.product-admin { border-top: 1px solid #ebe8e1; background: #fff; display: flex; flex-wrap: wrap; align-items: center; gap: 7px 12px; padding: 12px 16px; }
 .visibility-private { color: #59616c; background: #eceff3; }
 .text-action { min-height: 36px; border: 0; color: var(--accent-dark); background: none; display: inline-flex; align-items: center; padding: 0; font-size: .75rem; font-weight: 750; text-decoration: none; cursor: pointer; }
 .text-danger { color: var(--danger); }

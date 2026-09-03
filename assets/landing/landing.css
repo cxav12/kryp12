@@ -29,7 +29,7 @@ body {
 .hub { position: relative; z-index: 1; width: min(1180px, calc(100% - 64px)); margin-inline: auto; padding: clamp(56px, 9vh, 104px) 0 32px; }
 .hub-brand { text-align: center; margin-bottom: 52px; }
 .hub-brand h1 { display: flex; align-items: center; justify-content: center; gap: .16em; margin: 0; padding-left: .24em; font-size: clamp(42px, 5.6vw, 72px); font-weight: 650; line-height: 1.1; }
-.hub-brand h1 img { display: block; width: .78em; height: .78em; object-fit: contain; }
+.hub-brand h1 img { display: block; width: .88em; height: .88em; object-fit: contain; transform: translateY(.05em); }
 .hub-brand h1 span { letter-spacing: .24em; }
 .hub-brand p { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 20px 0 0; color: #aab0b6; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; }
 .hub-brand p span { color: #565e67; }

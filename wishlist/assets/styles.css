@@ -80,7 +80,8 @@ textarea { resize: vertical; }
 .button-muted { border: 1px solid var(--line); color: #343840; background: #f2f3f6; box-shadow: none; }
 .button-muted:hover { background: #e9ebf0; transform: translateY(-1px); filter: none; box-shadow: 0 6px 14px rgba(48, 48, 42, .1); }
 .button-muted:active { transform: translateY(0); }
-.owner-sign-in { color: #4f5962; background: #ebe9e3; box-shadow: none; }
+.owner-sign-in { gap: 8px; color: #4f5962; background: #ebe9e3; box-shadow: none; }
+.owner-sign-in svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .owner-sign-in:hover { color: #414950; background: #dfdcd3; transform: translateY(-1px); filter: none; box-shadow: 0 6px 14px rgba(48, 48, 42, .1); }
 .owner-sign-in:active { transform: translateY(0); }
 

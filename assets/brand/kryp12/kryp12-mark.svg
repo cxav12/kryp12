@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 102">
+
+<defs>
+  <linearGradient id="blueGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#0A56E8"/>
+    <stop offset="55%" stop-color="#168BFF"/>
+    <stop offset="100%" stop-color="#20B7FF"/>
+  </linearGradient>
+  <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#FFFFFF"/>
+    <stop offset="45%" stop-color="#F4F5F7"/>
+    <stop offset="75%" stop-color="#B8BDC5"/>
+    <stop offset="100%" stop-color="#E8EAEE"/>
+  </linearGradient>
+  <linearGradient id="stemGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#FFFFFF"/>
+    <stop offset="65%" stop-color="#F8F8F8"/>
+    <stop offset="100%" stop-color="#D6D8DC"/>
+  </linearGradient>
+  <linearGradient id="foldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#0C2F6F"/>
+    <stop offset="55%" stop-color="#1C2638"/>
+    <stop offset="100%" stop-color="#02060D"/>
+  </linearGradient>
+</defs>
+
+
+  <!-- left stem -->
+  <path d="M12 5 H31 V45 L12 65 Z" fill="url(#stemGrad)"/>
+  <path d="M12 65 L31 45 V89 L12 97 Z" fill="url(#silverGrad)"/>
+
+  <!-- upper blue arm -->
+  <path d="M31 45 L70 5 H92 L47 52 Z" fill="url(#blueGrad)"/>
+
+  <!-- lower silver arm -->
+  <path d="M47 52 L91 92 H67 L31 58 Z" fill="url(#silverGrad)"/>
+
+  <!-- folded overlap -->
+  <path d="M31 45 L47 52 L38 62 L25 54 Z" fill="url(#foldGrad)" opacity="0.96"/>
+
+</svg>

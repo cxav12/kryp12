@@ -12,7 +12,7 @@ $flashMessage = takeFlash();
   <meta name="theme-color" content="#f7f8fb">
   <title><?= e($pageTitle) ?></title>
   <link rel="icon" type="image/svg+xml" href="<?= e(appUrl('assets/wishlist-logo.svg')) ?>">
-  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=23')) ?>">
+  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=24')) ?>">
 </head>
 <body class="<?= e($bodyClass) ?>">
   <header class="site-header">
@@ -29,7 +29,7 @@ $flashMessage = takeFlash();
           <button class="button button-quiet button-muted" type="submit">Sign out</button>
         </form>
       <?php else: ?>
-        <a class="button button-quiet" href="<?= e(appUrl('login.php')) ?>">Owner sign in</a>
+        <a class="button button-quiet owner-sign-in" href="<?= e(appUrl('login.php')) ?>">Owner sign in</a>
       <?php endif; ?>
     </nav>
   </header>

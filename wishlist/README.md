@@ -68,6 +68,7 @@ After deployment, verify these behaviors in a private browser window:
 
 - `app_url`: full base address without a trailing slash
 - `session_name`: a site-specific cookie name
+- `session_lifetime`: sign-in lifetime in seconds; the default is 30 days and renews while the site is used
 - `timezone`: timezone used for purchase dates, such as `America/New_York`
 - `install_key`: temporary first-account setup key; leave empty afterward
 - `db.host`: database host supplied by Namecheap

@@ -9,9 +9,10 @@ function startSecureSession(array $config): void
     }
     $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+    $sessionLifetime = max(0, (int) ($config['session_lifetime'] ?? 2592000));
     session_name((string) ($config['session_name'] ?? 'wishlist_session'));
     session_set_cookie_params([
-        'lifetime' => 0,
+        'lifetime' => $sessionLifetime,
         'path' => '/wishlist/',
         'secure' => $secure,
         'httponly' => true,
@@ -19,7 +20,18 @@ function startSecureSession(array $config): void
     ]);
     ini_set('session.use_strict_mode', '1');
     ini_set('session.use_only_cookies', '1');
+    ini_set('session.gc_maxlifetime', (string) max(1440, $sessionLifetime));
     session_start();
+
+    if ($sessionLifetime > 0 && isset($_SESSION['user_id'])) {
+        setcookie(session_name(), session_id(), [
+            'expires' => time() + $sessionLifetime,
+            'path' => '/wishlist/',
+            'secure' => $secure,
+            'httponly' => true,
+            'samesite' => 'Strict',
+        ]);
+    }
 }
 
 function currentUser(): ?array

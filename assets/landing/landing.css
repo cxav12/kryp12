@@ -28,7 +28,9 @@ body {
 .contour-motion .trace { opacity: 0; }
 .hub { position: relative; z-index: 1; width: min(1180px, calc(100% - 64px)); margin-inline: auto; padding: clamp(56px, 9vh, 104px) 0 32px; }
 .hub-brand { text-align: center; margin-bottom: 52px; }
-.hub-brand h1 { margin: 0; padding-left: .24em; font-size: clamp(42px, 5.6vw, 72px); font-weight: 650; line-height: 1.1; letter-spacing: .24em; }
+.hub-brand h1 { display: flex; align-items: center; justify-content: center; gap: .16em; margin: 0; padding-left: .24em; font-size: clamp(42px, 5.6vw, 72px); font-weight: 650; line-height: 1.1; }
+.hub-brand h1 img { display: block; width: .78em; height: .78em; object-fit: contain; }
+.hub-brand h1 span { letter-spacing: .24em; }
 .hub-brand p { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 20px 0 0; color: #aab0b6; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; }
 .hub-brand p span { color: #565e67; }
 .brand-rule { display: block; width: 56px; height: 2px; margin: 26px auto 0; background: #526c83; }
@@ -82,8 +84,7 @@ body {
   a.project-card:hover .project-arrow svg { transform: translateX(3px); }
 }
 .hub-footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 54px; padding-top: 22px; border-top: 1px solid #ffffff0c; color: #7f8891; font-size: 11px; letter-spacing: .04em; }
-.footer-brand { display: flex; align-items: center; gap: 10px; letter-spacing: .18em; font-weight: 600; }
-.footer-brand img { display: block; width: 34px; height: 34px; object-fit: contain; opacity: .92; filter: drop-shadow(0 5px 12px rgba(22, 139, 255, .2)); }
+.hub-footer > span:first-child { letter-spacing: .18em; font-weight: 600; }
 
 @media (max-width: 999px) {
   .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -100,7 +101,6 @@ body {
   .project-copy h2 { font-size: 24px; }
   .project-copy p { min-height: 0; }
   .hub-footer { margin-top: 36px; }
-  .footer-brand img { width: 30px; height: 30px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .contour-motion { display: none; }

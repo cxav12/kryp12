@@ -5,14 +5,9 @@ require __DIR__ . '/app/bootstrap.php';
 
 $items = wishlistItems(isLoggedIn());
 $pageTitle = 'Wishlist';
+$bodyClass = 'wishlist-home';
 require __DIR__ . '/templates/header.php';
 ?>
-<section class="hero">
-  <div>
-    <h1 id="wishlist-tagline">Stuff I Definitely Don’t Need</h1>
-  </div>
-</section>
-
 <?php if (isLoggedIn()): ?>
   <section class="add-panel" aria-labelledby="add-item-title">
     <div>

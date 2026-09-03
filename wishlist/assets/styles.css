@@ -33,18 +33,12 @@ button, .button { min-height: 44px; }
 .header-actions { display: flex; align-items: center; gap: 14px; }
 .header-actions form, .product-admin form { margin: 0; }
 .welcome { color: var(--muted); font-size: .84rem; }
+.header-divider { width: 100%; height: 4px; background: linear-gradient(90deg, #17b3a6 0%, #58cec4 38%, #665bed 68%, #776af3 100%); }
 
 .page-shell { width: min(1320px, calc(100% - 48px)); margin: 0 auto; padding-bottom: 72px; }
-.hero { min-height: 270px; border-radius: 28px; background: linear-gradient(135deg, #f7f5fc 0%, #f0edf8 100%); display: flex; align-items: center; gap: 32px; padding: clamp(32px, 6vw, 72px); overflow: hidden; }
-.hero > div { width: 100%; }
 .eyebrow { color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-.hero h1, .auth-card h1, .editor-header h1 { margin: 10px 0 12px; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.08; letter-spacing: -.045em; }
-.hero h1 { max-width: none; transition: opacity 180ms ease; }
-.hero h1.is-changing { opacity: 0; }
-.hero h1 em { font-weight: inherit; }
-.hero h1.is-typing::after { content: ""; display: inline-block; width: 2px; height: .82em; margin-left: .12em; background: #17b3a6; vertical-align: -.04em; animation: tagline-cursor 800ms steps(1, end) infinite; }
-@keyframes tagline-cursor { 50% { opacity: 0; } }
-.hero p, .add-panel p, .auth-card > p, .editor-header p { margin: 0; color: var(--muted); font-size: 1rem; }
+.auth-card h1, .editor-header h1 { margin: 10px 0 12px; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.08; letter-spacing: -.045em; }
+.add-panel p, .auth-card > p, .editor-header p { margin: 0; color: var(--muted); font-size: 1rem; }
 .item-count { flex: 0 0 auto; border-radius: 999px; color: var(--accent-dark); background: #fff; padding: 10px 16px; font-size: .82rem; font-weight: 800; }
 .item-summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 24px; }
 
@@ -154,8 +148,6 @@ textarea { resize: vertical; }
   .site-header { min-height: 78px; }
   .site-identity strong { font-size: 1.55rem; }
   .welcome { display: none; }
-  .hero { min-height: 300px; align-items: flex-start; flex-direction: column; justify-content: center; border-radius: 20px; padding: 28px; }
-  .hero h1 { font-size: clamp(2rem, 9vw, 3rem); }
   .add-panel { grid-template-columns: 1fr; padding: 22px; }
   .url-form { grid-template-columns: 1fr; }
   .url-form .button { width: 100%; }
@@ -183,6 +175,5 @@ textarea { resize: vertical; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
-  .hero h1.is-typing::after { display: none; }
   .product-card:hover, .product-card:focus-within { transform: none; }
 }

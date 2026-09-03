@@ -12,7 +12,7 @@ $flashMessage = takeFlash();
   <meta name="theme-color" content="#f7f8fb">
   <title><?= e($pageTitle) ?></title>
   <link rel="icon" type="image/svg+xml" href="<?= e(appUrl('assets/wishlist-logo.svg')) ?>">
-  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=25')) ?>">
+  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=26')) ?>">
 </head>
 <body class="<?= e($bodyClass) ?>">
   <header class="site-header">
@@ -36,6 +36,9 @@ $flashMessage = takeFlash();
       <?php endif; ?>
     </nav>
   </header>
+  <?php if ($bodyClass === 'wishlist-home'): ?>
+    <div class="header-divider" aria-hidden="true"></div>
+  <?php endif; ?>
   <?php if ($flashMessage): ?>
     <div class="flash flash-<?= e($flashMessage['type']) ?>" role="status"><?= e($flashMessage['message']) ?></div>
   <?php endif; ?>

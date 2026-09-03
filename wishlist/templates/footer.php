@@ -2,6 +2,6 @@
   <footer class="site-footer">
     <span>Personal wishlist</span>
   </footer>
-  <script src="<?= e(appUrl('assets/app.js?v=5')) ?>" defer></script>
+  <script src="<?= e(appUrl('assets/app.js?v=6')) ?>" defer></script>
 </body>
 </html>

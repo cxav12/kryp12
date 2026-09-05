@@ -9,10 +9,10 @@ $flashMessage = takeFlash();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A personal collection of products and gift ideas.">
-  <meta name="theme-color" content="#f7f8fb">
+  <meta name="theme-color" content="#f2f6fd">
   <title><?= e($pageTitle) ?></title>
   <link rel="icon" type="image/svg+xml" href="<?= e(appUrl('assets/wishlist-logo.svg')) ?>">
-  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=43')) ?>">
+  <link rel="stylesheet" href="<?= e(appUrl('assets/styles.css?v=44')) ?>">
 </head>
 <body class="<?= e($bodyClass) ?>">
   <header class="site-header">

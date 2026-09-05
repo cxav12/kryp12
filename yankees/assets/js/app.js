@@ -3,6 +3,7 @@ const MLB_API = "https://statsapi.mlb.com/api/v1";
 const MLB_LIVE_API = "https://statsapi.mlb.com/api/v1.1";
 const HARD_HIT_MPH = 95;
 const LIVE_REFRESH_MS = 15000;
+const GAME_REFRESH_AFTER_START_MS = 12 * 60 * 60 * 1000;
 const DISMISSED_ALERTS_KEY = "yankees-dismissed-alerts";
 const MLB_TEAM_PRIMARY_COLORS = {
   108: "#BA0021", 109: "#A71930", 110: "#DF4601", 111: "#BD3039", 112: "#CC3433",
@@ -248,6 +249,17 @@ function resultClass(game) {
 
 function isLiveGame(game) {
   return game?.status?.abstractGameState === "Live";
+}
+
+function shouldRefreshGame(game, now = new Date()) {
+  if (!game || game.status?.abstractGameState === "Final") return false;
+  if (isLiveGame(game)) return true;
+  const startTime = new Date(game.gameDate).getTime();
+  const currentTime = new Date(now).getTime();
+  return Number.isFinite(startTime)
+    && Number.isFinite(currentTime)
+    && currentTime >= startTime - HomeGameSelection.UPCOMING_WINDOW_MS
+    && currentTime <= startTime + GAME_REFRESH_AFTER_START_MS;
 }
 
 function ordinalInning(inning) {
@@ -2158,7 +2170,7 @@ function stopLiveRefresh() {
   state.liveRefreshTimer = null;
 }
 
-function startLiveRefresh(game) {
+function startGameRefresh(game) {
   stopLiveRefresh();
   state.liveRefreshTimer = setInterval(async () => {
     if (!state.selectedGame || Number(state.selectedGame.gamePk) !== Number(game.gamePk)) {
@@ -2179,18 +2191,18 @@ function startLiveRefresh(game) {
       syncGameScoresFromFeed(game, feed);
       renderRecap(game, feed);
       highlightChangedScores(previousScores);
-      if (!isLiveGame(game)) {
+      if (!shouldRefreshGame(game)) {
         stopLiveRefresh();
         if (wasLive && game.status?.abstractGameState === "Final") finalizeLiveGame(game);
       }
     } catch (error) {
-      els.status.textContent = "Live update paused";
+      els.status.textContent = "Game update paused";
       els.status.style.color = "#ffbec4";
     }
   }, LIVE_REFRESH_MS);
 }
 
-async function loadGameRecap(game, { live = false } = {}) {
+async function loadGameRecap(game) {
   state.selectedGame = game;
   state.playerStatsTeam = "yankees";
   els.scoreboard.classList.add("loading");
@@ -2214,7 +2226,7 @@ async function loadGameRecap(game, { live = false } = {}) {
       renderRecap(game, feed);
     }
     if (wasLive && game.status?.abstractGameState === "Final") finalizeLiveGame(game);
-    if (live && isLiveGame(game)) startLiveRefresh(game);
+    if (shouldRefreshGame(game)) startGameRefresh(game);
     else stopLiveRefresh();
   } finally {
     els.scoreboard.classList.remove("loading");
@@ -2258,7 +2270,7 @@ async function init() {
     renderRecapButtons(games, selectedGame?.gamePk);
 
     if (!selectedGame) throw new Error("No Yankees games found.");
-    await loadGameRecap(selectedGame, { live: isLiveGame(selectedGame) });
+    await loadGameRecap(selectedGame);
     transactions.then((items) => loadBreakingNews(todayGame, upcomingGames, items))
       .catch(() => renderBreakingNews([]));
   } catch (error) {
@@ -2308,7 +2320,7 @@ async function selectRecapGame(game) {
 
 
   try {
-    await loadGameRecap(game, { live: isLiveGame(game) });
+    await loadGameRecap(game);
   } catch (error) {
     els.status.textContent = "Selected recap unavailable";
     els.status.style.color = "#ffbec4";

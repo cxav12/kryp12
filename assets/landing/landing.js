@@ -1,4 +1,15 @@
 (() => {
+  const defaults = { yankees: true, palworld: true, wishlist: false, ravens: false };
+  const applyVisibility = (visibility) => document.querySelectorAll("[data-site-key]").forEach((item) => {
+    const key = item.dataset.siteKey;
+    item.hidden = !(visibility[key] ?? defaults[key] ?? false);
+  });
+  applyVisibility(defaults);
+  fetch("/api/site-visibility.php", { credentials: "same-origin", cache: "no-store" })
+    .then((response) => response.ok ? response.json() : Promise.reject())
+    .then((data) => applyVisibility(data.sites || defaults))
+    .catch(() => applyVisibility(defaults));
+
   const overlay = document.querySelector("#contour-motion");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   if (!overlay || reduceMotion.matches) return;

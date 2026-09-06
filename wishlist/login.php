@@ -3,6 +3,9 @@
 declare(strict_types=1);
 require __DIR__ . '/app/bootstrap.php';
 
+header('Location: /login/?return=' . rawurlencode('/wishlist/'), true, 302);
+exit;
+
 if (isLoggedIn()) redirect('');
 $error = '';
 if (requestMethod('POST')) {

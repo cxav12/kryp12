@@ -3,8 +3,13 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/horacqou/public_html/
     - /bin/cp -f index.html $DEPLOYPATH
+    - /bin/cp -Rf account $DEPLOYPATH
+    - /bin/cp -Rf account-app $DEPLOYPATH
+    - /bin/cp -Rf admin $DEPLOYPATH
+    - /bin/cp -Rf api $DEPLOYPATH
     - /bin/cp -Rf assets $DEPLOYPATH
     - /bin/cp -Rf palworld $DEPLOYPATH
     - /bin/cp -Rf ravens $DEPLOYPATH
     - /bin/cp -Rf yankees $DEPLOYPATH
     - /bin/cp -Rf wishlist $DEPLOYPATH
+    - /bin/cp -Rf login $DEPLOYPATH

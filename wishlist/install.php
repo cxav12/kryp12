@@ -23,7 +23,7 @@ if (requestMethod('POST')) {
     else {
         db()->beginTransaction();
         try {
-            $user = db()->prepare('INSERT INTO users (username, password_hash, display_name) VALUES (?, ?, ?)');
+            $user = db()->prepare("INSERT INTO users (username, password_hash, display_name, role) VALUES (?, ?, ?, 'super_admin')");
             $user->execute([$username, password_hash($password, PASSWORD_DEFAULT), $displayName]);
             $userId = (int) db()->lastInsertId();
             $list = db()->prepare("INSERT INTO wishlists (user_id, name, slug, visibility) VALUES (?, ?, 'main', 'public')");

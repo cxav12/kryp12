@@ -10,10 +10,10 @@ function startSecureSession(array $config): void
     $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
     $sessionLifetime = max(0, (int) ($config['session_lifetime'] ?? 2592000));
-    session_name((string) ($config['session_name'] ?? 'wishlist_session'));
+    session_name((string) ($config['account_session_name'] ?? 'kryp12_session'));
     session_set_cookie_params([
         'lifetime' => $sessionLifetime,
-        'path' => '/wishlist/',
+        'path' => '/',
         'secure' => $secure,
         'httponly' => true,
         'samesite' => 'Strict',
@@ -26,7 +26,7 @@ function startSecureSession(array $config): void
     if ($sessionLifetime > 0 && isset($_SESSION['user_id'])) {
         setcookie(session_name(), session_id(), [
             'expires' => time() + $sessionLifetime,
-            'path' => '/wishlist/',
+            'path' => '/',
             'secure' => $secure,
             'httponly' => true,
             'samesite' => 'Strict',
@@ -54,7 +54,18 @@ function currentUser(): ?array
 
 function isLoggedIn(): bool
 {
-    return currentUser() !== null;
+    $user = currentUser();
+    if ($user === null) return false;
+    try {
+        $role = db()->prepare('SELECT role FROM users WHERE id = ?');
+        $role->execute([$user['id']]);
+        if ($role->fetchColumn() === 'super_admin') return true;
+        $access = db()->prepare("SELECT 1 FROM user_application_access ua JOIN applications a ON a.id = ua.application_id WHERE ua.user_id = ? AND a.application_key = 'wishlist' AND a.is_active = 1");
+        $access->execute([$user['id']]);
+        return (bool) $access->fetchColumn();
+    } catch (Throwable $exception) {
+        return true;
+    }
 }
 
 function requireLogin(): void

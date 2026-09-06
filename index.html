@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/kryp12-favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/kryp12-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/kryp12-favicon-180x180.png">
-  <link rel="stylesheet" href="/assets/landing/landing.css?v=17">
+  <link rel="stylesheet" href="/assets/landing/landing.css?v=18">
 </head>
 <body>
   <svg class="contour-motion" id="contour-motion" viewBox="0 0 1440 1000" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -36,6 +36,7 @@
     </g>
   </svg>
   <main class="hub">
+    <a class="hub-login" href="/login/">LOG IN <span aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span></a>
     <header class="hub-brand">
       <h1 aria-label="KRYP12"><img src="/assets/brand/kryp12/kryp12-mark.svg" alt=""><span aria-hidden="true">RYP12</span></h1>
       <p>Projects <span aria-hidden="true">•</span> Tools <span aria-hidden="true">•</span> Interests</p>
@@ -43,7 +44,7 @@
     </header>
     <!-- Add another list item to extend the grid. See LANDING.md. -->
     <ul class="project-grid" aria-label="Projects">
-      <li>
+      <li data-site-key="yankees">
         <a class="project-card project-card--yankees" href="/yankees/" aria-labelledby="yankees-title" aria-describedby="yankees-description">
           <div class="project-art" aria-hidden="true">
             <img class="project-logo yankees-logo" src="/yankees/assets/new-york-yankees.svg" alt="" width="500" height="500" decoding="async">
@@ -56,7 +57,7 @@
           </div>
         </a>
       </li>
-      <li>
+      <li data-site-key="palworld">
         <a class="project-card project-card--palworld" href="/palworld/" aria-labelledby="palworld-title" aria-describedby="palworld-description">
           <div class="project-art" aria-hidden="true">
             <img class="project-logo palworld-logo" src="/palworld/assets/palworld-logo.png" alt="" width="2400" height="1500" decoding="async">
@@ -69,7 +70,7 @@
           </div>
         </a>
       </li>
-      <li>
+      <li data-site-key="wishlist" hidden>
         <a class="project-card project-card--wishlist" href="/wishlist/" aria-labelledby="wishlist-title" aria-describedby="wishlist-description">
           <div class="project-art" aria-hidden="true">
             <img class="project-logo wishlist-logo" src="/wishlist/assets/wishlist-logo.svg" alt="" width="96" height="96" decoding="async">
@@ -82,7 +83,7 @@
           </div>
         </a>
       </li>
-      <li>
+      <li data-site-key="ravens" hidden>
         <a class="project-card project-card--ravens" href="/ravens/" aria-labelledby="ravens-title" aria-describedby="ravens-description">
           <div class="project-art" aria-hidden="true">
             <img class="project-logo ravens-logo" src="https://static.www.nfl.com/t_q-best/league/api/clubs/logos/BAL" alt="" width="500" height="500" decoding="async">
@@ -98,6 +99,6 @@
     </ul>
     <footer class="hub-footer"><span>KRYP12</span><span>A few interests. One place.</span></footer>
   </main>
-  <script src="/assets/landing/landing.js?v=3" defer></script>
+  <script src="/assets/landing/landing.js?v=4" defer></script>
 </body>
 </html>

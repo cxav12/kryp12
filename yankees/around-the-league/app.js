@@ -882,12 +882,24 @@ function statsSortKey(key) {
   return ({ battingAverage: "avg", runsBattedIn: "rbi", earnedRunAverage: "era", strikeouts: "strikeOuts" })[key] || key;
 }
 
+function statsLeaderUrl(definition, type, groupName) {
+  const params = new URLSearchParams({
+    scope: type === "team" ? "team" : "player",
+    group: definition.group || groupName,
+    sort: statsSortKey(definition.key),
+    direction: definition.ascending ? "asc" : "desc",
+  });
+  const qualifiedPlayerStat = ["battingAverage", "earnedRunAverage"].includes(definition.key);
+  if (type === "player" && !qualifiedPlayerStat) params.set("qualified", "0");
+  return `../player-stats/?${params}`;
+}
+
 function leaderStatCard(definition, entries, type, groupName, selected = false) {
   const card = element("section", "leader-stat-card");
   card.classList.toggle("is-selected", selected);
   const heading = element("div", "leader-stat-heading");
   const more = element("a", "leader-more-link", "More");
-  more.href = `../player-stats/?scope=${type === "team" ? "team" : "player"}&group=${definition.group || groupName}&sort=${statsSortKey(definition.key)}&direction=${definition.ascending ? "asc" : "desc"}`;
+  more.href = statsLeaderUrl(definition, type, groupName);
   more.setAttribute("aria-label", `View more ${definition.label} leaders`);
   heading.append(element("h4", "leader-stat-title", definition.label), more);
   card.append(heading);

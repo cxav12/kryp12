@@ -573,10 +573,14 @@ async function init() {
   const requestedGroup = params.get("group");
   const requestedSort = params.get("sort");
   const requestedDirection = params.get("direction");
+  const requestedQualified = params.get("qualified");
   if (["player", "yankees", "al", "nl", "team"].includes(requestedScope)) state.scope = requestedScope;
   if (requestedGroup && COLUMNS[requestedGroup]) state.group = requestedGroup;
   if (requestedSort && COLUMNS[state.group].some(([key]) => key === requestedSort)) state.sortKey = requestedSort;
   if (["asc", "desc"].includes(requestedDirection)) state.sortDirection = requestedDirection;
+  if (["0", "false"].includes(requestedQualified)) state.qualifiedOnly = false;
+  if (["1", "true"].includes(requestedQualified)) state.qualifiedOnly = true;
+  els.qualifiedOnly.checked = state.qualifiedOnly;
   bindEvents();
   try {
     if (state.scope === "team") await loadTeamGroup(state.group);

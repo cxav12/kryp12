@@ -1,0 +1,14 @@
+.login-brand {
+  font-size: 22px;
+}
+
+.login-brand img {
+  width: .88em;
+  height: .88em;
+  object-fit: contain;
+  transform: translateY(.05em);
+}
+
+.login-brand strong {
+  font-size: 1em;
+}

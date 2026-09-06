@@ -6,6 +6,7 @@ $error='';$return=safeReturn((string)($_GET['return']??$_POST['return']??'/accou
 if(($_SERVER['REQUEST_METHOD']??'GET')==='POST'){requireAccountCsrf();if(accountLogin((string)($_POST['username']??''),(string)($_POST['password']??''))){header('Location: '.$return,true,303);exit;}usleep(350000);$error='The username or password was incorrect.';}
 renderAccountHeader('Log in','login-page');
 ?>
+<link rel="stylesheet" href="/assets/account-logo.css?v=1">
 <svg class="contour-motion" id="contour-motion" viewBox="0 0 1440 1000" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
   <defs><linearGradient id="contour-trace" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#6f9abb"/><stop offset="1" stop-color="#719a7d"/></linearGradient></defs>
   <g stroke="url(#contour-trace)" stroke-width="1.25" stroke-linecap="round" stroke-dasharray="105 1100" stroke-dashoffset="1150">

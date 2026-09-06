@@ -1105,7 +1105,7 @@ a.matchup-player:focus-visible strong {
 .bullpen-pitcher {
   min-width: 0;
   display: grid;
-  grid-template-columns: 48px minmax(125px, 0.8fr) minmax(120px, 1fr);
+  grid-template-columns: 48px minmax(125px, 0.8fr) minmax(120px, 1fr) 30px;
   align-items: center;
   gap: 11px;
   min-height: 58px;
@@ -1174,15 +1174,10 @@ a.matchup-player:focus-visible strong {
   background: var(--bullpen-color, #4d91cf);
 }
 
-.bullpen-pitch-meter b {
-  position: absolute;
-  top: 50%;
-  right: 7px;
-  z-index: 1;
-  transform: translateY(-50%);
+.bullpen-pitch-count {
   color: #fff;
-  font-size: 0.68rem;
-  text-shadow: 0 1px 2px #000;
+  font-size: var(--text-small);
+  text-align: right;
 }
 
 .pregame-bullpen-empty {
@@ -2336,7 +2331,7 @@ a.matchup-player:focus-visible strong {
   }
 
   .bullpen-pitcher {
-    grid-template-columns: 42px minmax(100px, 0.8fr) minmax(82px, 1fr);
+    grid-template-columns: 42px minmax(100px, 0.8fr) minmax(70px, 1fr) 26px;
     gap: 8px;
     padding-inline: 9px;
   }

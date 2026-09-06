@@ -1820,8 +1820,8 @@ function renderBullpenPitcher(pitcher, maximumPitches, teamName) {
       </span>
       <span class="bullpen-pitch-meter" aria-label="${escapeHtml(`${pitches} pitches thrown over ${teamName}'s last three games`)}">
         <i style="width:${fill}%"></i>
-        <b>${pitches}</b>
       </span>
+      <b class="bullpen-pitch-count">${pitches}</b>
     </a>
   `;
 }
@@ -1902,9 +1902,9 @@ async function loadTeamPregameBullpen(team, game, feed, side) {
       };
     }).filter((pitcher) => {
       if (pitcher.id === probableId) return false;
-      if (announcedBullpen.size) return announcedBullpen.has(pitcher.id);
       const reliefAppearances = pitcher.games - pitcher.starts;
-      return reliefAppearances > 0 && reliefAppearances > pitcher.starts;
+      const usedPrimarilyInRelief = reliefAppearances > 0 && reliefAppearances > pitcher.starts;
+      return usedPrimarilyInRelief && (!announcedBullpen.size || announcedBullpen.has(pitcher.id));
     });
 
     const recentFeeds = await recentTeamGameFeeds(teamId, game);

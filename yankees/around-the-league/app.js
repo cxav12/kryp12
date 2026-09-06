@@ -378,6 +378,20 @@ function standingsCell(label, value, className = "") {
   return cell;
 }
 
+function standingsTeamCell(record) {
+  const cell = element("td");
+  cell.dataset.label = "Team";
+  const team = element("span", "standing-team-name");
+  const logo = element("img", "standing-team-logo");
+  logo.src = `https://www.mlbstatic.com/team-logos/team-cap-on-dark/${record.teamId}.svg`;
+  logo.alt = "";
+  logo.loading = "lazy";
+  logo.addEventListener("error", () => logo.remove(), { once: true });
+  team.append(logo, document.createTextNode(record.teamName));
+  cell.append(team);
+  return cell;
+}
+
 function signedStandingsValue(value) {
   const number = Number(value);
   if (!Number.isFinite(number)) return value ?? "-";
@@ -456,7 +470,7 @@ function renderStandingsRows() {
     }
     row.append(
       standingsCell("Rank", rank, "rank-indicator"),
-      standingsCell("Team", record.teamName),
+      standingsTeamCell(record),
       standingsCell("W", record.wins),
       standingsCell("L", record.losses),
       standingsCell("PCT", record.pct),

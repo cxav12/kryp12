@@ -548,6 +548,19 @@
   white-space: normal;
 }
 
+.standings-table td:nth-child(2) .standing-team-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.standing-team-logo {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
 .rank-indicator {
   font-weight: 800;
 }

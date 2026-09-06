@@ -1841,7 +1841,7 @@ function renderPregameBullpen(game) {
       ? pitchers.map((pitcher) => renderBullpenPitcher(pitcher, maximumPitches, teamName)).join("")
       : `<p class="pregame-bullpen-empty">Bullpen information is not yet available</p>`;
     return `
-      <section class="bullpen-team" aria-label="${escapeHtml(`${teamName} bullpen`)}">
+      <section class="bullpen-team" aria-label="${escapeHtml(`${teamName} bullpen`)}" style="--bullpen-color:${escapeHtml(teamPrimaryColor(team))}">
         <header>
           <img src="${escapeHtml(teamLogoUrl(team))}" alt="" width="34" height="34" aria-hidden="true" />
           <div><span>${escapeHtml(teamAbbreviation(team))}</span><h4>${escapeHtml(teamName)}</h4></div>
@@ -1900,8 +1900,12 @@ async function loadTeamPregameBullpen(team, game, feed, side) {
         starts: Number(stats.gamesStarted || 0),
         pitches: 0,
       };
-    }).filter((pitcher) => pitcher.id !== probableId
-      && (announcedBullpen.size ? announcedBullpen.has(pitcher.id) : pitcher.games > pitcher.starts));
+    }).filter((pitcher) => {
+      if (pitcher.id === probableId) return false;
+      if (announcedBullpen.size) return announcedBullpen.has(pitcher.id);
+      const reliefAppearances = pitcher.games - pitcher.starts;
+      return reliefAppearances > 0 && reliefAppearances > pitcher.starts;
+    });
 
     const recentFeeds = await recentTeamGameFeeds(teamId, game);
     recentFeeds.filter(Boolean).forEach((recentFeed) => {

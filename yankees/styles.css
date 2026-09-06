@@ -1006,7 +1006,7 @@ a.matchup-player:focus-visible strong {
   margin-top: 4px;
   padding: 20px 22px 24px;
   border-radius: 7px;
-  background: linear-gradient(180deg, rgba(18, 27, 35, 0.96), rgba(8, 13, 18, 0.98));
+  background: rgba(255, 255, 255, 0.02);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
 }
 
@@ -1023,8 +1023,7 @@ a.matchup-player:focus-visible strong {
   gap: 3px;
 }
 
-.pregame-bullpen-heading h3,
-.bullpen-hand-group h4 {
+.pregame-bullpen-heading h3 {
   margin: 0;
   color: var(--ink);
   letter-spacing: 0.08em;
@@ -1062,70 +1061,105 @@ a.matchup-player:focus-visible strong {
   gap: 26px;
 }
 
-.bullpen-hand-group {
+.bullpen-team {
   min-width: 0;
+  overflow: hidden;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.018);
 }
 
-.bullpen-hand-group h4 {
-  margin-bottom: 12px;
-  color: #9ac7ff;
-  font-size: 0.68rem;
+.bullpen-team > header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.025);
 }
 
-.bullpen-pitcher-grid {
+.bullpen-team > header img {
+  object-fit: contain;
+}
+
+.bullpen-team > header div {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
-  gap: 14px;
+  gap: 1px;
+}
+
+.bullpen-team > header span {
+  color: #9ac7ff;
+  font-size: var(--text-small);
+  font-weight: 800;
+}
+
+.bullpen-team > header h4 {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-normal);
+}
+
+.bullpen-pitcher-list {
+  display: grid;
 }
 
 .bullpen-pitcher {
   min-width: 0;
   display: grid;
-  justify-items: center;
-  align-content: start;
+  grid-template-columns: 48px minmax(125px, 0.8fr) minmax(120px, 1fr);
+  align-items: center;
+  gap: 11px;
+  min-height: 58px;
+  padding: 5px 14px;
   color: inherit;
-  text-align: center;
   text-decoration: none;
 }
 
+.bullpen-pitcher:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
 .bullpen-pitcher > img {
-  width: 58px;
-  height: 58px;
-  margin-bottom: 7px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #080d12;
   object-fit: contain;
   object-position: center bottom;
 }
 
-.bullpen-pitcher > strong,
-.bullpen-pitcher > small {
+.bullpen-pitcher-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.bullpen-pitcher-copy strong,
+.bullpen-pitcher-copy small {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.bullpen-pitcher > strong {
+.bullpen-pitcher-copy strong {
   color: var(--ink);
   font-size: var(--text-small);
 }
 
-.bullpen-pitcher:hover > strong,
-.bullpen-pitcher:focus-visible > strong {
+.bullpen-pitcher:hover .bullpen-pitcher-copy strong,
+.bullpen-pitcher:focus-visible .bullpen-pitcher-copy strong {
   color: #fff;
 }
 
-.bullpen-pitcher > small {
+.bullpen-pitcher-copy small {
   color: var(--muted);
   font-size: 0.68rem;
 }
 
 .bullpen-pitch-meter {
   position: relative;
-  width: 28px;
-  height: 112px;
-  margin-top: 9px;
+  width: 100%;
+  height: 24px;
   overflow: hidden;
   border: 1px solid rgba(154, 199, 255, 0.2);
   border-radius: 4px;
@@ -1134,18 +1168,18 @@ a.matchup-player:focus-visible strong {
 
 .bullpen-pitch-meter i {
   position: absolute;
-  right: 0;
+  top: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(180deg, #69b6ff, #17243a);
+  background: linear-gradient(90deg, #17243a, #4d91cf);
 }
 
 .bullpen-pitch-meter b {
   position: absolute;
-  right: 0;
-  bottom: 6px;
-  left: 0;
+  top: 50%;
+  right: 7px;
   z-index: 1;
+  transform: translateY(-50%);
   color: #fff;
   font-size: 0.68rem;
   text-shadow: 0 1px 2px #000;
@@ -2298,8 +2332,18 @@ a.matchup-player:focus-visible strong {
   }
 
   .bullpen-pitcher-grid {
-    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    gap: 14px 8px;
+    grid-template-columns: 1fr;
+  }
+
+  .bullpen-pitcher {
+    grid-template-columns: 42px minmax(100px, 0.8fr) minmax(82px, 1fr);
+    gap: 8px;
+    padding-inline: 9px;
+  }
+
+  .bullpen-pitcher > img {
+    width: 42px;
+    height: 42px;
   }
 
   .pregame-lineup-player {

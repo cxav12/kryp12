@@ -7,8 +7,7 @@
 }
 
 #roster-count,
-#transaction-window,
-#coaches-count {
+#transaction-window {
   color: var(--muted);
   font-size: var(--text-small);
   font-weight: 600;
@@ -17,41 +16,20 @@
 
 .coaches-grid {
   display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 }
 
 .coach-card {
-  position: relative;
-  isolation: isolate;
   min-width: 0;
-  aspect-ratio: 1 / 0.82;
   overflow: hidden;
   border-radius: 7px;
   background: var(--card-bg);
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
   padding: 10px;
-}
-
-.coach-card::before,
-.coach-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-}
-
-.coach-card::before {
-  background-image: var(--coach-headshot, url("../assets/new-york-yankees.svg"));
-  background-position: right 4px bottom;
-  background-repeat: no-repeat;
-  background-size: auto 96%;
-  filter: grayscale(100%) saturate(45%) brightness(1.2);
-}
-
-.coach-card::after {
-  background: rgba(17, 24, 30, 0.8);
 }
 
 .coach-card-copy {
@@ -60,48 +38,9 @@
   gap: 3px;
 }
 
-.coach-card-copy strong,
-.coach-card-copy small {
-  overflow-wrap: anywhere;
-}
-
-.coach-card-copy strong {
-  color: #fff;
-}
-
-.coach-card-copy small {
-  color: var(--muted);
-  font-size: var(--text-small);
-  font-weight: 700;
-}
-
-.coach-number {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border-radius: 999px;
-  color: #dcecff;
-  background: rgba(8, 14, 20, 0.72);
-  padding: 3px 7px;
-  font-size: var(--text-small);
-  font-weight: 800;
-}
-
-@media (max-width: 1199.98px) {
-  .coaches-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 767.98px) {
-  .coaches-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
 .roster-tabs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -166,71 +105,80 @@
 
 .roster-link {
   min-width: 0;
-  aspect-ratio: 1 / 0.82;
-  border: 1px solid var(--line);
+  min-height: 112px;
+  border: 0;
   border-radius: 6px;
   color: var(--ink);
   background: var(--card-bg);
   text-align: left;
   display: grid;
-  align-content: center;
-  gap: 3px;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
   width: 100%;
   padding: 10px;
   text-decoration: none;
 }
 
-.roster-link span,
-.roster-link small {
-  overflow-wrap: anywhere;
-}
-
-.overview-body .roster-link {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-}
-
-.overview-body .roster-link::before,
-.overview-body .roster-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.overview-body .roster-link::before {
-  background-image: var(--roster-headshot);
-  background-position: right 4px bottom;
-  background-repeat: no-repeat;
-  background-size: auto 96%;
-  filter: grayscale(100%) saturate(45%) brightness(1.2);
-  opacity: 0.5;
-  transition: filter 180ms ease, opacity 180ms ease;
-}
-
-.overview-body .roster-link::after {
-  background: rgba(17, 24, 30, 0.8);
-}
-
-.overview-body .roster-link:hover::before,
-.overview-body .roster-link:focus::before {
-  filter: grayscale(20%) saturate(95%) brightness(1.3);
-  opacity: 0.74;
-}
-
 .roster-link:hover,
 .roster-link:focus {
-  border-color: var(--line-bright);
   color: #fff;
-  background: rgba(196, 206, 211, 0.12);
+  background: var(--card-bg);
 }
 
-.roster-link small,
+.roster-card-headshot {
+  width: 92px;
+  height: 92px;
+  align-self: end;
+  object-fit: contain;
+  object-position: center bottom;
+  opacity: 1;
+}
+
+.roster-card-headshot.is-fallback {
+  width: 58px;
+  height: 58px;
+  align-self: center;
+  justify-self: center;
+}
+
+.roster-card-copy,
+.coach-card-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.roster-card-name {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.roster-card-name strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.roster-card-name b {
+  flex: 0 0 auto;
+  color: #9ac7ff;
+  font-size: var(--text-small);
+}
+
+.roster-card-copy small,
+.coach-card-copy small,
 .feed small {
   color: var(--muted);
   font-weight: 800;
+}
+
+.roster-card-position {
+  color: #dcecff !important;
 }
 
 .feed article {
@@ -401,7 +349,19 @@
   color: #ffbec4;
 }
 
+@media (max-width: 1199.98px) {
+  .roster-list,
+  .coaches-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 767.98px) {
+  .roster-list,
+  .coaches-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .overview-body .roster-tabs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 4px !important;
@@ -443,12 +403,9 @@
     width: 100%;
   }
 
-  .roster-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
+  .roster-list,
   .coaches-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 8px;
   }
 
@@ -456,8 +413,14 @@
     padding: 10px;
   }
 
-  .roster-link {
-    aspect-ratio: 1 / 0.78;
+  .roster-link,
+  .coach-card {
+    grid-template-columns: 82px minmax(0, 1fr);
+  }
+
+  .roster-card-headshot {
+    width: 82px;
+    height: 82px;
   }
 
   .transaction-pagination,

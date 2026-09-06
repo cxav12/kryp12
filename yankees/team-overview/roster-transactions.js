@@ -57,9 +57,9 @@ const api = {
       endDate: formatDate(end),
     });
   },
-  async coaches() {
+  async coaches(season = new Date().getFullYear()) {
     return this.get(`/teams/${TEAM_ID}/coaches`, {
-      season: new Date().getFullYear(),
+      season,
       hydrate: "person",
     });
   },
@@ -127,24 +127,56 @@ function positionRank(entry) {
   return index === -1 ? POSITION_ORDER.length : index;
 }
 
+function playerExperience(person) {
+  const debutYear = Number(String(person?.mlbDebutDate || "").slice(0, 4));
+  if (!debutYear) return "MLB experience unavailable";
+  const seasons = Math.max(1, new Date().getFullYear() - debutYear + 1);
+  return `${seasons} ${seasons === 1 ? "season" : "seasons"} MLB experience`;
+}
+
+function profilePortrait(src, alt) {
+  const image = document.createElement("img");
+  image.className = "roster-card-headshot";
+  image.src = src;
+  image.alt = alt;
+  image.loading = "lazy";
+  image.decoding = "async";
+  image.addEventListener("error", () => {
+    image.src = "../assets/new-york-yankees.svg";
+    image.classList.add("is-fallback");
+  }, { once: true });
+  return image;
+}
+
 function rosterCard(entry, showStatus = false, statusOverride = "") {
   const link = document.createElement("a");
   link.className = "roster-link";
   link.href = `../player-profile/?player=${entry.person.id}`;
   const playerId = Number(entry.person.id);
-  if (Number.isInteger(playerId)) {
-    link.style.setProperty("--roster-headshot", `url("https://img.mlbstatic.com/mlb-photos/image/upload/w_96,q_auto:best/v1/people/${playerId}/headshot/silo/current")`);
-  }
-  const name = document.createElement("span");
+  const portraitUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_auto:best/v1/people/${playerId}/headshot/silo/current`;
+  const copy = document.createElement("span");
+  copy.className = "roster-card-copy";
+  const heading = document.createElement("span");
+  heading.className = "roster-card-name";
+  const name = document.createElement("strong");
   name.textContent = entry.person.fullName;
-  const details = document.createElement("small");
-  const position = entry.position?.abbreviation || "NYY";
+  heading.append(name);
+  if (entry.jerseyNumber) {
+    const number = document.createElement("b");
+    number.textContent = `#${entry.jerseyNumber}`;
+    heading.append(number);
+  }
+  const position = document.createElement("small");
+  position.className = "roster-card-position";
+  const positionLabel = entry.position?.name || entry.position?.abbreviation || "Yankees player";
   const status = statusOverride || entry.status?.description || "Injured List";
-  const number = entry.jerseyNumber ? `#${entry.jerseyNumber} - ` : "";
-  details.textContent = showStatus
-    ? `${number}${position} - ${status}`
-    : `${number}${position}`;
-  link.append(name, details);
+  position.textContent = showStatus ? `${positionLabel} · ${status}` : positionLabel;
+  const measurements = document.createElement("small");
+  measurements.textContent = [entry.person?.height, entry.person?.weight ? `${entry.person.weight} lbs` : ""].filter(Boolean).join(" · ") || "Measurements unavailable";
+  const career = document.createElement("small");
+  career.textContent = [entry.person?.currentAge ? `Age ${entry.person.currentAge}` : "", playerExperience(entry.person)].filter(Boolean).join(" · ");
+  copy.append(heading, position, measurements, career);
+  link.append(profilePortrait(portraitUrl, `${entry.person.fullName} headshot`), copy);
   return link;
 }
 
@@ -298,31 +330,58 @@ function coachCard(entry) {
   const article = document.createElement("article");
   article.className = "coach-card";
   const personId = Number(entry.person?.id);
-  if (Number.isInteger(personId)) {
-    const portrait = `https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:83:current.png/ar_1:1,c_pad,b_auto:border/r_max/w_180,q_auto:best/v1/people/${personId}/headshot/83/coach/current`;
-    article.style.setProperty("--coach-headshot", `url("${portrait}")`);
-  }
+  const portrait = `https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:83:current.png/ar_1:1,c_pad,b_auto:border/r_max/w_180,q_auto:best/v1/people/${personId}/headshot/83/coach/current`;
   const copy = document.createElement("div");
   copy.className = "coach-card-copy";
+  const heading = document.createElement("span");
+  heading.className = "roster-card-name";
   const name = document.createElement("strong");
   name.textContent = entry.person?.fullName || "Yankees coach";
-  const role = document.createElement("small");
-  role.textContent = entry.title || entry.job || "Coach";
-  copy.append(name, role);
+  heading.append(name);
   if (entry.jerseyNumber) {
-    const number = document.createElement("span");
-    number.className = "coach-number";
+    const number = document.createElement("b");
     number.textContent = `#${entry.jerseyNumber}`;
-    article.append(number);
+    heading.append(number);
   }
-  article.append(copy);
+  const role = document.createElement("small");
+  role.className = "roster-card-position";
+  role.textContent = entry.title || entry.job || "Coach";
+  const experience = document.createElement("small");
+  experience.textContent = entry.roleExperience === null
+    ? "Experience unavailable"
+    : `${entry.roleExperience}${entry.roleExperienceCapped ? "+" : ""} ${entry.roleExperience === 1 ? "season" : "seasons"} in role`;
+  copy.append(heading, role, experience);
+  article.append(profilePortrait(portrait, `${entry.person?.fullName || "Yankees coach"} headshot`), copy);
   return article;
+}
+
+async function addCoachExperience(coaches) {
+  const currentSeason = new Date().getFullYear();
+  const seasons = Array.from({ length: 15 }, (_, index) => currentSeason - index - 1);
+  const historyResults = await Promise.allSettled(seasons.map((season) => api.coaches(season)));
+  coaches.forEach((coach) => {
+    let experience = 1;
+    let unavailable = false;
+    for (const result of historyResults) {
+      if (result.status !== "fulfilled") {
+        unavailable = true;
+        break;
+      }
+      const matchingRole = (result.value.roster || []).some((entry) => Number(entry.person?.id) === Number(coach.person?.id)
+        && String(entry.title || entry.job || "").trim().toLowerCase() === String(coach.title || coach.job || "").trim().toLowerCase());
+      if (!matchingRole) break;
+      experience += 1;
+    }
+    coach.roleExperience = unavailable ? null : experience;
+    coach.roleExperienceCapped = !unavailable && experience === seasons.length + 1;
+  });
 }
 
 async function renderCoaches() {
   try {
     const data = await api.coaches();
     const coaches = data.roster || [];
+    await addCoachExperience(coaches);
     els.coaches.replaceChildren();
     coaches.forEach((entry) => els.coaches.append(coachCard(entry)));
     els.coachesCount.textContent = `${coaches.length} staff members`;

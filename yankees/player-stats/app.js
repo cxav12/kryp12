@@ -367,6 +367,7 @@ function pageButton(label, accessibleLabel, page) {
 
 function renderPagination(totalPages) {
   els.pagination.replaceChildren();
+  els.pagination.hidden = totalPages <= 1;
   if (totalPages <= 1) return;
   const previous = pageButton("‹", "Previous page", Math.max(state.page - 1, 1));
   previous.disabled = state.page === 1;

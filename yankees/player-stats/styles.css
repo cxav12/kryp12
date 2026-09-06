@@ -350,6 +350,10 @@
   padding: 4px;
 }
 
+.stats-pagination[hidden] {
+  display: none;
+}
+
 .stats-pagination .pagination-summary {
   min-width: 0;
   min-height: 36px;

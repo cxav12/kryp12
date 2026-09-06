@@ -7,11 +7,96 @@
 }
 
 #roster-count,
-#transaction-window {
+#transaction-window,
+#coaches-count {
   color: var(--muted);
   font-size: var(--text-small);
   font-weight: 600;
   text-align: right;
+}
+
+.coaches-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.coach-card {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  min-height: 210px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: var(--card-bg);
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+}
+
+.coach-card::before,
+.coach-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.coach-card::before {
+  background-image: var(--coach-headshot);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: auto 94%;
+  filter: grayscale(55%) saturate(70%) brightness(1.08);
+}
+
+.coach-card::after {
+  background: linear-gradient(180deg, transparent 32%, rgba(8, 14, 20, 0.35) 56%, rgba(8, 14, 20, 0.98) 84%);
+}
+
+.coach-card-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.coach-card-copy strong,
+.coach-card-copy small {
+  overflow-wrap: anywhere;
+}
+
+.coach-card-copy strong {
+  color: #fff;
+}
+
+.coach-card-copy small {
+  color: var(--muted);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.coach-number {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 999px;
+  color: #dcecff;
+  background: rgba(8, 14, 20, 0.72);
+  padding: 3px 7px;
+  font-size: var(--text-small);
+  font-weight: 800;
+}
+
+@media (max-width: 1199.98px) {
+  .coaches-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .coaches-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .roster-tabs {
@@ -360,6 +445,16 @@
 
   .roster-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .coaches-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .coach-card {
+    min-height: 180px;
+    padding: 10px;
   }
 
   .roster-link {

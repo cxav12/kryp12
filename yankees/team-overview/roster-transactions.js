@@ -26,6 +26,8 @@ const els = {
   pitchersCount: document.querySelector("#pitchers-count"),
   injuredListCount: document.querySelector("#injured-list-count"),
   optionedCount: document.querySelector("#optioned-count"),
+  coaches: document.querySelector("#coaches-list"),
+  coachesCount: document.querySelector("#coaches-count"),
   transactionFeed: document.querySelector("#transaction-feed"),
   transactionPagination: document.querySelector("#transaction-pagination"),
   transactionWindow: document.querySelector("#transaction-window"),
@@ -53,6 +55,12 @@ const api = {
       teamId: TEAM_ID,
       startDate: formatDate(start),
       endDate: formatDate(end),
+    });
+  },
+  async coaches() {
+    return this.get(`/teams/${TEAM_ID}/coaches`, {
+      season: new Date().getFullYear(),
+      hydrate: "person",
     });
   },
 };
@@ -286,6 +294,46 @@ async function renderTransactions() {
   }
 }
 
+function coachCard(entry) {
+  const article = document.createElement("article");
+  article.className = "coach-card";
+  const personId = Number(entry.person?.id);
+  if (Number.isInteger(personId)) {
+    article.style.setProperty("--coach-headshot", `url("https://img.mlbstatic.com/mlb-photos/image/upload/w_240,q_auto:best/v1/people/${personId}/headshot/silo/current")`);
+  }
+  const copy = document.createElement("div");
+  copy.className = "coach-card-copy";
+  const name = document.createElement("strong");
+  name.textContent = entry.person?.fullName || "Yankees coach";
+  const role = document.createElement("small");
+  role.textContent = entry.title || entry.job || "Coach";
+  copy.append(name, role);
+  if (entry.jerseyNumber) {
+    const number = document.createElement("span");
+    number.className = "coach-number";
+    number.textContent = `#${entry.jerseyNumber}`;
+    article.append(number);
+  }
+  article.append(copy);
+  return article;
+}
+
+async function renderCoaches() {
+  try {
+    const data = await api.coaches();
+    const coaches = data.roster || [];
+    els.coaches.replaceChildren();
+    coaches.forEach((entry) => els.coaches.append(coachCard(entry)));
+    els.coachesCount.textContent = `${coaches.length} staff members`;
+    if (!coaches.length) els.coaches.innerHTML = `<p class="empty">No coaching staff entries were returned.</p>`;
+    return true;
+  } catch (error) {
+    els.coaches.innerHTML = `<p class="error">Coaching staff data is unavailable right now.</p>`;
+    els.coachesCount.textContent = "Unavailable";
+    return false;
+  }
+}
+
 function bindEvents() {
   els.transactionPagination.addEventListener("click", (event) => {
     const button = event.target.closest(".pagination-button");
@@ -315,7 +363,7 @@ function setRosterTab(tab) {
 async function init() {
   bindEvents();
   setStatus("Loading roster");
-  const results = await Promise.all([renderRoster(), renderTransactions()]);
+  const results = await Promise.all([renderRoster(), renderTransactions(), renderCoaches()]);
   setStatus(results.every(Boolean) ? "Live MLB data" : "Some MLB data is unavailable", results.every(Boolean) ? "good" : "error");
 }
 

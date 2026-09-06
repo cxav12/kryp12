@@ -2,6 +2,7 @@ const MLB_API = "https://statsapi.mlb.com/api/v1";
 const YANKEES_TEAM_ID = 147;
 const SEASON = new Date().getFullYear();
 const PAGE_SIZE = 25;
+const UNQUALIFIED_PITCHING_STATS = new Set(["completeGames", "shutouts", "saves", "saveOpportunities"]);
 
 const COLUMNS = {
   hitting: [
@@ -289,6 +290,11 @@ function formatValue(row, key) {
   return value === undefined || value === null || value === "" ? "—" : value;
 }
 
+function setAutomaticQualification(statKey) {
+  state.qualifiedOnly = !(state.group === "pitching" && UNQUALIFIED_PITCHING_STATS.has(statKey));
+  els.qualifiedOnly.checked = state.qualifiedOnly;
+}
+
 function isYankeesEntry(row) {
   return Number(row.teamId) === YANKEES_TEAM_ID
     || Number(row.playerId) === YANKEES_TEAM_ID
@@ -503,6 +509,7 @@ async function setGroup(group) {
   state.page = 1;
   const defaultColumn = group === "hitting" ? ["homeRuns", "desc"] : ["strikeOuts", "desc"];
   [state.sortKey, state.sortDirection] = defaultColumn;
+  setAutomaticQualification(state.sortKey);
   setTableMessage(`Loading ${group === "hitting" ? "batting" : "pitching"} statistics`, COLUMNS[group].length + 2);
   els.pagination.replaceChildren();
   try {
@@ -541,6 +548,7 @@ function bindEvents() {
     if (!button) return;
     state.sortKey = button.dataset.mobileSortKey;
     state.sortDirection = button.dataset.direction;
+    setAutomaticQualification(state.sortKey);
     state.page = 1;
     render();
   });
@@ -555,6 +563,7 @@ function bindEvents() {
       state.sortKey = column[0];
       state.sortDirection = column[2];
     }
+    setAutomaticQualification(state.sortKey);
     state.page = 1;
     render();
   });
@@ -578,6 +587,7 @@ async function init() {
   if (requestedGroup && COLUMNS[requestedGroup]) state.group = requestedGroup;
   if (requestedSort && COLUMNS[state.group].some(([key]) => key === requestedSort)) state.sortKey = requestedSort;
   if (["asc", "desc"].includes(requestedDirection)) state.sortDirection = requestedDirection;
+  if (requestedQualified === null) setAutomaticQualification(state.sortKey);
   if (["0", "false"].includes(requestedQualified)) state.qualifiedOnly = false;
   if (["1", "true"].includes(requestedQualified)) state.qualifiedOnly = true;
   els.qualifiedOnly.checked = state.qualifiedOnly;

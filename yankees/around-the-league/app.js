@@ -889,8 +889,7 @@ function statsLeaderUrl(definition, type, groupName) {
     sort: statsSortKey(definition.key),
     direction: definition.ascending ? "asc" : "desc",
   });
-  const qualifiedPlayerStat = ["battingAverage", "earnedRunAverage"].includes(definition.key);
-  if (type === "player" && !qualifiedPlayerStat) params.set("qualified", "0");
+  if (type === "player" && definition.key === "saves") params.set("qualified", "0");
   return `../player-stats/?${params}`;
 }
 

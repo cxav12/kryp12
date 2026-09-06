@@ -86,15 +86,15 @@ function isIlMove(item) {
 
 function transactionType(item) {
   const description = `${item.description || ""} ${item.note || ""} ${item.typeDesc || ""}`;
-  if (/recall|recalled/i.test(description)) return { key: "recalled", label: "Recall" };
-  if (/option|optioned/i.test(description)) return { key: "optioned", label: "Option" };
-  if (/activate|activated|reinstate|reinstated/i.test(description)) return { key: "activated", label: "Active" };
-  if (/injured|injury|10-day|15-day|60-day|\bIL\b|rehab/i.test(description)) return { key: "il", label: "IL" };
-  if (/select|selected|contract/i.test(description)) return { key: "selected", label: "Select" };
-  if (/assign|assigned|designated/i.test(description)) return { key: "assigned", label: "Assign" };
-  if (/claim|claimed|acquire|acquired|trade|traded/i.test(description)) return { key: "acquired", label: "Acquire" };
-  if (/sign|signed/i.test(description)) return { key: "signed", label: "Sign" };
-  if (/release|released/i.test(description)) return { key: "released", label: "Release" };
+  if (/recall|recalled/i.test(description)) return { key: "recalled", label: "Recalled" };
+  if (/option|optioned/i.test(description)) return { key: "optioned", label: "Optioned" };
+  if (/activate|activated|reinstate|reinstated/i.test(description)) return { key: "activated", label: "Activated" };
+  if (/injured|injury|10-day|15-day|60-day|\bIL\b|rehab/i.test(description)) return { key: "il", label: "Injured List" };
+  if (/select|selected|contract/i.test(description)) return { key: "selected", label: "Selected" };
+  if (/assign|assigned|designated/i.test(description)) return { key: "assigned", label: "Assigned" };
+  if (/claim|claimed|acquire|acquired|trade|traded/i.test(description)) return { key: "acquired", label: "Acquired" };
+  if (/sign|signed/i.test(description)) return { key: "signed", label: "Signed" };
+  if (/release|released/i.test(description)) return { key: "released", label: "Released" };
   return { key: "other", label: item.typeDesc || "Move" };
 }
 
@@ -262,6 +262,16 @@ function transactionCard(item) {
   article.className = `transaction-card ${type.key}`;
   if (isIlMove(item)) article.classList.add("il");
 
+  const personId = Number(item.person?.id);
+  const portrait = Number.isInteger(personId)
+    ? `https://img.mlbstatic.com/mlb-photos/image/upload/w_120,q_auto:best/v1/people/${personId}/headshot/silo/current`
+    : "../assets/new-york-yankees.svg";
+  const image = profilePortrait(portrait, item.person?.fullName ? `${item.person.fullName} headshot` : "Yankees logo");
+  image.classList.add("transaction-headshot");
+
+  const content = document.createElement("div");
+  content.className = "transaction-content";
+
   const meta = document.createElement("div");
   meta.className = "transaction-meta";
 
@@ -270,13 +280,14 @@ function transactionCard(item) {
   badge.textContent = type.label;
 
   const detail = document.createElement("small");
-  detail.textContent = `${niceDate(item.date)} - ${item.typeDesc || "Move"}`;
+  detail.textContent = niceDate(item.effectiveDate || item.date);
 
   const copy = document.createElement("p");
   copy.textContent = description;
 
   meta.append(badge, detail);
-  article.append(meta, copy);
+  content.append(meta, copy);
+  article.append(image, content);
   return article;
 }
 

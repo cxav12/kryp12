@@ -24,7 +24,8 @@
   min-width: 0;
   overflow: hidden;
   border-radius: 7px;
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
   display: grid;
   grid-template-columns: 92px minmax(0, 1fr);
   align-items: center;
@@ -109,7 +110,8 @@
   border: 0;
   border-radius: 6px;
   color: var(--ink);
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
   text-align: left;
   display: grid;
   grid-template-columns: 92px minmax(0, 1fr);
@@ -123,7 +125,7 @@
 .roster-link:hover,
 .roster-link:focus {
   color: #fff;
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.045);
 }
 
 .roster-card-headshot {
@@ -230,8 +232,40 @@
 }
 
 .feed article.transaction-card {
-  border-left-color: var(--transaction-accent, var(--line-bright));
+  min-height: 86px;
+  border: 0;
   background: var(--card-bg-strong);
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px 10px 8px;
+}
+
+.transaction-card .transaction-badge {
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--transaction-accent, var(--yankees-silver));
+  background: transparent;
+  padding: 0;
+  text-transform: none;
+}
+
+.transaction-content {
+  min-width: 0;
+}
+
+.transaction-headshot.roster-card-headshot {
+  width: 64px;
+  height: 64px;
+  align-self: end;
+}
+
+.transaction-headshot.roster-card-headshot.is-fallback {
+  width: 42px;
+  height: 42px;
+  align-self: center;
 }
 
 .transaction-meta {

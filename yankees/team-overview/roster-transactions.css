@@ -24,7 +24,7 @@
   min-width: 0;
   overflow: hidden;
   border-radius: 7px;
-  background: rgba(255, 255, 255, 0.045);
+  background: var(--inner-card-bg, #0a1015);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
   display: grid;
   grid-template-columns: 92px minmax(0, 1fr);
@@ -110,7 +110,7 @@
   border: 0;
   border-radius: 6px;
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.045);
+  background: var(--inner-card-bg, #0a1015);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
   text-align: left;
   display: grid;
@@ -125,7 +125,7 @@
 .roster-link:hover,
 .roster-link:focus {
   color: #fff;
-  background: rgba(255, 255, 255, 0.045);
+  background: var(--inner-card-bg, #0a1015);
 }
 
 .roster-card-headshot {
@@ -234,7 +234,7 @@
 .feed article.transaction-card {
   min-height: 86px;
   border: 0;
-  background: var(--card-bg-strong);
+  background: var(--inner-card-bg, #0a1015);
   display: grid;
   grid-template-columns: 64px minmax(0, 1fr);
   align-items: center;

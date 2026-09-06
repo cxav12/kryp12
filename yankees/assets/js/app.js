@@ -2024,7 +2024,7 @@ function renderPregamePreview(game, feed) {
           <h3 id="pregame-bullpen-title">Bullpen</h3>
           <span>Available relief pitchers</span>
         </div>
-        <p><i aria-hidden="true"></i> Pitches thrown · Last 3 games</p>
+        <p><i aria-hidden="true"></i> Pitches thrown - Last 3 games</p>
       </div>
       <div class="pregame-bullpen-groups">${renderPregameBullpen(game)}</div>
     </section>

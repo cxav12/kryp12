@@ -1800,6 +1800,107 @@ function renderPregameLineup(feed, side) {
   `;
 }
 
+function seasonPitchingStats(person) {
+  const pitching = (person?.stats || []).find((entry) => {
+    const group = String(entry.group?.displayName || entry.group?.displayNameShort || "").toLowerCase();
+    return group === "pitching";
+  });
+  return pitching?.splits?.[0]?.stat || {};
+}
+
+function renderBullpenPitcher(pitcher, maximumPitches) {
+  const pitches = Number(pitcher.pitches || 0);
+  const fill = pitches > 0 ? Math.max(10, Math.round((pitches / Math.max(maximumPitches, 1)) * 100)) : 0;
+  return `
+    <a class="bullpen-pitcher" href="./player-profile/?player=${escapeHtml(pitcher.id)}">
+      <img src="${escapeHtml(playerHeadshotUrl(pitcher.id))}" alt="${escapeHtml(`${pitcher.name} headshot`)}" width="58" height="58" loading="lazy" decoding="async" />
+      <strong>${escapeHtml(pitcher.name)}</strong>
+      <small>${escapeHtml(pitcher.era !== undefined ? `${pitcher.era} ERA` : "ERA unavailable")}</small>
+      <span class="bullpen-pitch-meter" aria-label="${escapeHtml(`${pitches} pitches thrown over the last three Yankees games`)}">
+        <i style="height:${fill}%"></i>
+        <b>${pitches}</b>
+      </span>
+    </a>
+  `;
+}
+
+function renderPregameBullpen(game) {
+  const pitchers = game._bullpen;
+  if (!pitchers) {
+    return `<p class="pregame-bullpen-empty">Bullpen availability loading</p>`;
+  }
+  if (!pitchers.length) {
+    return `<p class="pregame-bullpen-empty">Bullpen information is not yet available</p>`;
+  }
+  const maximumPitches = Math.max(...pitchers.map((pitcher) => Number(pitcher.pitches || 0)), 1);
+  const group = (hand, title) => {
+    const groupPitchers = pitchers.filter((pitcher) => pitcher.hand === hand);
+    if (!groupPitchers.length) return "";
+    return `
+      <section class="bullpen-hand-group" aria-label="${title}">
+        <h4>${title}</h4>
+        <div class="bullpen-pitcher-grid">
+          ${groupPitchers.map((pitcher) => renderBullpenPitcher(pitcher, maximumPitches)).join("")}
+        </div>
+      </section>
+    `;
+  };
+  return group("L", "Lefties") + group("R", "Righties") + group("", "Other");
+}
+
+async function loadPregameBullpen(game, feed) {
+  try {
+    const rosterData = await getJson(`/teams/${TEAM_ID}/roster`, { rosterType: "active" });
+    const rosterPitchers = (rosterData.roster || []).filter((entry) => entry.position?.type === "Pitcher");
+    const ids = rosterPitchers.map((entry) => Number(entry.person?.id)).filter(Boolean);
+    if (!ids.length) {
+      game._bullpen = [];
+      return;
+    }
+
+    const peopleData = await getJson("/people", {
+      personIds: ids.join(","),
+      hydrate: `stats(group=[pitching],type=[season],season=${new Date(game.gameDate).getFullYear()})`,
+    });
+    const people = new Map((peopleData.people || []).map((person) => [Number(person.id), person]));
+    const teamBoxscore = feed.liveData?.boxscore?.teams?.[yankeesSide(game)] || {};
+    const announcedBullpen = new Set((teamBoxscore.bullpen || []).map(Number));
+    const probableId = Number(probablePitcherForSide(game, feed, yankeesSide(game))?.id);
+    const pitchers = rosterPitchers.map((entry) => {
+      const id = Number(entry.person?.id);
+      const person = people.get(id) || entry.person || {};
+      const stats = seasonPitchingStats(person);
+      return {
+        id,
+        name: person.fullName || entry.person?.fullName || "Pitcher",
+        hand: person.pitchHand?.code || "",
+        era: stats.era,
+        games: Number(stats.gamesPlayed || 0),
+        starts: Number(stats.gamesStarted || 0),
+        pitches: 0,
+      };
+    }).filter((pitcher) => pitcher.id !== probableId
+      && (announcedBullpen.size ? announcedBullpen.has(pitcher.id) : pitcher.games > pitcher.starts));
+
+    const recentGames = state.recentGames
+      .filter((recentGame) => recentGame.status?.abstractGameState === "Final")
+      .sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate))
+      .slice(0, 3);
+    const recentFeeds = await Promise.all(recentGames.map((recentGame) => getLiveJson(`/game/${recentGame.gamePk}/feed/live`).catch(() => null)));
+    recentFeeds.filter(Boolean).forEach((recentFeed) => {
+      const side = Number(recentFeed.gameData?.teams?.home?.id) === TEAM_ID ? "home" : "away";
+      const players = recentFeed.liveData?.boxscore?.teams?.[side]?.players || {};
+      pitchers.forEach((pitcher) => {
+        const pitching = players[`ID${pitcher.id}`]?.stats?.pitching || {};
+        pitcher.pitches += Number(pitching.numberOfPitches || pitching.pitchesThrown || 0);
+      });
+    });
+    game._bullpen = pitchers.sort((a, b) => a.hand.localeCompare(b.hand) || b.pitches - a.pitches || a.name.localeCompare(b.name));
+  } catch (error) {
+    game._bullpen = [];
+  }
+}
+
 function renderPregamePreview(game, feed) {
   winProbabilityObserver?.disconnect();
   const opponent = game.teams?.[opponentSide(game)]?.team || feed.gameData?.teams?.[opponentSide(game)] || {};
@@ -1884,6 +1985,16 @@ function renderPregamePreview(game, feed) {
         ${renderPregameLineup(feed, yankeesGameSide)}
         ${renderPregameLineup(feed, opponentGameSide)}
       </div>
+    </section>
+    <section class="pregame-bullpen" aria-labelledby="pregame-bullpen-title">
+      <div class="pregame-bullpen-heading">
+        <div>
+          <h3 id="pregame-bullpen-title">Bullpen</h3>
+          <span>Yankees relief pitchers</span>
+        </div>
+        <p><i aria-hidden="true"></i> Pitches thrown · Last 3 games</p>
+      </div>
+      <div class="pregame-bullpen-groups">${renderPregameBullpen(game)}</div>
     </section>
   `;
   els.playerStats.innerHTML = "";
@@ -2221,6 +2332,7 @@ async function loadGameRecap(game) {
         loadProbablePitcherStats(game, feed),
         loadSeasonSeries(game),
         loadPossibleMilestones(game),
+        loadPregameBullpen(game, feed),
       ]);
       if (Number(state.selectedGame?.gamePk) !== Number(game.gamePk)) return;
       renderRecap(game, feed);

@@ -1002,6 +1002,161 @@ a.matchup-player:focus-visible strong {
   text-align: center;
 }
 
+.pregame-bullpen {
+  margin-top: 4px;
+  padding: 20px 22px 24px;
+  border-radius: 7px;
+  background: linear-gradient(180deg, rgba(18, 27, 35, 0.96), rgba(8, 13, 18, 0.98));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.pregame-bullpen-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.pregame-bullpen-heading > div {
+  display: grid;
+  gap: 3px;
+}
+
+.pregame-bullpen-heading h3,
+.bullpen-hand-group h4 {
+  margin: 0;
+  color: var(--ink);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pregame-bullpen-heading h3 {
+  font-size: var(--text-normal);
+}
+
+.pregame-bullpen-heading span,
+.pregame-bullpen-heading p,
+.pregame-bullpen-empty {
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+.pregame-bullpen-heading p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+}
+
+.pregame-bullpen-heading p i {
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #5daeff, #17253a);
+}
+
+.pregame-bullpen-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.bullpen-hand-group {
+  min-width: 0;
+}
+
+.bullpen-hand-group h4 {
+  margin-bottom: 12px;
+  color: #9ac7ff;
+  font-size: 0.68rem;
+}
+
+.bullpen-pitcher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
+  gap: 14px;
+}
+
+.bullpen-pitcher {
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+}
+
+.bullpen-pitcher > img {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 7px;
+  border-radius: 50%;
+  background: #080d12;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.bullpen-pitcher > strong,
+.bullpen-pitcher > small {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bullpen-pitcher > strong {
+  color: var(--ink);
+  font-size: var(--text-small);
+}
+
+.bullpen-pitcher:hover > strong,
+.bullpen-pitcher:focus-visible > strong {
+  color: #fff;
+}
+
+.bullpen-pitcher > small {
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.bullpen-pitch-meter {
+  position: relative;
+  width: 28px;
+  height: 112px;
+  margin-top: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(154, 199, 255, 0.2);
+  border-radius: 4px;
+  background: repeating-linear-gradient(135deg, rgba(154, 199, 255, 0.07) 0 2px, transparent 2px 6px);
+}
+
+.bullpen-pitch-meter i {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(180deg, #69b6ff, #17243a);
+}
+
+.bullpen-pitch-meter b {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  left: 0;
+  z-index: 1;
+  color: #fff;
+  font-size: 0.68rem;
+  text-shadow: 0 1px 2px #000;
+}
+
+.pregame-bullpen-empty {
+  margin: 0;
+  padding: 18px 0;
+  text-align: center;
+}
+
 .game-decisions.live-matchup-slot {
   display: block;
   padding-top: 14px;
@@ -2108,6 +2263,10 @@ a.matchup-player:focus-visible strong {
     gap: 14px;
   }
 
+  .pregame-bullpen-groups {
+    grid-template-columns: 1fr;
+  }
+
   .recap-grid {
     grid-template-columns: 1fr;
   }
@@ -2126,6 +2285,21 @@ a.matchup-player:focus-visible strong {
   .pregame-lineups-heading {
     display: grid;
     gap: 3px;
+  }
+
+  .pregame-bullpen {
+    padding: 18px 12px 22px;
+  }
+
+  .pregame-bullpen-heading {
+    align-items: flex-start;
+    display: grid;
+    gap: 9px;
+  }
+
+  .bullpen-pitcher-grid {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 14px 8px;
   }
 
   .pregame-lineup-player {

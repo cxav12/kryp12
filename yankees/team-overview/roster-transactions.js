@@ -129,9 +129,9 @@ function positionRank(entry) {
 
 function playerExperience(person) {
   const debutYear = Number(String(person?.mlbDebutDate || "").slice(0, 4));
-  if (!debutYear) return "MLB experience unavailable";
+  if (!debutYear) return "Experience unavailable";
   const seasons = Math.max(1, new Date().getFullYear() - debutYear + 1);
-  return `${seasons} ${seasons === 1 ? "season" : "seasons"} MLB experience`;
+  return `${seasons} ${seasons === 1 ? "season" : "seasons"}`;
 }
 
 function profilePortrait(src, alt) {
@@ -360,7 +360,7 @@ function coachCard(entry) {
   const experience = document.createElement("small");
   experience.textContent = entry.roleExperience === null
     ? "Experience unavailable"
-    : `${entry.roleExperience}${entry.roleExperienceCapped ? "+" : ""} ${entry.roleExperience === 1 ? "season" : "seasons"} in role`;
+    : `${entry.roleExperience}${entry.roleExperienceCapped ? "+" : ""} ${entry.roleExperience === 1 ? "season" : "seasons"}`;
   copy.append(heading, role, experience);
   article.append(profilePortrait(portrait, `${entry.person?.fullName || "Yankees coach"} headshot`), copy);
   return article;

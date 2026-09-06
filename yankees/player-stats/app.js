@@ -254,7 +254,7 @@ function renderBody(rows) {
   const fragment = document.createDocumentFragment();
   rows.forEach((item) => {
     const row = document.createElement("tr");
-    row.classList.toggle("is-yankees-row", isYankeesEntry(item));
+    row.classList.toggle("is-yankees-row", state.scope !== "yankees" && isYankeesEntry(item));
     const playerCell = document.createElement("td");
     const player = document.createElement("div");
     player.className = "player-cell";
@@ -291,7 +291,7 @@ function renderMobileLeaderboard(rows, start) {
   rows.forEach((item, index) => {
     const row = document.createElement("li");
     row.className = "mobile-stat-row";
-    row.classList.toggle("is-yankees-row", isYankeesEntry(item));
+    row.classList.toggle("is-yankees-row", state.scope !== "yankees" && isYankeesEntry(item));
     const rank = document.createElement("span");
     rank.className = "mobile-stat-rank";
     rank.textContent = start + index + 1;

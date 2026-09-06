@@ -341,7 +341,7 @@ function coachCard(entry) {
   const article = document.createElement("article");
   article.className = "coach-card";
   const personId = Number(entry.person?.id);
-  const portrait = `https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_auto:best,f_png/v1/people/${personId}/headshot/83/coach/current`;
+  const portrait = `https://img.mlbstatic.com/mlb-photos/image/upload/e_background_removal,w_180,q_auto:best,f_png/v1/people/${personId}/headshot/83/coach/current`;
   const copy = document.createElement("div");
   copy.className = "coach-card-copy";
   const heading = document.createElement("span");

@@ -98,6 +98,10 @@
   overflow: visible;
 }
 
+.feed {
+  gap: 10px !important;
+}
+
 .roster-list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -234,7 +238,9 @@
 .feed article.transaction-card {
   min-height: 86px;
   border: 0;
-  background: var(--inner-card-bg, #0a1015);
+  border-radius: 6px;
+  background: #0a1015 !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: 64px minmax(0, 1fr);
   align-items: center;

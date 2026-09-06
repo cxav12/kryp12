@@ -17,7 +17,7 @@
 
 .overview-body .row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 14px;
   margin-inline: 0;
 }
@@ -180,7 +180,6 @@
   font-size: 0.68rem;
   letter-spacing: normal;
 }
-
 .rank-trend-legend {
   display: flex;
   flex-wrap: wrap;
@@ -323,11 +322,5 @@
   .header-actions,
   .status-pill {
     width: 100%;
-  }
-}
-
-@media (max-width: 1199.98px) {
-  .overview-body .row {
-    grid-template-columns: 1fr;
   }
 }

@@ -328,13 +328,14 @@
 
 .sort-icon {
   color: #77889a;
-  font-size: .78rem;
+  font-size: .68rem;
   font-weight: 900;
   line-height: 1;
 }
 
 .sort-button.active .sort-icon {
   color: var(--control-active-ink);
+  font-size: .78rem;
 }
 
 .stats-pagination {

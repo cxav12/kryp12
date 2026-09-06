@@ -43,11 +43,16 @@
 }
 
 .coach-card::before {
-  background-image: var(--coach-headshot);
+  background-image: var(--coach-headshot, url("../assets/new-york-yankees.svg"));
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: auto 94%;
   filter: grayscale(55%) saturate(70%) brightness(1.08);
+}
+
+.coach-card-fallback::before {
+  background-size: 44% auto;
+  opacity: 0.2;
 }
 
 .coach-card::after {

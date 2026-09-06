@@ -299,7 +299,16 @@ function coachCard(entry) {
   article.className = "coach-card";
   const personId = Number(entry.person?.id);
   if (Number.isInteger(personId)) {
-    article.style.setProperty("--coach-headshot", `url("https://img.mlbstatic.com/mlb-photos/image/upload/w_240,q_auto:best/v1/people/${personId}/headshot/silo/current")`);
+    const modernPortrait = `https://img.mlbstatic.com/mlb-photos/image/upload/w_240,q_auto:best/v1/people/${personId}/headshot/silo/current`;
+    const legacyPortrait = `https://securea.mlb.com/mlb/images/players/head_shot/${personId}.jpg`;
+    const applyPortrait = (url) => article.style.setProperty("--coach-headshot", `url("${url}")`);
+    const legacyImage = new Image();
+    legacyImage.addEventListener("load", () => applyPortrait(legacyPortrait), { once: true });
+    legacyImage.addEventListener("error", () => article.classList.add("coach-card-fallback"), { once: true });
+    const modernImage = new Image();
+    modernImage.addEventListener("load", () => applyPortrait(modernPortrait), { once: true });
+    modernImage.addEventListener("error", () => { legacyImage.src = legacyPortrait; }, { once: true });
+    modernImage.src = modernPortrait;
   }
   const copy = document.createElement("div");
   copy.className = "coach-card-copy";

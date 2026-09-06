@@ -824,14 +824,36 @@ a.hot-item.player-profile-link:focus-visible {
   background: transparent;
 }
 
+.leader-stat-heading {
+  min-height: 34px;
+  background: #0d1216;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 9px;
+}
+
 .leader-stat-title {
   margin: 0;
   border-bottom: 0;
   color: var(--ink);
-  background: #0d1216;
-  padding: 7px 9px;
   font-size: var(--text-small);
   font-weight: 800;
+}
+
+.leader-more-link {
+  flex: 0 0 auto;
+  color: #8fbbe3;
+  font-size: var(--text-small);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.leader-more-link:hover,
+.leader-more-link:focus-visible {
+  color: #fff;
+  text-decoration: none;
 }
 
 .leader-list {

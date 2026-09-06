@@ -878,10 +878,19 @@ function leaderEntry(entry, index, type) {
   return item;
 }
 
-function leaderStatCard(definition, entries, type, selected = false) {
+function statsSortKey(key) {
+  return ({ battingAverage: "avg", runsBattedIn: "rbi", earnedRunAverage: "era", strikeouts: "strikeOuts" })[key] || key;
+}
+
+function leaderStatCard(definition, entries, type, groupName, selected = false) {
   const card = element("section", "leader-stat-card");
   card.classList.toggle("is-selected", selected);
-  card.append(element("h4", "leader-stat-title", definition.label));
+  const heading = element("div", "leader-stat-heading");
+  const more = element("a", "leader-more-link", "More");
+  more.href = `../player-stats/?scope=${type === "team" ? "team" : "player"}&group=${definition.group || groupName}&sort=${statsSortKey(definition.key)}&direction=${definition.ascending ? "asc" : "desc"}`;
+  more.setAttribute("aria-label", `View more ${definition.label} leaders`);
+  heading.append(element("h4", "leader-stat-title", definition.label), more);
+  card.append(heading);
   if (!entries?.length) {
     card.append(element("p", "leader-stat-empty", "Unavailable"));
     return card;
@@ -913,7 +922,7 @@ function leaderGroup(title, groupName, definitions, leaders, type, selectedIndex
   });
   const grid = element("div", "leader-stat-grid");
   definitions.forEach((definition, index) => {
-    grid.append(leaderStatCard(definition, leaders?.[definition.key], type, index === selectedIndex));
+    grid.append(leaderStatCard(definition, leaders?.[definition.key], type, groupName, index === selectedIndex));
   });
   header.append(element("h3", "leader-group-title", title), controls);
   group.append(header, grid);

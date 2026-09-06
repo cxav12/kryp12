@@ -28,6 +28,7 @@ const COLUMNS = {
     ["era", "ERA", "asc"],
     ["gamesPlayed", "G", "desc"],
     ["gamesStarted", "GS", "desc"],
+    ["qualityStarts", "QS", "desc"],
     ["completeGames", "CG", "desc"],
     ["shutouts", "SHO", "desc"],
     ["saves", "SV", "desc"],
@@ -488,9 +489,19 @@ function bindEvents() {
 }
 
 async function init() {
+  const params = new URLSearchParams(location.search);
+  const requestedScope = params.get("scope");
+  const requestedGroup = params.get("group");
+  const requestedSort = params.get("sort");
+  const requestedDirection = params.get("direction");
+  if (["player", "yankees", "al", "nl", "team"].includes(requestedScope)) state.scope = requestedScope;
+  if (requestedGroup && COLUMNS[requestedGroup]) state.group = requestedGroup;
+  if (requestedSort && COLUMNS[state.group].some(([key]) => key === requestedSort)) state.sortKey = requestedSort;
+  if (["asc", "desc"].includes(requestedDirection)) state.sortDirection = requestedDirection;
   bindEvents();
   try {
-    await loadGroup("hitting");
+    if (state.scope === "team") await loadTeamGroup(state.group);
+    else { await loadGroup(state.group); if (["al", "nl"].includes(state.scope)) await loadLeagueMap(); }
     render();
     setStatus("Live MLB data", "good");
   } catch (error) {

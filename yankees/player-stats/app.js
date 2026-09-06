@@ -250,7 +250,12 @@ function renderHead() {
     button.dataset.sortKey = key;
     button.dataset.direction = active ? state.sortDirection : "";
     button.setAttribute("aria-label", `Sort by ${label}${active ? `, currently ${state.sortDirection === "desc" ? "descending" : "ascending"}` : ""}`);
-    button.textContent = label;
+    button.append(document.createTextNode(label));
+    const icon = document.createElement("span");
+    icon.className = "sort-icon";
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = active ? (state.sortDirection === "asc" ? "↑" : "↓") : "↕";
+    button.append(icon);
     cell.setAttribute("aria-sort", active ? (state.sortDirection === "desc" ? "descending" : "ascending") : "none");
     cell.append(button);
     row.append(cell);

@@ -313,6 +313,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 5px;
   padding: 0;
   font: inherit;
   letter-spacing: inherit;
@@ -322,6 +323,17 @@
 .sort-button:hover,
 .sort-button:focus,
 .sort-button.active {
+  color: var(--control-active-ink);
+}
+
+.sort-icon {
+  color: #77889a;
+  font-size: .78rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.sort-button.active .sort-icon {
   color: var(--control-active-ink);
 }
 

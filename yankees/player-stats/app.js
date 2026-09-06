@@ -72,6 +72,8 @@ const state = {
   rows: { hitting: null, pitching: null },
   teamRows: { hitting: null, pitching: null },
   qualifiedIds: { hitting: null, pitching: null },
+  qualityStarts: null,
+  qualityStartsRequest: null,
   teamLeagues: new Map(),
   qualifiedOnly: true,
   sortKey: "homeRuns",
@@ -124,6 +126,81 @@ function teamStatUrl(group) {
   return url;
 }
 
+function statNumber(value) {
+  const number = Number.parseFloat(value);
+  return Number.isFinite(number) ? number : 0;
+}
+
+async function loadQualityStarts() {
+  if (state.qualityStarts) return state.qualityStarts;
+  if (state.qualityStartsRequest) return state.qualityStartsRequest;
+
+  state.qualityStartsRequest = (async () => {
+    const candidatesUrl = new URL(`${MLB_API}/stats`);
+    candidatesUrl.search = new URLSearchParams({
+      stats: "season",
+      group: "pitching",
+      gameType: "R",
+      season: String(SEASON),
+      sportIds: "1",
+      playerPool: "ALL",
+      limit: "1000",
+      hydrate: "team",
+      fields: "stats,splits,stat,gamesStarted,player,id,team",
+    });
+    const candidatesResponse = await fetch(candidatesUrl);
+    if (!candidatesResponse.ok) throw new Error(`MLB API returned ${candidatesResponse.status}`);
+    const candidatesData = await candidatesResponse.json();
+    const candidates = (candidatesData.stats?.[0]?.splits || [])
+      .filter((split) => split.player?.id && statNumber(split.stat?.gamesStarted) > 0);
+
+    const playerIds = candidates.map((split) => split.player.id);
+    const playerTotals = new Map(playerIds.map((id) => [Number(id), 0]));
+    const teamTotals = new Map();
+    if (playerIds.length) {
+      const logsUrl = new URL(`${MLB_API}/people`);
+      logsUrl.searchParams.set("personIds", playerIds.join(","));
+      logsUrl.searchParams.set("hydrate", `stats(group=[pitching],type=[gameLog],season=${SEASON}),currentTeam`);
+      logsUrl.searchParams.set("fields", "people,id,stats,splits,stat,gamesStarted,outs,earnedRuns,team");
+      const logsResponse = await fetch(logsUrl);
+      if (!logsResponse.ok) throw new Error(`MLB API returned ${logsResponse.status}`);
+      const logsData = await logsResponse.json();
+
+      (logsData.people || []).forEach((person) => {
+        let total = 0;
+        (person.stats?.[0]?.splits || []).forEach((split) => {
+          if (statNumber(split.stat?.gamesStarted) < 1
+            || statNumber(split.stat?.outs) < 18
+            || statNumber(split.stat?.earnedRuns) > 3) return;
+          total += 1;
+          if (split.team?.id) {
+            const teamId = Number(split.team.id);
+            teamTotals.set(teamId, (teamTotals.get(teamId) || 0) + 1);
+          }
+        });
+        playerTotals.set(Number(person.id), total);
+      });
+    }
+
+    state.qualityStarts = { players: playerTotals, teams: teamTotals };
+    return state.qualityStarts;
+  })();
+
+  try {
+    return await state.qualityStartsRequest;
+  } finally {
+    state.qualityStartsRequest = null;
+  }
+}
+
+async function addQualityStarts(rows, type) {
+  const totals = await loadQualityStarts();
+  const lookup = type === "team" ? totals.teams : totals.players;
+  rows.forEach((row) => {
+    row.stat.qualityStarts = lookup.get(Number(row.playerId)) || 0;
+  });
+}
+
 async function loadLeagueMap() {
   if (state.teamLeagues.size) return;
   const response = await fetch(`${MLB_API}/teams?sportId=1&season=${SEASON}`);
@@ -146,6 +223,7 @@ async function loadTeamGroup(group) {
     isTeam: true,
     stat: split.stat || {},
   }));
+  if (group === "pitching") await addQualityStarts(state.teamRows[group], "team");
 }
 
 async function loadGroup(group) {
@@ -172,6 +250,7 @@ async function loadGroup(group) {
   state.qualifiedIds[group] = new Set(
     (qualifiedData?.stats?.[0]?.splits || []).map((split) => Number(split.player?.id)).filter(Boolean),
   );
+  if (group === "pitching") await addQualityStarts(state.rows[group], "player");
 }
 
 function numberValue(row, key) {

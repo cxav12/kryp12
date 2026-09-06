@@ -1,0 +1,42 @@
+.league-panel { margin-top: 14px; border-radius: 8px; overflow: hidden; background: var(--card); }
+.league-heading { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px 22px; }
+.league-heading span { color: var(--accent-bright); font-size: .68rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+.league-heading h2 { margin: 2px 0 0; color: #fff; font-size: 1.3rem; }
+.league-heading p { margin: 3px 0 0; color: var(--muted); }
+.week-control, .league-toggle { display: flex; align-items: center; gap: 4px; border-radius: 999px; background: #24212d; padding: 4px; }
+.week-control button, .league-toggle button { border: 0; border-radius: 999px; color: #aaa4b5; background: transparent; padding: 7px 12px; cursor: pointer; font-weight: 800; }
+.week-control strong { min-width: 64px; color: #fff; text-align: center; }
+.week-control button:disabled { opacity: .3; cursor: default; }
+.league-toggle button.active { color: #fff; background: #100e16; box-shadow: inset 0 0 0 1px #51488b; }
+.score-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0 22px 22px; }
+.score-card { border-radius: 8px; overflow: hidden; background: var(--inner); box-shadow: inset 3px 0 var(--purple-bright); }
+.score-meta { display: flex; justify-content: space-between; gap: 12px; padding: 11px 14px 7px; color: var(--quiet); font-size: .7rem; font-weight: 800; text-transform: uppercase; }
+.score-team-row { min-height: 48px; display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 7px 14px; border-top: 1px solid var(--line); }
+.score-team-row img { width: 30px; height: 30px; object-fit: contain; }
+.score-team-row strong { color: #fff; }
+.score-team-row b { color: #fff; font-size: 1.2rem; font-variant-numeric: tabular-nums; }
+.score-team-row.afc-north strong { color: var(--accent-bright); }
+.quiet-panel { background: linear-gradient(100deg, #111017, #15121e); }
+.standings-wrap { overflow-x: auto; }
+.standings-table { width: 100%; min-width: 780px; border-collapse: collapse; }
+.standings-table th, .standings-table td { padding: 11px 16px; border-top: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.standings-table th { color: var(--quiet); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; }
+.standings-table th:first-child, .standings-table td:first-child { text-align: left; }
+.standings-table td { color: var(--muted); font-weight: 700; }
+.standings-table .division-row td { color: var(--accent-bright); background: #0c0b11; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; }
+.standings-team { display: flex; align-items: center; gap: 10px; color: #fff; }
+.standings-team img { width: 27px; height: 27px; object-fit: contain; }
+.standings-team.ravens { color: var(--accent-bright); }
+.leader-controls { display: flex; align-items: center; gap: 10px; }
+.leader-controls select { min-height: 39px; border: 1px solid var(--line); border-radius: 999px; color: #fff; background: #24212d; padding: 0 32px 0 14px; }
+.leader-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; padding: 0 22px 22px; }
+.leader-card { min-width: 0; border-radius: 8px; background: var(--inner); padding: 15px; }
+.leader-rank { color: var(--accent-bright); font-size: .7rem; font-weight: 900; text-transform: uppercase; }
+.leader-person { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.leader-person img { width: 46px; height: 46px; border-radius: 50%; object-fit: contain; background: #1c1925; }
+.leader-person strong { display: block; overflow: hidden; color: #fff; text-overflow: ellipsis; white-space: nowrap; }
+.leader-person small { color: var(--muted); }
+.leader-value { margin-top: 12px; color: #fff; font-size: 1.35rem; font-weight: 900; }
+@media (max-width: 950px) { .leader-list { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px) { .league-heading { align-items: flex-start; flex-direction: column; } .score-grid { grid-template-columns: 1fr; padding-inline: 14px; } .leader-controls { align-items: stretch; flex-direction: column; width: 100%; } .leader-list { grid-template-columns: repeat(2, 1fr); padding-inline: 14px; } }
+@media (max-width: 440px) { .leader-list { grid-template-columns: 1fr; } }

@@ -56,6 +56,7 @@ body {
   transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
 }
 .project-card--yankees { --accent: #89b2d6; --card-bg: #0d1722; border-color: #253e50; }
+.project-card--ravens { --accent: #b3a7ff; --card-bg: #171120; border-color: #55458a; }
 .project-card--palworld { --accent: #e0bd62; --card-bg: #1c180f; border-color: #4c4025; }
 .project-card--wishlist { --accent: #58cec4; --card-bg: #0d1b1a; border-color: #204643; }
 .project-art { position: relative; display: grid; place-items: center; height: 220px; flex-shrink: 0; overflow: hidden; }
@@ -65,10 +66,12 @@ body {
   transition: transform 260ms ease;
 }
 .project-card--palworld .project-art::before { background: radial-gradient(ellipse at 50% 20%, #806b3280, transparent 74%), url("./contours.svg?v=2") right center / cover; }
+.project-card--ravens .project-art::before { background: radial-gradient(ellipse at 50% 20%, #49358690, transparent 72%), url("./contours.svg?v=2") center / cover; }
 .project-card--wishlist .project-art::before { background: radial-gradient(ellipse at 50% 20%, #287a7470, transparent 72%), url("./contours.svg?v=2") center / cover; }
 .project-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #0000000a 35%, var(--card-bg)); pointer-events: none; }
 .project-logo { position: relative; z-index: 1; display: block; object-fit: contain; transition: transform 260ms ease; opacity: .85; }
 .yankees-logo { width: 108px; height: 108px; }
+.ravens-logo { width: 132px; height: 132px; }
 .palworld-logo { width: 82%; height: 180px; }
 .wishlist-logo { width: 112px; height: 112px; }
 .project-copy { position: relative; display: flex; flex-direction: column; align-items: flex-start; flex: 1; padding: 4px 30px 30px; }

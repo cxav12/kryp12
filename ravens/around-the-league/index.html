@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08070d">
+  <meta name="description" content="Baltimore Ravens division scoreboard, NFL standings, and league leaders.">
+  <base href="/ravens/">
+  <title>Around the League · Baltimore Ravens</title>
+  <link rel="preload" as="image" href="./assets/baltimore-ravens-header-background.png" fetchpriority="high">
+  <link rel="preconnect" href="https://site.api.espn.com">
+  <link rel="stylesheet" href="./styles.css?v=20260905-footer1">
+  <link rel="stylesheet" href="./around-the-league/styles.css?v=20260905-league1">
+  <script src="./around-the-league/app.js?v=20260905-league1" defer></script>
+</head>
+<body>
+  <main class="site-shell">
+    <header class="team-header"><a class="brand" href="./" aria-label="Baltimore Ravens home"><img src="https://static.www.nfl.com/t_q-best/league/api/clubs/logos/BAL" alt="Baltimore Ravens logo"><h1>Baltimore Ravens</h1></a></header>
+    <details class="mobile-nav"><summary>Menu <span aria-hidden="true"></span></summary><nav aria-label="Ravens sections"><a href="./">Home</a><a href="./player-profile/">Player Profile</a><a href="./stats/">Stats</a><a href="./schedule/">Schedule</a><a href="./team-overview/">Team Overview</a><a class="active" href="./around-the-league/" aria-current="page">Around the League</a></nav></details>
+    <nav class="desktop-nav" aria-label="Ravens sections"><a href="./">Home</a><a href="./player-profile/">Player Profile</a><a href="./stats/">Stats</a><a href="./schedule/">Schedule</a><a href="./team-overview/">Team Overview</a><a class="active" href="./around-the-league/" aria-current="page">Around the League</a></nav>
+    <section class="page-intro"><div><h2>Around the League</h2><p>Follow the AFC North, NFL standings, and the league's statistical leaders.</p></div><span class="status-pill" id="league-status">Loading NFL data</span></section>
+
+    <section class="league-panel division-scoreboard">
+      <header class="league-heading"><div><span>AFC North Watch</span><h2>Division Games</h2><p id="scoreboard-summary">Ravens, Bengals, Browns, and Steelers</p></div><div class="week-control"><button type="button" id="previous-week" aria-label="Previous week">‹</button><strong id="week-label">Week 1</strong><button type="button" id="next-week" aria-label="Next week">›</button></div></header>
+      <div class="score-grid" id="division-games"><p class="empty-copy">Loading AFC North games…</p></div>
+    </section>
+
+    <section class="league-panel quiet-panel">
+      <header class="league-heading"><div><span>Performance Watch</span><h2>Who's Hot · Who's Not</h2></div></header>
+      <p class="empty-copy">This section is reserved for a future Ravens performance feature.</p>
+    </section>
+
+    <section class="league-panel">
+      <header class="league-heading"><div><span>2026 Season</span><h2>NFL Standings</h2><p id="standings-summary">League standings</p></div><div class="league-toggle" id="standings-toggle" role="group" aria-label="Standings conference"><button class="active" type="button" data-conference="afc">AFC</button><button type="button" data-conference="nfc">NFC</button></div></header>
+      <div class="standings-wrap"><table class="standings-table"><thead><tr><th>Team</th><th>W</th><th>L</th><th>T</th><th>PCT</th><th>PF</th><th>PA</th><th>DIFF</th><th>STRK</th></tr></thead><tbody id="standings-body"><tr><td colspan="9">Loading standings…</td></tr></tbody></table></div>
+    </section>
+
+    <section class="league-panel">
+      <header class="league-heading"><div><span>Best in the NFL</span><h2>League Leaders</h2><p id="leaders-summary">Traditional football statistics</p></div><div class="leader-controls"><div class="league-toggle" id="leader-type-toggle" role="group" aria-label="Leader type"><button class="active" type="button" data-type="players">Players</button><button type="button" data-type="teams">Teams</button></div><select id="leader-category" aria-label="Statistic category"><option value="passingYards">Passing Yards</option><option value="rushingYards">Rushing Yards</option><option value="receivingYards">Receiving Yards</option><option value="totalTackles">Tackles</option><option value="sacks">Sacks</option><option value="interceptions">Interceptions</option></select></div></header>
+      <div class="leader-list" id="leader-list"><p class="empty-copy">Loading league leaders…</p></div>
+    </section>
+    <footer class="site-footer"><nav aria-label="Footer"><a href="./">Home</a><a href="./legal-disclaimer/">Legal Disclaimer</a></nav></footer>
+  </main>
+</body>
+</html>

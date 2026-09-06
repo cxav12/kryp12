@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08070d">
+  <meta name="description" content="Baltimore Ravens player profiles, season statistics, and game logs.">
+  <base href="/ravens/">
+  <title>Player Profile · Baltimore Ravens</title>
+  <link rel="preload" as="image" href="./assets/baltimore-ravens-header-background.png" fetchpriority="high">
+  <link rel="preconnect" href="https://site.api.espn.com">
+  <link rel="preconnect" href="https://site.web.api.espn.com">
+  <link rel="preconnect" href="https://a.espncdn.com">
+  <link rel="stylesheet" href="./styles.css?v=20260905-footer1">
+  <link rel="stylesheet" href="./player-profile/styles.css?v=20260905-phase2">
+  <script src="./player-profile/app.js?v=20260905-phase2" defer></script>
+</head>
+<body>
+  <main class="site-shell">
+    <header class="team-header">
+      <a class="brand" href="./" aria-label="Baltimore Ravens home"><img src="https://static.www.nfl.com/t_q-best/league/api/clubs/logos/BAL" alt="Baltimore Ravens logo"><h1>Baltimore Ravens</h1></a>
+    </header>
+    <details class="mobile-nav">
+      <summary>Menu <span aria-hidden="true"></span></summary>
+      <nav aria-label="Ravens sections"><a href="./">Home</a><a class="active" href="./player-profile/" aria-current="page">Player Profile</a><a href="./stats/">Stats</a><a href="./schedule/">Schedule</a><a href="./team-overview/">Team Overview</a><a href="./around-the-league/">Around the League</a></nav>
+    </details>
+    <nav class="desktop-nav" aria-label="Ravens sections"><a href="./">Home</a><a class="active" href="./player-profile/" aria-current="page">Player Profile</a><a href="./stats/">Stats</a><a href="./schedule/">Schedule</a><a href="./team-overview/">Team Overview</a><a href="./around-the-league/">Around the League</a></nav>
+
+    <section class="page-intro profile-intro">
+      <div><h2>Player Profile</h2><p>Review a Ravens player's bio, season performance, recent action, and career totals.</p></div>
+      <span class="status-pill" id="profile-status">Loading roster</span>
+    </section>
+
+    <section class="player-finder" aria-labelledby="player-search-title">
+      <div><span>2026 Roster</span><h2 id="player-search-title">Find a Player</h2></div>
+      <form id="player-search-form"><label class="visually-hidden" for="player-search">Player name</label><input id="player-search" list="player-options" type="search" placeholder="Search the Ravens roster" autocomplete="off"><datalist id="player-options"></datalist><button type="submit">View Profile</button></form>
+    </section>
+
+    <section class="profile-hero" id="profile-hero" aria-live="polite"><p class="loading-copy">Loading player profile…</p></section>
+
+    <section class="profile-grid" id="profile-content" hidden>
+      <article class="profile-panel season-panel">
+        <header class="profile-panel-heading"><div><span>Performance</span><h2>Season Stats</h2></div><div class="split-toggle" role="group" aria-label="Statistic split"><button class="active" type="button" data-split="season">Season</button><button type="button" data-split="home">Home</button><button type="button" data-split="away">Away</button></div></header>
+        <div class="stat-card-grid" id="season-stats"></div>
+      </article>
+      <article class="profile-panel recent-panel"><header class="profile-panel-heading"><div><span>Last Five Games</span><h2>Recent Action</h2></div></header><div id="recent-action"></div></article>
+      <article class="profile-panel pace-panel"><header class="profile-panel-heading"><div><span>17-Game Projection</span><h2>Season Pace</h2></div></header><div class="stat-card-grid compact" id="season-pace"></div></article>
+      <article class="profile-panel career-panel"><header class="profile-panel-heading"><div><span>NFL Career</span><h2>Career Totals</h2></div></header><div class="stat-card-grid compact" id="career-totals"></div></article>
+      <article class="profile-panel log-panel"><header class="profile-panel-heading"><div><span>2026</span><h2>Season Log</h2></div></header><div id="season-log"></div></article>
+    </section>
+    <footer class="site-footer"><nav aria-label="Footer"><a href="./">Home</a><a href="./legal-disclaimer/">Legal Disclaimer</a></nav></footer>
+  </main>
+</body>
+</html>

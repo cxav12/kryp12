@@ -1,0 +1,43 @@
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.season-toolbar { margin-top: 14px; border-radius: 8px; background: var(--card); display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 24px; }
+.season-toolbar > div:first-child > span, .schedule-heading span { color: var(--accent-bright); font-size: .68rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+.season-toolbar h2, .schedule-heading h2 { margin: 2px 0 0; color: #fff; font-size: 1.25rem; }
+.season-toolbar p { margin: 3px 0 0; color: var(--muted); }
+.year-control { flex: 0 0 auto; border-radius: 999px; background: #24212d; display: grid; grid-template-columns: 40px minmax(92px, auto) 40px; align-items: center; padding: 4px; }
+.year-control button, .year-control select { min-height: 38px; border: 0; color: #fff; background: transparent; font-weight: 850; }
+.year-control button { border-radius: 50%; cursor: pointer; font-size: 1.3rem; }
+.year-control button:hover:not(:disabled), .year-control button:focus-visible { background: #100e16; }
+.year-control button:disabled { color: #514d59; cursor: default; }
+.year-control select { width: 100%; appearance: none; padding: 0 14px; text-align: center; text-align-last: center; cursor: pointer; outline: none; }
+.year-control select option { color: #fff; background: #17151f; }
+.schedule-sections { display: grid; gap: 14px; margin-top: 14px; }
+.schedule-section { border-radius: 8px; overflow: hidden; background: var(--card); }
+.schedule-heading { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 22px; }
+.game-count { border-radius: 999px; color: #d8d2ff; background: rgba(91, 75, 196, .2); padding: 6px 11px; font-weight: 850; }
+.schedule-list { margin: 0; padding: 0; list-style: none; }
+.schedule-row { min-height: 88px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 90px minmax(210px, 1.25fr) minmax(180px, .9fr) minmax(140px, .8fr) auto; align-items: center; gap: 18px; padding: 13px 22px; }
+.schedule-row:hover { background: rgba(91, 75, 196, .08); }
+.schedule-week span, .schedule-detail span, .schedule-venue span { display: block; color: var(--quiet); font-size: .66rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.schedule-week strong, .schedule-detail strong, .schedule-venue strong { display: block; overflow: hidden; margin-top: 3px; color: #fff; text-overflow: ellipsis; white-space: nowrap; }
+.matchup { min-width: 0; display: grid; grid-template-columns: 48px minmax(0, 1fr); align-items: center; gap: 13px; }
+.matchup img { width: 46px; height: 46px; object-fit: contain; }
+.matchup div { min-width: 0; }
+.matchup span { display: block; color: var(--muted); font-size: .72rem; font-weight: 750; }
+.matchup strong { display: block; overflow: hidden; color: #fff; font-size: .96rem; text-overflow: ellipsis; white-space: nowrap; }
+.result { justify-self: end; min-width: 92px; border-radius: 7px; color: #fff; background: #211e29; padding: 9px 12px; font-weight: 900; text-align: center; }
+.result.win { color: var(--success); background: rgba(55, 135, 95, .15); }
+.result.loss { color: var(--danger); background: rgba(164, 67, 67, .15); }
+.result.live { color: var(--accent-bright); background: rgba(91, 75, 196, .2); }
+.game-center-link { justify-self: end; border-radius: 7px; color: #d8d2ff; background: rgba(91, 75, 196, .18); padding: 8px 12px; font-weight: 850; text-decoration: none; }
+.game-center-link:hover, .game-center-link:focus-visible { color: #fff; background: rgba(91, 75, 196, .35); }
+.section-empty { border-top: 1px solid var(--line); margin: 0; color: var(--muted); padding: 28px 22px; text-align: center; }
+@media (max-width: 980px) { .schedule-row { grid-template-columns: 76px minmax(200px, 1fr) minmax(150px, .8fr) auto; } .schedule-venue { display: none; } }
+@media (max-width: 680px) {
+  .season-toolbar { align-items: flex-start; flex-direction: column; }
+  .schedule-row { grid-template-columns: 64px minmax(0, 1fr) auto; gap: 10px; padding: 14px; }
+  .schedule-detail { grid-column: 2 / -1; }
+  .game-center-link { grid-column: 2 / -1; justify-self: start; }
+  .matchup { grid-template-columns: 38px minmax(0, 1fr); }
+  .matchup img { width: 36px; height: 36px; }
+  .result { min-width: 76px; padding-inline: 8px; }
+}

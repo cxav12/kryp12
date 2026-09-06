@@ -395,7 +395,7 @@ async function renderCoaches() {
     await addCoachExperience(coaches);
     els.coaches.replaceChildren();
     coaches.forEach((entry) => els.coaches.append(coachCard(entry)));
-    els.coachesCount.textContent = `${coaches.length} staff members`;
+    els.coachesCount.textContent = `${coaches.length}`;
     if (!coaches.length) els.coaches.innerHTML = `<p class="empty">No coaching staff entries were returned.</p>`;
     return true;
   } catch (error) {

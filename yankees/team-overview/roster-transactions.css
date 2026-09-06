@@ -17,21 +17,21 @@
 
 .coaches-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .coach-card {
   position: relative;
   isolation: isolate;
   min-width: 0;
-  min-height: 210px;
+  aspect-ratio: 1 / 0.82;
   overflow: hidden;
   border-radius: 7px;
   background: var(--card-bg);
   display: flex;
   align-items: flex-end;
-  padding: 12px;
+  padding: 10px;
 }
 
 .coach-card::before,
@@ -44,19 +44,14 @@
 
 .coach-card::before {
   background-image: var(--coach-headshot, url("../assets/new-york-yankees.svg"));
-  background-position: center bottom;
+  background-position: right 4px bottom;
   background-repeat: no-repeat;
-  background-size: auto 94%;
-  filter: grayscale(55%) saturate(70%) brightness(1.08);
-}
-
-.coach-card-fallback::before {
-  background-size: 44% auto;
-  opacity: 0.2;
+  background-size: auto 96%;
+  filter: grayscale(100%) saturate(45%) brightness(1.2);
 }
 
 .coach-card::after {
-  background: linear-gradient(180deg, transparent 32%, rgba(8, 14, 20, 0.35) 56%, rgba(8, 14, 20, 0.98) 84%);
+  background: rgba(17, 24, 30, 0.8);
 }
 
 .coach-card-copy {
@@ -94,13 +89,13 @@
 
 @media (max-width: 1199.98px) {
   .coaches-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 767.98px) {
   .coaches-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -458,7 +453,6 @@
   }
 
   .coach-card {
-    min-height: 180px;
     padding: 10px;
   }
 

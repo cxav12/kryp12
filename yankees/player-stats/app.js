@@ -71,6 +71,7 @@ const state = {
   rows: { hitting: null, pitching: null },
   teamRows: { hitting: null, pitching: null },
   qualifiedIds: { hitting: null, pitching: null },
+  teamLeagues: new Map(),
   qualifiedOnly: true,
   sortKey: "homeRuns",
   sortDirection: "desc",
@@ -120,6 +121,14 @@ function teamStatUrl(group) {
     sportIds: "1",
   });
   return url;
+}
+
+async function loadLeagueMap() {
+  if (state.teamLeagues.size) return;
+  const response = await fetch(`${MLB_API}/teams?sportId=1&season=${SEASON}`);
+  if (!response.ok) throw new Error(`MLB team directory returned ${response.status}`);
+  const data = await response.json();
+  (data.teams || []).forEach((team) => state.teamLeagues.set(Number(team.id), Number(team.league?.id)));
 }
 
 async function loadTeamGroup(group) {
@@ -177,6 +186,10 @@ function sortedRows() {
   let rows = sourceRows || [];
   if (state.scope === "yankees") {
     rows = rows.filter((row) => Number(row.teamId) === YANKEES_TEAM_ID || row.team === "NYY");
+  } else if (state.scope === "al" || state.scope === "nl") {
+    const leagueId = state.scope === "al" ? 103 : 104;
+    rows = rows.filter((row) => state.teamLeagues.get(Number(row.teamId)) === leagueId);
+    if (state.qualifiedOnly && qualifiedIds?.size) rows = rows.filter((row) => qualifiedIds.has(Number(row.playerId)));
   } else if (state.scope === "player" && state.qualifiedOnly && qualifiedIds?.size) {
     rows = rows.filter((row) => qualifiedIds.has(Number(row.playerId)));
   }
@@ -219,7 +232,7 @@ function renderHead() {
   playerHead.textContent = state.scope === "team" ? "Team" : "Player";
   row.append(playerHead);
 
-  if (state.scope === "player") {
+  if (["player", "al", "nl"].includes(state.scope)) {
     const teamHead = document.createElement("th");
     teamHead.scope = "col";
     teamHead.textContent = "Team";
@@ -264,7 +277,7 @@ function renderBody(rows) {
     player.append(identity);
     playerCell.append(player);
     row.append(playerCell);
-    if (!item.isTeam && state.scope === "player") {
+    if (!item.isTeam && ["player", "al", "nl"].includes(state.scope)) {
       const teamCell = document.createElement("td");
       teamCell.className = "team-code";
       teamCell.textContent = item.team;
@@ -369,14 +382,18 @@ function render() {
   const visibleRows = rows.slice(start, start + PAGE_SIZE);
   const groupLabel = state.group === "hitting" ? "Batting" : "Pitching";
 
-  els.title.textContent = state.scope === "yankees" ? `Yankees ${groupLabel}` : groupLabel;
+  els.title.textContent = state.scope === "yankees" ? `Yankees ${groupLabel}` : state.scope === "al" ? `American League ${groupLabel}` : state.scope === "nl" ? `National League ${groupLabel}` : groupLabel;
   const subject = state.scope === "team"
     ? "teams"
     : state.scope === "yankees"
       ? "Yankees players"
+      : state.scope === "al"
+        ? `${state.qualifiedOnly ? "qualified " : ""}American League players`
+        : state.scope === "nl"
+          ? `${state.qualifiedOnly ? "qualified " : ""}National League players`
       : `${state.qualifiedOnly ? "qualified " : ""}players`;
   els.summary.textContent = `${rows.length.toLocaleString()} ${subject} · ${SEASON} regular season · 25 per page`;
-  els.qualifiedOnly.closest(".qualified-filter").hidden = state.scope !== "player";
+  els.qualifiedOnly.closest(".qualified-filter").hidden = !["player", "al", "nl"].includes(state.scope);
   els.scopes.forEach((button) => {
     const active = button.dataset.scope === state.scope;
     button.classList.toggle("active", active);
@@ -420,7 +437,7 @@ function bindEvents() {
     state.page = 1;
     try {
       if (state.scope === "team") await loadTeamGroup(state.group);
-      else await loadGroup(state.group);
+      else { await loadGroup(state.group); if (["al", "nl"].includes(state.scope)) await loadLeagueMap(); }
       render();
       setStatus("Live MLB data", "good");
     } catch (error) {

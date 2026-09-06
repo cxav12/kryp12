@@ -62,7 +62,7 @@
 }
 
 .stats-scope-toggle {
-  grid-template-columns: repeat(3, minmax(90px, 1fr));
+  grid-template-columns: repeat(5, minmax(68px, 1fr));
 }
 
 .stats-toolbar-actions {

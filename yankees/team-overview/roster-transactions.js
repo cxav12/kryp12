@@ -1,6 +1,6 @@
 const TEAM_ID = 147;
 const MLB_API = "https://statsapi.mlb.com/api/v1";
-const TRANSACTIONS_PER_PAGE = 6;
+const TRANSACTIONS_PER_PAGE = 10;
 const POSITION_ORDER = ["C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH", "OF", "IF", "UTIL"];
 const POSITION_KEYS = new Set(POSITION_ORDER);
 const shortDateFormatter = new Intl.DateTimeFormat("en", {

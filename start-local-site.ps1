@@ -8,23 +8,6 @@ $ErrorActionPreference = "Stop"
 $Root = (Resolve-Path -LiteralPath $PSScriptRoot).Path
 $BaseUrl = "http://localhost:$Port/"
 $requestedSite = $Site.Trim("/")
-if (-not $requestedSite -and -not $NoBrowser) {
-  Write-Host ""
-  Write-Host "Choose a local site:"
-  Write-Host "  1. KRYP12 home"
-  Write-Host "  2. Baltimore Ravens"
-  Write-Host "  3. New York Yankees"
-  Write-Host "  4. Palworld"
-  Write-Host "  5. Wishlist"
-  $choice = Read-Host "Enter 1-5"
-  $requestedSite = switch ($choice) {
-    "2" { "ravens" }
-    "3" { "yankees" }
-    "4" { "palworld" }
-    "5" { "wishlist" }
-    default { "" }
-  }
-}
 $sitePath = $requestedSite
 $OpenUrl = if ($sitePath) { "${BaseUrl}${sitePath}/" } else { $BaseUrl }
 

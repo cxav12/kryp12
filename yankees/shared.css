@@ -611,13 +611,14 @@ b {
 .desktop-site-nav.is-stuck {
   position: fixed;
   top: 0;
-  right: 0;
-  left: 0;
+  right: auto;
+  left: 50%;
   z-index: 30;
-  width: 100%;
+  width: var(--sticky-site-content-width, calc(100% - 36px));
   margin: 0;
   border-radius: 0;
   background: rgba(14, 20, 25, 0.95);
+  transform: translateX(-50%);
 }
 
 .site-nav-sticky-placeholder {
@@ -1176,8 +1177,7 @@ b {
 }
 
 .desktop-site-nav.is-stuck .navbar-nav {
-  width: var(--sticky-site-content-width, calc(100% - 36px));
-  margin-inline: auto;
+  width: 100%;
 }
 
 .game-linescore-box,

@@ -155,7 +155,8 @@
 #team-stats,
 #top-performers,
 #roster,
-#transactions {
+#transactions,
+#prospects {
   scroll-margin-top: 14px;
 }
 
@@ -170,7 +171,7 @@
   border-radius: 999px;
   background: #1b222d;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 4px;
   padding: 4px;
 }
@@ -467,6 +468,85 @@
   font-weight: 900;
 }
 
+.prospects-panel {
+  overflow: hidden;
+}
+
+.prospects-columns,
+.prospect-card {
+  display: grid;
+  grid-template-columns: 52px 76px minmax(0, 1.5fr) repeat(5, minmax(0, 1fr));
+  align-items: center;
+  gap: 10px;
+}
+
+.prospects-columns {
+  margin-top: 14px;
+  padding: 0 14px 6px 10px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.prospects-list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+
+.prospect-card {
+  min-width: 0;
+  min-height: 88px;
+  border-radius: 7px;
+  color: var(--ink);
+  background: #111920;
+  overflow: hidden;
+  padding: 8px 14px 0 10px;
+  text-decoration: none;
+}
+
+.prospects-list li:nth-child(even) .prospect-card {
+  background: #0a1015;
+}
+
+.prospect-rank {
+  color: #9ac7ff;
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.prospect-card img {
+  width: 72px;
+  height: 80px;
+  align-self: end;
+  border-radius: 0;
+  background: transparent;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.prospect-card img.is-unavailable {
+  visibility: hidden;
+}
+
+.prospect-name {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.prospect-card > span:not(.prospect-rank) {
+  color: var(--muted);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
 @media (max-width: 1199.98px) {
   .top-performers-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -480,6 +560,35 @@
 
   .top-performers-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .prospects-columns {
+    display: none;
+  }
+
+  .prospect-card {
+    grid-template-columns: 34px 72px repeat(3, minmax(0, 1fr));
+    gap: 5px 10px;
+    padding-right: 10px;
+  }
+
+  .prospect-card img {
+    grid-row: 1 / 3;
+    grid-column: 2;
+  }
+
+  .prospect-rank {
+    grid-row: 1 / 3;
+    grid-column: 1;
+  }
+
+  .prospect-name {
+    grid-column: 3 / -1;
+  }
+
+  .prospect-card > span[data-label]::before {
+    content: attr(data-label) ": ";
+    color: #9ac7ff;
   }
 }
 
@@ -557,6 +666,12 @@
 
   .overview-section-nav {
     border-radius: 20px;
+  }
+
+  .prospects-panel .panel-head {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 5px !important;
   }
 
   .overview-section-nav-container {

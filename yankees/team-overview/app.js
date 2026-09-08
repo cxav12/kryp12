@@ -555,5 +555,11 @@ async function init() {
   }
 }
 
+document.querySelectorAll(".prospect-card img").forEach((image) => {
+  const hideUnavailablePortrait = () => image.classList.add("is-unavailable");
+  if (image.complete && !image.naturalWidth) hideUnavailablePortrait();
+  else image.addEventListener("error", hideUnavailablePortrait, { once: true });
+});
+
 init();
 loadTopPerformers();

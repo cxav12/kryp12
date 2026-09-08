@@ -216,14 +216,14 @@ async function renderRoster() {
       els.batters.innerHTML = `<p class="empty">No active roster entries were returned.</p>`;
       els.pitchers.replaceChildren();
       renderRosterGroup(els.injuredList, injuredList, true);
-      renderRosterGroup(els.optioned, optioned, true, "Optioned to AAA");
+      renderRosterGroup(els.optioned, optioned);
       return true;
     }
 
     renderRosterGroup(els.batters, batters);
     renderRosterGroup(els.pitchers, pitchers);
     renderRosterGroup(els.injuredList, injuredList, true);
-    renderRosterGroup(els.optioned, optioned, true, "Optioned to AAA");
+    renderRosterGroup(els.optioned, optioned);
     return true;
   } catch (error) {
     els.batters.innerHTML = `<p class="error">Roster data is unavailable right now.</p>`;

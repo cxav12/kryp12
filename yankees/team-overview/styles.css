@@ -189,12 +189,12 @@
 
 .overview-section-nav {
   margin-bottom: 14px;
-  border-radius: 8px;
-  background: var(--card-bg-strong);
+  border-radius: 999px;
+  background: #1b222d;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 4px;
-  padding: 14px;
+  padding: 4px;
 }
 
 .overview-section-nav a,
@@ -202,7 +202,7 @@
   border: 0;
   border-radius: 999px;
   color: #aebfe5;
-  background: #1b222d;
+  background: transparent;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -211,6 +211,11 @@
   font-weight: 800;
   text-align: center;
   text-decoration: none;
+}
+
+.overview-section-nav a.active {
+  color: #fff;
+  background: #101720;
 }
 
 .overview-section-nav a:hover,
@@ -561,7 +566,7 @@
   }
 
   .overview-section-nav {
-    padding: 10px;
+    border-radius: 20px;
   }
 
   .performer-feature {

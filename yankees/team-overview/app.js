@@ -49,6 +49,7 @@ const els = {
   metricTemplate: document.querySelector("#metric-template"),
   performersGrid: document.querySelector("#top-performers-grid"),
   performersSeason: document.querySelector("#top-performers-season"),
+  performersToggle: document.querySelector("#top-performers-toggle"),
 };
 
 const state = {
@@ -419,10 +420,53 @@ function renderPerformerCard(metric, leaders) {
   return card;
 }
 
-async function loadTopPerformers() {
+const performerPhases = {
+  R: { apiLabel: "R", display: "regular season", toggleLabel: "Regular Season" },
+  P: { apiLabel: "P", display: "Post Season", toggleLabel: "Post Season" },
+  S: { apiLabel: "S", display: "Spring Training", toggleLabel: "Spring Training" },
+};
+
+async function performerPhase() {
+  const today = new Date().toISOString().slice(0, 10);
+  const schedules = await Promise.all(["R", "P", "S"].map(async (gameType) => {
+    const data = await api.get("/schedule", { sportId: 1, teamId: TEAM_ID, season: SEASON, gameType });
+    const dates = (data.dates || []).map((day) => day.date).filter(Boolean).sort();
+    return [gameType, dates];
+  }));
+  const dates = new Map(schedules);
+  const postseasonStarted = dates.get("P")?.some((date) => date <= today);
+  const regularStarted = dates.get("R")?.some((date) => date <= today);
+  return {
+    selected: postseasonStarted ? "P" : regularStarted ? "R" : "S",
+    postseasonAvailable: Boolean(postseasonStarted),
+  };
+}
+
+function renderPerformerToggle(activeType) {
+  els.performersToggle.replaceChildren();
+  ["R", "P"].forEach((gameType) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = gameType === activeType ? "active" : "";
+    button.textContent = performerPhases[gameType].toggleLabel;
+    button.dataset.gameType = gameType;
+    button.setAttribute("aria-pressed", String(gameType === activeType));
+    els.performersToggle.append(button);
+  });
+  els.performersToggle.hidden = false;
+  els.performersSeason.hidden = true;
+}
+
+async function loadTopPerformers(gameType = null, knownPhase = null) {
   if (!els.performersGrid) return;
-  els.performersSeason.textContent = `${SEASON} regular season`;
   try {
+    const phase = knownPhase || await performerPhase();
+    const selectedType = gameType || phase.selected;
+    els.performersSeason.textContent = `${SEASON} ${performerPhases[selectedType].display}`;
+    els.performersSeason.hidden = false;
+    els.performersToggle.hidden = true;
+    if (phase.postseasonAvailable) renderPerformerToggle(selectedType);
+    els.performersGrid.setAttribute("aria-busy", "true");
     const url = new URL(`${MLB_API}/stats`);
     url.search = new URLSearchParams({
       stats: "season",
@@ -430,6 +474,7 @@ async function loadTopPerformers() {
       season: String(SEASON),
       sportIds: "1",
       playerPool: "ALL",
+      gameType: performerPhases[selectedType].apiLabel,
       limit: "5000",
       hydrate: "person,team",
     });
@@ -469,6 +514,13 @@ async function loadTopPerformers() {
     els.performersGrid.setAttribute("aria-busy", "false");
   }
 }
+
+els.performersToggle?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-game-type]");
+  if (!button || button.classList.contains("active")) return;
+  els.performersGrid.innerHTML = '<p class="top-performers-message">Loading Yankees leaders…</p>';
+  loadTopPerformers(button.dataset.gameType, { selected: button.dataset.gameType, postseasonAvailable: true });
+});
 
 async function init() {
   setStatus("Loading team data");

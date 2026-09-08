@@ -307,7 +307,6 @@
   overflow: hidden;
 }
 
-.top-performers-summary,
 #top-performers-season,
 .top-performers-message {
   color: var(--muted);
@@ -315,12 +314,39 @@
   font-weight: 600;
 }
 
-.top-performers-summary {
-  margin-top: 3px;
-}
-
 #top-performers-season {
   text-align: right;
+}
+
+.top-performers-context {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.top-performers-toggle {
+  border-radius: 999px;
+  background: #1b222d;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+}
+
+.top-performers-toggle button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 999px;
+  color: #aebfe5;
+  background: transparent;
+  padding: 6px 13px;
+  font-size: var(--text-small);
+  font-weight: 800;
+}
+
+.top-performers-toggle button.active {
+  color: #fff;
+  background: #101720;
 }
 
 .top-performers-grid {

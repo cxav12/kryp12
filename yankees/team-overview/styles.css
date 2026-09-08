@@ -11,6 +11,13 @@
   display: none;
 }
 
+.desktop-site-nav,
+.site-nav {
+  position: sticky !important;
+  top: 8px;
+  z-index: 30;
+}
+
 .overview-body {
   padding: 14px 0 0;
 }
@@ -160,14 +167,10 @@
 }
 
 .overview-section-nav-container {
-  position: sticky;
-  top: 8px;
-  z-index: 20;
   margin-bottom: 14px;
   border-radius: 8px;
   background: var(--card-bg-strong);
   padding: 14px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
 }
 
 .overview-section-nav {

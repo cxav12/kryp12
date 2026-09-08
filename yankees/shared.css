@@ -609,8 +609,8 @@ b {
 
 .site-nav.is-stuck,
 .desktop-site-nav.is-stuck {
-  position: fixed;
-  top: 0;
+  position: fixed !important;
+  top: 0 !important;
   right: auto;
   left: 50%;
   z-index: 30;

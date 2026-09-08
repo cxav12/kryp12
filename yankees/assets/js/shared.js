@@ -150,3 +150,68 @@ async function renderYankeesBrandRecord() {
 
 renderYankeesBrandRecord();
 renderNextOpponent().catch(() => {});
+
+function setupStickySiteNavigation() {
+  const navs = [...document.querySelectorAll(".desktop-site-nav, .site-nav")];
+  if (!navs.length) return;
+
+  const placeholders = new Map(navs.map((nav) => {
+    const placeholder = document.createElement("div");
+    placeholder.className = "site-nav-sticky-placeholder";
+    placeholder.setAttribute("aria-hidden", "true");
+    nav.before(placeholder);
+    if (nav.matches(".site-nav")) {
+      nav.addEventListener("toggle", () => updatePlaceholder(nav));
+    }
+    return [nav, placeholder];
+  }));
+  let activeNav = null;
+  let threshold = 0;
+
+  function visibleNav() {
+    return navs.find((nav) => getComputedStyle(nav).display !== "none") || null;
+  }
+
+  function updatePlaceholder(nav) {
+    if (!nav?.classList.contains("is-stuck")) return;
+    placeholders.get(nav).style.height = `${nav.offsetHeight + 14}px`;
+  }
+
+  function update() {
+    if (!activeNav) return;
+    const shouldStick = window.scrollY >= threshold;
+    activeNav.classList.toggle("is-stuck", shouldStick);
+    const placeholder = placeholders.get(activeNav);
+    placeholder.classList.toggle("active", shouldStick);
+    placeholder.style.height = shouldStick ? `${activeNav.offsetHeight + 14}px` : "";
+  }
+
+  function measure() {
+    navs.forEach((nav) => nav.classList.remove("is-stuck"));
+    placeholders.forEach((placeholder) => {
+      placeholder.classList.remove("active");
+      placeholder.style.height = "";
+    });
+    activeNav = visibleNav();
+    if (activeNav) {
+      const shell = activeNav.closest(".site-shell, .app-shell");
+      if (shell) {
+        const shellRect = shell.getBoundingClientRect();
+        const shellStyle = getComputedStyle(shell);
+        const contentWidth = shellRect.width
+          - Number.parseFloat(shellStyle.paddingLeft || 0)
+          - Number.parseFloat(shellStyle.paddingRight || 0);
+        activeNav.style.setProperty("--sticky-site-content-width", `${contentWidth}px`);
+      }
+    }
+    threshold = activeNav ? activeNav.getBoundingClientRect().top + window.scrollY : 0;
+    update();
+  }
+
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", measure);
+  window.addEventListener("load", measure, { once: true });
+  measure();
+}
+
+setupStickySiteNavigation();

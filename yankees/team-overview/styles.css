@@ -11,13 +11,6 @@
   display: none;
 }
 
-.desktop-site-nav,
-.site-nav {
-  position: sticky !important;
-  top: 8px;
-  z-index: 30;
-}
-
 .overview-body {
   padding: 14px 0 0;
 }

@@ -2,10 +2,10 @@ const TEAM_ID = 147;
 const SEASON = new Date().getFullYear();
 const MLB_API = "https://statsapi.mlb.com/api/v1";
 const performerMetrics = [
-  { key: "avg", label: "Batting Average", shortLabel: "AVG" },
+  { key: "avg", label: "AVG", shortLabel: "AVG" },
   { key: "homeRuns", label: "Home Runs", shortLabel: "HR" },
-  { key: "rbi", label: "Runs Batted In", shortLabel: "RBI" },
-  { key: "ops", label: "On-base Plus Slugging", shortLabel: "OPS" },
+  { key: "rbi", label: "RBI", shortLabel: "RBI" },
+  { key: "ops", label: "OPS", shortLabel: "OPS" },
   { key: "hits", label: "Hits", shortLabel: "H" },
 ];
 

@@ -351,7 +351,6 @@
 }
 
 .performer-runners-up {
-  border-top: 1px solid var(--line);
   background: var(--inner-card-bg, #0a1015);
 }
 
@@ -367,8 +366,12 @@
   text-decoration: none;
 }
 
-.performer-runner + .performer-runner {
-  border-top: 1px solid rgba(205, 211, 215, 0.1);
+.performer-runner:nth-child(odd) {
+  background: #0a1015;
+}
+
+.performer-runner:nth-child(even) {
+  background: #111920;
 }
 
 .performer-runner:hover,

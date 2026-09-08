@@ -266,6 +266,7 @@
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px;
+  margin-top: 14px;
 }
 
 .top-performers-message {
@@ -351,7 +352,7 @@
 
 .performer-runners-up {
   border-top: 1px solid var(--line);
-  background: #111920;
+  background: var(--inner-card-bg, #0a1015);
 }
 
 .performer-runner {
@@ -379,10 +380,10 @@
 .performer-runner img {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
-  background: #202a33;
-  object-fit: cover;
-  object-position: center top;
+  border-radius: 0;
+  background: transparent;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .performer-runner-name {

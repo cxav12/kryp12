@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://img.mlbstatic.com" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=20260908-top-performers3" />
+    <link rel="stylesheet" href="./styles.css?v=20260908-inline-nav1" />
     <link rel="stylesheet" href="./roster-transactions.css?v=20260906-transaction-cards1" />
     <link rel="stylesheet" href="../shared.css?v=20260831-muted-header4" />
   </head>
@@ -48,7 +48,7 @@
           </div>
         </nav>
 
-        <section class="overview-body">
+        <section class="overview-body" id="page-top">
           <header class="page-intro-card page-intro-with-status">
             <div class="page-intro-copy">
               <h2 class="page-heading" id="view-title">Team Overview</h2>
@@ -57,12 +57,20 @@
             <span class="status-pill page-intro-status" id="data-status">Connecting to MLB data</span>
           </header>
 
-          <section id="overview-panel" aria-label="Yankees team overview">
+          <nav class="overview-section-nav" aria-label="Team overview sections">
+            <a href="#team-stats">Team Stats</a>
+            <a href="#top-performers">Top Performers</a>
+            <a href="#roster">Roster</a>
+            <a href="#transactions">Transactions &amp; IL</a>
+          </nav>
+
+          <section id="team-stats" aria-label="Yankees team statistics">
             <article class="team-card" id="yankees-card"></article>
+            <div class="section-return"><a href="#page-top">Back to top <span aria-hidden="true">↑</span></a></div>
           </section>
 
           <section class="row g-3 mt-0" aria-label="Yankees roster and transactions">
-            <section class="col-12" aria-labelledby="top-performers-title">
+            <section class="col-12" id="top-performers" aria-labelledby="top-performers-title">
               <div class="panel top-performers-panel">
                 <div class="panel-head d-flex align-items-center justify-content-between gap-3">
                   <div>
@@ -74,10 +82,11 @@
                 <div class="top-performers-grid" id="top-performers-grid" aria-live="polite" aria-busy="true">
                   <p class="top-performers-message">Loading Yankees leaders…</p>
                 </div>
+                <div class="section-return"><a href="#page-top">Back to top <span aria-hidden="true">↑</span></a></div>
               </div>
             </section>
 
-            <section class="col-12">
+            <section class="col-12" id="roster">
               <div class="panel h-100">
                 <div class="panel-head d-flex align-items-center justify-content-between gap-3">
                   <h2 class="panel-heading mb-0">Roster</h2>
@@ -107,10 +116,11 @@
                     <div class="coaches-grid" id="coaches-list" aria-live="polite"></div>
                   </section>
                 </div>
+                <div class="section-return"><a href="#page-top">Back to top <span aria-hidden="true">↑</span></a></div>
               </div>
             </section>
 
-            <section class="col-12">
+            <section class="col-12" id="transactions">
               <div class="panel h-100">
                 <div class="panel-head d-flex align-items-center justify-content-between gap-3">
                   <h2 class="panel-heading mb-0">Transactions &amp; IL</h2>
@@ -118,6 +128,7 @@
                 </div>
                 <div class="feed d-grid gap-2 mt-3" id="transaction-feed"></div>
                 <nav class="transaction-pagination mt-3" id="transaction-pagination" aria-label="Transactions pages"></nav>
+                <div class="section-return"><a href="#page-top">Back to top <span aria-hidden="true">↑</span></a></div>
               </div>
             </section>
           </section>

@@ -26,6 +26,13 @@
   --stat-number-size: 0.8125rem;
 }
 
+a,
+a:hover,
+a:focus,
+a:focus-visible {
+  text-decoration: none !important;
+}
+
 /* Reusable inset for an inner container placed directly inside an outer container. */
 .inner-container {
   margin: var(--container-inset);

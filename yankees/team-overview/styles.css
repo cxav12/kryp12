@@ -48,34 +48,6 @@
   margin: 0;
 }
 
-.team-record-row {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-  gap: 10px;
-}
-
-.team-header .record-line,
-.team-header .standing-line {
-  font-size: var(--text-small);
-  line-height: 1.2;
-}
-
-.record-line {
-  color: var(--ink);
-  font-weight: 800;
-}
-
-.standing-line {
-  border-left: 1px solid rgba(196, 206, 211, 0.35);
-  color: #dfe4f4;
-  padding-left: 10px;
-  font-weight: 600;
-  text-align: left;
-  white-space: nowrap;
-}
-
 .metric-groups {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -514,20 +486,6 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
-  }
-
-  .team-record-row {
-    align-items: center;
-    gap: 8px;
-  }
-
-  .standing-line {
-    padding-left: 8px;
-  }
-
-  .standing-line {
-    text-align: left;
-    white-space: normal;
   }
 
   .metric-row {

@@ -260,10 +260,6 @@ function renderCard(target, teamId) {
   header.className = "team-header";
   header.innerHTML = `
     <h3 class="team-name">Yankees MLB Rankings</h3>
-    <div class="team-record-row">
-      <div class="record-line stat-number">${overview.record}</div>
-      <div class="standing-line">${overview.standingLine}</div>
-    </div>
   `;
 
   const legend = document.createElement("p");

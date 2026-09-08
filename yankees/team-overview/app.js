@@ -1,6 +1,13 @@
 const TEAM_ID = 147;
 const SEASON = new Date().getFullYear();
 const MLB_API = "https://statsapi.mlb.com/api/v1";
+const performerMetrics = [
+  { key: "avg", label: "Batting Average", shortLabel: "AVG" },
+  { key: "homeRuns", label: "Home Runs", shortLabel: "HR" },
+  { key: "rbi", label: "Runs Batted In", shortLabel: "RBI" },
+  { key: "ops", label: "On-base Plus Slugging", shortLabel: "OPS" },
+  { key: "hits", label: "Hits", shortLabel: "H" },
+];
 
 const metricConfig = [
   { key: "runDifferential", label: "Run Differential", badge: "DIFF", group: "derived", category: "performance", rank: "desc" },
@@ -40,6 +47,8 @@ const els = {
   status: document.querySelector("#data-status"),
   yankeesCard: document.querySelector("#yankees-card"),
   metricTemplate: document.querySelector("#metric-template"),
+  performersGrid: document.querySelector("#top-performers-grid"),
+  performersSeason: document.querySelector("#top-performers-season"),
 };
 
 const state = {
@@ -337,6 +346,130 @@ async function loadRankTrends(candidates, logs) {
   renderCard(els.yankeesCard, TEAM_ID);
 }
 
+function performerValue(key, value) {
+  if (value === undefined || value === null || value === "") return "—";
+  return ["avg", "ops"].includes(key) ? String(value).replace(/^0/, "") : String(value);
+}
+
+function performerHeadshot(playerId, width = 220) {
+  return `https://img.mlbstatic.com/mlb-photos/image/upload/w_${width},q_auto:best/v1/people/${playerId}/headshot/silo/current`;
+}
+
+function performerLink(player) {
+  const link = document.createElement("a");
+  link.href = `../player-profile/?player=${player.playerId}`;
+  return link;
+}
+
+function renderPerformerCard(metric, leaders) {
+  const leader = leaders[0];
+  const card = document.createElement("article");
+  card.className = "performer-card";
+
+  const feature = document.createElement("div");
+  feature.className = "performer-feature";
+  const copy = document.createElement("div");
+  copy.className = "performer-feature-copy";
+  const label = document.createElement("span");
+  label.className = "performer-label";
+  label.textContent = metric.label;
+  const value = document.createElement("strong");
+  value.className = "performer-value stat-number";
+  value.textContent = performerValue(metric.key, leader.stat[metric.key]);
+  const name = document.createElement("a");
+  name.className = "performer-name";
+  name.href = `../player-profile/?player=${leader.playerId}`;
+  name.textContent = leader.playerName;
+  const detail = document.createElement("span");
+  detail.className = "performer-detail";
+  detail.textContent = `${leader.position || "Hitter"} · ${metric.shortLabel} leader`;
+  copy.append(label, value, name, detail);
+
+  const image = document.createElement("img");
+  image.className = "performer-headshot";
+  image.src = performerHeadshot(leader.playerId);
+  image.alt = `${leader.playerName} headshot`;
+  image.loading = "lazy";
+  image.decoding = "async";
+  image.addEventListener("error", () => image.remove(), { once: true });
+  feature.append(copy, image);
+
+  const runners = document.createElement("div");
+  runners.className = "performer-runners-up";
+  leaders.slice(1, 4).forEach((player) => {
+    const row = performerLink(player);
+    row.className = "performer-runner";
+    const portrait = document.createElement("img");
+    portrait.src = performerHeadshot(player.playerId, 60);
+    portrait.alt = "";
+    portrait.loading = "lazy";
+    portrait.decoding = "async";
+    portrait.addEventListener("error", () => portrait.classList.add("invisible"), { once: true });
+    const playerName = document.createElement("span");
+    playerName.className = "performer-runner-name";
+    playerName.textContent = player.playerName;
+    const playerValue = document.createElement("strong");
+    playerValue.className = "performer-runner-value stat-number";
+    playerValue.textContent = performerValue(metric.key, player.stat[metric.key]);
+    row.append(portrait, playerName, playerValue);
+    runners.append(row);
+  });
+
+  card.append(feature, runners);
+  return card;
+}
+
+async function loadTopPerformers() {
+  if (!els.performersGrid) return;
+  els.performersSeason.textContent = `${SEASON} regular season`;
+  try {
+    const url = new URL(`${MLB_API}/stats`);
+    url.search = new URLSearchParams({
+      stats: "season",
+      group: "hitting",
+      season: String(SEASON),
+      sportIds: "1",
+      playerPool: "ALL",
+      limit: "5000",
+      hydrate: "person,team",
+    });
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
+    const data = await response.json();
+    const players = (data.stats?.[0]?.splits || [])
+      .filter((split) => Number(split.team?.id) === TEAM_ID && split.player?.id && Number(split.stat?.gamesPlayed || 0) > 0)
+      .map((split) => ({
+        playerId: split.player.id,
+        playerName: split.player.fullName || "Yankees player",
+        position: split.player.primaryPosition?.abbreviation || "",
+        stat: split.stat || {},
+      }));
+    if (!players.length) throw new Error("No player statistics are available yet");
+
+    const cards = performerMetrics.map((metric) => {
+      const eligible = players.filter((player) => {
+        if (statNumber(player.stat[metric.key]) === null) return false;
+        return !["avg", "ops"].includes(metric.key) || Number(player.stat.atBats || 0) > 0;
+      });
+      const leaders = eligible.sort((a, b) =>
+        Number(b.stat[metric.key]) - Number(a.stat[metric.key]) ||
+        Number(b.stat.plateAppearances || 0) - Number(a.stat.plateAppearances || 0) ||
+        a.playerName.localeCompare(b.playerName),
+      ).slice(0, 4);
+      return leaders.length ? renderPerformerCard(metric, leaders) : null;
+    }).filter(Boolean);
+    if (!cards.length) throw new Error("No leader statistics are available yet");
+    els.performersGrid.replaceChildren(...cards);
+    els.performersGrid.setAttribute("aria-busy", "false");
+  } catch (error) {
+    const message = document.createElement("p");
+    message.className = "top-performers-message";
+    message.textContent = `Top performers are unavailable right now. ${error.message}.`;
+    els.performersGrid.replaceChildren(message);
+    els.performersGrid.setAttribute("aria-busy", "false");
+  }
+}
+
 async function init() {
   setStatus("Loading team data");
   try {
@@ -375,3 +508,4 @@ async function init() {
 }
 
 init();
+loadTopPerformers();

@@ -556,9 +556,14 @@ async function init() {
 }
 
 document.querySelectorAll(".prospect-card img").forEach((image) => {
-  const hideUnavailablePortrait = () => image.classList.add("is-unavailable");
-  if (image.complete && !image.naturalWidth) hideUnavailablePortrait();
-  else image.addEventListener("error", hideUnavailablePortrait, { once: true });
+  const showSilhouette = () => {
+    image.dataset.silhouetteFallback = "true";
+    image.classList.add("player-silhouette-fallback");
+    image.classList.remove("is-unavailable");
+    image.src = "/yankees/assets/player-silhouette.svg?v=20260908-simple1";
+  };
+  if (image.complete && !image.naturalWidth) showSilhouette();
+  else image.addEventListener("error", showSilhouette, { once: true });
 });
 
 init();

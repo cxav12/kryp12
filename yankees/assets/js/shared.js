@@ -215,3 +215,17 @@ function setupStickySiteNavigation() {
 }
 
 setupStickySiteNavigation();
+
+document.addEventListener("error", (event) => {
+  const image = event.target;
+  if (!(image instanceof HTMLImageElement)) return;
+  const source = image.currentSrc || image.src || "";
+  if (!source.includes("/headshot/") || image.dataset.silhouetteFallback === "true") return;
+
+  event.stopImmediatePropagation();
+  image.dataset.silhouetteFallback = "true";
+  image.classList.add("player-silhouette-fallback");
+  image.classList.remove("invisible", "is-unavailable", "is-missing");
+  image.hidden = false;
+  image.src = "/yankees/assets/player-silhouette.svg?v=20260908-simple1";
+}, true);

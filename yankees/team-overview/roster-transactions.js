@@ -1,4 +1,5 @@
 const TEAM_ID = 147;
+const TRIPLE_A_TEAM_ID = 531;
 const MLB_API = "https://statsapi.mlb.com/api/v1";
 const TRANSACTIONS_PER_PAGE = 10;
 const POSITION_ORDER = ["C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH", "OF", "IF", "UTIL"];
@@ -21,11 +22,13 @@ const els = {
   pitchers: document.querySelector("#pitchers-list"),
   injuredList: document.querySelector("#injured-list"),
   optioned: document.querySelector("#optioned-list"),
+  aaaTeam: document.querySelector("#aaa-team-list"),
   rosterCount: document.querySelector("#roster-count"),
   battersCount: document.querySelector("#batters-count"),
   pitchersCount: document.querySelector("#pitchers-count"),
   injuredListCount: document.querySelector("#injured-list-count"),
   optionedCount: document.querySelector("#optioned-count"),
+  aaaTeamCount: document.querySelector("#aaa-team-count"),
   coaches: document.querySelector("#coaches-list"),
   coachesCount: document.querySelector("#coaches-count"),
   transactionFeed: document.querySelector("#transaction-feed"),
@@ -43,8 +46,8 @@ const api = {
     if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
     return response.json();
   },
-  async roster(rosterType = "active") {
-    return this.get(`/teams/${TEAM_ID}/roster`, { rosterType, hydrate: "person" });
+  async roster(rosterType = "active", teamId = TEAM_ID) {
+    return this.get(`/teams/${teamId}/roster`, { rosterType, hydrate: "person" });
   },
   async transactions() {
     const end = new Date();
@@ -189,6 +192,71 @@ function renderRosterGroup(target, entries, showStatus = false, statusOverride =
   entries.forEach((entry) => target.append(rosterCard(entry, showStatus, statusOverride)));
 }
 
+function aaaRosterCard(entry) {
+  const link = document.createElement("a");
+  link.className = "aaa-roster-link";
+  link.href = `../player-profile/?player=${entry.person.id}`;
+
+  const playerId = Number(entry.person.id);
+  const portraitUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/w_100,q_auto:best/v1/people/${playerId}/headshot/silo/current`;
+  const portrait = profilePortrait(portraitUrl, `${entry.person.fullName} headshot`);
+  portrait.classList.add("aaa-roster-headshot");
+
+  const copy = document.createElement("span");
+  copy.className = "aaa-roster-copy";
+  const heading = document.createElement("span");
+  heading.className = "aaa-roster-name";
+  const name = document.createElement("strong");
+  name.textContent = entry.person.fullName;
+  heading.append(name);
+  if (entry.jerseyNumber) {
+    const number = document.createElement("b");
+    number.textContent = `#${entry.jerseyNumber}`;
+    heading.append(number);
+  }
+
+  const position = document.createElement("small");
+  position.className = "aaa-roster-position";
+  position.textContent = entry.position?.name || entry.position?.abbreviation || "Player";
+  const details = document.createElement("small");
+  details.textContent = [
+    entry.person?.height,
+    entry.person?.weight ? `${entry.person.weight} lbs` : "",
+    entry.person?.currentAge ? `Age ${entry.person.currentAge}` : "",
+  ].filter(Boolean).join(" · ") || "Details unavailable";
+
+  copy.append(heading, position, details);
+  link.append(portrait, copy);
+  return link;
+}
+
+function renderAaaRosterGroup(entries) {
+  els.aaaTeam.replaceChildren();
+  if (!entries.length) {
+    els.aaaTeam.innerHTML = `<p class="empty">No AAA roster entries were returned.</p>`;
+    return;
+  }
+  entries.forEach((entry) => els.aaaTeam.append(aaaRosterCard(entry)));
+}
+
+async function renderAaaRoster() {
+  try {
+    const data = await api.roster("active", TRIPLE_A_TEAM_ID);
+    const roster = (data.roster || []).slice().sort((a, b) => {
+      return Number(isPitcher(a)) - Number(isPitcher(b))
+        || positionRank(a) - positionRank(b)
+        || a.person.fullName.localeCompare(b.person.fullName);
+    });
+    els.aaaTeamCount.textContent = `${roster.length}`;
+    renderAaaRosterGroup(roster);
+    return true;
+  } catch (error) {
+    els.aaaTeam.innerHTML = `<p class="error">AAA roster data is unavailable right now.</p>`;
+    els.aaaTeamCount.textContent = "--";
+    return false;
+  }
+}
+
 async function renderRoster() {
   try {
     const [activeData, fortyManData] = await Promise.all([api.roster(), api.roster("40Man")]);
@@ -206,7 +274,7 @@ async function renderRoster() {
       .filter((entry) => !isPitcher(entry))
       .sort((a, b) => positionRank(a) - positionRank(b) || a.person.fullName.localeCompare(b.person.fullName));
 
-    els.rosterCount.textContent = `${roster.length} active - ${injuredList.length} IL - ${optioned.length} AAA`;
+    els.rosterCount.textContent = `${roster.length} active - ${injuredList.length} IL - ${optioned.length} optioned`;
     els.battersCount.textContent = `${batters.length}`;
     els.pitchersCount.textContent = `${pitchers.length}`;
     els.injuredListCount.textContent = `${injuredList.length}`;
@@ -434,7 +502,7 @@ function setRosterTab(tab) {
 async function init() {
   bindEvents();
   setStatus("Loading roster");
-  const results = await Promise.all([renderRoster(), renderTransactions(), renderCoaches()]);
+  const results = await Promise.all([renderRoster(), renderAaaRoster(), renderTransactions(), renderCoaches()]);
   setStatus(results.every(Boolean) ? "Live MLB data" : "Some MLB data is unavailable", results.every(Boolean) ? "good" : "error");
 }
 

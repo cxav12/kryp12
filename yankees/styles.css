@@ -710,6 +710,29 @@ a.decision-card:focus-visible {
 
 .pregame-info-row {
   border-bottom: 0;
+  gap: 14px;
+  font-size: clamp(0.84rem, 1vw, 0.98rem);
+  font-weight: 600;
+}
+
+.pregame-info-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.pregame-info-item svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  color: #9ac7ff;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: translateY(-1px);
 }
 
 .pregame-details {
@@ -907,10 +930,6 @@ a.decision-card:focus-visible {
   padding: 5px 10px;
 }
 
-.probable-pitcher:first-of-type {
-  background: rgba(154, 199, 255, 0.07);
-}
-
 a.probable-pitcher,
 a.matchup-player {
   color: inherit;
@@ -1048,17 +1067,6 @@ a.matchup-player:focus-visible strong {
 
 .pregame-lineup-team > header > img {
   object-fit: contain;
-}
-
-.pregame-lineup-team > header div {
-  display: grid;
-  gap: 1px;
-}
-
-.pregame-lineup-team > header span {
-  color: #9ac7ff;
-  font-size: var(--text-small);
-  font-weight: 800;
 }
 
 .pregame-lineup-team > header h4 {
@@ -1218,17 +1226,6 @@ a.matchup-player:focus-visible strong {
 
 .bullpen-team > header img {
   object-fit: contain;
-}
-
-.bullpen-team > header div {
-  display: grid;
-  gap: 1px;
-}
-
-.bullpen-team > header span {
-  color: #9ac7ff;
-  font-size: var(--text-small);
-  font-weight: 800;
 }
 
 .bullpen-team > header h4 {

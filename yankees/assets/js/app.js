@@ -1791,10 +1791,7 @@ function renderPregameLineup(feed, side) {
     <section class="pregame-lineup-team" aria-label="${escapeHtml(`${teamName} starting lineup`)}">
       <header>
         <img src="${escapeHtml(teamLogoUrl(team))}" alt="" width="34" height="34" aria-hidden="true" />
-        <div>
-          <span>${escapeHtml(teamAbbreviation(team))}</span>
-          <h4>${escapeHtml(teamName)}</h4>
-        </div>
+        <h4>${escapeHtml(teamName)}</h4>
       </header>
       <ol class="pregame-lineup-list">${rows}</ol>
     </section>
@@ -1845,7 +1842,7 @@ function renderPregameBullpen(game) {
       <section class="bullpen-team" aria-label="${escapeHtml(`${teamName} bullpen`)}" style="--bullpen-color:${escapeHtml(teamPrimaryColor(team))}">
         <header>
           <img src="${escapeHtml(teamLogoUrl(team))}" alt="" width="34" height="34" aria-hidden="true" />
-          <div><span>${escapeHtml(teamAbbreviation(team))}</span><h4>${escapeHtml(teamName)}</h4></div>
+          <h4>${escapeHtml(teamName)}</h4>
         </header>
         <div class="bullpen-pitcher-list">${rows}</div>
       </section>
@@ -2034,9 +2031,9 @@ function renderPregamePreview(game, feed) {
       ? game._possibleMilestones.join("; ")
       : "No major round-number milestones within immediate reach";
   const previewDetails = [
-    `<span><strong>First pitch:</strong> ${escapeHtml(gameTime(firstPitch))}</span>`,
-    `<span><strong>Watch:</strong> ${escapeHtml(broadcastLabel)}</span>`,
-    `<span><strong>Venue:</strong> ${escapeHtml(venue)}</span>`,
+    `<span class="pregame-info-item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3 2"></path></svg><strong>First pitch:</strong> ${escapeHtml(gameTime(firstPitch))}</span>`,
+    `<span class="pregame-info-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="m9 3 3 3 3-3"></path></svg><strong>Watch:</strong> ${escapeHtml(broadcastLabel)}</span>`,
+    `<span class="pregame-info-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><strong>Venue:</strong> ${escapeHtml(venue)}</span>`,
   ].join(`<i aria-hidden="true">|</i>`);
 
   els.status.textContent = "Upcoming game preview";

@@ -28,6 +28,10 @@ const els = {
   monthControlLabel: document.querySelector("#month-control-label"),
   monthSummary: document.querySelector("#month-summary"),
   grid: document.querySelector("#calendar-grid"),
+  calendarShell: document.querySelector(".calendar-shell"),
+  list: document.querySelector("#schedule-list"),
+  gridView: document.querySelector("#grid-view"),
+  listView: document.querySelector("#list-view"),
   prev: document.querySelector("#prev-month"),
   next: document.querySelector("#next-month"),
 };
@@ -35,6 +39,8 @@ const els = {
 const state = {
   selectedDate: startOfMonth(new Date()),
   standings: new Map(),
+  schedule: null,
+  view: "grid",
 };
 
 function startOfMonth(date) {
@@ -65,6 +71,15 @@ function timeLabel(value) {
   return timeFormatter.format(new Date(value));
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 function setStatus(message, tone = "neutral") {
   els.status.textContent = message;
   els.status.style.color = tone === "error" ? "#ffbec4" : tone === "good" ? "#9af0c8" : "";
@@ -78,7 +93,7 @@ async function getSchedule(monthDate) {
   url.searchParams.set("teamId", TEAM_ID);
   url.searchParams.set("startDate", dateKey(start));
   url.searchParams.set("endDate", dateKey(end));
-  url.searchParams.set("hydrate", "team,venue,linescore,probablePitcher");
+  url.searchParams.set("hydrate", "team,venue,linescore,probablePitcher,decisions,person,stats");
 
   const response = await fetch(url);
   if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
@@ -125,6 +140,10 @@ function isYankeesHome(game) {
 
 function teamAbbreviation(team) {
   return team?.abbreviation || team?.teamName || team?.name || "TBD";
+}
+
+function teamOnlyName(team) {
+  return team?.teamName || team?.clubName || team?.name || "TBD";
 }
 
 function teamLogoUrl(team) {
@@ -221,11 +240,16 @@ function gameClass(game) {
 }
 
 function renderGame(game) {
-  const card = document.createElement("article");
+  const isUpcoming = game.status?.abstractGameState === "Preview";
+  const card = document.createElement(isUpcoming ? "article" : "a");
   const away = game.teams?.away || {};
   const home = game.teams?.home || {};
   const started = ["Final", "Live"].includes(game.status?.abstractGameState);
   card.className = `game-card ${gameClass(game)}`;
+  if (!isUpcoming) {
+    card.href = `../?game=${encodeURIComponent(game.gamePk)}`;
+    card.setAttribute("aria-label", `Open game recap for ${away.team?.name || "away team"} at ${home.team?.name || "home team"}`);
+  }
   card.innerHTML = `
     <div class="game-team-colors" aria-hidden="true">
       <span style="background-color:${teamPrimaryColor(away.team)}"></span>
@@ -245,9 +269,95 @@ function renderGame(game) {
       <i aria-hidden="true">·</i>
       ${teamRecordMarkup(home)}
     </div>
-    <div class="game-status"><span>${statusLabel(game)}${game.status?.abstractGameState === "Final" ? ` <span aria-hidden="true">·</span> <a class="game-stats-link" href="../?game=${encodeURIComponent(game.gamePk)}">Game Recap</a>` : ""}</span></div>
+    <div class="game-status"><span>${statusLabel(game)}${game.status?.abstractGameState === "Final" ? ` <span aria-hidden="true">·</span> <span class="game-stats-link">Game Recap</span>` : ""}</span></div>
   `;
   return card;
+}
+
+function recordAtGame(entry = {}) {
+  const wins = entry.leagueRecord?.wins;
+  const losses = entry.leagueRecord?.losses;
+  return wins !== undefined && losses !== undefined ? `${wins}-${losses}` : "—";
+}
+
+function decisionStats(person = {}) {
+  return (person.stats || []).find((entry) =>
+    entry.type?.displayName === "statsSingleSeason" && entry.group?.displayName === "pitching"
+  )?.stats || {};
+}
+
+function decisionLabel(person, type) {
+  if (!person?.fullName) return "—";
+  const stats = decisionStats(person);
+  const record = stats.wins !== undefined && stats.losses !== undefined ? `${stats.wins}-${stats.losses}` : "";
+  const count = type === "save" && stats.saves !== undefined ? `${stats.saves} SV` : record;
+  return `${escapeHtml(person.fullName)}${count ? ` <span>(${escapeHtml(count)})</span>` : ""}`;
+}
+
+function listResult(game) {
+  const gameState = game.status?.abstractGameState;
+  if (gameState === "Final") {
+    const result = yankeesResult(game);
+    const yankeesScore = yankeesTeamEntry(game)?.score ?? "—";
+    const opponentScore = opponentTeamEntry(game)?.score ?? "—";
+    return `${result === "win" ? "W" : result === "loss" ? "L" : "Final"} ${yankeesScore}-${opponentScore}`;
+  }
+  return gameState === "Live" ? statusLabel(game) : `${timeLabel(game.gameDate)} · Upcoming`;
+}
+
+function renderListGame(game) {
+  const opponent = opponentTeamEntry(game);
+  const venueMarker = isYankeesHome(game) ? "vs" : "@";
+  const isUpcoming = game.status?.abstractGameState === "Preview";
+  const card = document.createElement(isUpcoming ? "article" : "a");
+  card.className = `schedule-list-card ${gameClass(game)}`;
+  if (!isUpcoming) {
+    card.href = `../?game=${encodeURIComponent(game.gamePk)}`;
+    card.setAttribute("aria-label", `Open game recap against ${opponent.team?.name || "opponent"}`);
+  }
+  card.innerHTML = `
+    <div class="list-field list-date" data-label="Date"><strong>${escapeHtml(agendaDateLabel(new Date(`${game.officialDate}T12:00:00`)))}</strong></div>
+    <div class="list-field list-opponent" data-label="Opponent"><strong><b>${venueMarker}</b><img src="${teamLogoUrl(opponent.team)}" alt="" />${escapeHtml(teamOnlyName(opponent.team))}</strong></div>
+    <div class="list-field list-result" data-label="Result"><strong>${escapeHtml(listResult(game))}</strong></div>
+    <div class="list-field" data-label="W-L"><strong>${escapeHtml(recordAtGame(yankeesTeamEntry(game)))}</strong></div>
+    <div class="list-field" data-label="Opp. W-L"><strong>${escapeHtml(recordAtGame(opponent))}</strong></div>
+    <div class="list-field" data-label="Winner"><strong>${decisionLabel(game.decisions?.winner, "winner")}</strong></div>
+    <div class="list-field" data-label="Loser"><strong>${decisionLabel(game.decisions?.loser, "loser")}</strong></div>
+    <div class="list-field" data-label="Save"><strong>${decisionLabel(game.decisions?.save, "save")}</strong></div>
+    ${game.status?.abstractGameState === "Final" ? `<span class="list-recap">Recap <span aria-hidden="true">→</span></span>` : `<span aria-hidden="true"></span>`}
+  `;
+  return card;
+}
+
+function renderList(schedule) {
+  els.list.replaceChildren();
+  const games = (schedule?.dates || [])
+    .flatMap((dateEntry) => dateEntry.games || [])
+    .sort((a, b) => new Date(a.gameDate) - new Date(b.gameDate));
+  if (!games.length) {
+    els.list.innerHTML = `<p class="error p-3 mb-0">No games scheduled this month.</p>`;
+    return;
+  }
+  const header = document.createElement("div");
+  header.className = "schedule-list-header";
+  header.setAttribute("aria-hidden", "true");
+  header.innerHTML = `
+    <span>Date</span><span>Opponent</span><span>Result</span><span>W-L</span><span>Opp. W-L</span>
+    <span>Winner</span><span>Loser</span><span>Save</span><span></span>
+  `;
+  els.list.append(header);
+  games.forEach((game) => els.list.append(renderListGame(game)));
+}
+
+function setView(view) {
+  state.view = view;
+  const isGrid = view === "grid";
+  els.calendarShell.hidden = !isGrid;
+  els.list.hidden = isGrid;
+  els.gridView.classList.toggle("active", isGrid);
+  els.listView.classList.toggle("active", !isGrid);
+  els.gridView.setAttribute("aria-pressed", String(isGrid));
+  els.listView.setAttribute("aria-pressed", String(!isGrid));
 }
 
 function renderCalendar(monthDate, gamesByDate) {
@@ -311,7 +421,9 @@ async function loadMonth(monthDate) {
       getStandings(state.selectedDate.getFullYear()).catch(() => null),
     ]);
     if (standings) storeStandings(standings);
+    state.schedule = schedule;
     renderCalendar(state.selectedDate, groupGamesByDate(schedule));
+    renderList(schedule);
     summarize(schedule, state.selectedDate);
     setStatus("Live MLB data", "good");
   } catch (error) {
@@ -324,6 +436,8 @@ async function loadMonth(monthDate) {
 function bindEvents() {
   els.prev.addEventListener("click", () => loadMonth(addMonths(state.selectedDate, -1)));
   els.next.addEventListener("click", () => loadMonth(addMonths(state.selectedDate, 1)));
+  els.gridView.addEventListener("click", () => setView("grid"));
+  els.listView.addEventListener("click", () => setView("list"));
 }
 
 bindEvents();

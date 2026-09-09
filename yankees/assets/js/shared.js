@@ -227,5 +227,5 @@ document.addEventListener("error", (event) => {
   image.classList.add("player-silhouette-fallback");
   image.classList.remove("invisible", "is-unavailable", "is-missing");
   image.hidden = false;
-  image.src = "/yankees/assets/player-silhouette.svg?v=20260908-simple1";
+  image.src = "/yankees/assets/player-silhouette.png?v=20260908-yankees1";
 }, true);

@@ -560,7 +560,7 @@ document.querySelectorAll(".prospect-card img").forEach((image) => {
     image.dataset.silhouetteFallback = "true";
     image.classList.add("player-silhouette-fallback");
     image.classList.remove("is-unavailable");
-    image.src = "/yankees/assets/player-silhouette.svg?v=20260908-simple1";
+    image.src = "/yankees/assets/player-silhouette.png?v=20260908-yankees1";
   };
   if (image.complete && !image.naturalWidth) showSilhouette();
   else image.addEventListener("error", showSilhouette, { once: true });

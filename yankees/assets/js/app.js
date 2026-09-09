@@ -95,6 +95,7 @@ const state = {
   liveRefreshTimer: null,
   absChallengeEvents: [],
   breakingNewsKey: "",
+  matchupPredictorAnimated: false,
 };
 
 async function getJson(path, params = {}) {
@@ -1733,20 +1734,20 @@ function renderProbablePitcher(game, feed, side) {
   const name = pitcher?.fullName || pitcher?.initLastName || "To be announced";
   const stats = probablePitcherStats(game, side, pitcher);
   const hasRecord = stats.wins !== undefined && stats.losses !== undefined;
-  const record = hasRecord ? `${stats.wins}-${stats.losses}` : "Record unavailable";
-  const era = stats.era !== undefined ? `${stats.era} ERA` : "ERA unavailable";
+  const record = hasRecord ? `${stats.wins}-${stats.losses}` : "—";
   const image = playerHeadshotUrl(pitcher?.id);
   const team = game.teams?.[side]?.team || feed.gameData?.teams?.[side] || {};
   const tag = pitcher?.id ? "a" : "div";
   const link = pitcher?.id ? ` href="./player-profile/?player=${escapeHtml(pitcher.id)}"` : "";
   return `
-    <${tag} class="probable-pitcher ${side}"${link}>
-      <span class="probable-pitcher-team">${escapeHtml(teamAbbreviation(team))}</span>
+    <${tag} class="probable-pitcher ${side}"${link} aria-label="${escapeHtml(`${teamAbbreviation(team)} probable pitcher ${name}`)}" style="--probable-team-color:${escapeHtml(teamPrimaryColor(team))}">
+      <img class="probable-team-logo" src="${escapeHtml(teamLogoUrl(team))}" alt="" aria-hidden="true" />
       ${image ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(`${name} headshot`)}" />` : `<span class="probable-pitcher-placeholder" aria-hidden="true">?</span>`}
-      <div class="probable-pitcher-copy">
-        <strong>${escapeHtml(name)}</strong>
-        <small>${escapeHtml(record)} <i aria-hidden="true">|</i> ${escapeHtml(era)}</small>
-      </div>
+      <strong>${escapeHtml(record)}</strong>
+      <strong>${escapeHtml(stats.era ?? "—")}</strong>
+      <strong>${escapeHtml(stats.strikeOuts ?? "—")}</strong>
+      <strong>${escapeHtml(stats.whip ?? "—")}</strong>
+      <strong>${escapeHtml(stats.baseOnBalls ?? "—")}</strong>
     </${tag}>
   `;
 }
@@ -1933,6 +1934,71 @@ async function loadPregameBullpen(game, feed) {
   ]);
 }
 
+function espnTeamKey(team = {}) {
+  return String(team.abbreviation || team.name || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+}
+
+function espnProjection(team = {}) {
+  const stat = (team.statistics || []).find((entry) => entry.name === "gameProjection");
+  const value = Number(stat?.value);
+  return Number.isFinite(value) ? value : null;
+}
+
+async function loadEspnPredictor(game) {
+  try {
+    const date = String(game.officialDate || "").replaceAll("-", "");
+    const scoreboardResponse = await fetch(`https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=${date}&limit=100`);
+    if (!scoreboardResponse.ok) throw new Error(`ESPN scoreboard returned ${scoreboardResponse.status}`);
+    const scoreboard = await scoreboardResponse.json();
+    const homeKey = espnTeamKey(game.teams?.home?.team);
+    const awayKey = espnTeamKey(game.teams?.away?.team);
+    const event = (scoreboard.events || []).find((item) => {
+      const competitors = item.competitions?.[0]?.competitors || [];
+      const eventHome = competitors.find((entry) => entry.homeAway === "home")?.team;
+      const eventAway = competitors.find((entry) => entry.homeAway === "away")?.team;
+      return espnTeamKey(eventHome) === homeKey && espnTeamKey(eventAway) === awayKey;
+    });
+    if (!event?.id) throw new Error("ESPN event not found");
+    const predictorResponse = await fetch(`https://sports.core.api.espn.com/v2/sports/baseball/leagues/mlb/events/${event.id}/competitions/${event.id}/predictor?lang=en&region=us`);
+    if (!predictorResponse.ok) throw new Error(`ESPN predictor returned ${predictorResponse.status}`);
+    const predictor = await predictorResponse.json();
+    const home = espnProjection(predictor.homeTeam);
+    const away = espnProjection(predictor.awayTeam);
+    if (home === null || away === null) throw new Error("ESPN projection unavailable");
+    game._espnPredictor = { home, away, eventId: event.id };
+  } catch (error) {
+    game._espnPredictor = null;
+  }
+}
+
+function renderMatchupPredictor(game, feed) {
+  const predictor = game._espnPredictor;
+  if (!predictor) {
+    return `
+      <section class="matchup-predictor" aria-label="ESPN matchup predictor">
+        <h3>Matchup Predictor</h3>
+        <p class="matchup-predictor-empty">ESPN prediction not yet available</p>
+      </section>
+    `;
+  }
+  const away = game.teams?.away?.team || feed.gameData?.teams?.away || {};
+  const home = game.teams?.home?.team || feed.gameData?.teams?.home || {};
+  const animationClass = state.matchupPredictorAnimated ? "" : " animate";
+  state.matchupPredictorAnimated = true;
+  return `
+    <section class="matchup-predictor" aria-label="ESPN matchup predictor">
+      <h3>Matchup Predictor</h3>
+      <div class="matchup-predictor-chart" style="--home-share:${predictor.home}%;--home-color:${teamPrimaryColor(home)};--away-color:${teamPrimaryColor(away)}">
+        <strong class="matchup-predictor-percent away">${predictor.away.toFixed(1)}%</strong>
+        <div class="matchup-predictor-ring${animationClass}" aria-hidden="true">
+          <span><img src="${escapeHtml(teamLogoUrl(away))}" alt="" /><i></i><img src="${escapeHtml(teamLogoUrl(home))}" alt="" /></span>
+        </div>
+        <strong class="matchup-predictor-percent home">${predictor.home.toFixed(1)}%</strong>
+      </div>
+    </section>
+  `;
+}
+
 function renderPregamePreview(game, feed) {
   winProbabilityObserver?.disconnect();
   const opponent = game.teams?.[opponentSide(game)]?.team || feed.gameData?.teams?.[opponentSide(game)] || {};
@@ -1999,11 +2065,14 @@ function renderPregamePreview(game, feed) {
         <p><strong>Conditions</strong><span>${escapeHtml(conditions)}</span></p>
         <p><strong>Setting</strong><span>${escapeHtml(gameSetting)}</span></p>
       </div>
+      ${renderMatchupPredictor(game, feed)}
       <div class="game-decisions probable-pitchers-slot">
         <h3>Probable Pitchers</h3>
         <div class="probable-pitchers-grid">
+          <div class="probable-pitchers-headings" aria-hidden="true">
+            <span>Team</span><span>Pitcher</span><span>W-L</span><span>ERA</span><span>SO</span><span>WHIP</span><span>BB</span>
+          </div>
           ${renderProbablePitcher(game, feed, yankeesGameSide)}
-          <strong class="probable-versus">VS</strong>
           ${renderProbablePitcher(game, feed, opponentGameSide)}
         </div>
       </div>
@@ -2365,6 +2434,7 @@ async function loadGameRecap(game) {
         loadSeasonSeries(game),
         loadPossibleMilestones(game),
         loadPregameBullpen(game, feed),
+        loadEspnPredictor(game),
       ]);
       if (Number(state.selectedGame?.gamePk) !== Number(game.gamePk)) return;
       renderRecap(game, feed);

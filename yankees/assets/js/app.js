@@ -624,7 +624,7 @@ function matchupStatLine(player, role) {
   return `${stats.hits || 0}-${stats.atBats || 0}, ${stats.homeRuns || 0} HR, ${stats.rbi || 0} RBI`;
 }
 
-function renderMatchupPlayer(feed, person, role, hand) {
+function renderMatchupPlayer(feed, person, role, hand, onDeck = null) {
   const player = boxscorePlayer(feed, person?.id);
   const name = person?.fullName || player.person?.fullName || "TBD";
   const image = playerHeadshotUrl(person?.id);
@@ -637,6 +637,7 @@ function renderMatchupPlayer(feed, person, role, hand) {
         <strong>${escapeHtml(name)}</strong>
         <span>${escapeHtml(hand || "")}</span>
         <small>${escapeHtml(matchupStatLine(player, role))}</small>
+        ${role === "batter" && onDeck?.fullName ? `<small class="matchup-on-deck"><b>On deck:</b> ${escapeHtml(onDeck.fullName)}</small>` : ""}
       </div>
     </${tag}>
   `;
@@ -889,11 +890,12 @@ function renderGameSituation(feed, game) {
 }
 
 function renderCurrentMatchup(feed, game, matchup, linescore = feed.liveData?.linescore || {}) {
+  const onDeck = onDeckBatter(feed, matchup, linescore);
   return `
     <div class="current-matchup-grid">
       ${renderMatchupPlayer(feed, matchup.pitcher, "pitcher", matchup.pitchHand?.code ? `${matchup.pitchHand.code}HP` : "")}
       ${renderBaseDiamond(linescore, game)}
-      ${renderMatchupPlayer(feed, matchup.batter, "batter", matchup.batSide?.code ? `${matchup.batSide.code}HB` : "")}
+      ${renderMatchupPlayer(feed, matchup.batter, "batter", matchup.batSide?.code ? `${matchup.batSide.code}HB` : "", onDeck)}
     </div>
   `;
 }
@@ -1752,6 +1754,20 @@ function renderProbablePitcher(game, feed, side) {
   `;
 }
 
+function onDeckBatter(feed, matchup, linescore) {
+  const batterId = Number(matchup.batter?.id);
+  if (!batterId) return null;
+  const battingTeam = Object.values(feed.liveData?.boxscore?.teams || {})
+    .find((team) => (team.battingOrder || []).map(Number).includes(batterId));
+  const order = (battingTeam?.battingOrder || []).map(Number);
+  const batterIndex = order.indexOf(batterId);
+  if (batterIndex >= 0 && order.length) {
+    const nextId = order[(batterIndex + 1) % order.length];
+    return battingTeam.players?.[`ID${nextId}`]?.person || feed.gameData?.players?.[`ID${nextId}`] || null;
+  }
+  return linescore.offense?.batter?.id === batterId ? linescore.offense?.onDeck || null : null;
+}
+
 function pregameLineupPlayers(feed, side) {
   const teamBoxscore = feed.liveData?.boxscore?.teams?.[side] || {};
   const players = teamBoxscore.players || {};
@@ -1768,6 +1784,12 @@ function pregameLineupPlayers(feed, side) {
       bats: gamePlayer.batSide?.code || boxscorePlayer.person?.batSide?.code || "",
     };
   });
+}
+
+function syncGameStatusFromFeed(game, feed) {
+  const liveStatus = feed.gameData?.status;
+  if (!liveStatus) return;
+  game.status = { ...(game.status || {}), ...liveStatus };
 }
 
 function renderPregameLineup(feed, side) {
@@ -2282,10 +2304,19 @@ function renderRecap(game, feed) {
   const gameEnd = lastPlay.about?.endTime
     || lastPlayEvents[lastPlayEvents.length - 1]?.endTime;
   const gameDelay = gameDelayLabel(gameStart, gameEnd, gameDurationMinutes);
+  const umpires = (feed.liveData?.boxscore?.officials || [])
+    .map((entry) => {
+      const role = entry.officialType || "Umpire";
+      const name = entry.official?.fullName;
+      return name ? `${role}: ${name}` : "";
+    })
+    .filter(Boolean)
+    .join(", ") || "Unavailable";
   const gameInformation = [
     `Game Start Time: ${gameClockTime(gameStart, "TBD")}`,
     `Game End Time: ${gameClockTime(gameEnd)}`,
     `Game Time: ${gameDuration}${gameDelay ? ` (${gameDelay} delay)` : ""}`,
+    `Umpires: ${umpires}`,
     `Attendance: ${attendanceLabel} (${ballpark})`,
     `Weather: ${weatherSummary}`,
   ];
@@ -2300,13 +2331,13 @@ function renderRecap(game, feed) {
       <span style="background-color: ${opponentScoreColor}"></span>
     </div>
     ${isLiveGame(game) ? `
-      <div class="game-live-status-row">
-        <span><strong>Live:</strong> ${escapeHtml(game.status?.detailedState || "In Progress")}</span>
+      <div class="game-live-status-row live-info-row">
+        <span class="pregame-info-item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"></circle><path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5.5 5.5a9 9 0 0 0 0 13M18.5 5.5a9 9 0 0 1 0 13"></path></svg><strong>Live:</strong> ${escapeHtml(game.status?.detailedState || "In Progress")}</span>
         <i aria-hidden="true">|</i>
-        <span><strong>Inning:</strong> ${escapeHtml(liveLabel || "In Progress")}</span>
+        <span class="pregame-info-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 7 7-7 7-7-7 7-7Z"></path><circle cx="12" cy="10" r="2"></circle></svg><strong>Inning:</strong> ${escapeHtml(liveLabel || "In Progress")}</span>
         ${broadcastLabel ? `
           <i aria-hidden="true">|</i>
-          <span><strong>Watch:</strong> ${escapeHtml(broadcastLabel)}</span>
+          <span class="pregame-info-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="m9 3 3 3 3-3"></path></svg><strong>Watch:</strong> ${escapeHtml(broadcastLabel)}</span>
         ` : ""}
       </div>
     ` : ""}
@@ -2398,7 +2429,9 @@ function startGameRefresh(game) {
       const previousScores = [...els.scoreboard.querySelectorAll(".game-scoreboard-top > .scoreboard-score")]
         .map((score) => score.textContent.trim());
       syncGameScoresFromFeed(game, feed);
+      syncGameStatusFromFeed(game, feed);
       renderRecap(game, feed);
+      renderRecapButtons(state.recentGames, game.gamePk);
       highlightChangedScores(previousScores);
       if (!shouldRefreshGame(game)) {
         stopLiveRefresh();
@@ -2424,7 +2457,9 @@ async function loadGameRecap(game) {
     ]);
     feed._winProbability = winProbability;
     syncGameScoresFromFeed(game, feed);
+    syncGameStatusFromFeed(game, feed);
     renderRecap(game, feed);
+    renderRecapButtons(state.recentGames, game.gamePk);
     if (!["Final", "Live"].includes(feed.gameData?.status?.abstractGameState || game.status?.abstractGameState)) {
       await Promise.all([
         loadProbablePitcherStats(game, feed),

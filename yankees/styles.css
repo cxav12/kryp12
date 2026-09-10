@@ -708,7 +708,8 @@ a.decision-card:focus-visible {
   color: #9ac7ff;
 }
 
-.pregame-info-row {
+.pregame-info-row,
+.live-info-row {
   border-bottom: 0;
   gap: 14px;
   font-size: clamp(0.84rem, 1vw, 0.98rem);
@@ -1547,6 +1548,15 @@ a.matchup-player:focus-visible strong {
 .matchup-player-copy small {
   grid-column: 1 / -1;
   overflow-wrap: anywhere;
+}
+
+.matchup-player-copy .matchup-on-deck {
+  margin-top: 2px;
+  color: #c7d0dd;
+}
+
+.matchup-on-deck b {
+  color: #9ac7ff;
 }
 
 .matchup-player-copy span {

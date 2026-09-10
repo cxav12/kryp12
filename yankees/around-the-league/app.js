@@ -20,6 +20,58 @@ const PLAYER_HEADSHOT_URL = (id) => `https://img.mlbstatic.com/mlb-photos/image/
 const HOT_HITTER_FIELDS = "stats,splits,stat,gamesPlayed,plateAppearances,atBats,avg,homeRuns,rbi,ops,player,id,fullName,team,name,abbreviation";
 const HOT_PITCHER_CANDIDATE_FIELDS = "stats,splits,stat,gamesStarted,outs,inningsPitched,earnedRuns,strikeOuts,baseOnBalls,hits,era,whip,player,id,fullName,team,name,abbreviation";
 const HOT_RELIEVER_FIELDS = "stats,splits,stat,gamesPlayed,gamesStarted,outs,inningsPitched,earnedRuns,strikeOuts,baseOnBalls,hits,era,whip,saves,blownSaves,player,id,fullName,team,name,abbreviation";
+const TOP_PROSPECTS = [
+  [1,815908,"Jesús Made","SS",158,"Milwaukee Brewers","AA",2027,"6' 1\" / 221 lbs","S","R"],
+  [2,815888,"Leo De Vries","SS/3B",133,"Athletics","AA",2027,"6' 0\" / 183 lbs","S","R"],
+  [3,808265,"Franklin Arias","SS",111,"Boston Red Sox","AAA",2027,"5' 11\" / 170 lbs","R","R"],
+  [4,816113,"Eli Willits","SS",120,"Washington Nationals","AA",2028,"6' 1\" / 180 lbs","S","R"],
+  [5,807739,"Kade Anderson","LHP",136,"Seattle Mariners","MLB",2026,"6' 2\" / 179 lbs","L","L"],
+  [6,800543,"Josue De Paula","OF",119,"Los Angeles Dodgers","AA",2027,"6' 3\" / 185 lbs","L","L"],
+  [7,815825,"Seth Hernandez","RHP",134,"Pittsburgh Pirates","A+",2028,"6' 4\" / 190 lbs","R","R"],
+  [8,815549,"Ryan Sloan","RHP",136,"Seattle Mariners","AA",2028,"6' 5\" / 220 lbs","R","R"],
+  [9,806964,"Sebastian Walcott","SS/3B",140,"Texas Rangers","AA",2027,"6' 4\" / 190 lbs","R","R"],
+  [10,815690,"Grady Emerson","SS",139,"Tampa Bay Rays","A",2029,"6' 3\" / 185 lbs","L","R"],
+  [11,800604,"Roch Cholowsky","SS",145,"Chicago White Sox","A+",2027,"6' 2\" / 202 lbs","R","R"],
+  [12,815394,"Theo Gillen","OF",139,"Tampa Bay Rays","AA",2028,"6' 2\" / 195 lbs","L","R"],
+  [13,703601,"Max Clark","OF",116,"Detroit Tigers","MLB",2026,"5' 11\" / 205 lbs","L","L"],
+  [14,806146,"George Lombard Jr.","SS/3B",147,"New York Yankees","MLB",2026,"6' 2\" / 190 lbs","R","R"],
+  [15,805805,"Walker Jenkins","OF",142,"Minnesota Twins","MLB",2026,"6' 3\" / 210 lbs","L","R"],
+  [16,701527,"Mike Sirota","OF",119,"Los Angeles Dodgers","AA",2027,"6' 2\" / 188 lbs","R","R"],
+  [17,829034,"Josuar Gonzalez","SS/2B",137,"San Francisco Giants","A",2029,"5' 10\" / 178 lbs","S","R"],
+  [18,823787,"Rainiel Rodriguez","C/1B",138,"St. Louis Cardinals","AA",2027,"5' 10\" / 197 lbs","R","R"],
+  [19,822518,"Vahn Lackey","C",142,"Minnesota Twins","A+",2029,"6' 2\" / 215 lbs","R","R"],
+  [20,808234,"Eduardo Quintero","OF",119,"Los Angeles Dodgers","A+",2028,"6' 1\" / 175 lbs","R","R"],
+  [21,821270,"Luis Peña","SS",158,"Milwaukee Brewers","AA",2028,"5' 11\" / 185 lbs","R","R"],
+  [22,806957,"Alfredo Duno","C",113,"Cincinnati Reds","AA",2028,"6' 2\" / 210 lbs","R","R"],
+  [23,806956,"Ethan Salas","C",135,"San Diego Padres","MLB",2026,"6' 1\" / 185 lbs","L","R"],
+  [24,815896,"Emil Morales","SS/3B",119,"Los Angeles Dodgers","A+",2029,"6' 3\" / 191 lbs","R","R"],
+  [25,815787,"Ethan Holliday","SS",115,"Colorado Rockies","A",2029,"6' 2\" / 210 lbs","L","R"],
+  [26,828098,"JoJo Parker","SS",141,"Toronto Blue Jays","A+",2029,"6' 2\" / 200 lbs","L","R"],
+  [27,836582,"Luis Hernández","SS/3B",137,"San Francisco Giants","A",2030,"5' 10\" / 172 lbs","R","R"],
+  [28,814307,"Zyhir Hope","OF",116,"Detroit Tigers","AA",2027,"5' 10\" / 193 lbs","L","L"],
+  [29,694197,"Angel Genao","SS/3B",114,"Cleveland Guardians","MLB",2026,"5' 11\" / 150 lbs","S","R"],
+  [30,815352,"Caleb Bonemer","3B/SS",145,"Chicago White Sox","AA",2028,"6' 1\" / 195 lbs","R","R"],
+  [31,814176,"Jackson Flora","RHP",137,"San Francisco Giants","A",2028,"6' 5\" / 205 lbs","R","R"],
+  [32,806252,"Ralphy Velazquez","1B/OF",114,"Cleveland Guardians","AAA",2027,"6' 1\" / 240 lbs","L","R"],
+  [33,805906,"Gage Wood","RHP",143,"Philadelphia Phillies","AA",2027,"6' 0\" / 205 lbs","R","R"],
+  [34,701785,"Kaelen Culpepper","SS",142,"Minnesota Twins","MLB",2026,"5' 10\" / 185 lbs","R","R"],
+  [35,821273,"Edward Florentino","OF",134,"Pittsburgh Pirates","A+",2028,"6' 3\" / 200 lbs","L","R"],
+  [36,800537,"Christian Zazueta","RHP",119,"Los Angeles Dodgers","AA",2028,"6' 3\" / 163 lbs","R","R"],
+  [37,806258,"Thomas White","LHP",146,"Miami Marlins","AAA",2026,"6' 5\" / 240 lbs","L","L"],
+  [38,805796,"Arjun Nimmala","SS",108,"Los Angeles Angels","AA",2028,"6' 0\" / 190 lbs","R","R"],
+  [39,815824,"Josiah Hartshorn","OF/1B",112,"Chicago Cubs","A+",2028,"6' 0\" / 220 lbs","S","L"],
+  [40,835727,"Eric Booth Jr.","OF",110,"Baltimore Orioles","A",2030,"6' 0\" / 207 lbs","L","L"],
+  [41,806039,"Drew Burress","OF",133,"Athletics","A",2028,"5' 9\" / 185 lbs","R","R"],
+  [42,807080,"Eric Hartman","OF",144,"Atlanta Braves","AA",2028,"6' 1\" / 185 lbs","L","R"],
+  [43,807284,"Cam Caminiti","LHP",144,"Atlanta Braves","AA",2027,"6' 2\" / 195 lbs","L","L"],
+  [44,824604,"Liam Doyle","LHP",138,"St. Louis Cardinals","AA",2027,"6' 2\" / 220 lbs","R","L"],
+  [45,703197,"Michael Arroyo","OF/2B",136,"Seattle Mariners","MLB",2026,"5' 10\" / 160 lbs","R","R"],
+  [46,803285,"Tyler Bremner","RHP",108,"Los Angeles Angels","AA",2027,"6' 2\" / 190 lbs","R","R"],
+  [47,815929,"Jhonny Level","SS/2B",137,"San Francisco Giants","A+",2029,"5' 8\" / 186 lbs","S","R"],
+  [48,800614,"Bryce Rainer","SS",116,"Detroit Tigers","A+",2028,"6' 3\" / 195 lbs","L","R"],
+  [49,809254,"Anthony Eyanson","RHP",110,"Baltimore Orioles","AA",2027,"6' 2\" / 208 lbs","R","R"],
+  [50,806958,"Felnin Celesten","SS",136,"Seattle Mariners","AA",2028,"6' 1\" / 175 lbs","S","R"],
+];
 const PLAYER_LEADER_STATS = {
   hitting: [
     { key: "battingAverage", label: "Batting Average", toggleLabel: "AVG", group: "hitting" },
@@ -112,6 +164,8 @@ const els = {
   standingsBody: document.querySelector("#standings-body"),
   leagueLeaders: document.querySelector("#league-leaders"),
   leaderboardToggle: document.querySelector("#leaderboard-toggle"),
+  sectionNav: document.querySelector("#league-section-nav"),
+  prospectsList: document.querySelector("#top-prospects-list"),
 };
 
 function localNoon(date) {
@@ -1347,7 +1401,80 @@ function selectDate(date) {
   loadScores();
 }
 
+function renderTopProspects() {
+  const fragment = document.createDocumentFragment();
+
+  TOP_PROSPECTS.slice(0, 25).forEach(([rank, id, name, position, teamId, team, level, eta, heightWeight, bats, throws]) => {
+    const row = element("article", "prospects-grid prospect-row");
+    const logo = element("img", "prospect-team-logo team-logo");
+    const portrait = element("img", "prospect-portrait");
+    const nameLink = element("a", "prospect-name-link", name);
+
+    row.style.setProperty("--prospect-team-color", teamPrimaryColor({ id: teamId }));
+    row.setAttribute("aria-label", `${rank}. ${name}, ${position}, ${team}, ${level}, ETA ${eta}`);
+
+    logo.src = teamLogoUrl({ id: teamId });
+    logo.alt = `${team} logo`;
+    logo.title = team;
+    logo.width = 28;
+    logo.height = 28;
+    logo.loading = "lazy";
+    logo.decoding = "async";
+
+    portrait.src = PLAYER_HEADSHOT_URL(id);
+    portrait.alt = `${name} headshot`;
+    portrait.width = 42;
+    portrait.height = 46;
+    portrait.loading = "lazy";
+    portrait.decoding = "async";
+    portrait.addEventListener("error", () => {
+      portrait.src = "/yankees/assets/player-silhouette.png?v=20260908-yankees1";
+      portrait.classList.add("player-silhouette-fallback");
+    }, { once: true });
+
+    nameLink.href = `../player-profile/?player=${id}`;
+    const etaCell = element("span", "prospect-cell", eta);
+    const positionCell = element("span", "prospect-cell", position);
+    const levelCell = element("span", "prospect-cell", level);
+    const sizeCell = element("span", "prospect-cell", heightWeight);
+    const handednessCell = element("span", "prospect-cell", `${bats} / ${throws}`);
+    etaCell.dataset.label = "ETA";
+    positionCell.dataset.label = "Position";
+    levelCell.dataset.label = "Level";
+    sizeCell.dataset.label = "Height/Weight";
+    handednessCell.dataset.label = "Bats/Throws";
+
+    row.append(
+      element("strong", "prospect-rank", rank),
+      logo,
+      portrait,
+      nameLink,
+      etaCell,
+      positionCell,
+      levelCell,
+      sizeCell,
+      handednessCell,
+    );
+    fragment.append(row);
+  });
+
+  els.prospectsList.replaceChildren(fragment);
+}
+
+function setActiveSectionLink(link) {
+  els.sectionNav?.querySelectorAll("a").forEach((candidate) => {
+    const active = candidate === link;
+    candidate.classList.toggle("active", active);
+    if (active) candidate.setAttribute("aria-current", "location");
+    else candidate.removeAttribute("aria-current");
+  });
+}
+
 function bindEvents() {
+  els.sectionNav?.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href^='#']");
+    if (link) setActiveSectionLink(link);
+  });
   els.previousDate.addEventListener("click", () => selectDate(addDays(state.selectedDate, -1)));
   els.nextDate.addEventListener("click", () => selectDate(addDays(state.selectedDate, 1)));
   els.standingsModeControls.addEventListener("click", (event) => {
@@ -1368,6 +1495,7 @@ function bindEvents() {
 
 function init() {
   bindEvents();
+  renderTopProspects();
   renderDatePicker();
   renderStandingsSeason();
   restoreHotPlayersCache();

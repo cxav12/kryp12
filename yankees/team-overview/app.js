@@ -235,16 +235,16 @@ function renderMetric(teamId, metric) {
   rankLabel.classList.add(rankTone(rank, state.ranks.get(metric.key)?.size || 30));
   const previous = state.previousRanks.get(metric.key)?.get(teamId);
   const change = RankTrends.change(rank, previous);
-  const trend = document.createElement("i");
-  trend.className = `metric-trend trend-${change}`;
-  trend.textContent = { up: "↑", down: "↓", same: "–", unavailable: "?" }[change];
-  const description = change === "unavailable"
-    ? (state.trendStatus === "loading" ? "Loading 10-game ranking comparison" : "10-game ranking comparison unavailable")
-    : `${change === "same" ? "Unchanged" : change === "up" ? "Improved" : "Worsened"} MLB ranking: ${ordinal(previous)} to ${ordinal(rank)}, compared with ${state.trendDate} (before the last 10 completed games)`;
-  trend.title = description;
-  trend.setAttribute("role", "img");
-  trend.setAttribute("aria-label", description);
-  rankLabel.append(trend);
+  if (change !== "unavailable") {
+    const trend = document.createElement("i");
+    trend.className = `metric-trend trend-${change}`;
+    trend.textContent = { up: "↑", down: "↓", same: "–" }[change];
+    const description = `${change === "same" ? "Unchanged" : change === "up" ? "Improved" : "Worsened"} MLB ranking: ${ordinal(previous)} to ${ordinal(rank)}, compared with ${state.trendDate} (before the last 10 completed games)`;
+    trend.title = description;
+    trend.setAttribute("role", "img");
+    trend.setAttribute("aria-label", description);
+    rankLabel.append(trend);
+  }
   return node;
 }
 
@@ -267,7 +267,7 @@ function renderCard(target, teamId) {
   legend.innerHTML = '<span>MLB rank · last 10 games:</span> <span class="trend-up">↑ Better</span> <span class="trend-down">↓ Worse</span> <span class="trend-same">– Same</span>';
   if (state.trendStatus !== "ready" || metricConfig.some((metric) => !state.previousRanks.get(metric.key)?.has(teamId))) {
     const note = document.createElement("span");
-    note.textContent = state.trendStatus === "loading" ? "· Loading…" : "· ? Unavailable";
+    note.textContent = state.trendStatus === "loading" ? "· Loading…" : "· Trend data unavailable";
     legend.append(note);
   }
   legend.title = state.trendDate ? `Compared with MLB rankings through ${state.trendDate}, before the Yankees' last 10 completed regular-season games. Tied values share a rank.` : "A historical baseline is required; missing data is not shown as unchanged.";

@@ -1295,9 +1295,20 @@ a.leader-identity:focus-visible .leader-name {
     display: none;
   }
 
-  .score-matchup-row,
-  .score-records-row {
+  .score-matchup-row {
     grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
+  }
+
+  .score-records-row {
+    grid-template-columns: minmax(0, 1fr) 6px minmax(0, 1fr);
+    gap: 2px;
+    padding: 0 2px 8px;
+    font-size: 0.6rem;
+  }
+
+  .score-team-record {
+    min-width: 0;
+    gap: 2px;
   }
 
   .score-record-separator {

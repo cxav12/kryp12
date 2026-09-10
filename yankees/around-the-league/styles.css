@@ -48,12 +48,12 @@
 
 .league-section-nav a:hover,
 .league-section-nav a:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
   background: #26313e;
 }
 
 .league-section-nav a.active {
-  color: #fff;
+  color: #aeb6a7;
   background: #101720;
 }
 
@@ -81,7 +81,7 @@
 
 .section-return a:hover,
 .section-return a:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
   background: #26313e;
 }
 
@@ -166,7 +166,7 @@
   min-width: 0;
   min-height: 36px;
   border-radius: 999px;
-  color: #fff;
+  color: #aeb6a7;
   background: #101720;
   display: grid;
   place-content: center;
@@ -195,7 +195,7 @@
 
 .scores-date-arrow:hover,
 .scores-date-arrow:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(205, 211, 215, 0.1);
 }
 
@@ -427,12 +427,12 @@
 
 .standings-switch:hover,
 .standings-switch:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(10, 15, 22, 0.55);
 }
 
 .standings-switch.active {
-  color: #fff;
+  color: #aeb6a7;
   background: #101720;
   box-shadow: inset 0 0 0 1px rgba(196, 206, 211, 0.08);
   font-weight: 800;
@@ -446,7 +446,7 @@
 }
 
 .standings-season-control output {
-  color: #fff;
+  color: #aeb6a7;
   display: grid;
   place-items: center;
   font-weight: 800;
@@ -469,7 +469,7 @@
 
 .standings-season-arrow:hover,
 .standings-season-arrow:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(196, 206, 211, 0.1);
 }
 
@@ -496,7 +496,7 @@
 .standings-option:hover,
 .standings-option:focus-visible {
   border-color: var(--line-bright);
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(196, 206, 211, 0.12);
 }
 
@@ -539,7 +539,7 @@
 }
 
 .standings-table td {
-  color: #dfe4f4;
+  color: #aeb6a7;
 }
 
 .standings-table tbody .team-standing-row:nth-child(even) {
@@ -648,7 +648,7 @@
 }
 
 .standings-table .is-yankees td {
-  color: #dfe4f4;
+  color: #aeb6a7;
   background: rgba(29, 79, 120, 0.24);
   font-weight: 700;
 }
@@ -876,12 +876,12 @@ a.hot-item.player-profile-link:focus-visible {
 
 .leader-stat-toggle-button:hover,
 .leader-stat-toggle-button:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(10, 15, 22, 0.55);
 }
 
 .leader-stat-toggle-button.active {
-  color: #fff;
+  color: #aeb6a7;
   background: #101720;
   box-shadow: inset 0 0 0 1px rgba(196, 206, 211, 0.08);
   font-weight: 800;
@@ -930,7 +930,7 @@ a.hot-item.player-profile-link:focus-visible {
 
 .leader-more-link:hover,
 .leader-more-link:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
   text-decoration: none;
 }
 
@@ -981,7 +981,7 @@ a.hot-item.player-profile-link:focus-visible {
 }
 
 .leader-entry.is-yankees .leader-value {
-  color: #dfe4f4;
+  color: #aeb6a7;
 }
 
 .leader-rank {
@@ -1016,7 +1016,7 @@ a.leader-identity,
 
 a.leader-identity:hover .leader-name,
 a.leader-identity:focus-visible .leader-name {
-  color: #fff;
+  color: #aeb6a7;
 }
 
 .leader-image-link {

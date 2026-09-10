@@ -128,7 +128,7 @@
 }
 
 .qualified-filter input:checked + span {
-  color: #fff;
+  color: #aeb6a7;
   background: #101720;
   box-shadow: inset 0 0 0 1px rgba(196, 206, 211, 0.08);
 }
@@ -143,7 +143,7 @@
 }
 
 .qualified-filter:hover span {
-  color: #fff;
+  color: #aeb6a7;
 }
 
 .qualified-filter input:focus-visible + span {
@@ -166,7 +166,7 @@
 .stats-toggle-button:focus,
 .stats-scope-button:hover,
 .stats-scope-button:focus {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(196, 206, 211, 0.12);
 }
 
@@ -214,7 +214,7 @@
 }
 
 .player-stats-table td {
-  color: #dfe4f4;
+  color: #aeb6a7;
   font-size: var(--text-normal);
 }
 
@@ -241,7 +241,7 @@
 }
 
 .player-stats-table td.is-sort-column {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(241, 180, 52, 0.08);
   font-weight: 800;
 }
@@ -295,7 +295,7 @@
 
 .player-cell a:hover,
 .player-cell a:focus {
-  color: #fff;
+  color: #aeb6a7;
 }
 
 .team-code {
@@ -390,7 +390,7 @@
 
 .page-button:hover,
 .page-button:focus {
-  color: #fff;
+  color: #aeb6a7;
 }
 
 .page-button:disabled {
@@ -518,7 +518,7 @@
 
   .mobile-player-identity strong {
     overflow: hidden;
-    color: #fff;
+    color: #aeb6a7;
     font-size: var(--text-normal);
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -531,7 +531,7 @@
   }
 
   .mobile-stat-value {
-    color: #fff;
+    color: #aeb6a7;
     font-size: 1.15rem;
     font-weight: 800;
     text-align: right;
@@ -552,7 +552,7 @@
     min-height: 34px;
     border: 0;
     border-radius: 999px;
-    color: #fff;
+    color: #aeb6a7;
     background: transparent;
     padding: 0 7px;
     font-size: var(--text-small);

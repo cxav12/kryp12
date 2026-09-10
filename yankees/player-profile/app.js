@@ -15,6 +15,11 @@ const FANGRAPHS_TEAM_IDS = {
   118: 7, 119: 22, 120: 24, 121: 25, 133: 10, 134: 27, 135: 29, 136: 11, 137: 30, 138: 28,
   139: 12, 140: 13, 141: 14, 142: 8, 143: 26, 144: 16, 145: 4, 146: 20, 147: 9, 158: 23,
 };
+const MLB_TEAM_ABBREVIATIONS = {
+  108: "LAA", 109: "AZ", 110: "BAL", 111: "BOS", 112: "CHC", 113: "CIN", 114: "CLE", 115: "COL", 116: "DET", 117: "HOU",
+  118: "KC", 119: "LAD", 120: "WSH", 121: "NYM", 133: "OAK", 134: "PIT", 135: "SD", 136: "SEA", 137: "SF", 138: "STL",
+  139: "TB", 140: "TEX", 141: "TOR", 142: "MIN", 143: "PHI", 144: "ATL", 145: "CWS", 146: "MIA", 147: "NYY", 158: "MIL",
+};
 const HITTING_DETAIL_PRIMARY_ITEMS = [
   ["AVG", "avg"],
   ["OBP", "obp"],
@@ -329,19 +334,43 @@ function quickStatFields(group) {
 
 function statsBySeason(data) {
   return (data?.stats?.[0]?.splits || []).reduce((seasons, split) => {
-    if (split.season) seasons[String(split.season)] = split.stat || {};
+    if (split.season) {
+      seasons[String(split.season)] = {
+        ...(split.stat || {}),
+        teamAbbreviation: split.team?.abbreviation || MLB_TEAM_ABBREVIATIONS[Number(split.team?.id)] || "",
+      };
+    }
     return seasons;
   }, {});
+}
+
+function teamAbbreviationsBySeason(data) {
+  return (data?.stats?.[0]?.splits || []).reduce((seasons, split) => {
+    if (!split.season) return seasons;
+    const abbreviation = split.team?.abbreviation || MLB_TEAM_ABBREVIATIONS[Number(split.team?.id)] || "";
+    if (!abbreviation) return seasons;
+    const year = String(split.season);
+    const teams = new Set(seasons[year] ? seasons[year].split("/") : []);
+    teams.add(abbreviation);
+    seasons[year] = [...teams].filter(Boolean).join("/");
+    return seasons;
+  }, {});
+}
+
+function seasonStatLabel(year, seasonLabel, stats = {}, teamsBySeason = {}) {
+  const team = teamsBySeason[String(year)] || stats.teamAbbreviation;
+  return `${year} ${seasonLabel}${team ? ` - ${team}` : ""}`;
 }
 
 function quickStatRows(group, data, mode) {
   const fields = quickStatFields(group);
   const seasonLabel = mode === "postseason" ? "Postseason" : "Regular Season";
   const seasons = [
-    [`${SEASON} ${seasonLabel}`, data.season],
+    [seasonStatLabel(SEASON, seasonLabel, data.season, data.teamsBySeason), data.season],
     ...[1, 2].map((offset) => {
       const year = SEASON - offset;
-      return [`${year} ${seasonLabel}`, data.yearByYear[String(year)] || {}];
+      const stats = data.yearByYear[String(year)] || {};
+      return [seasonStatLabel(year, seasonLabel, stats, data.teamsBySeason), stats];
     }),
     [`Career ${seasonLabel}`, data.career],
   ];
@@ -870,9 +899,9 @@ function renderDetail() {
 async function loadDetailData(id, seasonStats, group = "hitting", mlbTeamId) {
   const [careerData, yearByYearData, postseasonCareerData, postseasonYearByYearData, homeAwayData, risp, vsLhp, vsRhp, transactionsData, advancedHitting, teamGamesPlayed] = await Promise.all([
     api.statSummary(id, group, "career").catch(() => ({ stats: [] })),
-    api.yearByYear(id, group).catch(() => ({ stats: [] })),
+    api.yearByYear(id, group, { hydrate: "team" }).catch(() => ({ stats: [] })),
     api.statSummary(id, group, "career", { gameType: "P" }).catch(() => ({ stats: [] })),
-    api.yearByYear(id, group, { gameType: "P" }).catch(() => ({ stats: [] })),
+    api.yearByYear(id, group, { gameType: "P", hydrate: "team" }).catch(() => ({ stats: [] })),
     api.stats(id, group, "homeAndAway").catch(() => ({ stats: [] })),
     splitStat(id, group, ["risp", "risp2out"]).catch(() => ({})),
     splitStat(id, group, ["vl", "vsl", "vsLHP"]).catch(() => ({})),
@@ -897,8 +926,10 @@ async function loadDetailData(id, seasonStats, group = "hitting", mlbTeamId) {
     away: homeAwayStat(homeAwayData, "away"),
     career: firstStatSplit(careerData),
     yearByYear: statsBySeason(yearByYearData),
+    teamsBySeason: teamAbbreviationsBySeason(yearByYearData),
     postseasonCareer: firstStatSplit(postseasonCareerData),
     postseasonYearByYear: statsBySeason(postseasonYearByYearData),
+    postseasonTeamsBySeason: teamAbbreviationsBySeason(postseasonYearByYearData),
     transactions: transactionsData.transactions || [],
   };
 }
@@ -997,8 +1028,11 @@ async function loadPlayer(id) {
     const person = profile.people?.[0];
     if (!person) throw new Error("Player not found");
     person.draftDetails = await api.draftDetails(person.id, person.draftYear).catch(() => null);
-    const hittingStats = hitting.stats?.[0]?.splits?.[0]?.stat || {};
-    const pitchingStats = pitching.stats?.[0]?.splits?.[0]?.stat || {};
+    const hittingSplit = hitting.stats?.[0]?.splits?.[0] || {};
+    const pitchingSplit = pitching.stats?.[0]?.splits?.[0] || {};
+    const currentTeamAbbreviation = person.currentTeam?.abbreviation || MLB_TEAM_ABBREVIATIONS[Number(person.currentTeam?.id)] || "";
+    const hittingStats = { ...(hittingSplit.stat || {}), teamAbbreviation: currentTeamAbbreviation };
+    const pitchingStats = { ...(pitchingSplit.stat || {}), teamAbbreviation: currentTeamAbbreviation };
     state.currentGroup = chooseGroup(person, hittingStats, pitchingStats);
     state.selectedPerson = person;
     state.detailSplit = "season";
@@ -1022,11 +1056,13 @@ async function loadPlayer(id) {
       regular: {
         season: activeStats,
         yearByYear: state.detailStats.yearByYear,
+        teamsBySeason: state.detailStats.teamsBySeason,
         career: state.detailStats.career,
       },
       postseason: {
         season: state.detailStats.postseasonYearByYear[String(SEASON)] || {},
         yearByYear: state.detailStats.postseasonYearByYear,
+        teamsBySeason: state.detailStats.postseasonTeamsBySeason,
         career: state.detailStats.postseasonCareer,
       },
     };

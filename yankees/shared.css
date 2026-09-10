@@ -5,10 +5,10 @@
   color-scheme: dark;
   --yankees-silver: #c7ccd0;
   --swatch-mid: #5d656b;
-  --bs-body-color: #aeb6bb;
+  --bs-body-color: #aeb6a7;
   --bs-body-bg: #000;
-  --ink: #aeb6bb;
-  --muted: #aeb6bb;
+  --ink: #aeb6a7;
+  --muted: #aeb6a7;
   --quiet: #858e94;
   --line: rgba(205, 211, 215, 0.17);
   --line-bright: rgba(205, 211, 215, 0.42);
@@ -17,7 +17,7 @@
   --inner-card-bg: #0a1015;
   --control-active-bg: #3b4650;
   --control-active-border: #697680;
-  --control-active-ink: #f2f5f7;
+  --control-active-ink: #aeb6a7;
   --control-arrow-hover-bg: rgba(196, 206, 211, 0.12);
   --game-detail-columns: minmax(0, 1.46fr) minmax(280px, 1fr);
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
@@ -95,7 +95,7 @@ a:focus-visible {
   .mobile-stat-category,
   .sort-button
 ):is(:hover, :focus-visible) {
-  color: #fff !important;
+  color: #aeb6a7 !important;
   background: rgba(10, 15, 22, 0.55) !important;
 }
 
@@ -115,7 +115,7 @@ a:focus-visible {
   .sort-button
 ).active,
 .roster-tab[aria-selected="true"] {
-  color: #fff !important;
+  color: #aeb6a7 !important;
   background: #101720 !important;
   box-shadow: inset 0 0 0 1px rgba(196, 206, 211, 0.08) !important;
   font-weight: 800;
@@ -135,14 +135,14 @@ a:focus-visible {
   .pagination-controls .pagination-button,
   .stats-pagination .page-button
 ):is(:hover, :focus-visible):not(:disabled) {
-  color: #fff !important;
+  color: #aeb6a7 !important;
   background: var(--control-arrow-hover-bg) !important;
 }
 
 .pagination-summary {
   border: 0 !important;
   border-radius: 999px !important;
-  color: #fff;
+  color: #aeb6a7;
   background: #101720 !important;
 }
 
@@ -150,7 +150,7 @@ a:focus-visible {
 #search-button {
   border: 0 !important;
   border-radius: 999px !important;
-  color: #fff !important;
+  color: #aeb6a7 !important;
   background: #101720 !important;
   box-shadow: inset 0 0 0 1px rgba(196, 206, 211, 0.12);
 }
@@ -238,7 +238,7 @@ body {
 
 .legal-disclaimer-card h3 {
   margin: 1.75rem 0 0.5rem;
-  color: #e4e8eb;
+  color: #aeb6a7;
   font-size: 1rem;
   font-weight: 700;
 }
@@ -286,7 +286,7 @@ body {
 }
 
 .contact-field label {
-  color: #e3e7ea;
+  color: #aeb6a7;
   font-weight: 700;
 }
 
@@ -374,7 +374,7 @@ body {
 
 strong,
 b {
-  color: #e3e7ea;
+  color: #aeb6a7;
   font-weight: 700;
 }
 
@@ -576,7 +576,7 @@ b {
   border: 0;
   border-bottom: 0;
   border-radius: 0;
-  color: #dfe4f4;
+  color: #aeb6a7;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -590,7 +590,7 @@ b {
 .site-nav-link:hover,
 .site-nav-link:focus,
 .site-nav-link.active {
-  color: #e8ebed;
+  color: #aeb6a7;
 }
 
 .site-nav-link:hover,
@@ -599,7 +599,7 @@ b {
 }
 
 .site-nav-link.active {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(12, 35, 64, 0.4);
 }
 
@@ -663,7 +663,7 @@ b {
   border: 0;
   border-right: 0;
   border-radius: 0;
-  color: #dfe4f4;
+  color: #aeb6a7;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -680,7 +680,7 @@ b {
 .desktop-site-nav .nav-link:hover,
 .desktop-site-nav .nav-link:focus,
 .desktop-site-nav .nav-link.active {
-  color: #e8ebed;
+  color: #aeb6a7;
 }
 
 .desktop-site-nav .nav-link:hover,
@@ -689,7 +689,7 @@ b {
 }
 
 .desktop-site-nav .nav-link.active {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(12, 35, 64, 0.4);
   box-shadow: none;
 }
@@ -775,7 +775,7 @@ b {
   margin: 0;
   padding-right: 18px;
   border-right: 1px solid var(--line-bright);
-  color: #fff;
+  color: #aeb6a7;
   font-size: 1.7rem;
   font-weight: 700;
   line-height: 1.25;
@@ -876,7 +876,7 @@ b {
 .btn-control:hover,
 .btn-control:focus {
   border-color: var(--line-bright);
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(196, 206, 211, 0.16);
 }
 
@@ -889,7 +889,7 @@ b {
 .btn-yankees:hover,
 .btn-yankees:focus {
   border-color: rgba(255, 255, 255, 0.32);
-  color: #fff;
+  color: #aeb6a7;
   background: #46545e;
 }
 
@@ -959,7 +959,7 @@ b {
 }
 
 .brand-title {
-  color: #fff;
+  color: #aeb6a7;
   font-size: clamp(1.65rem, 3.3vw, 3.1rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -970,7 +970,7 @@ b {
 
 .brand-kicker {
   margin-bottom: 0 !important;
-  color: #fff;
+  color: #aeb6a7;
   font-size: clamp(1.65rem, 3.3vw, 3.1rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -1221,7 +1221,7 @@ b {
 .detail-number,
 .mobile-player-identity strong,
 .mobile-stat-value {
-  color: #e4e8eb !important;
+  color: #aeb6a7 !important;
 }
 
 .site-nav-link,
@@ -1238,7 +1238,7 @@ b {
 .page-intro-description,
 .team-code,
 .mobile-player-identity small {
-  color: #aeb6bb !important;
+  color: #aeb6a7 !important;
 }
 
 .linescore-table th,

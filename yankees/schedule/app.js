@@ -305,6 +305,19 @@ function listResult(game) {
   return gameState === "Live" ? statusLabel(game) : `${timeLabel(game.gameDate)} · Upcoming`;
 }
 
+function probableStarterLabel(entry = {}) {
+  const pitcher = entry.probablePitcher;
+  if (!pitcher?.fullName) return "TBD";
+  const stats = decisionStats(pitcher);
+  const wins = stats.wins;
+  const losses = stats.losses;
+  const era = stats.era;
+  const details = [];
+  if (wins !== undefined && losses !== undefined) details.push(`${wins}-${losses}`);
+  if (era !== undefined) details.push(`${era} ERA`);
+  return `${pitcher.fullName}${details.length ? ` (${details.join(" · ")})` : ""}`;
+}
+
 function renderListGame(game) {
   const opponent = opponentTeamEntry(game);
   const venueMarker = isYankeesHome(game) ? "vs" : "@";
@@ -324,9 +337,34 @@ function renderListGame(game) {
     <div class="list-field" data-label="Winner"><strong>${decisionLabel(game.decisions?.winner, "winner")}</strong></div>
     <div class="list-field" data-label="Loser"><strong>${decisionLabel(game.decisions?.loser, "loser")}</strong></div>
     <div class="list-field" data-label="Save"><strong>${decisionLabel(game.decisions?.save, "save")}</strong></div>
-    ${game.status?.abstractGameState === "Final" ? `<span class="list-recap">Recap <span aria-hidden="true">→</span></span>` : `<span aria-hidden="true"></span>`}
   `;
   return card;
+}
+
+function renderUpcomingListGame(game) {
+  const yankees = yankeesTeamEntry(game);
+  const opponent = opponentTeamEntry(game);
+  const venueMarker = isYankeesHome(game) ? "vs" : "@";
+  const card = document.createElement("article");
+  card.className = "schedule-list-card schedule-list-card-upcoming scheduled";
+  card.innerHTML = `
+    <div class="list-field list-date" data-label="Date"><strong>${escapeHtml(agendaDateLabel(new Date(`${game.officialDate}T12:00:00`)))}</strong></div>
+    <div class="list-field list-opponent" data-label="Opponent"><strong><b>${venueMarker}</b><img src="${teamLogoUrl(opponent.team)}" alt="" />${escapeHtml(teamOnlyName(opponent.team))}</strong></div>
+    <div class="list-field list-result" data-label="Start Time"><strong>${escapeHtml(timeLabel(game.gameDate))}</strong></div>
+    <div class="list-field" data-label="W-L"><strong>${escapeHtml(recordAtGame(yankees))}</strong></div>
+    <div class="list-field" data-label="Opp. W-L"><strong>${escapeHtml(recordAtGame(opponent))}</strong></div>
+    <div class="list-field list-starter" data-label="NYY Probable Starter"><strong>${escapeHtml(probableStarterLabel(yankees))}</strong></div>
+    <div class="list-field list-starter" data-label="Opp. Probable Starter"><strong>${escapeHtml(probableStarterLabel(opponent))}</strong></div>
+  `;
+  return card;
+}
+
+function createListHeader(className, labels) {
+  const header = document.createElement("div");
+  header.className = `schedule-list-header ${className}`;
+  header.setAttribute("aria-hidden", "true");
+  header.innerHTML = labels.map((label) => `<span>${label}</span>`).join("");
+  return header;
 }
 
 function renderList(schedule) {
@@ -338,15 +376,20 @@ function renderList(schedule) {
     els.list.innerHTML = `<p class="error p-3 mb-0">No games scheduled this month.</p>`;
     return;
   }
-  const header = document.createElement("div");
-  header.className = "schedule-list-header";
-  header.setAttribute("aria-hidden", "true");
-  header.innerHTML = `
-    <span>Date</span><span>Opponent</span><span>Result</span><span>W-L</span><span>Opp. W-L</span>
-    <span>Winner</span><span>Loser</span><span>Save</span><span></span>
-  `;
-  els.list.append(header);
-  games.forEach((game) => els.list.append(renderListGame(game)));
+  const playedGames = games.filter((game) => game.status?.abstractGameState !== "Preview");
+  const upcomingGames = games.filter((game) => game.status?.abstractGameState === "Preview");
+
+  if (playedGames.length) {
+    els.list.append(createListHeader("", ["Date", "Opponent", "Result", "W-L", "Opp. W-L", "Winner", "Loser", "Save"]));
+    playedGames.forEach((game) => els.list.append(renderListGame(game)));
+  }
+
+  if (upcomingGames.length) {
+    els.list.append(createListHeader("schedule-list-header-upcoming", [
+      "Date", "Opponent", "Start Time", "W-L", "Opp. W-L", "NYY Probable Starter", "Opp. Probable Starter",
+    ]));
+    upcomingGames.forEach((game) => els.list.append(renderUpcomingListGame(game)));
+  }
 }
 
 function setView(view) {

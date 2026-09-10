@@ -61,9 +61,6 @@ const state = {
   fielding: new Map(),
   qualityStarts: new Map(),
   ranks: new Map(),
-  previousRanks: new Map(),
-  trendStatus: "loading",
-  trendDate: "",
 };
 
 const api = {
@@ -232,19 +229,17 @@ function renderMetric(teamId, metric) {
     : formatStat(metric.key, value);
   const rankLabel = node.querySelector(".metric-value small");
   rankLabel.textContent = rank ? ordinal(rank) : "-";
-  rankLabel.classList.add(rankTone(rank, state.ranks.get(metric.key)?.size || 30));
-  const previous = state.previousRanks.get(metric.key)?.get(teamId);
-  const change = RankTrends.change(rank, previous);
-  if (change !== "unavailable") {
-    const trend = document.createElement("i");
-    trend.className = `metric-trend trend-${change}`;
-    trend.textContent = { up: "↑", down: "↓", same: "–" }[change];
-    const description = `${change === "same" ? "Unchanged" : change === "up" ? "Improved" : "Worsened"} MLB ranking: ${ordinal(previous)} to ${ordinal(rank)}, compared with ${state.trendDate} (before the last 10 completed games)`;
-    trend.title = description;
-    trend.setAttribute("role", "img");
-    trend.setAttribute("aria-label", description);
-    rankLabel.append(trend);
-  }
+  const totalTeams = state.ranks.get(metric.key)?.size || 30;
+  const chart = node.querySelector(".metric-rank-chart");
+  const rankPercent = rank && totalTeams > 1
+    ? Math.max(3, ((totalTeams - rank) / (totalTeams - 1)) * 100)
+    : 0;
+  const tone = rankTone(rank, totalTeams);
+  rankLabel.classList.add(tone);
+  chart.classList.add(tone);
+  chart.style.setProperty("--rank-position", `${rankPercent}%`);
+  chart.setAttribute("role", "img");
+  chart.setAttribute("aria-label", `${metric.label}: ${ordinal(rank)} among ${totalTeams} MLB teams`);
   return node;
 }
 
@@ -262,16 +257,10 @@ function renderCard(target, teamId) {
     <h3 class="team-name">Yankees MLB Rankings</h3>
   `;
 
-  const legend = document.createElement("p");
-  legend.className = "rank-trend-legend";
-  legend.innerHTML = '<span>MLB rank · last 10 games:</span> <span class="trend-up">↑ Better</span> <span class="trend-down">↓ Worse</span> <span class="trend-same">– Same</span>';
-  if (state.trendStatus !== "ready" || metricConfig.some((metric) => !state.previousRanks.get(metric.key)?.has(teamId))) {
-    const note = document.createElement("span");
-    note.textContent = state.trendStatus === "loading" ? "· Loading…" : "· Trend data unavailable";
-    legend.append(note);
-  }
-  legend.title = state.trendDate ? `Compared with MLB rankings through ${state.trendDate}, before the Yankees' last 10 completed regular-season games. Tied values share a rank.` : "A historical baseline is required; missing data is not shown as unchanged.";
-  header.append(legend);
+  const context = document.createElement("p");
+  context.className = "rank-chart-context";
+  context.textContent = "Current MLB standing · 30 teams · 1st is best";
+  header.append(context);
 
   const list = document.createElement("section");
   list.className = "metric-groups";
@@ -307,40 +296,6 @@ function storeQualityStarts(candidates, logs, snapshot = state, endDate = null) 
       if (teamId) snapshot.qualityStarts.set(teamId, (snapshot.qualityStarts.get(teamId) || 0) + 1);
     });
   });
-}
-
-async function loadRankTrends(candidates, logs) {
-  try {
-    const schedule = await api.get("/schedule", { sportId: 1, teamId: TEAM_ID, season: SEASON, gameType: "R" });
-    const baseline = RankTrends.cutoff((schedule.dates || []).flatMap((day) => day.games || []));
-    if (!baseline) throw new Error("No exact 10-game date boundary available");
-    const historical = { hitting: new Map(), pitching: new Map(), fielding: new Map(), standings: new Map(), qualityStarts: new Map(), ranks: new Map() };
-    const [hitting, pitching, fielding, standings] = await Promise.all([
-      ...["hitting", "pitching", "fielding"].map((group) => api.get("/teams/stats", {
-        stats: "byDateRange", group, sportIds: 1, gameType: "R", season: SEASON,
-        startDate: `${SEASON}-01-01`, endDate: baseline.date,
-      })),
-      api.get("/standings", { leagueId: "103,104", season: SEASON, standingsTypes: "regularSeason", date: baseline.date }),
-    ]);
-    storeStats("hitting", hitting, historical);
-    storeStats("pitching", pitching, historical);
-    storeStats("fielding", fielding, historical);
-    storeStandings(standings, historical);
-    const standing = historical.standings.get(TEAM_ID);
-    if (!standing || Number(standing.wins) + Number(standing.losses) !== baseline.expectedGames) throw new Error("Historical game count does not match the comparison window");
-    storeQualityStarts(candidates, logs, historical, baseline.date);
-    calculateRanks(historical);
-    // Incomplete league data cannot support a trustworthy MLB rank comparison.
-    metricConfig.forEach((metric) => {
-      if (historical.ranks.get(metric.key)?.size !== state.teams.length || state.ranks.get(metric.key)?.size !== state.teams.length) historical.ranks.delete(metric.key);
-    });
-    state.previousRanks = historical.ranks;
-    state.trendDate = baseline.date;
-    state.trendStatus = "ready";
-  } catch (error) {
-    state.trendStatus = "unavailable";
-  }
-  renderCard(els.yankeesCard, TEAM_ID);
 }
 
 function performerValue(key, value) {
@@ -545,7 +500,6 @@ async function init() {
 
     renderCard(els.yankeesCard, TEAM_ID);
     setStatus("Live MLB data", "good");
-    loadRankTrends(qualityStartCandidates, pitcherLogs);
   } catch (error) {
     setStatus("Data connection issue", "error");
     const message = document.createElement("p");

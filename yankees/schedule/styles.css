@@ -42,7 +42,7 @@
 .month-summary {
   min-width: 0;
   max-width: 760px;
-  color: #dfe4f4;
+  color: #aeb6a7;
   white-space: nowrap;
 }
 
@@ -99,12 +99,12 @@
 
 .view-control:hover,
 .view-control:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(205, 211, 215, 0.1);
 }
 
 .view-control.active {
-  color: #fff;
+  color: #aeb6a7;
   background: #101720;
 }
 
@@ -118,7 +118,7 @@
   min-width: 0;
   min-height: 36px;
   border-radius: 999px;
-  color: #fff;
+  color: #aeb6a7;
   background: #101720;
   display: grid;
   place-items: center;
@@ -144,7 +144,7 @@
 
 .month-arrow:hover,
 .month-arrow:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(205, 211, 215, 0.1);
 }
 
@@ -259,14 +259,14 @@ a.game-card:focus-visible {
 .schedule-list-header,
 .schedule-list-card {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.15fr) minmax(145px, 1.25fr) minmax(0, 0.65fr) minmax(0, 0.75fr) repeat(2, minmax(0, 1.25fr)) minmax(0, 1.1fr) minmax(0, 0.55fr);
+  grid-template-columns: 10% 16% 14% 8% 9% repeat(3, minmax(0, 1fr));
   align-items: center;
   gap: 8px;
 }
 
 .schedule-list-header {
   padding: 4px 12px 8px 17px;
-  color: #aebbd0;
+  color: var(--ink);
   font-size: 0.64rem;
   font-weight: 900;
   letter-spacing: 0.1em;
@@ -275,6 +275,15 @@ a.game-card:focus-visible {
 
 .schedule-list-header span {
   text-align: center;
+}
+
+.schedule-list-header-upcoming,
+.schedule-list-card-upcoming {
+  grid-template-columns: 10% 16% 14% 8% 9% repeat(2, minmax(0, 1fr));
+}
+
+.schedule-list-header-upcoming {
+  margin-top: 18px;
 }
 
 .schedule-list-card {
@@ -333,7 +342,7 @@ a.schedule-list-card:focus-visible {
 }
 
 .list-result strong {
-  color: #d9e1ec;
+  color: var(--ink);
   white-space: nowrap;
 }
 
@@ -370,14 +379,6 @@ a.schedule-list-card:focus-visible {
   height: 32px;
   flex: 0 0 32px;
   object-fit: contain;
-}
-
-.list-recap {
-  justify-self: center;
-  color: #9fc4fb;
-  font-size: clamp(0.68rem, 0.78vw, var(--text-small));
-  font-weight: 800;
-  white-space: nowrap;
 }
 
 .game-card.win .game-status {
@@ -528,6 +529,10 @@ a.schedule-list-card:focus-visible {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .schedule-list-card-upcoming {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .schedule-list-header {
     display: none;
   }
@@ -553,10 +558,6 @@ a.schedule-list-card:focus-visible {
 
   .list-opponent {
     grid-column: span 2;
-  }
-
-  .list-recap {
-    justify-self: end;
   }
 
   .weekday-row,
@@ -586,6 +587,10 @@ a.schedule-list-card:focus-visible {
     padding: 14px;
   }
 
+  .schedule-list-card-upcoming {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .list-date,
   .list-opponent {
     grid-column: auto;
@@ -594,11 +599,6 @@ a.schedule-list-card:focus-visible {
   .list-opponent strong {
     align-items: flex-start;
     flex-wrap: wrap;
-  }
-
-  .list-recap {
-    grid-column: 1 / -1;
-    justify-self: start;
   }
 
   .game-matchup-row,
@@ -670,5 +670,5 @@ a.schedule-list-card:focus-visible {
 
 .game-stats-link:hover,
 .game-stats-link:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
 }

@@ -74,7 +74,7 @@
 .roster-tab:hover,
 .roster-tab:focus {
   border-color: var(--line-bright);
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(196, 206, 211, 0.12);
 }
 
@@ -208,7 +208,7 @@
 
 .roster-link:hover,
 .roster-link:focus {
-  color: #fff;
+  color: #aeb6a7;
   background: var(--inner-card-bg, #0a1015);
 }
 
@@ -378,7 +378,7 @@
 
 .feed p {
   margin: 4px 0 0;
-  color: #e2e7f4;
+  color: #aeb6a7;
 }
 
 .transaction-pagination {
@@ -390,7 +390,7 @@
 .pagination-summary {
   min-height: 36px;
   border-radius: 999px;
-  color: #fff;
+  color: #aeb6a7;
   background: #101720;
   display: inline-flex;
   align-items: center;
@@ -438,7 +438,7 @@
 .pagination-button:focus:not(:disabled),
 .pagination-button.active {
   border-color: var(--line-bright);
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(196, 206, 211, 0.14);
 }
 
@@ -518,14 +518,14 @@
   .overview-body .roster-tab:hover,
   .overview-body .roster-tab:focus {
     border: 0 !important;
-    color: #fff !important;
+    color: #aeb6a7 !important;
     background: rgba(16, 23, 32, 0.62) !important;
   }
 
   .overview-body .roster-tab.active,
   .overview-body .roster-tab[aria-selected="true"] {
     border: 0 !important;
-    color: #fff !important;
+    color: #aeb6a7 !important;
     background: #101720 !important;
     box-shadow: none !important;
   }

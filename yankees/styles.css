@@ -149,7 +149,7 @@
 
 .recap-selector-button .selector-score {
   overflow: hidden;
-  color: #eef2f5;
+  color: #aeb6a7;
   font-weight: 800;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -182,7 +182,7 @@
 }
 
 .selector-final-score strong {
-  color: #eef2f5;
+  color: #aeb6a7;
   font-size: 0.9rem;
   font-variant-numeric: tabular-nums;
 }
@@ -252,7 +252,7 @@
 .recent-game-date,
 .recent-game-result {
   justify-self: center;
-  color: #f7f8ff;
+  color: #aeb6a7;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -285,7 +285,7 @@
 
 .recent-game-matchup strong {
   overflow: hidden;
-  color: #fff;
+  color: #aeb6a7;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-align: center;
@@ -351,7 +351,7 @@
   width: 100%;
   min-width: 520px;
   border-collapse: collapse;
-  color: #f7f8ff;
+  color: #aeb6a7;
 }
 
 .linescore-table th,
@@ -370,7 +370,7 @@
 
 .linescore-table tbody th {
   min-width: 62px;
-  color: #fff;
+  color: #aeb6a7;
   font-weight: 800;
   text-align: left;
 }
@@ -394,7 +394,7 @@
 .game-decisions p {
   margin: 0;
   overflow: hidden;
-  color: #f7f8ff;
+  color: #aeb6a7;
   display: grid;
   grid-template-columns: 30px minmax(0, 1fr);
   align-items: baseline;
@@ -519,7 +519,7 @@
 
 .scoreboard-team-copy strong {
   overflow: hidden;
-  color: #fff;
+  color: #aeb6a7;
   font-size: var(--text-normal);
   font-weight: 800;
   text-overflow: ellipsis;
@@ -527,13 +527,13 @@
 }
 
 .scoreboard-team-copy small {
-  color: #dfe4f4;
+  color: #aeb6a7;
   font-size: var(--text-small);
   font-weight: 700;
 }
 
 .scoreboard-score {
-  color: #fff;
+  color: #aeb6a7;
   font-size: clamp(2rem, 3vw, 2.65rem);
   font-weight: 800;
   line-height: 1;
@@ -541,7 +541,7 @@
 }
 
 .scoreboard-state {
-  color: #fff;
+  color: #aeb6a7;
   font-size: 1.1rem;
   font-weight: 800;
   text-align: center;
@@ -688,7 +688,7 @@ a.decision-card:focus-visible {
 }
 
 .decision-player-copy strong {
-  color: #f7f8ff;
+  color: #aeb6a7;
   font-size: var(--text-normal);
   line-height: 1.15;
 }
@@ -941,7 +941,7 @@ a.probable-pitcher:hover strong,
 a.probable-pitcher:focus-visible strong,
 a.matchup-player:hover strong,
 a.matchup-player:focus-visible strong {
-  color: #fff;
+  color: #aeb6a7;
 }
 
 .inline-player-profile-link {
@@ -952,7 +952,7 @@ a.matchup-player:focus-visible strong {
 
 .inline-player-profile-link:hover,
 .inline-player-profile-link:focus-visible {
-  color: #fff;
+  color: #aeb6a7;
 }
 
 .probable-pitcher > img:not(.probable-team-logo),
@@ -1130,7 +1130,7 @@ a.matchup-player:focus-visible strong {
 
 .pregame-lineup-player > a:hover strong,
 .pregame-lineup-player > a:focus-visible strong {
-  color: #fff;
+  color: #aeb6a7;
 }
 
 .pregame-lineup-player > a small {
@@ -1285,7 +1285,7 @@ a.matchup-player:focus-visible strong {
 
 .bullpen-pitcher:hover .bullpen-pitcher-copy strong,
 .bullpen-pitcher:focus-visible .bullpen-pitcher-copy strong {
-  color: #fff;
+  color: #aeb6a7;
 }
 
 .bullpen-pitcher-copy small {
@@ -1312,7 +1312,7 @@ a.matchup-player:focus-visible strong {
 }
 
 .bullpen-pitch-count {
-  color: #fff;
+  color: #aeb6a7;
   font-size: var(--text-small);
   text-align: right;
 }
@@ -1400,7 +1400,7 @@ a.matchup-player:focus-visible strong {
   background: #05090d;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
   padding: 7px 9px;
-  color: #f7f8ff;
+  color: #aeb6a7;
   font-size: var(--text-small);
   line-height: 1.35;
   pointer-events: none;
@@ -1552,7 +1552,7 @@ a.matchup-player:focus-visible strong {
 
 .matchup-player-copy .matchup-on-deck {
   margin-top: 2px;
-  color: #c7d0dd;
+  color: #aeb6a7;
 }
 
 .matchup-on-deck b {
@@ -1722,7 +1722,7 @@ a.matchup-player:focus-visible strong {
 }
 
 .scoring-play-scoreline strong {
-  color: #f7f8ff;
+  color: #aeb6a7;
   font-size: 1.05rem;
   font-variant-numeric: tabular-nums;
 }
@@ -1817,7 +1817,7 @@ a.matchup-player:focus-visible strong {
 
 .game-player-team-button:hover,
 .game-player-team-button:focus {
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(196, 206, 211, 0.12);
 }
 
@@ -1894,7 +1894,7 @@ a.matchup-player:focus-visible strong {
 
 .recap-grid-heading h2 {
   margin: 0;
-  color: #f4f7ff;
+  color: #aeb6a7;
   font-size: var(--text-normal);
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -1910,7 +1910,7 @@ a.matchup-player:focus-visible strong {
 .game-player-column h3 {
   margin: 0;
   border-bottom: 1px solid rgba(96, 126, 166, 0.36);
-  color: #f4f7ff;
+  color: #aeb6a7;
   padding: 14px 16px;
   font-size: var(--text-normal);
   font-weight: 800;
@@ -1937,7 +1937,7 @@ a.matchup-player:focus-visible strong {
 .game-player-table td {
   border-bottom: 1px solid rgba(196, 206, 212, 0.1);
   padding: 9px 5px;
-  color: #dfe4f4;
+  color: #aeb6a7;
   font-size: var(--text-small);
   text-align: center;
   white-space: nowrap;
@@ -1958,7 +1958,7 @@ a.matchup-player:focus-visible strong {
 
 .game-player-table tbody th {
   position: relative;
-  color: #fff;
+  color: #aeb6a7;
   font-size: var(--text-normal);
   font-weight: 800;
 }
@@ -1993,7 +1993,7 @@ a.matchup-player:focus-visible strong {
 
 .game-player-table a:hover,
 .game-player-table a:focus {
-  color: #fff;
+  color: #aeb6a7;
 }
 
 .game-player-table small {
@@ -2042,7 +2042,7 @@ a.matchup-player:focus-visible strong {
 
 .recap-column h3 {
   margin: 0;
-  color: #f4f7ff;
+  color: #aeb6a7;
   font-weight: 800;
   letter-spacing: 0.18em;
   line-height: 1.2;
@@ -2166,7 +2166,7 @@ a.matchup-player:focus-visible strong {
   position: relative;
   display: inline-block;
   padding-inline: 6px;
-  color: #fff;
+  color: #aeb6a7;
   font-size: 0.6875rem;
   font-weight: 800;
   line-height: 26px;
@@ -2192,7 +2192,7 @@ a.matchup-player:focus-visible strong {
   gap: 8px;
   min-width: 0;
   overflow-wrap: anywhere;
-  color: #fff;
+  color: #aeb6a7;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2242,7 +2242,7 @@ a.matchup-player:focus-visible strong {
 }
 
 .game-note-lines p strong {
-  color: #fff;
+  color: #aeb6a7;
   line-height: inherit;
 }
 
@@ -2774,7 +2774,7 @@ a.matchup-player:focus-visible strong {
 
   .mobile-player-identity strong {
     overflow: hidden;
-    color: #fff;
+    color: #aeb6a7;
     font-size: var(--text-normal);
     font-weight: 800;
     text-overflow: ellipsis;
@@ -2850,7 +2850,7 @@ a.matchup-player:focus-visible strong {
 
   .mobile-player-profile-link:hover,
   .mobile-player-profile-link:focus {
-    color: #fff;
+    color: #aeb6a7;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
@@ -2920,7 +2920,7 @@ a.matchup-player:focus-visible strong {
 
 .breaking-news-card,
 .breaking-news-alert {
-  --alert-color: #c4ced4;
+  --alert-color: #aeb6a7;
 }
 
 .breaking-news-card strong,
@@ -3110,7 +3110,7 @@ a.matchup-player:focus-visible strong {
 .breaking-news-close:hover,
 .breaking-news-close:focus-visible {
   border-color: #f1b434;
-  color: #fff;
+  color: #aeb6a7;
   background: rgba(241, 180, 52, 0.14);
 }
 
@@ -3295,7 +3295,7 @@ a.matchup-player:focus-visible strong {
 }
 
 #recap-grid .metric-feature > strong {
-  color: #edf1f5;
+  color: #aeb6a7;
 }
 
 #recap-grid .metric-feature em {

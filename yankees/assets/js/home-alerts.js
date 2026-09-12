@@ -89,7 +89,7 @@
       weatherAlert(weatherGame, weatherFeed, now),
     ].filter(Boolean).filter((alert) => isFresh(alert, now));
     return [...new Map(alerts.map((alert) => [alert.id, alert])).values()]
-      .sort((a, b) => b.priority - a.priority || String(b.date).localeCompare(String(a.date)))
+      .sort((a, b) => String(b.date).localeCompare(String(a.date)) || b.priority - a.priority)
       .slice(0, 3);
   }
 

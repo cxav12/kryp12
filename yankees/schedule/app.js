@@ -1,5 +1,6 @@
 const TEAM_ID = 147;
 const MLB_API = "https://statsapi.mlb.com/api/v1";
+const SCHEDULE_VIEW_KEY = "yankees-schedule-view";
 const MLB_TEAM_PRIMARY_COLORS = {
   108: "#BA0021", 109: "#A71930", 110: "#DF4601", 111: "#BD3039", 112: "#CC3433",
   113: "#C6011F", 114: "#D50032", 115: "#33006F", 116: "#FA4616", 117: "#EB6E1F",
@@ -36,11 +37,20 @@ const els = {
   next: document.querySelector("#next-month"),
 };
 
+function savedScheduleView() {
+  try {
+    const view = localStorage.getItem(SCHEDULE_VIEW_KEY);
+    return view === "list" ? "list" : "grid";
+  } catch (error) {
+    return "grid";
+  }
+}
+
 const state = {
   selectedDate: startOfMonth(new Date()),
   standings: new Map(),
   schedule: null,
-  view: "grid",
+  view: savedScheduleView(),
 };
 
 function startOfMonth(date) {
@@ -334,9 +344,9 @@ function renderListGame(game) {
     <div class="list-field list-result" data-label="Result"><strong>${escapeHtml(listResult(game))}</strong></div>
     <div class="list-field" data-label="W-L"><strong>${escapeHtml(recordAtGame(yankeesTeamEntry(game)))}</strong></div>
     <div class="list-field" data-label="Opp. W-L"><strong>${escapeHtml(recordAtGame(opponent))}</strong></div>
-    <div class="list-field" data-label="Winner"><strong>${decisionLabel(game.decisions?.winner, "winner")}</strong></div>
-    <div class="list-field" data-label="Loser"><strong>${decisionLabel(game.decisions?.loser, "loser")}</strong></div>
-    <div class="list-field" data-label="Save"><strong>${decisionLabel(game.decisions?.save, "save")}</strong></div>
+    <div class="list-field list-decision" data-label="Winner"><strong>${decisionLabel(game.decisions?.winner, "winner")}</strong></div>
+    <div class="list-field list-decision" data-label="Loser"><strong>${decisionLabel(game.decisions?.loser, "loser")}</strong></div>
+    <div class="list-field list-decision" data-label="Save"><strong>${decisionLabel(game.decisions?.save, "save")}</strong></div>
   `;
   return card;
 }
@@ -392,7 +402,8 @@ function renderList(schedule) {
   }
 }
 
-function setView(view) {
+function setView(view, persist = true) {
+  if (view !== "grid" && view !== "list") return;
   state.view = view;
   const isGrid = view === "grid";
   els.calendarShell.hidden = !isGrid;
@@ -401,6 +412,13 @@ function setView(view) {
   els.listView.classList.toggle("active", !isGrid);
   els.gridView.setAttribute("aria-pressed", String(isGrid));
   els.listView.setAttribute("aria-pressed", String(!isGrid));
+  if (persist) {
+    try {
+      localStorage.setItem(SCHEDULE_VIEW_KEY, view);
+    } catch (error) {
+      // The toggle still works when browser storage is unavailable.
+    }
+  }
 }
 
 function renderCalendar(monthDate, gamesByDate) {
@@ -484,4 +502,5 @@ function bindEvents() {
 }
 
 bindEvents();
+setView(state.view, false);
 loadMonth(state.selectedDate);

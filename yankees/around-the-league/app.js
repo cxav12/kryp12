@@ -1427,8 +1427,12 @@ function renderTopProspects() {
     portrait.height = 46;
     portrait.loading = "lazy";
     portrait.decoding = "async";
+    portrait.dataset.teamId = String(teamId);
+    portrait.dataset.playerTeamFallback = teamId === 147 ? "yankees" : "other";
     portrait.addEventListener("error", () => {
-      portrait.src = "/yankees/assets/player-silhouette.png?v=20260908-yankees1";
+      portrait.src = teamId === 147
+        ? "/yankees/assets/player-silhouette.png?v=20260908-yankees1"
+        : "/yankees/assets/non-yankees-player-silhouette.png?v=20260910-neutral3";
       portrait.classList.add("player-silhouette-fallback");
     }, { once: true });
 

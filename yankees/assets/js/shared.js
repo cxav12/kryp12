@@ -227,5 +227,9 @@ document.addEventListener("error", (event) => {
   image.classList.add("player-silhouette-fallback");
   image.classList.remove("invisible", "is-unavailable", "is-missing");
   image.hidden = false;
-  image.src = "/yankees/assets/player-silhouette.png?v=20260908-yankees1";
+  const isNonYankeesPlayer = image.dataset.playerTeamFallback === "other"
+    || (image.dataset.teamId && Number(image.dataset.teamId) !== HEADER_YANKEES_TEAM_ID);
+  image.src = isNonYankeesPlayer
+    ? "/yankees/assets/non-yankees-player-silhouette.png?v=20260910-neutral3"
+    : "/yankees/assets/player-silhouette.png?v=20260908-yankees1";
 }, true);

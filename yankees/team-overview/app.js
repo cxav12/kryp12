@@ -222,7 +222,6 @@ function renderMetric(teamId, metric) {
   const node = els.metricTemplate.content.firstElementChild.cloneNode(true);
   const value = metricValue(teamId, metric);
   const rank = state.ranks.get(metric.key)?.get(teamId);
-  node.querySelector(".metric-badge").textContent = metric.badge;
   node.querySelector("strong").textContent = metric.label;
   node.querySelector(".metric-value span").textContent = metric.record && value
     ? `${value.wins}-${value.losses}`

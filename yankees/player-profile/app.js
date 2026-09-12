@@ -94,6 +94,8 @@ const state = {
   detailSplit: "season",
   detailTab: "recent",
   teamGamesPlayed: 0,
+  percentilePools: {},
+  percentileAnimationPlayed: false,
   detailStats: {
     season: {},
     risp: {},
@@ -117,6 +119,7 @@ const els = {
   searchInput: document.querySelector("#player-search"),
   searchButton: document.querySelector("#search-button"),
   searchResults: document.querySelector("#search-results"),
+  quickPlayerSelect: document.querySelector("#quick-player-select"),
   detailHeadshot: document.querySelector("#detail-headshot"),
   detailLastName: document.querySelector("#player-detail-title"),
   detailNumber: document.querySelector("#detail-number"),
@@ -124,8 +127,7 @@ const els = {
   detailBio: document.querySelector("#detail-bio"),
   detailSplitControls: document.querySelector("#detail-split-controls"),
   detailTabControls: document.querySelector("#detail-tab-controls"),
-  detailPrimaryStats: document.querySelector("#detail-primary-stats"),
-  detailSecondaryStats: document.querySelector("#detail-secondary-stats"),
+  detailStats: document.querySelector("#detail-stats"),
   detailTabPanel: document.querySelector("#detail-tab-panel"),
 };
 
@@ -167,7 +169,7 @@ const api = {
     });
   },
   async searchPlayer(query) {
-    return this.get("/people/search", { names: query, sportId: 1 });
+    return this.get("/people/search", { names: query, sportId: 1, hydrate: "currentTeam" });
   },
   async draftDetails(id, year) {
     if (!id || !year) return null;
@@ -195,6 +197,25 @@ const api = {
       ?.flatMap((record) => record.teamRecords || [])
       .find((record) => Number(record.team?.id) === Number(teamId));
     return Number(teamRecord?.wins || 0) + Number(teamRecord?.losses || 0) + Number(teamRecord?.ties || 0);
+  },
+  async leagueStats(group) {
+    return this.get("/stats", {
+      stats: "season",
+      group,
+      season: SEASON,
+      playerPool: "QUALIFIED",
+      limit: 1000,
+    });
+  },
+  async leagueAdvancedHitting() {
+    const url = new URL(FANGRAPHS_API);
+    Object.entries({
+      pos: "all", stats: "bat", lg: "all", qual: "y", type: 8, season: SEASON,
+      season1: SEASON, ind: 0, team: 0, pageitems: 1000, pagenum: 1,
+    }).forEach(([key, value]) => url.searchParams.set(key, value));
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`FanGraphs API returned ${response.status}`);
+    return response.json();
   },
   async advancedHitting(id, mlbTeamId) {
     const team = FANGRAPHS_TEAM_IDS[Number(mlbTeamId)];
@@ -306,12 +327,15 @@ function playerStatusLabel(person) {
   return person.active === false ? "Inactive" : "Active";
 }
 
-function loadHeadshot(id, playerName = "") {
+function loadHeadshot(id, playerName = "", teamId) {
   const playerId = String(id);
   const image = els.detailHeadshot;
   image.classList.remove("is-loaded");
   image.alt = playerName ? `${playerName} headshot` : "";
   image.dataset.playerId = playerId;
+  image.dataset.teamId = teamId || "";
+  image.dataset.playerTeamFallback = Number(teamId) === TEAM_ID ? "yankees" : "other";
+  delete image.dataset.silhouetteFallback;
   image.fetchPriority = "high";
   image.decoding = "async";
   image.onload = () => {
@@ -517,6 +541,75 @@ function detailStatValue(stats, key) {
   return statValue(stats, key);
 }
 
+function percentileValue(stats, key) {
+  const value = detailStatValue(stats, key);
+  const number = Number.parseFloat(String(value).replace("%", ""));
+  return Number.isFinite(number) ? number : null;
+}
+
+function buildPercentilePools(mlbData, advancedData, group) {
+  const pools = {};
+  const add = (key, value) => {
+    if (value === null || value === undefined || value === "") return;
+    const number = Number(value);
+    if (!Number.isFinite(number)) return;
+    (pools[key] ||= []).push(number);
+  };
+  (mlbData?.stats?.[0]?.splits || []).forEach((split) => {
+    const stats = split.stat || {};
+    detailItems(group).primary.concat(detailItems(group).secondary).forEach(([, key]) => {
+      if (["wrcPlus", "war"].includes(key)) return;
+      add(key, percentileValue(stats, key));
+    });
+  });
+  if (group === "hitting") {
+    (advancedData?.data || []).forEach((row) => {
+      add("wrcPlus", row["wRC+"]);
+      add("war", row.WAR);
+    });
+  }
+  return pools;
+}
+
+async function loadPercentilePools(group) {
+  const [mlbData, advancedData] = await Promise.all([
+    api.leagueStats(group).catch(() => ({ stats: [] })),
+    group === "hitting" ? api.leagueAdvancedHitting().catch(() => ({ data: [] })) : Promise.resolve({ data: [] }),
+  ]);
+  state.percentilePools = buildPercentilePools(mlbData, advancedData, group);
+}
+
+function statPercentile(stats, key) {
+  if (state.detailSplit !== "season") return null;
+  const value = percentileValue(stats, key);
+  const pool = state.percentilePools[key] || [];
+  if (value === null || !pool.length) return null;
+  const lowerIsBetter = state.currentGroup === "pitching"
+    ? ["calculatedEra", "whip", "avg", "losses", "hits", "earnedRuns", "homeRuns", "baseOnBalls"].includes(key)
+    : ["strikeOuts", "kRate"].includes(key);
+  const below = pool.filter((entry) => entry < value).length;
+  const equal = pool.filter((entry) => entry === value).length;
+  const raw = ((below + equal * 0.5) / pool.length) * 100;
+  return Math.max(1, Math.min(99, Math.round(lowerIsBetter ? 100 - raw : raw)));
+}
+
+function ordinalPercentile(value) {
+  if (!Number.isFinite(value)) return "—";
+  const remainder100 = value % 100;
+  const suffix = remainder100 >= 11 && remainder100 <= 13
+    ? "th"
+    : value % 10 === 1 ? "st" : value % 10 === 2 ? "nd" : value % 10 === 3 ? "rd" : "th";
+  return `${value}${suffix}`;
+}
+
+function percentileTone(percentile) {
+  if (!Number.isFinite(percentile)) return "rank-neutral";
+  if (percentile >= 80) return "rank-strong";
+  if (percentile < 20) return "rank-weak";
+  if (percentile < 40) return "rank-watch";
+  return "rank-neutral";
+}
+
 function detailItems(group = state.currentGroup) {
   return group === "pitching"
     ? { primary: PITCHING_DETAIL_PRIMARY_ITEMS, secondary: PITCHING_DETAIL_SECONDARY_ITEMS }
@@ -524,12 +617,7 @@ function detailItems(group = state.currentGroup) {
 }
 
 function renderDetailHeader(person) {
-  if (els.detailHeadshot.dataset.playerId === String(person.id)) {
-    els.detailHeadshot.alt = `${person.fullName} headshot`;
-    if (els.detailHeadshot.complete && els.detailHeadshot.naturalWidth) els.detailHeadshot.classList.add("is-loaded");
-  } else {
-    loadHeadshot(person.id, person.fullName);
-  }
+  loadHeadshot(person.id, person.fullName, person.currentTeam?.id);
   els.detailLastName.textContent = person.fullName || "Player Detail";
   els.detailNumber.textContent = person.primaryNumber || "--";
   els.detailPlayerStatus.textContent = playerStatusLabel(person);
@@ -555,14 +643,30 @@ function detailStatCard(label, value, featured = false) {
 function renderDetailStats() {
   const stats = state.detailStats[state.detailSplit] || {};
   const items = detailItems();
-  els.detailPrimaryStats.replaceChildren();
-  els.detailSecondaryStats.replaceChildren();
-  items.primary.forEach(([label, key]) => {
-    els.detailPrimaryStats.append(detailStatCard(label, detailStatValue(stats, key), true));
-  });
-  items.secondary.forEach(([label, key]) => {
-    els.detailSecondaryStats.append(detailStatCard(label, detailStatValue(stats, key)));
-  });
+  const animateBars = state.detailSplit === "season" && !state.percentileAnimationPlayed && Object.keys(state.percentilePools).length > 0;
+  const visibleItems = items.primary.concat(items.secondary)
+    .filter(([, key]) => state.detailSplit === "season" || !["wrcPlus", "war"].includes(key));
+  els.detailStats.replaceChildren(...visibleItems.map(([label, key]) => (
+    rankedStatCard(label, detailStatValue(stats, key), statPercentile(stats, key), animateBars)
+  )));
+  if (animateBars) state.percentileAnimationPlayed = true;
+}
+
+function rankedStatCard(label, value, percentile, animate = false) {
+  const card = document.createElement("article");
+  const showPercentileBar = state.detailSplit === "season";
+  const hasPercentile = Number.isFinite(percentile);
+  card.className = `detail-ranked-stat ${percentileTone(percentile)}${showPercentileBar && !hasPercentile ? " unavailable" : ""}${animate && hasPercentile ? " animate" : ""}`;
+  card.style.setProperty("--percentile", `${hasPercentile ? percentile : 0}%`);
+  card.innerHTML = `
+    <div class="ranked-stat-content">
+      <span class="ranked-stat-value"><small>${label}</small><strong>${value}</strong></span>
+    </div>
+    ${showPercentileBar ? `<span class="ranked-stat-track" aria-label="${hasPercentile ? `${ordinalPercentile(percentile)} percentile` : "Percentile unavailable"}"><i></i></span>` : ""}
+  `;
+  if (label === "wRC+") card.title = "FanGraphs wRC+: 100 is league average; higher is better.";
+  if (label === "WAR") card.title = "FanGraphs WAR: estimated wins above a replacement-level player.";
+  return card;
 }
 
 function paceValue(stats, key, gamesPlayed, targetGames) {
@@ -884,8 +988,7 @@ function renderDetailTab() {
 }
 
 function renderDetailLoading() {
-  els.detailPrimaryStats.innerHTML = `<p class="empty">Loading player detail stats...</p>`;
-  els.detailSecondaryStats.replaceChildren();
+  els.detailStats.innerHTML = `<p class="empty">Loading player detail stats...</p>`;
   els.detailTabPanel.innerHTML = `<p class="empty">Loading player detail tabs...</p>`;
 }
 
@@ -1017,7 +1120,8 @@ function chooseGroup(person, hittingStats, pitchingStats) {
 
 async function loadPlayer(id) {
   state.selectedPlayerId = id;
-  loadHeadshot(id);
+  els.detailHeadshot.classList.remove("is-loaded");
+  els.detailHeadshot.removeAttribute("src");
   setStatus("Loading player data");
   try {
     const [profile, hitting, pitching] = await Promise.all([
@@ -1034,6 +1138,8 @@ async function loadPlayer(id) {
     const hittingStats = { ...(hittingSplit.stat || {}), teamAbbreviation: currentTeamAbbreviation };
     const pitchingStats = { ...(pitchingSplit.stat || {}), teamAbbreviation: currentTeamAbbreviation };
     state.currentGroup = chooseGroup(person, hittingStats, pitchingStats);
+    state.percentilePools = {};
+    state.percentileAnimationPlayed = false;
     state.selectedPerson = person;
     state.detailSplit = "season";
     state.detailTab = "recent";
@@ -1051,6 +1157,7 @@ async function loadPlayer(id) {
     await Promise.all([
       loadGameLog(id, state.currentGroup),
       loadDetailData(id, activeStats, state.currentGroup, person.currentTeam?.id),
+      loadPercentilePools(state.currentGroup),
     ]);
     state.quickStatsData = {
       regular: {
@@ -1068,6 +1175,7 @@ async function loadPlayer(id) {
     };
     renderQuickStats();
     renderDetail();
+    syncQuickPlayerSelect();
     persistPlayerInUrl(id);
     setStatus("Live MLB data", "good");
   } catch (error) {
@@ -1079,6 +1187,42 @@ async function loadPlayer(id) {
 async function loadGameLog(id, group) {
   const data = await api.gameLog(id, group).catch(() => ({ stats: [] }));
   state.gameLogSplits = data.stats?.[0]?.splits?.slice(-30) || [];
+}
+
+function syncQuickPlayerSelect() {
+  if (!els.quickPlayerSelect) return;
+  const playerId = String(state.selectedPlayerId || "");
+  els.quickPlayerSelect.value = els.quickPlayerSelect.querySelector(`option[value="${playerId}"]`) ? playerId : "";
+}
+
+async function loadQuickPlayerRoster() {
+  if (!els.quickPlayerSelect) return;
+  try {
+    const data = await api.activeRoster();
+    const roster = [...new Map((data.roster || []).map((entry) => [Number(entry.person?.id), entry])).values()]
+      .filter((entry) => entry.person?.id && entry.person?.fullName);
+    const groups = [
+      ["Batters", roster.filter(isHitter)],
+      ["Pitchers", roster.filter((entry) => !isHitter(entry))],
+    ];
+    const placeholder = new Option("Quick Select a Yankee", "");
+    els.quickPlayerSelect.replaceChildren(placeholder);
+    groups.forEach(([label, entries]) => {
+      const group = document.createElement("optgroup");
+      group.label = label;
+      entries
+        .sort((a, b) => a.person.fullName.localeCompare(b.person.fullName))
+        .forEach((entry) => {
+          const position = entry.position?.abbreviation || entry.person.primaryPosition?.abbreviation || "";
+          group.append(new Option(`${entry.person.fullName}${position ? ` — ${position}` : ""}`, String(entry.person.id)));
+        });
+      els.quickPlayerSelect.append(group);
+    });
+    els.quickPlayerSelect.disabled = false;
+    syncQuickPlayerSelect();
+  } catch (error) {
+    els.quickPlayerSelect.options[0].textContent = "Quick Select Unavailable";
+  }
 }
 
 function bestDirectMatch(query, people) {
@@ -1131,6 +1275,8 @@ async function searchPlayers(options = {}) {
       const fallback = elementWithText("span", person.fullName?.trim()?.[0] || "?", "result-headshot-fallback");
       fallback.setAttribute("aria-hidden", "true");
       const image = document.createElement("img");
+      image.dataset.teamId = person.currentTeam?.id || "";
+      image.dataset.playerTeamFallback = Number(person.currentTeam?.id) === TEAM_ID ? "yankees" : "other";
       image.src = HEADSHOT(person.id);
       image.alt = "";
       image.loading = "lazy";
@@ -1168,6 +1314,13 @@ function bindEvents() {
       searchPlayers({ direct: true });
     }
   });
+  els.quickPlayerSelect?.addEventListener("change", () => {
+    const playerId = Number(els.quickPlayerSelect.value);
+    if (!Number.isFinite(playerId) || playerId <= 0) return;
+    els.searchResults.hidden = true;
+    els.searchInput.value = "";
+    loadPlayer(playerId);
+  });
   els.quickStatsTable?.addEventListener("click", (event) => {
     const button = event.target.closest("[data-quick-season]");
     if (!button || button.dataset.quickSeason === state.quickStatsMode) return;
@@ -1190,11 +1343,12 @@ function bindEvents() {
 
 async function init() {
   bindEvents();
+  const rosterPromise = loadQuickPlayerRoster();
   const requestedPlayer = Number(new URLSearchParams(window.location.search).get("player"));
   const initialPlayer = Number.isFinite(requestedPlayer) && requestedPlayer > 0
     ? requestedPlayer
     : await randomYankeesHitterId();
-  await loadPlayer(initialPlayer);
+  await Promise.all([loadPlayer(initialPlayer), rosterPromise]);
 }
 
 init();

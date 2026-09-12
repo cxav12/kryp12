@@ -83,7 +83,7 @@
 }
 
 .metric-row {
-  min-height: 76px;
+  min-height: 60px;
   border: 0;
   border-radius: 6px;
   background: var(--inner-card-bg, #0a1015);
@@ -103,23 +103,6 @@
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 7px;
-}
-
-.metric-badge {
-  width: 46px;
-  height: 30px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--yankees-silver);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex: 0 0 auto;
-  padding-inline: 4px;
-  font-size: var(--text-small);
-  font-weight: 700;
 }
 
 .metric-identity strong {
@@ -197,27 +180,6 @@
 .metric-rank-chart.rank-watch { --rank-chart-color: #f6cc70; }
 .metric-rank-chart.rank-weak { --rank-chart-color: #fca5a5; }
 .metric-rank-chart.rank-neutral { --rank-chart-color: var(--yankees-silver); }
-
-.metric-rank-scale {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  margin-top: 5px;
-  color: #77838b;
-  font-size: 0.58rem;
-  font-weight: 800;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.metric-rank-scale span:nth-child(2) {
-  color: #8fa2af;
-  letter-spacing: 0.06em;
-}
-
-.metric-rank-scale span:last-child {
-  text-align: right;
-}
 
 @keyframes rank-chart-fill {
   from { width: 0; opacity: 0.35; }
@@ -702,17 +664,13 @@
   }
 
   .metric-row {
-    min-height: 72px;
+    min-height: 58px;
     gap: 8px;
     padding: 8px 9px 7px;
   }
 
   .metric-summary {
     display: flex;
-  }
-
-  .metric-badge {
-    display: none;
   }
 
   .metric-identity strong {

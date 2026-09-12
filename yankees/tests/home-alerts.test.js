@@ -46,3 +46,16 @@ test("removes an alert after its second calendar day", () => {
   assert.equal(build({ transactions: [transaction], now: new Date("2026-08-22T23:59:59") }).length, 1);
   assert.equal(build({ transactions: [transaction], now: new Date("2026-08-23T00:00:00") }).length, 0);
 });
+
+test("sorts latest transactions by date before type priority", () => {
+  const alerts = build({
+    transactions: [
+      { id: 1, date: "2026-09-11", description: "Recalled Player One from Triple-A." },
+      { id: 2, date: "2026-09-10", description: "Activated Player Two from the injured list." },
+      { id: 3, date: "2026-09-11", description: "Optioned Player Three to Triple-A." },
+    ],
+    now: new Date("2026-09-11T12:00:00"),
+  });
+
+  assert.deepEqual(alerts.map((alert) => alert.id), ["transaction-1", "transaction-3", "transaction-2"]);
+});

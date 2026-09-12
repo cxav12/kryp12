@@ -286,6 +286,14 @@ a.game-card:focus-visible {
   margin-top: 18px;
 }
 
+.schedule-list-header:not(.schedule-list-header-upcoming) span:nth-last-child(-n + 3),
+.schedule-list-header-upcoming span:nth-last-child(-n + 2),
+.list-field.list-starter,
+.list-field.list-decision {
+  justify-items: start;
+  text-align: left;
+}
+
 .schedule-list-card {
   position: relative;
   min-width: 0;

@@ -2219,6 +2219,22 @@ a.matchup-player:focus-visible strong {
   font-weight: 800;
 }
 
+.metric-feature-line {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.metric-feature-line strong,
+.metric-feature-separator {
+  flex: 0 0 auto;
+}
+
+.metric-feature-separator {
+  color: rgba(196, 206, 212, 0.78);
+}
+
 .metric-feature em {
   color: rgba(196, 206, 212, 0.78);
   font-size: var(--text-small);
@@ -3228,7 +3244,7 @@ a.matchup-player:focus-visible strong {
   margin-bottom: 5px;
 }
 
-#recap-grid :is(.game-notes-groups p, .game-note-feature p, .metric-feature em, .metric-feature > strong, .metric-feature strong small) {
+#recap-grid :is(.game-notes-groups p, .game-note-feature p, .metric-feature em, .metric-feature-line > strong, .metric-feature strong small) {
   font-size: var(--recap-text-size);
   line-height: 1.45;
 }
@@ -3239,7 +3255,7 @@ a.matchup-player:focus-visible strong {
   text-transform: none;
 }
 
-#recap-grid :is(.game-notes-groups p strong, .game-note-feature p strong, .metric-feature > strong) {
+#recap-grid :is(.game-notes-groups p strong, .game-note-feature p strong, .metric-feature-line > strong) {
   font-weight: 700;
 }
 
@@ -3294,7 +3310,7 @@ a.matchup-player:focus-visible strong {
   letter-spacing: normal;
 }
 
-#recap-grid .metric-feature > strong {
+#recap-grid .metric-feature-line > strong {
   color: #aeb6a7;
 }
 

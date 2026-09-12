@@ -1498,8 +1498,11 @@ function metricFeature(label, value, unit, detail) {
   return `
     <div class="metric-feature">
       <span class="metric-feature-label">${escapeHtml(label)}</span>
-      <strong class="stat-number">${escapeHtml(value)}${unit ? ` <small>${escapeHtml(unit)}</small>` : ""}</strong>
-      <em>${escapeHtml(detail)}</em>
+      <div class="metric-feature-line">
+        <strong class="stat-number">${escapeHtml(value)}${unit ? ` <small>${escapeHtml(unit)}</small>` : ""}</strong>
+        <span class="metric-feature-separator" aria-hidden="true">·</span>
+        <em>${escapeHtml(detail)}</em>
+      </div>
     </div>
   `;
 }

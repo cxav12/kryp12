@@ -27,7 +27,7 @@ button, input, select { font: inherit; }
 .page-intro { min-height: 74px; margin-top: 14px; border-radius: 8px; background: var(--card); display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px 24px; }
 .page-intro > div { min-width: 0; display: flex; align-items: center; gap: 18px; }
 .page-intro h2, .panel h2 { margin: 0; color: #fff; font-size: 1.55rem; letter-spacing: -.025em; }
-.page-intro > div > h2 { flex: 0 0 auto; padding-right: 18px; border-right: 1px solid #686471; }
+.page-intro > div > h2 { flex: 0 0 auto; padding-right: 18px; }
 .page-intro p { margin: 0; color: var(--muted); }
 .status-pill { flex: 0 0 auto; border-radius: 999px; color: #d6cffb; background: rgba(91, 75, 196, .18); padding: 7px 12px; font-weight: 800; }
 .page-intro > .status-pill { display: none; }
@@ -35,7 +35,9 @@ button, input, select { font: inherit; }
 .breaking-details > header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 8px; }
 .breaking-details header span, .panel-heading span { color: var(--accent-bright); font-size: .68rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
 .breaking-details h2 { margin: 0; color: #fff; font-size: 1.2rem; }
-.breaking-details button { width: 34px; height: 34px; border: 1px solid #62599a; border-radius: 50%; color: var(--muted); background: #ffffff05; cursor: pointer; font-size: 1.35rem; }
+.breaking-details button { position: relative; flex: 0 0 34px; width: 34px; height: 34px; border: 0; border-radius: 50%; background: #ffffff05; cursor: pointer; }
+.breaking-details button::before, .breaking-details button::after { content: ""; position: absolute; top: 50%; left: 50%; width: 12px; height: 2px; border-radius: 1px; background: var(--muted); transform: translate(-50%, -50%) rotate(45deg); }
+.breaking-details button::after { transform: translate(-50%, -50%) rotate(-45deg); }
 .breaking-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 4px 24px 20px; }
 .breaking-item { min-width: 0; min-height: 108px; border-radius: 7px; color: inherit; background: #17161d; display: grid; grid-template-columns: 62px minmax(0, 1fr); align-items: center; gap: 14px; padding: 10px 16px 10px 8px; text-decoration: none; }
 .breaking-item > img { width: 62px; height: 82px; object-fit: contain; object-position: center bottom; }
@@ -54,8 +56,10 @@ button, input, select { font: inherit; }
 .game-selector button.completed.loss::before { background: var(--danger); }
 .game-selector button.completed.tie::before { background: var(--accent-bright); }
 .game-selector button.live::before { background: var(--warning); }
-.game-selector button.active { background: #242030; box-shadow: inset 0 0 0 1px #62599a; }
+.game-selector button.active { background: #242030; }
+.selector-header { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .selector-date { color: #9892a3; font-size: .7rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.selector-season { color: #9892a3; font-size: .62rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
 .selector-matchup { min-width: 0; color: #fff; display: flex; align-items: center; gap: 5px; font-weight: 850; white-space: nowrap; }
 .selector-matchup img { width: 18px; height: 18px; object-fit: contain; }
 .selector-matchup > span:not(.result-badge):not(.score-separator) { color: #9db3ca; font-size: .74rem; }
@@ -99,8 +103,26 @@ button, input, select { font: inherit; }
 .probability-track { height: 16px; border-radius: 999px; overflow: hidden; background: #30303a; display: flex; }
 .probability-ravens { background: linear-gradient(90deg, var(--purple), var(--purple-bright)); }
 .probability-opponent { flex: 1; background: #5f626c; }
+.win-panel { margin-top: 14px; padding: 14px 0 8px; }
+.win-probability-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 4px; padding: 0 22px; }
+.win-probability-header h2, .win-probability-header p { margin: 0; }
+.win-probability-header h2 { color: #fff; font-size: .8rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+.win-probability-header p { margin-top: 3px; color: var(--muted); }
+.win-probability-header span { color: var(--accent-bright); font-size: .68rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+.win-probability-header > strong { color: #a9bdff; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.win-probability-chart-scroll { position: relative; width: calc(100% - 44px); margin: 0 22px; overflow-x: auto; }
+.win-probability-chart { display: block; width: 100%; min-width: 720px; height: auto; overflow: visible; }
+.win-probability-grid-line, .win-probability-period-line { stroke: rgba(215, 207, 231, .12); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.win-probability-grid-line.is-midline { stroke: rgba(215, 207, 231, .22); stroke-dasharray: 5 5; }
+.win-probability-area { fill: rgba(117, 101, 223, .16); }
+.win-probability-line { fill: none; stroke: #a9bdff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.win-probability-scoring-point { fill: #f1dc50; stroke: #17151f; stroke-width: 3; cursor: help; vector-effect: non-scaling-stroke; }
+.win-probability-scoring-point:focus-visible { outline: none; stroke: #fff; stroke-width: 4; }
+.win-probability-axis-label, .win-probability-period-label { fill: #aaa6b6; font-size: 11px; font-weight: 800; }
+.win-probability-period-label { text-anchor: middle; }
+.win-probability-tooltip { position: fixed; z-index: 1000; width: max-content; max-width: min(360px, calc(100vw - 36px)); border-radius: 5px; background: #050409; box-shadow: 0 8px 24px #0008; padding: 7px 9px; color: #d4d0dc; font-size: .75rem; line-height: 1.45; pointer-events: none; }
 .scoring-list { margin: 0; padding: 0 22px 22px; list-style: none; }
-.scoring-play { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 13px 0; border-top: 1px solid var(--line); }
+.scoring-play { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 13px 0; }
 .scoring-play img { width: 36px; height: 36px; object-fit: contain; }
 .scoring-play p { margin: 0; color: var(--muted); }
 .scoring-play strong { color: #fff; }
@@ -109,18 +131,37 @@ button, input, select { font: inherit; }
 .team-toggle button, .stat-toggle button { border: 0; border-radius: 999px; color: #aaa4b5; background: transparent; padding: 7px 12px; cursor: pointer; font-weight: 800; }
 .team-toggle button.active, .stat-toggle button.active { color: #fff; background: #100e16; }
 .comparison-table { width: 100%; border-collapse: collapse; }
-.comparison-table th, .comparison-table td { border-top: 1px solid var(--line); padding: 11px 22px; }
+.comparison-table th, .comparison-table td { padding: 11px 22px; }
 .comparison-table th { color: var(--muted); font-weight: 650; text-align: center; }
 .comparison-table td { color: #fff; font-weight: 850; text-align: right; }
 .comparison-table td:last-child { text-align: left; }
 .comparison-table td.selected { color: var(--accent-bright); }
+.comparison-legend { display: flex; justify-content: space-between; padding: 0 22px 5px; color: #d9d5e2; font-size: .72rem; font-weight: 850; }
+.comparison-legend span { display: flex; align-items: center; gap: 7px; }
+.comparison-legend i { width: 8px; height: 8px; border-radius: 50%; background: var(--comparison-opponent-color, #596275); }
+.comparison-legend i.ravens { background: var(--accent-bright); }
+.comparison-list { padding: 0 22px 18px; }
+.comparison-stat { padding: 6px 0; }
+.comparison-bars { display: grid; grid-template-columns: minmax(0, 1fr) 7rem minmax(0, 1fr); align-items: center; }
+.comparison-stat-label { color: #c5c0cd; font-size: .65rem; font-weight: 850; letter-spacing: .02em; text-align: center; text-transform: uppercase; white-space: nowrap; }
+.comparison-track { position: relative; min-width: 0; height: 26px; overflow: hidden; background: #25252d; }
+.comparison-track.ravens { border-radius: 999px 0 0 999px; text-align: right; }
+.comparison-track.opponent { border-radius: 0 999px 999px 0; text-align: left; }
+.comparison-fill { position: absolute; top: 0; height: 100%; }
+.comparison-track.has-value .comparison-fill { min-width: min(32px, 100%); }
+.comparison-fill.ravens { right: 0; border-radius: 999px 0 0 999px; background: var(--purple-bright); transform-origin: right center; }
+.comparison-fill.opponent { left: 0; border-radius: 0 999px 999px 0; background: var(--comparison-opponent-color, #596275); transform-origin: left center; }
+.comparison-track strong { position: relative; display: inline-block; padding: 0 7px; color: #b7b2c0; font-size: .72rem; font-weight: 900; line-height: 26px; white-space: nowrap; }
+.comparison-track.has-value strong { color: #fff; }
 .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 4px 22px 22px; }
 .metric { border-radius: 7px; background: var(--inner); padding: 16px; }
 .metric span { color: var(--quiet); font-size: .67rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
 .metric strong { display: block; margin-top: 8px; color: #fff; font-size: 1.25rem; }
 .player-stats-wrap { overflow-x: auto; }
-.player-table { width: 100%; min-width: 720px; border-collapse: collapse; }
-.player-table th, .player-table td { padding: 11px 18px; border-top: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.player-table { width: 100%; min-width: 720px; border-collapse: collapse; table-layout: fixed; }
+.player-table col.player-name-column { width: clamp(190px, 22vw, 260px); }
+.player-table col.first-stat-column { width: clamp(92px, 8vw, 116px); }
+.player-table th, .player-table td { padding: 11px 18px; text-align: right; white-space: nowrap; }
 .player-table th { color: var(--quiet); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; }
 .player-table th:first-child, .player-table td:first-child { text-align: left; }
 .player-table td:first-child { color: #fff; font-weight: 800; }

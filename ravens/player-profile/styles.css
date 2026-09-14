@@ -3,8 +3,8 @@
 .player-finder span, .profile-panel-heading span { color: var(--accent-bright); font-size: .68rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
 .player-finder h2, .profile-panel-heading h2 { margin: 2px 0 0; color: #fff; font-size: 1.2rem; }
 .player-finder form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
-.player-finder input { min-width: 0; min-height: 46px; border: 1px solid var(--line); border-radius: 7px; color: #fff; background: #0b0a10; padding: 10px 14px; outline: none; }
-.player-finder input:focus { border-color: var(--purple-bright); box-shadow: 0 0 0 3px rgba(91, 75, 196, .2); }
+.player-finder input { min-width: 0; min-height: 46px; border: 0; border-radius: 7px; color: #fff; background: #0b0a10; padding: 10px 14px; outline: none; }
+.player-finder input:focus { box-shadow: 0 0 0 3px rgba(91, 75, 196, .2); }
 .player-finder button, .split-toggle button { border: 0; cursor: pointer; font-weight: 850; }
 .player-finder form > button { min-height: 46px; border-radius: 7px; color: #fff; background: linear-gradient(110deg, var(--purple), var(--purple-bright)); padding: 10px 18px; }
 .profile-hero { min-height: 310px; margin-top: 14px; border-radius: 8px; overflow: hidden; background: radial-gradient(circle at 82% 20%, rgba(91, 75, 196, .24), transparent 36%), linear-gradient(110deg, #17131f, #0d0c12); }
@@ -35,7 +35,7 @@
 .stat-card-grid.compact .stat-card strong { font-size: 1.2rem; }
 .data-table-wrap { overflow-x: auto; }
 .data-table { width: 100%; min-width: 680px; border-collapse: collapse; }
-.data-table th, .data-table td { border-top: 1px solid var(--line); padding: 11px 16px; text-align: right; white-space: nowrap; }
+.data-table th, .data-table td { padding: 11px 16px; text-align: right; white-space: nowrap; }
 .data-table th { color: var(--quiet); font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; }
 .data-table th:first-child, .data-table td:first-child { text-align: left; }
 .data-table td { color: #dedbe5; }

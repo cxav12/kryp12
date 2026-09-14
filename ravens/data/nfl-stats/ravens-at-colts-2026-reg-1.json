@@ -1,0 +1,29 @@
+{
+  "source": "NFL.com",
+  "game": "ravens-at-colts-2026-reg-1",
+  "teams": {
+    "BAL": [
+      { "name": "Z. FLOWERS", "yac": 83 },
+      { "name": "C. MOORE", "yac": 23 },
+      { "name": "M. ANDREWS", "yac": 12 },
+      { "name": "D. HENRY", "yac": 20 },
+      { "name": "L. WESTER", "yac": 4 },
+      { "name": "M. HIBNER", "yac": 12 },
+      { "name": "J. LANE", "yac": 4 },
+      { "name": "J. HILL", "yac": 11 },
+      { "name": "D. SMYTHE", "yac": 0 },
+      { "name": "R. BATEMAN", "yac": 0 }
+    ],
+    "IND": [
+      { "name": "A. PIERCE", "yac": 9 },
+      { "name": "J. DOWNS", "yac": 22 },
+      { "name": "K. ALLEN", "yac": 10 },
+      { "name": "J. TAYLOR", "yac": 26 },
+      { "name": "T. WARREN", "yac": 7 },
+      { "name": "A. DULIN", "yac": 0 },
+      { "name": "S. MCGOWAN", "yac": 2 },
+      { "name": "A. OGLETREE", "yac": 0 },
+      { "name": "L. TREADWELL", "yac": 0 }
+    ]
+  }
+}

@@ -10,8 +10,8 @@
   <link rel="preload" as="image" href="./assets/baltimore-ravens-header-background.png" fetchpriority="high">
   <link rel="preconnect" href="https://site.api.espn.com">
   <link rel="preconnect" href="https://a.espncdn.com">
-  <link rel="stylesheet" href="./styles.css?v=20260905-footer1">
-  <script src="./app.js?v=20260905-game-info1" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=20260913-borderless1">
+  <script src="./app.js?v=20260913-yac-fallback1" defer></script>
 </head>
 <body>
   <main class="site-shell">
@@ -35,13 +35,13 @@
       <span class="status-pill" id="data-status">Loading 2026 season</span>
     </section>
     <aside class="breaking-details" id="breaking-details" aria-labelledby="breaking-title" hidden>
-      <header><h2 id="breaking-title">Latest Ravens News &amp; Transactions</h2><button id="breaking-close" type="button" aria-label="Dismiss team updates">×</button></header>
+      <header><h2 id="breaking-title">Latest Ravens News &amp; Transactions</h2><button id="breaking-close" type="button" aria-label="Dismiss team updates"></button></header>
       <div class="breaking-grid" id="breaking-grid"></div>
     </aside>
-    <section class="game-selector" aria-label="Recent and upcoming Ravens games"><div class="game-selector-grid" id="game-selector-grid"><p class="loading-copy">Loading the 2026 schedule…</p></div></section>
+    <section class="game-selector" aria-label="2026 Ravens games"><div class="game-selector-grid" id="game-selector-grid"><p class="loading-copy">Loading the 2026 schedule…</p></div></section>
     <section class="game-card" id="game-card" aria-live="polite"><p class="loading-copy">Loading game details…</p></section>
+    <section class="panel win-panel" id="win-probability-panel" hidden><header class="win-probability-header"><div><span>Game Momentum</span><h2>Ravens Win Probability</h2><p>Play-by-play win probability</p></div><strong id="win-probability-value"></strong></header><div id="win-probability"></div></section>
     <section class="dashboard-grid" id="dashboard" hidden>
-      <article class="panel win-panel"><header class="panel-heading"><div><span>Game Outlook</span><h2>Win Probability</h2></div></header><div id="win-probability"></div></article>
       <article class="panel scoring-panel"><header class="panel-heading"><div><span>Drive Results</span><h2>Scoring Plays</h2></div></header><div id="scoring-plays"></div></article>
       <article class="panel comparison-panel">
         <header class="panel-heading comparison-heading"><div><span>Matchup</span><h2>Team Comparison</h2></div><div class="team-toggle" id="comparison-toggle" role="group" aria-label="Select comparison team"></div></header>

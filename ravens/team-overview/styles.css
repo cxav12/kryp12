@@ -30,7 +30,6 @@
 .personnel-grid .overview-panel { min-width: 0; }
 .detail-list { margin: 0; padding: 0 22px 22px; list-style: none; }
 .detail-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; padding: 13px 0; }
-.detail-item:first-child { border-top: 0; }
 .detail-item strong { color: #fff; }
 .detail-item p { margin: 3px 0 0; color: var(--muted); }
 .detail-item time, .status-tag { color: var(--quiet); font-size: .7rem; font-weight: 800; white-space: nowrap; }

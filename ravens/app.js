@@ -9,7 +9,7 @@ const TEAM_COLORS = {
   LV: "#000000", LAC: "#0080C6", LAR: "#003594", MIA: "#008E97", MIN: "#4F2683", NE: "#002244", NO: "#D3BC8D", NYG: "#0B2265",
   NYJ: "#125740", PHI: "#004C54", PIT: "#FFB612", SF: "#AA0000", SEA: "#002244", TB: "#D50A0A", TEN: "#0C2340", WSH: "#5A1414",
 };
-const state = { events: [], selectedId: "", summary: null, nflReceiving: null, comparisonTeam: RAVENS_ABBR, statView: "offense", timer: null, animatedCharts: new Set(), animatedComparisons: new Set() };
+const state = { events: [], selectedId: "", summary: null, nflReceiving: null, statView: "offense", timer: null, animatedCharts: new Set(), animatedComparisons: new Set() };
 const els = {
   title: document.querySelector("#page-title"), description: document.querySelector("#page-description"),
   status: document.querySelector("#data-status"), selector: document.querySelector("#game-selector-grid"),
@@ -17,7 +17,7 @@ const els = {
   breaking: document.querySelector("#breaking-details"), breakingGrid: document.querySelector("#breaking-grid"),
   winPanel: document.querySelector("#win-probability-panel"), win: document.querySelector("#win-probability"),
   winValue: document.querySelector("#win-probability-value"), scoring: document.querySelector("#scoring-plays"),
-  comparison: document.querySelector("#team-comparison"), comparisonToggle: document.querySelector("#comparison-toggle"),
+  comparison: document.querySelector("#team-comparison"),
   metrics: document.querySelector("#game-metrics"), players: document.querySelector("#player-stats"),
 };
 
@@ -87,16 +87,7 @@ async function getNflReceivingStats(event) {
 }
 
 function chooseFeatured(events) {
-  const live = events.find((event) => eventState(event) === "in");
-  const today = events.find((event) => isToday(event.date));
-  const upcoming = events.find((event) => eventState(event) === "pre" && new Date(event.date) >= new Date(Date.now() - 6 * 60 * 60 * 1000));
-  const finals = events.filter((event) => eventState(event) === "post");
-  return live || today || upcoming || finals.at(-1) || events[0];
-}
-function isToday(value) {
-  if (!value) return false;
-  const dateKey = (date) => formatDate(date, { year: "numeric", month: "2-digit", day: "2-digit" });
-  return dateKey(value) === dateKey(Date.now());
+  return RavensGameSelection.chooseFeatured(events);
 }
 function selectorEvents(events) {
   const completed = events.filter((event) => eventState(event) === "post").slice(-3);
@@ -217,7 +208,6 @@ function comparisonBarRow(label, key, ravensValue, opponentValue, opponentAbbr) 
 }
 function renderComparison() {
   const ravensAbbr = ravenEntry()?.team?.abbreviation || RAVENS_ABBR; const opponentAbbr = opponentEntry()?.team?.abbreviation || "OPP";
-  els.comparisonToggle.innerHTML = [ravensAbbr, opponentAbbr].map((abbr) => `<button class="${state.comparisonTeam === abbr ? "active" : ""}" type="button" data-comparison-team="${escapeHtml(abbr)}">${escapeHtml(abbr)}</button>`).join("");
   const left = teamStats(ravensAbbr); const right = teamStats(opponentAbbr);
   els.comparison.innerHTML = `<div class="comparison-content" style="--comparison-opponent-color:${teamColor(opponentEntry()?.team)}"><div class="comparison-legend"><span><i class="ravens"></i>${escapeHtml(ravensAbbr)}</span><span><i class="opponent"></i>${escapeHtml(opponentAbbr)}</span></div><div class="comparison-list">${COMPARISON_STATS.map(([label, key]) => comparisonBarRow(label, key, left.get(key), right.get(key), opponentAbbr)).join("")}</div></div>`;
   animateComparison();
@@ -227,10 +217,47 @@ function animateComparison() {
   state.animatedComparisons.add(state.selectedId);
   els.comparison.querySelectorAll(".comparison-stat").forEach((row, index) => row.querySelectorAll(".comparison-fill").forEach((bar) => bar.animate([{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], { duration: 700, delay: index * 45, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "backwards" })));
 }
-function extractLongest(pattern) { let best = 0; for (const play of state.summary?.plays || []) { const match = String(play.text || "").match(pattern); if (match) best = Math.max(best, Number(match[1]) || 0); } return best ? `${best} YDS` : "—"; }
+const LEADER_CARDS = [
+  { title: "Quarterbacks", category: /passing/i, position: /quarterback|\bQB\b/i, stats: [["CMP/ATT", ["C/ATT", "CMP/ATT"]], ["YDS", ["YDS"]], ["TD", ["TD"]], ["INT", ["INT"]]] },
+  { title: "Running Backs", category: /rushing/i, position: /running back|fullback|\b(?:RB|FB)\b/i, stats: [["CAR", ["CAR"]], ["YDS", ["YDS"]], ["AVG", ["AVG"]], ["TD", ["TD"]]] },
+  { title: "Top Receivers", category: /receiving/i, stats: [["REC", ["REC"]], ["YDS", ["YDS"]], ["TD", ["TD"]], ["TGTS", ["TGTS", "TGT"]]] },
+];
+function leaderCategory(teamAbbr, pattern) {
+  const group = (state.summary?.boxscore?.players || []).find((item) => item.team?.abbreviation === teamAbbr);
+  const category = (group?.statistics || []).find((item) => pattern.test(item.name || item.type || item.text || ""));
+  return category ? { team: group.team, category } : null;
+}
+function leaderStat(entry, aliases) {
+  if (!entry) return "—";
+  const index = (entry.category.labels || []).findIndex((label) => aliases.includes(String(label).toUpperCase()));
+  return index >= 0 ? entry.player.stats?.[index] ?? "—" : "—";
+}
+function selectLeader(teamAbbr, config) {
+  const entry = leaderCategory(teamAbbr, config.category);
+  if (!entry) return null;
+  let players = entry.category.athletes || [];
+  if (config.position) {
+    const positionPlayers = players.filter((item) => config.position.test(`${item.athlete?.position?.displayName || item.athlete?.position?.name || ""} ${item.athlete?.position?.abbreviation || ""}`));
+    if (positionPlayers.length) players = positionPlayers;
+  }
+  const yardsIndex = (entry.category.labels || []).findIndex((label) => /^YDS$/i.test(label));
+  const player = [...players].sort((a, b) => (Number.parseFloat(b.stats?.[yardsIndex]) || 0) - (Number.parseFloat(a.stats?.[yardsIndex]) || 0))[0];
+  return player ? { ...entry, player } : null;
+}
+function leaderPlayer(entry, side) {
+  if (!entry) return `<div class="leader-player ${side}"><div class="leader-portrait-placeholder">—</div><strong>Not available</strong></div>`;
+  const player = entry.player.athlete || {};
+  const portrait = player.headshot?.href || player.headshot || (player.id ? `https://a.espncdn.com/i/headshots/nfl/players/full/${player.id}.png` : teamLogo(entry.team?.abbreviation));
+  return `<div class="leader-player ${side}" style="--leader-team-color:${teamColor(entry.team)}"><span>${escapeHtml(entry.team?.abbreviation || "Team")}</span><img src="${escapeHtml(portrait)}" alt="${escapeHtml(player.displayName || "Player")}"><strong>${escapeHtml(player.displayName || "Player")}</strong></div>`;
+}
 function renderMetrics() {
-  const metrics = [["Longest Throw", extractLongest(/pass[^.]*for (\d+) yard/i)], ["Longest Run", extractLongest(/(?:rush|run)[^.]*for (\d+) yard/i)], ["Longest Catch", extractLongest(/complete[^.]*for (\d+) yard/i)]];
-  els.metrics.innerHTML = metrics.map(([label, value]) => `<div class="metric"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
+  const ravensAbbr = ravenEntry()?.team?.abbreviation || RAVENS_ABBR;
+  const opponentAbbr = opponentEntry()?.team?.abbreviation || "OPP";
+  els.metrics.innerHTML = LEADER_CARDS.map((config) => {
+    const ravens = selectLeader(ravensAbbr, config); const opponent = selectLeader(opponentAbbr, config);
+    const stats = config.stats.map(([label, aliases]) => `<div class="leader-stat"><strong>${escapeHtml(leaderStat(ravens, aliases))}</strong><span>${escapeHtml(label)}</span><strong>${escapeHtml(leaderStat(opponent, aliases))}</strong></div>`).join("");
+    return `<article class="leader-card"><h3>${escapeHtml(config.title)}</h3><div class="leader-matchup">${leaderPlayer(ravens, "ravens")}${leaderPlayer(opponent, "opponent")}</div><div class="leader-stats">${stats}</div></article>`;
+  }).join("");
 }
 function playerCategories() {
   const wanted = state.statView === "offense" ? /passing|rushing|receiving/i : /defensive|interceptions|fumbles/i;
@@ -278,9 +305,9 @@ function rushingTable(category, team) {
     const suppliedFumbles = valueFor(athlete, "FUM"); const suppliedLong = valueFor(athlete, "LONG");
     const fumbleValue = suppliedFumbles !== "—" ? suppliedFumbles : fumbleIndex >= 0 ? fumbleAthlete?.stats?.[fumbleIndex] ?? "0" : "0";
     const longest = suppliedLong !== "—" ? suppliedLong : rushLengths.length ? Math.max(...rushLengths) : "—";
-    return { ...athlete, stats: [valueFor(athlete, "CAR"), valueFor(athlete, "YDS"), valueFor(athlete, "TD"), valueFor(athlete, "AVG"), longest, fumbleValue, rushLengths.filter((yards) => yards > 20).length] };
+    return { ...athlete, stats: [valueFor(athlete, "CAR"), valueFor(athlete, "YDS"), valueFor(athlete, "TD"), valueFor(athlete, "AVG"), longest, fumbleValue] };
   });
-  return { labels: ["CAR", "YDS", "TD", "AVG", "LONG", "FUM", "20+"], rows };
+  return { labels: ["CAR", "YDS", "TD", "AVG", "LONG", "FUM"], rows };
 }
 function receivingTable(category) {
   if (!/receiving/i.test(category.name || category.type || category.text || "")) return null;
@@ -314,20 +341,25 @@ function renderPlayers() {
 }
 async function renderBreakingDetails() {
   try {
-    const [news, rosterData] = await Promise.all([getJson(`${ESPN_SITE_API}/news?team=${RAVENS_ID}&limit=40`), getJson(`${ESPN_SITE_API}/teams/bal/roster?season=${SEASON}`)]);
-    const roster = flattenRoster(rosterData); const pattern = /injur|suspend|sign|waiv|trade|release|activate|reserve|roster|return|practice squad|transaction/i;
-    const items = (news.articles || []).map((article) => ({ article, player: playerInStory(article, roster) })).filter(({ article, player }) => {
-      const text = `${article.headline || ""} ${article.description || ""}`;
-      return player && /\b(?:Baltimore|Ravens)\b/i.test(text) && pattern.test(text);
-    }).sort((a, b) => new Date(b.article.published || 0) - new Date(a.article.published || 0)).slice(0, 3); if (!items.length) return;
-    els.breakingGrid.innerHTML = items.map(({ article: item, player }) => {
-      const text = `${item.headline || ""} ${item.description || ""}`;
-      const published = item.published ? formatDate(item.published, { month: "short", day: "numeric" }) : "";
+    const transactionData = await getJson("./api/transactions.php?v=2");
+    const rosterData = await getJson(`${ESPN_SITE_API}/teams/bal/roster?season=${SEASON}`).catch(() => ({}));
+    const roster = flattenRoster(rosterData);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const items = (transactionData.transactions || []).filter((transaction) => {
+      const date = new Date(`${transaction.date}T00:00:00`);
+      const age = today.getTime() - date.getTime();
+      return Number.isFinite(date.getTime()) && age >= 0 && age <= 7 * 24 * 60 * 60 * 1000;
+    }).flatMap((transaction) => {
+      const moves = String(transaction.description || "").match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [];
+      return moves.map((description) => ({ date: transaction.date, description: description.trim() }));
+    }).filter((item) => item.description).slice(0, 3); if (!items.length) return;
+    els.breakingGrid.innerHTML = items.map((item) => {
+      const text = item.description;
+      const player = playerInStory({ headline: text, description: "" }, roster);
+      const published = item.date ? formatDate(`${item.date}T12:00:00`, { month: "short", day: "numeric" }) : "";
       const image = playerHeadshot(player);
-      const type = /injur|reserve|return/i.test(text) ? "Roster Update" : /sign|waiv|trade|release|activate|practice squad|transaction/i.test(text) ? "Transaction" : "Ravens News";
-      const url = item.links?.web?.href || item.link || "";
-      const content = `<img src="${escapeHtml(image)}" alt="${escapeHtml(playerName(player))}"><div class="breaking-copy"><div class="breaking-meta"><span>${escapeHtml(type)}</span><time>${escapeHtml(published)}</time></div><b>${escapeHtml(item.headline)}</b><p>${escapeHtml(item.description || "Baltimore Ravens team update")}</p></div>`;
-      return url ? `<a class="breaking-item" href="${escapeHtml(url)}" target="_blank" rel="noopener">${content}</a>` : `<article class="breaking-item">${content}</article>`;
+      const type = /injur|\bIR\b|physically unable|\bPUP\b|reserve list/i.test(text) ? "Injury Update" : /\btrad(?:e|ed|es|ing)\b/i.test(text) ? "Trade" : /\b(?:sign(?:ed|ing|s)?|claim(?:ed|s)?|acquir(?:ed|es|ing))\b/i.test(text) ? "Acquisition" : /\bdemot(?:e|ed|es|ing)\b/i.test(text) ? "Demotion" : /\b(?:promot(?:e|ed|es|ing)|elevat(?:e|ed|es|ing))\b/i.test(text) ? "Promotion" : "Roster Move";
+      return `<article class="breaking-item"><img src="${escapeHtml(image)}" alt="${escapeHtml(playerName(player))}"><div class="breaking-copy"><div class="breaking-meta"><span>${escapeHtml(type)}</span><time>${escapeHtml(published)}</time></div><b>${escapeHtml(playerName(player) || "Baltimore Ravens")}</b><p>${escapeHtml(text)}</p></div></article>`;
     }).join(""); els.breaking.hidden = false;
   } catch (_) { /* Supplemental feed; the game center remains available. */ }
 }
@@ -363,7 +395,6 @@ async function init() {
   catch (error) { els.status.textContent = "Schedule unavailable"; els.selector.innerHTML = `<p class="empty-copy">The 2026 schedule could not be loaded. Try again shortly.</p>`; els.game.innerHTML = `<p class="empty-copy">${escapeHtml(error.message)}</p>`; }
 }
 els.selector.addEventListener("click", (event) => { const button = event.target.closest("[data-event-id]"); if (button) selectGame(button.dataset.eventId, { scroll: true }); });
-els.comparisonToggle.addEventListener("click", (event) => { const button = event.target.closest("[data-comparison-team]"); if (!button) return; state.comparisonTeam = button.dataset.comparisonTeam; renderComparison(); });
 document.querySelector(".stat-toggle").addEventListener("click", (event) => { const button = event.target.closest("[data-stat-view]"); if (!button) return; state.statView = button.dataset.statView; document.querySelectorAll("[data-stat-view]").forEach((item) => item.classList.toggle("active", item === button)); renderPlayers(); });
 document.querySelector("#breaking-close").addEventListener("click", () => { els.breaking.hidden = true; });
 

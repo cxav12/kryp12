@@ -18,7 +18,7 @@
 .player-copy h2 { margin: 7px 0 5px; color: #fff; font-size: clamp(2.2rem, 5vw, 4.6rem); line-height: .98; letter-spacing: -.06em; }
 .player-position { margin: 0; color: #c9c4d2; font-size: 1rem; font-weight: 750; }
 .bio-grid { margin: 26px 0 0; display: grid; grid-template-columns: repeat(5, minmax(90px, 1fr)); gap: 12px; }
-.bio-grid div { min-width: 0; border-left: 2px solid rgba(212, 180, 92, .35); padding-left: 12px; }
+.bio-grid div { min-width: 0; padding-left: 12px; }
 .bio-grid dt { color: var(--quiet); font-size: .66rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
 .bio-grid dd { overflow: hidden; margin: 3px 0 0; color: #fff; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
 .profile-grid { margin-top: 14px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }

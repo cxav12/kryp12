@@ -10,8 +10,9 @@
   <link rel="preload" as="image" href="./assets/baltimore-ravens-header-background.png" fetchpriority="high">
   <link rel="preconnect" href="https://site.api.espn.com">
   <link rel="preconnect" href="https://a.espncdn.com">
-  <link rel="stylesheet" href="./styles.css?v=20260913-borderless1">
-  <script src="./app.js?v=20260913-yac-fallback1" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=20260914-transaction-window1">
+  <script src="./game-selection.js?v=20260914-upcoming-window1" defer></script>
+  <script src="./app.js?v=20260914-transaction-feed-fix1" defer></script>
 </head>
 <body>
   <main class="site-shell">
@@ -35,7 +36,7 @@
       <span class="status-pill" id="data-status">Loading 2026 season</span>
     </section>
     <aside class="breaking-details" id="breaking-details" aria-labelledby="breaking-title" hidden>
-      <header><h2 id="breaking-title">Latest Ravens News &amp; Transactions</h2><button id="breaking-close" type="button" aria-label="Dismiss team updates"></button></header>
+      <header><h2 id="breaking-title">Latest Ravens Transactions</h2><button id="breaking-close" type="button" aria-label="Dismiss team updates"></button></header>
       <div class="breaking-grid" id="breaking-grid"></div>
     </aside>
     <section class="game-selector" aria-label="2026 Ravens games"><div class="game-selector-grid" id="game-selector-grid"><p class="loading-copy">Loading the 2026 schedule…</p></div></section>
@@ -44,10 +45,10 @@
     <section class="dashboard-grid" id="dashboard" hidden>
       <article class="panel scoring-panel"><header class="panel-heading"><div><span>Drive Results</span><h2>Scoring Plays</h2></div></header><div id="scoring-plays"></div></article>
       <article class="panel comparison-panel">
-        <header class="panel-heading comparison-heading"><div><span>Matchup</span><h2>Team Comparison</h2></div><div class="team-toggle" id="comparison-toggle" role="group" aria-label="Select comparison team"></div></header>
+        <header class="panel-heading"><div><span>Matchup</span><h2>Team Comparison</h2></div></header>
         <div id="team-comparison"></div>
       </article>
-      <article class="panel metrics-panel"><header class="panel-heading"><div><span>Metrics &amp; Game Notes</span><h2>Game Leaders</h2></div></header><div class="metrics-grid" id="game-metrics"></div></article>
+      <article class="panel metrics-panel"><header class="panel-heading"><div><span>Head-to-Head</span><h2>Game Leaders</h2></div></header><div class="metrics-grid" id="game-metrics"></div></article>
       <article class="panel player-panel">
         <header class="panel-heading player-heading"><div><span>Box Score</span><h2>Player Statistics</h2></div><div class="stat-toggle" role="group" aria-label="Player statistic category"><button class="active" type="button" data-stat-view="offense">Offensive Stats</button><button type="button" data-stat-view="defense">Defensive Stats</button></div></header>
         <div id="player-stats"></div>

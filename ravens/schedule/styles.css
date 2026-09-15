@@ -28,6 +28,9 @@
 .result.win { color: var(--success); background: rgba(55, 135, 95, .15); }
 .result.loss { color: var(--danger); background: rgba(164, 67, 67, .15); }
 .result.live { color: var(--accent-bright); background: rgba(91, 75, 196, .2); }
+.result.bye { color: #d8d2ff; background: rgba(91, 75, 196, .2); }
+.bye-row { background: rgba(91, 75, 196, .05); }
+.bye-row .matchup img { opacity: .55; }
 .game-center-link { justify-self: end; border-radius: 7px; color: #d8d2ff; background: rgba(91, 75, 196, .18); padding: 8px 12px; font-weight: 850; text-decoration: none; }
 .game-center-link:hover, .game-center-link:focus-visible { color: #fff; background: rgba(91, 75, 196, .35); }
 .section-empty { margin: 0; color: var(--muted); padding: 28px 22px; text-align: center; }

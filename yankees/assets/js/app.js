@@ -945,6 +945,19 @@ function scoreboardState(feed, game) {
   return game.status?.detailedState || "Scheduled";
 }
 
+function latestCompletedPlay(feed) {
+  const plays = feed.liveData?.plays || {};
+  const allPlays = plays.allPlays || [];
+  const play = [...allPlays].reverse().find((item) => item.about?.isComplete)
+    || allPlays.at(-1)
+    || plays.currentPlay;
+  const sentences = playDescriptionSentences(play?.result?.description);
+  const batterName = play?.matchup?.batter?.fullName || "";
+  const mainPlay = sentences.find((sentence) => batterName && sentence.toLowerCase().startsWith(batterName.toLowerCase()))
+    || sentences[0];
+  return mainPlay || play?.result?.event || "Waiting for the first play.";
+}
+
 function scoreboardTeamDetails(game, feed, side) {
   const entry = game.teams?.[side] || {};
   const team = entry.team || feed.gameData?.teams?.[side] || {};
@@ -2334,6 +2347,9 @@ function renderRecap(game, feed) {
       <span style="background-color: ${opponentScoreColor}"></span>
     </div>
     ${isLiveGame(game) ? `
+      <div class="live-scoreboard-shell" style="--scoreboard-left-color:${yankeesScoreColor};--scoreboard-right-color:${opponentScoreColor}">
+      <img class="live-scoreboard-side-logo away" src="${escapeHtml(teamLogoUrl(yankeesScoreDetails.team))}" alt="" aria-hidden="true">
+      <img class="live-scoreboard-side-logo home" src="${escapeHtml(teamLogoUrl(opponentScoreDetails.team))}" alt="" aria-hidden="true">
       <div class="game-live-status-row live-info-row">
         <span class="pregame-info-item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"></circle><path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5.5 5.5a9 9 0 0 0 0 13M18.5 5.5a9 9 0 0 1 0 13"></path></svg><strong>Live:</strong> ${escapeHtml(game.status?.detailedState || "In Progress")}</span>
         <i aria-hidden="true">|</i>
@@ -2347,10 +2363,13 @@ function renderRecap(game, feed) {
     <div class="game-scoreboard-top ${gameResultClass}" style="--scoreboard-left-color:${yankeesScoreColor};--scoreboard-right-color:${opponentScoreColor}">
       ${renderScoreboardTeam(yankeesScoreDetails, "away", scoreForSide(game, feed, side))}
       <strong class="scoreboard-score">${escapeHtml(scoreForSide(game, feed, side))}</strong>
-      <div class="scoreboard-state">${escapeHtml(scoreboardState(feed, game))}</div>
+      <div class="scoreboard-state">
+        <strong>${escapeHtml(scoreboardState(feed, game))}</strong>
+      </div>
       <strong class="scoreboard-score">${escapeHtml(scoreForSide(game, feed, opponentTeamSide))}</strong>
       ${renderScoreboardTeam(opponentScoreDetails, "home", scoreForSide(game, feed, opponentTeamSide))}
     </div>
+    ${isLiveGame(game) ? `<div class="scoreboard-last-play"><strong>Last play:</strong> ${escapeHtml(latestCompletedPlay(feed))}</div></div>` : ""}
     <div class="game-scoreboard-lower">
       <div class="game-linescore-box">${renderLinescore(feed, game)}</div>
       <div class="game-decisions${isLiveGame(game) ? " live-matchup-slot" : " decision-cards"}">

@@ -453,6 +453,54 @@
   padding-top: 14px;
 }
 
+.live-scoreboard-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-inline: calc(var(--scoreboard-card-padding) * -1);
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--scoreboard-left-color, transparent) 34%, transparent) 0%,
+      transparent 42%,
+      transparent 58%,
+      color-mix(in srgb, var(--scoreboard-right-color, transparent) 34%, transparent) 100%
+    );
+}
+
+.live-scoreboard-shell > :not(.live-scoreboard-side-logo) {
+  position: relative;
+  z-index: 1;
+}
+
+.live-scoreboard-side-logo {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  width: clamp(120px, 15vw, 190px);
+  height: calc(100% - 18px);
+  object-fit: contain;
+  opacity: 0.19;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.live-scoreboard-side-logo.away { left: 8px; }
+.live-scoreboard-side-logo.home { right: 8px; }
+
+.live-scoreboard-shell .game-scoreboard-top {
+  grid-template-columns: minmax(190px, 280px) 72px 140px 72px minmax(190px, 280px);
+  justify-content: center;
+  gap: 8px;
+  margin-inline: 0;
+  background: transparent;
+}
+
+.live-scoreboard-shell .scoreboard-team-copy strong { font-size: 1.08rem; }
+.live-scoreboard-shell .scoreboard-team-copy small { font-size: 0.82rem; }
+.live-scoreboard-shell .scoreboard-score { font-size: clamp(2.2rem, 3.3vw, 2.95rem); }
+.live-scoreboard-shell .scoreboard-state { font-size: 1.4rem; }
+
 .game-scoreboard-top {
   min-height: 64px;
   margin-inline: calc(var(--scoreboard-card-padding) * -1);
@@ -921,6 +969,28 @@ a.decision-card:focus-visible {
   font-weight: 900;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+}
+
+.scoreboard-state > strong {
+  display: block;
+}
+
+.scoreboard-last-play {
+  display: block;
+  margin: 0;
+  color: var(--muted);
+  background: transparent;
+  padding: 8px 14px 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  text-transform: none;
+}
+
+.scoreboard-last-play strong {
+  color: #f6d365;
+  font-weight: 800;
 }
 
 .probable-pitcher {
@@ -3079,6 +3149,10 @@ a.matchup-player:focus-visible strong {
 @media (max-width: 1050px) {
   .breaking-news-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .live-scoreboard-shell .game-scoreboard-top {
+    grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr);
   }
 }
 

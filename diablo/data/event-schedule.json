@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "provider": {
+    "id": "community-schedule-projection",
+    "label": "Community schedule projection",
+    "url": "https://timesaver.gg/tools/diablo-iv/event-timer"
+  },
+  "verifiedAt": "2026-09-16T18:31:24Z",
+  "upcomingHorizonMinutes": 420,
+  "advisory": "Projected from community-verified recurring schedules. Confirm the in-game map marker before traveling.",
+  "schedules": {
+    "worldBoss": {"anchor": "2026-09-16T20:00:00Z", "cadenceMinutes": 210, "durationMinutes": 15},
+    "helltide": {"cadenceMinutes": 60, "durationMinutes": 55},
+    "legion": {"anchor": "2026-09-16T18:45:00Z", "cadenceMinutes": 25, "durationMinutes": 4}
+  }
+}

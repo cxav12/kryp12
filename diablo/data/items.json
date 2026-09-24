@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "lastVerified": "2026-09-18",
+  "source": "Diablo IV Season 15 item data, verified against patch 3.2.1",
+  "uniqueAffixRule": "Unique, Mythic Unique, and Iconic Mythic items have two guaranteed affixes. Other affixes can vary and one affix can be changed through Enchanting.",
+  "items": {
+    "item:azurewrath": {
+      "name": "Azurewrath",
+      "uniquePower": "After Freeze expires, the Frozen enemy takes [120–150]% of the damage you dealt to them while Frozen. Enemies no longer explode.",
+      "guaranteedAffixes": [
+        "Weapon Damage",
+        "Maximum Life"
+      ]
+    },
+    "item:gohrs-devastating-grips": {
+      "name": "Gohr's Devastating Grips",
+      "uniquePower": "Whirlwind deals [75–90]% increased damage and pulls enemies to you every 2 seconds.",
+      "guaranteedAffixes": [
+        "Primary Core Stat",
+        "Skill Ranks to Whirlwind"
+      ]
+    },
+    "item:melted-heart-of-selig": {
+      "name": "Melted Heart of Selig",
+      "uniquePower": "Damage is dealt to your Primary Resource before Life and damage taken this way is drastically reduced. Your Maximum Primary Resource is increased by [58–77]% but Maximum Life is reduced by 75%.",
+      "guaranteedAffixes": [
+        "Primary Core Stat",
+        "Resource Generation"
+      ]
+    },
+    "item:rage-of-harrogath": {
+      "name": "Rage of Harrogath",
+      "uniquePower": "Inflicting Damage Over Time on an enemy has up to a [45–60]% chance to reduce the Cooldowns of your Skills by 0.5 seconds.",
+      "guaranteedAffixes": [
+        "Primary Core Stat",
+        "Damage Over Time Multiplier"
+      ]
+    },
+    "item:ramaladnis-magnum-opus": {
+      "name": "Ramaladni's Magnum Opus",
+      "uniquePower": "Skills deal [0.35–0.50]%[x] increased damage per point of Fury you have, but 7% of your Maximum Fury drains per second while in combat.",
+      "guaranteedAffixes": [
+        "Weapon Damage",
+        "Maximum Resource"
+      ]
+    },
+    "item:ring-of-starless-skies": {
+      "name": "Ring of Starless Skies",
+      "uniquePower": "Spending your Primary Resource reduces the Resource cost of your Skills and increases your damage by 10%[x] for 3 seconds, up to 50%[x].",
+      "guaranteedAffixes": [
+        "Primary Core Stat",
+        "Attack Speed"
+      ]
+    },
+    "item:the-grandfather": {
+      "name": "The Grandfather",
+      "uniquePower": "Increases your Critical Strike Damage by 120%[x].",
+      "guaranteedAffixes": [
+        "Weapon Damage",
+        "Critical Strike Chance"
+      ]
+    },
+    "item:tibaults-will": {
+      "name": "Tibault's Will",
+      "uniquePower": "You deal [15–20]%[x] increased damage and gain 25 Primary Resource Regeneration while Unstoppable and for 5 seconds after.",
+      "guaranteedAffixes": [
+        "Primary Core Stat",
+        "Maximum Life"
+      ]
+    },
+    "item:tuskhelm-of-joritz-the-mighty": {
+      "name": "Tuskhelm of Joritz the Mighty",
+      "uniquePower": "When you gain Berserking while already Berserk, you become more enraged, granting [40–50]%[x] increased damage, 6 Fury per second, and 10% Cooldown Reduction.",
+      "guaranteedAffixes": [
+        "Primary Core Stat",
+        "Maximum Life"
+      ]
+    }
+  }
+}

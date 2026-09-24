@@ -1,0 +1,1033 @@
+{
+  "source": {
+    "site": "Mobalytics",
+    "buildPage": "barbarian-whirl-wind-barb",
+    "capturedVariantId": "6",
+    "documentId": "1010fee2-b3d1-4489-9193-021b622cd925",
+    "documentSlug": "pure-whirlwind",
+    "capturedFrom": "HAR preloaded page state",
+    "note": "Use as build-configuration reference only. Do not use Mobalytics-hosted images as final site assets."
+  },
+  "summary": {
+    "selectedNodeCount": 267,
+    "boardCount": 5,
+    "priorityListCount": 30
+  },
+  "boards": [
+    {
+      "x": 0,
+      "y": 0,
+      "rotation": 0,
+      "board": {
+        "slug": "barbarian-starter-board"
+      },
+      "glyph": {
+        "slug": "barbarian-challenger"
+      },
+      "glyphLevel": 150
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "rotation": 270,
+      "board": {
+        "slug": "barbarian-warbringer"
+      },
+      "glyph": {
+        "slug": "barbarian-wrath"
+      },
+      "glyphLevel": 100
+    },
+    {
+      "x": -1,
+      "y": 1,
+      "rotation": 270,
+      "board": {
+        "slug": "barbarian-blood-rage"
+      },
+      "glyph": {
+        "slug": "barbarian-twister"
+      },
+      "glyphLevel": 150
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "rotation": 270,
+      "board": {
+        "slug": "barbarian-carnage"
+      },
+      "glyph": {
+        "slug": "barbarian-marshal"
+      },
+      "glyphLevel": 150
+    },
+    {
+      "x": -1,
+      "y": -1,
+      "rotation": 180,
+      "board": {
+        "slug": "barbarian-flawless-technique"
+      },
+      "glyph": {
+        "slug": "barbarian-exploit"
+      },
+      "glyphLevel": 150
+    }
+  ],
+  "nodes": [
+    {
+      "slug": "barbarian-starter-board-x11-y15"
+    },
+    {
+      "slug": "barbarian-starter-board-x11-y14"
+    },
+    {
+      "slug": "barbarian-starter-board-x12-y14"
+    },
+    {
+      "slug": "barbarian-starter-board-x13-y14"
+    },
+    {
+      "slug": "barbarian-starter-board-x13-y13"
+    },
+    {
+      "slug": "barbarian-starter-board-x13-y12"
+    },
+    {
+      "slug": "barbarian-starter-board-x13-y11"
+    },
+    {
+      "slug": "barbarian-starter-board-x13-y10"
+    },
+    {
+      "slug": "barbarian-starter-board-x13-y9"
+    },
+    {
+      "slug": "barbarian-starter-board-x13-y8"
+    },
+    {
+      "slug": "barbarian-starter-board-x12-y7"
+    },
+    {
+      "slug": "barbarian-starter-board-x12-y6"
+    },
+    {
+      "slug": "barbarian-starter-board-x12-y5"
+    },
+    {
+      "slug": "barbarian-starter-board-x12-y4"
+    },
+    {
+      "slug": "barbarian-starter-board-x12-y3"
+    },
+    {
+      "slug": "barbarian-starter-board-x12-y2"
+    },
+    {
+      "slug": "barbarian-starter-board-x11-y2"
+    },
+    {
+      "slug": "barbarian-starter-board-x10-y7"
+    },
+    {
+      "slug": "barbarian-starter-board-x10-y6"
+    },
+    {
+      "slug": "barbarian-starter-board-x10-y5"
+    },
+    {
+      "slug": "barbarian-starter-board-x13-y7"
+    },
+    {
+      "slug": "barbarian-starter-board-x12-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y20"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y19"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y18"
+    },
+    {
+      "slug": "barbarian-warbringer-x12-y18"
+    },
+    {
+      "slug": "barbarian-warbringer-x13-y18"
+    },
+    {
+      "slug": "barbarian-warbringer-x13-y17"
+    },
+    {
+      "slug": "barbarian-warbringer-x14-y17"
+    },
+    {
+      "slug": "barbarian-warbringer-x15-y16"
+    },
+    {
+      "slug": "barbarian-warbringer-x14-y16"
+    },
+    {
+      "slug": "barbarian-warbringer-x14-y15"
+    },
+    {
+      "slug": "barbarian-warbringer-x15-y14"
+    },
+    {
+      "slug": "barbarian-warbringer-x10-y19"
+    },
+    {
+      "slug": "barbarian-warbringer-x9-y19"
+    },
+    {
+      "slug": "barbarian-warbringer-x9-y18"
+    },
+    {
+      "slug": "barbarian-warbringer-x6-y17"
+    },
+    {
+      "slug": "barbarian-warbringer-x6-y18"
+    },
+    {
+      "slug": "barbarian-warbringer-x6-y19"
+    },
+    {
+      "slug": "barbarian-warbringer-x6-y15"
+    },
+    {
+      "slug": "barbarian-warbringer-x5-y14"
+    },
+    {
+      "slug": "barbarian-warbringer-x6-y14"
+    },
+    {
+      "slug": "barbarian-warbringer-x4-y14"
+    },
+    {
+      "slug": "barbarian-warbringer-x4-y13"
+    },
+    {
+      "slug": "barbarian-warbringer-x4-y12"
+    },
+    {
+      "slug": "barbarian-warbringer-x4-y11"
+    },
+    {
+      "slug": "barbarian-warbringer-x3-y11"
+    },
+    {
+      "slug": "barbarian-warbringer-x2-y11"
+    },
+    {
+      "slug": "barbarian-warbringer-x4-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x4-y9"
+    },
+    {
+      "slug": "barbarian-warbringer-x4-y8"
+    },
+    {
+      "slug": "barbarian-warbringer-x5-y8"
+    },
+    {
+      "slug": "barbarian-warbringer-x6-y8"
+    },
+    {
+      "slug": "barbarian-warbringer-x7-y8"
+    },
+    {
+      "slug": "barbarian-warbringer-x7-y7"
+    },
+    {
+      "slug": "barbarian-warbringer-x6-y7"
+    },
+    {
+      "slug": "barbarian-warbringer-x8-y7"
+    },
+    {
+      "slug": "barbarian-warbringer-x9-y7"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y8"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y9"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y11"
+    },
+    {
+      "slug": "barbarian-warbringer-x10-y11"
+    },
+    {
+      "slug": "barbarian-warbringer-x10-y12"
+    },
+    {
+      "slug": "barbarian-warbringer-x9-y12"
+    },
+    {
+      "slug": "barbarian-warbringer-x9-y13"
+    },
+    {
+      "slug": "barbarian-warbringer-x14-y11"
+    },
+    {
+      "slug": "barbarian-warbringer-x13-y11"
+    },
+    {
+      "slug": "barbarian-warbringer-x12-y11"
+    },
+    {
+      "slug": "barbarian-warbringer-x14-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x15-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x15-y9"
+    },
+    {
+      "slug": "barbarian-warbringer-x16-y9"
+    },
+    {
+      "slug": "barbarian-warbringer-x17-y9"
+    },
+    {
+      "slug": "barbarian-warbringer-x16-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x17-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x18-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x19-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x20-y11"
+    },
+    {
+      "slug": "barbarian-warbringer-x20-y10"
+    },
+    {
+      "slug": "barbarian-warbringer-x10-y7"
+    },
+    {
+      "slug": "barbarian-warbringer-x10-y8"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y5"
+    },
+    {
+      "slug": "barbarian-warbringer-x12-y5"
+    },
+    {
+      "slug": "barbarian-warbringer-x13-y5"
+    },
+    {
+      "slug": "barbarian-warbringer-x12-y7"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y4"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y3"
+    },
+    {
+      "slug": "barbarian-warbringer-x11-y2"
+    },
+    {
+      "slug": "barbarian-warbringer-x5-y16"
+    },
+    {
+      "slug": "barbarian-warbringer-x7-y17"
+    },
+    {
+      "slug": "barbarian-warbringer-x8-y17"
+    },
+    {
+      "slug": "barbarian-warbringer-x9-y17"
+    },
+    {
+      "slug": "barbarian-warbringer-x4-y16"
+    },
+    {
+      "slug": "barbarian-warbringer-x3-y16"
+    },
+    {
+      "slug": "barbarian-warbringer-x6-y13"
+    },
+    {
+      "slug": "barbarian-warbringer-x7-y13"
+    },
+    {
+      "slug": "barbarian-warbringer-x5-y12"
+    },
+    {
+      "slug": "barbarian-warbringer-x3-y17"
+    },
+    {
+      "slug": "barbarian-warbringer-x2-y16"
+    },
+    {
+      "slug": "barbarian-warbringer-x2-y15"
+    },
+    {
+      "slug": "barbarian-warbringer-x1-y16"
+    },
+    {
+      "slug": "barbarian-warbringer-x6-y20"
+    },
+    {
+      "slug": "barbarian-warbringer-x5-y20"
+    },
+    {
+      "slug": "barbarian-warbringer-x8-y16"
+    },
+    {
+      "slug": "barbarian-warbringer-x8-y15"
+    },
+    {
+      "slug": "barbarian-warbringer-x12-y8"
+    },
+    {
+      "slug": "barbarian-warbringer-x13-y7"
+    },
+    {
+      "slug": "barbarian-warbringer-x13-y6"
+    },
+    {
+      "slug": "barbarian-warbringer-x15-y15"
+    },
+    {
+      "slug": "barbarian-warbringer-x15-y17"
+    },
+    {
+      "slug": "barbarian-blood-rage-x11-y2"
+    },
+    {
+      "slug": "barbarian-blood-rage-x11-y3"
+    },
+    {
+      "slug": "barbarian-blood-rage-x11-y4"
+    },
+    {
+      "slug": "barbarian-blood-rage-x12-y4"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y4"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y7"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y8"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y9"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y10"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y11"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y12"
+    },
+    {
+      "slug": "barbarian-blood-rage-x12-y14"
+    },
+    {
+      "slug": "barbarian-blood-rage-x11-y14"
+    },
+    {
+      "slug": "barbarian-blood-rage-x11-y13"
+    },
+    {
+      "slug": "barbarian-blood-rage-x10-y13"
+    },
+    {
+      "slug": "barbarian-blood-rage-x12-y7"
+    },
+    {
+      "slug": "barbarian-blood-rage-x10-y7"
+    },
+    {
+      "slug": "barbarian-blood-rage-x11-y7"
+    },
+    {
+      "slug": "barbarian-blood-rage-x9-y7"
+    },
+    {
+      "slug": "barbarian-blood-rage-x9-y8"
+    },
+    {
+      "slug": "barbarian-blood-rage-x9-y9"
+    },
+    {
+      "slug": "barbarian-blood-rage-x10-y9"
+    },
+    {
+      "slug": "barbarian-blood-rage-x10-y10"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y14"
+    },
+    {
+      "slug": "barbarian-blood-rage-x9-y13"
+    },
+    {
+      "slug": "barbarian-blood-rage-x8-y13"
+    },
+    {
+      "slug": "barbarian-blood-rage-x7-y13"
+    },
+    {
+      "slug": "barbarian-blood-rage-x7-y14"
+    },
+    {
+      "slug": "barbarian-blood-rage-x6-y14"
+    },
+    {
+      "slug": "barbarian-blood-rage-x5-y14"
+    },
+    {
+      "slug": "barbarian-blood-rage-x5-y15"
+    },
+    {
+      "slug": "barbarian-blood-rage-x4-y15"
+    },
+    {
+      "slug": "barbarian-blood-rage-x3-y15"
+    },
+    {
+      "slug": "barbarian-blood-rage-x4-y16"
+    },
+    {
+      "slug": "barbarian-blood-rage-x4-y14"
+    },
+    {
+      "slug": "barbarian-blood-rage-x15-y10"
+    },
+    {
+      "slug": "barbarian-blood-rage-x14-y10"
+    },
+    {
+      "slug": "barbarian-blood-rage-x14-y13"
+    },
+    {
+      "slug": "barbarian-blood-rage-x15-y13"
+    },
+    {
+      "slug": "barbarian-blood-rage-x15-y14"
+    },
+    {
+      "slug": "barbarian-blood-rage-x16-y14"
+    },
+    {
+      "slug": "barbarian-blood-rage-x16-y13"
+    },
+    {
+      "slug": "barbarian-blood-rage-x16-y12"
+    },
+    {
+      "slug": "barbarian-blood-rage-x11-y12"
+    },
+    {
+      "slug": "barbarian-blood-rage-x11-y11"
+    },
+    {
+      "slug": "barbarian-blood-rage-x11-y15"
+    },
+    {
+      "slug": "barbarian-blood-rage-x10-y15"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y15"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y16"
+    },
+    {
+      "slug": "barbarian-blood-rage-x13-y17"
+    },
+    {
+      "slug": "barbarian-blood-rage-x14-y17"
+    },
+    {
+      "slug": "barbarian-blood-rage-x14-y16"
+    },
+    {
+      "slug": "barbarian-blood-rage-x15-y16"
+    },
+    {
+      "slug": "barbarian-blood-rage-x14-y11"
+    },
+    {
+      "slug": "barbarian-blood-rage-x14-y4"
+    },
+    {
+      "slug": "barbarian-blood-rage-x14-y5"
+    },
+    {
+      "slug": "barbarian-blood-rage-x14-y6"
+    },
+    {
+      "slug": "barbarian-blood-rage-x14-y7"
+    },
+    {
+      "slug": "barbarian-blood-rage-x15-y4"
+    },
+    {
+      "slug": "barbarian-blood-rage-x16-y4"
+    },
+    {
+      "slug": "barbarian-carnage-x2-y11"
+    },
+    {
+      "slug": "barbarian-carnage-x8-y15"
+    },
+    {
+      "slug": "barbarian-carnage-x8-y14"
+    },
+    {
+      "slug": "barbarian-carnage-x8-y13"
+    },
+    {
+      "slug": "barbarian-carnage-x8-y12"
+    },
+    {
+      "slug": "barbarian-carnage-x8-y11"
+    },
+    {
+      "slug": "barbarian-carnage-x7-y11"
+    },
+    {
+      "slug": "barbarian-carnage-x8-y10"
+    },
+    {
+      "slug": "barbarian-carnage-x8-y9"
+    },
+    {
+      "slug": "barbarian-carnage-x8-y8"
+    },
+    {
+      "slug": "barbarian-carnage-x8-y7"
+    },
+    {
+      "slug": "barbarian-carnage-x7-y7"
+    },
+    {
+      "slug": "barbarian-carnage-x6-y7"
+    },
+    {
+      "slug": "barbarian-carnage-x5-y7"
+    },
+    {
+      "slug": "barbarian-carnage-x5-y8"
+    },
+    {
+      "slug": "barbarian-carnage-x5-y9"
+    },
+    {
+      "slug": "barbarian-carnage-x9-y15"
+    },
+    {
+      "slug": "barbarian-carnage-x10-y15"
+    },
+    {
+      "slug": "barbarian-carnage-x11-y15"
+    },
+    {
+      "slug": "barbarian-carnage-x11-y13"
+    },
+    {
+      "slug": "barbarian-carnage-x12-y13"
+    },
+    {
+      "slug": "barbarian-carnage-x13-y13"
+    },
+    {
+      "slug": "barbarian-carnage-x13-y12"
+    },
+    {
+      "slug": "barbarian-carnage-x13-y10"
+    },
+    {
+      "slug": "barbarian-carnage-x13-y9"
+    },
+    {
+      "slug": "barbarian-carnage-x12-y9"
+    },
+    {
+      "slug": "barbarian-carnage-x11-y9"
+    },
+    {
+      "slug": "barbarian-carnage-x13-y8"
+    },
+    {
+      "slug": "barbarian-carnage-x14-y8"
+    },
+    {
+      "slug": "barbarian-carnage-x14-y7"
+    },
+    {
+      "slug": "barbarian-carnage-x15-y7"
+    },
+    {
+      "slug": "barbarian-carnage-x15-y6"
+    },
+    {
+      "slug": "barbarian-carnage-x15-y5"
+    },
+    {
+      "slug": "barbarian-carnage-x15-y4"
+    },
+    {
+      "slug": "barbarian-carnage-x15-y3"
+    },
+    {
+      "slug": "barbarian-carnage-x16-y3"
+    },
+    {
+      "slug": "barbarian-carnage-x16-y4"
+    },
+    {
+      "slug": "barbarian-carnage-x16-y5"
+    },
+    {
+      "slug": "barbarian-carnage-x13-y14"
+    },
+    {
+      "slug": "barbarian-carnage-x14-y14"
+    },
+    {
+      "slug": "barbarian-carnage-x15-y14"
+    },
+    {
+      "slug": "barbarian-carnage-x15-y15"
+    },
+    {
+      "slug": "barbarian-carnage-x15-y16"
+    },
+    {
+      "slug": "barbarian-carnage-x15-y17"
+    },
+    {
+      "slug": "barbarian-carnage-x16-y17"
+    },
+    {
+      "slug": "barbarian-carnage-x16-y18"
+    },
+    {
+      "slug": "barbarian-carnage-x16-y19"
+    },
+    {
+      "slug": "barbarian-carnage-x2-y10"
+    },
+    {
+      "slug": "barbarian-carnage-x3-y10"
+    },
+    {
+      "slug": "barbarian-carnage-x4-y10"
+    },
+    {
+      "slug": "barbarian-carnage-x5-y10"
+    },
+    {
+      "slug": "barbarian-carnage-x11-y14"
+    },
+    {
+      "slug": "barbarian-carnage-x11-y10"
+    },
+    {
+      "slug": "barbarian-carnage-x11-y12"
+    },
+    {
+      "slug": "barbarian-carnage-x12-y8"
+    },
+    {
+      "slug": "barbarian-carnage-x12-y14"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x2-y11"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x2-y10"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x3-y10"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x3-y9"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x4-y9"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x4-y8"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x4-y7"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x4-y6"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x5-y6"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x6-y6"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x7-y6"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x8-y6"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x8-y7"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x9-y7"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x10-y7"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x11-y7"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x6-y8"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x6-y9"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x5-y8"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x7-y9"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x8-y9"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x8-y10"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x8-y11"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x8-y12"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x8-y13"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x9-y12"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x10-y12"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x11-y12"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x12-y12"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x13-y12"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x14-y12"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x14-y13"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x11-y8"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x15-y13"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x16-y13"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x8-y14"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x7-y14"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x14-y14"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x9-y14"
+    },
+    {
+      "slug": "barbarian-flawless-technique-x9-y10"
+    }
+  ],
+  "priorityList": [
+    {
+      "iconURL": null,
+      "slug": "barbarian-starter-board-x13-y12",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-starter-board-x12-y5",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-starter-board-x10-y5",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-challenger",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-warbringer-x14-y15",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-warbringer-x6-y19",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-warbringer-x7-y8",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-warbringer-x9-y13",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-warbringer-x15-y9",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-warbringer-x3-y16",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-warbringer-x13-y7",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-wrath",
+      "type": "glyph"
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-blood-rage-x13-y10",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-blood-rage-x10-y13",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-blood-rage-x10-y10",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-blood-rage-x4-y15",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-blood-rage-x15-y4",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-twister",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-carnage-x7-y11",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-carnage-x5-y7",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-carnage-x11-y13",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-carnage-x11-y9",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-carnage-x16-y4",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-carnage-x16-y18",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-marshal",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-flawless-technique-x11-y7",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-flawless-technique-x6-y8",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-flawless-technique-x8-y13",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-flawless-technique-x14-y13",
+      "type": ""
+    },
+    {
+      "iconURL": null,
+      "slug": "barbarian-exploit",
+      "type": ""
+    }
+  ]
+}

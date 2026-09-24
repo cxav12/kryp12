@@ -1,0 +1,19 @@
+{
+  "patch": "Season 15 · 3.2.1",
+  "source": "https://d4guides.gg/en/database/aspects",
+  "aspects": {
+    "aspect-of-anger-management": {"power": "While above [55–40] Fury, you are Berserk, but 2 Fury drains per second."},
+    "aspect-of-channeling": {"power": "While channeling a Skill, all damage is increased by 70%[x]."},
+    "aspect-of-coagulation": {"power": "Gain 30% increased Fortify Generation and [15–20]% Damage Reduction while Fortified."},
+    "aspect-of-heavenly-strength": {"power": "While wielding a Two-Handed Weapon, gain [20–30]% Damage Reduction."},
+    "aspect-of-limitless-rage": {"power": "Each point of Fury you generate increases your damage by 1.50%[x]. This bonus is lost after 4 seconds."},
+    "battle-mad-aspect": {"power": "After swapping weapons 5 times, gain Berserking for 4 seconds. Additionally, you deal 15%[x] increased damage while Berserking."},
+    "bold-chieftains-aspect": {"power": "Your Shout Skill Cooldowns are reduced by [8–10] seconds."},
+    "crushing-aspect": {"power": "While Fortified, you deal 65%[x] increased damage."},
+    "edgemasters-aspect": {"power": "Skills deal up to 60%[x] increased damage based on your available Primary Resource when cast, receiving the maximum benefit while you have full Primary Resource."},
+    "heavy-hitting-aspect": {"power": "Your Skills that create Iron Shrapnel, Earthquakes, or Dust Devils deal 60%[x] increased damage."},
+    "steadfast-berserkers-aspect": {"power": "Gain 6% of your Maximum Life as Fortify whenever you deal direct damage while Berserking."},
+    "vehement-brawlers-aspect": {"power": "Casting an Ultimate Skill increases your damage by [10–30]%[x] for 8 seconds and grants 4 additional Ultimate Skill Ranks."},
+    "wildbolt-aspect": {"power": "Every 1.5 seconds, Distant enemies are Pulled In to you and take 15%[x] increased damage from you."}
+  }
+}

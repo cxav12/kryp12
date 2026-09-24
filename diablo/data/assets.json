@@ -1,0 +1,1234 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-18T21:43:26.229Z",
+  "sourcePolicy": {
+    "primary": "DiabloTools/d4data",
+    "exportFallback": "DiabloTools/Diablo4Tools-Releases D4Analyzer",
+    "copyright": "Diablo IV game assets remain property of Blizzard Entertainment or their respective owners.",
+    "thirdPartyCdn": false
+  },
+  "fallbackAssetId": "ui:image-unavailable",
+  "assets": {
+    "ui:image-unavailable": {
+      "id": "ui:image-unavailable",
+      "name": "Image unavailable",
+      "kind": "ui",
+      "image": "/diablo/assets/ui/placeholder/image-unavailable.svg",
+      "status": "site-owned",
+      "provenance": {
+        "provider": "kryp12 UI",
+        "copyright": "Site-owned interface artwork"
+      }
+    },
+    "ui:aspect-fallback": {
+      "id": "ui:aspect-fallback",
+      "name": "Generic Aspect artwork",
+      "kind": "ui",
+      "image": "/diablo/assets/game/aspects/aspect-fallback-card.png",
+      "status": "website-display-fallback",
+      "provenance": {
+        "provider": "Existing local Diablo website asset",
+        "sourcePath": "assets/gear/legendary-aspect.png",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "11205EE9C8EFD46EB348C9FBCEBE880B0866A12C5938EF5F385D2CF63E6DB90E"
+    },
+    "aspect:aspect-of-anger-management": {
+      "id": "aspect:aspect-of-anger-management",
+      "name": "Aspect of Anger Management",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "aspect:aspect-of-channeling": {
+      "id": "aspect:aspect-of-channeling",
+      "name": "Aspect of Channeling",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "verified",
+      "image": "/diablo/assets/game/aspects/aspect-of-channeling.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "aspect:aspect-of-channeling", "atlas": "2DUI_Aspect_X1_Aspects", "sno": "2085649", "frameIndex": "4", "frameHash": "0xAB18A16C", "internalName": "legendary_generic_135_x2", "sourcePath": "Aspects\\2DUI_Aspect_X1_Aspects\\2DUI_Aspect_X1_Aspects [2085649] - 4 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "E9DE8CA4BB8F255971329D3221883B6B8382865704AD546394BE50467F5771FD"
+    },
+    "aspect:aspect-of-coagulation": {
+      "id": "aspect:aspect-of-coagulation",
+      "name": "Aspect of Coagulation",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "verified",
+      "image": "/diablo/assets/game/aspects/aspect-of-coagulation.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "aspect:aspect-of-coagulation", "atlas": "2DUI_Aspect_Rogue_NonOffensive_Icons", "sno": "1955583", "frameIndex": "6", "frameHash": "0x9E50FBD1", "internalName": "legendary_necro_023_x2", "sourcePath": "Aspects\\Rogue\\2DUI_Aspect_Rogue_NonOffensive_Icons\\2DUI_Aspect_Rogue_NonOffensive_Icons [1955583] - 6 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "DFAB086AD7D73E4288586925FB2254BB89D876E4817DC153883FAD5A55932933"
+    },
+    "aspect:aspect-of-heavenly-strength": {
+      "id": "aspect:aspect-of-heavenly-strength",
+      "name": "Aspect of Heavenly Strength",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "verified",
+      "image": "/diablo/assets/game/aspects/aspect-of-heavenly-strength.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "aspect:aspect-of-heavenly-strength", "atlas": "2DUI_Aspect_Pal_Icons", "sno": "2513425", "frameIndex": "10", "frameHash": "0x47FB6CD8", "internalName": "legendary_paladin_085", "sourcePath": "Aspects\\2DUI_Aspect_Pal_Icons\\2DUI_Aspect_Pal_Icons [2513425] - 10 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "2E55B88286D1ECDC6CBB38525282C301E60CBC58EBB78176F890443B820D5781"
+    },
+    "aspect:aspect-of-limitless-rage": {
+      "id": "aspect:aspect-of-limitless-rage",
+      "name": "Aspect of Limitless Rage",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "verified",
+      "image": "/diablo/assets/game/aspects/aspect-of-limitless-rage.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "aspect:aspect-of-limitless-rage", "atlas": "2DUI_Aspect_Barb_Offensive_Icons", "sno": "1955578", "frameIndex": "6", "frameHash": "0x6DD25F68", "internalName": "Legendary_Barb_110", "sourcePath": "Aspects\\2DUI_Aspect_Barb_Offensive_Icons\\2DUI_Aspect_Barb_Offensive_Icons [1955578] - 6 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "71664E7B94012B3B85B644C7306EC2F8A6B28E7A84C5CF1D4043EFEFC2D7EE9D"
+    },
+    "aspect:battle-mad-aspect": {
+      "id": "aspect:battle-mad-aspect",
+      "name": "Battle-Mad Aspect",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "missing",
+      "image": "/diablo/assets/game/aspects/battle-mad-aspect.png",
+      "displayOverride": true,
+      "mappingConfidence": "best-effort",
+      "displayOverrideMetadata": {
+        "policy": "website-only candidate; not an authoritative entity mapping",
+        "internalCandidate": "legendary_barb_058_x2",
+        "atlas": "2DUI_Aspect_Barb_NonOffensive_Icons",
+        "sno": 1955579,
+        "frameIndex": 16,
+        "imageHandle": "0x2407DD61",
+        "sourcePath": "Aspects\\2DUI_Aspect_Barb_NonOffensive_Icons\\2DUI_Aspect_Barb_NonOffensive_Icons [1955579] - 16 .png",
+        "sha256": "182F5193C784683F35FB4EC4C862286635BEBCA41C1B21C9644AC7FBD9864CD7"
+      },
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "aspect:bold-chieftains-aspect": {
+      "id": "aspect:bold-chieftains-aspect",
+      "name": "Bold Chieftain's Aspect",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "verified",
+      "image": "/diablo/assets/game/aspects/bold-chieftains-aspect.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "aspect:bold-chieftains-aspect", "atlas": "2DUI_Aspect_Barb_NonOffensive_Icons", "sno": "1955579", "frameIndex": "14", "frameHash": "0xE42FA761", "internalName": "legendary_barb_057", "sourcePath": "Aspects\\2DUI_Aspect_Barb_NonOffensive_Icons\\2DUI_Aspect_Barb_NonOffensive_Icons [1955579] - 14 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "E17FE82B8911788ED824165160FBA1306D9F66EC9AC7ADC95B2B0B11F3AD5627"
+    },
+    "aspect:crushing-aspect": {
+      "id": "aspect:crushing-aspect",
+      "name": "Crushing Aspect",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "missing",
+      "image": "/diablo/assets/game/aspects/aspect-fallback-card.png",
+      "displayOverride": true,
+      "mappingConfidence": "unresolved",
+      "usesGenericFallback": true,
+      "displayOverrideMetadata": {
+        "policy": "website-only generic Aspect fallback; not canonical Crushing Aspect artwork",
+        "internalRelationship": "legendary_druid_049_x2",
+        "affixSNO": 2542657,
+        "sourcePath": "assets/gear/legendary-aspect.png",
+        "sha256": "11205EE9C8EFD46EB348C9FBCEBE880B0866A12C5938EF5F385D2CF63E6DB90E"
+      },
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "aspect:edgemasters-aspect": {
+      "id": "aspect:edgemasters-aspect",
+      "name": "Edgemaster's Aspect",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "verified",
+      "image": "/diablo/assets/game/aspects/edgemasters-aspect.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "aspect:edgemasters-aspect", "atlas": "2DUI_Aspect_Gen_Offensive_Icons", "sno": "2007679", "frameIndex": "3", "frameHash": "0xF7C1CC14", "internalName": "legendary_generic_063", "sourcePath": "Aspects\\2DUI_Aspect_Gen_Offensive_Icons\\2DUI_Aspect_Gen_Offensive_Icons [2007679] - 3 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "7B372FEC2D8C6C4449575BF0EBFED04BB2BDBE09A3DF37B7318A3FE265808EDF"
+    },
+    "aspect:heavy-hitting-aspect": {
+      "id": "aspect:heavy-hitting-aspect",
+      "name": "Heavy Hitting Aspect",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "verified",
+      "image": "/diablo/assets/game/aspects/heavy-hitting-aspect.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "aspect:heavy-hitting-aspect", "atlas": "2DUI_Aspect_S06_Aspects", "sno": "2100253", "frameIndex": "1", "frameHash": "0xE68D3F64", "internalName": "legendary_barb_006_x2", "sourcePath": "Aspects\\2DUI_Aspect_S06_Aspects\\2DUI_Aspect_S06_Aspects [2100253] - 1 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "2C82021FC39B64CBB7F163B48F73C2FD19A3A340523DE9AFD13C761E8A1010BC"
+    },
+    "aspect:steadfast-berserkers-aspect": {
+      "id": "aspect:steadfast-berserkers-aspect",
+      "name": "Steadfast Berserker's Aspect",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "aspect:vehement-brawlers-aspect": {
+      "id": "aspect:vehement-brawlers-aspect",
+      "name": "Vehement Brawler's Aspect",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "verified",
+      "image": "/diablo/assets/game/aspects/vehement-brawlers-aspect.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "aspect:vehement-brawlers-aspect", "atlas": "2DUI_Aspect_S07_Aspects", "sno": "2154367", "frameIndex": "11", "frameHash": "0xF7C1CFD5", "internalName": "legendary_generic_127", "sourcePath": "Aspects\\2DUI_Aspect_S07_Aspects\\2DUI_Aspect_S07_Aspects [2154367] - 11 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "3177DBDD645DB799880E3DF2C346B56910622CC084E251009437C8B454312E35"
+    },
+    "aspect:wildbolt-aspect": {
+      "id": "aspect:wildbolt-aspect",
+      "name": "Wildbolt Aspect",
+      "kind": "aspect",
+      "rarity": "Legendary",
+      "status": "verified",
+      "image": "/diablo/assets/game/aspects/wildbolt-aspect.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "aspect:wildbolt-aspect", "atlas": "2DUI_Aspect_S05_Aspects", "sno": "2053130", "frameIndex": "22", "frameHash": "0xD753241E", "internalName": "S05_BSK_Generic_005", "sourcePath": "Aspects\\2DUI_Aspect_S05_Aspects\\2DUI_Aspect_S05_Aspects [2053130] - 22 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "62AFE4EB4AAAD6A22B40DE08B070C4139C69101EFD595CA60DC58858C450F298"
+    },
+    "class-mechanic:polearm-expertise": {
+      "id": "class-mechanic:polearm-expertise",
+      "name": "Polearm Expertise",
+      "kind": "class-mechanic",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/classes/barbarian/polearm-expertise.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DUI_WeaponExpertise",
+        "sourceSno": 681239,
+        "sourceFrameIndex": 4,
+        "internalName": "ExpertiseIcon_Polearm",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "ea9c3308dd073b34a4bf09d2830759a6356de6f3af0a7848f205596a3e506c98"
+    },
+    "class-mechanic:whirlwind-weapon": {
+      "id": "class-mechanic:whirlwind-weapon",
+      "name": "Whirlwind weapon",
+      "kind": "class-mechanic",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/classes/barbarian/whirlwind-weapon.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DUI_WeaponExpertise",
+        "sourceSno": 681239,
+        "sourceFrameIndex": 3,
+        "internalName": "ExpertiseIcon_Mace2H",
+        "matchBasis": "Whirlwind is assigned to the two-handed mace arsenal slot in this build",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "06fcefc20dca6202e122fec6f5a389798f2603e80ac5e94c9b39cb3f795a58b5"
+    },
+    "class:barbarian": {
+      "id": "class:barbarian",
+      "name": "Barbarian",
+      "kind": "class",
+      "status": "verified",
+      "image": "/diablo/assets/game/classes/barbarian/class-icon.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceTexture": "2DUI_ClassIcons [1390301]",
+        "sourceFrameIndex": 19,
+        "internalName": "ClassIcon_Barbarian_Red",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "BFDFCD9F21BE7060DB7980D793ECB34C635FBCA3AB4ACE12B8C5C90DED914C26"
+    },
+    "class:druid": {
+      "id": "class:druid",
+      "name": "Druid",
+      "kind": "class",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "class:necromancer": {
+      "id": "class:necromancer",
+      "name": "Necromancer",
+      "kind": "class",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "class:paladin": {
+      "id": "class:paladin",
+      "name": "Paladin",
+      "kind": "class",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "class:rogue": {
+      "id": "class:rogue",
+      "name": "Rogue",
+      "kind": "class",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "class:sorcerer": {
+      "id": "class:sorcerer",
+      "name": "Sorcerer",
+      "kind": "class",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "class:spiritborn": {
+      "id": "class:spiritborn",
+      "name": "Spiritborn",
+      "kind": "class",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "event:helltide": {
+      "id": "event:helltide",
+      "name": "Helltide",
+      "kind": "event",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "event:legion": {
+      "id": "event:legion",
+      "name": "Legion",
+      "kind": "event",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "event:world-boss": {
+      "id": "event:world-boss",
+      "name": "World Boss",
+      "kind": "event",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "glyph:challenger": {
+      "id": "glyph:challenger",
+      "name": "Challenger",
+      "kind": "glyph",
+      "class": "barbarian",
+      "status": "missing",
+      "image": "/diablo/assets/game/paragon/challenger-glyph.png",
+      "displayOverride": { "policy": "website-only; first non-zero ParagonGlyphDefinition arIcons slot", "variant": "Barbarian", "atlas": "2DUI_ParagonGlyphs", "sno": 1208308, "frameIndex": 3, "sourcePath": "Paragon\\Glyphs\\2DUI_ParagonGlyphs\\2DUI_ParagonGlyphs [1208308] - 3 .png", "sha256": "D2AE11508C9AD25A2D73A4612CDD6F8FA3A4B8E6D15ECD9F00A6BD0E04EA08B8" },
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "glyph:exploit": {
+      "id": "glyph:exploit",
+      "name": "Exploit",
+      "kind": "glyph",
+      "class": "barbarian",
+      "status": "missing",
+      "image": "/diablo/assets/game/paragon/wrath-exploit-strength-glyph.png",
+      "displayOverride": { "policy": "website-only; first non-zero ParagonGlyphDefinition arIcons slot", "variant": "Barbarian/Strength", "atlas": "2DUI_ParagonGlyphs", "sno": 1208308, "frameIndex": 6, "sourcePath": "Paragon\\Glyphs\\2DUI_ParagonGlyphs\\2DUI_ParagonGlyphs [1208308] - 6 .png", "sha256": "8CE6171BAD04A3159512C45DBC38F78201076DA1D489F1039823664045FC7ECB" },
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "glyph:marshal": {
+      "id": "glyph:marshal",
+      "name": "Marshal",
+      "kind": "glyph",
+      "class": "barbarian",
+      "status": "missing",
+      "image": "/diablo/assets/game/paragon/twister-marshal-might-glyph.png",
+      "displayOverride": { "policy": "website-only; first non-zero ParagonGlyphDefinition arIcons slot", "variant": "Barbarian", "atlas": "2DUI_ParagonGlyphs", "sno": 1208308, "frameIndex": 5, "sourcePath": "Paragon\\Glyphs\\2DUI_ParagonGlyphs\\2DUI_ParagonGlyphs [1208308] - 5 .png", "sha256": "8E655A1EAA37E19373733886996D07631644C809CB72AAD5216CFCAE8BAC1EE3" },
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "glyph:might": {
+      "id": "glyph:might",
+      "name": "Might",
+      "kind": "glyph",
+      "class": "barbarian",
+      "status": "missing",
+      "image": "/diablo/assets/game/paragon/twister-marshal-might-glyph.png",
+      "displayOverride": { "policy": "website-only; first non-zero ParagonGlyphDefinition arIcons slot", "variant": "Barbarian", "atlas": "2DUI_ParagonGlyphs", "sno": 1208308, "frameIndex": 5, "sourcePath": "Paragon\\Glyphs\\2DUI_ParagonGlyphs\\2DUI_ParagonGlyphs [1208308] - 5 .png", "sha256": "8E655A1EAA37E19373733886996D07631644C809CB72AAD5216CFCAE8BAC1EE3" },
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "glyph:twister": {
+      "id": "glyph:twister",
+      "name": "Twister",
+      "kind": "glyph",
+      "class": "barbarian",
+      "status": "missing",
+      "image": "/diablo/assets/game/paragon/twister-marshal-might-glyph.png",
+      "displayOverride": { "policy": "website-only; first non-zero ParagonGlyphDefinition arIcons slot", "variant": "Barbarian", "atlas": "2DUI_ParagonGlyphs", "sno": 1208308, "frameIndex": 5, "sourcePath": "Paragon\\Glyphs\\2DUI_ParagonGlyphs\\2DUI_ParagonGlyphs [1208308] - 5 .png", "sha256": "8E655A1EAA37E19373733886996D07631644C809CB72AAD5216CFCAE8BAC1EE3" },
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "glyph:wrath": {
+      "id": "glyph:wrath",
+      "name": "Wrath",
+      "kind": "glyph",
+      "class": "barbarian",
+      "status": "missing",
+      "image": "/diablo/assets/game/paragon/wrath-exploit-strength-glyph.png",
+      "displayOverride": { "policy": "website-only; first non-zero ParagonGlyphDefinition arIcons slot", "variant": "Barbarian/Strength", "atlas": "2DUI_ParagonGlyphs", "sno": 1208308, "frameIndex": 6, "sourcePath": "Paragon\\Glyphs\\2DUI_ParagonGlyphs\\2DUI_ParagonGlyphs [1208308] - 6 .png", "sha256": "8CE6171BAD04A3159512C45DBC38F78201076DA1D489F1039823664045FC7ECB" },
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "item:azurewrath": {
+      "id": "item:azurewrath",
+      "name": "Azurewrath",
+      "kind": "item",
+      "rarity": "Unique",
+      "status": "canonical",
+      "image": "/diablo/assets/game/items/unique/azurewrath.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DInventory_Swords",
+        "sourceSno": 307307,
+        "sourceFrameIndex": 38,
+        "internalName": "sword_uniq11",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "8a495ca76960030b1f64fcb7eef8ad2e71ce0ac505a246f3697fc0e8efd0e074"
+    },
+    "item:gohrs-devastating-grips": {
+      "id": "item:gohrs-devastating-grips",
+      "name": "Gohr's Devastating Grips",
+      "kind": "item",
+      "rarity": "Unique",
+      "status": "canonical",
+      "image": "/diablo/assets/game/items/unique/gohrs-devastating-grips.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DInventory_Items_Barbarian",
+        "sourceSno": 2631766,
+        "sourceFrameIndex": 54,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "0e4eef52646c58ef01906a13aaca843d4886dd4ec4d9c9b9829cd731b98aa55d"
+    },
+    "item:melted-heart-of-selig": {
+      "id": "item:melted-heart-of-selig",
+      "name": "Melted Heart of Selig",
+      "kind": "item",
+      "rarity": "Mythic Unique",
+      "status": "canonical",
+      "image": "/diablo/assets/game/items/unique/melted-heart-of-selig.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DInventory_Amulets",
+        "sourceSno": 220332,
+        "sourceFrameIndex": 48,
+        "internalName": "Icons_Amulet_Unique_007",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "c909758d827f66fcf016f5e17e37e07771c8f275c252be4f3e3a5ffb2b533e4c"
+    },
+    "item:rage-of-harrogath": {
+      "id": "item:rage-of-harrogath",
+      "name": "Rage of Harrogath",
+      "kind": "item",
+      "rarity": "Unique",
+      "status": "verified",
+      "image": "/diablo/assets/game/items/unique/rage-of-harrogath.png",
+      "provenance": {
+        "provider": "DiabloTools/d4data + D4Analyzer",
+        "mappingId": "equipment:rage-of-harrogath",
+        "atlas": "2DInventory_Items_Barbarian",
+        "sno": 2631766,
+        "frameIndex": 189,
+        "frameHash": "0x85A8243E",
+        "internalName": "Chest_Unique_Barb_100",
+        "sourcePath": "Equipment\\Barbarian\\Armor _ Other\\2DInventory_Items_Barbarian\\2DInventory_Items_Barbarian [2631766] - 189 .png",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "9150EBB6658BA1B9B235861AC05888F6D4A1E03429FC8BBE2F24CB937828D273"
+    },
+    "item:ramaladnis-magnum-opus": {
+      "id": "item:ramaladnis-magnum-opus",
+      "name": "Ramaladni's Magnum Opus",
+      "kind": "item",
+      "rarity": "Unique",
+      "status": "canonical",
+      "image": "/diablo/assets/game/items/unique/ramaladnis-magnum-opus.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DInventory_Swords",
+        "sourceSno": 307307,
+        "sourceFrameIndex": 36,
+        "internalName": "sword_uniq09",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "98819cd88214e9867885df86c8c2fb2259e84c29360796ebea31c9a9a97acef6"
+    },
+    "item:ring-of-starless-skies": {
+      "id": "item:ring-of-starless-skies",
+      "name": "Ring of Starless Skies",
+      "kind": "item",
+      "rarity": "Mythic Unique",
+      "status": "canonical",
+      "image": "/diablo/assets/game/items/unique/ring-of-starless-skies.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DInventory_Rings",
+        "sourceSno": 210574,
+        "sourceFrameIndex": 41,
+        "internalName": "Icons_Ring_Legendary_034",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "c523b23a717256dd33e481103f0031e78c1fbe5648de32253afb82dca631c1c4"
+    },
+    "item:the-grandfather": {
+      "id": "item:the-grandfather",
+      "name": "The Grandfather",
+      "kind": "item",
+      "rarity": "Mythic Unique",
+      "status": "canonical",
+      "image": "/diablo/assets/game/items/unique/the-grandfather.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DInventory_Swords",
+        "sourceSno": 307307,
+        "sourceFrameIndex": 40,
+        "internalName": "twoHandSword_uniq06",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "c18b4e7354d001dd24fb8b7221588c2d49456ef6d8eba28e57d8f2d977c38c37"
+    },
+    "item:tibaults-will": {
+      "id": "item:tibaults-will",
+      "name": "Tibault's Will",
+      "kind": "item",
+      "rarity": "Unique",
+      "status": "verified",
+      "image": "/diablo/assets/game/items/unique/tibaults-will.png",
+      "provenance": {
+        "provider": "DiabloTools/d4data + D4Analyzer",
+        "mappingId": "equipment:tibaults-will",
+        "atlas": "2DInventory_Items_Barbarian",
+        "sno": 2631766,
+        "frameIndex": 98,
+        "frameHash": "0xF5947B99",
+        "internalName": "Pants_Unique_Generic_102",
+        "sourcePath": "Equipment\\Barbarian\\Armor _ Other\\2DInventory_Items_Barbarian\\2DInventory_Items_Barbarian [2631766] - 98 .png",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "C61D2CD109DDC56868447FA935A744895B2FB4E7A4E4266EA7722005524A45F2"
+    },
+    "item:tuskhelm-of-joritz-the-mighty": {
+      "id": "item:tuskhelm-of-joritz-the-mighty",
+      "name": "Tuskhelm of Joritz the Mighty",
+      "kind": "item",
+      "rarity": "Unique",
+      "status": "canonical",
+      "image": "/diablo/assets/game/items/unique/tuskhelm-of-joritz-the-mighty.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DInventory_Items_Barbarian",
+        "sourceSno": 2631766,
+        "sourceFrameIndex": 84,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "771be6378808a3c1e3ad8de3fb32cc0f0f6463005d3ce7f44998ac146476d9fd"
+    },
+    "mercenary-skill:bastion": {
+      "id": "mercenary-skill:bastion",
+      "name": "Bastion",
+      "kind": "mercenary-skill",
+      "status": "canonical",
+      "image": "/diablo/assets/game/mercenary-skills/bastion.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DUI_Skills_Merc_Shieldbearer",
+        "sourceSno": 1635166,
+        "sourceFrameIndex": 3,
+        "internalName": "Merc_Bastion_Up",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "e203e6e67b9fb93c909ac85ce1d1e15f9a29d5353c3389d629d2f1266e87b478"
+    },
+    "mercenary-skill:field-of-languish": {
+      "id": "mercenary-skill:field-of-languish",
+      "name": "Field of Languish",
+      "kind": "mercenary-skill",
+      "status": "verified",
+      "image": "/diablo/assets/game/mercenary-skills/field-of-languish.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "mercenary-ability:field-of-languish", "atlas": "2DUI_Skills_Merc_CursedChild", "sno": 1649872, "frameIndex": 31, "frameHash": "0x5AA02BFD", "internalName": "Mercenary_CursedChild_Wither", "sourcePath": "Mercenaries\\Skills\\2DUI_Skills_Merc_CursedChild\\2DUI_Skills_Merc_CursedChild [1649872] - 31 Merc_Wither_Up.png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "AF60502F648B68A4F2E78C8081F5791BD20FF9F5639E0E85952B0498CC292344"
+    },
+    "mercenary-skill:ground-slam": {
+      "id": "mercenary-skill:ground-slam",
+      "name": "Ground Slam",
+      "kind": "mercenary-skill",
+      "status": "canonical",
+      "image": "/diablo/assets/game/mercenary-skills/ground-slam.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DUI_Skills_Merc_Shieldbearer",
+        "sourceSno": 1635166,
+        "sourceFrameIndex": 11,
+        "internalName": "Merc_GroundSlam_Up",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "2ef67c84f259400983ef5b5f73d9980a1b19c27de529afda70569c79048663e9"
+    },
+    "mercenary-skill:inspiration": {
+      "id": "mercenary-skill:inspiration",
+      "name": "Inspiration",
+      "kind": "mercenary-skill",
+      "status": "verified",
+      "image": "/diablo/assets/game/mercenary-skills/inspiration.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "mercenary-ability:inspiration", "atlas": "2DUI_Talents_Merc_Shieldbearer", "sno": 1635215, "frameIndex": 2, "frameHash": "0xAEB7F45D", "internalName": "NPC_Mercenary_ShieldBearer_PassiveB3", "sourcePath": "Mercenaries\\Talents\\2DUI_Talents_Merc_Shieldbearer\\2DUI_Talents_Merc_Shieldbearer [1635215] - 2 Talent_Merc_Inspiration.png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "AB2DB0E663E127996AC22F42BCDAE0F779AC0798EE4C49BEEB6A07B87756A63D"
+    },
+    "mercenary-skill:raheirs-aegis": {
+      "id": "mercenary-skill:raheirs-aegis",
+      "name": "Raheir's Aegis",
+      "kind": "mercenary-skill",
+      "status": "verified",
+      "image": "/diablo/assets/game/mercenary-skills/raheirs-aegis.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "mercenary-ability:raheirs-aegis", "atlas": "2DUI_Talents_Merc_Shieldbearer", "sno": 1635215, "frameIndex": 10, "frameHash": "0x71222284", "internalName": "NPC_Mercenary_ShieldBearer_PassiveB1", "sourcePath": "Mercenaries\\Talents\\2DUI_Talents_Merc_Shieldbearer\\2DUI_Talents_Merc_Shieldbearer [1635215] - 10 Talent_Merc_RaheirsAegis.png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "FF6C27D7555A3F3A3A16505DD60AF9594A1D3D113106C8BFB5B21767BB5B8345"
+    },
+    "mercenary:aldkin": {
+      "id": "mercenary:aldkin",
+      "name": "Aldkin",
+      "kind": "mercenary",
+      "status": "canonical",
+      "image": "/diablo/assets/game/mercenaries/aldkin.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DUI_MercPortraits",
+        "sourceSno": 2482021,
+        "sourceFrameIndex": 0,
+        "matchBasis": "verified portrait",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "00a9166a6f9d1e6063f56cd6ade568ff00d66b37b919d96122f0be1e4a2d5471"
+    },
+    "mercenary:raheir": {
+      "id": "mercenary:raheir",
+      "name": "Raheir",
+      "kind": "mercenary",
+      "status": "canonical",
+      "image": "/diablo/assets/game/mercenaries/raheir.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DUI_MercPortraits",
+        "sourceSno": 2482021,
+        "sourceFrameIndex": 1,
+        "matchBasis": "verified portrait",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "04d28be55b91e66dfdff24e1e6c48ede936231149d9c414d469765ba6ad3a945"
+    },
+    "seasonal:season-15-runewords-pending": {
+      "id": "seasonal:season-15-runewords-pending",
+      "name": "Season 15 runewords pending",
+      "kind": "seasonal",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:attack-speed-and-damage-bonus": {
+      "id": "skill-modifier:attack-speed-and-damage-bonus",
+      "name": "Attack Speed and Damage Bonus",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:bawl": {
+      "id": "skill-modifier:bawl",
+      "name": "Bawl",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:berserking": {
+      "id": "skill-modifier:berserking",
+      "name": "Berserking",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:booming-rallying-cry": {
+      "id": "skill-modifier:booming-rallying-cry",
+      "name": "Booming Rallying Cry",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:channel-damage-bonus": {
+      "id": "skill-modifier:channel-damage-bonus",
+      "name": "Channel Damage Bonus",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:cost-damage-bonus": {
+      "id": "skill-modifier:cost-damage-bonus",
+      "name": "Cost Damage Bonus",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:damage-bonus": {
+      "id": "skill-modifier:damage-bonus",
+      "name": "Damage Bonus",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:duration-bonus": {
+      "id": "skill-modifier:duration-bonus",
+      "name": "Duration Bonus",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:duration-increase": {
+      "id": "skill-modifier:duration-increase",
+      "name": "Duration Increase",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:endure": {
+      "id": "skill-modifier:endure",
+      "name": "Endure",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:ferocity": {
+      "id": "skill-modifier:ferocity",
+      "name": "Ferocity",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:fortify": {
+      "id": "skill-modifier:fortify",
+      "name": "Fortify",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:full-throttle-wrath-of-the-berserker": {
+      "id": "skill-modifier:full-throttle-wrath-of-the-berserker",
+      "name": "Full Throttle Wrath of the Berserker",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:fury-generation": {
+      "id": "skill-modifier:fury-generation",
+      "name": "Fury Generation",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:highlander-call-of-the-ancients": {
+      "id": "skill-modifier:highlander-call-of-the-ancients",
+      "name": "Highlander Call of the Ancients",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:juggernaut-iron-skin": {
+      "id": "skill-modifier:juggernaut-iron-skin",
+      "name": "Juggernaut Iron Skin",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:maximum-life": {
+      "id": "skill-modifier:maximum-life",
+      "name": "Maximum Life",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:mighty-roar": {
+      "id": "skill-modifier:mighty-roar",
+      "name": "Mighty Roar",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:movement-speed": {
+      "id": "skill-modifier:movement-speed",
+      "name": "Movement Speed",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:potency": {
+      "id": "skill-modifier:potency",
+      "name": "Potency",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:raging-challenging-shout": {
+      "id": "skill-modifier:raging-challenging-shout",
+      "name": "Raging Challenging Shout",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:resolve": {
+      "id": "skill-modifier:resolve",
+      "name": "Resolve",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:skewer": {
+      "id": "skill-modifier:skewer",
+      "name": "Skewer",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:tornado-whirlwind": {
+      "id": "skill-modifier:tornado-whirlwind",
+      "name": "Tornado Whirlwind",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:vulnerable-war-cry": {
+      "id": "skill-modifier:vulnerable-war-cry",
+      "name": "Vulnerable War Cry",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill-modifier:weaken": {
+      "id": "skill-modifier:weaken",
+      "name": "Weaken",
+      "kind": "skill-modifier",
+      "class": "barbarian",
+      "status": "missing",
+      "image": null,
+      "requires": "D4Analyzer export or verified DiabloTools texture"
+    },
+    "skill:call-of-the-ancients": {
+      "id": "skill:call-of-the-ancients",
+      "name": "Call of the Ancients",
+      "kind": "skill",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/skills/barbarian/call-of-the-ancients.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DUI_Skills_Barbarian [65420]",
+        "sourceFrame": "CalloftheAncients_Up",
+        "sourceFrameHash": "8b7834ab",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "afe8cefc249c7fbc61ff0cb4ecdc261f89bcb25d6ac20184a5e9dbc99f8dd9c7"
+    },
+    "skill:challenging-shout": {
+      "id": "skill:challenging-shout",
+      "name": "Challenging Shout",
+      "kind": "skill",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/skills/barbarian/challenging-shout.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DUI_Skills_Barbarian [65420]",
+        "sourceFrame": "ChallengingShout_Up",
+        "sourceFrameHash": "1470d9f3",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "67add73f68380778b9372ade8900237c68108e6d63e6976545fa384e2d5022f6"
+    },
+    "skill:iron-skin": {
+      "id": "skill:iron-skin",
+      "name": "Iron Skin",
+      "kind": "skill",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/skills/barbarian/iron-skin.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DUI_Skills_Barbarian [65420]",
+        "sourceFrame": "IronSkin_Up",
+        "sourceFrameHash": "d0c67451",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "af4fa274da291400ca61f1fe280c3857390b8014c177843d68dfa92ae88e9789"
+    },
+    "skill:lunging-strike": {
+      "id": "skill:lunging-strike",
+      "name": "Lunging Strike",
+      "kind": "skill",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/skills/barbarian/lunging-strike.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DUI_Skills_Barbarian [65420]",
+        "sourceFrame": "LungingStrike_Up",
+        "sourceFrameHash": "bc7ca20a",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "36ae59c4de7dd85bd3edcc1d41664507c4e45883c898037b14b5ada59c6b736f"
+    },
+    "skill:rallying-cry": {
+      "id": "skill:rallying-cry",
+      "name": "Rallying Cry",
+      "kind": "skill",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/skills/barbarian/rallying-cry.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DUI_Skills_Barbarian [65420]",
+        "sourceFrame": "RallyingCry_Up",
+        "sourceFrameHash": "c8fa4d14",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "c43c5b314d13b3dd17d3f423f48683979a416542f73bef3f4fae43f36c3cc1e9"
+    },
+    "skill:war-cry": {
+      "id": "skill:war-cry",
+      "name": "War Cry",
+      "kind": "skill",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/skills/barbarian/war-cry.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DUI_Skills_Barbarian [65420]",
+        "sourceFrame": "WarCry_Up",
+        "sourceFrameHash": "0747a37c",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "cb31eda319553ef48f37efb6c728ef6fafaa40e72ab6bf05aefbb40cb6dbd092"
+    },
+    "skill:whirlwind": {
+      "id": "skill:whirlwind",
+      "name": "Whirlwind",
+      "kind": "skill",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/skills/barbarian/whirlwind.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DUI_Skills_Barbarian [65420]",
+        "sourceFrame": "Whirlwind_Up",
+        "sourceFrameHash": "c922eadc",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "8e2a55c6fe852b9caa83aedb78918ffdc951d81687b5af407b03dc7a8acbaf94"
+    },
+    "skill:wrath-of-the-berserker": {
+      "id": "skill:wrath-of-the-berserker",
+      "name": "Wrath of the Berserker",
+      "kind": "skill",
+      "class": "barbarian",
+      "status": "canonical",
+      "image": "/diablo/assets/game/skills/barbarian/wrath-of-the-berserker.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DUI_Skills_Barbarian [65420]",
+        "sourceFrame": "WrathoftheBerserker_Up",
+        "sourceFrameHash": "0b0c7805",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "1a1a63a211da5f2f0f1789c21da390068a4fd0248e9c4c4a587bfcbc0599c76c"
+    },
+    "talisman:berserkers-crucible": {
+      "id": "talisman:berserkers-crucible",
+      "name": "Berserker's Crucible",
+      "kind": "talisman",
+      "status": "canonical",
+      "image": "/diablo/assets/game/talismans/beru-of-the-crucible.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 23,
+        "representativeAsset": "talisman:beru-of-the-crucible",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "5d99b1bc52fa34cf0695b77bda6f901079bfe2b843a415a9fc0aed56ac347e59"
+    },
+    "talisman:beru-of-sescherons-fury": {
+      "id": "talisman:beru-of-sescherons-fury",
+      "name": "Berú of Sescheron's Fury",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "Sescheron's Fury",
+      "image": "/diablo/assets/game/talismans/beru-of-sescherons-fury.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 47,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "b047584f9cd4ae46eb477869c99e3696d886977b3c91ca0c0aa070e7cf2c7702"
+    },
+    "talisman:beru-of-the-crucible": {
+      "id": "talisman:beru-of-the-crucible",
+      "name": "Berú of the Crucible",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "the Crucible",
+      "image": "/diablo/assets/game/talismans/beru-of-the-crucible.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 23,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "5d99b1bc52fa34cf0695b77bda6f901079bfe2b843a415a9fc0aed56ac347e59"
+    },
+    "talisman:endurant-faith": {
+      "id": "talisman:endurant-faith",
+      "name": "Endurant Faith",
+      "kind": "talisman",
+      "status": "verified",
+      "image": "/diablo/assets/game/talismans/endurant-faith.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "item:endurant-faith", "atlas": "2DInventory_Items_Gloves_Generic", "sno": 1909739, "frameIndex": 0, "frameHash": "0x930B103D", "internalName": "S05_BSK_Gloves_Unique_Generic_001", "sourcePath": "Equipment\\Gloves\\2DInventory_Items_Gloves_Generic\\2DInventory_Items_Gloves_Generic [1909739] - 0 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "53666B187B92225F4F7938F6B5C440F0A871621105F08D4AAA4C1A1D0F9C6F4A"
+    },
+    "talisman:fer-of-sescherons-fury": {
+      "id": "talisman:fer-of-sescherons-fury",
+      "name": "Fer of Sescheron's Fury",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "Sescheron's Fury",
+      "image": "/diablo/assets/game/talismans/fer-of-sescherons-fury.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 46,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "ea0732b0d4843774cbad9dea40496523950ff81670e408fff9460e43ea8bfcb2"
+    },
+    "talisman:fer-of-the-crucible": {
+      "id": "talisman:fer-of-the-crucible",
+      "name": "Fer of the Crucible",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "the Crucible",
+      "image": "/diablo/assets/game/talismans/fer-of-the-crucible.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 22,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "f8bd1ed1551cdc6d281a54960604ee76f08f92204811d1ff1c3b141dfd31f360"
+    },
+    "talisman:fists-of-fate": {
+      "id": "talisman:fists-of-fate",
+      "name": "Fists of Fate",
+      "kind": "talisman",
+      "status": "verified",
+      "image": "/diablo/assets/game/talismans/fists-of-fate.png",
+      "provenance": { "provider": "DiabloTools/d4data + D4Analyzer", "mappingId": "item:fists-of-fate", "atlas": "2DInventory_Items_Barbarian", "sno": 2631766, "frameIndex": 55, "frameHash": "0x477214CC", "internalName": "Gloves_Unique_Generic_002", "sourcePath": "Equipment\\Barbarian\\Armor _ Other\\2DInventory_Items_Barbarian\\2DInventory_Items_Barbarian [2631766] - 55 .png", "copyright": "Blizzard Entertainment or respective owners" },
+      "sha256": "E4961B2399FBBA6692A14CDB85DF12435810DAACC54F9E786F4596B109E2A59C"
+    },
+    "talisman:legendary-horadric-seal": {
+      "id": "talisman:legendary-horadric-seal",
+      "name": "Damage multiplier Seal",
+      "kind": "talisman",
+      "status": "canonical",
+      "image": "/diablo/assets/game/talismans/legendary-horadric-seal.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 3,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "73e9140d7be5d094ce006c40e4d1e1c3e6e96523fc648b7bff4c517396b75655"
+    },
+    "talisman:linta-of-sescherons-fury": {
+      "id": "talisman:linta-of-sescherons-fury",
+      "name": "Linta of Sescheron's Fury",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "Sescheron's Fury",
+      "image": "/diablo/assets/game/talismans/linta-of-sescherons-fury.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 48,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "6c402146b492fd06deabf30e0a0ef647d0cec2611d3df30f11f376306d61aca9"
+    },
+    "talisman:linta-of-the-crucible": {
+      "id": "talisman:linta-of-the-crucible",
+      "name": "Linta of the Crucible",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "the Crucible",
+      "image": "/diablo/assets/game/talismans/linta-of-the-crucible.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 24,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "e0d067dc9f0f135896083b6827c2d40964d23a4c9fdb641fed5459fbea9b6043"
+    },
+    "talisman:mlor-of-sescherons-fury": {
+      "id": "talisman:mlor-of-sescherons-fury",
+      "name": "Mlor of Sescheron's Fury",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "Sescheron's Fury",
+      "image": "/diablo/assets/game/talismans/mlor-of-sescherons-fury.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 49,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "594fa352a88aae23b8b0653409031321afa0be73e8c4a14cfba918a9fb8d485d"
+    },
+    "talisman:mlor-of-the-crucible": {
+      "id": "talisman:mlor-of-the-crucible",
+      "name": "Mlor of the Crucible",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "the Crucible",
+      "image": "/diablo/assets/game/talismans/mlor-of-the-crucible.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 21,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "098b415e25cc287a4b14317e8ff4b4a9a63698fe8a0ee5a805fb1321b6e755bc"
+    },
+    "talisman:phoba-of-sescherons-fury": {
+      "id": "talisman:phoba-of-sescherons-fury",
+      "name": "Phoba of Sescheron's Fury",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "Sescheron's Fury",
+      "image": "/diablo/assets/game/talismans/phoba-of-sescherons-fury.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 45,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "5af7537944c3d5d6b078526e50b4d6bd451479b014574d223ee8620adc3bc18d"
+    },
+    "talisman:phoba-of-the-crucible": {
+      "id": "talisman:phoba-of-the-crucible",
+      "name": "Phoba of the Crucible",
+      "kind": "talisman",
+      "status": "canonical",
+      "set": "the Crucible",
+      "image": "/diablo/assets/game/talismans/phoba-of-the-crucible.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 20,
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "97709bacb3e4b7c4baacf3fe59e1845acc031362e7adb65401b3d7b1a4135a25"
+    },
+    "talisman:sescherons-fury": {
+      "id": "talisman:sescherons-fury",
+      "name": "Sescheron's Fury",
+      "kind": "talisman",
+      "status": "canonical",
+      "image": "/diablo/assets/game/talismans/beru-of-sescherons-fury.png",
+      "provenance": {
+        "provider": "DiabloTools D4Analyzer",
+        "sourceInstallation": "Diablo IV 3.2.1.73552",
+        "sourceTexture": "2DInventory_Talisman [2349964]",
+        "sourceFrameIndex": 47,
+        "representativeAsset": "talisman:beru-of-sescherons-fury",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "b047584f9cd4ae46eb477869c99e3696d886977b3c91ca0c0aa070e7cf2c7702"
+    },
+    "talisman:tuskhelm-of-joritz-the-mighty": {
+      "id": "talisman:tuskhelm-of-joritz-the-mighty",
+      "name": "Tuskhelm of Joritz the Mighty",
+      "kind": "talisman",
+      "status": "canonical",
+      "image": "/diablo/assets/game/items/unique/tuskhelm-of-joritz-the-mighty.png",
+      "provenance": {
+        "provider": "DiabloTools extracted asset library",
+        "sourceAtlas": "2DInventory_Items_Barbarian",
+        "sourceSno": 2631766,
+        "sourceFrameIndex": 84,
+        "canonicalAsset": "item:tuskhelm-of-joritz-the-mighty",
+        "copyright": "Blizzard Entertainment or respective owners"
+      },
+      "sha256": "771be6378808a3c1e3ad8de3fb32cc0f0f6463005d3ce7f44998ac146476d9fd"
+    }
+  }
+}

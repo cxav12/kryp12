@@ -1,0 +1,2540 @@
+{
+  "schemaVersion": 1,
+  "classes": [
+    "Barbarian",
+    "Sorcerer",
+    "Rogue",
+    "Necromancer",
+    "Druid",
+    "Spiritborn",
+    "Paladin"
+  ],
+  "builds": [
+    {
+      "id": "whirlwind-barbarian",
+      "name": "Whirlwind Barbarian",
+      "class": "Barbarian",
+      "route": "/diablo/builds/whirlwind-barbarian/",
+      "patchLabel": "Season 15 · Lord of Hatred",
+      "tags": [
+        "Endgame",
+        "Melee",
+        "S-tier"
+      ],
+      "defaultVariant": "legendary",
+      "variantOrder": [
+        "legendary",
+        "uniques",
+        "mythic",
+        "selig",
+        "freeze"
+      ],
+      "mercenarySetup": {
+        "mercenary": {
+          "name": "Raheir",
+          "role": "Hired Mercenary",
+          "selections": [
+            {
+              "type": "Core Skill",
+              "name": "Ground Slam",
+              "assetId": "mercenary-skill:ground-slam"
+            },
+            {
+              "type": "Core Passive",
+              "name": "Raheir's Aegis",
+              "assetId": "mercenary-skill:raheirs-aegis"
+            },
+            {
+              "type": "Iconic Skill",
+              "name": "Bastion",
+              "assetId": "mercenary-skill:bastion"
+            },
+            {
+              "type": "Iconic Passive",
+              "name": "Inspiration",
+              "assetId": "mercenary-skill:inspiration"
+            }
+          ],
+          "assetId": "mercenary:raheir"
+        },
+        "reinforcement": {
+          "name": "Aldkin",
+          "role": "Reinforcement",
+          "skill": "Field of Languish",
+          "opportunity": "Any Skill in combat",
+          "effect": "Stand within the field for 20% damage reduction. Use Haunt until Field of Languish is unlocked.",
+          "assetId": "mercenary:aldkin",
+          "skillAssetId": "mercenary-skill:field-of-languish"
+        }
+      },
+      "variants": {
+        "legendary": {
+          "label": "Legendary",
+          "summary": "Level-70 transition with no required uniques, Lunging Strike for early Fury support, and a complete Legendary Aspect package intended to carry into Torment progression.",
+          "equipment": [
+            {
+              "slot": "Helm",
+              "name": "Wildbolt helm",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Armor",
+                "Fury Regeneration"
+              ],
+              "temper": "Maximum Life (Worldly Endurance)",
+              "masterwork": "Fury Regeneration",
+              "aspect": "Wildbolt Aspect",
+              "assetId": "aspect:wildbolt-aspect",
+              "greaterAffixes": [
+                "Fury Regeneration"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Chest",
+              "name": "Coagulation chest",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Ranks to Rallying Cry",
+                "Fury Regeneration"
+              ],
+              "temper": "Maximum Life (Worldly Endurance)",
+              "masterwork": "Ranks to Rallying Cry",
+              "aspect": "Aspect of Coagulation",
+              "assetId": "aspect:aspect-of-coagulation",
+              "greaterAffixes": [
+                "Ranks to Rallying Cry"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Gloves",
+              "name": "Steadfast Berserker gloves",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Critical Strike Chance",
+                "Cooldown Reduction"
+              ],
+              "temper": "Critical Strike Damage (Worldly Finesse)",
+              "masterwork": "Cooldown Reduction",
+              "aspect": "Steadfast Berserker's Aspect",
+              "assetId": "aspect:steadfast-berserkers-aspect",
+              "greaterAffixes": [
+                "Cooldown Reduction"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Pants",
+              "name": "Heavenly Strength pants",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Armor",
+                "Fury Regeneration"
+              ],
+              "temper": "Maximum Life (Worldly Endurance)",
+              "masterwork": "Fury Regeneration",
+              "aspect": "Aspect of Heavenly Strength",
+              "assetId": "aspect:aspect-of-heavenly-strength",
+              "greaterAffixes": [
+                "Fury Regeneration"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Boots",
+              "name": "Battle-Mad boots",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Ranks to War Cry",
+                "Movement Speed"
+              ],
+              "temper": "Movement Speed (Barbarian Motion)",
+              "masterwork": "Ranks to War Cry",
+              "aspect": "Battle-Mad Aspect",
+              "assetId": "aspect:battle-mad-aspect",
+              "greaterAffixes": [
+                "Ranks to War Cry"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Amulet",
+              "name": "Heavy Hitting amulet",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Movement Speed",
+                "Critical Strike Chance",
+                "All Damage"
+              ],
+              "temper": "Cooldown Reduction (Worldly Stability)",
+              "masterwork": "Critical Strike Chance",
+              "aspect": "Heavy Hitting Aspect",
+              "assetId": "aspect:heavy-hitting-aspect",
+              "greaterAffixes": [
+                "Critical Strike Chance"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 1",
+              "name": "Limitless Rage ring",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Critical Strike Chance",
+                "Cooldown Reduction"
+              ],
+              "temper": "Lucky Hit: Up to a 15% Chance to Restore Primary Resource (Worldly Stability)",
+              "masterwork": "Critical Strike Chance",
+              "aspect": "Aspect of Limitless Rage",
+              "assetId": "aspect:aspect-of-limitless-rage",
+              "greaterAffixes": [
+                "Critical Strike Chance"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 2",
+              "name": "Bold Chieftain ring",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Critical Strike Chance",
+                "Cooldown Reduction"
+              ],
+              "temper": "Resource Generation (Worldly Stability)",
+              "masterwork": "Critical Strike Chance",
+              "aspect": "Bold Chieftain's Aspect",
+              "assetId": "aspect:bold-chieftains-aspect",
+              "greaterAffixes": [
+                "Critical Strike Chance"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Bludgeoning",
+              "name": "Crushing weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Crushing Aspect",
+              "assetId": "aspect:crushing-aspect",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Slashing",
+              "name": "Channeling weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Aspect of Channeling",
+              "assetId": "aspect:aspect-of-channeling",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 1",
+              "name": "Edgemaster weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Edgemaster's Aspect",
+              "assetId": "aspect:edgemasters-aspect",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 2",
+              "name": "Vehement Brawler weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Vehement Brawler's Aspect",
+              "assetId": "aspect:vehement-brawlers-aspect",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            }
+          ],
+          "equipmentPriority": [
+            {
+              "name": "Steadfast Berserker's Aspect"
+            },
+            {
+              "name": "Vehement Brawler's Aspect"
+            },
+            {
+              "name": "Aspect of Channeling"
+            },
+            {
+              "name": "Wildbolt Aspect"
+            },
+            {
+              "name": "Bold Chieftain's Aspect"
+            },
+            {
+              "name": "Aspect of Heavenly Strength"
+            },
+            {
+              "name": "Aspect of Coagulation"
+            },
+            {
+              "name": "Crushing Aspect"
+            },
+            {
+              "name": "Heavy Hitting Aspect"
+            },
+            {
+              "name": "Edgemaster's Aspect"
+            },
+            {
+              "name": "Aspect of Limitless Rage"
+            },
+            {
+              "name": "Battle-Mad Aspect"
+            }
+          ],
+          "talismans": [
+            {
+              "type": "Seal",
+              "name": "Damage multiplier Seal",
+              "role": "Use the best available multiplicative-damage roll.",
+              "assetId": "talisman:legendary-horadric-seal"
+            },
+            {
+              "type": "Unique Charm",
+              "name": "Tuskhelm of Joritz the Mighty",
+              "role": "Unique charm used by the Legendary variant.",
+              "assetId": "talisman:tuskhelm-of-joritz-the-mighty"
+            },
+            {
+              "type": "Charm set · 5 pieces",
+              "name": "Sescheron's Fury",
+              "role": "Use Phoba, Mlor, Linta, Fer, and Berú.",
+              "assetId": "talisman:sescherons-fury"
+            }
+          ],
+          "expertise": [
+            {
+              "type": "Technique",
+              "name": "Polearm Expertise",
+              "assignment": "Equip as Technique after unlocking the system.",
+              "assetId": "class-mechanic:polearm-expertise"
+            },
+            {
+              "type": "Skill assignment",
+              "name": "Whirlwind weapon",
+              "assignment": "Assign the highest-damage two-handed weapon.",
+              "assetId": "class-mechanic:whirlwind-weapon"
+            }
+          ],
+          "runePairs": [],
+          "seasonalSystems": [],
+          "skills": [
+            {
+              "name": "Whirlwind",
+              "kind": "Active · Core",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Tornado Whirlwind",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:tornado-whirlwind"
+                },
+                {
+                  "name": "Cost Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:cost-damage-bonus"
+                },
+                {
+                  "name": "Channel Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:channel-damage-bonus"
+                }
+              ],
+              "skillId": "skill:whirlwind"
+            },
+            {
+              "name": "Lunging Strike",
+              "kind": "Active · Basic",
+              "manualPoints": 1,
+              "maxManualPoints": 15,
+              "levelPoints": 1,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Berserking",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:berserking"
+                },
+                {
+                  "name": "Fury Generation",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:fury-generation"
+                },
+                {
+                  "name": "Skewer",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:skewer"
+                }
+              ],
+              "skillId": "skill:lunging-strike"
+            },
+            {
+              "name": "Rallying Cry",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Fortify",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:fortify"
+                },
+                {
+                  "name": "Potency",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:potency"
+                },
+                {
+                  "name": "Booming Rallying Cry",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:booming-rallying-cry"
+                }
+              ],
+              "skillId": "skill:rallying-cry"
+            },
+            {
+              "name": "War Cry",
+              "kind": "Active · Brawling",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Duration Increase",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:duration-increase"
+                },
+                {
+                  "name": "Ferocity",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:ferocity"
+                },
+                {
+                  "name": "Mighty Roar",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:mighty-roar"
+                }
+              ],
+              "skillId": "skill:war-cry"
+            },
+            {
+              "name": "Iron Skin",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 4,
+              "seasonPoints": 11,
+              "modifiers": [
+                {
+                  "name": "Maximum Life",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:maximum-life"
+                },
+                {
+                  "name": "Weaken",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:weaken"
+                },
+                {
+                  "name": "Juggernaut Iron Skin",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:juggernaut-iron-skin"
+                }
+              ],
+              "skillId": "skill:iron-skin"
+            },
+            {
+              "name": "Call of the Ancients",
+              "kind": "Active · Ultimate",
+              "manualPoints": 4,
+              "maxManualPoints": 15,
+              "levelPoints": 3,
+              "seasonPoints": 1,
+              "modifiers": [
+                {
+                  "name": "Attack Speed and Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:attack-speed-and-damage-bonus"
+                },
+                {
+                  "name": "Damage Bonus",
+                  "source": "season",
+                  "assetId": "skill-modifier:damage-bonus"
+                },
+                {
+                  "name": "Highlander Call of the Ancients",
+                  "source": "season",
+                  "assetId": "skill-modifier:highlander-call-of-the-ancients"
+                }
+              ],
+              "skillId": "skill:call-of-the-ancients"
+            }
+          ],
+          "skillPointSources": {
+            "leveling": 69,
+            "seasonal": 14,
+            "seasonalLabel": "Season Rank / Season Journey",
+            "eternalLabel": "Renown",
+            "total": 83
+          },
+          "skillVerification": "Complete Legendary allocation: 69 leveling points plus 14 progression points. Seasonal characters earn the extra 14 through Season Rank / Season Journey progression; Eternal characters earn their equivalent through Renown.",
+          "glyphs": [
+            {
+              "name": "Challenger",
+              "progression": "Starter Board · target rank 150",
+              "assetId": "glyph:challenger"
+            },
+            {
+              "name": "Wrath",
+              "progression": "Warbringer · target rank 100",
+              "assetId": "glyph:wrath"
+            },
+            {
+              "name": "Twister",
+              "progression": "Blood Rage · target rank 150",
+              "assetId": "glyph:twister"
+            },
+            {
+              "name": "Marshal",
+              "progression": "Carnage · target rank 150",
+              "assetId": "glyph:marshal"
+            },
+            {
+              "name": "Exploit",
+              "progression": "Flawless Technique · target rank 150",
+              "assetId": "glyph:exploit"
+            }
+          ],
+          "warPlans": {
+            "note": "Recommended nodes - no published allocation priority",
+            "groups": [
+              {
+                "category": "War Plan",
+                "nodes": [
+                  "Allocation order is not yet recorded"
+                ]
+              }
+            ]
+          }
+        },
+        "selig": {
+          "label": "Selig",
+          "summary": "Final-goal Selig variant: a zero-bonus-Maximum-Life setup built around Melted Heart of Selig, Endurant Faith, high Fury, and the complete unique weapon package.",
+          "equipment": [
+            {
+              "slot": "Helm",
+              "name": "Tuskhelm of Joritz the Mighty",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Resource",
+                "Fury Regeneration",
+                "Cooldown Reduction"
+              ],
+              "temper": "Armor (Worldly Endurance)",
+              "masterwork": "Maximum Resource",
+              "aspect": null,
+              "assetId": "item:tuskhelm-of-joritz-the-mighty",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Chest",
+              "name": "Rage of Harrogath",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Resource",
+                "Fury Regeneration",
+                "Armor"
+              ],
+              "temper": "Armor (Worldly Endurance)",
+              "masterwork": "Maximum Resource",
+              "aspect": null,
+              "assetId": "item:rage-of-harrogath",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Gloves",
+              "name": "Gohr's Devastating Grips",
+              "rarity": "Unique",
+              "affixes": [
+                "Critical Strike Chance",
+                "Ranks to Whirlwind",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Critical Strike Damage (Worldly Finesse)",
+              "masterwork": "Cooldown Reduction",
+              "aspect": null,
+              "assetId": "item:gohrs-devastating-grips",
+              "greaterAffixes": [
+                "Cooldown Reduction"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Pants",
+              "name": "Tibault's Will",
+              "rarity": "Unique",
+              "affixes": [
+                "Primary Core Stat",
+                "Fury Regeneration",
+                "Armor",
+                "Resistance to All Elements"
+              ],
+              "temper": "Armor (Worldly Endurance)",
+              "masterwork": "Fury Regeneration",
+              "aspect": null,
+              "assetId": "item:tibaults-will",
+              "greaterAffixes": [
+                "Fury Regeneration"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Boots",
+              "name": "Anger Management boots",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Fury Regeneration",
+                "Ranks to War Cry",
+                "Movement Speed"
+              ],
+              "temper": "Movement Speed (Barbarian Motion)",
+              "masterwork": "Ranks to War Cry",
+              "aspect": "Aspect of Anger Management",
+              "assetId": "aspect:aspect-of-anger-management",
+              "greaterAffixes": [
+                "Ranks to War Cry"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Amulet",
+              "name": "Melted Heart of Selig",
+              "rarity": "Mythic Unique",
+              "affixes": [
+                "Critical Strike Chance",
+                "Resource Generation",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Cooldown Reduction (Worldly Stability)",
+              "masterwork": "Resource Generation",
+              "aspect": null,
+              "assetId": "item:melted-heart-of-selig",
+              "greaterAffixes": [
+                "Resource Generation"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 1",
+              "name": "Heavy Hitting ring",
+              "rarity": "Legendary",
+              "affixes": [
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Lucky Hit: Up to a 15% Chance to Restore Primary Resource (Worldly Stability)",
+              "masterwork": "Cooldown Reduction",
+              "aspect": "Heavy Hitting Aspect",
+              "assetId": "aspect:heavy-hitting-aspect",
+              "greaterAffixes": [
+                "Cooldown Reduction"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 2",
+              "name": "Edgemaster ring",
+              "rarity": "Legendary",
+              "affixes": [
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Cooldown Reduction (Worldly Stability)",
+              "masterwork": "Vulnerable Damage",
+              "aspect": "Edgemaster's Aspect",
+              "assetId": "aspect:edgemasters-aspect",
+              "greaterAffixes": [
+                "Vulnerable Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Bludgeoning",
+              "name": "Channeling weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Weapon Damage",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Aspect of Channeling",
+              "assetId": "aspect:aspect-of-channeling",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Slashing",
+              "name": "The Grandfather",
+              "rarity": "Mythic Unique",
+              "affixes": [
+                "Strength",
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Damage (Worldly Finesse)",
+              "masterwork": "Critical Strike Chance",
+              "aspect": null,
+              "assetId": "item:the-grandfather",
+              "greaterAffixes": [
+                "Critical Strike Chance"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 1",
+              "name": "Crushing weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Critical Strike Damage",
+                "Physical Damage",
+                "Lucky Hit: Chance to Restore Primary Resource"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Crushing Aspect",
+              "assetId": "aspect:crushing-aspect",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 2",
+              "name": "Ramaladni's Magnum Opus",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Resource",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Maximum Resource",
+              "aspect": null,
+              "assetId": "item:ramaladnis-magnum-opus",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            }
+          ],
+          "equipmentPriority": [
+            {
+              "name": "Gohr's Devastating Grips"
+            },
+            {
+              "name": "Crushing Aspect"
+            },
+            {
+              "name": "Ramaladni's Magnum Opus"
+            },
+            {
+              "name": "Heavy Hitting Aspect"
+            },
+            {
+              "name": "Melted Heart of Selig"
+            },
+            {
+              "name": "Tuskhelm of Joritz the Mighty"
+            },
+            {
+              "name": "Tibault's Will"
+            },
+            {
+              "name": "The Grandfather"
+            },
+            {
+              "name": "Aspect of Channeling"
+            },
+            {
+              "name": "Rage of Harrogath"
+            },
+            {
+              "name": "Edgemaster's Aspect"
+            },
+            {
+              "name": "Aspect of Anger Management"
+            }
+          ],
+          "talismans": [
+            {
+              "type": "Seal",
+              "name": "Damage multiplier Seal",
+              "role": "Use a multiplicative-damage roll with no Maximum Life.",
+              "assetId": "talisman:legendary-horadric-seal"
+            },
+            {
+              "type": "Unique Charm",
+              "name": "Endurant Faith",
+              "role": "Required for the Melted Heart of Selig setup.",
+              "assetId": "talisman:endurant-faith"
+            },
+            {
+              "type": "Charm set · 5 pieces",
+              "name": "Berserker's Crucible",
+              "role": "Use Phoba, Mlor, Linta, Fer, and Berú; avoid Maximum Life rolls.",
+              "assetId": "talisman:berserkers-crucible"
+            }
+          ],
+          "expertise": [
+            {
+              "type": "Technique",
+              "name": "Polearm Expertise",
+              "assignment": "15% increased Lucky Hit Chance and increased damage while Healthy.",
+              "assetId": "class-mechanic:polearm-expertise"
+            },
+            {
+              "type": "Skill assignment",
+              "name": "Whirlwind weapon",
+              "assignment": "Assign Whirlwind to the two-handed mace for the Mace Arsenal bonus.",
+              "assetId": "class-mechanic:whirlwind-weapon"
+            }
+          ],
+          "runePairs": [],
+          "seasonalSystems": [
+            {
+              "system": "Build status",
+              "name": "Season 15 runewords pending",
+              "effect": "Season 15 runewords are still being evaluated. No unconfirmed pair is shown here.",
+              "assetId": "seasonal:season-15-runewords-pending"
+            }
+          ],
+          "skills": [
+            {
+              "name": "Whirlwind",
+              "kind": "Active · Core",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Tornado Whirlwind",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:tornado-whirlwind"
+                },
+                {
+                  "name": "Cost Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:cost-damage-bonus"
+                },
+                {
+                  "name": "Channel Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:channel-damage-bonus"
+                }
+              ],
+              "skillId": "skill:whirlwind"
+            },
+            {
+              "name": "Rallying Cry",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Fortify",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:fortify"
+                },
+                {
+                  "name": "Potency",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:potency"
+                },
+                {
+                  "name": "Booming Rallying Cry",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:booming-rallying-cry"
+                }
+              ],
+              "skillId": "skill:rallying-cry"
+            },
+            {
+              "name": "War Cry",
+              "kind": "Active · Brawling",
+              "manualPoints": 4,
+              "maxManualPoints": 15,
+              "levelPoints": 4,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Ferocity",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:ferocity"
+                },
+                {
+                  "name": "Mighty Roar",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:mighty-roar"
+                },
+                {
+                  "name": "Vulnerable War Cry",
+                  "source": "season",
+                  "assetId": "skill-modifier:vulnerable-war-cry"
+                }
+              ],
+              "skillId": "skill:war-cry"
+            },
+            {
+              "name": "Challenging Shout",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:damage-bonus"
+                },
+                {
+                  "name": "Weaken",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:weaken"
+                },
+                {
+                  "name": "Raging Challenging Shout",
+                  "source": "season",
+                  "assetId": "skill-modifier:raging-challenging-shout"
+                }
+              ],
+              "skillId": "skill:challenging-shout"
+            },
+            {
+              "name": "Iron Skin",
+              "kind": "Active · Defensive",
+              "manualPoints": 1,
+              "maxManualPoints": 15,
+              "levelPoints": 1,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Movement Speed",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:movement-speed"
+                },
+                {
+                  "name": "Resolve",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:resolve"
+                },
+                {
+                  "name": "Juggernaut Iron Skin",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:juggernaut-iron-skin"
+                }
+              ],
+              "skillId": "skill:iron-skin"
+            },
+            {
+              "name": "Wrath of the Berserker",
+              "kind": "Active · Ultimate",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 6,
+              "seasonPoints": 9,
+              "modifiers": [
+                {
+                  "name": "Fury Generation",
+                  "source": "season",
+                  "assetId": "skill-modifier:fury-generation"
+                },
+                {
+                  "name": "Full Throttle Wrath of the Berserker",
+                  "source": "season",
+                  "assetId": "skill-modifier:full-throttle-wrath-of-the-berserker"
+                },
+                {
+                  "name": "Duration Bonus",
+                  "source": "season",
+                  "assetId": "skill-modifier:duration-bonus"
+                }
+              ],
+              "skillId": "skill:wrath-of-the-berserker"
+            }
+          ],
+          "skillPointSources": {
+            "leveling": 69,
+            "seasonal": 14,
+            "seasonalLabel": "Season Rank / Season Journey",
+            "eternalLabel": "Renown",
+            "total": 83
+          },
+          "skillVerification": "Complete Selig allocation: 69 leveling points plus 14 progression points. Seasonal characters earn the extra 14 through Season Rank / Season Journey progression; Eternal characters earn their equivalent through Renown.",
+          "glyphs": [
+            {
+              "name": "Challenger",
+              "progression": "Starter Board · target rank 150",
+              "assetId": "glyph:challenger"
+            },
+            {
+              "name": "Wrath",
+              "progression": "Warbringer · target rank 100",
+              "assetId": "glyph:wrath"
+            },
+            {
+              "name": "Twister",
+              "progression": "Blood Rage · target rank 150",
+              "assetId": "glyph:twister"
+            },
+            {
+              "name": "Marshal",
+              "progression": "Weapons Master · target rank 150",
+              "assetId": "glyph:marshal"
+            },
+            {
+              "name": "Exploit",
+              "progression": "Flawless Technique · target rank 150",
+              "assetId": "glyph:exploit"
+            }
+          ],
+          "warPlans": {
+            "note": "Recommended nodes - no published allocation priority",
+            "groups": [
+              {
+                "category": "War Plan",
+                "nodes": [
+                  "Allocation order is not yet recorded"
+                ]
+              }
+            ]
+          }
+        },
+        "uniques": {
+          "extends": "legendary",
+          "label": "Uniques",
+          "summary": "Mid-game Uniques variant with its dedicated unique-and-legendary transition loadout.",
+          "equipment": [
+            {
+              "slot": "Helm",
+              "name": "Tuskhelm of Joritz the Mighty",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Maximum Resource",
+                "Fury Regeneration"
+              ],
+              "temper": "Maximum Life (Worldly Endurance)",
+              "masterwork": "Maximum Life",
+              "aspect": null,
+              "assetId": "item:tuskhelm-of-joritz-the-mighty",
+              "greaterAffixes": [
+                "Maximum Life"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Chest",
+              "name": "Heavenly Strength chest",
+              "rarity": "Legendary",
+              "affixes": [
+                "Maximum Life",
+                "Attack Speed",
+                "Maximum Resource",
+                "Resource Generation"
+              ],
+              "temper": "No temper specified",
+              "masterwork": "Maximum Resource",
+              "aspect": "Aspect of Heavenly Strength",
+              "assetId": "aspect:aspect-of-heavenly-strength",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Gloves",
+              "name": "Gohr's Devastating Grips",
+              "rarity": "Unique",
+              "affixes": [
+                "Critical Strike Chance",
+                "Ranks to Whirlwind",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Critical Strike Damage (Worldly Finesse)",
+              "masterwork": "Vulnerable Damage",
+              "aspect": null,
+              "assetId": "item:gohrs-devastating-grips",
+              "greaterAffixes": [
+                "Vulnerable Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Pants",
+              "name": "Tibault's Will",
+              "rarity": "Unique",
+              "affixes": [
+                "Primary Core Stat",
+                "Maximum Life",
+                "Armor",
+                "Resistance to All Elements"
+              ],
+              "temper": "Maximum Life (Worldly Endurance)",
+              "masterwork": "Maximum Life",
+              "aspect": null,
+              "assetId": "item:tibaults-will",
+              "greaterAffixes": [
+                "Maximum Life"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Boots",
+              "name": "Battle-Mad boots",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Ranks to War Cry",
+                "Movement Speed"
+              ],
+              "temper": "Movement Speed (Barbarian Motion)",
+              "masterwork": "Ranks to War Cry",
+              "aspect": "Battle-Mad Aspect",
+              "assetId": "aspect:battle-mad-aspect",
+              "greaterAffixes": [
+                "Ranks to War Cry"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Amulet",
+              "name": "Heavy Hitting amulet",
+              "rarity": "Legendary",
+              "affixes": [
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Cooldown Reduction (Worldly Stability)",
+              "masterwork": "Cooldown Reduction",
+              "aspect": "Heavy Hitting Aspect",
+              "assetId": "aspect:heavy-hitting-aspect",
+              "greaterAffixes": [
+                "Cooldown Reduction"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 1",
+              "name": "Limitless Rage ring",
+              "rarity": "Legendary",
+              "affixes": [
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Lucky Hit: Up to a 15% Chance to Restore Primary Resource (Worldly Stability)",
+              "masterwork": "Cooldown Reduction",
+              "aspect": "Aspect of Limitless Rage",
+              "assetId": "aspect:aspect-of-limitless-rage",
+              "greaterAffixes": [
+                "Cooldown Reduction"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 2",
+              "name": "Bold Chieftain ring",
+              "rarity": "Legendary",
+              "affixes": [
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Cooldown Reduction (Worldly Stability)",
+              "masterwork": "Cooldown Reduction",
+              "aspect": "Bold Chieftain's Aspect",
+              "assetId": "aspect:bold-chieftains-aspect",
+              "greaterAffixes": [
+                "Cooldown Reduction"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Bludgeoning",
+              "name": "Crushing weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Weapon Damage",
+                "Strength",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Crushing Aspect",
+              "assetId": "aspect:crushing-aspect",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Slashing",
+              "name": "Channeling weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Attack Speed",
+                "Critical Strike Chance",
+                "Maximum Life",
+                "All Stats"
+              ],
+              "temper": "Critical Strike Damage (Worldly Finesse)",
+              "masterwork": "Critical Strike Chance",
+              "aspect": "Aspect of Channeling",
+              "assetId": "aspect:aspect-of-channeling",
+              "greaterAffixes": [
+                "Critical Strike Chance"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 1",
+              "name": "Edgemaster weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Edgemaster's Aspect",
+              "assetId": "aspect:edgemasters-aspect",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 2",
+              "name": "Ramaladni's Magnum Opus",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Resource",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Maximum Resource",
+              "aspect": null,
+              "assetId": "item:ramaladnis-magnum-opus",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            }
+          ],
+          "equipmentPriority": [
+            {
+              "name": "Gohr's Devastating Grips"
+            },
+            {
+              "name": "Edgemaster's Aspect"
+            },
+            {
+              "name": "Ramaladni's Magnum Opus"
+            },
+            {
+              "name": "Aspect of Channeling"
+            },
+            {
+              "name": "Tuskhelm of Joritz the Mighty"
+            },
+            {
+              "name": "Tibault's Will"
+            },
+            {
+              "name": "Bold Chieftain's Aspect"
+            },
+            {
+              "name": "Heavy Hitting Aspect"
+            },
+            {
+              "name": "Aspect of Limitless Rage"
+            },
+            {
+              "name": "Crushing Aspect"
+            },
+            {
+              "name": "Battle-Mad Aspect"
+            },
+            {
+              "name": "Aspect of Heavenly Strength"
+            }
+          ],
+          "talismans": [
+            {
+              "type": "Seal",
+              "name": "Damage multiplier Seal",
+              "role": "Use the best available multiplicative-damage roll.",
+              "assetId": "talisman:legendary-horadric-seal"
+            },
+            {
+              "type": "Unique Charm",
+              "name": "Fists of Fate",
+              "role": "Unique charm used by this variant.",
+              "assetId": "talisman:fists-of-fate"
+            },
+            {
+              "type": "Charm set · 5 pieces",
+              "name": "Sescheron's Fury",
+              "role": "Use Phoba, Mlor, Linta, Fer, and Berú.",
+              "assetId": "talisman:sescherons-fury"
+            }
+          ],
+          "skills": [
+            {
+              "name": "Whirlwind",
+              "kind": "Active · Core",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Tornado Whirlwind",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:tornado-whirlwind"
+                },
+                {
+                  "name": "Cost Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:cost-damage-bonus"
+                },
+                {
+                  "name": "Channel Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:channel-damage-bonus"
+                }
+              ],
+              "skillId": "skill:whirlwind"
+            },
+            {
+              "name": "Rallying Cry",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Fortify",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:fortify"
+                },
+                {
+                  "name": "Potency",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:potency"
+                },
+                {
+                  "name": "Booming Rallying Cry",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:booming-rallying-cry"
+                }
+              ],
+              "skillId": "skill:rallying-cry"
+            },
+            {
+              "name": "War Cry",
+              "kind": "Active · Brawling",
+              "manualPoints": 4,
+              "maxManualPoints": 15,
+              "levelPoints": 4,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Ferocity",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:ferocity"
+                },
+                {
+                  "name": "Mighty Roar",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:mighty-roar"
+                },
+                {
+                  "name": "Vulnerable War Cry",
+                  "source": "season",
+                  "assetId": "skill-modifier:vulnerable-war-cry"
+                }
+              ],
+              "skillId": "skill:war-cry"
+            },
+            {
+              "name": "Challenging Shout",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Bawl",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:bawl"
+                },
+                {
+                  "name": "Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:damage-bonus"
+                },
+                {
+                  "name": "Duration Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:duration-bonus"
+                }
+              ],
+              "skillId": "skill:challenging-shout"
+            },
+            {
+              "name": "Iron Skin",
+              "kind": "Active · Defensive",
+              "manualPoints": 1,
+              "maxManualPoints": 15,
+              "levelPoints": 1,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Maximum Life",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:maximum-life"
+                },
+                {
+                  "name": "Movement Speed",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:movement-speed"
+                },
+                {
+                  "name": "Juggernaut Iron Skin",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:juggernaut-iron-skin"
+                }
+              ],
+              "skillId": "skill:iron-skin"
+            },
+            {
+              "name": "Wrath of the Berserker",
+              "kind": "Active · Ultimate",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 5,
+              "seasonPoints": 10,
+              "modifiers": [
+                {
+                  "name": "Fury Generation",
+                  "source": "season",
+                  "assetId": "skill-modifier:fury-generation"
+                },
+                {
+                  "name": "Full Throttle Wrath of the Berserker",
+                  "source": "season",
+                  "assetId": "skill-modifier:full-throttle-wrath-of-the-berserker"
+                },
+                {
+                  "name": "Duration Bonus",
+                  "source": "season",
+                  "assetId": "skill-modifier:duration-bonus"
+                }
+              ],
+              "skillId": "skill:wrath-of-the-berserker"
+            }
+          ],
+          "skillPointSources": {
+            "leveling": 69,
+            "seasonal": 14,
+            "seasonalLabel": "Season Rank / Season Journey",
+            "eternalLabel": "Renown",
+            "total": 83
+          },
+          "skillVerification": "Complete Uniques allocation: 69 leveling points plus 14 progression points.",
+          "glyphs": [
+            {
+              "name": "Challenger",
+              "progression": "Starter Board · target rank 150",
+              "assetId": "glyph:challenger"
+            },
+            {
+              "name": "Wrath",
+              "progression": "Warbringer · target rank 100",
+              "assetId": "glyph:wrath"
+            },
+            {
+              "name": "Twister",
+              "progression": "Blood Rage · target rank 150",
+              "assetId": "glyph:twister"
+            },
+            {
+              "name": "Marshal",
+              "progression": "Carnage · target rank 150",
+              "assetId": "glyph:marshal"
+            },
+            {
+              "name": "Exploit",
+              "progression": "Flawless Technique · target rank 150",
+              "assetId": "glyph:exploit"
+            }
+          ]
+        },
+        "mythic": {
+          "extends": "selig",
+          "label": "Mythic",
+          "summary": "Entry-endgame Mythic variant with Maximum Life, Ring of Starless Skies, and The Grandfather.",
+          "equipment": [
+            {
+              "slot": "Helm",
+              "name": "Tuskhelm of Joritz the Mighty",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Maximum Resource",
+                "Cooldown Reduction"
+              ],
+              "temper": "Maximum Life (Worldly Endurance)",
+              "masterwork": "Maximum Resource",
+              "aspect": null,
+              "assetId": "item:tuskhelm-of-joritz-the-mighty",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Chest",
+              "name": "Heavenly Strength chest",
+              "rarity": "Legendary",
+              "affixes": [
+                "Maximum Life",
+                "Attack Speed",
+                "Impairment Reduction",
+                "Resource Generation"
+              ],
+              "temper": "Maximum Life (Worldly Endurance)",
+              "masterwork": "No target specified",
+              "aspect": "Aspect of Heavenly Strength",
+              "assetId": "aspect:aspect-of-heavenly-strength",
+              "greaterAffixes": [],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Gloves",
+              "name": "Gohr's Devastating Grips",
+              "rarity": "Unique",
+              "affixes": [
+                "Critical Strike Chance",
+                "Ranks to Whirlwind",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Critical Strike Damage (Worldly Finesse)",
+              "masterwork": "Vulnerable Damage",
+              "aspect": null,
+              "assetId": "item:gohrs-devastating-grips",
+              "greaterAffixes": [
+                "Vulnerable Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Pants",
+              "name": "Tibault's Will",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Fury Regeneration",
+                "Armor"
+              ],
+              "temper": "Maximum Life (Worldly Endurance)",
+              "masterwork": "Fury Regeneration",
+              "aspect": null,
+              "assetId": "item:tibaults-will",
+              "greaterAffixes": [
+                "Fury Regeneration"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Boots",
+              "name": "Battle-Mad boots",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Ranks to War Cry",
+                "Movement Speed"
+              ],
+              "temper": "Movement Speed (Natural Motion)",
+              "masterwork": "Ranks to War Cry",
+              "aspect": "Battle-Mad Aspect",
+              "assetId": "aspect:battle-mad-aspect",
+              "greaterAffixes": [
+                "Ranks to War Cry"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Amulet",
+              "name": "Crushing amulet",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "All Damage"
+              ],
+              "temper": "Resource Generation (Worldly Stability)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Crushing Aspect",
+              "assetId": "aspect:crushing-aspect",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 1",
+              "name": "Heavy Hitting ring",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Maximum Life",
+                "Critical Strike Chance",
+                "Cooldown Reduction"
+              ],
+              "temper": "Resource Generation (Worldly Stability)",
+              "masterwork": "Critical Strike Chance",
+              "aspect": "Heavy Hitting Aspect",
+              "assetId": "aspect:heavy-hitting-aspect",
+              "greaterAffixes": [
+                "Critical Strike Chance"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 2",
+              "name": "Ring of Starless Skies",
+              "rarity": "Mythic Unique",
+              "affixes": [
+                "Maximum Life",
+                "Ranks to All Skills",
+                "Critical Strike Damage",
+                "Vulnerable Damage"
+              ],
+              "temper": "Cooldown Reduction (Worldly Stability)",
+              "masterwork": "Vulnerable Damage",
+              "aspect": null,
+              "assetId": "item:ring-of-starless-skies",
+              "greaterAffixes": [
+                "Vulnerable Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Bludgeoning",
+              "name": "Channeling weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Weapon Damage",
+                "Strength",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Aspect of Channeling",
+              "assetId": "aspect:aspect-of-channeling",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Slashing",
+              "name": "The Grandfather",
+              "rarity": "Mythic Unique",
+              "affixes": [
+                "Attack Speed",
+                "Critical Strike Chance",
+                "Maximum Life",
+                "All Stats"
+              ],
+              "temper": "Critical Strike Damage (Worldly Finesse)",
+              "masterwork": "Critical Strike Chance",
+              "aspect": null,
+              "assetId": "item:the-grandfather",
+              "greaterAffixes": [
+                "Critical Strike Chance"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 1",
+              "name": "Edgemaster weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Critical Strike Damage",
+                "Ranks to All Skills",
+                "All Damage",
+                "Ranks to Shout Skills"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "All Damage",
+              "aspect": "Edgemaster's Aspect",
+              "assetId": "aspect:edgemasters-aspect",
+              "greaterAffixes": [
+                "All Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 2",
+              "name": "Ramaladni's Magnum Opus",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Resource",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Maximum Resource",
+              "aspect": null,
+              "assetId": "item:ramaladnis-magnum-opus",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            }
+          ],
+          "equipmentPriority": [
+            {
+              "name": "Gohr's Devastating Grips"
+            },
+            {
+              "name": "Edgemaster's Aspect"
+            },
+            {
+              "name": "Ramaladni's Magnum Opus"
+            },
+            {
+              "name": "Tuskhelm of Joritz the Mighty"
+            },
+            {
+              "name": "Tibault's Will"
+            },
+            {
+              "name": "The Grandfather"
+            },
+            {
+              "name": "Ring of Starless Skies"
+            },
+            {
+              "name": "Aspect of Heavenly Strength"
+            },
+            {
+              "name": "Aspect of Channeling"
+            },
+            {
+              "name": "Crushing Aspect"
+            },
+            {
+              "name": "Heavy Hitting Aspect"
+            },
+            {
+              "name": "Battle-Mad Aspect"
+            }
+          ],
+          "talismans": [
+            {
+              "type": "Seal",
+              "name": "Damage multiplier Seal",
+              "role": "Use the best available multiplicative-damage roll.",
+              "assetId": "talisman:legendary-horadric-seal"
+            },
+            {
+              "type": "Unique Charm",
+              "name": "Fists of Fate",
+              "role": "Unique charm used by this variant.",
+              "assetId": "talisman:fists-of-fate"
+            },
+            {
+              "type": "Charm set · 5 pieces",
+              "name": "Sescheron's Fury",
+              "role": "Use Phoba, Mlor, Linta, Fer, and Berú.",
+              "assetId": "talisman:sescherons-fury"
+            }
+          ],
+          "skills": [
+            {
+              "name": "Whirlwind",
+              "kind": "Active · Core",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Tornado Whirlwind",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:tornado-whirlwind"
+                },
+                {
+                  "name": "Cost Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:cost-damage-bonus"
+                },
+                {
+                  "name": "Channel Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:channel-damage-bonus"
+                }
+              ],
+              "skillId": "skill:whirlwind"
+            },
+            {
+              "name": "Rallying Cry",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Fortify",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:fortify"
+                },
+                {
+                  "name": "Potency",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:potency"
+                },
+                {
+                  "name": "Booming Rallying Cry",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:booming-rallying-cry"
+                }
+              ],
+              "skillId": "skill:rallying-cry"
+            },
+            {
+              "name": "War Cry",
+              "kind": "Active · Brawling",
+              "manualPoints": 4,
+              "maxManualPoints": 15,
+              "levelPoints": 4,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Ferocity",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:ferocity"
+                },
+                {
+                  "name": "Mighty Roar",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:mighty-roar"
+                },
+                {
+                  "name": "Vulnerable War Cry",
+                  "source": "season",
+                  "assetId": "skill-modifier:vulnerable-war-cry"
+                }
+              ],
+              "skillId": "skill:war-cry"
+            },
+            {
+              "name": "Challenging Shout",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Bawl",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:bawl"
+                },
+                {
+                  "name": "Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:damage-bonus"
+                },
+                {
+                  "name": "Duration Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:duration-bonus"
+                }
+              ],
+              "skillId": "skill:challenging-shout"
+            },
+            {
+              "name": "Iron Skin",
+              "kind": "Active · Defensive",
+              "manualPoints": 1,
+              "maxManualPoints": 15,
+              "levelPoints": 1,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Maximum Life",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:maximum-life"
+                },
+                {
+                  "name": "Movement Speed",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:movement-speed"
+                },
+                {
+                  "name": "Juggernaut Iron Skin",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:juggernaut-iron-skin"
+                }
+              ],
+              "skillId": "skill:iron-skin"
+            },
+            {
+              "name": "Wrath of the Berserker",
+              "kind": "Active · Ultimate",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 5,
+              "seasonPoints": 10,
+              "modifiers": [
+                {
+                  "name": "Fury Generation",
+                  "source": "season",
+                  "assetId": "skill-modifier:fury-generation"
+                },
+                {
+                  "name": "Full Throttle Wrath of the Berserker",
+                  "source": "season",
+                  "assetId": "skill-modifier:full-throttle-wrath-of-the-berserker"
+                },
+                {
+                  "name": "Duration Bonus",
+                  "source": "season",
+                  "assetId": "skill-modifier:duration-bonus"
+                }
+              ],
+              "skillId": "skill:wrath-of-the-berserker"
+            }
+          ],
+          "skillPointSources": {
+            "leveling": 69,
+            "seasonal": 14,
+            "seasonalLabel": "Season Rank / Season Journey",
+            "eternalLabel": "Renown",
+            "total": 83
+          },
+          "skillVerification": "Complete Mythic allocation: 69 leveling points plus 14 progression points.",
+          "glyphs": [
+            {
+              "name": "Challenger",
+              "progression": "Starter Board · target rank 150",
+              "assetId": "glyph:challenger"
+            },
+            {
+              "name": "Wrath",
+              "progression": "Warbringer · target rank 100",
+              "assetId": "glyph:wrath"
+            },
+            {
+              "name": "Twister",
+              "progression": "Blood Rage · target rank 150",
+              "assetId": "glyph:twister"
+            },
+            {
+              "name": "Might",
+              "progression": "Carnage · target rank 150",
+              "assetId": "glyph:might"
+            },
+            {
+              "name": "Exploit",
+              "progression": "Flawless Technique · target rank 150",
+              "assetId": "glyph:exploit"
+            }
+          ]
+        },
+        "freeze": {
+          "extends": "selig",
+          "label": "Freeze",
+          "summary": "Late-game Freeze variant built around Azurewrath, Melted Heart of Selig, and the final unique weapon package.",
+          "equipment": [
+            {
+              "slot": "Helm",
+              "name": "Tuskhelm of Joritz the Mighty",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Resource",
+                "Fury Regeneration",
+                "Cooldown Reduction"
+              ],
+              "temper": "Armor (Worldly Endurance)",
+              "masterwork": "Maximum Resource",
+              "aspect": null,
+              "assetId": "item:tuskhelm-of-joritz-the-mighty",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Chest",
+              "name": "Rage of Harrogath",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Resource",
+                "Fury Regeneration",
+                "Armor"
+              ],
+              "temper": "Armor (Worldly Endurance)",
+              "masterwork": "Maximum Resource",
+              "aspect": null,
+              "assetId": "item:rage-of-harrogath",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Gloves",
+              "name": "Gohr's Devastating Grips",
+              "rarity": "Unique",
+              "affixes": [
+                "Critical Strike Chance",
+                "Ranks to Whirlwind",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Critical Strike Damage (Worldly Finesse)",
+              "masterwork": "Cooldown Reduction",
+              "aspect": null,
+              "assetId": "item:gohrs-devastating-grips",
+              "greaterAffixes": [
+                "Cooldown Reduction"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Pants",
+              "name": "Tibault's Will",
+              "rarity": "Unique",
+              "affixes": [
+                "Primary Core Stat",
+                "Fury Regeneration",
+                "Armor",
+                "Resistance to All Elements"
+              ],
+              "temper": "Armor (Worldly Endurance)",
+              "masterwork": "Fury Regeneration",
+              "aspect": null,
+              "assetId": "item:tibaults-will",
+              "greaterAffixes": [
+                "Fury Regeneration"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Boots",
+              "name": "Anger Management boots",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Fury Regeneration",
+                "Ranks to War Cry",
+                "Movement Speed"
+              ],
+              "temper": "Movement Speed (Barbarian Motion)",
+              "masterwork": "Ranks to War Cry",
+              "aspect": "Aspect of Anger Management",
+              "assetId": "aspect:aspect-of-anger-management",
+              "greaterAffixes": [
+                "Ranks to War Cry"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Amulet",
+              "name": "Melted Heart of Selig",
+              "rarity": "Mythic Unique",
+              "affixes": [
+                "Critical Strike Chance",
+                "Resource Generation",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Cooldown Reduction (Worldly Stability)",
+              "masterwork": "Resource Generation",
+              "aspect": null,
+              "assetId": "item:melted-heart-of-selig",
+              "greaterAffixes": [
+                "Resource Generation"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 1",
+              "name": "Heavy Hitting ring",
+              "rarity": "Legendary",
+              "affixes": [
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Lucky Hit: Up to a 15% Chance to Restore Primary Resource (Worldly Stability)",
+              "masterwork": "Cooldown Reduction",
+              "aspect": "Heavy Hitting Aspect",
+              "assetId": "aspect:heavy-hitting-aspect",
+              "greaterAffixes": [
+                "Cooldown Reduction"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Ring 2",
+              "name": "Crushing ring",
+              "rarity": "Legendary",
+              "affixes": [
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "Vulnerable Damage",
+                "Cooldown Reduction"
+              ],
+              "temper": "Cooldown Reduction (Worldly Stability)",
+              "masterwork": "Vulnerable Damage",
+              "aspect": "Crushing Aspect",
+              "assetId": "aspect:crushing-aspect",
+              "greaterAffixes": [
+                "Vulnerable Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Bludgeoning",
+              "name": "Channeling weapon",
+              "rarity": "Legendary",
+              "affixes": [
+                "Strength",
+                "Weapon Damage",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Damage",
+              "aspect": "Aspect of Channeling",
+              "assetId": "aspect:aspect-of-channeling",
+              "greaterAffixes": [
+                "Critical Strike Damage"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "2H Slashing",
+              "name": "The Grandfather",
+              "rarity": "Mythic Unique",
+              "affixes": [
+                "Strength",
+                "Critical Strike Chance",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Critical Strike Chance",
+              "aspect": null,
+              "assetId": "item:the-grandfather",
+              "greaterAffixes": [
+                "Critical Strike Chance"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 1",
+              "name": "Azurewrath",
+              "rarity": "Unique",
+              "affixes": [
+                "Weapon Damage",
+                "Critical Strike Damage",
+                "Physical Damage",
+                "Lucky Hit: Chance to Restore Primary Resource"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "No target specified",
+              "aspect": null,
+              "assetId": "item:azurewrath",
+              "greaterAffixes": [],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            },
+            {
+              "slot": "Dual Wield 2",
+              "name": "Ramaladni's Magnum Opus",
+              "rarity": "Unique",
+              "affixes": [
+                "Strength",
+                "Maximum Resource",
+                "Critical Strike Damage",
+                "Physical Damage"
+              ],
+              "temper": "Critical Strike Chance (Worldly Destruction)",
+              "masterwork": "Maximum Resource",
+              "aspect": null,
+              "assetId": "item:ramaladnis-magnum-opus",
+              "greaterAffixes": [
+                "Maximum Resource"
+              ],
+              "affixSource": "Mobalytics Whirlwind Barbarian · Season 15"
+            }
+          ],
+          "equipmentPriority": [
+            {
+              "name": "Gohr's Devastating Grips"
+            },
+            {
+              "name": "Ramaladni's Magnum Opus"
+            },
+            {
+              "name": "Heavy Hitting Aspect"
+            },
+            {
+              "name": "Melted Heart of Selig"
+            },
+            {
+              "name": "Tuskhelm of Joritz the Mighty"
+            },
+            {
+              "name": "Tibault's Will"
+            },
+            {
+              "name": "The Grandfather"
+            },
+            {
+              "name": "Aspect of Channeling"
+            },
+            {
+              "name": "Rage of Harrogath"
+            },
+            {
+              "name": "Aspect of Anger Management"
+            },
+            {
+              "name": "Crushing Aspect"
+            },
+            {
+              "name": "Azurewrath"
+            }
+          ],
+          "skills": [
+            {
+              "name": "Whirlwind",
+              "kind": "Active · Core",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Tornado Whirlwind",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:tornado-whirlwind"
+                },
+                {
+                  "name": "Cost Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:cost-damage-bonus"
+                },
+                {
+                  "name": "Channel Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:channel-damage-bonus"
+                }
+              ],
+              "skillId": "skill:whirlwind"
+            },
+            {
+              "name": "Rallying Cry",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Fortify",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:fortify"
+                },
+                {
+                  "name": "Potency",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:potency"
+                },
+                {
+                  "name": "Booming Rallying Cry",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:booming-rallying-cry"
+                }
+              ],
+              "skillId": "skill:rallying-cry"
+            },
+            {
+              "name": "War Cry",
+              "kind": "Active · Brawling",
+              "manualPoints": 4,
+              "maxManualPoints": 15,
+              "levelPoints": 4,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Ferocity",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:ferocity"
+                },
+                {
+                  "name": "Mighty Roar",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:mighty-roar"
+                },
+                {
+                  "name": "Vulnerable War Cry",
+                  "source": "season",
+                  "assetId": "skill-modifier:vulnerable-war-cry"
+                }
+              ],
+              "skillId": "skill:war-cry"
+            },
+            {
+              "name": "Challenging Shout",
+              "kind": "Active · Defensive",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 15,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Damage Bonus",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:damage-bonus"
+                },
+                {
+                  "name": "Weaken",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:weaken"
+                },
+                {
+                  "name": "Raging Challenging Shout",
+                  "source": "season",
+                  "assetId": "skill-modifier:raging-challenging-shout"
+                }
+              ],
+              "skillId": "skill:challenging-shout"
+            },
+            {
+              "name": "Iron Skin",
+              "kind": "Active · Defensive",
+              "manualPoints": 1,
+              "maxManualPoints": 15,
+              "levelPoints": 1,
+              "seasonPoints": 0,
+              "modifiers": [
+                {
+                  "name": "Movement Speed",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:movement-speed"
+                },
+                {
+                  "name": "Resolve",
+                  "source": "leveling",
+                  "assetId": "skill-modifier:resolve"
+                },
+                {
+                  "name": "Endure",
+                  "source": "season",
+                  "assetId": "skill-modifier:endure"
+                }
+              ],
+              "skillId": "skill:iron-skin"
+            },
+            {
+              "name": "Wrath of the Berserker",
+              "kind": "Active · Ultimate",
+              "manualPoints": 15,
+              "maxManualPoints": 15,
+              "levelPoints": 7,
+              "seasonPoints": 8,
+              "modifiers": [
+                {
+                  "name": "Fury Generation",
+                  "source": "season",
+                  "assetId": "skill-modifier:fury-generation"
+                },
+                {
+                  "name": "Full Throttle Wrath of the Berserker",
+                  "source": "season",
+                  "assetId": "skill-modifier:full-throttle-wrath-of-the-berserker"
+                },
+                {
+                  "name": "Duration Bonus",
+                  "source": "season",
+                  "assetId": "skill-modifier:duration-bonus"
+                }
+              ],
+              "skillId": "skill:wrath-of-the-berserker"
+            }
+          ],
+          "skillPointSources": {
+            "leveling": 69,
+            "seasonal": 14,
+            "seasonalLabel": "Season Rank / Season Journey",
+            "eternalLabel": "Renown",
+            "total": 83
+          },
+          "skillVerification": "Complete Freeze allocation: 69 leveling points plus 14 progression points.",
+          "glyphs": [
+            {
+              "name": "Challenger",
+              "progression": "Starter Board · target rank 150",
+              "assetId": "glyph:challenger"
+            },
+            {
+              "name": "Wrath",
+              "progression": "Warbringer · target rank 100",
+              "assetId": "glyph:wrath"
+            },
+            {
+              "name": "Twister",
+              "progression": "Blood Rage · target rank 150",
+              "assetId": "glyph:twister"
+            },
+            {
+              "name": "Marshal",
+              "progression": "Carnage · target rank 150",
+              "assetId": "glyph:marshal"
+            },
+            {
+              "name": "Exploit",
+              "progression": "Flawless Technique · target rank 150",
+              "assetId": "glyph:exploit"
+            }
+          ]
+        }
+      },
+      "classAssetId": "class:barbarian"
+    }
+  ]
+}

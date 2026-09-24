@@ -1,0 +1,33 @@
+{
+  "stages": [
+    {
+      "id": "starter",
+      "label": "Starter",
+      "pairs": [
+        [{ "name": "Cir", "image": "/diablo/assets/game/runes-seasonal/cir-rune.png" }, { "name": "Qua", "image": "/diablo/assets/game/runes-seasonal/qua-rune.png" }],
+        [{ "name": "Moni", "image": "/diablo/assets/game/runes-seasonal/moni-rune.png" }, { "name": "Gar", "image": "/diablo/assets/game/runes-seasonal/gar-rune.png" }]
+      ]
+    },
+    {
+      "id": "mid-game",
+      "label": "Mid Game",
+      "pairs": [
+        [{ "name": "Poc", "image": "/diablo/assets/game/runes-seasonal/poc-rune.png" }, { "name": "Gar", "image": "/diablo/assets/game/runes-seasonal/gar-rune.png" }],
+        [{ "name": "Cir", "image": "/diablo/assets/game/runes-seasonal/cir-rune.png" }, { "name": "Qua", "image": "/diablo/assets/game/runes-seasonal/qua-rune.png" }]
+      ]
+    },
+    {
+      "id": "end-game",
+      "label": "End Game",
+      "pairs": [
+        [{ "name": "Igni", "image": "/diablo/assets/game/runes-seasonal/igni-rune.png" }, { "name": "Gar", "image": "/diablo/assets/game/runes-seasonal/gar-rune.png" }],
+        [{ "name": "Bac", "image": "/diablo/assets/game/runes-seasonal/bac-rune.png" }, { "name": "Que", "image": "/diablo/assets/game/runes-seasonal/que-rune.png" }]
+      ]
+    }
+  ],
+  "soulSplinters": [
+    { "name": "Soulstone", "image": "/diablo/assets/game/runes-seasonal/soulstone-splinter.png" },
+    { "name": "Pain", "image": "/diablo/assets/game/runes-seasonal/pain-splinter.png" },
+    { "name": "Anguish", "image": "/diablo/assets/game/runes-seasonal/anguish-splinter.png" }
+  ]
+}

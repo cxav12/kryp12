@@ -162,6 +162,7 @@ const els = {
   previousStandingsSeason: document.querySelector("#previous-standings-season"),
   nextStandingsSeason: document.querySelector("#next-standings-season"),
   standingsBody: document.querySelector("#standings-body"),
+  standingsClinchLegend: document.querySelector("#standings-clinch-legend"),
   leagueLeaders: document.querySelector("#league-leaders"),
   leaderboardToggle: document.querySelector("#leaderboard-toggle"),
   sectionNav: document.querySelector("#league-section-nav"),
@@ -305,6 +306,7 @@ function standingsRecordsFromData(data) {
         streakCode: record.streak?.streakCode || "",
         streakNumber: Number(record.streak?.streakNumber),
         streakType: record.streak?.streakType || "",
+        clinchIndicator: String(record.clinchIndicator || (record.divisionChamp ? "y" : record.clinched ? "x" : "")).trim().toLowerCase(),
       });
     });
   });
@@ -442,8 +444,38 @@ function standingsTeamCell(record) {
   logo.loading = "lazy";
   logo.addEventListener("error", () => logo.remove(), { once: true });
   team.append(logo, document.createTextNode(record.teamName));
+  if (record.clinchIndicator) {
+    const indicator = element("span", "standing-clinch-indicator", record.clinchIndicator);
+    indicator.title = clinchIndicatorLabel(record.clinchIndicator);
+    indicator.setAttribute("aria-label", indicator.title);
+    team.append(indicator);
+  }
   cell.append(team);
   return cell;
+}
+
+const CLINCH_INDICATORS = {
+  x: "Clinched playoff berth",
+  y: "Clinched division",
+  z: "Clinched best record in league",
+  w: "Clinched Wild Card",
+};
+
+function clinchIndicatorLabel(indicator) {
+  return CLINCH_INDICATORS[indicator] || "Clinched postseason position";
+}
+
+function renderClinchLegend(records) {
+  const indicators = [...new Set(records.map((record) => record.clinchIndicator).filter(Boolean))];
+  els.standingsClinchLegend.hidden = indicators.length === 0;
+  els.standingsClinchLegend.replaceChildren(...indicators.map((indicator) => {
+    const item = element("span", "standings-clinch-legend-item");
+    item.append(
+      element("strong", "standing-clinch-indicator", indicator),
+      element("span", "standing-clinch-label", `— ${clinchIndicatorLabel(indicator)}`),
+    );
+    return item;
+  }));
 }
 
 function signedStandingsValue(value) {
@@ -455,6 +487,7 @@ function signedStandingsValue(value) {
 function renderStandingsRows() {
   const records = filteredStandings();
   els.standingsBody.replaceChildren();
+  renderClinchLegend(records);
 
   if (!records.length) {
     const row = element("tr");

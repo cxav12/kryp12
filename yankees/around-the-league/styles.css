@@ -639,6 +639,53 @@
   object-fit: contain;
 }
 
+.standing-clinch-indicator {
+  display: inline-grid !important;
+  place-items: center;
+  flex: 0 0 auto;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  color: #08111d;
+  background: #9b8548;
+  font-size: .68rem;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+.standings-clinch-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 12px;
+  color: var(--yankees-silver);
+  font-size: var(--text-small);
+}
+
+.standings-clinch-legend[hidden] {
+  display: none;
+}
+
+.standings-clinch-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.standings-clinch-legend-item .standing-clinch-indicator {
+  display: inline-grid !important;
+}
+
+.standing-clinch-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  line-height: 20px;
+  transform: translateY(1px);
+}
+
 .rank-indicator {
   font-weight: 800;
 }

@@ -11,9 +11,9 @@
   <link rel="preconnect" href="https://site.api.espn.com">
   <link rel="preconnect" href="https://site.web.api.espn.com">
   <link rel="preconnect" href="https://a.espncdn.com">
-  <link rel="stylesheet" href="./styles.css?v=20260914-no-line-borders1">
-  <link rel="stylesheet" href="./player-profile/styles.css?v=20260914-no-line-borders1">
-  <script src="./player-profile/app.js?v=20260905-phase2" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=20260915-soft-gold-palette1">
+  <link rel="stylesheet" href="./player-profile/styles.css?v=20260920-section-headings1">
+  <script src="./player-profile/app.js?v=20260920-career-stats2" defer></script>
 </head>
 <body>
   <main class="site-shell">
@@ -32,21 +32,20 @@
     </section>
 
     <section class="player-finder" aria-labelledby="player-search-title">
-      <div><span>2026 Roster</span><h2 id="player-search-title">Find a Player</h2></div>
-      <form id="player-search-form"><label class="visually-hidden" for="player-search">Player name</label><input id="player-search" list="player-options" type="search" placeholder="Search the Ravens roster" autocomplete="off"><datalist id="player-options"></datalist><button type="submit">View Profile</button></form>
+      <div><h2 id="player-search-title">Find a Player</h2></div>
+      <form id="player-search-form"><label class="visually-hidden" for="player-search">Player name</label><input id="player-search" list="player-options" type="search" placeholder="Search any NFL player" autocomplete="off"><datalist id="player-options"></datalist><label class="quick-player-select" for="quick-player-select"><span class="visually-hidden">Quick select a Ravens player</span><select id="quick-player-select" aria-label="Quick select a Ravens player" disabled><option value="">Quick Select a Raven</option></select></label></form>
     </section>
 
     <section class="profile-hero" id="profile-hero" aria-live="polite"><p class="loading-copy">Loading player profile…</p></section>
 
     <section class="profile-grid" id="profile-content" hidden>
       <article class="profile-panel season-panel">
-        <header class="profile-panel-heading"><div><span>Performance</span><h2>Season Stats</h2></div><div class="split-toggle" role="group" aria-label="Statistic split"><button class="active" type="button" data-split="season">Season</button><button type="button" data-split="home">Home</button><button type="button" data-split="away">Away</button></div></header>
+        <header class="profile-panel-heading"><div><h2>Season Stats <span class="season-game-count" id="season-game-count"></span></h2></div><div class="split-toggle" role="group" aria-label="Statistic split"><button class="active" type="button" data-split="season">Season</button><button type="button" data-split="home">Home</button><button type="button" data-split="away">Away</button></div></header>
         <div class="stat-card-grid" id="season-stats"></div>
+        <section class="season-subsection"><h3>Recent Action</h3><div id="recent-action"></div></section>
+        <section class="season-subsection season-pace"><h3>Season Pace</h3><div class="stat-card-grid compact" id="season-pace"></div></section>
       </article>
-      <article class="profile-panel recent-panel"><header class="profile-panel-heading"><div><span>Last Five Games</span><h2>Recent Action</h2></div></header><div id="recent-action"></div></article>
-      <article class="profile-panel pace-panel"><header class="profile-panel-heading"><div><span>17-Game Projection</span><h2>Season Pace</h2></div></header><div class="stat-card-grid compact" id="season-pace"></div></article>
-      <article class="profile-panel career-panel"><header class="profile-panel-heading"><div><span>NFL Career</span><h2>Career Totals</h2></div></header><div class="stat-card-grid compact" id="career-totals"></div></article>
-      <article class="profile-panel log-panel"><header class="profile-panel-heading"><div><span>2026</span><h2>Season Log</h2></div></header><div id="season-log"></div></article>
+      <article class="profile-panel career-panel"><header class="profile-panel-heading"><div><h2>Career Totals</h2></div></header><div class="stat-card-grid compact" id="career-totals"></div><div id="career-by-year"></div></article>
     </section>
     <footer class="site-footer"><nav aria-label="Footer"><a href="./">Home</a><a href="./legal-disclaimer/">Legal Disclaimer</a></nav></footer>
   </main>

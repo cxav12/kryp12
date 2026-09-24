@@ -70,12 +70,12 @@ function gameRow(event) {
   const venue = game.venue?.fullName || "Venue TBD";
   return `<li class="schedule-row"><div class="schedule-week"><span>${escapeHtml(date)}</span><strong>${escapeHtml(weekLabel(event))}</strong></div><div class="matchup"><img src="${escapeHtml(teamLogo(opponent.team?.abbreviation))}" alt=""><div><span>${escapeHtml(location)} · ${ravens.homeAway === "away" ? "at" : "vs"}</span><strong>${escapeHtml(opponent.team?.displayName || "Opponent TBD")}</strong></div></div><div class="result ${escapeHtml(result.className)}">${escapeHtml(result.text)}</div><div class="schedule-venue"><span>${escapeHtml(broadcast)}</span><strong>${escapeHtml(venue)}</strong></div><a class="game-center-link" href="./?game=${encodeURIComponent(event.id)}">Game Center</a></li>`;
 }
-function scheduleSection(key, eyebrow, title, games, emptyMessage = "") {
+function scheduleSection(key, title, games, emptyMessage = "") {
   if (!games.length && key === "postseason") return "";
   const contents = games.length ? `<ol class="schedule-list">${games.map(gameRow).join("")}</ol>` : `<p class="section-empty">${escapeHtml(emptyMessage)}</p>`;
   const gameCount = games.filter((event) => !event._bye).length; const byeCount = games.length - gameCount;
   const count = `${gameCount} ${gameCount === 1 ? "game" : "games"}${byeCount ? ` · ${byeCount} bye` : ""}`;
-  return `<section class="schedule-section" data-section="${escapeHtml(key)}"><header class="schedule-heading"><div><span>${escapeHtml(eyebrow)}</span><h2>${escapeHtml(title)}</h2></div><span class="game-count">${escapeHtml(count)}</span></header>${contents}</section>`;
+  return `<section class="schedule-section" data-section="${escapeHtml(key)}"><header class="schedule-heading"><div><h2>${escapeHtml(title)}</h2></div><span class="game-count">${escapeHtml(count)}</span></header>${contents}</section>`;
 }
 function render() {
   const preseason = state.events.filter((event) => seasonType(event) === "preseason");
@@ -86,11 +86,11 @@ function render() {
   const pending = regular.filter((event) => eventState(event) !== "post");
   const upcoming = pending.slice(0, 1); const future = pending.slice(1);
   els.sections.innerHTML = [
-    scheduleSection("preseason", "Exhibition", "Preseason Games", preseason, "No preseason games are listed."),
-    scheduleSection("completed", "Regular Season", "Completed Games", completed, "No regular-season games have been completed."),
-    scheduleSection("upcoming", "Next Matchup", "Upcoming Game", upcoming, "The next regular-season game has not been scheduled."),
-    scheduleSection("future", "Ahead", "Future Games", future, "No additional regular-season games are listed."),
-    scheduleSection("postseason", "Playoffs", "Postseason Games", postseason),
+    scheduleSection("preseason", "Preseason Games", preseason, "No preseason games are listed."),
+    scheduleSection("completed", "Completed Games", completed, "No regular-season games have been completed."),
+    scheduleSection("upcoming", "Upcoming Game", upcoming, "The next regular-season game has not been scheduled."),
+    scheduleSection("future", "Future Games", future, "No additional regular-season games are listed."),
+    scheduleSection("postseason", "Postseason Games", postseason),
   ].join("");
   els.summary.textContent = `${state.events.length} Ravens games and ${regular.some((event) => event._bye) ? "1 bye week" : "no listed bye week"} for ${state.season}`;
   els.status.textContent = `${state.season} schedule loaded`;

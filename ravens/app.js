@@ -9,7 +9,7 @@ const TEAM_COLORS = {
   LV: "#000000", LAC: "#0080C6", LAR: "#003594", MIA: "#008E97", MIN: "#4F2683", NE: "#002244", NO: "#D3BC8D", NYG: "#0B2265",
   NYJ: "#125740", PHI: "#004C54", PIT: "#FFB612", SF: "#AA0000", SEA: "#002244", TB: "#D50A0A", TEN: "#0C2340", WSH: "#5A1414",
 };
-const state = { events: [], selectedId: "", summary: null, nflReceiving: null, statView: "offense", timer: null, animatedCharts: new Set(), animatedComparisons: new Set() };
+const state = { events: [], selectedId: "", summary: null, nflReceiving: null, teamRecords: new Map(), statView: "offense", statTeam: "ravens", timer: null, refreshInFlight: false, animatedCharts: new Set(), animatedComparisons: new Set() };
 const els = {
   title: document.querySelector("#page-title"), description: document.querySelector("#page-description"),
   status: document.querySelector("#data-status"), selector: document.querySelector("#game-selector-grid"),
@@ -19,11 +19,13 @@ const els = {
   winValue: document.querySelector("#win-probability-value"), scoring: document.querySelector("#scoring-plays"),
   comparison: document.querySelector("#team-comparison"),
   metrics: document.querySelector("#game-metrics"), players: document.querySelector("#player-stats"),
+  opponentStatToggle: document.querySelector("#opponent-stat-toggle"),
 };
 
 function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])); }
 function teamLogo(abbr) { return `https://a.espncdn.com/i/teamlogos/nfl/500/${String(abbr || "nfl").toLowerCase()}.png`; }
 function teamColor(team) { return TEAM_COLORS[String(team?.abbreviation || "").toUpperCase()] || "#241773"; }
+function readableTextColor(hex) { const value = String(hex).replace("#", ""); const channels = [0, 2, 4].map((offset) => Number.parseInt(value.slice(offset, offset + 2), 16)); const luminance = channels[0] * .299 + channels[1] * .587 + channels[2] * .114; return luminance > 155 ? "#17151f" : "#ddd9e2"; }
 function eventState(event) { return event?.competitions?.[0]?.status?.type?.state || event?.status?.type?.state || "pre"; }
 function isPreseason(event) {
   const value = event?.seasonType || event?.competitions?.[0]?.seasonType || {};
@@ -59,7 +61,17 @@ function playerInStory(article, roster) {
   const athlete = (article.categories || []).find((category) => /athlete|player/i.test(category.type || "") && (category.athleteId || category.id));
   return athlete ? { id: athlete.athleteId || athlete.id, displayName: athlete.description || athlete.name || "Ravens player" } : null;
 }
-function recordText(entry) { return entry?.records?.find((record) => record.type === "total")?.summary || "0-0"; }
+function recordText(...entries) {
+  const summaries = entries.flatMap((entry) => entry?.records || []).filter((record) => record.type === "total" && record.summary).map((record) => String(record.summary));
+  return summaries.sort((a, b) => b.split("-").reduce((total, value) => total + (Number(value) || 0), 0) - a.split("-").reduce((total, value) => total + (Number(value) || 0), 0))[0] || "0-0";
+}
+function recordWithFinalResult(record, teamScore, opponentScore, includeResult) {
+  const parts = String(record || "0-0").split("-").map(Number);
+  if (!includeResult || parts.some((value) => !Number.isFinite(value)) || parts.reduce((total, value) => total + value, 0) > 0) return record;
+  if (teamScore > opponentScore) return "1-0";
+  if (teamScore < opponentScore) return "0-1";
+  return "0-0-1";
+}
 function detailText(event) {
   const status = competition(event).status?.type || event.status?.type || {};
   if (status.state === "in") return status.shortDetail || status.detail || "Live";
@@ -74,6 +86,16 @@ async function getSchedule() {
   return [...new Map(events.map((event) => [String(event.id), event])).values()].sort((a, b) => new Date(a.date) - new Date(b.date));
 }
 async function getSummary(id) { return getJson(`${ESPN_SITE_API}/summary?event=${encodeURIComponent(id)}`); }
+function standingsEntries(data) { return (data.children || data.groups || []).flatMap((conference) => (conference.children || [conference]).flatMap((division) => division.standings?.entries || [])); }
+async function getTeamRecords() {
+  const data = await getJson(`${ESPN_SITE_API}/standings?season=${SEASON}&seasontype=2`);
+  return new Map(standingsEntries(data).map((entry) => {
+    const stats = entry.stats || [];
+    const value = (...names) => stats.find((stat) => names.includes(stat.name) || names.includes(stat.abbreviation))?.value;
+    const wins = Number(value("wins", "W")) || 0; const losses = Number(value("losses", "L")) || 0; const ties = Number(value("ties", "T")) || 0;
+    return [entry.team?.abbreviation, ties ? `${wins}-${losses}-${ties}` : `${wins}-${losses}`];
+  }).filter(([abbreviation]) => abbreviation));
+}
 function nflGameSlug(event) {
   const game = competition(event); const away = (game.competitors || []).find((entry) => entry.homeAway === "away"); const home = (game.competitors || []).find((entry) => entry.homeAway === "home");
   const awaySlug = away?.team?.slug?.split("-").at(-1); const homeSlug = home?.team?.slug?.split("-").at(-1); const week = event?.week?.number || game.week?.number;
@@ -120,9 +142,9 @@ function broadcastNames(...games) {
   ]).filter(Boolean);
   return [...new Set(names)].join(" / ") || "Broadcast TBD";
 }
-function scoreTeam(entry, side = "left") {
+function scoreTeam(entry, side = "left", recordFallback, currentRecord) {
   const team = entry.team || {};
-  const info = `<div class="score-team-info"><strong>${escapeHtml(team.displayName || "TBD")}</strong><span>${escapeHtml(recordText(entry))}</span></div>`;
+  const info = `<div class="score-team-info"><strong>${escapeHtml(team.displayName || "TBD")}</strong><span>${escapeHtml(currentRecord || recordText(entry, recordFallback))}</span></div>`;
   const image = `<img src="${escapeHtml(teamLogo(team.abbreviation))}" alt="${escapeHtml(team.displayName || "Team")} logo">`;
   const score = `<b class="team-score">${escapeHtml(displayScore(entry.score))}</b>`;
   return `<div class="score-team ${side}" style="--team-color:${teamColor(team)}">${side === "right" ? `${score}${image}${info}` : `${info}${image}${score}`}</div>`;
@@ -135,25 +157,38 @@ function renderGame() {
   const game = summaryGame || scheduleGame;
   const ravens = (game.competitors || []).find((item) => item.team?.abbreviation === RAVENS_ABBR) || {};
   const opponent = (game.competitors || []).find((item) => item.team?.abbreviation !== RAVENS_ABBR) || {};
+  const scheduleRavens = (scheduleGame.competitors || []).find((item) => item.team?.abbreviation === RAVENS_ABBR);
+  const scheduleOpponent = (scheduleGame.competitors || []).find((item) => item.team?.abbreviation !== RAVENS_ABBR);
+  const opponentColor = teamColor(opponent.team);
+  els.opponentStatToggle.textContent = opponent.team?.name || opponent.team?.shortDisplayName || opponent.team?.displayName || opponent.team?.abbreviation || "Opponent";
+  els.opponentStatToggle.style.setProperty("--active-team-color", opponentColor);
+  els.opponentStatToggle.style.setProperty("--active-team-text", readableTextColor(opponentColor));
   const status = game.status?.type || event?.status?.type || {}; const currentState = status.state || "pre";
   const venueInfo = game.venue?.fullName ? game.venue : scheduleGame.venue;
   const venue = venueInfo?.fullName || "Venue TBD";
   const broadcast = broadcastNames(game, scheduleGame);
   const indoor = game.venue?.indoor ?? scheduleGame.venue?.indoor;
   const weather = game.weather?.displayValue || scheduleGame.weather?.displayValue || (indoor ? "Indoors" : "Forecast pending");
+  const includeFinalResult = currentState === "post" && !isPreseason(event);
+  const ravensScore = Number(displayScore(ravens.score, 0)); const opponentScore = Number(displayScore(opponent.score, 0));
+  const ravensRecord = recordWithFinalResult(state.teamRecords.get(ravens.team?.abbreviation) || recordText(ravens, scheduleRavens), ravensScore, opponentScore, includeFinalResult);
+  const opponentRecord = recordWithFinalResult(state.teamRecords.get(opponent.team?.abbreviation) || recordText(opponent, scheduleOpponent), opponentScore, ravensScore, includeFinalResult);
   els.title.textContent = currentState === "in" ? "Live Game" : currentState === "post" ? "Game Recap" : "Game Preview";
   els.description.textContent = currentState === "in" ? "Live scoring, game flow, and updated team statistics." : currentState === "post" ? "Final score, scoring plays, and game statistics." : "Upcoming matchup details, notes, and scheduled kickoff.";
   els.status.textContent = currentState === "in" ? "Live · updates every 30 sec" : currentState === "post" ? "Final" : "2026 schedule";
   const kickoff = formatDate(event.date, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" });
-  els.game.innerHTML = `<div class="scoreboard" style="--left-team-color:${teamColor(ravens.team)};--right-team-color:${teamColor(opponent.team)}">${scoreTeam(ravens, "left")}<div class="game-state"><strong>${escapeHtml(status.shortDetail || status.description || "Scheduled")}</strong><span>${escapeHtml(kickoff)}</span></div>${scoreTeam(opponent, "right")}</div><div class="game-info-bar"><span><b>Kickoff:</b> ${escapeHtml(kickoff)}</span><i></i><span><b>Watch:</b> ${escapeHtml(broadcast)}</span><i></i><span><b>Venue:</b> ${escapeHtml(venue)}</span><i></i><span><b>Conditions:</b> ${escapeHtml(weather)}</span></div><div class="quarter-board"><table><thead><tr><th>Team</th><th>1</th><th>2</th><th>3</th><th>4</th><th>Total</th></tr></thead><tbody>${quarterRow(ravens, quarterScores(ravens))}${quarterRow(opponent, quarterScores(opponent))}</tbody></table></div>`;
+  const gameStateTime = currentState === "post" ? "" : `<span>${escapeHtml(kickoff)}</span>`;
+  els.game.innerHTML = `<div class="scoreboard${currentState === "post" ? " is-final" : ""}" style="--left-team-color:${teamColor(ravens.team)};--right-team-color:${teamColor(opponent.team)}">${scoreTeam(ravens, "left", scheduleRavens, ravensRecord)}<div class="game-state${currentState === "post" ? " is-final" : ""}"><strong>${escapeHtml(status.shortDetail || status.description || "Scheduled")}</strong>${gameStateTime}</div>${scoreTeam(opponent, "right", scheduleOpponent, opponentRecord)}</div><div class="game-info-bar"><span><b>Kickoff:</b> ${escapeHtml(kickoff)}</span><i></i><span><b>Watch:</b> ${escapeHtml(broadcast)}</span><i></i><span><b>Venue:</b> ${escapeHtml(venue)}</span><i></i><span><b>Conditions:</b> ${escapeHtml(weather)}</span></div><div class="quarter-board"><table><thead><tr><th>Team</th><th>1</th><th>2</th><th>3</th><th>4</th><th>Total</th></tr></thead><tbody>${quarterRow(ravens, quarterScores(ravens))}${quarterRow(opponent, quarterScores(opponent))}</tbody></table></div>`;
 }
 
 function renderWinProbability() {
   const game = state.summary?.header?.competitions?.[0] || competition();
   const home = (game.competitors || []).find((item) => item.homeAway === "home") || {};
   const ravensAreHome = home.team?.abbreviation === RAVENS_ABBR;
-  const playsById = new Map((state.summary?.plays || []).map((play) => [String(play.id), play]));
-  const scoringIds = new Set((state.summary?.scoringPlays || []).map((play) => String(play.id)));
+  const scoringPlays = state.summary?.scoringPlays || [];
+  const drivePlays = [state.summary?.drives?.current, ...(state.summary?.drives?.previous || [])].flatMap((drive) => drive?.plays || []);
+  const playsById = new Map([...drivePlays, ...(state.summary?.plays || []), ...scoringPlays].map((play) => [String(play.id), play]));
+  const scoringIds = new Set(scoringPlays.map((play) => String(play.id)));
   const timeline = (state.summary?.winprobability || []).map((entry) => {
     const homePct = Number(entry.homeWinPercentage) * 100;
     const play = entry.play || playsById.get(String(entry.playId));
@@ -179,7 +214,7 @@ function renderWinProbability() {
   const periods = new Map();
   timeline.forEach((point, index) => { const period = Number(point.play?.period?.number); if (!period) return; const range = periods.get(period) || { first: index, last: index }; range.last = index; periods.set(period, range); });
   const periodMarkup = [...periods.entries()].map(([period, range], index) => { const start = (range.first / timeline.length) * width; const end = ((range.last + 1) / timeline.length) * width; return `${index ? `<line x1="${start.toFixed(2)}" y1="${plot.top}" x2="${start.toFixed(2)}" y2="${y(0)}" class="win-probability-period-line" />` : ""}<text x="${((start + end) / 2).toFixed(2)}" y="${height - 10}" class="win-probability-period-label">${period <= 4 ? `Q${period}` : "OT"}</text>`; }).join("");
-  const scoringPoints = points.filter((point) => point.scoring).map((point) => { const play = point.play || {}; const period = Number(play.period?.number); const periodLabel = period > 4 ? "OT" : `Q${period || "?"}`; const clock = play.clock?.displayValue ? ` ${play.clock.displayValue}` : ""; const label = `${periodLabel}${clock}: ${play.text || play.shortText || "Scoring play"} Ravens win probability ${point.probability.toFixed(1)}%`; return `<circle cx="${point.x.toFixed(2)}" cy="${y(point.probability).toFixed(2)}" r="6" class="win-probability-scoring-point" tabindex="0" data-win-probability-tooltip="${escapeHtml(label)}" />`; }).join("");
+  const scoringPoints = points.filter((point) => point.scoring).map((point) => { const play = point.play || {}; const period = Number(play.period?.number); const periodLabel = period > 4 ? "OT" : `Q${period || "?"}`; const clock = play.clock?.displayValue ? ` ${play.clock.displayValue}` : ""; const description = String(play.text || play.shortText || "Scoring play").trim(); const label = `${periodLabel}${clock}: ${description} · Ravens win probability ${point.probability.toFixed(1)}%`; return `<circle cx="${point.x.toFixed(2)}" cy="${y(point.probability).toFixed(2)}" r="6" class="win-probability-scoring-point" tabindex="0" data-win-probability-tooltip="${escapeHtml(label)}" />`; }).join("");
   els.win.innerHTML = `<div class="win-probability-chart-scroll"><svg class="win-probability-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Ravens win probability by quarter">${[100, 75, 50, 25, 0].map((value) => `<line x1="0" y1="${y(value)}" x2="${width}" y2="${y(value)}" class="win-probability-grid-line${value === 50 ? " is-midline" : ""}" /><text x="0" y="${y(value) - 5}" class="win-probability-axis-label">${value}%</text>`).join("")}${periodMarkup}<polygon points="0,${y(0)} ${linePoints} ${width},${y(0)}" class="win-probability-area" /><polyline points="${linePoints}" pathLength="1000" class="win-probability-line" />${scoringPoints}</svg></div>`;
   animateWinProbability();
 }
@@ -220,7 +255,7 @@ function animateComparison() {
 const LEADER_CARDS = [
   { title: "Quarterbacks", category: /passing/i, position: /quarterback|\bQB\b/i, stats: [["CMP/ATT", ["C/ATT", "CMP/ATT"]], ["YDS", ["YDS"]], ["TD", ["TD"]], ["INT", ["INT"]]] },
   { title: "Running Backs", category: /rushing/i, position: /running back|fullback|\b(?:RB|FB)\b/i, stats: [["CAR", ["CAR"]], ["YDS", ["YDS"]], ["AVG", ["AVG"]], ["TD", ["TD"]]] },
-  { title: "Top Receivers", category: /receiving/i, stats: [["REC", ["REC"]], ["YDS", ["YDS"]], ["TD", ["TD"]], ["TGTS", ["TGTS", "TGT"]]] },
+  { title: "Receivers", category: /receiving/i, stats: [["REC", ["REC"]], ["YDS", ["YDS"]], ["TD", ["TD"]], ["TGTS", ["TGTS", "TGT"]]] },
 ];
 function leaderCategory(teamAbbr, pattern) {
   const group = (state.summary?.boxscore?.players || []).find((item) => item.team?.abbreviation === teamAbbr);
@@ -248,7 +283,7 @@ function leaderPlayer(entry, side) {
   if (!entry) return `<div class="leader-player ${side}"><div class="leader-portrait-placeholder">—</div><strong>Not available</strong></div>`;
   const player = entry.player.athlete || {};
   const portrait = player.headshot?.href || player.headshot || (player.id ? `https://a.espncdn.com/i/headshots/nfl/players/full/${player.id}.png` : teamLogo(entry.team?.abbreviation));
-  return `<div class="leader-player ${side}" style="--leader-team-color:${teamColor(entry.team)}"><span>${escapeHtml(entry.team?.abbreviation || "Team")}</span><img src="${escapeHtml(portrait)}" alt="${escapeHtml(player.displayName || "Player")}"><strong>${escapeHtml(player.displayName || "Player")}</strong></div>`;
+  return `<div class="leader-player ${side}" style="--leader-team-color:${teamColor(entry.team)}"><img src="${escapeHtml(portrait)}" alt="${escapeHtml(player.displayName || "Player")}"><strong>${escapeHtml(player.displayName || "Player")}</strong></div>`;
 }
 function renderMetrics() {
   const ravensAbbr = ravenEntry()?.team?.abbreviation || RAVENS_ABBR;
@@ -330,13 +365,23 @@ function receivingTable(category) {
   return { labels: ["REC", "YDS", "TD", "TGTS", "LONG", "YAC"], rows };
 }
 function playerStatTable(category, team) { return rushingTable(category, team) || receivingTable(category) || passingTable(category); }
+function playerStatCategoryLabel(category, team) {
+  let label = String(category.text || category.name || "Stats").trim();
+  const teamPrefixes = [team?.displayName, team?.shortDisplayName, team?.location, team?.name, team?.abbreviation].filter(Boolean).sort((a, b) => String(b).length - String(a).length);
+  for (const prefix of teamPrefixes) {
+    const escapedPrefix = String(prefix).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    label = label.replace(new RegExp(`^${escapedPrefix}\\s+`, "i"), "");
+  }
+  return label || "Stats";
+}
 function renderPlayers() {
-  const groups = playerCategories();
+  const selectedTeam = state.statTeam === "opponent" ? opponentEntry()?.team?.abbreviation : ravenEntry()?.team?.abbreviation || RAVENS_ABBR;
+  const groups = playerCategories().filter(({ team }) => team?.abbreviation === selectedTeam);
   if (!groups.length) { els.players.innerHTML = `<p class="empty-copy">${eventState(selectedEvent()) === "pre" ? "Player statistics will appear when the game begins." : "These player statistics are not available for this game."}</p>`; return; }
   els.players.innerHTML = groups.map(({ team, category }) => {
     const table = playerStatTable(category, team);
     const rows = table.rows.map((athlete) => `<tr><td>${escapeHtml(athlete.athlete?.displayName || "Player")}</td>${(athlete.stats || []).map((value) => `<td>${escapeHtml(value)}</td>`).join("")}</tr>`).join("");
-    return `<div class="player-stats-wrap"><table class="player-table"><colgroup><col class="player-name-column"><col class="first-stat-column"><col span="${Math.max(0, table.labels.length - 1)}"></colgroup><thead><tr class="team-section-row"><td colspan="${table.labels.length + 1}">${escapeHtml(team?.abbreviation || "Team")} · ${escapeHtml(category.text || category.name || "Stats")}</td></tr><tr><th>Player</th>${table.labels.map((label) => `<th>${escapeHtml(label)}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>`;
+    return `<div class="player-stats-wrap"><table class="player-table"><colgroup><col class="player-name-column"><col class="first-stat-column"><col span="${Math.max(0, table.labels.length - 1)}"></colgroup><thead><tr class="team-section-row"><td colspan="${table.labels.length + 1}">${escapeHtml(playerStatCategoryLabel(category, team))}</td></tr><tr><th>Player</th>${table.labels.map((label) => `<th>${escapeHtml(label)}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>`;
   }).join("");
 }
 async function renderBreakingDetails() {
@@ -350,7 +395,9 @@ async function renderBreakingDetails() {
       const age = today.getTime() - date.getTime();
       return Number.isFinite(date.getTime()) && age >= 0 && age <= 7 * 24 * 60 * 60 * 1000;
     }).flatMap((transaction) => {
-      const moves = String(transaction.description || "").match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [];
+      const moves = String(transaction.description || "")
+        .replace(/([.!?])\s+(?=(?:Activated|Acquired|Claimed|Elevated|Placed|Promoted|Re-signed|Released|Signed|Suspended|Traded|Waived)\b)/gi, "$1\n")
+        .split("\n");
       return moves.map((description) => ({ date: transaction.date, description: description.trim() }));
     }).filter((item) => item.description).slice(0, 3); if (!items.length) return;
     els.breakingGrid.innerHTML = items.map((item) => {
@@ -359,13 +406,15 @@ async function renderBreakingDetails() {
       const published = item.date ? formatDate(`${item.date}T12:00:00`, { month: "short", day: "numeric" }) : "";
       const image = playerHeadshot(player);
       const type = /injur|\bIR\b|physically unable|\bPUP\b|reserve list/i.test(text) ? "Injury Update" : /\btrad(?:e|ed|es|ing)\b/i.test(text) ? "Trade" : /\b(?:sign(?:ed|ing|s)?|claim(?:ed|s)?|acquir(?:ed|es|ing))\b/i.test(text) ? "Acquisition" : /\bdemot(?:e|ed|es|ing)\b/i.test(text) ? "Demotion" : /\b(?:promot(?:e|ed|es|ing)|elevat(?:e|ed|es|ing))\b/i.test(text) ? "Promotion" : "Roster Move";
-      return `<article class="breaking-item"><img src="${escapeHtml(image)}" alt="${escapeHtml(playerName(player))}"><div class="breaking-copy"><div class="breaking-meta"><span>${escapeHtml(type)}</span><time>${escapeHtml(published)}</time></div><b>${escapeHtml(playerName(player) || "Baltimore Ravens")}</b><p>${escapeHtml(text)}</p></div></article>`;
+      return `<article class="breaking-item"><img class="${player ? "breaking-player-image" : "breaking-team-logo"}" src="${escapeHtml(image)}" alt="${escapeHtml(playerName(player))}"><div class="breaking-copy"><div class="breaking-meta"><span>${escapeHtml(type)}</span><time>${escapeHtml(published)}</time></div><b>${escapeHtml(playerName(player) || "Baltimore Ravens")}</b><p>${escapeHtml(text)}</p></div></article>`;
     }).join(""); els.breaking.hidden = false;
   } catch (_) { /* Supplemental feed; the game center remains available. */ }
 }
 function renderDashboard() { els.dashboard.hidden = false; renderWinProbability(); renderScoring(); renderComparison(); renderMetrics(); renderPlayers(); }
-async function selectGame(id, { scroll = false } = {}) {
-  state.selectedId = String(id); state.summary = null; state.nflReceiving = null; renderSelectors(); renderGame(); els.winPanel.hidden = true; els.dashboard.hidden = true;
+async function selectGame(id, { scroll = false, refresh = false } = {}) {
+  state.selectedId = String(id);
+  if (!refresh) { state.summary = null; state.nflReceiving = null; renderSelectors(); renderGame(); els.winPanel.hidden = true; els.dashboard.hidden = true; }
+  else renderSelectors();
   try {
     state.summary = await getSummary(id); renderGame(); renderDashboard();
     const needsYac = (state.summary?.boxscore?.players || []).some((group) => (group.statistics || []).some((category) => {
@@ -382,11 +431,18 @@ function scheduleRefresh() {
   const event = selectedEvent(); const startTime = new Date(event?.date).getTime(); const now = Date.now();
   const nearKickoff = eventState(event) === "pre" && Number.isFinite(startTime) && now >= startTime - 3 * 60 * 60 * 1000 && now <= startTime + 8 * 60 * 60 * 1000;
   if (eventState(event) !== "in" && !nearKickoff) return;
-  state.timer = window.setInterval(async () => { try { state.events = await getSchedule(); await selectGame(state.selectedId); } catch (_) { els.status.textContent = "Live update paused"; } }, REFRESH_MS);
+  state.timer = window.setInterval(async () => {
+    if (state.refreshInFlight) return;
+    state.refreshInFlight = true;
+    try { state.events = await getSchedule(); await selectGame(state.selectedId,{ refresh:true }); }
+    catch (_) { els.status.textContent = "Live update paused"; }
+    finally { state.refreshInFlight = false; }
+  }, REFRESH_MS);
 }
 async function init() {
   try {
-    state.events = await getSchedule();
+    const [events, records] = await Promise.all([getSchedule(), getTeamRecords().catch(() => new Map())]);
+    state.events = events; state.teamRecords = records;
     const requestedId = new URLSearchParams(location.search).get("game");
     const featured = state.events.find((event) => String(event.id) === requestedId) || chooseFeatured(state.events);
     if (!featured) throw new Error("No 2026 Ravens games were returned.");
@@ -395,7 +451,8 @@ async function init() {
   catch (error) { els.status.textContent = "Schedule unavailable"; els.selector.innerHTML = `<p class="empty-copy">The 2026 schedule could not be loaded. Try again shortly.</p>`; els.game.innerHTML = `<p class="empty-copy">${escapeHtml(error.message)}</p>`; }
 }
 els.selector.addEventListener("click", (event) => { const button = event.target.closest("[data-event-id]"); if (button) selectGame(button.dataset.eventId, { scroll: true }); });
-document.querySelector(".stat-toggle").addEventListener("click", (event) => { const button = event.target.closest("[data-stat-view]"); if (!button) return; state.statView = button.dataset.statView; document.querySelectorAll("[data-stat-view]").forEach((item) => item.classList.toggle("active", item === button)); renderPlayers(); });
+document.querySelector("[data-stat-view]").closest(".stat-toggle").addEventListener("click", (event) => { const button = event.target.closest("[data-stat-view]"); if (!button) return; state.statView = button.dataset.statView; document.querySelectorAll("[data-stat-view]").forEach((item) => item.classList.toggle("active", item === button)); renderPlayers(); });
+document.querySelector(".team-toggle").addEventListener("click", (event) => { const button = event.target.closest("[data-stat-team]"); if (!button) return; state.statTeam = button.dataset.statTeam; document.querySelectorAll("[data-stat-team]").forEach((item) => item.classList.toggle("active", item === button)); renderPlayers(); });
 document.querySelector("#breaking-close").addEventListener("click", () => { els.breaking.hidden = true; });
 
 let winProbabilityTooltip;

@@ -9,6 +9,7 @@ const els = {
 };
 const OFFENSE_PATTERN = /pass|rush|receiv|reception|completion|attempt|touchdown|yard|quarterback|scor/i;
 const DEFENSE_PATTERN = /tackl|sack|interception|forced|fumble|defen|pass def|quarterback hit|safety/i;
+const HIDDEN_CATEGORIES = new Set(["kickoffyards", "puntyards"]);
 
 function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])); }
 function teamLogo(abbr) { return `https://a.espncdn.com/i/teamlogos/nfl/500/${String(abbr || "nfl").toLowerCase()}.png`; }
@@ -37,10 +38,12 @@ function normalizeCategory(category) {
   };
 }
 function relevantCategories(categories) {
+  const visibleCategories = categories.filter((category) => ![category.name, category.label]
+    .some((value) => HIDDEN_CATEGORIES.has(String(value || "").replace(/[^a-z0-9]/gi, "").toLowerCase())));
   const pattern = state.group === "offense" ? OFFENSE_PATTERN : DEFENSE_PATTERN;
   const opposite = state.group === "offense" ? DEFENSE_PATTERN : OFFENSE_PATTERN;
-  const exact = categories.filter((category) => pattern.test(`${category.name} ${category.label}`) && !opposite.test(`${category.name} ${category.label}`));
-  return exact.length ? exact : categories.filter((category) => pattern.test(`${category.name} ${category.label}`));
+  const exact = visibleCategories.filter((category) => pattern.test(`${category.name} ${category.label}`) && !opposite.test(`${category.name} ${category.label}`));
+  return exact.length ? exact : visibleCategories.filter((category) => pattern.test(`${category.name} ${category.label}`));
 }
 function leaderEntity(leader) { return leader.athlete || leader.player || leader.team || leader.competitor || {}; }
 function leaderTeam(leader) {

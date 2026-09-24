@@ -10,9 +10,9 @@
   <link rel="preload" as="image" href="./assets/baltimore-ravens-header-background.png" fetchpriority="high">
   <link rel="preconnect" href="https://site.api.espn.com">
   <link rel="preconnect" href="https://a.espncdn.com">
-  <link rel="stylesheet" href="./styles.css?v=20260914-transaction-window1">
+  <link rel="stylesheet" href="./styles.css?v=20260924-quarter-score-bg1">
   <script src="./game-selection.js?v=20260914-upcoming-window1" defer></script>
-  <script src="./app.js?v=20260914-transaction-feed-fix1" defer></script>
+  <script src="./app.js?v=20260920-in-place-refresh1" defer></script>
 </head>
 <body>
   <main class="site-shell">
@@ -41,17 +41,17 @@
     </aside>
     <section class="game-selector" aria-label="2026 Ravens games"><div class="game-selector-grid" id="game-selector-grid"><p class="loading-copy">Loading the 2026 schedule…</p></div></section>
     <section class="game-card" id="game-card" aria-live="polite"><p class="loading-copy">Loading game details…</p></section>
-    <section class="panel win-panel" id="win-probability-panel" hidden><header class="win-probability-header"><div><span>Game Momentum</span><h2>Ravens Win Probability</h2><p>Play-by-play win probability</p></div><strong id="win-probability-value"></strong></header><div id="win-probability"></div></section>
+    <section class="panel win-panel" id="win-probability-panel" hidden><header class="win-probability-header"><div><h2>Ravens Win Probability</h2><p>Play-by-play win probability</p></div><strong id="win-probability-value"></strong></header><div id="win-probability"></div></section>
     <section class="dashboard-grid" id="dashboard" hidden>
-      <article class="panel scoring-panel"><header class="panel-heading"><div><span>Drive Results</span><h2>Scoring Plays</h2></div></header><div id="scoring-plays"></div></article>
+      <article class="panel scoring-panel"><header class="panel-heading"><div><h2>Scoring Plays</h2></div></header><div id="scoring-plays"></div></article>
       <article class="panel comparison-panel">
-        <header class="panel-heading"><div><span>Matchup</span><h2>Team Comparison</h2></div></header>
+        <header class="panel-heading"><div><h2>Team Comparison</h2></div></header>
         <div id="team-comparison"></div>
       </article>
-      <article class="panel metrics-panel"><header class="panel-heading"><div><span>Head-to-Head</span><h2>Game Leaders</h2></div></header><div class="metrics-grid" id="game-metrics"></div></article>
-      <article class="panel player-panel">
-        <header class="panel-heading player-heading"><div><span>Box Score</span><h2>Player Statistics</h2></div><div class="stat-toggle" role="group" aria-label="Player statistic category"><button class="active" type="button" data-stat-view="offense">Offensive Stats</button><button type="button" data-stat-view="defense">Defensive Stats</button></div></header>
-        <div id="player-stats"></div>
+      <article class="panel metrics-panel"><header class="panel-heading"><div><h2>Game Leaders</h2></div></header><div class="metrics-grid" id="game-metrics"></div></article>
+      <article class="player-panel">
+        <header class="panel panel-heading player-heading"><div><h2>Player Statistics</h2></div><div class="player-controls"><div class="stat-toggle team-toggle" role="group" aria-label="Statistics team"><button class="active" type="button" data-stat-team="ravens" style="--active-team-color:#241773;--active-team-text:#ddd9e2">Ravens</button><button id="opponent-stat-toggle" type="button" data-stat-team="opponent">Opponent</button></div><div class="stat-toggle" role="group" aria-label="Player statistic category"><button class="active" type="button" data-stat-view="offense">Offensive Stats</button><button type="button" data-stat-view="defense">Defensive Stats</button></div></div></header>
+        <div class="player-stats-container"><div id="player-stats"></div></div>
       </article>
     </section>
     <footer class="site-footer"><nav aria-label="Footer"><a href="./">Home</a><a href="./legal-disclaimer/">Legal Disclaimer</a></nav></footer>

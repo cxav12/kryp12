@@ -680,10 +680,10 @@ function renderWhosHot() {
 
   const playerName = (player) => player ? `${player.playerName} · ${player.teamAbbreviation}` : "Unavailable";
   const playerImage = (player) => player
-    ? mediaImage(PLAYER_HEADSHOT_URL(player.playerId), "hot-player-headshot", `${player.playerName} headshot`, 48, 44)
+    ? mediaImage(PLAYER_HEADSHOT_URL(player.playerId), "hot-player-headshot", `${player.playerName} headshot`, 72, 68)
     : null;
   const teamImage = (team) => team
-    ? mediaImage(teamLogoUrl({ id: team.teamId }), "hot-team-logo team-logo", `${team.teamName} logo`, 44, 44)
+    ? mediaImage(teamLogoUrl({ id: team.teamId }), "hot-team-logo team-logo", `${team.teamName} logo`, 62, 62)
     : null;
   const hitterStats = (player) => player
     ? `AVG ${player.avg} | ${player.homeRuns} HR | ${player.rbi} RBI | OPS ${player.ops}`

@@ -731,7 +731,6 @@ function scoringPlayRows(feed, game) {
         <div class="scoring-play-identity">
           <img src="${escapeHtml(teamLogoUrl(team))}" alt="" aria-hidden="true" />
           <span>
-            <strong class="scoring-play-team">${escapeHtml(teamAbbreviation(team))}</strong>
             <small class="scoring-play-inning">${escapeHtml(`${half} ${inning}`)}</small>
           </span>
         </div>

@@ -1750,8 +1750,8 @@ a.matchup-player:focus-visible strong {
 }
 
 .scoring-play-inning {
-  font-size: var(--text-small);
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 800;
   white-space: nowrap;
 }
 

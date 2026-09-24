@@ -141,6 +141,7 @@
 .scores-head .scores-date-picker {
   flex: 0 1 300px;
   margin-left: auto;
+  margin-right: 0;
 }
 
 @media (min-width: 576px) {
@@ -205,6 +206,13 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 175px), 1fr));
   gap: 10px;
   margin-top: 14px;
+}
+
+@media (min-width: 1200px) {
+  .scores-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+  }
 }
 
 .scores-group {
@@ -529,6 +537,11 @@
   vertical-align: middle;
 }
 
+.scores-panel,
+.whos-hot-panel {
+  grid-column: 1 / -1;
+}
+
 .standings-table th {
   color: var(--muted);
   background: #0d1216;
@@ -800,9 +813,9 @@
   border-radius: 6px;
   background: var(--inner-card-bg, #0a1015);
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-columns: 72px minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   padding: 8px;
 }
 
@@ -825,15 +838,15 @@ a.hot-item.player-profile-link:focus-visible {
 }
 
 .hot-team-logo {
-  width: 44px;
-  height: 44px;
+  width: 62px;
+  height: 62px;
   object-fit: contain;
   justify-self: center;
 }
 
 .hot-player-headshot {
-  width: 48px;
-  height: 44px;
+  width: 72px;
+  height: 68px;
   object-fit: contain;
   object-position: center bottom;
   justify-self: center;

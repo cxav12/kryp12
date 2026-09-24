@@ -256,11 +256,6 @@ function renderCard(target, teamId) {
     <h3 class="team-name">Yankees MLB Rankings</h3>
   `;
 
-  const context = document.createElement("p");
-  context.className = "rank-chart-context";
-  context.textContent = "Current MLB standing · 30 teams · 1st is best";
-  header.append(context);
-
   const list = document.createElement("section");
   list.className = "metric-groups";
   metricCategories.forEach((category) => {

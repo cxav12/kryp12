@@ -8,6 +8,7 @@ deployment:
     - /bin/cp -Rf admin $DEPLOYPATH
     - /bin/cp -Rf api $DEPLOYPATH
     - /bin/cp -Rf assets $DEPLOYPATH
+    - /bin/cp -Rf color $DEPLOYPATH
     - /bin/cp -Rf palworld $DEPLOYPATH
     - /bin/cp -Rf ravens $DEPLOYPATH
     - /bin/cp -Rf yankees $DEPLOYPATH

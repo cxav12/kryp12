@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f7">
+  <title>Screen Color</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/app.js" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <section class="control-card" aria-labelledby="page-title">
+      <h1 id="page-title">Screen Color</h1>
+      <div class="field-group">
+        <span class="field-label" id="color-options-label">Choose a color</span>
+        <div class="color-options" role="group" aria-labelledby="color-options-label">
+          <button class="color-card" type="button" data-color="#FFFFFF" aria-label="White" aria-pressed="true"><span style="--card-color:#FFFFFF"></span><small>White</small></button>
+          <button class="color-card" type="button" data-color="#F5E6CC" aria-label="Warm white" aria-pressed="false"><span style="--card-color:#F5E6CC"></span><small>Warm</small></button>
+          <button class="color-card" type="button" data-color="#000000" aria-label="Black" aria-pressed="false"><span style="--card-color:#000000"></span><small>Black</small></button>
+          <button class="color-card" type="button" data-color="#E53935" aria-label="Red" aria-pressed="false"><span style="--card-color:#E53935"></span><small>Red</small></button>
+          <button class="color-card" type="button" data-color="#FFB300" aria-label="Amber" aria-pressed="false"><span style="--card-color:#FFB300"></span><small>Amber</small></button>
+          <button class="color-card" type="button" data-color="#43A047" aria-label="Green" aria-pressed="false"><span style="--card-color:#43A047"></span><small>Green</small></button>
+          <button class="color-card" type="button" data-color="#1E88E5" aria-label="Blue" aria-pressed="false"><span style="--card-color:#1E88E5"></span><small>Blue</small></button>
+          <button class="color-card" type="button" data-color="#8E5AC7" aria-label="Purple" aria-pressed="false"><span style="--card-color:#8E5AC7"></span><small>Purple</small></button>
+        </div>
+        <label for="color-picker">Custom color</label>
+        <button id="open-color-picker" class="custom-color-control" type="button" aria-label="Open custom color picker">
+          <span id="custom-color-preview" class="custom-color-preview" aria-hidden="true"></span>
+          <span>Open color picker</span>
+          <span class="custom-color-icon" aria-hidden="true">＋</span>
+        </button>
+        <input id="color-picker" class="native-color-picker" type="color" value="#ffffff" tabindex="-1" aria-hidden="true">
+      </div>
+      <div class="field-group">
+        <label for="hex-value">Hex value</label>
+        <input id="hex-value" type="text" value="#FFFFFF" inputmode="text" maxlength="7" spellcheck="false" autocomplete="off" aria-describedby="hex-help">
+        <small id="hex-help">Enter a six-digit hex color, such as #FFFFFF.</small>
+      </div>
+      <button id="fullscreen-button" class="primary-button" type="button">Full Screen</button>
+      <label class="fullscreen-option" for="show-exit-button">
+        <input id="show-exit-button" type="checkbox" checked>
+        <span>Show exit button in full screen</span>
+      </label>
+      <p id="escape-message" class="escape-message" hidden>Press the Esc key on your keyboard to exit full screen.</p>
+      <p id="fullscreen-message" class="message" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+  <button id="exit-fullscreen-button" class="exit-fullscreen" type="button" aria-label="Exit full screen" aria-hidden="true">Exit Full Screen</button>
+</body>
+</html>

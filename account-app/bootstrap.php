@@ -6,10 +6,21 @@ $config = require $configFile;
 require_once __DIR__ . '/../wishlist/app/database.php';
 date_default_timezone_set((string)($config['timezone'] ?? 'America/New_York'));
 $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+$sessionLifetime = max(0, (int)($config['session_lifetime'] ?? 2592000));
 session_name((string)($config['account_session_name'] ?? 'kryp12_session'));
-session_set_cookie_params(['lifetime'=>(int)($config['session_lifetime'] ?? 2592000),'path'=>'/','secure'=>$secure,'httponly'=>true,'samesite'=>'Strict']);
+session_set_cookie_params(['lifetime'=>$sessionLifetime,'path'=>'/','secure'=>$secure,'httponly'=>true,'samesite'=>'Strict']);
 ini_set('session.use_strict_mode','1'); ini_set('session.use_only_cookies','1');
+ini_set('session.gc_maxlifetime', (string)max(1440, $sessionLifetime));
 if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+if ($sessionLifetime > 0 && isset($_SESSION['user_id'])) {
+    setcookie(session_name(), session_id(), [
+        'expires' => time() + $sessionLifetime,
+        'path' => '/',
+        'secure' => $secure,
+        'httponly' => true,
+        'samesite' => 'Strict',
+    ]);
+}
 function h(?string $v): string { return htmlspecialchars($v ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
 function accountCsrf(): string { return $_SESSION['account_csrf'] ??= bin2hex(random_bytes(32)); }
 function requireAccountCsrf(): void { if (!hash_equals(accountCsrf(), (string)($_POST['csrf_token'] ?? ''))) { http_response_code(419); exit('The form expired.'); } }

@@ -43,7 +43,6 @@ body {
 .hub-brand h1 span { letter-spacing: .24em; }
 .hub-brand p { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 20px 0 0; color: #aab0b6; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; }
 .hub-brand p span { color: #565e67; }
-.brand-rule { display: block; width: 56px; height: 2px; margin: 26px auto 0; background: #526c83; }
 
 /* New items flow into the next cell; no item-count assumptions. */
 .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; list-style: none; padding: 0; margin: 0; }
@@ -117,7 +116,6 @@ body {
   .hub { width: min(420px, calc(100% - 40px)); padding-top: 48px; }
   .hub-brand { margin-bottom: 34px; }
   .hub-brand p { font-size: 9px; gap: 9px; letter-spacing: .17em; margin-top: 16px; }
-  .brand-rule { margin-top: 22px; }
   .project-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .project-art { height: 195px; }
   .project-copy { padding: 4px 26px 26px; }

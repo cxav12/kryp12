@@ -1,4 +1,28 @@
 (() => {
+  const accountNav = document.querySelector("#hub-account-nav");
+  fetch("/api/account-session.php", { credentials: "same-origin", cache: "no-store" })
+    .then((response) => response.ok ? response.json() : Promise.reject())
+    .then((session) => {
+      if (!session.authenticated || !accountNav) return;
+      const account = document.createElement("a");
+      account.href = "/account/"; account.textContent = "Account";
+      accountNav.replaceChildren(account);
+      if (session.isAdmin) {
+        const admin = document.createElement("a");
+        admin.href = "/admin/"; admin.textContent = "Admin";
+        accountNav.append(admin);
+      }
+      const form = document.createElement("form");
+      form.method = "post"; form.action = "/login/logout.php";
+      const csrf = document.createElement("input");
+      csrf.type = "hidden"; csrf.name = "csrf_token"; csrf.value = session.csrfToken || "";
+      const signOut = document.createElement("button");
+      signOut.type = "submit"; signOut.textContent = "Sign out";
+      form.append(csrf, signOut); accountNav.append(form);
+      accountNav.classList.add("is-authenticated");
+    })
+    .catch(() => {});
+
   const defaults = { yankees: true, palworld: true, color: true, wishlist: false, ravens: false };
   const applyVisibility = (visibility) => document.querySelectorAll("[data-site-key]").forEach((item) => {
     const key = item.dataset.siteKey;

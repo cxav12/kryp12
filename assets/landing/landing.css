@@ -64,6 +64,7 @@ body {
 .project-card--ravens { --accent: #b3a7ff; --card-bg: #171120; border-color: #55458a; }
 .project-card--palworld { --accent: #e0bd62; --card-bg: #1c180f; border-color: #4c4025; }
 .project-card--wishlist { --accent: #58cec4; --card-bg: #0d1b1a; border-color: #204643; }
+.project-card--color { --accent: #9fc5ef; --card-bg: #121820; border-color: #34475d; }
 .project-art { position: relative; display: grid; place-items: center; height: 220px; flex-shrink: 0; overflow: hidden; }
 .project-art::before {
   content: ""; position: absolute; inset: 0;
@@ -73,12 +74,21 @@ body {
 .project-card--palworld .project-art::before { background: radial-gradient(ellipse at 50% 20%, #806b3280, transparent 74%), url("./contours.svg?v=2") right center / cover; }
 .project-card--ravens .project-art::before { background: radial-gradient(ellipse at 50% 20%, #49358690, transparent 72%), url("./contours.svg?v=2") center / cover; }
 .project-card--wishlist .project-art::before { background: radial-gradient(ellipse at 50% 20%, #287a7470, transparent 72%), url("./contours.svg?v=2") center / cover; }
+.project-card--color .project-art::before { background: radial-gradient(ellipse at 50% 20%, #47678780, transparent 72%), url("./contours.svg?v=2") center / cover; }
 .project-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #0000000a 35%, var(--card-bg)); pointer-events: none; }
 .project-logo { position: relative; z-index: 1; display: block; object-fit: contain; transition: transform 260ms ease; opacity: .85; }
 .yankees-logo { width: 108px; height: 108px; }
 .ravens-logo { width: 132px; height: 132px; }
 .palworld-logo { width: 82%; height: 180px; }
 .wishlist-logo { width: 112px; height: 112px; }
+.color-tool-mark { position: relative; z-index: 1; width: 132px; height: 92px; border: 1px solid #ffffff30; border-radius: 13px; background: #11161c; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 9px; box-shadow: 0 14px 30px #0006; }
+.color-tool-mark span { border-radius: 7px; }
+.color-tool-mark span:nth-child(1) { background: #ffffff; }
+.color-tool-mark span:nth-child(2) { background: #e53935; }
+.color-tool-mark span:nth-child(3) { background: #ffb300; }
+.color-tool-mark span:nth-child(4) { background: #43a047; }
+.color-tool-mark span:nth-child(5) { background: #1e88e5; }
+.color-tool-mark span:nth-child(6) { background: #8e5ac7; }
 .project-copy { position: relative; display: flex; flex-direction: column; align-items: flex-start; flex: 1; padding: 4px 30px 30px; }
 .project-category { color: var(--accent); font-size: 10px; font-weight: 700; line-height: 1.5; letter-spacing: .2em; text-transform: uppercase; }
 .project-copy h2 { margin: 13px 0 10px; font-size: clamp(21px, 1.9vw, 25px); line-height: 1.25; letter-spacing: -.035em; font-weight: 600; }

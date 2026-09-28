@@ -96,4 +96,4 @@ CREATE TABLE admin_audit_log (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO applications (application_key, display_name) VALUES ('wishlist','Wishlist'),('yankees','Yankees'),('ravens','Ravens'),('palworld','Palworld');
-INSERT INTO site_visibility (site_key, display_name, is_visible) VALUES ('yankees','New York Yankees',1),('palworld','Palworld',1),('wishlist','Wishlist',0),('ravens','Baltimore Ravens',0);
+INSERT INTO site_visibility (site_key, display_name, is_visible) VALUES ('yankees','New York Yankees',1),('palworld','Palworld',1),('color','Screen Color',1),('wishlist','Wishlist',0),('ravens','Baltimore Ravens',0);

@@ -15,7 +15,7 @@ renderAccountHeader('Log in','login-page');
 </svg>
 <section class="login-card">
   <header class="login-brand" aria-label="KRYP12">
-    <img src="/assets/brand/kryp12/kryp12-mark.svg" alt="">
+    <img src="/assets/brand/kryp12/kryp12-mark.svg?v=2" alt="">
     <strong>RYP12</strong>
   </header>
   <div class="login-body">

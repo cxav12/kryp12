@@ -33,7 +33,7 @@
   <path d="M31 45 L70 5 H92 L47 52 Z" fill="url(#blueGrad)"/>
 
   <!-- lower silver arm -->
-  <path d="M47 52 L91 92 H67 L31 58 Z" fill="url(#silverGrad)"/>
+  <path d="M47 52 L91 97 H67 L31 58 Z" fill="url(#silverGrad)"/>
 
   <!-- folded overlap -->
   <path d="M31 45 L47 52 L38 62 L25 54 Z" fill="url(#foldGrad)" opacity="0.96"/>

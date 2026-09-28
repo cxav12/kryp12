@@ -67,6 +67,11 @@ const els = {
 };
 
 function updateGamePageIntro(game) {
+  if (YankeesGameStatus.isCanceled(game)) {
+    els.gamePageTitle.textContent = "Game Canceled";
+    els.gamePageDescription.textContent = "Official cancellation details for the selected Yankees game.";
+    return;
+  }
   const gameState = game.status?.abstractGameState;
   if (gameState === "Final") {
     els.gamePageTitle.textContent = "Game Recap";
@@ -230,6 +235,7 @@ function resultLabel(game) {
 }
 
 function resultShort(game) {
+  if (YankeesGameStatus.isCanceled(game)) return "Canceled";
   const yankees = teamEntry(game, yankeesSide(game))?.score;
   const opponent = teamEntry(game, opponentSide(game))?.score;
   if (!Number.isFinite(Number(yankees)) || !Number.isFinite(Number(opponent))) return "Final";
@@ -240,10 +246,12 @@ function resultLetter(game) {
   const result = resultShort(game);
   if (result === "Win") return "W";
   if (result === "Loss") return "L";
+  if (result === "Canceled") return "C";
   return result.charAt(0) || "-";
 }
 
 function resultClass(game) {
+  if (YankeesGameStatus.isCanceled(game)) return "canceled";
   if (isLiveGame(game)) return "in-progress";
   return resultShort(game).toLowerCase();
 }
@@ -253,7 +261,7 @@ function isLiveGame(game) {
 }
 
 function shouldRefreshGame(game, now = new Date()) {
-  if (!game || game.status?.abstractGameState === "Final") return false;
+  if (!game || YankeesGameStatus.classify(game).terminal) return false;
   if (isLiveGame(game)) return true;
   const startTime = new Date(game.gameDate).getTime();
   const currentTime = new Date(now).getTime();
@@ -321,7 +329,7 @@ async function getCurrentGames() {
     || [...todaysGames].sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate))[0]
     || null;
   const upcomingGames = games
-    .filter((game) => !["Final", "Live"].includes(game.status?.abstractGameState))
+    .filter((game) => YankeesGameStatus.isUpcoming(game))
     .sort((a, b) => new Date(a.gameDate) - new Date(b.gameDate))
     .slice(0, 3);
   return { todayGame, upcomingGames };
@@ -936,6 +944,7 @@ function gameTeamRecord(game, feed, side) {
 }
 
 function scoreboardState(feed, game) {
+  if (YankeesGameStatus.isCanceled(game)) return "Canceled";
   if (isLiveGame(game)) return "Live";
   if (game.status?.abstractGameState === "Final") {
     const innings = feed.liveData?.linescore?.innings?.length || 9;
@@ -2139,6 +2148,32 @@ function renderPregamePreview(game, feed) {
   els.grid.innerHTML = "";
 }
 
+function renderCanceledGame(game, feed) {
+  winProbabilityObserver?.disconnect();
+  const cancellation = YankeesGameStatus.classify(game);
+  const yankeesGameSide = yankeesSide(game); const opponentGameSide = opponentSide(game);
+  const yankees = scoreboardTeamDetails(game, feed, yankeesGameSide); const opponent = scoreboardTeamDetails(game, feed, opponentGameSide);
+  const yankeesColor = teamPrimaryColor(yankees.team); const opponentColor = teamPrimaryColor(opponent.team);
+  updateGamePageIntro(game); state.currentFeed = feed;
+  els.status.textContent = "Canceled · Not rescheduled"; els.status.style.color = "#f6d365";
+  els.title.textContent = `Canceled vs ${teamAbbreviation(opponent.team)}`;
+  els.subtitle.textContent = `${niceDate(game.officialDate)} · ${game.venue?.name || feed.gameData?.venue?.name || "Yankee Stadium"}`;
+  els.comparisonHeader.replaceChildren(); els.playerStats.replaceChildren(); els.grid.replaceChildren();
+  els.scoreboard.innerHTML = `
+    <div class="home-score-team-colors" aria-hidden="true"><span style="background-color:${yankeesColor}"></span><span style="background-color:${opponentColor}"></span></div>
+    <div class="game-scoreboard-top canceled" style="--scoreboard-left-color:${yankeesColor};--scoreboard-right-color:${opponentColor}">
+      ${renderScoreboardTeam(yankees, "away", "–")}<strong class="scoreboard-score">–</strong><div class="scoreboard-state">Canceled</div><strong class="scoreboard-score">–</strong>${renderScoreboardTeam(opponent, "home", "–")}
+    </div>
+    <section class="canceled-game-notice" aria-label="Game cancellation details">
+      <span class="canceled-game-label">Official game status</span>
+      <h3>This game will not be played</h3>
+      <p><strong>Reason:</strong> ${escapeHtml(cancellation.reason || "Cancellation announced by Major League Baseball")}</p>
+      ${cancellation.note ? `<p class="canceled-game-decision">${escapeHtml(cancellation.note)}</p>` : ""}
+      ${cancellation.seasonNote ? `<p>${escapeHtml(cancellation.seasonNote)}</p>` : ""}
+      ${cancellation.sourceUrl ? `<a href="${escapeHtml(cancellation.sourceUrl)}" target="_blank" rel="noopener noreferrer">Read the official Yankees announcement <span aria-hidden="true">→</span></a>` : ""}
+    </section>`;
+}
+
 async function loadProbablePitcherStats(game, feed) {
   const sides = ["away", "home"];
   const entries = await Promise.all(sides.map(async (side) => {
@@ -2253,6 +2288,7 @@ async function loadPossibleMilestones(game) {
 
 function renderRecap(game, feed) {
   if (feed.gameData?.status) game.status = feed.gameData.status;
+  if (YankeesGameStatus.isCanceled(game)) { renderCanceledGame(game, feed); return; }
   updateGamePageIntro(game);
   state.currentFeed = feed;
   if (!["Final", "Live"].includes(game.status?.abstractGameState)) {

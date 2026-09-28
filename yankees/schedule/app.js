@@ -223,6 +223,8 @@ function yankeesResult(game) {
 }
 
 function statusLabel(game) {
+  const specialStatus = YankeesGameStatus.classify(game);
+  if (specialStatus.kind === "canceled") return ["Canceled", specialStatus.reason, specialStatus.rescheduled === false ? "Not rescheduled" : ""].filter(Boolean).join(" · ");
   const status = game.status?.abstractGameState;
   if (status === "Final") {
     const result = yankeesResult(game);
@@ -243,6 +245,7 @@ function statusLabel(game) {
 }
 
 function gameClass(game) {
+  if (YankeesGameStatus.isCanceled(game)) return "canceled";
   const status = game.status?.abstractGameState;
   if (status === "Final") return `final ${yankeesResult(game)}`;
   if (status === "Live") return "live";
@@ -254,7 +257,7 @@ function renderGame(game) {
   const card = document.createElement(isUpcoming ? "article" : "a");
   const away = game.teams?.away || {};
   const home = game.teams?.home || {};
-  const started = ["Final", "Live"].includes(game.status?.abstractGameState);
+  const started = ["Final", "Live"].includes(game.status?.abstractGameState) && !YankeesGameStatus.isCanceled(game);
   card.className = `game-card ${gameClass(game)}`;
   if (!isUpcoming) {
     card.href = `../?game=${encodeURIComponent(game.gamePk)}`;
@@ -305,6 +308,8 @@ function decisionLabel(person, type) {
 }
 
 function listResult(game) {
+  const specialStatus = YankeesGameStatus.classify(game);
+  if (specialStatus.kind === "canceled") return ["Canceled", specialStatus.reason, specialStatus.rescheduled === false ? "Not rescheduled" : ""].filter(Boolean).join(" · ");
   const gameState = game.status?.abstractGameState;
   if (gameState === "Final") {
     const result = yankeesResult(game);

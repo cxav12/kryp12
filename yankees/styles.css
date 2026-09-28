@@ -608,6 +608,16 @@
   color: #f6d365;
 }
 
+.game-scoreboard-top.canceled .scoreboard-state { color: #f6d365; }
+.game-scoreboard-top.canceled .scoreboard-score { color: #697783; }
+.canceled-game-notice { margin: 16px 0 0; border-radius: 7px; background: rgba(246, 211, 101, .07); display: grid; justify-items: center; gap: 9px; padding: 26px; text-align: center; }
+.canceled-game-label { color: #f6d365; font-size: .7rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.canceled-game-notice h3 { margin: 0; color: var(--ink); font-size: 1.35rem; }
+.canceled-game-notice p { margin: 0; color: var(--muted); }
+.canceled-game-notice p strong, .canceled-game-decision { color: var(--ink) !important; }
+.canceled-game-notice a { margin-top: 4px; color: #9ac7ff; font-weight: 800; text-decoration: none; }
+.canceled-game-notice a:hover, .canceled-game-notice a:focus-visible { color: var(--ink); }
+
 .scoreboard-mobile-score {
   display: none;
 }

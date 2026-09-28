@@ -322,6 +322,9 @@ a.game-card:focus-visible {
   background: linear-gradient(90deg, rgba(174, 128, 20, 0.27), transparent 11%), rgba(255, 255, 255, 0.018);
 }
 
+.schedule-list-card.canceled { border-left-color: #e2b84d; background: linear-gradient(90deg, rgba(174, 128, 20, .24), transparent 11%), rgba(255,255,255,.018); }
+.schedule-list-card.canceled .list-result strong { color: #f6d365; white-space: normal; }
+
 a.schedule-list-card:hover {
   color: var(--ink);
   filter: brightness(1.16);
@@ -400,6 +403,8 @@ a.schedule-list-card:focus-visible {
 .game-card.live .game-status {
   color: #9af0c8;
 }
+
+.game-card.canceled .game-status { color: #f6d365; }
 
 .game-status {
   min-width: 0;

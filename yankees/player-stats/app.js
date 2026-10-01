@@ -6,7 +6,7 @@ const REQUESTED_SEASON = Number(PAGE_PARAMS.get("season"));
 const SEASON = Number.isInteger(REQUESTED_SEASON) && REQUESTED_SEASON >= CURRENT_YEAR - 1 && REQUESTED_SEASON <= CURRENT_YEAR
   ? REQUESTED_SEASON
   : CURRENT_YEAR;
-const GAME_TYPE = PAGE_PARAMS.get("gameType") === "P" ? "P" : "R";
+const INITIAL_GAME_TYPE = PAGE_PARAMS.get("gameType") === "P" ? "P" : "R";
 const PAGE_SIZE = 25;
 const UNQUALIFIED_PITCHING_STATS = new Set(["completeGames", "shutouts", "saves", "saveOpportunities"]);
 
@@ -74,6 +74,7 @@ const MOBILE_COLUMNS = {
 };
 
 const state = {
+  gameType: INITIAL_GAME_TYPE,
   scope: "player",
   group: "hitting",
   rows: { hitting: null, pitching: null },
@@ -101,6 +102,7 @@ const els = {
   statsCard: document.querySelector(".stats-card"),
   scopes: document.querySelectorAll("[data-scope]"),
   toggles: document.querySelectorAll("[data-group]"),
+  seasonTypes: document.querySelectorAll("[data-game-type]"),
 };
 
 function setStatus(message, tone = "neutral") {
@@ -114,7 +116,7 @@ function statUrl(group, playerPool = "ALL") {
     stats: "season",
     group,
     season: String(SEASON),
-    gameType: GAME_TYPE,
+    gameType: state.gameType,
     sportIds: "1",
     playerPool,
     limit: "5000",
@@ -129,7 +131,7 @@ function teamStatUrl(group) {
     stats: "season",
     group,
     season: String(SEASON),
-    gameType: GAME_TYPE,
+    gameType: state.gameType,
     sportIds: "1",
   });
   return url;
@@ -149,7 +151,7 @@ async function loadQualityStarts() {
     candidatesUrl.search = new URLSearchParams({
       stats: "season",
       group: "pitching",
-      gameType: GAME_TYPE,
+      gameType: state.gameType,
       season: String(SEASON),
       sportIds: "1",
       playerPool: "ALL",
@@ -169,7 +171,7 @@ async function loadQualityStarts() {
     if (playerIds.length) {
       const logsUrl = new URL(`${MLB_API}/people`);
       logsUrl.searchParams.set("personIds", playerIds.join(","));
-      logsUrl.searchParams.set("hydrate", `stats(group=[pitching],type=[gameLog],season=${SEASON},gameType=[${GAME_TYPE}]),currentTeam`);
+      logsUrl.searchParams.set("hydrate", `stats(group=[pitching],type=[gameLog],season=${SEASON},gameType=[${state.gameType}]),currentTeam`);
       logsUrl.searchParams.set("fields", "people,id,stats,splits,stat,gamesStarted,outs,earnedRuns,team");
       const logsResponse = await fetch(logsUrl);
       if (!logsResponse.ok) throw new Error(`MLB API returned ${logsResponse.status}`);
@@ -492,7 +494,7 @@ function render() {
         : state.scope === "nl"
           ? `${state.qualifiedOnly ? "qualified " : ""}National League players`
       : `${state.qualifiedOnly ? "qualified " : ""}players`;
-  const seasonTypeLabel = GAME_TYPE === "P" ? "postseason" : "regular season";
+  const seasonTypeLabel = state.gameType === "P" ? "postseason" : "regular season";
   els.summary.textContent = `${rows.length.toLocaleString()} ${subject} · ${SEASON} ${seasonTypeLabel} · 25 per page`;
   els.qualifiedOnly.closest(".qualified-filter").hidden = !["player", "al", "nl"].includes(state.scope);
   els.scopes.forEach((button) => {
@@ -502,6 +504,11 @@ function render() {
   });
   els.toggles.forEach((button) => {
     const active = button.dataset.group === state.group;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  els.seasonTypes.forEach((button) => {
+    const active = button.dataset.gameType === state.gameType;
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
@@ -532,7 +539,40 @@ async function setGroup(group) {
   }
 }
 
+async function setGameType(gameType) {
+  if (!["R", "P"].includes(gameType) || gameType === state.gameType) return;
+  state.gameType = gameType;
+  state.rows = { hitting: null, pitching: null };
+  state.teamRows = { hitting: null, pitching: null };
+  state.qualifiedIds = { hitting: null, pitching: null };
+  state.qualityStarts = null;
+  state.qualityStartsRequest = null;
+  state.page = 1;
+
+  const url = new URL(location.href);
+  url.searchParams.set("gameType", gameType);
+  history.replaceState(null, "", url);
+  els.seasonTypes.forEach((button) => {
+    const active = button.dataset.gameType === gameType;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  setTableMessage(`Loading ${gameType === "P" ? "postseason" : "regular-season"} statistics`, COLUMNS[state.group].length + 2);
+  els.pagination.replaceChildren();
+
+  try {
+    if (state.scope === "team") await loadTeamGroup(state.group);
+    else await loadGroup(state.group);
+    render();
+    setStatus("Live MLB data", "good");
+  } catch (error) {
+    setStatus("Data connection issue", "error");
+    setTableMessage(`Could not load player statistics. ${error.message}`, COLUMNS[state.group].length + 2);
+  }
+}
+
 function bindEvents() {
+  els.seasonTypes.forEach((button) => button.addEventListener("click", () => setGameType(button.dataset.gameType)));
   els.scopes.forEach((button) => button.addEventListener("click", async () => {
     if (button.dataset.scope === state.scope) return;
     state.scope = button.dataset.scope;

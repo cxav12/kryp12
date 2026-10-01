@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://statsapi.mlb.com" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=20261001-mobile-ranking-width1" />
+    <link rel="stylesheet" href="./styles.css?v=20261001-season-type-toggle1" />
     <link rel="stylesheet" href="../shared.css?v=20261001-header-fit2" />
   </head>
   <body>
@@ -62,6 +62,10 @@
                 <p class="stats-summary mb-0" id="stats-summary">Loading player statistics</p>
               </div>
               <div class="stats-toolbar-actions">
+                <div class="stats-toggle stats-season-toggle" role="group" aria-label="Season type">
+                  <button class="stats-toggle-button stats-season-button" type="button" data-game-type="R" aria-pressed="true">Regular Season</button>
+                  <button class="stats-toggle-button stats-season-button" type="button" data-game-type="P" aria-pressed="false">Postseason</button>
+                </div>
                 <div class="stats-scope-toggle" role="group" aria-label="Statistics scope">
                   <button class="stats-scope-button" type="button" data-scope="yankees" aria-pressed="false">Yankees</button>
                   <button class="stats-scope-button" type="button" data-scope="al" aria-pressed="false">AL</button>
@@ -112,6 +116,6 @@
 
     <script src="../assets/js/header-season.js?v=20261001-postseason-header1" defer></script>
     <script src="../assets/js/shared.js?v=20261001-postseason-header1" defer></script>
-    <script src="./app.js?v=20260930-postseason-stats1" defer></script>
+    <script src="./app.js?v=20261001-season-type-toggle1" defer></script>
   </body>
 </html>

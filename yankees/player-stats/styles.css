@@ -35,6 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 18px;
   padding: 24px 0 16px;
   border-bottom: 0;
@@ -66,10 +67,17 @@
 }
 
 .stats-toolbar-actions {
-  flex: 0 0 auto;
+  flex: 1 1 720px;
+  min-width: 0;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 12px;
+}
+
+.stats-season-toggle {
+  grid-template-columns: repeat(2, minmax(96px, 1fr));
 }
 
 .qualified-filter {

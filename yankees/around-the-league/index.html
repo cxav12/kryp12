@@ -163,9 +163,12 @@
             <section class="league-panel leaderboard-panel league-anchor-section" id="league-leaders-section" aria-labelledby="league-leaders-title">
               <header class="league-section-header leaderboard-header">
                 <h2 class="panel-heading mb-0" id="league-leaders-title">League Leaders</h2>
-                <div class="leaderboard-toggle" id="leaderboard-toggle" role="group" aria-label="League leader type">
-                  <button class="standings-option active" type="button" data-leader-view="players" aria-pressed="true">Players</button>
-                  <button class="standings-option" type="button" data-leader-view="teams" aria-pressed="false">Teams</button>
+                <div class="leaderboard-header-controls">
+                  <div class="leaderboard-toggle" id="leaderboard-season-toggle" role="group" aria-label="League leader season type" hidden></div>
+                  <div class="leaderboard-toggle" id="leaderboard-toggle" role="group" aria-label="League leader type">
+                    <button class="standings-option active" type="button" data-leader-view="players" aria-pressed="true">Players</button>
+                    <button class="standings-option" type="button" data-leader-view="teams" aria-pressed="false">Teams</button>
+                  </div>
                 </div>
               </header>
               <div class="leaderboard-content" id="league-leaders" aria-live="polite" aria-busy="true">
@@ -200,6 +203,6 @@
     </main>
 
     <script src="../assets/js/shared.js?v=20260910-team-silhouettes1" defer></script>
-    <script src="./app.js?v=20260924-large-hot-media1" defer></script>
+    <script src="./app.js?v=20260930-postseason-leaders1" defer></script>
   </body>
 </html>

@@ -1,6 +1,12 @@
 const MLB_API = "https://statsapi.mlb.com/api/v1";
 const YANKEES_TEAM_ID = 147;
-const SEASON = new Date().getFullYear();
+const PAGE_PARAMS = new URLSearchParams(location.search);
+const CURRENT_YEAR = new Date().getFullYear();
+const REQUESTED_SEASON = Number(PAGE_PARAMS.get("season"));
+const SEASON = Number.isInteger(REQUESTED_SEASON) && REQUESTED_SEASON >= CURRENT_YEAR - 1 && REQUESTED_SEASON <= CURRENT_YEAR
+  ? REQUESTED_SEASON
+  : CURRENT_YEAR;
+const GAME_TYPE = PAGE_PARAMS.get("gameType") === "P" ? "P" : "R";
 const PAGE_SIZE = 25;
 const UNQUALIFIED_PITCHING_STATS = new Set(["completeGames", "shutouts", "saves", "saveOpportunities"]);
 
@@ -108,6 +114,7 @@ function statUrl(group, playerPool = "ALL") {
     stats: "season",
     group,
     season: String(SEASON),
+    gameType: GAME_TYPE,
     sportIds: "1",
     playerPool,
     limit: "5000",
@@ -122,6 +129,7 @@ function teamStatUrl(group) {
     stats: "season",
     group,
     season: String(SEASON),
+    gameType: GAME_TYPE,
     sportIds: "1",
   });
   return url;
@@ -141,7 +149,7 @@ async function loadQualityStarts() {
     candidatesUrl.search = new URLSearchParams({
       stats: "season",
       group: "pitching",
-      gameType: "R",
+      gameType: GAME_TYPE,
       season: String(SEASON),
       sportIds: "1",
       playerPool: "ALL",
@@ -161,7 +169,7 @@ async function loadQualityStarts() {
     if (playerIds.length) {
       const logsUrl = new URL(`${MLB_API}/people`);
       logsUrl.searchParams.set("personIds", playerIds.join(","));
-      logsUrl.searchParams.set("hydrate", `stats(group=[pitching],type=[gameLog],season=${SEASON}),currentTeam`);
+      logsUrl.searchParams.set("hydrate", `stats(group=[pitching],type=[gameLog],season=${SEASON},gameType=[${GAME_TYPE}]),currentTeam`);
       logsUrl.searchParams.set("fields", "people,id,stats,splits,stat,gamesStarted,outs,earnedRuns,team");
       const logsResponse = await fetch(logsUrl);
       if (!logsResponse.ok) throw new Error(`MLB API returned ${logsResponse.status}`);
@@ -484,7 +492,8 @@ function render() {
         : state.scope === "nl"
           ? `${state.qualifiedOnly ? "qualified " : ""}National League players`
       : `${state.qualifiedOnly ? "qualified " : ""}players`;
-  els.summary.textContent = `${rows.length.toLocaleString()} ${subject} · ${SEASON} regular season · 25 per page`;
+  const seasonTypeLabel = GAME_TYPE === "P" ? "postseason" : "regular season";
+  els.summary.textContent = `${rows.length.toLocaleString()} ${subject} · ${SEASON} ${seasonTypeLabel} · 25 per page`;
   els.qualifiedOnly.closest(".qualified-filter").hidden = !["player", "al", "nl"].includes(state.scope);
   els.scopes.forEach((button) => {
     const active = button.dataset.scope === state.scope;
@@ -577,7 +586,7 @@ function bindEvents() {
 }
 
 async function init() {
-  const params = new URLSearchParams(location.search);
+  const params = PAGE_PARAMS;
   const requestedScope = params.get("scope");
   const requestedGroup = params.get("group");
   const requestedSort = params.get("sort");

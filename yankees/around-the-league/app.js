@@ -3,6 +3,8 @@ const TEAM_ID = 147;
 const AL_EAST_TEAM_IDS = new Set([110, 111, 139, 141, 147]);
 const SEASON = new Date().getFullYear();
 const LIVE_REFRESH_MS = 30000;
+const THREE_HOURS_MS = 3 * 60 * 60 * 1000;
+const LEADER_PHASE_REFRESH_MS = 15 * 60 * 1000;
 const MLB_TEAM_PRIMARY_COLORS = {
   108: "#BA0021", 109: "#A71930", 110: "#DF4601", 111: "#BD3039", 112: "#CC3433",
   113: "#C6011F", 114: "#D50032", 115: "#33006F", 116: "#FA4616", 117: "#EB6E1F",
@@ -144,6 +146,11 @@ const state = {
     teams: null,
     view: "players",
     selectedStats: { hitting: 1, pitching: 0 },
+    season: SEASON,
+    gameType: "R",
+    postseasonAvailable: false,
+    phaseKey: "regular",
+    phaseTimer: null,
     status: "loading",
   },
 };
@@ -165,6 +172,7 @@ const els = {
   standingsClinchLegend: document.querySelector("#standings-clinch-legend"),
   leagueLeaders: document.querySelector("#league-leaders"),
   leaderboardToggle: document.querySelector("#leaderboard-toggle"),
+  leaderboardSeasonToggle: document.querySelector("#leaderboard-season-toggle"),
   sectionNav: document.querySelector("#league-section-nav"),
   prospectsList: document.querySelector("#top-prospects-list"),
 };
@@ -975,6 +983,8 @@ function statsLeaderUrl(definition, type, groupName) {
     group: definition.group || groupName,
     sort: statsSortKey(definition.key),
     direction: definition.ascending ? "asc" : "desc",
+    season: String(state.leagueLeaders.season),
+    gameType: state.leagueLeaders.gameType,
   });
   if (type === "player" && definition.key === "saves") params.set("qualified", "0");
   return `../player-stats/?${params}`;
@@ -1043,6 +1053,21 @@ function renderLeagueLeaders() {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
+  els.leaderboardSeasonToggle.hidden = !state.leagueLeaders.postseasonAvailable;
+  if (state.leagueLeaders.postseasonAvailable) {
+    els.leaderboardSeasonToggle.replaceChildren(...[
+      ["P", "Postseason"],
+      ["R", "Regular Season"],
+    ].map(([gameType, label]) => {
+      const button = element("button", "standings-option", label);
+      const active = gameType === state.leagueLeaders.gameType;
+      button.type = "button";
+      button.dataset.leaderSeasonType = gameType;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+      return button;
+    }));
+  }
   els.leagueLeaders.setAttribute("aria-busy", "false");
 }
 
@@ -1069,12 +1094,13 @@ function playerLeaderSummary(leader) {
   };
 }
 
-async function getPlayerLeagueLeaders() {
+async function getPlayerLeagueLeaders(season, gameType) {
   const definitions = [...PLAYER_LEADER_STATS.hitting, ...PLAYER_LEADER_STATS.pitching]
     .filter((definition) => definition.key !== "qualityStarts");
   const url = new URL(`${MLB_API}/stats/leaders`);
   url.searchParams.set("leaderCategories", definitions.map((definition) => definition.key).join(","));
-  url.searchParams.set("season", SEASON);
+  url.searchParams.set("season", season);
+  url.searchParams.set("gameTypes", gameType);
   url.searchParams.set("sportId", "1");
   url.searchParams.set("limit", "5");
   url.searchParams.set("hydrate", "person(currentTeam),team");
@@ -1113,12 +1139,13 @@ function rankTeamSplits(splits, definitions) {
   return result;
 }
 
-async function getTeamLeagueLeaders() {
+async function getTeamLeagueLeaders(season, gameType) {
   const request = async (group) => {
     const url = new URL(`${MLB_API}/teams/stats`);
     url.searchParams.set("stats", "season");
     url.searchParams.set("group", group);
-    url.searchParams.set("season", SEASON);
+    url.searchParams.set("season", season);
+    url.searchParams.set("gameType", gameType);
     url.searchParams.set("sportIds", "1");
     const response = await fetch(url);
     if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
@@ -1132,12 +1159,12 @@ async function getTeamLeagueLeaders() {
   };
 }
 
-async function getQualityStartLeaders() {
+async function getQualityStartLeaders(season, gameType) {
   const candidatesUrl = new URL(`${MLB_API}/stats`);
   candidatesUrl.searchParams.set("stats", "season");
   candidatesUrl.searchParams.set("group", "pitching");
-  candidatesUrl.searchParams.set("gameType", "R");
-  candidatesUrl.searchParams.set("season", SEASON);
+  candidatesUrl.searchParams.set("gameType", gameType);
+  candidatesUrl.searchParams.set("season", season);
   candidatesUrl.searchParams.set("sportIds", "1");
   candidatesUrl.searchParams.set("playerPool", "ALL");
   candidatesUrl.searchParams.set("limit", "1000");
@@ -1151,7 +1178,7 @@ async function getQualityStartLeaders() {
 
   const logsUrl = new URL(`${MLB_API}/people`);
   logsUrl.searchParams.set("personIds", candidates.map((split) => split.player.id).join(","));
-  logsUrl.searchParams.set("hydrate", `stats(group=[pitching],type=[gameLog],season=${SEASON}),currentTeam`);
+  logsUrl.searchParams.set("hydrate", `stats(group=[pitching],type=[gameLog],season=${season},gameType=[${gameType}]),currentTeam`);
   logsUrl.searchParams.set("fields", "people,id,fullName,currentTeam,stats,splits,date,stat,gamesStarted,outs,earnedRuns,team,name,abbreviation,teamCode,fileCode,shortName");
   const logsResponse = await fetch(logsUrl);
   if (!logsResponse.ok) throw new Error(`MLB API returned ${logsResponse.status}`);
@@ -1185,11 +1212,109 @@ async function getQualityStartLeaders() {
   };
 }
 
-async function loadLeagueLeaders() {
+async function getSeasonGames(season, gameType) {
+  const url = new URL(`${MLB_API}/schedule`);
+  url.searchParams.set("sportId", "1");
+  url.searchParams.set("startDate", `${season}-01-01`);
+  url.searchParams.set("endDate", `${season}-12-31`);
+  url.searchParams.set("gameTypes", gameType === "P" ? "F,D,L,W" : gameType);
+  url.searchParams.set("hydrate", "gameInfo");
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
+  const data = await response.json();
+  return (data.dates || []).flatMap((date) => date.games || []);
+}
+
+function gameStart(game) {
+  const value = new Date(game?.gameDate || "").getTime();
+  return Number.isFinite(value) ? value : null;
+}
+
+function gameIsFinal(game) {
+  const status = game?.status || {};
+  return String(status.abstractGameState || "").toLowerCase() === "final"
+    || status.codedGameState === "F"
+    || String(status.detailedState || "").toLowerCase().includes("final");
+}
+
+function gameIsComplete(game) {
+  if (gameIsFinal(game)) return true;
+  return /cancel|postpon/.test(String(game?.status?.detailedState || "").toLowerCase());
+}
+
+async function finalGameCompletion(game) {
+  const start = gameStart(game);
+  const duration = Number(game?.gameInfo?.gameDurationMinutes);
+  if (start !== null && Number.isFinite(duration) && duration > 0) return start + duration * 60000;
+  if (!game?.gamePk) return null;
+  try {
+    const response = await fetch(`${MLB_API}.1/game/${game.gamePk}/feed/live`);
+    if (!response.ok) return null;
+    const data = await response.json();
+    const plays = data.liveData?.plays?.allPlays || [];
+    const endTime = plays.at(-1)?.about?.endTime;
+    const value = new Date(endTime || "").getTime();
+    return Number.isFinite(value) ? value : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+async function postseasonWindow(now = new Date()) {
+  const nowMs = now.getTime();
+  const calendarYear = now.getFullYear();
+  const [springResult, currentPostseasonResult, priorPostseasonResult] = await Promise.allSettled([
+    getSeasonGames(calendarYear, "S"),
+    getSeasonGames(calendarYear, "P"),
+    getSeasonGames(calendarYear - 1, "P"),
+  ]);
+  const springGames = springResult.status === "fulfilled" ? springResult.value : [];
+  const firstSpringStart = springGames.map(gameStart).filter(Number.isFinite).sort((a, b) => a - b)[0];
+  const currentPostseason = currentPostseasonResult.status === "fulfilled" ? currentPostseasonResult.value : [];
+  const firstCurrentStart = currentPostseason.map(gameStart).filter(Number.isFinite).sort((a, b) => a - b)[0];
+  const usingCurrentPostseason = Number.isFinite(firstCurrentStart) && nowMs >= firstCurrentStart - THREE_HOURS_MS;
+  if (!usingCurrentPostseason && Number.isFinite(firstSpringStart) && nowMs >= firstSpringStart) {
+    return {
+      season: calendarYear,
+      gameType: "R",
+      postseasonAvailable: false,
+      phaseKey: `regular-${calendarYear}`,
+      nextTransition: Number.isFinite(firstCurrentStart) ? firstCurrentStart - THREE_HOURS_MS : null,
+    };
+  }
+  const season = usingCurrentPostseason ? calendarYear : calendarYear - 1;
+  const postseasonGames = usingCurrentPostseason
+    ? currentPostseason
+    : priorPostseasonResult.status === "fulfilled" ? priorPostseasonResult.value : [];
+  if (!postseasonGames.length) {
+    return { season: calendarYear, gameType: "R", postseasonAvailable: false, phaseKey: `regular-${calendarYear}` };
+  }
+
+  const orderedGames = [...postseasonGames].filter((game) => gameStart(game) !== null)
+    .sort((a, b) => gameStart(a) - gameStart(b));
+  const lastFinalGame = [...orderedGames].reverse().find(gameIsFinal);
+  const allComplete = orderedGames.length > 0 && orderedGames.every(gameIsComplete);
+  const completion = allComplete && lastFinalGame ? await finalGameCompletion(lastFinalGame) : null;
+  const postseasonActive = usingCurrentPostseason && (!allComplete || completion === null || nowMs < completion + THREE_HOURS_MS);
+  return {
+    season,
+    gameType: postseasonActive ? "P" : "R",
+    postseasonAvailable: true,
+    phaseKey: postseasonActive ? `postseason-active-${season}` : `postseason-ended-${season}`,
+    nextTransition: postseasonActive && completion !== null
+      ? completion + THREE_HOURS_MS
+      : Number.isFinite(firstSpringStart) && firstSpringStart > nowMs ? firstSpringStart : null,
+  };
+}
+
+async function loadLeagueLeaderData() {
+  const { season, gameType } = state.leagueLeaders;
+  state.leagueLeaders.status = "loading";
+  els.leagueLeaders.setAttribute("aria-busy", "true");
   const [playersResult, teamsResult, qualityStartsResult] = await Promise.allSettled([
-    getPlayerLeagueLeaders(),
-    getTeamLeagueLeaders(),
-    getQualityStartLeaders(),
+    getPlayerLeagueLeaders(season, gameType),
+    getTeamLeagueLeaders(season, gameType),
+    getQualityStartLeaders(season, gameType),
   ]);
   const players = playersResult.status === "fulfilled" ? playersResult.value : { hitting: {}, pitching: {} };
   const teams = teamsResult.status === "fulfilled" ? teamsResult.value : { hitting: {}, pitching: {} };
@@ -1199,6 +1324,45 @@ async function loadLeagueLeaders() {
   state.leagueLeaders.teams = teams;
   state.leagueLeaders.status = "ready";
   renderLeagueLeaders();
+}
+
+async function loadLeagueLeaders() {
+  try {
+    const context = await postseasonWindow();
+    Object.assign(state.leagueLeaders, context);
+    scheduleLeagueLeaderPhaseRefresh(context.nextTransition);
+  } catch (error) {
+    // Regular-season leaders remain a safe fallback if schedule data is unavailable.
+    scheduleLeagueLeaderPhaseRefresh();
+  }
+  await loadLeagueLeaderData();
+}
+
+function scheduleLeagueLeaderPhaseRefresh(nextTransition = null) {
+  clearTimeout(state.leagueLeaders.phaseTimer);
+  const transitionDelay = Number.isFinite(nextTransition) ? Math.max(1000, nextTransition - Date.now()) : Infinity;
+  state.leagueLeaders.phaseTimer = setTimeout(refreshLeagueLeaderPhase, Math.min(LEADER_PHASE_REFRESH_MS, transitionDelay));
+}
+
+async function refreshLeagueLeaderPhase() {
+  try {
+    const context = await postseasonWindow();
+    const phaseChanged = context.phaseKey !== state.leagueLeaders.phaseKey;
+    const selectedGameType = state.leagueLeaders.gameType;
+    Object.assign(state.leagueLeaders, context);
+    if (!phaseChanged && context.postseasonAvailable) state.leagueLeaders.gameType = selectedGameType;
+    scheduleLeagueLeaderPhaseRefresh(context.nextTransition);
+    if (phaseChanged) await loadLeagueLeaderData();
+  } catch (error) {
+    scheduleLeagueLeaderPhaseRefresh();
+  }
+}
+
+async function setLeagueLeaderSeasonType(gameType) {
+  if (!state.leagueLeaders.postseasonAvailable || !["R", "P"].includes(gameType)
+    || gameType === state.leagueLeaders.gameType) return;
+  state.leagueLeaders.gameType = gameType;
+  await loadLeagueLeaderData();
 }
 
 function teamLogoUrl(team) {
@@ -1523,6 +1687,10 @@ function bindEvents() {
   els.leaderboardToggle.addEventListener("click", (event) => {
     const button = event.target.closest("[data-leader-view]");
     if (button) setLeagueLeaderView(button.dataset.leaderView);
+  });
+  els.leaderboardSeasonToggle.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-leader-season-type]");
+    if (button) setLeagueLeaderSeasonType(button.dataset.leaderSeasonType);
   });
   els.leagueLeaders.addEventListener("click", (event) => {
     const button = event.target.closest("[data-leader-stat-group]");

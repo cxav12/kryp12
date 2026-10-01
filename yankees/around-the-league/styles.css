@@ -888,6 +888,13 @@ a.hot-item.player-profile-link:focus-visible {
   gap: 8px;
 }
 
+.leaderboard-header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px 16px;
+}
+
 .leaderboard-content,
 .leader-group {
   min-width: 0;

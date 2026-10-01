@@ -1915,7 +1915,8 @@ a.leader-featured-name:focus-visible {
   }
 
   .standings-season-control {
-    grid-template-columns: 16px minmax(32px, 1fr) 16px;
+    grid-template-columns: 16px minmax(31px, 1fr) 16px;
+    padding-inline: 4px;
   }
 
   .standings-switch {

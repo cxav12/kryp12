@@ -649,6 +649,10 @@
   gap: 8px;
 }
 
+.standings-table td:nth-child(2) .standing-team-name-mobile {
+  display: none;
+}
+
 .standing-team-logo {
   flex: 0 0 auto;
   width: 24px;
@@ -1994,6 +1998,14 @@ a.leader-featured-name:focus-visible {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  .standings-table td:nth-child(2) .standing-team-name-full {
+    display: none;
+  }
+
+  .standings-table td:nth-child(2) .standing-team-name-mobile {
+    display: inline-block;
   }
 
   .standings-table.is-wild-card-view > thead {

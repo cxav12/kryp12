@@ -279,6 +279,13 @@ async function getStandings(season = state.standingsView.season) {
   return response.json();
 }
 
+function standingsTeamNickname(team) {
+  if (team?.teamName || team?.clubName) return team.teamName || team.clubName;
+  const fullName = String(team?.name || "Team");
+  const compoundNickname = fullName.match(/(Blue Jays|Red Sox|White Sox)$/)?.[1];
+  return compoundNickname || fullName.split(/\s+/).at(-1);
+}
+
 function standingsRecordsFromData(data) {
   const records = [];
   (data.records || []).forEach((division) => {
@@ -292,6 +299,7 @@ function standingsRecordsFromData(data) {
       records.push({
         teamId: record.team.id,
         teamName: record.team.name || "Team",
+        teamNickname: standingsTeamNickname(record.team),
         wins: record.leagueRecord?.wins ?? record.wins ?? "-",
         losses: record.leagueRecord?.losses ?? record.losses ?? "-",
         pct: record.leagueRecord?.pct || record.winningPercentage || "-",
@@ -447,12 +455,17 @@ function standingsTeamCell(record) {
   const cell = element("td");
   cell.dataset.label = "Team";
   const team = element("span", "standing-team-name");
+  team.setAttribute("aria-label", record.teamName);
   const logo = element("img", "standing-team-logo");
   logo.src = `https://www.mlbstatic.com/team-logos/team-cap-on-dark/${record.teamId}.svg`;
   logo.alt = "";
   logo.loading = "lazy";
   logo.addEventListener("error", () => logo.remove(), { once: true });
-  team.append(logo, document.createTextNode(record.teamName));
+  const fullName = element("span", "standing-team-name-full", record.teamName);
+  const mobileName = element("span", "standing-team-name-mobile", record.teamNickname);
+  fullName.setAttribute("aria-hidden", "true");
+  mobileName.setAttribute("aria-hidden", "true");
+  team.append(logo, fullName, mobileName);
   if (record.clinchIndicator) {
     const indicator = element("span", "standing-clinch-indicator", record.clinchIndicator);
     indicator.title = clinchIndicatorLabel(record.clinchIndicator);

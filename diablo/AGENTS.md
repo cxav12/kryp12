@@ -1,4 +1,4 @@
-# Diablo IV Site — Codex Instructions
+# Diablo IV Site Instructions
 
 This directory contains the Diablo IV website.
 

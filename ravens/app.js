@@ -9,7 +9,7 @@ const TEAM_COLORS = {
   LV: "#000000", LAC: "#0080C6", LAR: "#003594", MIA: "#008E97", MIN: "#4F2683", NE: "#002244", NO: "#D3BC8D", NYG: "#0B2265",
   NYJ: "#125740", PHI: "#004C54", PIT: "#FFB612", SF: "#AA0000", SEA: "#002244", TB: "#D50A0A", TEN: "#0C2340", WSH: "#5A1414",
 };
-const state = { events: [], selectedId: "", summary: null, nflReceiving: null, teamRecords: new Map(), statView: "offense", statTeam: "ravens", timer: null, refreshInFlight: false, animatedCharts: new Set(), animatedComparisons: new Set() };
+const state = { events: [], selectedId: "", summary: null, nflReceiving: null, gameContexts: new Map(), teamRecords: new Map(), statView: "offense", statTeam: "ravens", timer: null, refreshInFlight: false, animatedCharts: new Set(), animatedComparisons: new Set() };
 const els = {
   title: document.querySelector("#page-title"), description: document.querySelector("#page-description"),
   status: document.querySelector("#data-status"), selector: document.querySelector("#game-selector-grid"),
@@ -50,17 +50,6 @@ function displayScore(score, fallback = "-") {
 function flattenRoster(data) { return (data?.athletes || []).flatMap((group) => group.items || group.athletes || (group.id ? [group] : [])); }
 function playerName(player) { return player?.displayName || player?.fullName || ""; }
 function playerHeadshot(player) { return player?.headshot?.href || player?.headshot || (player?.id ? `https://a.espncdn.com/i/headshots/nfl/players/full/${player.id}.png` : teamLogo(RAVENS_ABBR)); }
-function playerInStory(article, roster) {
-  const text = `${article.headline || ""} ${article.description || ""}`.toLowerCase();
-  const rosterMatch = roster.find((player) => {
-    const fullName = playerName(player).toLowerCase();
-    const lastName = String(player.lastName || fullName.split(" ").at(-1) || "").toLowerCase();
-    return fullName && (text.includes(fullName) || (lastName.length >= 5 && text.includes(lastName)));
-  });
-  if (rosterMatch) return rosterMatch;
-  const athlete = (article.categories || []).find((category) => /athlete|player/i.test(category.type || "") && (category.athleteId || category.id));
-  return athlete ? { id: athlete.athleteId || athlete.id, displayName: athlete.description || athlete.name || "Ravens player" } : null;
-}
 function recordText(...entries) {
   const summaries = entries.flatMap((entry) => entry?.records || []).filter((record) => record.type === "total" && record.summary).map((record) => String(record.summary));
   return summaries.sort((a, b) => b.split("-").reduce((total, value) => total + (Number(value) || 0), 0) - a.split("-").reduce((total, value) => total + (Number(value) || 0), 0))[0] || "0-0";
@@ -140,7 +129,22 @@ function broadcastNames(...games) {
     ...(game?.broadcasts || []).flatMap((item) => item.names || []),
     ...(game?.geoBroadcasts || []).map((item) => item.media?.shortName || item.media?.name),
   ]).filter(Boolean);
-  return [...new Set(names)].join(" / ") || "Broadcast TBD";
+  return [...new Set(names)].join(" / ");
+}
+
+async function refreshGameContext(event) {
+  if (!event || typeof RavensGameContext === "undefined") return;
+  const cached = state.gameContexts.get(String(event.id));
+  if (cached && Date.now() - cached.updatedAt < 10 * 60 * 1000) return;
+  const fallback = { broadcast: RavensGameContext.broadcastFor(event), conditions: "", updatedAt: Date.now() };
+  state.gameContexts.set(String(event.id), fallback);
+  renderGame();
+  try {
+    const context = await RavensGameContext.fetchContext(event);
+    if (String(event.id) !== String(state.selectedId)) return;
+    state.gameContexts.set(String(event.id), context);
+    renderGame();
+  } catch (_) { /* ESPN data and the curated broadcast remain visible when live weather is unavailable. */ }
 }
 function scoreTeam(entry, side = "left", recordFallback, currentRecord) {
   const team = entry.team || {};
@@ -166,9 +170,10 @@ function renderGame() {
   const status = game.status?.type || event?.status?.type || {}; const currentState = status.state || "pre";
   const venueInfo = game.venue?.fullName ? game.venue : scheduleGame.venue;
   const venue = venueInfo?.fullName || "Venue TBD";
-  const broadcast = broadcastNames(game, scheduleGame);
+  const gameContext = state.gameContexts.get(String(event?.id)) || {};
+  const broadcast = broadcastNames(game, scheduleGame) || gameContext.broadcast || RavensGameContext?.broadcastFor(event) || "Broadcast TBD";
   const indoor = game.venue?.indoor ?? scheduleGame.venue?.indoor;
-  const weather = game.weather?.displayValue || scheduleGame.weather?.displayValue || (indoor ? "Indoors" : "Forecast pending");
+  const weather = game.weather?.displayValue || scheduleGame.weather?.displayValue || gameContext.conditions || (indoor ? "Indoors" : "Forecast pending");
   const includeFinalResult = currentState === "post" && !isPreseason(event);
   const ravensScore = Number(displayScore(ravens.score, 0)); const opponentScore = Number(displayScore(opponent.score, 0));
   const ravensRecord = recordWithFinalResult(state.teamRecords.get(ravens.team?.abbreviation) || recordText(ravens, scheduleRavens), ravensScore, opponentScore, includeFinalResult);
@@ -402,7 +407,7 @@ async function renderBreakingDetails() {
     }).filter((item) => item.description).slice(0, 3); if (!items.length) return;
     els.breakingGrid.innerHTML = items.map((item) => {
       const text = item.description;
-      const player = playerInStory({ headline: text, description: "" }, roster);
+      const player = RavensTransactionPlayer.resolve(text, roster);
       const published = item.date ? formatDate(`${item.date}T12:00:00`, { month: "short", day: "numeric" }) : "";
       const image = playerHeadshot(player);
       const type = /injur|\bIR\b|physically unable|\bPUP\b|reserve list/i.test(text) ? "Injury Update" : /\btrad(?:e|ed|es|ing)\b/i.test(text) ? "Trade" : /\b(?:sign(?:ed|ing|s)?|claim(?:ed|s)?|acquir(?:ed|es|ing))\b/i.test(text) ? "Acquisition" : /\bdemot(?:e|ed|es|ing)\b/i.test(text) ? "Demotion" : /\b(?:promot(?:e|ed|es|ing)|elevat(?:e|ed|es|ing))\b/i.test(text) ? "Promotion" : "Roster Move";
@@ -416,7 +421,7 @@ async function selectGame(id, { scroll = false, refresh = false } = {}) {
   if (!refresh) { state.summary = null; state.nflReceiving = null; renderSelectors(); renderGame(); els.winPanel.hidden = true; els.dashboard.hidden = true; }
   else renderSelectors();
   try {
-    state.summary = await getSummary(id); renderGame(); renderDashboard();
+    state.summary = await getSummary(id); renderGame(); renderDashboard(); refreshGameContext(selectedEvent());
     const needsYac = (state.summary?.boxscore?.players || []).some((group) => (group.statistics || []).some((category) => {
       if (!/receiving/i.test(category.name || category.type || category.text || "")) return false;
       const yacIndex = (category.labels || []).findIndex((label) => /^YAC$/i.test(label));

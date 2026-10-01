@@ -8,7 +8,7 @@
 .week-control strong { min-width: 64px; color: var(--heading); text-align: center; }
 .week-control button:disabled { opacity: .3; cursor: default; }
 .league-toggle button.active { color: var(--heading); background: #100e16; }
-.score-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0 22px 22px; }
+.score-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 0 22px 22px; }
 .score-card { border-radius: 8px; overflow: hidden; background: var(--inner); }
 .score-meta { display: flex; justify-content: space-between; gap: 12px; padding: 11px 14px 7px; color: var(--quiet); font-size: .7rem; font-weight: 800; text-transform: uppercase; }
 .score-team-row { min-height: 48px; display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 7px 14px; }
@@ -29,16 +29,22 @@
 .standings-team { display: flex; align-items: center; gap: 10px; color: var(--heading); }
 .standings-team img { width: 27px; height: 27px; object-fit: contain; }
 .standings-team.ravens { color: var(--accent-bright); }
-.leader-controls { display: flex; align-items: center; gap: 10px; }
-.leader-controls select { min-height: 39px; border: 0; border-radius: 999px; color: var(--heading); background: #24212d; padding: 0 32px 0 14px; }
 .leader-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; padding: 0 22px 22px; }
-.leader-card { min-width: 0; border-radius: 8px; background: var(--inner); padding: 15px; }
-.leader-rank { color: var(--accent-bright); font-size: .7rem; font-weight: 900; text-transform: uppercase; }
-.leader-person { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
-.leader-person img { width: 46px; height: 46px; border-radius: 50%; object-fit: contain; background: #1c1925; }
-.leader-person strong { display: block; overflow: hidden; color: var(--heading); text-overflow: ellipsis; white-space: nowrap; }
-.leader-person small { color: var(--muted); }
-.leader-value { margin-top: 12px; color: var(--heading); font-size: 1.35rem; font-weight: 900; }
-@media (max-width: 950px) { .leader-list { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 720px) { .league-heading { align-items: flex-start; flex-direction: column; } .score-grid { grid-template-columns: 1fr; padding-inline: 14px; } .leader-controls { align-items: stretch; flex-direction: column; width: 100%; } .leader-list { grid-template-columns: repeat(2, 1fr); padding-inline: 14px; } }
+.leader-card { min-width: 0; min-height: 390px; border-radius: 8px; background: var(--inner); display: flex; flex-direction: column; padding: 15px; }
+.leader-category { color: var(--accent-bright); font-size: .7rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+.leader-rows { display: grid; gap: 4px; margin: 12px 0 14px; padding: 0; list-style: none; }
+.leader-row { min-width: 0; min-height: 52px; display: grid; grid-template-columns: 16px 34px minmax(0, 1fr) auto; align-items: center; gap: 7px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.leader-row:last-child { border-bottom: 0; }
+.leader-position { color: var(--accent-bright); font-size: .72rem; font-weight: 900; }
+.leader-row img { width: 34px; height: 34px; border-radius: 50%; object-fit: contain; background: #1c1925; }
+.leader-identity { min-width: 0; }
+.leader-identity strong, .leader-identity small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.leader-identity strong { color: var(--heading); font-size: .78rem; }
+.leader-identity small { color: var(--muted); font-size: .67rem; }
+.leader-row b { color: var(--heading); font-size: .9rem; font-variant-numeric: tabular-nums; }
+.leader-empty { min-height: 260px; display: flex; align-items: center; color: var(--muted); font-size: .78rem; }
+.leader-view-all { margin-top: auto; border-top: 1px solid rgba(255,255,255,.08); color: var(--accent-bright); display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 12px; font-size: .72rem; font-weight: 850; text-decoration: none; }
+.leader-view-all:hover, .leader-view-all:focus-visible { color: var(--heading); }
+@media (max-width: 950px) { .score-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .leader-list { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px) { .league-heading { align-items: flex-start; flex-direction: column; } .score-grid { grid-template-columns: 1fr; padding-inline: 14px; } .leader-list { grid-template-columns: repeat(2, 1fr); padding-inline: 14px; } }
 @media (max-width: 440px) { .leader-list { grid-template-columns: 1fr; } }

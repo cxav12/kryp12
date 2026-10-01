@@ -10,6 +10,7 @@ const els = {
 const OFFENSE_PATTERN = /pass|rush|receiv|reception|completion|attempt|touchdown|yard|quarterback|scor/i;
 const DEFENSE_PATTERN = /tackl|sack|interception|forced|fumble|defen|pass def|quarterback hit|safety/i;
 const HIDDEN_CATEGORIES = new Set(["kickoffyards", "puntyards"]);
+const requestedCategory = new URLSearchParams(location.search).get("category");
 
 function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])); }
 function teamLogo(abbr) { return `https://a.espncdn.com/i/teamlogos/nfl/500/${String(abbr || "nfl").toLowerCase()}.png`; }
@@ -44,6 +45,13 @@ function relevantCategories(categories) {
   const opposite = state.group === "offense" ? DEFENSE_PATTERN : OFFENSE_PATTERN;
   const exact = visibleCategories.filter((category) => pattern.test(`${category.name} ${category.label}`) && !opposite.test(`${category.name} ${category.label}`));
   return exact.length ? exact : visibleCategories.filter((category) => pattern.test(`${category.name} ${category.label}`));
+}
+function normalizedCategoryName(value) { return String(value || "").replace(/[^a-z0-9]/gi, "").toLowerCase(); }
+function requestedCategoryIndex(categories) {
+  const requested = normalizedCategoryName(requestedCategory);
+  if (!requested) return 0;
+  const index = categories.findIndex((category) => [category.name, category.label].some((value) => normalizedCategoryName(value) === requested));
+  return index < 0 ? 0 : index;
 }
 function leaderEntity(leader) { return leader.athlete || leader.player || leader.team || leader.competitor || {}; }
 function leaderTeam(leader) {
@@ -92,7 +100,7 @@ async function loadStats() {
   try {
     let data = state.cache.get(key);
     if (!data) { data = await getJson(endpoint()); state.cache.set(key, data); }
-    const categories = findCategoryArrays(data).map(normalizeCategory); state.categories = relevantCategories(categories); state.categoryIndex = 0;
+    const categories = findCategoryArrays(data).map(normalizeCategory); state.categories = relevantCategories(categories); state.categoryIndex = requestedCategoryIndex(state.categories);
     render(); els.status.textContent = "2026 ESPN data";
   } catch (error) {
     state.categories = []; renderCategoryTabs(); renderTable();

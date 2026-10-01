@@ -4,8 +4,15 @@ const LEADERS_API = "https://site.api.espn.com/apis/site/v3/sports/football/nfl/
 const NORTH = new Set(["bal", "cin", "cle", "pit"]);
 const AFC = new Set(["bal","buf","cin","cle","den","hou","ind","jax","kc","lac","lv","mia","ne","nyj","pit","ten"]);
 const DIVISIONS = { bal:"AFC North",cin:"AFC North",cle:"AFC North",pit:"AFC North",buf:"AFC East",mia:"AFC East",ne:"AFC East",nyj:"AFC East",hou:"AFC South",ind:"AFC South",jax:"AFC South",ten:"AFC South",den:"AFC West",kc:"AFC West",lac:"AFC West",lv:"AFC West",chi:"NFC North",det:"NFC North",gb:"NFC North",min:"NFC North",dal:"NFC East",nyg:"NFC East",phi:"NFC East",wsh:"NFC East",atl:"NFC South",car:"NFC South",no:"NFC South",tb:"NFC South",ari:"NFC West",lar:"NFC West",sea:"NFC West",sf:"NFC West" };
-const state = { week: 1, maxWeek: 18, conference: "afc", leaderType: "players", category: "passingYards", games: [], standings: [], leaders: null };
-const els = { status: document.querySelector("#league-status"), games: document.querySelector("#division-games"), otherGames: document.querySelector("#other-games"), otherWeek: document.querySelector("#other-games-week"), week: document.querySelector("#week-label"), previous: document.querySelector("#previous-week"), next: document.querySelector("#next-week"), standings: document.querySelector("#standings-body"), standingsSummary: document.querySelector("#standings-summary"), leaders: document.querySelector("#leader-list"), leadersSummary: document.querySelector("#leaders-summary"), category: document.querySelector("#leader-category") };
+const LEADER_CATEGORIES = [
+  { key: "passingYards", label: "Passing Yards" },
+  { key: "passingTouchdowns", label: "Passing TDs" },
+  { key: "rushingYards", label: "Rushing Yards" },
+  { key: "rushingTouchdowns", label: "Rushing TDs" },
+  { key: "receivingYards", label: "Receiving Yards" },
+];
+const state = { week: 1, maxWeek: 18, conference: "afc", games: [], standings: [], leaders: null };
+const els = { status: document.querySelector("#league-status"), games: document.querySelector("#division-games"), otherGames: document.querySelector("#other-games"), otherWeek: document.querySelector("#other-games-week"), week: document.querySelector("#week-label"), previous: document.querySelector("#previous-week"), next: document.querySelector("#next-week"), standings: document.querySelector("#standings-body"), standingsSummary: document.querySelector("#standings-summary"), leaders: document.querySelector("#leader-list"), leadersSummary: document.querySelector("#leaders-summary") };
 function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])); }
 async function getJson(url) { const response = await fetch(url); if (!response.ok) throw new Error(`Data request returned ${response.status}`); return response.json(); }
 function logo(team) { return team?.logo || team?.logos?.[0]?.href || `https://a.espncdn.com/i/teamlogos/nfl/500/${team?.abbreviation?.toLowerCase()}.png`; }
@@ -74,11 +81,16 @@ function renderStandings() {
 }
 function findLeaderCategory(root, name) { const queue = [root], seen = new Set(); while (queue.length) { const item = queue.shift(); if (!item || typeof item !== "object" || seen.has(item)) continue; seen.add(item); if (`${item.name || ""} ${item.abbreviation || ""}`.toLowerCase().replace(/\s/g, "").includes(name.toLowerCase())) return item; Object.values(item).forEach((value) => { if (value && typeof value === "object") queue.push(value); }); } return null; }
 function renderLeaders() {
-  const category = findLeaderCategory(state.leaders, state.category); const source = category?.leaders || category?.entries || category?.items || [];
-  const entries = source.filter((entry) => state.leaderType === "teams" ? entry.team && !entry.athlete : entry.athlete).slice(0, 5);
-  els.leadersSummary.textContent = `${els.category.selectedOptions[0].text} · ${state.leaderType === "players" ? "Players" : "Teams"}`;
-  if (!entries.length) { els.leaders.innerHTML = `<p class="empty-copy">2026 ${escapeHtml(state.leaderType)} leaders will appear after regular-season games begin.</p>`; return; }
-  els.leaders.innerHTML = entries.map((entry, index) => { const subject = entry.athlete || entry.team; const image = entry.athlete?.headshot?.href || logo(entry.team || subject); const team = entry.team?.abbreviation || entry.athlete?.team?.abbreviation || "NFL"; return `<article class="leader-card"><span class="leader-rank">#${index + 1} in NFL</span><div class="leader-person"><img src="${escapeHtml(image)}" alt=""><div><strong>${escapeHtml(subject.displayName || subject.shortDisplayName)}</strong><small>${escapeHtml(team)}</small></div></div><div class="leader-value">${escapeHtml(entry.displayValue ?? entry.value ?? "—")}</div></article>`; }).join("");
+  els.leadersSummary.textContent = "NFL individual leaders · 2026 regular season";
+  els.leaders.innerHTML = LEADER_CATEGORIES.map(({ key, label }) => {
+    const category = findLeaderCategory(state.leaders, key); const source = category?.leaders || category?.entries || category?.items || [];
+    const entries = source.filter((item) => item.athlete).slice(0, 5);
+    const rows = entries.length ? entries.map((entry, index) => {
+      const athlete = entry.athlete; const team = entry.team?.abbreviation || athlete.team?.abbreviation || "NFL"; const image = athlete.headshot?.href || logo(entry.team || athlete.team);
+      return `<li class="leader-row"><span class="leader-position">${escapeHtml(entry.rank || index + 1)}</span><img src="${escapeHtml(image)}" alt=""><span class="leader-identity"><strong>${escapeHtml(athlete.displayName)}</strong><small>${escapeHtml(team)}</small></span><b>${escapeHtml(entry.displayValue ?? entry.value ?? "—")}</b></li>`;
+    }).join("") : `<li class="leader-empty">Awaiting 2026 stats</li>`;
+    return `<article class="leader-card"><span class="leader-category">${escapeHtml(label)}</span><ol class="leader-rows">${rows}</ol><a class="leader-view-all" href="./stats/?category=${encodeURIComponent(key)}">View all ${escapeHtml(label)} <span aria-hidden="true">→</span></a></article>`;
+  }).join("");
 }
 async function init() {
   const [weekResult, leadersResult] = await Promise.allSettled([currentWeekNumber(), getJson(`${LEADERS_API}?season=${SEASON}&seasontype=2`)]);
@@ -91,6 +103,4 @@ async function init() {
 els.previous.addEventListener("click", () => { if (state.week > 1) { state.week--; loadGames(); } });
 els.next.addEventListener("click", () => { if (state.week < state.maxWeek) { state.week++; loadGames(); } });
 document.querySelector("#standings-toggle").addEventListener("click", (event) => { const button = event.target.closest("button[data-conference]"); if (!button) return; state.conference = button.dataset.conference; document.querySelectorAll("[data-conference]").forEach((item) => item.classList.toggle("active", item === button)); renderStandings(); });
-document.querySelector("#leader-type-toggle").addEventListener("click", (event) => { const button = event.target.closest("button[data-type]"); if (!button) return; state.leaderType = button.dataset.type; document.querySelectorAll("[data-type]").forEach((item) => item.classList.toggle("active", item === button)); renderLeaders(); });
-els.category.addEventListener("change", () => { state.category = els.category.value; renderLeaders(); });
 init();

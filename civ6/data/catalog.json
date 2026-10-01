@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "defaultRuleset": "gathering-storm",
+  "sampleData": false,
+  "collections": [
+    {
+      "type": "civilization",
+      "label": "Civilizations",
+      "file": "civilizations.json",
+      "route": "civilizations"
+    },
+    {
+      "type": "leader",
+      "label": "Leaders",
+      "file": "leaders.json",
+      "route": "civilizations"
+    },
+    {
+      "type": "technology",
+      "label": "Technologies",
+      "file": "technologies.json",
+      "route": "tech"
+    },
+    {
+      "type": "civic",
+      "label": "Civics",
+      "file": "civics.json",
+      "route": "civics"
+    },
+    {
+      "type": "policy",
+      "label": "Policies",
+      "file": "policies.json",
+      "route": "policies"
+    },
+    {
+      "type": "resource",
+      "label": "Resources",
+      "file": "resources.json",
+      "route": "resources"
+    },
+    {
+      "type": "district",
+      "label": "Districts",
+      "file": "districts.json",
+      "route": "districts"
+    },
+    {
+      "type": "building",
+      "label": "Buildings",
+      "file": "buildings.json",
+      "route": "buildings"
+    },
+    {
+      "type": "wonder",
+      "label": "Wonders",
+      "file": "wonders.json",
+      "route": "wonders"
+    },
+    {
+      "type": "improvement",
+      "label": "Improvements",
+      "file": "improvements.json",
+      "route": "resources"
+    },
+    {
+      "type": "unit",
+      "label": "Units",
+      "file": "units.json",
+      "route": "civilizations"
+    },
+    {
+      "type": "government",
+      "label": "Governments",
+      "file": "governments.json",
+      "route": "civics"
+    }
+  ]
+}

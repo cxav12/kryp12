@@ -1,0 +1,1899 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "building_airport",
+      "name": "Airport",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+50% combat experience for air units trained in this city. +1 air unit slot in Aerodrome district. Allows the ability to airlift land units between Aerodrome districts with Airports after the Rapid Deployment civic is unlocked.",
+        "district": "district_aerodrome",
+        "productionCost": 480,
+        "maintenance": 2,
+        "prerequisite": "tech_advanced_flight",
+        "yieldChanges": {
+          "production": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_hangar"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_airport.webp"
+    },
+    {
+      "id": "building_alchemical_society",
+      "name": "Alchemical Society",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unique to the Hermetic Order, replaces the University. This Campus district generates Gold Gold equal to its Science Science adjacency bonus.",
+        "district": "district_campus",
+        "productionCost": 250,
+        "maintenance": 2,
+        "prerequisite": "tech_education",
+        "yieldChanges": {
+          "science": 4,
+          "production": 2
+        },
+        "greatPersonPoints": {
+          "engineer": 1,
+          "merchant": 1,
+          "scientist": 1
+        },
+        "requiredPreviousBuilding": "building_library"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_alchemical_society.webp"
+    },
+    {
+      "id": "building_amphitheater",
+      "name": "Amphitheater",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_theater",
+        "productionCost": 150,
+        "maintenance": 1,
+        "prerequisite": "civic_drama_poetry",
+        "yieldChanges": {
+          "culture": 2
+        },
+        "greatPersonPoints": {
+          "writer": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_amphitheater.webp"
+    },
+    {
+      "id": "building_gov_wide",
+      "name": "Ancestral Hall",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "50% increased Production Production toward Settlers in this City. New cities receive a free Builder. Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 150,
+        "maintenance": 1,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gov_wide.webp"
+    },
+    {
+      "id": "building_walls",
+      "name": "Ancient Walls",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Provides Walls around the City Center and Encampment district. Walls allow Ranged Ranged Strikes from the City Center and Encampment district, and must be defeated before a city can be assaulted. Provides 1 Tourism Tourism after advancing to the Conservation Civic.",
+        "district": "district_city_center",
+        "productionCost": 80,
+        "maintenance": null,
+        "prerequisite": "tech_masonry",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_walls.webp"
+    },
+    {
+      "id": "building_aquarium",
+      "name": "Aquarium",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Bonus Amenities Amenity extends to each city center within 9 tiles. This bonus applies once to a city, and multiple copies of this building within 9 tiles of a city center do not provide additional bonuses. +1 Science Science to each coastal resource, Shipwreck, and Reef tile in this city.",
+        "district": "district_water_entertainment_complex",
+        "productionCost": 360,
+        "maintenance": 2,
+        "prerequisite": "civic_natural_history",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_ferris_wheel"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_aquarium.webp"
+    },
+    {
+      "id": "building_aquatics_center",
+      "name": "Aquatics Center",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Bonus Amenities Amenities extend to each city center within 9 tiles. This bonus applies once to a city, and multiple copies of this building within 9 tiles of a city center do not provide additional bonuses. +2 Tourism Tourism for each Wonder built in this city on or adjacent to a Coast tile.",
+        "district": "district_water_entertainment_complex",
+        "productionCost": 480,
+        "maintenance": 3,
+        "prerequisite": "civic_professional_sports",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_aquarium"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_aquatics_center.webp"
+    },
+    {
+      "id": "building_museum_artifact",
+      "name": "Archaeological Museum",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Holds Greatwork Artifact Artifacts. May not be built in a Theater Square district that already has an Art Museum.",
+        "district": "district_theater",
+        "productionCost": 290,
+        "maintenance": 2,
+        "prerequisite": "civic_humanism",
+        "yieldChanges": {
+          "culture": 2
+        },
+        "greatPersonPoints": {
+          "writer": 1,
+          "artist": 2
+        },
+        "requiredPreviousBuilding": "building_amphitheater"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_museum_artifact.webp"
+    },
+    {
+      "id": "building_arena",
+      "name": "Arena",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Provides 1 Tourism Tourism after advancing to the Conservation Civic.",
+        "district": "district_entertainment_complex",
+        "productionCost": 150,
+        "maintenance": 1,
+        "prerequisite": "civic_games_recreation",
+        "yieldChanges": {
+          "culture": 1
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_arena.webp"
+    },
+    {
+      "id": "building_armory",
+      "name": "Armory",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+25% combat experience for all land units trained in this city. Strategic Resource Stockpiles increased +10 (on Standard Speed).",
+        "district": "district_encampment",
+        "productionCost": 195,
+        "maintenance": 2,
+        "prerequisite": "tech_military_engineering",
+        "yieldChanges": {
+          "production": 3
+        },
+        "greatPersonPoints": {
+          "general": 1
+        },
+        "requiredPreviousBuilding": "building_stable"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_armory.webp"
+    },
+    {
+      "id": "building_museum_art",
+      "name": "Art Museum",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Holds Greatwork Landscape Great Works of Art. May not be built in a Theater Square district that already has an Archaeological Museum.",
+        "district": "district_theater",
+        "productionCost": 290,
+        "maintenance": 2,
+        "prerequisite": "civic_humanism",
+        "yieldChanges": {
+          "culture": 2
+        },
+        "greatPersonPoints": {
+          "writer": 1,
+          "artist": 2
+        },
+        "requiredPreviousBuilding": "building_amphitheater"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_museum_art.webp"
+    },
+    {
+      "id": "building_gov_tall",
+      "name": "Audience Chamber",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+2 Amenities Amenities and +4 Housing Housing in Cities with Governor Governors -2 Loyalty in Cities without Governor Governors. Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 150,
+        "maintenance": 1,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gov_tall.webp"
+    },
+    {
+      "id": "building_bank",
+      "name": "Bank",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_commercial_hub",
+        "productionCost": 290,
+        "maintenance": null,
+        "prerequisite": "tech_banking",
+        "yieldChanges": {
+          "gold": 5
+        },
+        "greatPersonPoints": {
+          "merchant": 1
+        },
+        "requiredPreviousBuilding": "building_market"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_bank.webp"
+    },
+    {
+      "id": "building_barracks",
+      "name": "Barracks",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+25% combat experience for all melee and ranged land units trained in this city. Strategic Resource Stockpiles increased +10 (on Standard Speed). May not be built in an Encampment district that already has a Stable.",
+        "district": "district_encampment",
+        "productionCost": 90,
+        "maintenance": 1,
+        "prerequisite": "tech_bronze_working",
+        "yieldChanges": {
+          "production": 1
+        },
+        "greatPersonPoints": {
+          "general": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_barracks.webp"
+    },
+    {
+      "id": "building_basilikoi_paides",
+      "name": "Basilikoi Paides",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Macedon.+25% combat experience for all melee, ranged land units, and Hetairoi trained in this city. Gain Science Science equal to 25% of the unit's cost when a non civilian unit is created in this city. Strategic Resource Stockpiles increased +10 (on Standard Speed). May not be built in an Encampment district that already has a Stable.",
+        "district": "district_encampment",
+        "productionCost": 90,
+        "maintenance": 1,
+        "prerequisite": "tech_bronze_working",
+        "yieldChanges": {
+          "production": 1
+        },
+        "greatPersonPoints": {
+          "general": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_basilikoi_paides.webp"
+    },
+    {
+      "id": "building_broadcast_center",
+      "name": "Broadcast Center",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_theater",
+        "productionCost": 440,
+        "maintenance": 3,
+        "prerequisite": "tech_radio",
+        "yieldChanges": {
+          "culture": 2
+        },
+        "greatPersonPoints": {
+          "artist": 1,
+          "musician": 2
+        },
+        "requiredPreviousBuilding": "building_museum_artifact"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_broadcast_center.webp"
+    },
+    {
+      "id": "building_cathedral",
+      "name": "Cathedral",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_holy_site",
+        "productionCost": 190,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 3
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_cathedral.webp"
+    },
+    {
+      "id": "building_chancery",
+      "name": "Chancery",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+3 Influence Points per turn. When this civilization captures or kills an enemy Spy, receive 50 Science Science for every level of the enemy Spy.",
+        "district": "district_diplomatic_quarter",
+        "productionCost": 290,
+        "maintenance": 2,
+        "prerequisite": "civic_diplomatic_service",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_consulate"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_chancery.webp"
+    },
+    {
+      "id": "building_coal_power_plant",
+      "name": "Coal Power Plant",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Automatically converts any amount of Resource Coal Coal into Power Power for cities within 6 tiles that need it each turn, at the rate of: Bullet1 Resource Coal Coal Powerright 4 Power Power BulletHeavy CO2 into the atmosphere",
+        "district": "district_industrial_zone",
+        "productionCost": 300,
+        "maintenance": 3,
+        "prerequisite": "tech_industrialization",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "engineer": 1
+        },
+        "requiredPreviousBuilding": "building_factory"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_coal_power_plant.webp"
+    },
+    {
+      "id": "building_consulate",
+      "name": "Consulate",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+2 Influence Points per turn. Enemy Spy's level is reduced by 1 when targeting this city or cities with Encampments.",
+        "district": "district_diplomatic_quarter",
+        "productionCost": 150,
+        "maintenance": 1,
+        "prerequisite": "tech_mathematics",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_consulate.webp"
+    },
+    {
+      "id": "building_dar_e_mehr",
+      "name": "Dar-e Mehr",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 additional Faith Faith for each era since constructed or last repaired. Cannot be pillaged by natural disasters.",
+        "district": "district_holy_site",
+        "productionCost": 190,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 3
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_dar_e_mehr.webp"
+    },
+    {
+      "id": "building_electronics_factory",
+      "name": "Electronics Factory",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Japan. Provides +4 Culture Culture to this city after researching the Electricity technology. Its Production Production bonus is extended to all City Centers within 6 tiles that do not already have a bonus from this building type.",
+        "district": "district_industrial_zone",
+        "productionCost": 330,
+        "maintenance": 2,
+        "prerequisite": "tech_industrialization",
+        "yieldChanges": {
+          "production": 3
+        },
+        "greatPersonPoints": {
+          "engineer": 1
+        },
+        "requiredPreviousBuilding": "building_workshop"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_electronics_factory.webp"
+    },
+    {
+      "id": "building_factory",
+      "name": "Factory",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Its Production Production bonus is extended to all City Centers within 6 tiles that do not already have a bonus from this building type.",
+        "district": "district_industrial_zone",
+        "productionCost": 330,
+        "maintenance": 2,
+        "prerequisite": "tech_industrialization",
+        "yieldChanges": {
+          "production": 3
+        },
+        "greatPersonPoints": {
+          "engineer": 1
+        },
+        "requiredPreviousBuilding": "building_workshop"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_factory.webp"
+    },
+    {
+      "id": "building_ferris_wheel",
+      "name": "Ferris Wheel",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+2 Tourism Tourism.",
+        "district": "district_water_entertainment_complex",
+        "productionCost": 290,
+        "maintenance": 1,
+        "prerequisite": "civic_natural_history",
+        "yieldChanges": {
+          "culture": 3
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_ferris_wheel.webp"
+    },
+    {
+      "id": "building_film_studio",
+      "name": "Film Studio",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to America. +100% Tourism Tourism pressure from this city towards other civilizations when the game enters the Modern era.",
+        "district": "district_theater",
+        "productionCost": 440,
+        "maintenance": 3,
+        "prerequisite": "tech_radio",
+        "yieldChanges": {
+          "culture": 2
+        },
+        "greatPersonPoints": {
+          "artist": 1,
+          "musician": 2
+        },
+        "requiredPreviousBuilding": "building_museum_artifact"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_film_studio.webp"
+    },
+    {
+      "id": "building_flood_barrier",
+      "name": "Flood Barrier",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Protects Coastal Lowland tiles in this city from flooding. Initial build cost and per turn maintenance are variable based on the number of Coastal Lowlands in this city and the current sea level. If constructed after some of a city's tiles have been flooded, those tiles can be repaired in full. Submerged tiles however are never recoverable. Must be built in a city with one or more Coastal Lowland tiles. Will not be pillaged if the city is captured.",
+        "district": "district_city_center",
+        "productionCost": 80,
+        "maintenance": 1,
+        "prerequisite": "tech_computers",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_flood_barrier.webp"
+    },
+    {
+      "id": "building_food_market",
+      "name": "Food Market",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Can only be built once in a city, even if the city has multiple Neighborhoods.",
+        "district": "district_neighborhood",
+        "productionCost": 380,
+        "maintenance": 1,
+        "prerequisite": "tech_replaceable_parts",
+        "yieldChanges": {
+          "food": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_food_market.webp"
+    },
+    {
+      "id": "building_gov_citystates",
+      "name": "Foreign Ministry",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+3 Favor Diplomatic Favor. Leveraging City States costs half Gold Gold. City State units gain +4 Strength Combat Strength if you are the City State's Suzerain (including Leveraged Units). Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 290,
+        "maintenance": 2,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_gov_conquest"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gov_citystates.webp"
+    },
+    {
+      "id": "building_gilded_vault",
+      "name": "Gilded Vault",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unique to the Owls of Minerva, replaces the Bank. This Commercial Hub generates Culture Culture equal to its Gold Gold adjacency bonus. Having a Harbor in this city provides you with +1 Traderoute Trade Route capacity.",
+        "district": "district_commercial_hub",
+        "productionCost": 290,
+        "maintenance": null,
+        "prerequisite": "tech_banking",
+        "yieldChanges": {
+          "gold": 5
+        },
+        "greatPersonPoints": {
+          "merchant": 2
+        },
+        "requiredPreviousBuilding": "building_market"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gilded_vault.webp"
+    },
+    {
+      "id": "building_granary",
+      "name": "Granary",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_city_center",
+        "productionCost": 65,
+        "maintenance": null,
+        "prerequisite": "tech_pottery",
+        "yieldChanges": {
+          "food": 1
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_granary.webp"
+    },
+    {
+      "id": "building_grand_bazaar",
+      "name": "Grand Bazaar",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to the Ottomans. Accumulate 1 extra Strategic resource for every different type of Strategic resource this city has improved. Receive 1 Amenities Amenity for every Luxury resource this city has improved.",
+        "district": "district_commercial_hub",
+        "productionCost": 220,
+        "maintenance": null,
+        "prerequisite": "tech_banking",
+        "yieldChanges": {
+          "gold": 5
+        },
+        "greatPersonPoints": {
+          "merchant": 1
+        },
+        "requiredPreviousBuilding": "building_market"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_grand_bazaar.webp"
+    },
+    {
+      "id": "building_gov_faith",
+      "name": "Grand Master's Chapel",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Grants the ability to buy land units with Faith Faith. Pillaging Improvements and Districts provides bonus Faith Faith. Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 290,
+        "maintenance": 2,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 5
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_gov_conquest"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gov_faith.webp"
+    },
+    {
+      "id": "building_grove",
+      "name": "Grove",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Grants +1 Food Food and +1 Faith Faith to adjacent unimproved Charming tiles. Increased to +2 Food Food, +2 Faith Faith, +2 Culture Culture for adjacent unimproved Breathtaking tiles.",
+        "district": "district_preserve",
+        "productionCost": 150,
+        "maintenance": null,
+        "prerequisite": "civic_mysticism",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_grove.webp"
+    },
+    {
+      "id": "building_gurdwara",
+      "name": "Gurdwara",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_holy_site",
+        "productionCost": 190,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 3,
+          "food": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gurdwara.webp"
+    },
+    {
+      "id": "building_hangar",
+      "name": "Hangar",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+25% combat experience for air units trained in this city. +1 air unit slot in Aerodrome district.",
+        "district": "district_aerodrome",
+        "productionCost": 380,
+        "maintenance": 1,
+        "prerequisite": "tech_flight",
+        "yieldChanges": {
+          "production": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_hangar.webp"
+    },
+    {
+      "id": "building_hydroelectric_dam",
+      "name": "Hydroelectric Dam",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Provides the city +6 Power Power from renewable water sources.",
+        "district": "district_dam",
+        "productionCost": 440,
+        "maintenance": 1,
+        "prerequisite": "tech_electricity",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_hydroelectric_dam.webp"
+    },
+    {
+      "id": "building_gov_spies",
+      "name": "Intelligence Agency",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Spy and Spy capacity. All Spy Operations have a higher chance of success. Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 290,
+        "maintenance": 2,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_gov_conquest"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gov_spies.webp"
+    },
+    {
+      "id": "building_large_rocket",
+      "name": "Large Rocket",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_spaceport",
+        "productionCost": 1,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_large_rocket.webp"
+    },
+    {
+      "id": "building_library",
+      "name": "Library",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_campus",
+        "productionCost": 90,
+        "maintenance": 1,
+        "prerequisite": "tech_writing",
+        "yieldChanges": {
+          "science": 2
+        },
+        "greatPersonPoints": {
+          "scientist": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {
+        "summary": "An early, dependable way to turn a Campus into continuing Science and Great Scientist progress."
+      },
+      "image": "/civ6/assets/icons/building/building_library.webp"
+    },
+    {
+      "id": "building_lighthouse",
+      "name": "Lighthouse",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+25% combat experience for all naval units trained in this city. +1 Food Food on all Coast tiles for this city. +2 Housing Housing if this city is adjacent to coast. +1 Traderoute Trade Route capacity, if this city does not yet have a Market building.",
+        "district": "district_harbor",
+        "productionCost": 120,
+        "maintenance": null,
+        "prerequisite": "tech_celestial_navigation",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "admiral": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_lighthouse.webp"
+    },
+    {
+      "id": "building_madrasa",
+      "name": "Madrasa",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Arabia. Bonus Faith Faith equal to the adjacency bonus of the Campus district.",
+        "district": "district_campus",
+        "productionCost": 250,
+        "maintenance": 2,
+        "prerequisite": "civic_theology",
+        "yieldChanges": {
+          "science": 5
+        },
+        "greatPersonPoints": {
+          "scientist": 1
+        },
+        "requiredPreviousBuilding": "building_library"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_madrasa.webp"
+    },
+    {
+      "id": "building_marae",
+      "name": "Marae",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to the Māori. +1 Culture Culture and Faith Faith to all of this city's tiles with a passable feature or natural wonder. After Flight is researched receive +1 Tourism Tourism to all of this city's tiles with a feature or natural wonder. Costs no maintenance. Has no Great Work slots.",
+        "district": "district_theater",
+        "productionCost": 150,
+        "maintenance": null,
+        "prerequisite": "civic_drama_poetry",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_marae.webp"
+    },
+    {
+      "id": "building_market",
+      "name": "Market",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Traderoute Trade Route capacity, if this city does not yet have a Lighthouse building.",
+        "district": "district_commercial_hub",
+        "productionCost": 120,
+        "maintenance": null,
+        "prerequisite": "tech_currency",
+        "yieldChanges": {
+          "gold": 2
+        },
+        "greatPersonPoints": {
+          "merchant": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_market.webp"
+    },
+    {
+      "id": "building_castle",
+      "name": "Medieval Walls",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Increases the strength of your outer defenses. Provides 2 Tourism Tourism after advancing to the Conservation Civic. This city is not affected by Battering Rams.",
+        "district": "district_city_center",
+        "productionCost": 220,
+        "maintenance": null,
+        "prerequisite": "tech_castles",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_walls"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_castle.webp"
+    },
+    {
+      "id": "building_medium_rocket",
+      "name": "Medium Rocket",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_spaceport",
+        "productionCost": 1,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_medium_rocket.webp"
+    },
+    {
+      "id": "building_meeting_house",
+      "name": "Meeting House",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_holy_site",
+        "productionCost": 190,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 3,
+          "production": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_meeting_house.webp"
+    },
+    {
+      "id": "building_military_academy",
+      "name": "Military Academy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+25% combat experience for all land units trained in this city. Strategic Resource Stockpiles increased +10 (on Standard Speed). Allows Corps and Armies to be trained directly. Corps and Army training costs reduced 25%.",
+        "district": "district_encampment",
+        "productionCost": 330,
+        "maintenance": 2,
+        "prerequisite": "tech_military_science",
+        "yieldChanges": {
+          "production": 4
+        },
+        "greatPersonPoints": {
+          "general": 1
+        },
+        "requiredPreviousBuilding": "building_armory"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_military_academy.webp"
+    },
+    {
+      "id": "building_monument",
+      "name": "Monument",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Provides +1 Loyalty per turn in this city. If the city already has maximum Loyalty, also provides an additional +1 Culture Culture.",
+        "district": "district_city_center",
+        "productionCost": 60,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "culture": 1
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_monument.webp"
+    },
+    {
+      "id": "building_mosque",
+      "name": "Mosque",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Missionary and Apostles created here have +1 spread.",
+        "district": "district_holy_site",
+        "productionCost": 190,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 3
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_mosque.webp"
+    },
+    {
+      "id": "building_gov_culture",
+      "name": "National History Museum",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Provides 4 slots for any Great Work. Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 440,
+        "maintenance": 3,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_queens_bibliotheque"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gov_culture.webp"
+    },
+    {
+      "id": "building_navigation_school",
+      "name": "Navigation School",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Portugal. +25% Production Production towards naval units in this city. +1 Science Science for every two coast or lake tiles in this city. +1 Greatadmiral Great Admiral and +1 Greatscientist Great Scientist point per turn.",
+        "district": "district_campus",
+        "productionCost": 250,
+        "maintenance": 2,
+        "prerequisite": "tech_education",
+        "yieldChanges": {
+          "science": 4
+        },
+        "greatPersonPoints": {
+          "admiral": 1,
+          "scientist": 1
+        },
+        "requiredPreviousBuilding": "building_library"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_navigation_school.webp"
+    },
+    {
+      "id": "building_power_plant",
+      "name": "Nuclear Power Plant",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Automatically converts any amount of Resource Uranium Uranium into Power Power for cities within 6 tiles that need it each turn, at the rate of: Bullet1 Resource Uranium Uranium Powerright 16 Power Power BulletMiniscule CO2 into the atmosphere Once built, as a Nuclear Power Plant ages, there is an increased chance for a Nuclear Accident to occur. Its Production Production and Science Science bonus is extended to all City Centers within 6 tiles that do not already have a bonus from a Power Plant building.",
+        "district": "district_industrial_zone",
+        "productionCost": 480,
+        "maintenance": 3,
+        "prerequisite": "tech_nuclear_fission",
+        "yieldChanges": {
+          "production": 4,
+          "science": 3
+        },
+        "greatPersonPoints": {
+          "engineer": 1
+        },
+        "requiredPreviousBuilding": "building_factory"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_power_plant.webp"
+    },
+    {
+      "id": "building_fossil_fuel_power_plant",
+      "name": "Oil Power Plant",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Automatically converts any amount of Resource Oil Oil into Power Power for cities within 6 tiles that need it each turn, at the rate of: Bullet1 Resource Oil Oil Powerright 4 Power Power BulletModerate CO2 into the atmosphere Its Production Production bonus is extended to all City Centers within 6 tiles that do not already have a bonus from a Power Plant building.",
+        "district": "district_industrial_zone",
+        "productionCost": 360,
+        "maintenance": 3,
+        "prerequisite": "tech_electricity",
+        "yieldChanges": {
+          "production": 3
+        },
+        "greatPersonPoints": {
+          "engineer": 1
+        },
+        "requiredPreviousBuilding": "building_factory"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_fossil_fuel_power_plant.webp"
+    },
+    {
+      "id": "building_old_god_obelisk",
+      "name": "Old God Obelisk",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unique to the Voidsingers, replaces the Monument. Contains 1 Great Work slot that can hold any type of Great Work. Provides +1 Loyalty per turn in this city. If the city already has maximum Loyalty, also provides an additional +1 Culture Culture.",
+        "district": "district_city_center",
+        "productionCost": 60,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "culture": 1,
+          "faith": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_old_god_obelisk.webp"
+    },
+    {
+      "id": "building_ordu",
+      "name": "Ordu",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Mongolia. Grants an ability that gives +1 Movement Movement to Heavy and Light Cavalry trained in this city. +25% combat experience for all cavalry and siege class units trained in this city. May not be built in an Encampment district that already has a Barracks.",
+        "district": "district_encampment",
+        "productionCost": 120,
+        "maintenance": 1,
+        "prerequisite": "tech_horseback_riding",
+        "yieldChanges": {
+          "production": 1
+        },
+        "greatPersonPoints": {
+          "general": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_ordu.webp"
+    },
+    {
+      "id": "building_pagoda",
+      "name": "Pagoda",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Favor Diplomatic Favor per turn.",
+        "district": "district_holy_site",
+        "productionCost": 190,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 3
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_pagoda.webp"
+    },
+    {
+      "id": "building_palace",
+      "name": "Palace",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_city_center",
+        "productionCost": 1,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "culture": 1,
+          "gold": 5,
+          "production": 2,
+          "science": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_palace.webp"
+    },
+    {
+      "id": "building_palgum",
+      "name": "Palgum",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Babylon. +1 Housing Housing and +2 Production Production. Freshwater tiles receive +1 Food Food. City must be adjacent to a River.",
+        "district": "district_city_center",
+        "productionCost": 80,
+        "maintenance": null,
+        "prerequisite": "tech_irrigation",
+        "yieldChanges": {
+          "production": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_palgum.webp"
+    },
+    {
+      "id": "building_prasat",
+      "name": "Prasat",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+6 Faith Faith. A building unique to Khmer. Replaces the Temple. Required to purchase Apostles and Inquisitors with Faith Faith. +0.5 Culture Culture for every Citizen population in this city. Once Flight is researched receive +10 Tourism Tourism if the city Citizen population is 10 or higher and +20 Tourism Tourism if the city Citizen population is 20 or higher.",
+        "district": "district_holy_site",
+        "productionCost": 120,
+        "maintenance": 2,
+        "prerequisite": "civic_theology",
+        "yieldChanges": {
+          "faith": 6
+        },
+        "greatPersonPoints": {
+          "prophet": 1
+        },
+        "requiredPreviousBuilding": "building_shrine"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_prasat.webp"
+    },
+    {
+      "id": "building_queens_bibliotheque",
+      "name": "Queen's Bibliotheque",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Sweden. This building provides 2 slots of Greatwork Writing Writing, Greatwork Music Music, and any type of Greatwork Landscape Art. Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 217,
+        "maintenance": 2,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "artist": 2,
+          "writer": 2,
+          "musician": 2
+        },
+        "requiredPreviousBuilding": "building_gov_conquest"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_queens_bibliotheque.webp"
+    },
+    {
+      "id": "building_star_fort",
+      "name": "Renaissance Walls",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Raises the strength of your outer defenses to the highest possible level. Provides 3 Tourism Tourism after advancing to the Conservation Civic. This city is not affected by Siege Towers or Battering Rams.",
+        "district": "district_city_center",
+        "productionCost": 300,
+        "maintenance": null,
+        "prerequisite": "tech_siege_tactics",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_castle"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_star_fort.webp"
+    },
+    {
+      "id": "building_research_lab",
+      "name": "Research Lab",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_campus",
+        "productionCost": 440,
+        "maintenance": 3,
+        "prerequisite": "tech_chemistry",
+        "yieldChanges": {
+          "science": 3
+        },
+        "greatPersonPoints": {
+          "scientist": 1
+        },
+        "requiredPreviousBuilding": "building_alchemical_society"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_research_lab.webp"
+    },
+    {
+      "id": "building_gov_science",
+      "name": "Royal Society",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Builders gain the ability to use all of their charges to provide bonus Production Production to a District Project. Once per city per turn. Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 440,
+        "maintenance": 3,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_queens_bibliotheque"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gov_science.webp"
+    },
+    {
+      "id": "building_sanctuary",
+      "name": "Sanctuary",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Grants +1 Science Science and +1 Gold Gold to adjacent unimproved Charming tiles. Increased to +2 Science Science, +2 Gold Gold, +2 Production Production for adjacent unimproved Breathtaking tiles.",
+        "district": "district_preserve",
+        "productionCost": 440,
+        "maintenance": null,
+        "prerequisite": "civic_conservation",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_sanctuary.webp"
+    },
+    {
+      "id": "building_seaport",
+      "name": "Seaport",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+25% combat experience for all naval units trained in this city. Allows Fleets and Armadas to be trained directly. Fleet and Armada training costs reduced 25%. +2 Gold Gold on all Coast tiles for this city.",
+        "district": "district_harbor",
+        "productionCost": 440,
+        "maintenance": null,
+        "prerequisite": "tech_electricity",
+        "yieldChanges": {
+          "gold": 2,
+          "food": 2
+        },
+        "greatPersonPoints": {
+          "admiral": 1
+        },
+        "requiredPreviousBuilding": "building_shipyard"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_seaport.webp"
+    },
+    {
+      "id": "building_sewer",
+      "name": "Sewer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_city_center",
+        "productionCost": 200,
+        "maintenance": 2,
+        "prerequisite": "tech_sanitation",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_sewer.webp"
+    },
+    {
+      "id": "building_shipyard",
+      "name": "Shipyard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+25% combat experience for all naval units trained in this city. Bonus Production Production equal to the adjacency bonus of the Harbor district. +1 Production Production on all unimproved Coast and Lake tiles for this city.",
+        "district": "district_harbor",
+        "productionCost": 290,
+        "maintenance": 1,
+        "prerequisite": "tech_mass_production",
+        "yieldChanges": {
+          "food": 1
+        },
+        "greatPersonPoints": {
+          "admiral": 1
+        },
+        "requiredPreviousBuilding": "building_lighthouse"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_shipyard.webp"
+    },
+    {
+      "id": "building_shopping_mall",
+      "name": "Shopping Mall",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+4 Tourism Tourism. Can only be built once in a city, even if the city has multiple Neighborhoods.",
+        "district": "district_neighborhood",
+        "productionCost": 440,
+        "maintenance": 1,
+        "prerequisite": "civic_capitalism",
+        "yieldChanges": {
+          "gold": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_shopping_mall.webp"
+    },
+    {
+      "id": "building_shrine",
+      "name": "Shrine",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Hero units claimed or recalled in this City have 10% longer Lifespan Lifespans. Allows the purchasing of Missionaries. Missionaries can only be purchased with Faith Faith.",
+        "district": "district_holy_site",
+        "productionCost": 70,
+        "maintenance": 1,
+        "prerequisite": "tech_astrology",
+        "yieldChanges": {
+          "faith": 2
+        },
+        "greatPersonPoints": {
+          "prophet": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_shrine.webp"
+    },
+    {
+      "id": "building_small_rocket",
+      "name": "Small Rocket",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_spaceport",
+        "productionCost": 1,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_small_rocket.webp"
+    },
+    {
+      "id": "building_stable",
+      "name": "Stable",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+25% combat experience for all cavalry and siege class units trained in this city. Strategic Resource Stockpiles increased +10 (on Standard Speed). May not be built in an Encampment district that already has a Barracks.",
+        "district": "district_encampment",
+        "productionCost": 120,
+        "maintenance": 1,
+        "prerequisite": "tech_horseback_riding",
+        "yieldChanges": {
+          "production": 1
+        },
+        "greatPersonPoints": {
+          "general": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_stable.webp"
+    },
+    {
+      "id": "building_stadium",
+      "name": "Stadium",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Bonus Amenities Amenities extend to each city center within 6 tiles. This bonus applies once to a city, and multiple copies of this building within 6 tiles of a city center do not provide additional bonuses. +2 Tourism Tourism if the city Citizen population is 10 or higher and +5 Tourism Tourism if the city Citizen population is 20 or higher.",
+        "district": "district_entertainment_complex",
+        "productionCost": 480,
+        "maintenance": 3,
+        "prerequisite": "civic_professional_sports",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_zoo"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_stadium.webp"
+    },
+    {
+      "id": "building_stave_church",
+      "name": "Stave Church",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Norway. Required to purchase Apostles and Inquisitors with Faith Faith. Holy Site districts get an additional standard adjacency bonus from Woods. +1 Production Production to each coastal resource tile in this city. Recalling Heroes in this city costs 15% less Faith Faith.",
+        "district": "district_holy_site",
+        "productionCost": 120,
+        "maintenance": 2,
+        "prerequisite": "civic_theology",
+        "yieldChanges": {
+          "faith": 4
+        },
+        "greatPersonPoints": {
+          "prophet": 1
+        },
+        "requiredPreviousBuilding": "building_shrine"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_stave_church.webp"
+    },
+    {
+      "id": "building_stock_exchange",
+      "name": "Stock Exchange",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_commercial_hub",
+        "productionCost": 330,
+        "maintenance": null,
+        "prerequisite": "tech_economics",
+        "yieldChanges": {
+          "gold": 4
+        },
+        "greatPersonPoints": {
+          "merchant": 1
+        },
+        "requiredPreviousBuilding": "building_gilded_vault"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_stock_exchange.webp"
+    },
+    {
+      "id": "building_stupa",
+      "name": "Stupa",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_holy_site",
+        "productionCost": 190,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 3
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_stupa.webp"
+    },
+    {
+      "id": "building_sukiennice",
+      "name": "Sukiennice",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Poland. International Traderoute Trade Routes from this city gain +2 Production Production; domestic Traderoute Trade Routes gain +4 Gold Gold. +1 Traderoute Trade Route capacity, if this city does not yet have a Lighthouse building.",
+        "district": "district_commercial_hub",
+        "productionCost": 120,
+        "maintenance": null,
+        "prerequisite": "tech_currency",
+        "yieldChanges": {
+          "gold": 2
+        },
+        "greatPersonPoints": {
+          "merchant": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_sukiennice.webp"
+    },
+    {
+      "id": "building_synagogue",
+      "name": "Synagogue",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_holy_site",
+        "productionCost": 190,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 5
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_synagogue.webp"
+    },
+    {
+      "id": "building_temple",
+      "name": "Temple",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Recalling Heroes in this city costs 15% less Faith Faith. Allows the purchasing of Apostles, Gurus, Inquisitors, and with the proper belief, Warrior Monks. These units can only be purchased with Faith Faith.",
+        "district": "district_holy_site",
+        "productionCost": 120,
+        "maintenance": 2,
+        "prerequisite": "civic_theology",
+        "yieldChanges": {
+          "faith": 4
+        },
+        "greatPersonPoints": {
+          "prophet": 1
+        },
+        "requiredPreviousBuilding": "building_shrine"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_temple.webp"
+    },
+    {
+      "id": "building_thermal_bath",
+      "name": "Thermal Bath",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Hungary. +2 Amenities Amenities and +2 Production Production extends to each city center within 6 tiles. These bonuses apply once to a city, and multiple copies of this building within 6 tiles of a city center do not provide additional bonuses. This city receives +3 Tourism Tourism and +2 additional Amenities Amenities if there is at least one Geothermal Fissure in this city's borders.",
+        "district": "district_entertainment_complex",
+        "productionCost": 360,
+        "maintenance": 2,
+        "prerequisite": "civic_natural_history",
+        "yieldChanges": {
+          "production": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_arena"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_thermal_bath.webp"
+    },
+    {
+      "id": "building_tlachtli",
+      "name": "Tlachtli",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to the Aztecs. Provides 2 Amenities Amenities, +2 Culture Culture, +2 Faith Faith, and a Greatgeneral Great General Point. Provides +1 Tourism Tourism after advancing to the Conservation Civic.",
+        "district": "district_entertainment_complex",
+        "productionCost": 135,
+        "maintenance": 1,
+        "prerequisite": "civic_games_recreation",
+        "yieldChanges": {
+          "faith": 2,
+          "culture": 2
+        },
+        "greatPersonPoints": {
+          "general": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_tlachtli.webp"
+    },
+    {
+      "id": "building_tsikhe",
+      "name": "Tsikhe",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A building unique to Georgia. Lower Production Production cost and higher outer defenses than Renaissance Walls. Provides +3 Tourism Tourism after advancing to the Conservation Civic. Provides +4 Faith Faith. When in a Golden Age the Tourism Tourism and Faith Faith are +100%.",
+        "district": "district_city_center",
+        "productionCost": 260,
+        "maintenance": null,
+        "prerequisite": "tech_siege_tactics",
+        "yieldChanges": {
+          "faith": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_castle"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_tsikhe.webp"
+    },
+    {
+      "id": "building_university",
+      "name": "University",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_campus",
+        "productionCost": 250,
+        "maintenance": 2,
+        "prerequisite": "tech_education",
+        "yieldChanges": {
+          "science": 4
+        },
+        "greatPersonPoints": {
+          "scientist": 1
+        },
+        "requiredPreviousBuilding": "building_library"
+      },
+      "strategy": {
+        "summary": "A mid-game Science investment best in cities whose Campus and population can justify the cost."
+      },
+      "image": "/civ6/assets/icons/building/building_university.webp"
+    },
+    {
+      "id": "building_gov_military",
+      "name": "War Department",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "All units heal up to 20 hit points when they eliminate a unit. Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 440,
+        "maintenance": 3,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_queens_bibliotheque"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gov_military.webp"
+    },
+    {
+      "id": "building_gov_conquest",
+      "name": "Warlord's Throne",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Capturing an enemy City grants 20% bonus Production Production in all Cities for 5 turns. Awards +1 Governor Governor Title.",
+        "district": "district_government",
+        "productionCost": 150,
+        "maintenance": 1,
+        "prerequisite": null,
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_gov_conquest.webp"
+    },
+    {
+      "id": "building_wat",
+      "name": "Wat",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_holy_site",
+        "productionCost": 190,
+        "maintenance": null,
+        "prerequisite": null,
+        "yieldChanges": {
+          "faith": 3,
+          "science": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_wat.webp"
+    },
+    {
+      "id": "building_water_mill",
+      "name": "Water Mill",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Bonus resources improved by Farms gain +1 Food Food each. City must be adjacent to a River.",
+        "district": "district_city_center",
+        "productionCost": 80,
+        "maintenance": null,
+        "prerequisite": "tech_the_wheel",
+        "yieldChanges": {
+          "food": 1,
+          "production": 1
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_water_mill.webp"
+    },
+    {
+      "id": "building_workshop",
+      "name": "Workshop",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "district": "district_industrial_zone",
+        "productionCost": 195,
+        "maintenance": 1,
+        "prerequisite": "tech_apprenticeship",
+        "yieldChanges": {
+          "production": 3
+        },
+        "greatPersonPoints": {
+          "engineer": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {
+        "summary": "Begins the Industrial Zone building chain and adds steady Production where it can be converted into meaningful output."
+      },
+      "image": "/civ6/assets/icons/building/building_workshop.webp"
+    },
+    {
+      "id": "building_zoo",
+      "name": "Zoo",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Bonus Amenities Amenity extends to each city center within 6 tiles. This bonus applies once to a city, and multiple copies of this building within 6 tiles of a city center do not provide additional bonuses. +1 Science Science to each Rainforest and Marsh tile in this city.",
+        "district": "district_entertainment_complex",
+        "productionCost": 360,
+        "maintenance": 2,
+        "prerequisite": "civic_natural_history",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_arena"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/building/building_zoo.webp"
+    }
+  ]
+}

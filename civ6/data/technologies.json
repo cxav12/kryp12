@@ -1,0 +1,2117 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "tech_advanced_ai",
+      "name": "Advanced AI",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2200,
+        "description": "Unlocks Giant Death Robot upgrade: Drone Air Defense +100 Antiair Large Anti-Air Strength.",
+        "eureka": "Boost through Spy.",
+        "prerequisites": [],
+        "leadsTo": [],
+        "unlocks": [],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_advanced_ai.webp"
+    },
+    {
+      "id": "tech_advanced_ballistics",
+      "name": "Advanced Ballistics",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1480,
+        "description": null,
+        "eureka": "Build 1 Oil Power Plant",
+        "prerequisites": [
+          "tech_replaceable_parts",
+          "tech_steel"
+        ],
+        "leadsTo": [
+          "tech_guidance_systems",
+          "tech_nuclear_fission"
+        ],
+        "unlocks": [
+          "unit_antiair_gun",
+          "unit_machine_gun"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_advanced_ballistics.webp"
+    },
+    {
+      "id": "tech_advanced_flight",
+      "name": "Advanced Flight",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1480,
+        "description": null,
+        "eureka": "Build 2 Biplanes.",
+        "prerequisites": [
+          "tech_radio"
+        ],
+        "leadsTo": [
+          "tech_satellites"
+        ],
+        "unlocks": [
+          "building_airport",
+          "unit_american_p51",
+          "unit_bomber",
+          "unit_fighter"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_advanced_flight.webp"
+    },
+    {
+      "id": "tech_advanced_power_cells",
+      "name": "Advanced Power Cells",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2200,
+        "description": "CO2 emissions from units reduced by 50%. Unlocks Giant Death Robot upgrade: Particle Beam Siege Cannon Ranged attacks against Cities and Encampments are 100% effective and gain +30 Ranged Ranged Strength.",
+        "eureka": "Boost through Spy.",
+        "prerequisites": [],
+        "leadsTo": [],
+        "unlocks": [],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_advanced_power_cells.webp"
+    },
+    {
+      "id": "tech_animal_husbandry",
+      "name": "Animal Husbandry",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 25,
+        "description": "Allows harvesting of Resource Cattle Cattle, Resource Sheep Sheep, and Resource Deer Deer.",
+        "eureka": null,
+        "prerequisites": [],
+        "leadsTo": [
+          "tech_archery"
+        ],
+        "unlocks": [
+          "improvement_camp",
+          "improvement_kurgan",
+          "improvement_pasture"
+        ],
+        "resourcesRevealed": [
+          "resource_horses"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_animal_husbandry.webp"
+    },
+    {
+      "id": "tech_apprenticeship",
+      "name": "Apprenticeship",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 300,
+        "description": "+1 Production Production to the Mine improvement.",
+        "eureka": "Build 3 Mines.",
+        "prerequisites": [
+          "tech_currency",
+          "tech_horseback_riding"
+        ],
+        "leadsTo": [
+          "tech_education",
+          "tech_gunpowder",
+          "tech_stirrups"
+        ],
+        "unlocks": [
+          "building_workshop",
+          "district_hansa",
+          "district_industrial_zone",
+          "unit_man_at_arms"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {
+        "whyItMatters": "A major production breakpoint because it unlocks Industrial Zones and improves the value of Mine-heavy cities."
+      },
+      "image": "/civ6/assets/icons/technology/tech_apprenticeship.webp"
+    },
+    {
+      "id": "tech_archery",
+      "name": "Archery",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 50,
+        "description": null,
+        "eureka": "Kill a unit with a Slinger.",
+        "prerequisites": [
+          "tech_animal_husbandry"
+        ],
+        "leadsTo": [
+          "tech_horseback_riding"
+        ],
+        "unlocks": [
+          "unit_archer",
+          "unit_mayan_hulche",
+          "unit_nubian_pitati",
+          "wonder_temple_artemis"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_archery.webp"
+    },
+    {
+      "id": "tech_astrology",
+      "name": "Astrology",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 50,
+        "description": null,
+        "eureka": "Find a natural wonder.",
+        "prerequisites": [],
+        "leadsTo": [
+          "tech_celestial_navigation"
+        ],
+        "unlocks": [
+          "building_shrine",
+          "district_holy_site",
+          "district_lavra",
+          "wonder_stonehenge"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_astrology.webp"
+    },
+    {
+      "id": "tech_astronomy",
+      "name": "Astronomy",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 730,
+        "description": null,
+        "eureka": "Build a University adjacent to a Mountain.",
+        "prerequisites": [
+          "tech_education"
+        ],
+        "leadsTo": [
+          "tech_scientific_theory"
+        ],
+        "unlocks": [
+          "wonder_potala_palace"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_astronomy.webp"
+    },
+    {
+      "id": "tech_ballistics",
+      "name": "Ballistics",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 930,
+        "description": null,
+        "eureka": "Have 2 Forts in your territory. Both constructed by a Military Engineer.",
+        "prerequisites": [
+          "tech_metal_casting"
+        ],
+        "leadsTo": [
+          "tech_rifling"
+        ],
+        "unlocks": [
+          "improvement_modern_trap_defense",
+          "unit_american_rough_rider",
+          "unit_cuirassier",
+          "unit_field_cannon"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_ballistics.webp"
+    },
+    {
+      "id": "tech_banking",
+      "name": "Banking",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 600,
+        "description": "+2 Gold Gold from the Quarry improvement.",
+        "eureka": "Have the Guilds civic.",
+        "prerequisites": [
+          "tech_education",
+          "tech_stirrups"
+        ],
+        "leadsTo": [
+          "tech_scientific_theory"
+        ],
+        "unlocks": [
+          "building_bank",
+          "building_gilded_vault",
+          "building_grand_bazaar",
+          "wonder_great_zimbabwe"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_banking.webp"
+    },
+    {
+      "id": "tech_bronze_working",
+      "name": "Bronze Working",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 80,
+        "description": "Allows chopping of Rainforest. Reveals Resource Iron Iron.",
+        "eureka": "Kill 3 Barbarians.",
+        "prerequisites": [
+          "tech_mining"
+        ],
+        "leadsTo": [
+          "tech_iron_working"
+        ],
+        "unlocks": [
+          "building_barracks",
+          "building_basilikoi_paides",
+          "district_encampment",
+          "district_ikanda",
+          "district_thanh",
+          "unit_greek_hoplite",
+          "unit_spearman"
+        ],
+        "resourcesRevealed": [
+          "resource_iron"
+        ]
+      },
+      "strategy": {
+        "whyItMatters": "Revealing Iron early helps you plan settlements, military timing, and tile improvements before rivals claim it."
+      },
+      "image": "/civ6/assets/icons/technology/tech_bronze_working.webp"
+    },
+    {
+      "id": "tech_buttress",
+      "name": "Buttress",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 300,
+        "description": null,
+        "eureka": "Build a Classical era or later wonder",
+        "prerequisites": [
+          "tech_mathematics",
+          "tech_shipbuilding"
+        ],
+        "leadsTo": [
+          "tech_cartography",
+          "tech_mass_production"
+        ],
+        "unlocks": [
+          "district_dam",
+          "wonder_hagia_sophia"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_buttress.webp"
+    },
+    {
+      "id": "tech_cartography",
+      "name": "Cartography",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 600,
+        "description": "+2 Gold Gold from the Fishing Boat improvement. All naval and embarked units can navigate Ocean tiles.",
+        "eureka": "Build 2 Harbors.",
+        "prerequisites": [
+          "tech_buttress"
+        ],
+        "leadsTo": [
+          "tech_square_rigging"
+        ],
+        "unlocks": [
+          "unit_caravel",
+          "unit_portuguese_nau",
+          "wonder_casa_de_contratacion"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_cartography.webp"
+    },
+    {
+      "id": "tech_castles",
+      "name": "Castles",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 390,
+        "description": "Bonus Culture Culture for the Great Wall improvement for adjacency. Gain a free Spy if playing as Catherine de Medici (Black Queen).",
+        "eureka": "Adopt a government with 6 inherent policy slots.",
+        "prerequisites": [
+          "tech_construction"
+        ],
+        "leadsTo": [
+          "tech_siege_tactics"
+        ],
+        "unlocks": [
+          "building_castle",
+          "unit_courser",
+          "unit_ethiopian_oromo_cavalry",
+          "unit_hungary_black_army",
+          "wonder_alhambra"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_castles.webp"
+    },
+    {
+      "id": "tech_celestial_navigation",
+      "name": "Celestial Navigation",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 120,
+        "description": "Allows Traders to embark, and allows harvesting of Resource Fish Fish and Resource Crabs Crabs.",
+        "eureka": "Improve 2 sea resources.",
+        "prerequisites": [
+          "tech_astrology",
+          "tech_sailing"
+        ],
+        "leadsTo": [],
+        "unlocks": [
+          "building_lighthouse",
+          "district_cothon",
+          "district_harbor",
+          "district_royal_navy_dockyard",
+          "wonder_great_lighthouse"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_celestial_navigation.webp"
+    },
+    {
+      "id": "tech_chemistry",
+      "name": "Chemistry",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1370,
+        "description": null,
+        "eureka": "Have a level 2 Alliance.",
+        "prerequisites": [
+          "tech_replaceable_parts",
+          "tech_sanitation"
+        ],
+        "leadsTo": [
+          "tech_rocketry"
+        ],
+        "unlocks": [
+          "building_research_lab",
+          "improvement_mountain_tunnel",
+          "unit_at_crew"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_chemistry.webp"
+    },
+    {
+      "id": "tech_combined_arms",
+      "name": "Combined Arms",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1480,
+        "description": null,
+        "eureka": "Have 3 Armies or Armadas",
+        "prerequisites": [
+          "tech_combustion",
+          "tech_steel"
+        ],
+        "leadsTo": [
+          "tech_nuclear_fission"
+        ],
+        "unlocks": [
+          "unit_aircraft_carrier",
+          "unit_destroyer"
+        ],
+        "resourcesRevealed": [
+          "resource_uranium"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_combined_arms.webp"
+    },
+    {
+      "id": "tech_combustion",
+      "name": "Combustion",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1370,
+        "description": "+1 Movement Movement for embarked units.",
+        "eureka": "Extract an Artifact.",
+        "prerequisites": [
+          "tech_refining",
+          "tech_steel"
+        ],
+        "leadsTo": [
+          "tech_combined_arms",
+          "tech_plastics"
+        ],
+        "unlocks": [
+          "unit_supply_convoy",
+          "unit_tank",
+          "wonder_golden_gate_bridge"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_combustion.webp"
+    },
+    {
+      "id": "tech_composites",
+      "name": "Composites",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1850,
+        "description": null,
+        "eureka": "Own 3 Tanks.",
+        "prerequisites": [
+          "tech_synthetic_materials"
+        ],
+        "leadsTo": [
+          "tech_nanotechnology"
+        ],
+        "unlocks": [
+          "improvement_wind_farm",
+          "unit_modern_armor",
+          "unit_modern_at"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_composites.webp"
+    },
+    {
+      "id": "tech_computers",
+      "name": "Computers",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1660,
+        "description": "Grants the ability to construct an additional Spy. +25% Tourism Tourism across your empire.",
+        "eureka": "Adopt a government with 8 inherent policy slots.",
+        "prerequisites": [
+          "tech_electricity",
+          "tech_radio"
+        ],
+        "leadsTo": [
+          "tech_robotics",
+          "tech_telecommunications"
+        ],
+        "unlocks": [
+          "building_flood_barrier",
+          "unit_drone"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_computers.webp"
+    },
+    {
+      "id": "tech_construction",
+      "name": "Construction",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 200,
+        "description": null,
+        "eureka": "Build a Water Mill.",
+        "prerequisites": [
+          "tech_horseback_riding",
+          "tech_masonry"
+        ],
+        "leadsTo": [
+          "tech_castles",
+          "tech_military_engineering"
+        ],
+        "unlocks": [
+          "improvement_ancient_trap_defense",
+          "improvement_lumber_mill",
+          "unit_maori_toa",
+          "wonder_terracotta_army"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_construction.webp"
+    },
+    {
+      "id": "tech_currency",
+      "name": "Currency",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 120,
+        "description": "Unlocks ability to create Industries",
+        "eureka": "Make a Traderoute Trade Route.",
+        "prerequisites": [
+          "tech_writing"
+        ],
+        "leadsTo": [
+          "tech_apprenticeship",
+          "tech_mathematics"
+        ],
+        "unlocks": [
+          "building_market",
+          "building_sukiennice",
+          "district_commercial_hub",
+          "district_suguba",
+          "improvement_industry"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_currency.webp"
+    },
+    {
+      "id": "tech_cybernetics",
+      "name": "Cybernetics",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2200,
+        "description": "Unlocks Giant Death Robot upgrade: Enhanced Mobility +3 Movement Movement. Can perform a Jump action to cross over mountain terrain.",
+        "eureka": "Boost through Spy.",
+        "prerequisites": [],
+        "leadsTo": [],
+        "unlocks": [],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_cybernetics.webp"
+    },
+    {
+      "id": "tech_economics",
+      "name": "Economics",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1070,
+        "description": "Unlocks ability to found Corporations",
+        "eureka": "Build 2 Banks.",
+        "prerequisites": [
+          "tech_metal_casting",
+          "tech_scientific_theory"
+        ],
+        "leadsTo": [
+          "tech_replaceable_parts"
+        ],
+        "unlocks": [
+          "building_stock_exchange",
+          "improvement_corporation",
+          "wonder_big_ben"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_economics.webp"
+    },
+    {
+      "id": "tech_education",
+      "name": "Education",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 390,
+        "description": null,
+        "eureka": "Earn a Great Scientist.",
+        "prerequisites": [
+          "tech_apprenticeship",
+          "tech_mathematics"
+        ],
+        "leadsTo": [
+          "tech_astronomy",
+          "tech_banking",
+          "tech_mass_production"
+        ],
+        "unlocks": [
+          "building_alchemical_society",
+          "building_navigation_school",
+          "building_university",
+          "improvement_mission",
+          "wonder_university_sankore"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_education.webp"
+    },
+    {
+      "id": "tech_electricity",
+      "name": "Electricity",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1370,
+        "description": null,
+        "eureka": "Own 2 Privateers.",
+        "prerequisites": [
+          "tech_steam_power"
+        ],
+        "leadsTo": [
+          "tech_computers"
+        ],
+        "unlocks": [
+          "building_fossil_fuel_power_plant",
+          "building_hydroelectric_dam",
+          "building_seaport",
+          "unit_german_uboat",
+          "unit_submarine"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_electricity.webp"
+    },
+    {
+      "id": "tech_engineering",
+      "name": "Engineering",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 200,
+        "description": null,
+        "eureka": "Build Ancient Walls.",
+        "prerequisites": [
+          "tech_the_wheel"
+        ],
+        "leadsTo": [
+          "tech_machinery"
+        ],
+        "unlocks": [
+          "district_aqueduct",
+          "district_bath",
+          "unit_catapult",
+          "wonder_machu_picchu"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_engineering.webp"
+    },
+    {
+      "id": "tech_flight",
+      "name": "Flight",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1250,
+        "description": "Receive Tourism Tourism on all improvements that provide Culture Culture. Amount of Tourism Tourism generated is equivalent to the improvement's Culture Culture output.",
+        "eureka": "Build an Industrial era or later wonder.",
+        "prerequisites": [
+          "tech_industrialization",
+          "tech_scientific_theory"
+        ],
+        "leadsTo": [
+          "tech_radio"
+        ],
+        "unlocks": [
+          "building_hangar",
+          "district_aerodrome",
+          "improvement_airstrip",
+          "unit_biplane",
+          "unit_observation_balloon"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_flight.webp"
+    },
+    {
+      "id": "tech_future_tech",
+      "name": "Future Tech",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2600,
+        "description": "Can be completed multiple times, increasing your points towards the Score Victory. Also grants all of your cities +5% Production Production towards city projects each time it is completed.",
+        "eureka": null,
+        "prerequisites": [
+          "tech_nanotechnology",
+          "tech_nuclear_fusion",
+          "tech_robotics",
+          "tech_satellites"
+        ],
+        "leadsTo": [],
+        "unlocks": [],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_future_tech.webp"
+    },
+    {
+      "id": "tech_guidance_systems",
+      "name": "Guidance Systems",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1850,
+        "description": null,
+        "eureka": "Kill a Fighter.",
+        "prerequisites": [
+          "tech_advanced_ballistics",
+          "tech_rocketry"
+        ],
+        "leadsTo": [
+          "tech_robotics"
+        ],
+        "unlocks": [
+          "unit_mobile_sam",
+          "unit_rocket_artillery"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_guidance_systems.webp"
+    },
+    {
+      "id": "tech_gunpowder",
+      "name": "Gunpowder",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 600,
+        "description": "Quarry improvements receive +1 Production Production. Unlocks a Governor Governor title for Suleiman (Kanuni).",
+        "eureka": "Build an Armory.",
+        "prerequisites": [
+          "tech_apprenticeship",
+          "tech_military_engineering",
+          "tech_stirrups"
+        ],
+        "leadsTo": [
+          "tech_metal_casting"
+        ],
+        "unlocks": [
+          "unit_korean_hwacha",
+          "unit_mapuche_malon_raider",
+          "unit_musketman",
+          "unit_spanish_conquistador",
+          "unit_suleiman_janissary"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_gunpowder.webp"
+    },
+    {
+      "id": "tech_horseback_riding",
+      "name": "Horseback Riding",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 120,
+        "description": null,
+        "eureka": "Build a Pasture.",
+        "prerequisites": [
+          "tech_archery"
+        ],
+        "leadsTo": [
+          "tech_apprenticeship",
+          "tech_construction",
+          "tech_stirrups"
+        ],
+        "unlocks": [
+          "building_ordu",
+          "building_stable",
+          "unit_horseman",
+          "unit_indian_varu",
+          "unit_macedonian_hetairoi",
+          "unit_scythian_horse_archer"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_horseback_riding.webp"
+    },
+    {
+      "id": "tech_industrialization",
+      "name": "Industrialization",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 930,
+        "description": "+1 Production Production to the Mine improvement.",
+        "eureka": "Build 2 Workshops.",
+        "prerequisites": [
+          "tech_mass_production",
+          "tech_square_rigging"
+        ],
+        "leadsTo": [
+          "tech_flight",
+          "tech_steam_power"
+        ],
+        "unlocks": [
+          "building_coal_power_plant",
+          "building_electronics_factory",
+          "building_factory",
+          "wonder_ruhr_valley"
+        ],
+        "resourcesRevealed": [
+          "resource_coal"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_industrialization.webp"
+    },
+    {
+      "id": "tech_iron_working",
+      "name": "Iron Working",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 120,
+        "description": null,
+        "eureka": "Build an Iron Mine.",
+        "prerequisites": [
+          "tech_bronze_working"
+        ],
+        "leadsTo": [
+          "tech_machinery"
+        ],
+        "unlocks": [
+          "district_oppidum",
+          "unit_kongo_shield_bearer",
+          "unit_macedonian_hypaspist",
+          "unit_persian_immortal",
+          "unit_roman_legion",
+          "unit_swordsman",
+          "wonder_jebel_barkal"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_iron_working.webp"
+    },
+    {
+      "id": "tech_irrigation",
+      "name": "Irrigation",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 50,
+        "description": "Allows clearing of Marsh, and harvesting of Resource Bananas Bananas.",
+        "eureka": "Farm a resource.",
+        "prerequisites": [
+          "tech_pottery"
+        ],
+        "leadsTo": [],
+        "unlocks": [
+          "building_palgum",
+          "improvement_plantation",
+          "improvement_stepwell",
+          "wonder_hanging_gardens"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_irrigation.webp"
+    },
+    {
+      "id": "tech_lasers",
+      "name": "Lasers",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1850,
+        "description": null,
+        "eureka": "Build 2 Drones.",
+        "prerequisites": [
+          "tech_nuclear_fission"
+        ],
+        "leadsTo": [
+          "tech_nuclear_fusion",
+          "tech_robotics"
+        ],
+        "unlocks": [
+          "unit_jet_fighter",
+          "unit_missile_cruiser"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_lasers.webp"
+    },
+    {
+      "id": "tech_machinery",
+      "name": "Machinery",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 300,
+        "description": null,
+        "eureka": "Own 3 Archers.",
+        "prerequisites": [
+          "tech_engineering",
+          "tech_iron_working"
+        ],
+        "leadsTo": [
+          "tech_printing"
+        ],
+        "unlocks": [
+          "unit_chinese_crouching_tiger",
+          "unit_crossbowman",
+          "unit_inca_warakaq",
+          "unit_siege_tower",
+          "unit_skirmisher",
+          "unit_vietnamese_voi_chien",
+          "wonder_kilwa_kisiwani"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_machinery.webp"
+    },
+    {
+      "id": "tech_masonry",
+      "name": "Masonry",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 80,
+        "description": "Allows harvesting of Resource Stone Stone.",
+        "eureka": "Build a Quarry.",
+        "prerequisites": [
+          "tech_mining"
+        ],
+        "leadsTo": [
+          "tech_construction"
+        ],
+        "unlocks": [
+          "building_walls",
+          "improvement_great_wall",
+          "improvement_pyramid",
+          "unit_battering_ram",
+          "wonder_pyramids"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_masonry.webp"
+    },
+    {
+      "id": "tech_mass_production",
+      "name": "Mass Production",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 600,
+        "description": null,
+        "eureka": "Build a Lumber Mill.",
+        "prerequisites": [
+          "tech_buttress",
+          "tech_education",
+          "tech_military_tactics"
+        ],
+        "leadsTo": [
+          "tech_industrialization"
+        ],
+        "unlocks": [
+          "building_shipyard",
+          "wonder_venetian_arsenal"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_mass_production.webp"
+    },
+    {
+      "id": "tech_mathematics",
+      "name": "Mathematics",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 200,
+        "description": "+1 Movement Movement for all naval units.",
+        "eureka": "Build 3 different specialty districts.",
+        "prerequisites": [
+          "tech_currency"
+        ],
+        "leadsTo": [
+          "tech_buttress",
+          "tech_education",
+          "tech_military_tactics"
+        ],
+        "unlocks": [
+          "building_consulate",
+          "district_diplomatic_quarter",
+          "wonder_petra"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_mathematics.webp"
+    },
+    {
+      "id": "tech_metal_casting",
+      "name": "Metal Casting",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 730,
+        "description": null,
+        "eureka": "Own 2 Crossbowman.",
+        "prerequisites": [
+          "tech_gunpowder"
+        ],
+        "leadsTo": [
+          "tech_ballistics",
+          "tech_economics"
+        ],
+        "unlocks": [
+          "unit_bombard",
+          "unit_pike_and_shot",
+          "unit_sweden_carolean"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_metal_casting.webp"
+    },
+    {
+      "id": "tech_military_engineering",
+      "name": "Military Engineering",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 390,
+        "description": null,
+        "eureka": "Build an Aqueduct.",
+        "prerequisites": [
+          "tech_construction"
+        ],
+        "leadsTo": [
+          "tech_gunpowder"
+        ],
+        "unlocks": [
+          "building_armory",
+          "improvement_ancient_tower_defense",
+          "unit_khmer_domrey",
+          "unit_military_engineer",
+          "unit_trebuchet"
+        ],
+        "resourcesRevealed": [
+          "resource_niter"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_military_engineering.webp"
+    },
+    {
+      "id": "tech_military_science",
+      "name": "Military Science",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 930,
+        "description": null,
+        "eureka": "Kill a unit with a Knight.",
+        "prerequisites": [
+          "tech_printing",
+          "tech_siege_tactics"
+        ],
+        "leadsTo": [
+          "tech_rifling"
+        ],
+        "unlocks": [
+          "building_military_academy",
+          "unit_cavalry",
+          "unit_colombian_llanero",
+          "unit_english_redcoat",
+          "unit_french_garde_imperiale",
+          "unit_hungary_huszar",
+          "unit_line_infantry",
+          "unit_russian_cossack"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_military_science.webp"
+    },
+    {
+      "id": "tech_military_tactics",
+      "name": "Military Tactics",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 300,
+        "description": null,
+        "eureka": "Kill a unit with a Spearman.",
+        "prerequisites": [
+          "tech_mathematics"
+        ],
+        "leadsTo": [
+          "tech_mass_production"
+        ],
+        "unlocks": [
+          "unit_georgian_khevsureti",
+          "unit_norwegian_berserker",
+          "unit_pikeman",
+          "unit_zulu_impi",
+          "wonder_huey_teocalli"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_military_tactics.webp"
+    },
+    {
+      "id": "tech_mining",
+      "name": "Mining",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 25,
+        "description": "Allows chopping of Woods, and harvesting of Resource Copper Copper.",
+        "eureka": null,
+        "prerequisites": [],
+        "leadsTo": [
+          "tech_bronze_working",
+          "tech_masonry",
+          "tech_the_wheel"
+        ],
+        "unlocks": [
+          "improvement_mine",
+          "improvement_quarry"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {
+        "whyItMatters": "A common early choice when nearby resources need Mines or when production improvements are important."
+      },
+      "image": "/civ6/assets/icons/technology/tech_mining.webp"
+    },
+    {
+      "id": "tech_nanotechnology",
+      "name": "Nanotechnology",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2155,
+        "description": null,
+        "eureka": "Build an Aluminum Mine.",
+        "prerequisites": [
+          "tech_composites"
+        ],
+        "leadsTo": [
+          "tech_future_tech"
+        ],
+        "unlocks": [],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_nanotechnology.webp"
+    },
+    {
+      "id": "tech_nuclear_fission",
+      "name": "Nuclear Fission",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1660,
+        "description": null,
+        "eureka": "Boost through Great Scientist or Spy.",
+        "prerequisites": [
+          "tech_advanced_ballistics",
+          "tech_combined_arms"
+        ],
+        "leadsTo": [
+          "tech_lasers"
+        ],
+        "unlocks": [
+          "building_power_plant"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_nuclear_fission.webp"
+    },
+    {
+      "id": "tech_nuclear_fusion",
+      "name": "Nuclear Fusion",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2155,
+        "description": null,
+        "eureka": "Build a Nuclear Power Plant.",
+        "prerequisites": [
+          "tech_lasers"
+        ],
+        "leadsTo": [
+          "tech_future_tech"
+        ],
+        "unlocks": [],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_nuclear_fusion.webp"
+    },
+    {
+      "id": "tech_offworld_mission",
+      "name": "Offworld Mission",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2500,
+        "description": null,
+        "eureka": "Boost through Spy.",
+        "prerequisites": [],
+        "leadsTo": [],
+        "unlocks": [],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_offworld_mission.webp"
+    },
+    {
+      "id": "tech_plastics",
+      "name": "Plastics",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1480,
+        "description": "+1 Food Food to Fishing Boats.",
+        "eureka": "Build an Oil Well.",
+        "prerequisites": [
+          "tech_combustion"
+        ],
+        "leadsTo": [
+          "tech_synthetic_materials"
+        ],
+        "unlocks": [
+          "improvement_offshore_oil_rig",
+          "unit_spec_ops"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_plastics.webp"
+    },
+    {
+      "id": "tech_pottery",
+      "name": "Pottery",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 25,
+        "description": "Allows harvesting of Bonus resources improved by Farms.",
+        "eureka": null,
+        "prerequisites": [],
+        "leadsTo": [
+          "tech_irrigation",
+          "tech_writing"
+        ],
+        "unlocks": [
+          "building_granary",
+          "improvement_mekewap",
+          "wonder_great_bath"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_pottery.webp"
+    },
+    {
+      "id": "tech_predictive_systems",
+      "name": "Predictive Systems",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2200,
+        "description": "+1 Production Production to Quarry, Oil Well, and Oil Rig improvements.",
+        "eureka": "Boost through Spy.",
+        "prerequisites": [],
+        "leadsTo": [],
+        "unlocks": [
+          "improvement_offshore_wind_farm"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_predictive_systems.webp"
+    },
+    {
+      "id": "tech_printing",
+      "name": "Printing",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 600,
+        "description": "Provides one more level of diplomatic visibility on all other civilizations. All Tourism Tourism yields from Greatwork Writing Great Works of Writing are doubled.",
+        "eureka": "Build 2 Universities.",
+        "prerequisites": [
+          "tech_machinery"
+        ],
+        "leadsTo": [
+          "tech_military_science"
+        ],
+        "unlocks": [
+          "wonder_forbidden_city"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_printing.webp"
+    },
+    {
+      "id": "tech_radio",
+      "name": "Radio",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1370,
+        "description": null,
+        "eureka": "Build a National Park.",
+        "prerequisites": [
+          "tech_flight",
+          "tech_steam_power"
+        ],
+        "leadsTo": [
+          "tech_advanced_flight",
+          "tech_computers",
+          "tech_rocketry"
+        ],
+        "unlocks": [
+          "building_broadcast_center",
+          "building_film_studio",
+          "improvement_beach_resort"
+        ],
+        "resourcesRevealed": [
+          "resource_aluminum"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_radio.webp"
+    },
+    {
+      "id": "tech_refining",
+      "name": "Refining",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1250,
+        "description": null,
+        "eureka": "Build 1 Coal Power Plant.",
+        "prerequisites": [
+          "tech_rifling"
+        ],
+        "leadsTo": [
+          "tech_combustion"
+        ],
+        "unlocks": [
+          "improvement_oil_well",
+          "unit_battleship"
+        ],
+        "resourcesRevealed": [
+          "resource_oil"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_refining.webp"
+    },
+    {
+      "id": "tech_replaceable_parts",
+      "name": "Replaceable Parts",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1250,
+        "description": "Upgrades Farm improvements to Mechanized Agriculture. +1 Food Food Adjacency bonus for every Farm improvement they are adjacent to. Pasture improvements receive +1 Production Production.",
+        "eureka": "Own 3 Line Infantry.",
+        "prerequisites": [
+          "tech_economics"
+        ],
+        "leadsTo": [
+          "tech_advanced_ballistics",
+          "tech_chemistry"
+        ],
+        "unlocks": [
+          "building_food_market",
+          "unit_digger",
+          "unit_infantry"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_replaceable_parts.webp"
+    },
+    {
+      "id": "tech_rifling",
+      "name": "Rifling",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1070,
+        "description": null,
+        "eureka": "Build a Niter Mine.",
+        "prerequisites": [
+          "tech_ballistics",
+          "tech_military_science"
+        ],
+        "leadsTo": [
+          "tech_refining",
+          "tech_steel"
+        ],
+        "unlocks": [
+          "improvement_modern_tower_defense",
+          "unit_ranger",
+          "unit_scottish_highlander"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_rifling.webp"
+    },
+    {
+      "id": "tech_robotics",
+      "name": "Robotics",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2155,
+        "description": "Pasture improvements receive +1 Food Food.",
+        "eureka": "Have the Globalization civic.",
+        "prerequisites": [
+          "tech_computers",
+          "tech_guidance_systems",
+          "tech_lasers",
+          "tech_satellites"
+        ],
+        "leadsTo": [
+          "tech_future_tech"
+        ],
+        "unlocks": [
+          "unit_giant_death_robot"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_robotics.webp"
+    },
+    {
+      "id": "tech_rocketry",
+      "name": "Rocketry",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1480,
+        "description": "+1 Production Production from the Quarry improvement.",
+        "eureka": "Boost through Great Scientist or Spy.",
+        "prerequisites": [
+          "tech_chemistry",
+          "tech_radio"
+        ],
+        "leadsTo": [
+          "tech_guidance_systems",
+          "tech_satellites"
+        ],
+        "unlocks": [
+          "district_spaceport",
+          "improvement_missile_silo"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_rocketry.webp"
+    },
+    {
+      "id": "tech_sailing",
+      "name": "Sailing",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 50,
+        "description": "Allows Builders to embark.",
+        "eureka": "Found a city on the Coast.",
+        "prerequisites": [],
+        "leadsTo": [
+          "tech_celestial_navigation",
+          "tech_shipbuilding"
+        ],
+        "unlocks": [
+          "improvement_fishery",
+          "improvement_fishing_boats",
+          "unit_galley",
+          "unit_norwegian_longship",
+          "unit_phoenicia_bireme"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_sailing.webp"
+    },
+    {
+      "id": "tech_sanitation",
+      "name": "Sanitation",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1070,
+        "description": "Stepwell improvements receive +1 Housing Housing.",
+        "eureka": "Build 2 Neighborhoods.",
+        "prerequisites": [
+          "tech_scientific_theory"
+        ],
+        "leadsTo": [
+          "tech_chemistry"
+        ],
+        "unlocks": [
+          "building_sewer",
+          "unit_medic",
+          "wonder_orszaghaz"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_sanitation.webp"
+    },
+    {
+      "id": "tech_satellites",
+      "name": "Satellites",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1850,
+        "description": null,
+        "eureka": "Build 2 Broadcast Centers.",
+        "prerequisites": [
+          "tech_advanced_flight",
+          "tech_rocketry"
+        ],
+        "leadsTo": [
+          "tech_future_tech",
+          "tech_robotics"
+        ],
+        "unlocks": [
+          "improvement_solar_farm",
+          "unit_mechanized_infantry"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_satellites.webp"
+    },
+    {
+      "id": "tech_scientific_theory",
+      "name": "Scientific Theory",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 930,
+        "description": "+1 Food Food from the Plantation improvement.",
+        "eureka": "Have The Enlightenment civic.",
+        "prerequisites": [
+          "tech_astronomy",
+          "tech_banking"
+        ],
+        "leadsTo": [
+          "tech_economics",
+          "tech_flight",
+          "tech_sanitation"
+        ],
+        "unlocks": [
+          "wonder_oxford_university"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_scientific_theory.webp"
+    },
+    {
+      "id": "tech_seasteads",
+      "name": "Seasteads",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2200,
+        "description": "Awards 1 Diplomatic Victory point.",
+        "eureka": "Boost through Spy.",
+        "prerequisites": [],
+        "leadsTo": [],
+        "unlocks": [
+          "improvement_seastead"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_seasteads.webp"
+    },
+    {
+      "id": "tech_shipbuilding",
+      "name": "Shipbuilding",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 200,
+        "description": "Allows all land units to embark.",
+        "eureka": "Own 2 Galleys.",
+        "prerequisites": [
+          "tech_sailing"
+        ],
+        "leadsTo": [
+          "tech_buttress"
+        ],
+        "unlocks": [
+          "improvement_kampung",
+          "unit_byzantine_dromon",
+          "unit_quadrireme",
+          "wonder_colossus"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_shipbuilding.webp"
+    },
+    {
+      "id": "tech_siege_tactics",
+      "name": "Siege Tactics",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 730,
+        "description": null,
+        "eureka": "Own 2 Trebuchets.",
+        "prerequisites": [
+          "tech_castles"
+        ],
+        "leadsTo": [
+          "tech_military_science"
+        ],
+        "unlocks": [
+          "building_star_fort",
+          "building_tsikhe",
+          "improvement_fort"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_siege_tactics.webp"
+    },
+    {
+      "id": "tech_smart_materials",
+      "name": "Smart Materials",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 2200,
+        "description": "Unlocks Giant Death Robot upgrade: Reinforced Armor Plating +10 Strength Combat Strength when defending against land and naval units.",
+        "eureka": "Boost through Spy.",
+        "prerequisites": [],
+        "leadsTo": [],
+        "unlocks": [],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_smart_materials.webp"
+    },
+    {
+      "id": "tech_square_rigging",
+      "name": "Square Rigging",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 730,
+        "description": "+1 Movement Movement for embarked units.",
+        "eureka": "Kill a unit with a Musketman.",
+        "prerequisites": [
+          "tech_cartography"
+        ],
+        "leadsTo": [
+          "tech_industrialization"
+        ],
+        "unlocks": [
+          "unit_de_zeven_provincien",
+          "unit_frigate"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_square_rigging.webp"
+    },
+    {
+      "id": "tech_stealth_technology",
+      "name": "Stealth Technology",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1850,
+        "description": null,
+        "eureka": "Boost through Great Scientist or Spy.",
+        "prerequisites": [
+          "tech_synthetic_materials"
+        ],
+        "leadsTo": [],
+        "unlocks": [
+          "unit_jet_bomber"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_stealth_technology.webp"
+    },
+    {
+      "id": "tech_steam_power",
+      "name": "Steam Power",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1070,
+        "description": "+2 Movement Movement for embarked units.",
+        "eureka": "Build 2 Shipyards.",
+        "prerequisites": [
+          "tech_industrialization"
+        ],
+        "leadsTo": [
+          "tech_electricity",
+          "tech_radio"
+        ],
+        "unlocks": [
+          "district_canal",
+          "unit_ironclad",
+          "wonder_panama_canal"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_steam_power.webp"
+    },
+    {
+      "id": "tech_steel",
+      "name": "Steel",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1250,
+        "description": "+1 Production Production from the Lumber Mill improvement. Unlocks Urban Defenses, giving all of your cities an automatic 400 Fortification Strength and the ability to perform a ranged attack. All previous wall improvements become obsolete and siege support units are no longer effective.",
+        "eureka": "Build a Coal Mine and an Ironclad.",
+        "prerequisites": [
+          "tech_rifling"
+        ],
+        "leadsTo": [
+          "tech_advanced_ballistics",
+          "tech_combined_arms",
+          "tech_combustion"
+        ],
+        "unlocks": [
+          "unit_artillery",
+          "wonder_eiffel_tower"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_steel.webp"
+    },
+    {
+      "id": "tech_stirrups",
+      "name": "Stirrups",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 390,
+        "description": "Pasture improvements receive +1 Food Food.",
+        "eureka": "Have the Feudalism civic.",
+        "prerequisites": [
+          "tech_apprenticeship",
+          "tech_horseback_riding"
+        ],
+        "leadsTo": [
+          "tech_banking",
+          "tech_gunpowder"
+        ],
+        "unlocks": [
+          "unit_arabian_mamluk",
+          "unit_knight",
+          "unit_mali_mandekalu_cavalry",
+          "unit_mongolian_keshig"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_stirrups.webp"
+    },
+    {
+      "id": "tech_synthetic_materials",
+      "name": "Synthetic Materials",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1660,
+        "description": "+2 Gold Gold to Camps.",
+        "eureka": "Build 2 Aerodromes.",
+        "prerequisites": [
+          "tech_plastics"
+        ],
+        "leadsTo": [
+          "tech_composites",
+          "tech_stealth_technology"
+        ],
+        "unlocks": [
+          "improvement_geothermal_plant",
+          "unit_helicopter",
+          "wonder_biosphere"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_synthetic_materials.webp"
+    },
+    {
+      "id": "tech_telecommunications",
+      "name": "Telecommunications",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 1850,
+        "description": null,
+        "eureka": "Boost through Great Scientist or Spy.",
+        "prerequisites": [
+          "tech_computers"
+        ],
+        "leadsTo": [],
+        "unlocks": [
+          "unit_nuclear_submarine"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_telecommunications.webp"
+    },
+    {
+      "id": "tech_the_wheel",
+      "name": "Wheel",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 80,
+        "description": null,
+        "eureka": "Mine a resource.",
+        "prerequisites": [
+          "tech_mining"
+        ],
+        "leadsTo": [
+          "tech_engineering"
+        ],
+        "unlocks": [
+          "building_water_mill",
+          "unit_egyptian_chariot_archer",
+          "unit_heavy_chariot"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_the_wheel.webp"
+    },
+    {
+      "id": "tech_writing",
+      "name": "Writing",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "scienceCost": 50,
+        "description": null,
+        "eureka": "Meet another civilization.",
+        "prerequisites": [
+          "tech_pottery"
+        ],
+        "leadsTo": [
+          "tech_currency"
+        ],
+        "unlocks": [
+          "building_library",
+          "district_campus",
+          "district_observatory",
+          "district_seowon",
+          "wonder_etemenanki"
+        ],
+        "resourcesRevealed": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/technology/tech_writing.webp"
+    }
+  ]
+}

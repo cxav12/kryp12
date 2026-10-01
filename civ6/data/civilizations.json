@@ -1,0 +1,1244 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "civilization_america",
+      "name": "America",
+      "leaders": [
+        "leader_abraham_lincoln",
+        "leader_t_roosevelt",
+        "leader_t_roosevelt_roughrider"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "American Empire",
+        "abilityName": "Founding Fathers",
+        "ability": "All Diplomatic policy slots in the current government are converted to Wildcard slots. +1 Favor Diplomatic Favor per turn for every Wildcard slot in their government.",
+        "uniqueUnits": [
+          "unit_american_p51"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_america.webp"
+    },
+    {
+      "id": "civilization_arabia",
+      "name": "Arabia",
+      "leaders": [
+        "leader_saladin",
+        "leader_saladin_alt"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Arabian Empire",
+        "abilityName": "The Last Prophet",
+        "ability": "Automatically receive the final Greatprophet Great Prophet when the next-to-last one is claimed (if you have not earned a Greatprophet Great Prophet already). +1 Science Science for each foreign city following Arabia's Religion.",
+        "uniqueUnits": [
+          "unit_arabian_mamluk"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_arabia.webp"
+    },
+    {
+      "id": "civilization_australia",
+      "name": "Australia",
+      "leaders": [
+        "leader_john_curtin"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Australian Empire",
+        "abilityName": "Land Down Under",
+        "ability": "+3 Housing Housing in coastal cities. Pastures trigger a Culture Bomb. Yields from Campuses, Commercial Hubs, Holy Sites and Theater Squares are +1 in tiles with Charming Appeal, +3 in Breathtaking.",
+        "uniqueUnits": [
+          "unit_digger"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_australia.webp"
+    },
+    {
+      "id": "civilization_aztec",
+      "name": "Aztec",
+      "leaders": [
+        "leader_montezuma"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Aztec Empire",
+        "abilityName": "Legend of the Five Suns",
+        "ability": "Spend Builder charges to complete 20% of the original district cost.",
+        "uniqueUnits": [
+          "unit_aztec_eagle_warrior"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_aztec.webp"
+    },
+    {
+      "id": "civilization_babylon_stk",
+      "name": "Babylon",
+      "leaders": [
+        "leader_hammurabi"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Babylonian Empire",
+        "abilityName": "Enuma Anu Enlil",
+        "ability": "Techboosted Eurekas provide all of the Science Science for technologies. -50% Science Science per turn.",
+        "uniqueUnits": [
+          "unit_babylonian_sabum_kibittum"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_babylon_stk.webp"
+    },
+    {
+      "id": "civilization_brazil",
+      "name": "Brazil",
+      "leaders": [
+        "leader_pedro"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Brazilian Empire",
+        "abilityName": "Amazon",
+        "ability": "Rainforest tiles provide +1 adjacency bonus for Campus, Commercial Hub, Holy Site, and Theater Square districts, and grant +1 Appeal to adjacent tiles, instead of the usual -1.",
+        "uniqueUnits": [
+          "unit_brazilian_minas_geraes"
+        ],
+        "uniqueDistricts": [
+          "district_street_carnival",
+          "district_water_street_carnival"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_brazil.webp"
+    },
+    {
+      "id": "civilization_byzantium",
+      "name": "Byzantium",
+      "leaders": [
+        "leader_basil",
+        "leader_theodora"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Byzantine Empire",
+        "abilityName": "Taxis",
+        "ability": "Units receive +3 Strength Combat Strength or Religion Religious Strength for each Holy City converted to Byzantium's Religion (including Byzantium's Holy City). Byzantium's Religion is spread to nearby cities when defeating a unit belonging to an enemy civilization or city-state. +1 Greatprophet Great Prophet point from cities with a Holy Site district.",
+        "uniqueUnits": [
+          "unit_byzantine_dromon"
+        ],
+        "uniqueDistricts": [
+          "district_hippodrome"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_byzantium.webp"
+    },
+    {
+      "id": "civilization_canada",
+      "name": "Canada",
+      "leaders": [
+        "leader_laurier"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Canadian Empire",
+        "abilityName": "Four Faces of Peace",
+        "ability": "Cannot declare war on City-States or surprise wars. Surprise wars cannot be declared on Canada. For every 100 Tourism Tourism per turn earn 1 Favor Diplomatic Favor per turn. Receive +100% Favor Diplomatic Favor from successfully completing an Emergency or Scored Competition.",
+        "uniqueUnits": [
+          "unit_canada_mountie"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_canada.webp"
+    },
+    {
+      "id": "civilization_china",
+      "name": "China",
+      "leaders": [
+        "leader_kublai_khan_china",
+        "leader_qin",
+        "leader_qin_alt",
+        "leader_wu_zetian",
+        "leader_yongle"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Chinese Empire",
+        "abilityName": "Dynastic Cycle",
+        "ability": "Techboosted Eurekas and Civicboosted Inspirations provide 50% of civics and technologies instead of 40%. When completing a wonder receive a random Techboosted Eureka and Civicboosted Inspiration from the era of the wonder, if available.",
+        "uniqueUnits": [
+          "unit_chinese_crouching_tiger"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_china.webp"
+    },
+    {
+      "id": "civilization_cree",
+      "name": "Cree",
+      "leaders": [
+        "leader_poundmaker"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Cree Empire",
+        "abilityName": "Nîhithaw",
+        "ability": "+1 Traderoute Trade Route capacity and a free Trader with the Pottery technology. Unclaimed tiles within 3 tiles of a Cree city come under Cree control when a Trader first moves into them.",
+        "uniqueUnits": [
+          "unit_cree_okihtcitaw"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_cree.webp"
+    },
+    {
+      "id": "civilization_egypt",
+      "name": "Egypt",
+      "leaders": [
+        "leader_cleopatra",
+        "leader_cleopatra_alt",
+        "leader_ramses"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Egyptian Empire",
+        "abilityName": "Iteru",
+        "ability": "+15% Production Production towards districts and wonders if placed next to a River. Does not receive damage from Floods.",
+        "uniqueUnits": [
+          "unit_egyptian_chariot_archer"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_egypt.webp"
+    },
+    {
+      "id": "civilization_england",
+      "name": "England",
+      "leaders": [
+        "leader_eleanor_england",
+        "leader_elizabeth",
+        "leader_victoria",
+        "leader_victoria_alt"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "English Empire",
+        "abilityName": "English unique unit: Sea Dog",
+        "ability": null,
+        "uniqueUnits": [
+          "unit_english_seadog"
+        ],
+        "uniqueDistricts": [
+          "district_royal_navy_dockyard"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_england.webp"
+    },
+    {
+      "id": "civilization_ethiopia",
+      "name": "Ethiopia",
+      "leaders": [
+        "leader_menelik"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ethiopian Empire",
+        "abilityName": "Aksumite Legacy",
+        "ability": "Ethiopia’s International Trade Routes grant +0.5 Faith Faith per resource at the origin. Improved resources provide +1 Faith Faith for each copy the city owns. Can purchase Archaeological Museums and Archaeologists with Faith Faith.",
+        "uniqueUnits": [
+          "unit_ethiopian_oromo_cavalry"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_ethiopia.webp"
+    },
+    {
+      "id": "civilization_france",
+      "name": "France",
+      "leaders": [
+        "leader_catherine_de_medici",
+        "leader_catherine_de_medici_alt",
+        "leader_eleanor_france"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "French Empire",
+        "abilityName": "French unique improvement: Château",
+        "ability": null,
+        "uniqueUnits": [
+          "unit_french_garde_imperiale"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_france.webp"
+    },
+    {
+      "id": "civilization_gaul",
+      "name": "Gaul",
+      "leaders": [
+        "leader_ambiorix"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Gallic Empire",
+        "abilityName": "Hallstatt Culture",
+        "ability": "Mines provide a minor adjacency bonus for all districts, a Culture Bomb of unowned territory, and receive +1 Culture Culture. Specialty districts do not receive a minor adjacency for being adjacent to another district and these districts cannot be built adjacent to the City Center.",
+        "uniqueUnits": [
+          "unit_gaul_gaesatae"
+        ],
+        "uniqueDistricts": [
+          "district_oppidum"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_gaul.webp"
+    },
+    {
+      "id": "civilization_georgia",
+      "name": "Georgia",
+      "leaders": [
+        "leader_tamar"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Georgian Empire",
+        "abilityName": "Strength in Unity",
+        "ability": "When making Dedications at the beginning of a Golden Age or Heroic Age, receive the Normal Age bonus towards improving Era Score in addition to the other bonus. +50% Production Production towards defensive buildings.",
+        "uniqueUnits": [
+          "unit_georgian_khevsureti"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_georgia.webp"
+    },
+    {
+      "id": "civilization_germany",
+      "name": "Germany",
+      "leaders": [
+        "leader_barbarossa",
+        "leader_ludwig"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "German Empire",
+        "abilityName": "Free Imperial Cities",
+        "ability": "Each city can build one more district than usual (exceeding the normal limit based on Citizen Population).",
+        "uniqueUnits": [
+          "unit_german_uboat"
+        ],
+        "uniqueDistricts": [
+          "district_hansa"
+        ],
+        "startingBias": []
+      },
+      "strategy": {
+        "summary": "A flexible production civilization that can support dense district planning and powerful late-game cities.",
+        "playstyle": "Build compact city clusters, plan Commercial Hubs and Hansas together, then turn production into any victory condition.",
+        "strengths": [
+          "High district capacity",
+          "Strong production scaling",
+          "Flexible victory conversion"
+        ],
+        "weaknesses": [
+          "District placement rewards advance planning",
+          "Power spike arrives after early expansion"
+        ],
+        "priorities": [
+          "Expand to claim closely spaced city sites",
+          "Reach Apprenticeship",
+          "Plan Hansa adjacency before placing districts"
+        ],
+        "importantTechnologies": [
+          "tech_apprenticeship"
+        ],
+        "importantCivics": [
+          "civic_political_philosophy"
+        ],
+        "usefulPolicies": [
+          "policy_urban_planning"
+        ],
+        "districtPriorities": [
+          "district_commercial_hub",
+          "district_hansa"
+        ],
+        "tips": [
+          "Mark district locations before committing improvements.",
+          "Use production to pivot toward science, culture, or conquest."
+        ],
+        "commonMistakes": [
+          "Placing districts without preserving strong Hansa adjacency",
+          "Delaying expansion until the production engine is ready"
+        ]
+      },
+      "image": "/civ6/assets/icons/civilization/civilization_germany.webp"
+    },
+    {
+      "id": "civilization_gran_colombia",
+      "name": "Gran Colombia",
+      "leaders": [
+        "leader_simon_bolivar"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Gran Colombian Empire",
+        "abilityName": "Ejército Patriota",
+        "ability": "+1 Movement Movement to all units. Promoting a unit does not end that unit’s turn.",
+        "uniqueUnits": [
+          "unit_colombian_llanero",
+          "unit_comandante_general"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_gran_colombia.webp"
+    },
+    {
+      "id": "civilization_greece",
+      "name": "Greece",
+      "leaders": [
+        "leader_gorgo",
+        "leader_pericles"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Greek Empire",
+        "abilityName": "Plato's Republic",
+        "ability": "One extra Wildcard policy slot in any government.",
+        "uniqueUnits": [
+          "unit_greek_hoplite"
+        ],
+        "uniqueDistricts": [
+          "district_acropolis"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_greece.webp"
+    },
+    {
+      "id": "civilization_hungary",
+      "name": "Hungary",
+      "leaders": [
+        "leader_matthias_corvinus"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Hungarian Empire",
+        "abilityName": "Pearl of the Danube",
+        "ability": "+50% Production Production to Districts and Buildings constructed across a river from a City Center.",
+        "uniqueUnits": [
+          "unit_hungary_huszar"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_hungary.webp"
+    },
+    {
+      "id": "civilization_inca",
+      "name": "Inca",
+      "leaders": [
+        "leader_pachacuti"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Inca Empire",
+        "abilityName": "Mit’a",
+        "ability": "Citizens may work Mountain tiles. Mountain tiles provide +2 Production Production and an additional +1 Production Production when the game reaches the Industrial Era. +1 Food Food to Mountain tiles for every adjacent Terrace Farm.",
+        "uniqueUnits": [
+          "unit_inca_warakaq"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_inca.webp"
+    },
+    {
+      "id": "civilization_india",
+      "name": "India",
+      "leaders": [
+        "leader_chandragupta",
+        "leader_gandhi"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Indian Empire",
+        "abilityName": "Dharma",
+        "ability": "Receives Follower Belief bonuses in a city from each Religion that has at least 1 Follower. Cities gain an Amenities Amenity for every Religion with at least 1 Follower. Missionaries have +2 spreads. +100% Religious pressure from your Traderoute Trade Routes.",
+        "uniqueUnits": [
+          "unit_indian_varu"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_india.webp"
+    },
+    {
+      "id": "civilization_indonesia",
+      "name": "Indonesia",
+      "leaders": [
+        "leader_gitarja"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Indonesian Empire",
+        "abilityName": "Indonesian unique improvement: Kampung",
+        "ability": null,
+        "uniqueUnits": [
+          "unit_indonesian_jong"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_indonesia.webp"
+    },
+    {
+      "id": "civilization_japan",
+      "name": "Japan",
+      "leaders": [
+        "leader_hojo",
+        "leader_tokugawa"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Japanese Empire",
+        "abilityName": "Meiji Restoration",
+        "ability": "All districts receive an additional standard adjacency bonus for being adjacent to another district.",
+        "uniqueUnits": [
+          "unit_japanese_samurai"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_japan.webp"
+    },
+    {
+      "id": "civilization_khmer",
+      "name": "Khmer",
+      "leaders": [
+        "leader_jayavarman"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Khmer Empire",
+        "abilityName": "Grand Barays",
+        "ability": "Cities with an Aqueduct receive +1 Amenities Amenity from entertainment and +1 Faith Faith for every Citizen population. Farms provide +2 Food Food if adjacent to an Aqueduct and +1 Faith Faith if adjacent to a Holy Site.",
+        "uniqueUnits": [
+          "unit_khmer_domrey"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_khmer.webp"
+    },
+    {
+      "id": "civilization_kongo",
+      "name": "Kongo",
+      "leaders": [
+        "leader_mvemba",
+        "leader_nzinga_mbande"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Empire of Kongo",
+        "abilityName": "Nkisi",
+        "ability": "+2 Food Food, +2 Production Production, +1 Faith Faith, and +4 Gold Gold from each Greatwork Relic Relic, Greatwork Herorelic Heroic Relic, Greatwork Artifact Artifact, and Sculpture Greatwork Sculpture Great Work of Art in addition to the usual Culture Culture. Receive 50% more Greatartist Great Artist, Greatmusician Great Musician, and Greatmerchant Great Merchant points. Palace has slots for 5 Great Works.",
+        "uniqueUnits": [
+          "unit_kongo_shield_bearer"
+        ],
+        "uniqueDistricts": [
+          "district_mbanza"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_kongo.webp"
+    },
+    {
+      "id": "civilization_korea",
+      "name": "Korea",
+      "leaders": [
+        "leader_sejong",
+        "leader_seondeok"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Korean Empire",
+        "abilityName": "Three Kingdoms",
+        "ability": "Mines receive +1 Science Science for every adjacent Seowon district. Farms receive +1 Food Food for every adjacent Seowon district.",
+        "uniqueUnits": [
+          "unit_korean_hwacha"
+        ],
+        "uniqueDistricts": [
+          "district_seowon"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_korea.webp"
+    },
+    {
+      "id": "civilization_macedon",
+      "name": "Macedon",
+      "leaders": [
+        "leader_alexander"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Macedonian Empire",
+        "abilityName": "Hellenistic Fusion",
+        "ability": "Receive boosts upon city conquest: a Techboosted Eureka for each Encampment or Campus in the conquered city and an Civicboosted Inspiration for each Holy Site or Theater Square.",
+        "uniqueUnits": [
+          "unit_macedonian_hypaspist"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_macedon.webp"
+    },
+    {
+      "id": "civilization_mali",
+      "name": "Mali",
+      "leaders": [
+        "leader_mansa_musa",
+        "leader_sundiata_keita"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mali Empire",
+        "abilityName": "Songs of the Jeli",
+        "ability": "City Centers gain +1 Faith Faith and +1 Food Food for every adjacent Desert and Desert Hills tiles. Mines receive -1 Production Production and +4 Gold Gold. May purchase Commercial Hub district buildings with Faith Faith. -30% Production Production toward constructing buildings or training units.",
+        "uniqueUnits": [
+          "unit_mali_mandekalu_cavalry"
+        ],
+        "uniqueDistricts": [
+          "district_suguba"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_mali.webp"
+    },
+    {
+      "id": "civilization_mapuche",
+      "name": "Mapuche",
+      "leaders": [
+        "leader_lautaro"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mapuche Empire",
+        "abilityName": "Chemamull",
+        "ability": null,
+        "uniqueUnits": [
+          "unit_mapuche_malon_raider"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_mapuche.webp"
+    },
+    {
+      "id": "civilization_maya",
+      "name": "Maya",
+      "leaders": [
+        "leader_lady_six_sky"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mayan Empire",
+        "abilityName": "Mayab",
+        "ability": "Settling adjacent to Fresh Water and Coast does not provide extra Housing Housing, instead each Farm provides an additional +1 Housing Housing, +1 Production Production for every adjacent Observatory, and +1 Gold Gold. +1 Amenities Amenity for every Luxury adjacent to the City Center.",
+        "uniqueUnits": [
+          "unit_mayan_hulche"
+        ],
+        "uniqueDistricts": [
+          "district_observatory"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_maya.webp"
+    },
+    {
+      "id": "civilization_mongolia",
+      "name": "Mongolia",
+      "leaders": [
+        "leader_genghis_khan",
+        "leader_kublai_khan_mongolia"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mongolian Empire",
+        "abilityName": "Örtöö",
+        "ability": "Starting a Traderoute Trade Route immediately creates a Tradingpost Trading Post in the destination city. Receive an extra level of Vislimited Diplomatic Visibility for possessing a Tradingpost Trading Post in any city of a civilization. All Mongolian units double the usual Strength Combat Bonus for having a higher level of Vislimited Diplomatic Visibility than their opponent.",
+        "uniqueUnits": [
+          "unit_mongolian_keshig"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_mongolia.webp"
+    },
+    {
+      "id": "civilization_maori",
+      "name": "Māori",
+      "leaders": [
+        "leader_kupe"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Māori Empire",
+        "abilityName": null,
+        "ability": null,
+        "uniqueUnits": [
+          "unit_maori_toa"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_maori.webp"
+    },
+    {
+      "id": "civilization_netherlands",
+      "name": "Netherlands",
+      "leaders": [
+        "leader_wilhelmina"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Dutch Empire",
+        "abilityName": "Grote Rivieren",
+        "ability": "Major adjacency bonus for Campuses, Theater Squares, and Industrial Zones if next to a river. Culture Bomb adjacent tiles when completing a Harbor.",
+        "uniqueUnits": [
+          "unit_de_zeven_provincien"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_netherlands.webp"
+    },
+    {
+      "id": "civilization_norway",
+      "name": "Norway",
+      "leaders": [
+        "leader_harald_alt",
+        "leader_hardrada"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Norwegian Empire",
+        "abilityName": "Norwegian unique building: Stave Church",
+        "ability": null,
+        "uniqueUnits": [
+          "unit_norwegian_berserker"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_norway.webp"
+    },
+    {
+      "id": "civilization_nubia",
+      "name": "Nubia",
+      "leaders": [
+        "leader_amanitore"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Nubian Empire",
+        "abilityName": "Ta-Seti",
+        "ability": "+30% Production Production toward Ranged units. All Ranged units gain +50% combat experience. Mines over strategic resources provide +1 Production Production. Mines over bonus and luxury resources provide +2 Gold Gold.",
+        "uniqueUnits": [
+          "unit_nubian_pitati"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_nubia.webp"
+    },
+    {
+      "id": "civilization_ottoman",
+      "name": "Ottomans",
+      "leaders": [
+        "leader_suleiman",
+        "leader_suleiman_alt"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ottoman Empire",
+        "abilityName": null,
+        "ability": null,
+        "uniqueUnits": [
+          "unit_ottoman_barbary_corsair"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_ottoman.webp"
+    },
+    {
+      "id": "civilization_persia",
+      "name": "Persia",
+      "leaders": [
+        "leader_cyrus",
+        "leader_nader_shah"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Persian Empire",
+        "abilityName": "Satrapies",
+        "ability": "+1 Traderoute Trade Route capacity with Political Philosophy civic. Receive +2 Gold Gold and +1 Culture Culture for routes between your own cities. Roads built in your territory are one level more advanced than usual.",
+        "uniqueUnits": [
+          "unit_persian_immortal"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_persia.webp"
+    },
+    {
+      "id": "civilization_phoenicia",
+      "name": "Phoenicia",
+      "leaders": [
+        "leader_dido"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Phoenician Empire",
+        "abilityName": "Mediterranean Colonies",
+        "ability": "Begin the game with the Writing technology Techboosted Eureka. Coastal cities founded by Phoenicia and located on the same continent as the Phoenician Capital Capital are 100% Loyal. Settlers gain +2 Movement Movement and +2 sight range while embarked. Settlers ignore additional Movement Movement costs from embarking and disembarking.",
+        "uniqueUnits": [
+          "unit_phoenicia_bireme"
+        ],
+        "uniqueDistricts": [
+          "district_cothon"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_phoenicia.webp"
+    },
+    {
+      "id": "civilization_poland",
+      "name": "Poland",
+      "leaders": [
+        "leader_jadwiga"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Polish Empire",
+        "abilityName": "Sukiennice",
+        "ability": "A building unique to Poland. International Traderoute Trade Routes from this city gain +2 Production Production; domestic Traderoute Trade Routes gain +4 Gold Gold.",
+        "uniqueUnits": [
+          "unit_polish_hussar"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_poland.webp"
+    },
+    {
+      "id": "civilization_portugal",
+      "name": "Portugal",
+      "leaders": [
+        "leader_joao_iii"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Portuguese Empire",
+        "abilityName": "Casa da Índia",
+        "ability": "International Traderoute Trade Routes must originate from a coastal city and can only reach cities on the coast or with a Harbor, but receive +50% towards all yields. Trader units have +50% range over water, and can embark as soon as they are unlocked.",
+        "uniqueUnits": [
+          "unit_portuguese_nau"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_portugal.webp"
+    },
+    {
+      "id": "civilization_rome",
+      "name": "Rome",
+      "leaders": [
+        "leader_julius_caesar",
+        "leader_trajan"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Roman Empire",
+        "abilityName": "Roman unique district: Bath",
+        "ability": null,
+        "uniqueUnits": [
+          "unit_roman_legion"
+        ],
+        "uniqueDistricts": [
+          "district_bath"
+        ],
+        "startingBias": []
+      },
+      "strategy": {
+        "summary": "A dependable expansion civilization with strong early infrastructure and connected cities.",
+        "playstyle": "Settle steadily, use free infrastructure and roads to stabilize the empire, and exploit an early military window when useful.",
+        "strengths": [
+          "Fast early development",
+          "Convenient internal connections",
+          "Reliable expansion tempo"
+        ],
+        "weaknesses": [
+          "Bonuses are strongest while expanding",
+          "Unique military timing can be missed"
+        ],
+        "priorities": [
+          "Scout settlement locations",
+          "Found cities early",
+          "Connect expansion to a clear victory plan"
+        ],
+        "importantTechnologies": [
+          "tech_mining",
+          "tech_bronze_working"
+        ],
+        "importantCivics": [
+          "civic_code_of_laws",
+          "civic_political_philosophy"
+        ],
+        "usefulPolicies": [
+          "policy_urban_planning",
+          "policy_discipline"
+        ],
+        "districtPriorities": [
+          "district_campus",
+          "district_commercial_hub"
+        ],
+        "tips": [
+          "Use the early tempo to claim land before neighbors do.",
+          "Do not expand without planning Amenities and Housing."
+        ],
+        "commonMistakes": [
+          "Treating broad bonuses as a reason to ignore specialization",
+          "Missing the Legion timing entirely"
+        ]
+      },
+      "image": "/civ6/assets/icons/civilization/civilization_rome.webp"
+    },
+    {
+      "id": "civilization_russia",
+      "name": "Russia",
+      "leaders": [
+        "leader_peter_great"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Russian Empire",
+        "abilityName": "Mother Russia",
+        "ability": "Extra territory upon founding cities. +1 Faith Faith and +1 Production Production from Tundra. Units do not receive damage from Blizzards. Civilizations that are at war with Russia receive +100% unit damage from Blizzards in Russian territory.",
+        "uniqueUnits": [
+          "unit_russian_cossack"
+        ],
+        "uniqueDistricts": [
+          "district_lavra"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_russia.webp"
+    },
+    {
+      "id": "civilization_scotland",
+      "name": "Scotland",
+      "leaders": [
+        "leader_robert_the_bruce"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Scottish Empire",
+        "abilityName": "Scottish Enlightenment",
+        "ability": "Happy cities receive an additional +5% Science Science and +5% Production Production. Happy cities generate +1 Greatscientist Great Scientist point per Campus and +1 Greatengineer Great Engineer point per Industrial Zone. Ecstatic cities double all these amounts.",
+        "uniqueUnits": [
+          "unit_scottish_highlander"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_scotland.webp"
+    },
+    {
+      "id": "civilization_scythia",
+      "name": "Scythia",
+      "leaders": [
+        "leader_tomyris"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Scythian Empire",
+        "abilityName": "People of the Steppe",
+        "ability": "Receive a second light cavalry unit or Saka Horse Archer each time you train a light cavalry unit or Saka Horse Archer.",
+        "uniqueUnits": [
+          "unit_scythian_horse_archer"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_scythia.webp"
+    },
+    {
+      "id": "civilization_spain",
+      "name": "Spain",
+      "leaders": [
+        "leader_philip_ii"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Spanish Empire",
+        "abilityName": "Spanish unique improvement: Mission",
+        "ability": null,
+        "uniqueUnits": [
+          "unit_spanish_conquistador"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_spain.webp"
+    },
+    {
+      "id": "civilization_sumeria",
+      "name": "Sumeria",
+      "leaders": [
+        "leader_gilgamesh"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Sumerian Empire",
+        "abilityName": "Epic Quests",
+        "ability": "When you disperse a Barbarian Outpost, receive a Tribal Village reward in addition to the usual Experience Points. Pay half the usual cost to levy city-state units.",
+        "uniqueUnits": [
+          "unit_sumerian_war_cart"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_sumeria.webp"
+    },
+    {
+      "id": "civilization_sweden",
+      "name": "Sweden",
+      "leaders": [
+        "leader_kristina"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Swedish Empire",
+        "abilityName": "Nobel Prize",
+        "ability": "Sweden gains 50 Favor Diplomatic Favor when earning a Great Person (on Standard Speed). Sweden receives +1 Greatengineer Great Engineer point from Factories and +1 Greatscientist Great Scientist point from Universities. Having Sweden in the game adds three unique World Congress competitions starting in the Industrial Era.",
+        "uniqueUnits": [
+          "unit_sweden_carolean"
+        ],
+        "uniqueDistricts": [],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_sweden.webp"
+    },
+    {
+      "id": "civilization_vietnam",
+      "name": "Vietnam",
+      "leaders": [
+        "leader_lady_trieu"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Vietnamese Empire",
+        "abilityName": "Nine Dragon River Delta",
+        "ability": "All land specialty districts can only be built on Rainforest, Marsh, or Woods. Receive the following yields for every building on these features: +1 Culture Culture in Woods, +1 Science Science in Rainforest and +1 Production Production in Marsh. Woods can be planted with the Medieval Faires civic.",
+        "uniqueUnits": [
+          "unit_vietnamese_voi_chien"
+        ],
+        "uniqueDistricts": [
+          "district_thanh"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_vietnam.webp"
+    },
+    {
+      "id": "civilization_zulu",
+      "name": "Zulu",
+      "leaders": [
+        "leader_shaka"
+      ],
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Zulu Empire",
+        "abilityName": null,
+        "ability": null,
+        "uniqueUnits": [
+          "unit_zulu_impi"
+        ],
+        "uniqueDistricts": [
+          "district_ikanda"
+        ],
+        "startingBias": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civilization/civilization_zulu.webp"
+    }
+  ]
+}

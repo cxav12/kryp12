@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "sourceNote": "Mechanics are drawn from the site's imported Civilization VI game data. Recommendations are editorial, mechanics-based strategy guidance.",
+  "records": [
+    {
+      "id": "settle-city",
+      "title": "Where should I settle?",
+      "summary": "Prioritize fresh water, workable food and production, then check long-term district space and strategic value.",
+      "answer": "Choose the tile that gives the new city a productive first ten turns without sacrificing its long-term district plan. Fresh water and strong first-ring tiles usually matter more than squeezing out one speculative late-game bonus.",
+      "steps": [
+        { "title": "Secure housing", "text": "Prefer a river, lake, or oasis. Coastal water is workable but gives less starting housing; a dry site needs a clear Aqueduct plan or an unusually strong reason to accept slower growth." },
+        { "title": "Inspect the first two rings", "text": "Look for at least one strong food tile and one strong production tile that can be improved quickly. Resources outside the third ring should not influence the decision." },
+        { "title": "Reserve district locations", "text": "Mark likely Campus, Holy Site, Commercial Hub or Harbor, Industrial Zone, and Aqueduct tiles before settling. Avoid placing the City Center on the only high-value adjacency tile." },
+        { "title": "Check immediate safety", "text": "Account for nearby barbarians, loyalty pressure, flood and volcano exposure, defensible terrain, and whether the city can be reinforced." },
+        { "title": "Define the city's job", "text": "A border city, strategic-resource city, production center, and science city can justify different locations. Settle for a purpose rather than for the largest collection of icons." }
+      ],
+      "quickChecks": ["Fresh water or a realistic Aqueduct", "Two useful early workable tiles", "Room for the districts the city needs", "A Builder can improve the site soon", "Acceptable loyalty and defense", "The location claims something valuable"],
+      "tips": ["Settling directly on a resource keeps the resource and the tile's underlying yields, but removes the option to improve or harvest it.", "Moving one extra turn is worthwhile only when the new tile produces a meaningfully stronger city.", "Leave enough space between cities to work key tiles, but remember that compact cities share support and district adjacency more easily."],
+      "mistakes": ["Choosing a site only for future third-ring resources", "Ignoring the first-ring production needed to build infrastructure", "Blocking the only Aqueduct or high-adjacency district tile", "Forward-settling without a loyalty or defense plan"],
+      "relatedIds": ["district_city_center", "district_aqueduct", "building_granary", "unit_settler", "unit_builder"]
+    },
+    {
+      "id": "district-choice",
+      "title": "Which district should I build?",
+      "summary": "Build the district that solves the empire's current bottleneck and has a useful adjacency or building path.",
+      "answer": "Start with the victory yield or constraint holding you back. A district is a large production and tile commitment, so build it because its yields, buildings, Great Person points, or trade route will matter soon—not simply because the city has an empty slot.",
+      "steps": [
+        { "title": "Identify the bottleneck", "text": "Choose Campus for science, Theater Square for culture, Holy Site for faith and religion, Commercial Hub or Harbor for economy and trade capacity, Industrial Zone for regional production, and Encampment for military production or defense." },
+        { "title": "Price the opportunity cost", "text": "Compare the district with settlers, builders, military units, monuments, and essential buildings. If the district will sit empty for many turns, another build may be more urgent." },
+        { "title": "Evaluate placement", "text": "Use the map's adjacency sources and reserve tiles for later districts. A moderate adjacency district built now can outperform a perfect district delayed for too long." },
+        { "title": "Check the building chain", "text": "A district is valuable partly because of what it unlocks. Make sure the city can afford the production and maintenance for the buildings you intend to add." },
+        { "title": "Avoid duplicating without purpose", "text": "Specialize cities when possible. Not every city needs every district, while your victory districts usually deserve broad coverage." }
+      ],
+      "quickChecks": ["Supports the intended victory or fixes a constraint", "Useful adjacency or strategic building access", "City has the population slot", "Production cost is affordable now", "Placement does not ruin a better future layout"],
+      "tips": ["Commercial Hubs and Harbors are often valuable even at low adjacency because their first building contributes trade-route capacity.", "Place limited-choice districts such as Dams and Aqueducts before flexible districts consume their tiles.", "Government Plaza adjacency can help create a compact district cluster."],
+      "mistakes": ["Building every available district in every city", "Chasing adjacency while delaying the district for dozens of turns", "Ignoring maintenance and building costs", "Using a tile needed by an Aqueduct, Dam, wonder, or unique improvement"],
+      "relatedIds": ["district_campus", "district_theater", "district_holy_site", "district_commercial_hub", "district_harbor", "district_industrial_zone"]
+    },
+    {
+      "id": "new-city-build",
+      "title": "What should I build in a new city?",
+      "summary": "Start with the cheapest build that makes the city productive, safe, and connected to your empire.",
+      "answer": "Most new cities need a Monument, Granary, Builder, or defensive unit before an expensive district. Pick the item that fixes the city's immediate weakness, and use internal trade routes or purchased buildings when speed matters.",
+      "steps": [
+        { "title": "Stabilize the city", "text": "If loyalty or attack is a concern, assign a Governor, establish a garrison, repair defenses, or produce the necessary military unit first." },
+        { "title": "Improve workable tiles", "text": "Build or transfer a Builder when the city lacks improved food and production. A city working unimproved tiles will struggle to complete everything else." },
+        { "title": "Add basic infrastructure", "text": "A Monument accelerates border growth and culture. A Granary is valuable when housing or food is the immediate cap. Do not automatically build both before checking the city's actual needs." },
+        { "title": "Connect and accelerate", "text": "An internal trade route can supply food and production while establishing a road. Buying a key building can be more efficient than waiting through a weak production queue." },
+        { "title": "Begin specialization", "text": "Once stable, place the district that defines the city's role. Locking its production cost by placing it early can be useful even if another item is completed first." }
+      ],
+      "quickChecks": ["Loyalty is stable", "City can defend itself", "Useful tiles are improved", "Housing is not immediately capped", "A district role has been chosen", "The city is connected or supported"],
+      "tips": ["Transfer an experienced Builder instead of making a low-production city train one from scratch.", "Chop or harvest only when the accelerated build is worth more than the tile's long-term value.", "New cities founded late in the game often benefit more from purchases and trade routes than from a long generic build order."],
+      "mistakes": ["Starting with an expensive district while working weak tiles", "Building a Granary when housing is already comfortable", "Ignoring loyalty in a forward settlement", "Following the same opening queue in every city"],
+      "relatedIds": ["building_monument", "building_granary", "unit_builder", "unit_trader", "district_city_center"]
+    },
+    {
+      "id": "science-recovery",
+      "title": "I'm falling behind in Science",
+      "summary": "Improve Campus output, population, Eurekas, and research efficiency before adding science buildings everywhere.",
+      "answer": "First determine whether the gap comes from too few Campuses, weak Campus cities, missed Eurekas, or an empire that is simply too small. Fix the cause with focused investments rather than pausing everything to build science infrastructure in every city.",
+      "steps": [
+        { "title": "Compare useful progress", "text": "Raw science per turn matters, but unlocked military units, governments, and economic technologies matter more. Research toward a concrete breakpoint." },
+        { "title": "Trigger attainable Eurekas", "text": "Review near-term technologies and complete boosts that cost less than the science they save. Do not distort the entire empire to chase a boost that is impractical." },
+        { "title": "Strengthen the best Campuses", "text": "Prioritize Libraries, Universities, population, specialists, and city-state bonuses in cities that can finish them efficiently." },
+        { "title": "Use policy and diplomacy", "text": "Adopt science-supporting policies when they produce more value than competing slots. Send envoys to scientific city-states and protect productive alliances and trade routes." },
+        { "title": "Expand your research base", "text": "More productive cities create more district capacity. Settle or capture responsibly when the empire lacks enough cities to compete over the long term." }
+      ],
+      "quickChecks": ["Current research has a purpose", "Easy Eurekas are planned", "Best Campus buildings are staffed and completed", "Scientific city-state bonuses are available", "Policies match current Campus output", "Empire has enough productive cities"],
+      "tips": ["A high-adjacency Campus is strongest when the percentage-based adjacency policy is active.", "Culture can solve a science problem by unlocking governments and policies that multiply research.", "Gold and production can recover science faster than science alone by buying or building key infrastructure."],
+      "mistakes": ["Researching randomly without targeting unlocks", "Building weak Campuses before improving strong ones", "Ignoring Eurekas", "Sacrificing defense and expansion for short-term science-per-turn parity"],
+      "relatedIds": ["district_campus", "building_library", "building_university", "building_research_lab", "tech_writing"]
+    },
+    {
+      "id": "culture-recovery",
+      "title": "I'm falling behind in Culture",
+      "summary": "Restore civic tempo with Monuments, Inspirations, focused Theater Squares, and culture-producing improvements or policies.",
+      "answer": "Culture is your access to governments, policy cards, Governor titles, and corps and armies—not only a Culture Victory yield. Recover by securing inexpensive culture first, then invest in Theater Squares and Great Works where they can be supported.",
+      "steps": [
+        { "title": "Complete practical Inspirations", "text": "Check upcoming civics and plan boosts that fit your current game. Treat an awkward Inspiration as optional when pursuing it costs more than it saves." },
+        { "title": "Finish basic culture sources", "text": "Build Monuments in cities that can complete them quickly, repair pillaged culture improvements, and work strong culture tiles." },
+        { "title": "Prioritize civic breakpoints", "text": "Aim for the government, policy, Governor title, corps, army, or diplomatic option your strategy needs instead of moving through the tree without a target." },
+        { "title": "Develop selected Theater Squares", "text": "Place them where wonder and district adjacency is worthwhile and where Amphitheaters, Museums, Great Works, and specialists can actually be used." },
+        { "title": "Use policies and city-states", "text": "Activate culture policies at the moment their condition is strong, and invest envoys in cultural city-states when their tier bonuses will apply broadly." }
+      ],
+      "quickChecks": ["Monuments are present in productive cities", "Near-term Inspirations are planned", "Next civic unlock has a strategic purpose", "Great Work slots are available before recruiting more works", "Cultural city-state and policy bonuses are being used"],
+      "tips": ["A small culture investment early can reach stronger governments sooner and improve every part of the empire.", "Theater Square adjacency is easier to create around wonders and entertainment districts.", "Do not neglect science while recovering culture; the two trees support one another."],
+      "mistakes": ["Treating culture as relevant only to Culture Victories", "Recruiting Great People without slots for their works", "Building Theater Squares in every weak city at once", "Ignoring inexpensive Monuments and Inspirations"],
+      "relatedIds": ["district_theater", "building_monument", "building_amphitheater", "building_museum_art", "building_museum_artifact"]
+    },
+    {
+      "id": "amenities",
+      "title": "I'm low on Amenities",
+      "summary": "Identify whether the shortage is local or empire-wide, then secure unique luxuries and targeted entertainment before overbuilding.",
+      "answer": "Start with unique luxury resources and trades because duplicate copies normally do not provide additional amenity coverage on their own. Then use policies, Entertainment Complexes, Water Parks, buildings, or city-state effects where the shortage remains concentrated.",
+      "steps": [
+        { "title": "Measure the shortage", "text": "Check which cities are actually below the desired happiness level. A single large city may need a local solution while broad expansion may require empire-wide coverage." },
+        { "title": "Improve unique luxuries", "text": "Connect every distinct luxury you control. Confirm that the required improvement and technology are available and repair any pillaged source." },
+        { "title": "Trade duplicate luxuries", "text": "Exchange spare copies for luxury types you do not own. Recheck deals when they expire or when war interrupts trade." },
+        { "title": "Use temporary and policy solutions", "text": "Review policy cards, Governors, religion, city-state bonuses, Great People, and civilization abilities before committing district production." },
+        { "title": "Add regional infrastructure", "text": "Place Entertainment Complexes and Water Parks so later buildings cover several cities. Build local amenity infrastructure only where its coverage and timing justify the cost." }
+      ],
+      "quickChecks": ["Every unique luxury is improved", "Duplicate luxuries are available for trade", "Expired trades were renewed", "Policies and Governors were reviewed", "Regional amenity buildings can cover multiple cities", "War weariness is understood"],
+      "tips": ["Growing or founding more cities increases total amenity demand, so plan coverage before a large expansion wave.", "Regional buildings reward careful district placement.", "Amenities affect yields through happiness, but a small temporary deficit may be less urgent than defense or essential infrastructure."],
+      "mistakes": ["Assuming multiple copies of the same luxury each supply normal additional coverage", "Building an Entertainment Complex in every city", "Ignoring expired trades and pillaged improvements", "Treating war weariness as a resource problem"],
+      "relatedIds": ["district_entertainment_complex", "district_water_entertainment_complex", "building_arena", "building_zoo", "building_stadium"]
+    },
+    {
+      "id": "government-choice",
+      "title": "Which government should I use?",
+      "summary": "Choose the government whose policy-slot mix and inherent bonuses support what you are doing during the next phase of the game.",
+      "answer": "Government choice is a package: inherent bonus, legacy or accumulated effect, and policy slots. Prefer the package that supports your immediate strategy, and change governments when your priorities change rather than treating one choice as permanent.",
+      "steps": [
+        { "title": "Define the next phase", "text": "Decide whether the next turns are focused on expansion, infrastructure, warfare, religion, diplomacy, or a victory push." },
+        { "title": "Value the slot mix", "text": "Count the economic, military, diplomatic, and wildcard policies you can use profitably right now. An unused slot type is lost value." },
+        { "title": "Compare government bonuses", "text": "Evaluate inherent and accumulated bonuses against your actual cities, districts, units, and alliances—not an idealized future empire." },
+        { "title": "Plan policy changes", "text": "Time government and policy swaps around newly completed civics when possible. Use temporary production policies only while their relevant builds are active." },
+        { "title": "Reassess after a transition", "text": "A peaceful building government may stop being correct when war begins, and a conquest government may be wasteful once the army is complete." }
+      ],
+      "quickChecks": ["Every policy slot has a high-value card", "Government bonus applies to the current plan", "Diplomatic and wildcard flexibility is considered", "A newly unlocked government was compared", "Switch timing avoids unnecessary cost"],
+      "tips": ["The best government is often the one that enables the strongest complete policy-card loadout.", "Wildcard slots are especially valuable when your strategy needs several cards of one category.", "Review policies whenever a major build wave, war, or expansion phase ends."],
+      "mistakes": ["Choosing only by the government's headline bonus", "Leaving weak policies in place for an entire era", "Ignoring the slot distribution", "Switching repeatedly without accounting for timing and cost"],
+      "relatedIds": ["government_chiefdom", "government_classical_republic", "government_oligarchy", "government_merchant_republic", "government_democracy"]
+    },
+    {
+      "id": "harvest-resource",
+      "title": "Should I harvest this resource?",
+      "summary": "Harvest when immediate production or food creates more value than the resource tile and no later plan requires it.",
+      "answer": "A harvest converts long-term tile value into an immediate yield. Do it when that yield reaches a meaningful timing—such as a settler, wonder, district, army, or critical growth threshold—and when the tile is needed for a better district or improvement.",
+      "steps": [
+        { "title": "Confirm it can be removed", "text": "Bonus resources are the normal harvest candidates. Strategic and luxury resources have different long-term and empire-wide value and should not be treated as ordinary harvests." },
+        { "title": "Calculate the tile's future", "text": "Compare the improved tile's yields with the district, wonder, farm triangle, mine, or other use planned for that location." },
+        { "title": "Demand a timing payoff", "text": "Use the harvest to finish something that matters now. Harvesting merely to shorten an unimportant build wastes the flexibility of waiting." },
+        { "title": "Account for Builder cost", "text": "A charge has value. Include the cost of producing or buying the Builder and the other improvements that charge could have created." },
+        { "title": "Commit the replacement plan", "text": "Know exactly what will occupy the cleared tile. A harvested tile left unused gives up both present and future value." }
+      ],
+      "quickChecks": ["Resource is removable with current technology", "Immediate yield reaches a real breakpoint", "Builder charge is affordable", "Tile has a better planned use", "City will not need the improved resource later"],
+      "tips": ["Harvest value scales through the game, so waiting can increase the yield but delay its benefit.", "Production into a time-sensitive settler, wonder, or military unit is often more valuable than production saved without a deadline.", "Place districts before harvesting when placement locks their cost, then direct the harvest into the intended build where the rules permit."],
+      "mistakes": ["Harvesting every bonus resource automatically", "Using a charge without an immediate replacement plan", "Removing one of a weak city's few productive tiles", "Confusing a luxury or strategic resource with an ordinary bonus resource"],
+      "relatedIds": ["unit_builder", "improvement_farm", "improvement_mine", "improvement_quarry", "tech_mining"]
+    },
+    {
+      "id": "strategic-resource",
+      "title": "I found Iron or Uranium—what now?",
+      "summary": "Secure the tile, confirm the required improvement, and decide whether the resource supports units, deterrence, trade, or denial.",
+      "answer": "Revealing a strategic resource is only the first step. Improve it, protect it, verify your accumulation and consumption, and connect it to a concrete military or diplomatic plan. A resource you cannot spend may be more valuable in trade; a resource an enemy needs may be worth denying.",
+      "steps": [
+        { "title": "Secure access", "text": "Buy the tile, settle nearby, use a Builder, or expand borders before another civilization can claim it. Confirm loyalty and defense for exposed deposits." },
+        { "title": "Use the correct improvement", "text": "Iron normally needs a Mine; late resources can require different improvements and technologies. Repair pillaged improvements immediately when they support key units." },
+        { "title": "Check the stockpile", "text": "Compare accumulation per turn, current reserves, and the resource cost and maintenance of planned units. Avoid starting a force you cannot sustain." },
+        { "title": "Match units to strategy", "text": "Build resource-dependent units when they create a timing advantage or necessary defense. Do not force an obsolete unit plan merely because the resource appeared." },
+        { "title": "Trade or deny excess", "text": "Sell surplus strategically, considering who receives it and what units it enables. Settling or controlling a deposit can matter even when you do not intend to spend it yourself." }
+      ],
+      "quickChecks": ["Deposit is inside secure borders", "Required improvement and technology are available", "Accumulation supports planned units", "Upgrade costs and gold are prepared", "Trading it will not arm a dangerous rival", "A second source or reserve exists when possible"],
+      "tips": ["Plan upgrades before the resource becomes available so older units, gold, and strategic stockpiles are ready together.", "Strategic-resource denial can be a valid reason for settlement or war, but include loyalty and defense costs.", "Pillaging an enemy's source can interrupt reinforcement even when their current army remains active."],
+      "mistakes": ["Assuming discovery automatically grants usable stock", "Training too many resource-consuming units to maintain", "Selling resources to the rival most likely to attack", "Ignoring upgrade gold and production timing"],
+      "relatedIds": ["resource_iron", "resource_uranium", "improvement_mine", "improvement_oil_well", "tech_bronze_working"]
+    }
+  ]
+}

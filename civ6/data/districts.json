@@ -1,0 +1,825 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "district_acropolis",
+      "name": "Acropolis",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Greece for cultural sites. Replaces the Theater Square district and cheaper to build. Awards 1 Envoy Envoy when completed. +1 Culture Culture bonus for each adjacent district and an additional +1 Culture Culture bonus for adjacent City Center. +2 Culture Culture bonus for each adjacent wonder, Entertainment Complex, and Water Park. Can only be built on Hills.",
+        "baseCost": 27,
+        "prerequisite": "civic_drama_poetry",
+        "buildings": [],
+        "replaces": "district_theater",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_acropolis.webp"
+    },
+    {
+      "id": "district_aerodrome",
+      "name": "Aerodrome",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district that allows you to build and store aircraft. Cannot be built on Hills.",
+        "baseCost": 54,
+        "prerequisite": "tech_flight",
+        "buildings": [
+          "building_airport",
+          "building_hangar"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_aerodrome.webp"
+    },
+    {
+      "id": "district_aqueduct",
+      "name": "Aqueduct",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district that provides this city with a source of fresh water from an adjacent River, Lake, Oasis, or Mountain. Cities that do not yet have existing fresh water receive up to 6 Housing Housing. Cities that already have existing fresh water will instead get +2 Housing Housing. If built adjacent to a Geothermal Fissure +1 Amenities Amenity. Prevents Food Food loss during Drought. Must be built adjacent to the City Center. Military Engineers can spend a charge to complete 20% of an Aqueduct's production.",
+        "baseCost": 36,
+        "prerequisite": "tech_engineering",
+        "buildings": [],
+        "replaces": null,
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_aqueduct.webp"
+    },
+    {
+      "id": "district_bath",
+      "name": "Bath",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Rome for city growth. Replaces the Aqueduct district and cheaper to build. It provides this city with a source of fresh water from an adjacent River, Lake, Oasis, or Mountain. Cities that do not yet have existing fresh water receive up to 6 Housing Housing. Cities that already have existing fresh water will instead get +2 Housing Housing. If built adjacent to a Geothermal Fissure +1 Amenities Amenity. In all cases the Bath provides an additional bonus of +2 Housing Housing and +1 Amenities Amenity. Prevents Food Food loss during Drought. Must be built adjacent to the City Center. Military Engineers can spend a charge to complete 20% of a Bath's production.",
+        "baseCost": 18,
+        "prerequisite": "tech_engineering",
+        "buildings": [],
+        "replaces": "district_aqueduct",
+        "maintenance": null,
+        "housing": 2,
+        "amenities": 1
+      },
+      "strategy": {
+        "summary": "Helps Roman cities keep growing while easing pressure on Amenities and fresh-water placement.",
+        "placementTips": [
+          "Reserve a legal Aqueduct connection before surrounding tiles are occupied.",
+          "Use the extra growth only when the city can keep its citizens productive."
+        ]
+      },
+      "image": "/civ6/assets/icons/district/district_bath.webp"
+    },
+    {
+      "id": "district_campus",
+      "name": "Campus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district in your city for scientific endeavors.",
+        "baseCost": 54,
+        "prerequisite": "tech_writing",
+        "buildings": [
+          "building_alchemical_society",
+          "building_library",
+          "building_madrasa",
+          "building_navigation_school",
+          "building_research_lab",
+          "building_university"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {
+        "summary": "The core Science district.",
+        "placementTips": [
+          "Compare adjacency with the opportunity cost of using a productive tile.",
+          "High adjacency is strongest when policy multipliers will be used."
+        ]
+      },
+      "image": "/civ6/assets/icons/district/district_campus.webp"
+    },
+    {
+      "id": "district_canal",
+      "name": "Canal",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district built on flat land to connect two bodies of water or a body of water to a City Center. Traderoute Trade Routes traveling through it can multiply the Gold Gold they get from districts at their destination. Canals may either go straight through the hex or bend by 60 degrees. However three-way Canal junctures are not allowed and Canals must have a full land tile on each side of the waterway they create. Military Engineers can spend a charge to complete 20% of a Canal's production.",
+        "baseCost": 81,
+        "prerequisite": "tech_steam_power",
+        "buildings": [],
+        "replaces": null,
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_canal.webp"
+    },
+    {
+      "id": "district_city_center",
+      "name": "City Center",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "This is the City Center.",
+        "baseCost": 54,
+        "prerequisite": null,
+        "buildings": [
+          "building_castle",
+          "building_flood_barrier",
+          "building_granary",
+          "building_monument",
+          "building_old_god_obelisk",
+          "building_palace",
+          "building_palgum",
+          "building_sewer",
+          "building_star_fort",
+          "building_tsikhe",
+          "building_walls",
+          "building_water_mill"
+        ],
+        "replaces": null,
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_city_center.webp"
+    },
+    {
+      "id": "district_commercial_hub",
+      "name": "Commercial Hub",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district in your city specializing in finance and trade.",
+        "baseCost": 54,
+        "prerequisite": "tech_currency",
+        "buildings": [
+          "building_bank",
+          "building_gilded_vault",
+          "building_grand_bazaar",
+          "building_market",
+          "building_stock_exchange",
+          "building_sukiennice"
+        ],
+        "replaces": null,
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {
+        "summary": "Supports Gold income, trade capacity, and Great Merchants.",
+        "placementTips": [
+          "Plan it together with rivers, Harbors, and production districts.",
+          "Trade capacity can matter more than raw adjacency in a developing empire."
+        ]
+      },
+      "image": "/civ6/assets/icons/district/district_commercial_hub.webp"
+    },
+    {
+      "id": "district_water_street_carnival",
+      "name": "Copacabana",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Brazil. Replaces the Water Park district, and provides +2 Amenities Amenities. Also unlocks the Carnival project, which grants an additional +1 Amenities Amenity when underway and a variety of Greatperson Great People points once completed. Cannot be built in a city with a Street Carnival. Cannot be built on Reef.",
+        "baseCost": 27,
+        "prerequisite": "civic_natural_history",
+        "buildings": [],
+        "replaces": "district_water_entertainment_complex",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": 2
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_water_street_carnival.webp"
+    },
+    {
+      "id": "district_cothon",
+      "name": "Cothon",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Phoenicia for naval activity in your city. Replaces the Harbor district and cheaper to build. Must be built on Coast or Lake Terrain adjacent to land. +50% Production Production towards naval units and Settlers in this city. All wounded naval units in this city’s borders heal +100 HP each turn.",
+        "baseCost": 27,
+        "prerequisite": "tech_celestial_navigation",
+        "buildings": [],
+        "replaces": "district_harbor",
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_cothon.webp"
+    },
+    {
+      "id": "district_dam",
+      "name": "Dam",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district built on a Floodplains tile to improve the comfort of living along this river. Prevents damage from flooding of this river (though yields from flooding drop by 50%). Prevents Food Food loss during Drought. Only one may be built along each river's floodplain (whichever player completes one first) and the river must traverse at least two sides of the Dam hex. Military Engineers can spend a charge to complete 20% of a Dam's production.",
+        "baseCost": 81,
+        "prerequisite": "tech_buttress",
+        "buildings": [
+          "building_hydroelectric_dam"
+        ],
+        "replaces": null,
+        "maintenance": null,
+        "housing": 3,
+        "amenities": 1
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_dam.webp"
+    },
+    {
+      "id": "district_diplomatic_quarter",
+      "name": "Diplomatic Quarter",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Your civilization receives +1 Favor Diplomatic Favor for each Delegation or Embassy from a foreign civilization through diplomacy. +1 Envoy Envoy if built next to the city center. Enemy Spies operate at 2 levels below normal targeting this district and adjacent districts. Only 1 can exist in your empire at a time.",
+        "baseCost": 30,
+        "prerequisite": "tech_mathematics",
+        "buildings": [
+          "building_chancery",
+          "building_consulate"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_diplomatic_quarter.webp"
+    },
+    {
+      "id": "district_encampment",
+      "name": "Encampment",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district in your city for military facilities.",
+        "baseCost": 54,
+        "prerequisite": "tech_bronze_working",
+        "buildings": [
+          "building_armory",
+          "building_barracks",
+          "building_basilikoi_paides",
+          "building_military_academy",
+          "building_ordu",
+          "building_stable"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_encampment.webp"
+    },
+    {
+      "id": "district_entertainment_complex",
+      "name": "Entertainment Complex",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district in your city dedicated to keeping your people happy by increasing Amenities Amenities. Cannot be built in a city with a Water Park.",
+        "baseCost": 54,
+        "prerequisite": "civic_games_recreation",
+        "buildings": [
+          "building_arena",
+          "building_stadium",
+          "building_thermal_bath",
+          "building_tlachtli",
+          "building_zoo"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": 1
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_entertainment_complex.webp"
+    },
+    {
+      "id": "district_government",
+      "name": "Government Plaza",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district placed once in your empire to commemorate your government choices. Provides +8 Loyalty per turn to this city, and an increase of +1 to the adjacency bonuses being earned by any adjacent district. Awards +1 Governor Governor Title.",
+        "baseCost": 30,
+        "prerequisite": "civic_state_workforce",
+        "buildings": [
+          "building_gov_citystates",
+          "building_gov_conquest",
+          "building_gov_culture",
+          "building_gov_faith",
+          "building_gov_military",
+          "building_gov_science",
+          "building_gov_spies",
+          "building_gov_tall",
+          "building_gov_wide",
+          "building_queens_bibliotheque"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_government.webp"
+    },
+    {
+      "id": "district_hansa",
+      "name": "Hansa",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Germany for industrial activity. Replaces the Industrial Zone district and cheaper to build. + 2Production Production bonus for each adjacent Commercial Hub, Aqueduct, Canal, and Dam districts. +1 Production Production bonus for each adjacent resource. +1 Production Production bonus for every two adjacent district tiles.",
+        "baseCost": 27,
+        "prerequisite": "tech_apprenticeship",
+        "buildings": [],
+        "replaces": "district_industrial_zone",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {
+        "summary": "Germany's specialized production district rewards deliberately clustered city and district layouts.",
+        "placementTips": [
+          "Reserve Hansa and Commercial Hub tiles together.",
+          "Evaluate adjacency across multiple nearby cities rather than one city at a time."
+        ]
+      },
+      "image": "/civ6/assets/icons/district/district_hansa.webp"
+    },
+    {
+      "id": "district_harbor",
+      "name": "Harbor",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district for naval activity in your city. Also removes the Movement Movement penalty for embarking and disembarking to and from this tile. Must be built on Coast or Lake Terrain adjacent to land. Cannot be built on Reef.",
+        "baseCost": 54,
+        "prerequisite": "tech_celestial_navigation",
+        "buildings": [
+          "building_lighthouse",
+          "building_seaport",
+          "building_shipyard"
+        ],
+        "replaces": null,
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_harbor.webp"
+    },
+    {
+      "id": "district_hippodrome",
+      "name": "Hippodrome",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Byzantium. Replaces the Entertainment Complex district, provides +3 Amenities Amenities, and is cheaper to build. When the Hippodrome and buildings in this district are constructed, receive a Heavy Cavalry unit. Units granted from this district do not have a resource maintenance cost. Cannot be built in a city with a Water Park.",
+        "baseCost": 27,
+        "prerequisite": "civic_games_recreation",
+        "buildings": [],
+        "replaces": "district_entertainment_complex",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": 3
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_hippodrome.webp"
+    },
+    {
+      "id": "district_holy_site",
+      "name": "Holy Site",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district in your city for religious worship.",
+        "baseCost": 54,
+        "prerequisite": "tech_astrology",
+        "buildings": [
+          "building_cathedral",
+          "building_dar_e_mehr",
+          "building_gurdwara",
+          "building_meeting_house",
+          "building_mosque",
+          "building_pagoda",
+          "building_prasat",
+          "building_shrine",
+          "building_stave_church",
+          "building_stupa",
+          "building_synagogue",
+          "building_temple",
+          "building_wat"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_holy_site.webp"
+    },
+    {
+      "id": "district_ikanda",
+      "name": "Ikanda",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Zulu which replaces the Encampment. Provides +1 Housing Housing. Once the Civic or Technology prerequisite is met, Corps and Armies can be built outright. Buildings in the Ikanda receive +2 Gold Gold and +1 Science Science. Faster Corps and Army creation.",
+        "baseCost": 27,
+        "prerequisite": "tech_bronze_working",
+        "buildings": [],
+        "replaces": "district_encampment",
+        "maintenance": 1,
+        "housing": 1,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_ikanda.webp"
+    },
+    {
+      "id": "district_industrial_zone",
+      "name": "Industrial Zone",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district in your city for industrial activity.",
+        "baseCost": 54,
+        "prerequisite": "tech_apprenticeship",
+        "buildings": [
+          "building_coal_power_plant",
+          "building_electronics_factory",
+          "building_factory",
+          "building_fossil_fuel_power_plant",
+          "building_power_plant",
+          "building_workshop"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {
+        "summary": "Concentrates Production and enables cities to complete expensive projects faster.",
+        "placementTips": [
+          "Plan supporting districts before locking the tile.",
+          "Not every city needs one immediately; prioritize cities that will use the production well."
+        ]
+      },
+      "image": "/civ6/assets/icons/district/district_industrial_zone.webp"
+    },
+    {
+      "id": "district_lavra",
+      "name": "Lavra",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Russia for religious activity. Replaces the Holy Site district and cheaper to build. Your city border grows by one tile each time a Great Person is expended in this city. The Lavra provides +1 Greatwriter Great Writer point per turn with a Shrine, +1 Greatartist Great Artist point per turn with a Temple, and +1 Greatmusician Great Musician point per turn with a Worship building.",
+        "baseCost": 27,
+        "prerequisite": "tech_astrology",
+        "buildings": [],
+        "replaces": "district_holy_site",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_lavra.webp"
+    },
+    {
+      "id": "district_mbanza",
+      "name": "Mbanza",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Kongo that can only be constructed in Rainforest or Woods. Replaces the Neighborhood district but is available earlier and cheaper to build. Provides +5 Housing Housing , +2 Food Food, and +4 Gold Gold, regardless of Appeal.",
+        "baseCost": 27,
+        "prerequisite": "civic_guilds",
+        "buildings": [],
+        "replaces": "district_neighborhood",
+        "maintenance": null,
+        "housing": 5,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_mbanza.webp"
+    },
+    {
+      "id": "district_neighborhood",
+      "name": "Neighborhood",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district in your city that provides housing based on the Appeal of the tile: Breathtaking: +6 Housing Housing. Charming: +5 Housing Housing. Average: +4 Housing Housing. Uninviting: +3 Housing Housing. Disgusting: +2 Housing Housing.",
+        "baseCost": 54,
+        "prerequisite": "civic_urbanization",
+        "buildings": [
+          "building_food_market",
+          "building_shopping_mall"
+        ],
+        "replaces": null,
+        "maintenance": null,
+        "housing": 4,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_neighborhood.webp"
+    },
+    {
+      "id": "district_observatory",
+      "name": "Observatory",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to the Maya for scientific endeavors. Replaces the Campus district and cheaper to build. +2 Science Science bonus for adjacent Plantations. +1 Science Science bonus for every two adjacent Farm or district tiles.",
+        "baseCost": 27,
+        "prerequisite": "tech_writing",
+        "buildings": [],
+        "replaces": "district_campus",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_observatory.webp"
+    },
+    {
+      "id": "district_oppidum",
+      "name": "Oppidum",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Gaul that is cheaper and available earlier than the district it replaces, the Industrial Zone. The Oppidum district is defensible with a ranged attack. When the first Oppidum is constructed the Apprenticeship technology is unlocked. +2 Production Production adjacency bonus from Quarries and strategic resources.",
+        "baseCost": 27,
+        "prerequisite": "tech_iron_working",
+        "buildings": [],
+        "replaces": "district_industrial_zone",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_oppidum.webp"
+    },
+    {
+      "id": "district_preserve",
+      "name": "Preserve",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Grants up to 3 Housing Housing based on Appeal. Culture bombs adjacent neutral tiles, and increases their Appeal by 1.",
+        "baseCost": 54,
+        "prerequisite": "civic_mysticism",
+        "buildings": [
+          "building_grove",
+          "building_sanctuary"
+        ],
+        "replaces": null,
+        "maintenance": null,
+        "housing": 1,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_preserve.webp"
+    },
+    {
+      "id": "district_royal_navy_dockyard",
+      "name": "Royal Navy Dockyard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to England for naval activity in your city. Replaces the Harbor district. Also removes the Movement Movement penalty for embarking and disembarking to and from this tile. Must be built on Coast or Lake Terrain adjacent to land. +1 Movement Movement for all naval units built in Dockyard +2 Gold Gold and +4 Loyalty per turn when built on a foreign continent. Cannot be built on Reef",
+        "baseCost": 27,
+        "prerequisite": "tech_celestial_navigation",
+        "buildings": [],
+        "replaces": "district_harbor",
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_royal_navy_dockyard.webp"
+    },
+    {
+      "id": "district_seowon",
+      "name": "Seowon",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Korea for scientific endeavors. Replaces the Campus district. +4 Science Science. -1 Science Science for every adjacent district tile. Must be built on Hills.",
+        "baseCost": 27,
+        "prerequisite": "tech_writing",
+        "buildings": [],
+        "replaces": "district_campus",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_seowon.webp"
+    },
+    {
+      "id": "district_spaceport",
+      "name": "Spaceport",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district that is required to construct the Science Victory projects. This includes {LOC_PROJECT_LAUNCH_EARTH_SATELLITE_NAME}, {LOC_PROJECT_LAUNCH_MOON_LANDING_NAME}, {LOC_PROJECT_LAUNCH_MARS_BASE_NAME}, and {LOC_PROJECT_LAUNCH_EXOPLANET_EXPEDITION_NAME}. Cannot be built on Hills.",
+        "baseCost": 1800,
+        "prerequisite": "tech_rocketry",
+        "buildings": [
+          "building_large_rocket",
+          "building_medium_rocket",
+          "building_small_rocket"
+        ],
+        "replaces": null,
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_spaceport.webp"
+    },
+    {
+      "id": "district_street_carnival",
+      "name": "Street Carnival",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Brazil. Replaces the Entertainment Complex district, and provides +2 Amenities Amenities. Also unlocks the Carnival project, which grants an additional +1 Amenities Amenity when underway and a variety of Greatperson Great People points once completed. Cannot be built in a city with a Copacabana.",
+        "baseCost": 27,
+        "prerequisite": "civic_games_recreation",
+        "buildings": [],
+        "replaces": "district_entertainment_complex",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": 2
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_street_carnival.webp"
+    },
+    {
+      "id": "district_suguba",
+      "name": "Suguba",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Mali specializing in finance and trade that replaces the Commercial Hub. Units, Buildings, and Districts are 20% cheaper to purchase with Gold Gold and Faith Faith in this City. +2 Gold Gold bonus for each adjacent Holy Site. +2 Gold Gold bonus from a tile containing a River edge. +1 Gold Gold bonus for every two adjacent district tiles.",
+        "baseCost": 27,
+        "prerequisite": "tech_currency",
+        "buildings": [],
+        "replaces": "district_commercial_hub",
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_suguba.webp"
+    },
+    {
+      "id": "district_theater",
+      "name": "Theater Square",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district in your city for cultural sites.",
+        "baseCost": 54,
+        "prerequisite": "civic_drama_poetry",
+        "buildings": [
+          "building_amphitheater",
+          "building_broadcast_center",
+          "building_film_studio",
+          "building_marae",
+          "building_museum_art",
+          "building_museum_artifact"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_theater.webp"
+    },
+    {
+      "id": "district_thanh",
+      "name": "Thành",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district unique to Vietnam which replaces the Encampment. +2 Culture Culture for each adjacent district. After Flight is researched receive Tourism Tourism equal to the Culture Culture output. This district does not require population, is cheaper to build, cannot be built adjacent to the city center, does not provide Greatperson Great People points, and is not a specialty district.",
+        "baseCost": 27,
+        "prerequisite": "tech_bronze_working",
+        "buildings": [],
+        "replaces": "district_encampment",
+        "maintenance": 1,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_thanh.webp"
+    },
+    {
+      "id": "district_water_entertainment_complex",
+      "name": "Water Park",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A district placed out on a coastal tile dedicated to keeping your people happy by increasing Amenities Amenities. Cannot be built in a city with an Entertainment Complex. Cannot be built on Reef.",
+        "baseCost": 54,
+        "prerequisite": "civic_natural_history",
+        "buildings": [
+          "building_aquarium",
+          "building_aquatics_center",
+          "building_ferris_wheel"
+        ],
+        "replaces": null,
+        "maintenance": 1,
+        "housing": null,
+        "amenities": 1
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_water_entertainment_complex.webp"
+    },
+    {
+      "id": "district_wonder",
+      "name": "Wonder",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "baseCost": 0,
+        "prerequisite": null,
+        "buildings": [],
+        "replaces": null,
+        "maintenance": null,
+        "housing": null,
+        "amenities": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/district/district_wonder.webp"
+    }
+  ]
+}

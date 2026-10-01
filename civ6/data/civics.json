@@ -1,0 +1,1798 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "civic_capitalism",
+      "name": "Capitalism",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1580,
+        "description": null,
+        "inspiration": "Build 2 Stock Exchanges.",
+        "prerequisites": [
+          "civic_mass_media"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_laissez_faire",
+          "policy_market_economy"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_shopping_mall"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_capitalism.webp"
+    },
+    {
+      "id": "civic_civil_engineering",
+      "name": "Civil Engineering",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1010,
+        "description": "Can build Farms on Grassland Hills and Plains Hills.",
+        "inspiration": "Build 7 different specialty districts.",
+        "prerequisites": [
+          "civic_mercantilism"
+        ],
+        "leadsTo": [
+          "civic_urbanization"
+        ],
+        "policiesUnlocked": [
+          "policy_public_works",
+          "policy_skyscrapers"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "wonder_statue_liberty"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_civil_engineering.webp"
+    },
+    {
+      "id": "civic_civil_service",
+      "name": "Civil Service",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 300,
+        "description": null,
+        "inspiration": "Grow a city to 10 population.",
+        "prerequisites": [
+          "civic_defensive_tactics",
+          "civic_recorded_history"
+        ],
+        "leadsTo": [
+          "civic_divine_right",
+          "civic_guilds"
+        ],
+        "policiesUnlocked": [
+          "policy_civil_prestige",
+          "policy_meritocracy",
+          "policy_retainers"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "wonder_meenakshi_temple"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_civil_service.webp"
+    },
+    {
+      "id": "civic_class_struggle",
+      "name": "Class Struggle",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1640,
+        "description": null,
+        "inspiration": "Build 3 Factories.",
+        "prerequisites": [
+          "civic_ideology"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_collectivization",
+          "policy_defense_of_motherland"
+        ],
+        "governmentsUnlocked": [
+          "government_communism"
+        ],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_class_struggle.webp"
+    },
+    {
+      "id": "civic_code_of_laws",
+      "name": "Code of Laws",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 20,
+        "description": null,
+        "inspiration": null,
+        "prerequisites": [],
+        "leadsTo": [
+          "civic_craftsmanship",
+          "civic_foreign_trade"
+        ],
+        "policiesUnlocked": [
+          "policy_discipline",
+          "policy_god_king",
+          "policy_survey",
+          "policy_urban_planning"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {
+        "whyItMatters": "Your first policy choices define whether the opening emphasizes production, Faith, or protection from Barbarians."
+      },
+      "image": "/civ6/assets/icons/civic/civic_code_of_laws.webp"
+    },
+    {
+      "id": "civic_cold_war",
+      "name": "Cold War",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 2185,
+        "description": "Grants the ability to construct an additional Spy.",
+        "inspiration": "Research the Nuclear Fission technology.",
+        "prerequisites": [
+          "civic_ideology"
+        ],
+        "leadsTo": [
+          "civic_rapid_deployment",
+          "civic_space_race"
+        ],
+        "policiesUnlocked": [
+          "policy_containment",
+          "policy_cryptography",
+          "policy_international_waters",
+          "policy_second_strike_capability"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "unit_rock_band"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_cold_war.webp"
+    },
+    {
+      "id": "civic_colonialism",
+      "name": "Colonialism",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 800,
+        "description": "The Fishing Boats improvement receives +1 Production Production.",
+        "inspiration": "Research the Astronomy technology.",
+        "prerequisites": [
+          "civic_mercantilism"
+        ],
+        "leadsTo": [
+          "civic_natural_history"
+        ],
+        "policiesUnlocked": [
+          "policy_colonial_taxes",
+          "policy_native_conquest",
+          "policy_raj"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "improvement_ice_hockey_rink"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_colonialism.webp"
+    },
+    {
+      "id": "civic_conservation",
+      "name": "Conservation",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1540,
+        "description": "Awards 3 Envoy Envoys. Allows the building of National Parks and the purchase of Naturalists with Faith Faith. Allows Builders to plant Woods (second-growth). Woods in your territory that have never been removed (old-growth) gain +1 Appeal. Receive Tourism Tourism from Walls.",
+        "inspiration": "Have a Neighborhood district with Breathtaking Appeal.",
+        "prerequisites": [
+          "civic_natural_history"
+        ],
+        "leadsTo": [
+          "civic_cultural_heritage"
+        ],
+        "policiesUnlocked": [
+          "policy_resource_management"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_sanctuary",
+          "unit_canada_mountie",
+          "unit_naturalist"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_conservation.webp"
+    },
+    {
+      "id": "civic_craftsmanship",
+      "name": "Craftsmanship",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 40,
+        "description": null,
+        "inspiration": "Improve 3 tiles.",
+        "prerequisites": [
+          "civic_code_of_laws"
+        ],
+        "leadsTo": [
+          "civic_military_tradition",
+          "civic_state_workforce"
+        ],
+        "policiesUnlocked": [
+          "policy_agoge",
+          "policy_ilkum"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "improvement_chemamull",
+          "improvement_sphinx"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_craftsmanship.webp"
+    },
+    {
+      "id": "civic_cultural_hegemony",
+      "name": "Cultural Hegemony",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3200,
+        "description": null,
+        "inspiration": null,
+        "prerequisites": [],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_future_counter_science",
+          "policy_future_victory_culture"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_cultural_hegemony.webp"
+    },
+    {
+      "id": "civic_cultural_heritage",
+      "name": "Cultural Heritage",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1955,
+        "description": null,
+        "inspiration": "Have a Themed Building.",
+        "prerequisites": [
+          "civic_conservation"
+        ],
+        "leadsTo": [
+          "civic_environmentalism"
+        ],
+        "policiesUnlocked": [
+          "policy_heritage_tourism"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "wonder_sydney_opera_house"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_cultural_heritage.webp"
+    },
+    {
+      "id": "civic_defensive_tactics",
+      "name": "Defensive Tactics",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 175,
+        "description": null,
+        "inspiration": "Be the target of a Declaration of War.",
+        "prerequisites": [
+          "civic_games_recreation",
+          "civic_political_philosophy"
+        ],
+        "leadsTo": [
+          "civic_civil_service",
+          "civic_feudalism",
+          "civic_naval_tradition"
+        ],
+        "policiesUnlocked": [
+          "policy_bastions",
+          "policy_limes"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "wonder_halicarnassus_mausoleum"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_defensive_tactics.webp"
+    },
+    {
+      "id": "civic_diplomatic_service",
+      "name": "Diplomatic Service",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 600,
+        "description": "Grants the ability to construct a Spy.",
+        "inspiration": "Have an alliance with another civilization.",
+        "prerequisites": [
+          "civic_guilds"
+        ],
+        "leadsTo": [
+          "civic_the_enlightenment"
+        ],
+        "policiesUnlocked": [
+          "policy_machiavellianism",
+          "policy_wisselbanken"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_chancery"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_diplomatic_service.webp"
+    },
+    {
+      "id": "civic_digital_democracy",
+      "name": "Distributed Sovereignty",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3000,
+        "description": null,
+        "inspiration": "Own a Rock Band.",
+        "prerequisites": [
+          "civic_globalization",
+          "civic_social_media"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [],
+        "governmentsUnlocked": [
+          "government_digital_democracy"
+        ],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_digital_democracy.webp"
+    },
+    {
+      "id": "civic_divine_right",
+      "name": "Divine Right",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 340,
+        "description": null,
+        "inspiration": "Build 2 Temples.",
+        "prerequisites": [
+          "civic_civil_service",
+          "civic_theology"
+        ],
+        "leadsTo": [
+          "civic_reformed_church"
+        ],
+        "policiesUnlocked": [
+          "policy_chivalry",
+          "policy_gothic_architecture"
+        ],
+        "governmentsUnlocked": [
+          "government_monarchy"
+        ],
+        "otherUnlocks": [
+          "unit_byzantine_tagma",
+          "wonder_kotoku_in",
+          "wonder_mont_st_michel"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_divine_right.webp"
+    },
+    {
+      "id": "civic_drama_poetry",
+      "name": "Drama and Poetry",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 110,
+        "description": null,
+        "inspiration": "Build a wonder.",
+        "prerequisites": [
+          "civic_early_empire"
+        ],
+        "leadsTo": [
+          "civic_recorded_history",
+          "civic_theology"
+        ],
+        "policiesUnlocked": [
+          "policy_literary_tradition"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_amphitheater",
+          "building_marae",
+          "district_acropolis",
+          "district_theater",
+          "improvement_rock_hewn_church"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_drama_poetry.webp"
+    },
+    {
+      "id": "civic_early_empire",
+      "name": "Early Empire",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 70,
+        "description": "Unlocks the abilities to enforce borders and grant Open Borders to other civilizations.",
+        "inspiration": "Grow your civilization to at least 6 population.",
+        "prerequisites": [
+          "civic_foreign_trade"
+        ],
+        "leadsTo": [
+          "civic_drama_poetry",
+          "civic_political_philosophy"
+        ],
+        "policiesUnlocked": [
+          "policy_colonization",
+          "policy_land_surveyors",
+          "policy_limitanei"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "improvement_pairidaeza"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_early_empire.webp"
+    },
+    {
+      "id": "civic_environmentalism",
+      "name": "Environmentalism",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 2880,
+        "description": "+25% Tourism Tourism across your empire.",
+        "inspiration": "Build 2 Solar Farms.",
+        "prerequisites": [
+          "civic_cultural_heritage",
+          "civic_rapid_deployment"
+        ],
+        "leadsTo": [
+          "civic_near_future_governance"
+        ],
+        "policiesUnlocked": [],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_environmentalism.webp"
+    },
+    {
+      "id": "civic_exodus_imperative",
+      "name": "Exodus Imperative",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3200,
+        "description": null,
+        "inspiration": null,
+        "prerequisites": [],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_future_counter_culture",
+          "policy_future_victory_science"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_exodus_imperative.webp"
+    },
+    {
+      "id": "civic_exploration",
+      "name": "Exploration",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 440,
+        "description": null,
+        "inspiration": "Build 2 Caravels.",
+        "prerequisites": [
+          "civic_medieval_faires",
+          "civic_mercenaries"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_colonial_offices",
+          "policy_press_gangs"
+        ],
+        "governmentsUnlocked": [
+          "government_merchant_republic"
+        ],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_exploration.webp"
+    },
+    {
+      "id": "civic_feudalism",
+      "name": "Feudalism",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 300,
+        "description": "Farm improvements now gain +1 Food Food from every 2 adjacent Farm improvements. Plantation improvements receive +1 Food Food.",
+        "inspiration": "Build 6 Farms.",
+        "prerequisites": [
+          "civic_defensive_tactics"
+        ],
+        "leadsTo": [
+          "civic_guilds",
+          "civic_medieval_faires",
+          "civic_mercenaries"
+        ],
+        "policiesUnlocked": [
+          "policy_feudal_contract",
+          "policy_serfdom"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "unit_japanese_samurai"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_feudalism.webp"
+    },
+    {
+      "id": "civic_foreign_trade",
+      "name": "Foreign Trade",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 40,
+        "description": "Allows the creation of Traderoute Trade Routes.",
+        "inspiration": "Discover a second continent.",
+        "prerequisites": [
+          "civic_code_of_laws"
+        ],
+        "leadsTo": [
+          "civic_early_empire",
+          "civic_mysticism"
+        ],
+        "policiesUnlocked": [
+          "policy_caravansaries",
+          "policy_maritime_industries"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "improvement_mountain_road",
+          "unit_trader"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_foreign_trade.webp"
+    },
+    {
+      "id": "civic_future_civic",
+      "name": "Future Civic",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3500,
+        "description": "Can be completed multiple times, increasing your points towards the Score Victory. Also awards 1 Governor Governor title and 50 Favor Diplomatic Favor each time it is completed.",
+        "inspiration": null,
+        "prerequisites": [
+          "civic_globalization",
+          "civic_social_media"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_future_civic.webp"
+    },
+    {
+      "id": "civic_games_recreation",
+      "name": "Games and Recreation",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 110,
+        "description": null,
+        "inspiration": "Research the Construction technology.",
+        "prerequisites": [
+          "civic_state_workforce"
+        ],
+        "leadsTo": [
+          "civic_defensive_tactics",
+          "civic_military_training"
+        ],
+        "policiesUnlocked": [
+          "policy_insulae"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_arena",
+          "building_tlachtli",
+          "district_entertainment_complex",
+          "district_hippodrome",
+          "district_street_carnival",
+          "improvement_city_park",
+          "wonder_colosseum"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_games_recreation.webp"
+    },
+    {
+      "id": "civic_global_warming_mitigation",
+      "name": "Global Warming Mitigation",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3200,
+        "description": "Awards 1 Diplomatic Victory point.",
+        "inspiration": null,
+        "prerequisites": [],
+        "leadsTo": [],
+        "policiesUnlocked": [],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_global_warming_mitigation.webp"
+    },
+    {
+      "id": "civic_globalization",
+      "name": "Globalization",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 2880,
+        "description": "+2 Gold Gold to Plantations.",
+        "inspiration": "Build 2 Airports.",
+        "prerequisites": [
+          "civic_rapid_deployment",
+          "civic_space_race"
+        ],
+        "leadsTo": [
+          "civic_corporate_libertarianism",
+          "civic_digital_democracy",
+          "civic_future_civic",
+          "civic_near_future_governance",
+          "civic_synthetic_technocracy"
+        ],
+        "policiesUnlocked": [
+          "policy_ecommerce",
+          "policy_international_space_agency",
+          "policy_strategic_air_force"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_globalization.webp"
+    },
+    {
+      "id": "civic_guilds",
+      "name": "Guilds",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 420,
+        "description": null,
+        "inspiration": "Build 2 Markets.",
+        "prerequisites": [
+          "civic_civil_service",
+          "civic_feudalism"
+        ],
+        "leadsTo": [
+          "civic_diplomatic_service",
+          "civic_humanism",
+          "civic_reformed_church"
+        ],
+        "policiesUnlocked": [
+          "policy_craftsmen",
+          "policy_town_charters",
+          "policy_traveling_merchants"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "district_mbanza",
+          "improvement_outback_station",
+          "improvement_polder",
+          "wonder_chichen_itza"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_guilds.webp"
+    },
+    {
+      "id": "civic_humanism",
+      "name": "Humanism",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 600,
+        "description": null,
+        "inspiration": "Earn a Great Artist.",
+        "prerequisites": [
+          "civic_guilds",
+          "civic_medieval_faires"
+        ],
+        "leadsTo": [
+          "civic_mercantilism",
+          "civic_the_enlightenment"
+        ],
+        "policiesUnlocked": [
+          "policy_frescoes",
+          "policy_invention"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_museum_art",
+          "building_museum_artifact",
+          "improvement_chateau",
+          "wonder_taj_mahal"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_humanism.webp"
+    },
+    {
+      "id": "civic_ideology",
+      "name": "Ideology",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1640,
+        "description": "Grants the ability to construct an additional Spy.",
+        "inspiration": null,
+        "prerequisites": [
+          "civic_mass_media",
+          "civic_mobilization"
+        ],
+        "leadsTo": [
+          "civic_class_struggle",
+          "civic_cold_war",
+          "civic_nuclear_program",
+          "civic_professional_sports",
+          "civic_suffrage",
+          "civic_totalitarianism"
+        ],
+        "policiesUnlocked": [
+          "policy_economic_union",
+          "policy_five_year_plan",
+          "policy_gunboat_diplomacy",
+          "policy_lightning_warfare"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_ideology.webp"
+    },
+    {
+      "id": "civic_information_warfare",
+      "name": "Information Warfare",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3200,
+        "description": null,
+        "inspiration": null,
+        "prerequisites": [],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_future_counter_diplomatic",
+          "policy_future_victory_domination"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_information_warfare.webp"
+    },
+    {
+      "id": "civic_mass_media",
+      "name": "Mass Media",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1540,
+        "description": null,
+        "inspiration": "Research Radio.",
+        "prerequisites": [
+          "civic_natural_history",
+          "civic_urbanization"
+        ],
+        "leadsTo": [
+          "civic_capitalism",
+          "civic_ideology"
+        ],
+        "policiesUnlocked": [
+          "policy_propaganda"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "wonder_broadway",
+          "wonder_cristo_redentor"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_mass_media.webp"
+    },
+    {
+      "id": "civic_medieval_faires",
+      "name": "Medieval Faires",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 420,
+        "description": null,
+        "inspiration": "Maintain 4 Trade Routes.",
+        "prerequisites": [
+          "civic_feudalism"
+        ],
+        "leadsTo": [
+          "civic_exploration",
+          "civic_humanism"
+        ],
+        "policiesUnlocked": [
+          "policy_aesthetics",
+          "policy_medina_quarter",
+          "policy_merchant_confederation"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "unit_ottoman_barbary_corsair",
+          "wonder_angkor_wat"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_medieval_faires.webp"
+    },
+    {
+      "id": "civic_mercantilism",
+      "name": "Mercantilism",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 720,
+        "description": "Camp improvements receive +1 Production Production and +1 Food Food. Lumber Mills can be built on Rainforest. Grants the ability to see the amounts of all of the resources in the world.",
+        "inspiration": "Earn a Great Merchant.",
+        "prerequisites": [
+          "civic_humanism"
+        ],
+        "leadsTo": [
+          "civic_civil_engineering",
+          "civic_colonialism"
+        ],
+        "policiesUnlocked": [
+          "policy_drill_manuals",
+          "policy_logistics",
+          "policy_triangular_trade"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "improvement_hacienda",
+          "unit_english_seadog",
+          "unit_polish_hussar",
+          "unit_privateer",
+          "wonder_torre_de_belem"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_mercantilism.webp"
+    },
+    {
+      "id": "civic_mercenaries",
+      "name": "Mercenaries",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 340,
+        "description": null,
+        "inspiration": "Have 8 land combat units in your military.",
+        "prerequisites": [
+          "civic_feudalism",
+          "civic_military_training"
+        ],
+        "leadsTo": [
+          "civic_exploration"
+        ],
+        "policiesUnlocked": [
+          "policy_professional_army",
+          "policy_retinues",
+          "policy_sack",
+          "policy_trade_confederation"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "unit_indonesian_jong"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_mercenaries.webp"
+    },
+    {
+      "id": "civic_military_tradition",
+      "name": "Military Tradition",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 50,
+        "description": "Grants flanking and support combat bonuses to all combat units.",
+        "inspiration": "Disperse a Barbarian Outpost.",
+        "prerequisites": [
+          "civic_craftsmanship"
+        ],
+        "leadsTo": [
+          "civic_military_training"
+        ],
+        "policiesUnlocked": [
+          "policy_maneuver",
+          "policy_strategos"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_military_tradition.webp"
+    },
+    {
+      "id": "civic_military_training",
+      "name": "Military Training",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 120,
+        "description": null,
+        "inspiration": "Build an Encampment.",
+        "prerequisites": [
+          "civic_games_recreation",
+          "civic_military_tradition"
+        ],
+        "leadsTo": [
+          "civic_mercenaries"
+        ],
+        "policiesUnlocked": [
+          "policy_equestrian_orders",
+          "policy_raid",
+          "policy_veterancy"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "wonder_statue_of_zeus"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_military_training.webp"
+    },
+    {
+      "id": "civic_mobilization",
+      "name": "Mobilization",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1540,
+        "description": "Allows forming three identical units into an Army or Armada. Allows one new Casus Belli that can be used to justify wars: War of Territorial Expansion.",
+        "inspiration": "Have 3 Corps in your military.",
+        "prerequisites": [
+          "civic_scorched_earth",
+          "civic_urbanization"
+        ],
+        "leadsTo": [
+          "civic_ideology"
+        ],
+        "policiesUnlocked": [
+          "policy_levee_en_masse"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_mobilization.webp"
+    },
+    {
+      "id": "civic_mysticism",
+      "name": "Mysticism",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 50,
+        "description": null,
+        "inspiration": "Found a pantheon.",
+        "prerequisites": [
+          "civic_foreign_trade"
+        ],
+        "leadsTo": [
+          "civic_theology"
+        ],
+        "policiesUnlocked": [
+          "policy_inspiration",
+          "policy_revelation"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_grove",
+          "district_preserve",
+          "wonder_oracle"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_mysticism.webp"
+    },
+    {
+      "id": "civic_nationalism",
+      "name": "Nationalism",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1010,
+        "description": "Grants the ability to construct an additional Spy. Allows forming two identical units into a Corps or Fleet. Allows one new Casus Belli that can be used to justify wars: Colonial War.",
+        "inspiration": "Declare war using a casus belli.",
+        "prerequisites": [
+          "civic_the_enlightenment"
+        ],
+        "leadsTo": [
+          "civic_scorched_earth",
+          "civic_urbanization"
+        ],
+        "policiesUnlocked": [
+          "policy_grande_armee",
+          "policy_national_identity"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "improvement_open_air_museum",
+          "unit_brazilian_minas_geraes"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_nationalism.webp"
+    },
+    {
+      "id": "civic_natural_history",
+      "name": "Natural History",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1050,
+        "description": null,
+        "inspiration": "Build an Archaeological Museum.",
+        "prerequisites": [
+          "civic_colonialism"
+        ],
+        "leadsTo": [
+          "civic_conservation",
+          "civic_mass_media"
+        ],
+        "policiesUnlocked": [],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_aquarium",
+          "building_ferris_wheel",
+          "building_thermal_bath",
+          "building_zoo",
+          "district_water_entertainment_complex",
+          "district_water_street_carnival",
+          "unit_archaeologist",
+          "wonder_hermitage"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_natural_history.webp"
+    },
+    {
+      "id": "civic_naval_tradition",
+      "name": "Naval Tradition",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 220,
+        "description": null,
+        "inspiration": "Kill a unit with a Quadrireme.",
+        "prerequisites": [
+          "civic_defensive_tactics"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_naval_infrastructure",
+          "policy_navigation"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_naval_tradition.webp"
+    },
+    {
+      "id": "civic_near_future_governance",
+      "name": "Near Future Governance",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3100,
+        "description": null,
+        "inspiration": "Adopt a government with 10 inherent policy slots.",
+        "prerequisites": [
+          "civic_environmentalism",
+          "civic_globalization"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_near_future_governance.webp"
+    },
+    {
+      "id": "civic_nuclear_program",
+      "name": "Nuclear Program",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1715,
+        "description": null,
+        "inspiration": "Build a Research Lab.",
+        "prerequisites": [
+          "civic_ideology"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_nobel_prize",
+          "policy_nuclear_espionage"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_nuclear_program.webp"
+    },
+    {
+      "id": "civic_opera_ballet",
+      "name": "Opera and Ballet",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 800,
+        "description": null,
+        "inspiration": "Build an Art Museum.",
+        "prerequisites": [
+          "civic_the_enlightenment"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_grand_opera",
+          "policy_symphonies"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "wonder_bolshoi_theatre"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_opera_ballet.webp"
+    },
+    {
+      "id": "civic_synthetic_technocracy",
+      "name": "Optimization Imperative",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3000,
+        "description": null,
+        "inspiration": "Research the Robotics technology.",
+        "prerequisites": [
+          "civic_globalization",
+          "civic_social_media"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [],
+        "governmentsUnlocked": [
+          "government_synthetic_technocracy"
+        ],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_synthetic_technocracy.webp"
+    },
+    {
+      "id": "civic_political_philosophy",
+      "name": "Political Philosophy",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 110,
+        "description": null,
+        "inspiration": "Meet 3 city-states.",
+        "prerequisites": [
+          "civic_early_empire",
+          "civic_state_workforce"
+        ],
+        "leadsTo": [
+          "civic_defensive_tactics",
+          "civic_recorded_history"
+        ],
+        "policiesUnlocked": [
+          "policy_charismatic_leader",
+          "policy_diplomatic_league"
+        ],
+        "governmentsUnlocked": [
+          "government_autocracy",
+          "government_classical_republic",
+          "government_oligarchy"
+        ],
+        "otherUnlocks": [
+          "wonder_apadana"
+        ]
+      },
+      "strategy": {
+        "whyItMatters": "The first government choice is a major flexibility spike because it expands policy capacity and adds a distinct empire bonus."
+      },
+      "image": "/civ6/assets/icons/civic/civic_political_philosophy.webp"
+    },
+    {
+      "id": "civic_professional_sports",
+      "name": "Professional Sports",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 2185,
+        "description": null,
+        "inspiration": "Build 2 Entertainment Complex districts.",
+        "prerequisites": [
+          "civic_ideology"
+        ],
+        "leadsTo": [
+          "civic_social_media"
+        ],
+        "policiesUnlocked": [
+          "policy_sports_media"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_aquatics_center",
+          "building_stadium",
+          "improvement_ski_resort",
+          "wonder_estadio_do_maracana"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_professional_sports.webp"
+    },
+    {
+      "id": "civic_rapid_deployment",
+      "name": "Rapid Deployment",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 2415,
+        "description": "Allows for the transport of land units between Aerodrome districts that contain Airports.",
+        "inspiration": "Build an Aerodrome or Airstrip on a foreign continent.",
+        "prerequisites": [
+          "civic_cold_war"
+        ],
+        "leadsTo": [
+          "civic_environmentalism",
+          "civic_globalization"
+        ],
+        "policiesUnlocked": [
+          "policy_after_action_reports",
+          "policy_military_first"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "wonder_amundsen_scott_research_station"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_rapid_deployment.webp"
+    },
+    {
+      "id": "civic_recorded_history",
+      "name": "Recorded History",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 175,
+        "description": null,
+        "inspiration": "Build 2 Campus districts.",
+        "prerequisites": [
+          "civic_drama_poetry",
+          "civic_political_philosophy"
+        ],
+        "leadsTo": [
+          "civic_civil_service"
+        ],
+        "policiesUnlocked": [
+          "policy_natural_philosophy",
+          "policy_praetorium"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "wonder_great_library"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_recorded_history.webp"
+    },
+    {
+      "id": "civic_reformed_church",
+      "name": "Reformed Church",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 440,
+        "description": null,
+        "inspiration": "Have 6 cities following your Religion.",
+        "prerequisites": [
+          "civic_divine_right",
+          "civic_guilds"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_religious_orders",
+          "policy_simultaneum",
+          "policy_wars_of_religion"
+        ],
+        "governmentsUnlocked": [
+          "government_theocracy"
+        ],
+        "otherUnlocks": [
+          "improvement_golf_course",
+          "wonder_st_basils_cathedral"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_reformed_church.webp"
+    },
+    {
+      "id": "civic_scorched_earth",
+      "name": "Scorched Earth",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1210,
+        "description": null,
+        "inspiration": "Build 2 Field Cannons.",
+        "prerequisites": [
+          "civic_nationalism"
+        ],
+        "leadsTo": [
+          "civic_mobilization"
+        ],
+        "policiesUnlocked": [
+          "policy_expropriation",
+          "policy_military_organization",
+          "policy_total_war"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_scorched_earth.webp"
+    },
+    {
+      "id": "civic_smart_power_doctrine",
+      "name": "Smart Power Doctrine",
+      "era": "Future",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3200,
+        "description": null,
+        "inspiration": null,
+        "prerequisites": [],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_future_counter_domination",
+          "policy_future_victory_diplomatic"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_smart_power_doctrine.webp"
+    },
+    {
+      "id": "civic_social_media",
+      "name": "Social Media",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 2880,
+        "description": null,
+        "inspiration": "Research the Telecommunications technology.",
+        "prerequisites": [
+          "civic_professional_sports",
+          "civic_space_race"
+        ],
+        "leadsTo": [
+          "civic_corporate_libertarianism",
+          "civic_digital_democracy",
+          "civic_future_civic",
+          "civic_synthetic_technocracy"
+        ],
+        "policiesUnlocked": [
+          "policy_collective_activism",
+          "policy_communications_office",
+          "policy_online_communities"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_social_media.webp"
+    },
+    {
+      "id": "civic_space_race",
+      "name": "Space Race",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 2415,
+        "description": null,
+        "inspiration": "Build a Spaceport district.",
+        "prerequisites": [
+          "civic_cold_war"
+        ],
+        "leadsTo": [
+          "civic_globalization",
+          "civic_social_media"
+        ],
+        "policiesUnlocked": [
+          "policy_integrated_space_cell",
+          "policy_music_censorship",
+          "policy_satellite_broadcasts"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_space_race.webp"
+    },
+    {
+      "id": "civic_state_workforce",
+      "name": "State Workforce",
+      "era": "Ancient",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 70,
+        "description": null,
+        "inspiration": "Build any specialty district.",
+        "prerequisites": [
+          "civic_craftsmanship"
+        ],
+        "leadsTo": [
+          "civic_games_recreation",
+          "civic_political_philosophy"
+        ],
+        "policiesUnlocked": [
+          "policy_conscription",
+          "policy_corvee"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "district_government"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_state_workforce.webp"
+    },
+    {
+      "id": "civic_suffrage",
+      "name": "Suffrage",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1640,
+        "description": null,
+        "inspiration": "Build 4 Sewers.",
+        "prerequisites": [
+          "civic_ideology"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_finest_hour",
+          "policy_new_deal"
+        ],
+        "governmentsUnlocked": [
+          "government_democracy"
+        ],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_suffrage.webp"
+    },
+    {
+      "id": "civic_the_enlightenment",
+      "name": "The Enlightenment",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 720,
+        "description": "Religious Tourism Tourism effects are halved versus your civilization.",
+        "inspiration": "Earn 3 Great People.",
+        "prerequisites": [
+          "civic_diplomatic_service",
+          "civic_humanism"
+        ],
+        "leadsTo": [
+          "civic_nationalism",
+          "civic_opera_ballet"
+        ],
+        "policiesUnlocked": [
+          "policy_free_market",
+          "policy_liberalism",
+          "policy_rationalism"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_the_enlightenment.webp"
+    },
+    {
+      "id": "civic_theology",
+      "name": "Theology",
+      "era": "Classical",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 120,
+        "description": null,
+        "inspiration": "Found a Religion.",
+        "prerequisites": [
+          "civic_drama_poetry",
+          "civic_mysticism"
+        ],
+        "leadsTo": [
+          "civic_divine_right"
+        ],
+        "policiesUnlocked": [
+          "policy_scripture"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "building_madrasa",
+          "building_prasat",
+          "building_stave_church",
+          "building_temple",
+          "wonder_mahabodhi_temple"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_theology.webp"
+    },
+    {
+      "id": "civic_totalitarianism",
+      "name": "Totalitarianism",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1640,
+        "description": null,
+        "inspiration": "Build 3 Military Academies.",
+        "prerequisites": [
+          "civic_ideology"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [
+          "policy_martial_law",
+          "policy_third_alternative"
+        ],
+        "governmentsUnlocked": [
+          "government_fascism"
+        ],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_totalitarianism.webp"
+    },
+    {
+      "id": "civic_urbanization",
+      "name": "Urbanization",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 1210,
+        "description": null,
+        "inspiration": "Grow a city to 15 population.",
+        "prerequisites": [
+          "civic_civil_engineering",
+          "civic_nationalism"
+        ],
+        "leadsTo": [
+          "civic_mass_media",
+          "civic_mobilization"
+        ],
+        "policiesUnlocked": [
+          "policy_force_modernization",
+          "policy_military_research",
+          "policy_public_transport"
+        ],
+        "governmentsUnlocked": [],
+        "otherUnlocks": [
+          "district_neighborhood"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_urbanization.webp"
+    },
+    {
+      "id": "civic_corporate_libertarianism",
+      "name": "Venture Politics",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "cultureCost": 3000,
+        "description": null,
+        "inspiration": "Build a Uranium Mine.",
+        "prerequisites": [
+          "civic_globalization",
+          "civic_social_media"
+        ],
+        "leadsTo": [],
+        "policiesUnlocked": [],
+        "governmentsUnlocked": [
+          "government_corporate_libertarianism"
+        ],
+        "otherUnlocks": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/civic/civic_corporate_libertarianism.webp"
+    }
+  ]
+}

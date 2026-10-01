@@ -1,0 +1,1562 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "resource_aluminum",
+      "name": "Aluminum",
+      "type": "Strategic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "science": 1
+        },
+        "validTerrain": [
+          "Desert",
+          "Desert Hills",
+          "Jungle",
+          "Plains"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": "tech_radio",
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [
+          "unit_fighter",
+          "unit_american_p51",
+          "unit_bomber",
+          "unit_helicopter",
+          "unit_jet_fighter",
+          "unit_jet_bomber"
+        ],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_aluminum.webp"
+    },
+    {
+      "id": "resource_amber",
+      "name": "Amber",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "culture": 1
+        },
+        "validTerrain": [
+          "Coast",
+          "Forest",
+          "Jungle"
+        ],
+        "improvement": "improvement_fishing_boats",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_amber.webp"
+    },
+    {
+      "id": "resource_antiquity_site",
+      "name": "Antiquity Site",
+      "type": "Artifact",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {},
+        "validTerrain": [
+          "Desert",
+          "Desert Hills",
+          "Floodplains",
+          "Floodplains Grassland",
+          "Floodplains Plains",
+          "Forest",
+          "Grass",
+          "Grass Hills",
+          "Jungle",
+          "Marsh",
+          "Oasis",
+          "Plains",
+          "Plains Hills",
+          "Snow",
+          "Snow Hills",
+          "Tundra",
+          "Tundra Hills"
+        ],
+        "improvement": null,
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_antiquity_site.webp"
+    },
+    {
+      "id": "resource_bananas",
+      "name": "Bananas",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1
+        },
+        "validTerrain": [
+          "Jungle"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_bananas.webp"
+    },
+    {
+      "id": "resource_cattle",
+      "name": "Cattle",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1
+        },
+        "validTerrain": [
+          "Grass"
+        ],
+        "improvement": "improvement_pasture",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_cattle.webp"
+    },
+    {
+      "id": "resource_cinnamon",
+      "name": "Cinnamon",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {},
+        "validTerrain": [],
+        "improvement": null,
+        "technologyRequired": null,
+        "amenityEffect": 6,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_cinnamon.webp"
+    },
+    {
+      "id": "resource_citrus",
+      "name": "Citrus",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 2
+        },
+        "validTerrain": [
+          "Grass",
+          "Plains"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_citrus.webp"
+    },
+    {
+      "id": "resource_cloves",
+      "name": "Cloves",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {},
+        "validTerrain": [],
+        "improvement": null,
+        "technologyRequired": null,
+        "amenityEffect": 6,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_cloves.webp"
+    },
+    {
+      "id": "resource_coal",
+      "name": "Coal",
+      "type": "Strategic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "production": 2
+        },
+        "validTerrain": [
+          "Forest",
+          "Grass Hills",
+          "Plains Hills"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": "tech_industrialization",
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [
+          "unit_ironclad",
+          "unit_battleship",
+          "unit_brazilian_minas_geraes"
+        ],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_coal.webp"
+    },
+    {
+      "id": "resource_cocoa",
+      "name": "Cocoa",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 3
+        },
+        "validTerrain": [
+          "Jungle"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_cocoa.webp"
+    },
+    {
+      "id": "resource_coffee",
+      "name": "Coffee",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "culture": 1
+        },
+        "validTerrain": [
+          "Grass",
+          "Jungle"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_coffee.webp"
+    },
+    {
+      "id": "resource_copper",
+      "name": "Copper",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 2
+        },
+        "validTerrain": [
+          "Desert Hills",
+          "Grass Hills",
+          "Plains Hills",
+          "Snow Hills",
+          "Tundra Hills"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_copper.webp"
+    },
+    {
+      "id": "resource_cosmetics",
+      "name": "Cosmetics",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {},
+        "validTerrain": [],
+        "improvement": null,
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_cosmetics.webp"
+    },
+    {
+      "id": "resource_cotton",
+      "name": "Cotton",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 3
+        },
+        "validTerrain": [
+          "Floodplains",
+          "Floodplains Grassland",
+          "Floodplains Plains",
+          "Grass",
+          "Plains"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_cotton.webp"
+    },
+    {
+      "id": "resource_crabs",
+      "name": "Crabs",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 2
+        },
+        "validTerrain": [
+          "Coast"
+        ],
+        "improvement": "improvement_fishing_boats",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_crabs.webp"
+    },
+    {
+      "id": "resource_deer",
+      "name": "Deer",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "production": 1
+        },
+        "validTerrain": [
+          "Forest",
+          "Tundra",
+          "Tundra Hills"
+        ],
+        "improvement": "improvement_camp",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_deer.webp"
+    },
+    {
+      "id": "resource_diamonds",
+      "name": "Diamonds",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 3
+        },
+        "validTerrain": [
+          "Desert Hills",
+          "Grass Hills",
+          "Jungle",
+          "Plains Hills",
+          "Tundra Hills"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {
+        "summary": "A valuable Gold tile whose first improved copy also supports Amenities.",
+        "tips": [
+          "Improve the first copy promptly when Amenities are tight.",
+          "Trade surplus copies when another civilization values them more than you do."
+        ]
+      },
+      "image": "/civ6/assets/icons/resource/resource_diamonds.webp"
+    },
+    {
+      "id": "resource_dyes",
+      "name": "Dyes",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "faith": 1
+        },
+        "validTerrain": [
+          "Forest",
+          "Jungle"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_dyes.webp"
+    },
+    {
+      "id": "resource_fish",
+      "name": "Fish",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1
+        },
+        "validTerrain": [
+          "Coast",
+          "Reef"
+        ],
+        "improvement": "improvement_fishing_boats",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_fish.webp"
+    },
+    {
+      "id": "resource_furs",
+      "name": "Furs",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1,
+          "gold": 1
+        },
+        "validTerrain": [
+          "Forest",
+          "Tundra"
+        ],
+        "improvement": "improvement_camp",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_furs.webp"
+    },
+    {
+      "id": "resource_gypsum",
+      "name": "Gypsum",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 1,
+          "production": 1
+        },
+        "validTerrain": [
+          "Desert Hills",
+          "Plains",
+          "Plains Hills",
+          "Tundra Hills"
+        ],
+        "improvement": "improvement_quarry",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_gypsum.webp"
+    },
+    {
+      "id": "resource_honey",
+      "name": "Honey",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 2
+        },
+        "validTerrain": [
+          "Grass",
+          "Plains"
+        ],
+        "improvement": "improvement_camp",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {}
+    },
+    {
+      "id": "resource_horses",
+      "name": "Horses",
+      "type": "Strategic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1,
+          "production": 1
+        },
+        "validTerrain": [
+          "Grass",
+          "Plains"
+        ],
+        "improvement": "improvement_pasture",
+        "technologyRequired": "tech_animal_husbandry",
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [
+          "unit_horseman",
+          "unit_cavalry",
+          "unit_russian_cossack",
+          "unit_ethiopian_oromo_cavalry",
+          "unit_courser",
+          "unit_hungary_black_army",
+          "unit_hungary_huszar",
+          "unit_colombian_llanero",
+          "unit_macedonian_hetairoi"
+        ],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_horses.webp"
+    },
+    {
+      "id": "resource_incense",
+      "name": "Incense",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "faith": 1
+        },
+        "validTerrain": [
+          "Desert",
+          "Plains"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_incense.webp"
+    },
+    {
+      "id": "resource_iron",
+      "name": "Iron",
+      "type": "Strategic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "science": 1
+        },
+        "validTerrain": [
+          "Desert Hills",
+          "Grass Hills",
+          "Plains Hills",
+          "Tundra Hills"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": "tech_bronze_working",
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [
+          "unit_swordsman",
+          "unit_roman_legion",
+          "unit_kongo_shield_bearer",
+          "unit_japanese_samurai",
+          "unit_norwegian_berserker",
+          "unit_knight",
+          "unit_arabian_mamluk",
+          "unit_man_at_arms",
+          "unit_byzantine_tagma",
+          "unit_cuirassier",
+          "unit_mali_mandekalu_cavalry",
+          "unit_macedonian_hypaspist",
+          "unit_persian_immortal",
+          "unit_polish_hussar"
+        ],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {
+        "summary": "Its location can reshape early settlement and military plans once Bronze Working reveals it.",
+        "tips": [
+          "Secure at least one accessible source if your army plan depends on Iron.",
+          "Extra supply can support trades or sustained unit production."
+        ]
+      },
+      "image": "/civ6/assets/icons/resource/resource_iron.webp"
+    },
+    {
+      "id": "resource_ivory",
+      "name": "Ivory",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 1,
+          "production": 1
+        },
+        "validTerrain": [
+          "Desert",
+          "Forest",
+          "Jungle",
+          "Plains",
+          "Plains Hills"
+        ],
+        "improvement": "improvement_camp",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_ivory.webp"
+    },
+    {
+      "id": "resource_jade",
+      "name": "Jade",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "culture": 1
+        },
+        "validTerrain": [
+          "Grass",
+          "Plains",
+          "Tundra"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_jade.webp"
+    },
+    {
+      "id": "resource_jeans",
+      "name": "Jeans",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {},
+        "validTerrain": [],
+        "improvement": null,
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_jeans.webp"
+    },
+    {
+      "id": "resource_ley_line",
+      "name": "Ley Line",
+      "type": "Ley Line",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {},
+        "validTerrain": [
+          "Desert",
+          "Desert Hills",
+          "Grass",
+          "Grass Hills",
+          "Plains",
+          "Plains Hills",
+          "Tundra",
+          "Tundra Hills"
+        ],
+        "improvement": null,
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {}
+    },
+    {
+      "id": "resource_maize",
+      "name": "Maize",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 2
+        },
+        "validTerrain": [
+          "Floodplains Grassland",
+          "Floodplains Plains",
+          "Grass",
+          "Plains"
+        ],
+        "improvement": "improvement_farm",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "resource_marble",
+      "name": "Marble",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "culture": 1
+        },
+        "validTerrain": [
+          "Grass",
+          "Grass Hills",
+          "Plains Hills"
+        ],
+        "improvement": "improvement_quarry",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_marble.webp"
+    },
+    {
+      "id": "resource_mercury",
+      "name": "Mercury",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "science": 1
+        },
+        "validTerrain": [
+          "Plains"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_mercury.webp"
+    },
+    {
+      "id": "resource_niter",
+      "name": "Niter",
+      "type": "Strategic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1,
+          "production": 1
+        },
+        "validTerrain": [
+          "Desert",
+          "Floodplains Grassland",
+          "Floodplains Plains",
+          "Grass",
+          "Plains",
+          "Tundra"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": "tech_military_engineering",
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [
+          "unit_musketman",
+          "unit_spanish_conquistador",
+          "unit_bombard",
+          "unit_frigate",
+          "unit_english_redcoat",
+          "unit_french_garde_imperiale",
+          "unit_line_infantry",
+          "unit_suleiman_janissary"
+        ],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_niter.webp"
+    },
+    {
+      "id": "resource_oil",
+      "name": "Oil",
+      "type": "Strategic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "production": 3
+        },
+        "validTerrain": [
+          "Coast",
+          "Desert",
+          "Floodplains",
+          "Marsh",
+          "Snow",
+          "Tundra"
+        ],
+        "improvement": "improvement_oil_well",
+        "technologyRequired": "tech_refining",
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [
+          "unit_biplane",
+          "unit_infantry",
+          "unit_artillery",
+          "unit_submarine",
+          "unit_tank",
+          "unit_aircraft_carrier",
+          "unit_destroyer",
+          "unit_mechanized_infantry",
+          "unit_rocket_artillery",
+          "unit_missile_cruiser",
+          "unit_modern_armor"
+        ],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_oil.webp"
+    },
+    {
+      "id": "resource_olives",
+      "name": "Olives",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 1,
+          "production": 1
+        },
+        "validTerrain": [
+          "Grass"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_olives.webp"
+    },
+    {
+      "id": "resource_pearls",
+      "name": "Pearls",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "faith": 1
+        },
+        "validTerrain": [
+          "Coast"
+        ],
+        "improvement": "improvement_fishing_boats",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_pearls.webp"
+    },
+    {
+      "id": "resource_perfume",
+      "name": "Perfume",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {},
+        "validTerrain": [],
+        "improvement": null,
+        "technologyRequired": null,
+        "amenityEffect": 6,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_perfume.webp"
+    },
+    {
+      "id": "resource_rice",
+      "name": "Rice",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1
+        },
+        "validTerrain": [
+          "Floodplains Grassland",
+          "Grass",
+          "Marsh"
+        ],
+        "improvement": "improvement_farm",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_rice.webp"
+    },
+    {
+      "id": "resource_salt",
+      "name": "Salt",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1,
+          "gold": 1
+        },
+        "validTerrain": [
+          "Desert",
+          "Plains",
+          "Tundra"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_salt.webp"
+    },
+    {
+      "id": "resource_sheep",
+      "name": "Sheep",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1
+        },
+        "validTerrain": [
+          "Desert Hills",
+          "Grass Hills",
+          "Plains Hills",
+          "Tundra Hills"
+        ],
+        "improvement": "improvement_pasture",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_sheep.webp"
+    },
+    {
+      "id": "resource_shipwreck",
+      "name": "Shipwreck",
+      "type": "Artifact",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {},
+        "validTerrain": [
+          "Coast"
+        ],
+        "improvement": null,
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_shipwreck.webp"
+    },
+    {
+      "id": "resource_silk",
+      "name": "Silk",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "culture": 1
+        },
+        "validTerrain": [
+          "Forest"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_silk.webp"
+    },
+    {
+      "id": "resource_silver",
+      "name": "Silver",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 3
+        },
+        "validTerrain": [
+          "Desert",
+          "Desert Hills",
+          "Tundra",
+          "Tundra Hills"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_silver.webp"
+    },
+    {
+      "id": "resource_spices",
+      "name": "Spices",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 2
+        },
+        "validTerrain": [
+          "Forest",
+          "Jungle"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_spices.webp"
+    },
+    {
+      "id": "resource_stone",
+      "name": "Stone",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "production": 1
+        },
+        "validTerrain": [
+          "Grass",
+          "Grass Hills"
+        ],
+        "improvement": "improvement_quarry",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {
+        "summary": "A production-oriented tile that can be improved for steady value or harvested to accelerate a timely build.",
+        "tips": [
+          "Keep it when the city needs a strong worked tile.",
+          "Harvesting is strongest when it completes something that changes your position immediately."
+        ]
+      },
+      "image": "/civ6/assets/icons/resource/resource_stone.webp"
+    },
+    {
+      "id": "resource_sugar",
+      "name": "Sugar",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 2
+        },
+        "validTerrain": [
+          "Floodplains",
+          "Floodplains Grassland",
+          "Floodplains Plains",
+          "Marsh"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_sugar.webp"
+    },
+    {
+      "id": "resource_tea",
+      "name": "Tea",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "science": 1
+        },
+        "validTerrain": [
+          "Grass",
+          "Grass Hills"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_tea.webp"
+    },
+    {
+      "id": "resource_tobacco",
+      "name": "Tobacco",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "faith": 1
+        },
+        "validTerrain": [
+          "Forest",
+          "Grass",
+          "Jungle",
+          "Plains"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_tobacco.webp"
+    },
+    {
+      "id": "resource_toys",
+      "name": "Toys",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {},
+        "validTerrain": [],
+        "improvement": null,
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_toys.webp"
+    },
+    {
+      "id": "resource_truffles",
+      "name": "Truffles",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "gold": 3
+        },
+        "validTerrain": [
+          "Forest",
+          "Jungle",
+          "Marsh"
+        ],
+        "improvement": "improvement_camp",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_truffles.webp"
+    },
+    {
+      "id": "resource_turtles",
+      "name": "Turtles",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "science": 1
+        },
+        "validTerrain": [
+          "Reef"
+        ],
+        "improvement": "improvement_fishing_boats",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_turtles.webp"
+    },
+    {
+      "id": "resource_uranium",
+      "name": "Uranium",
+      "type": "Strategic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "production": 2
+        },
+        "validTerrain": [
+          "Desert",
+          "Desert Hills",
+          "Forest",
+          "Grass",
+          "Grass Hills",
+          "Jungle",
+          "Plains",
+          "Plains Hills",
+          "Snow",
+          "Snow Hills",
+          "Tundra",
+          "Tundra Hills"
+        ],
+        "improvement": "improvement_mine",
+        "technologyRequired": "tech_combined_arms",
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [
+          "unit_nuclear_submarine",
+          "unit_giant_death_robot"
+        ],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {
+        "summary": "A late-game strategic resource worth securing before advanced units and infrastructure make demand urgent.",
+        "tips": [
+          "Check ownership and improvement access as soon as it is revealed.",
+          "A remote deposit may justify a settlement, purchase, trade, or conquest plan."
+        ]
+      },
+      "image": "/civ6/assets/icons/resource/resource_uranium.webp"
+    },
+    {
+      "id": "resource_whales",
+      "name": "Whales",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "production": 1,
+          "gold": 1
+        },
+        "validTerrain": [
+          "Coast"
+        ],
+        "improvement": "improvement_fishing_boats",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_whales.webp"
+    },
+    {
+      "id": "resource_wheat",
+      "name": "Wheat",
+      "type": "Bonus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1
+        },
+        "validTerrain": [
+          "Floodplains",
+          "Floodplains Plains",
+          "Plains"
+        ],
+        "improvement": "improvement_farm",
+        "technologyRequired": null,
+        "amenityEffect": null,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": true,
+        "canRemove": true
+      },
+      "strategy": {
+        "summary": "An early growth resource that can support population or be harvested when an immediate production goal is more valuable.",
+        "tips": [
+          "Improve it when the city benefits from sustained growth.",
+          "Consider harvesting only with a specific short-term payoff in mind."
+        ]
+      },
+      "image": "/civ6/assets/icons/resource/resource_wheat.webp"
+    },
+    {
+      "id": "resource_wine",
+      "name": "Wine",
+      "type": "Luxury",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "yieldChanges": {
+          "food": 1,
+          "gold": 1
+        },
+        "validTerrain": [
+          "Forest",
+          "Grass",
+          "Plains"
+        ],
+        "improvement": "improvement_plantation",
+        "technologyRequired": null,
+        "amenityEffect": 4,
+        "strategicUse": null,
+        "consumedBy": [],
+        "canHarvest": false,
+        "canRemove": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/resource/resource_wine.webp"
+    }
+  ]
+}

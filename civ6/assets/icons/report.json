@@ -1,0 +1,455 @@
+{
+  "iconXmlFiles": 323,
+  "ddsFiles": 12837,
+  "leaderArxFiles": 121,
+  "generated": 840,
+  "leaderPortraitBlpExtractions": 38,
+  "leaderPortraitBlpIds": [
+    "leader_abraham_lincoln",
+    "leader_alexander",
+    "leader_amanitore",
+    "leader_ambiorix",
+    "leader_basil",
+    "leader_catherine_de_medici_alt",
+    "leader_cleopatra_alt",
+    "leader_cyrus",
+    "leader_elizabeth",
+    "leader_gitarja",
+    "leader_hammurabi",
+    "leader_harald_alt",
+    "leader_jadwiga",
+    "leader_jayavarman",
+    "leader_joao_iii",
+    "leader_john_curtin",
+    "leader_julius_caesar",
+    "leader_kublai_khan_china",
+    "leader_kublai_khan_mongolia",
+    "leader_lady_six_sky",
+    "leader_lady_trieu",
+    "leader_ludwig",
+    "leader_menelik",
+    "leader_nader_shah",
+    "leader_nzinga_mbande",
+    "leader_qin_alt",
+    "leader_ramses",
+    "leader_saladin_alt",
+    "leader_sejong",
+    "leader_simon_bolivar",
+    "leader_suleiman_alt",
+    "leader_sundiata_keita",
+    "leader_t_roosevelt_roughrider",
+    "leader_theodora",
+    "leader_tokugawa",
+    "leader_victoria_alt",
+    "leader_wu_zetian",
+    "leader_yongle"
+  ],
+  "leaderPortraitExtractionErrors": [],
+  "leaderArxFallbacks": 0,
+  "leaderArxFallbackIds": [],
+  "leaderPortraitValidation": {
+    "genuinePortraits": 78,
+    "genuinePortraitIds": [
+      "leader_abraham_lincoln",
+      "leader_alexander",
+      "leader_amanitore",
+      "leader_ambiorix",
+      "leader_barbarossa",
+      "leader_basil",
+      "leader_catherine_de_medici",
+      "leader_catherine_de_medici_alt",
+      "leader_chandragupta",
+      "leader_cleopatra",
+      "leader_cleopatra_alt",
+      "leader_cyrus",
+      "leader_dido",
+      "leader_eleanor_england",
+      "leader_eleanor_france",
+      "leader_elizabeth",
+      "leader_free_cities",
+      "leader_gandhi",
+      "leader_genghis_khan",
+      "leader_gilgamesh",
+      "leader_gitarja",
+      "leader_gorgo",
+      "leader_hammurabi",
+      "leader_harald_alt",
+      "leader_hardrada",
+      "leader_hojo",
+      "leader_jadwiga",
+      "leader_jayavarman",
+      "leader_joao_iii",
+      "leader_john_curtin",
+      "leader_julius_caesar",
+      "leader_kristina",
+      "leader_kublai_khan_china",
+      "leader_kublai_khan_mongolia",
+      "leader_kupe",
+      "leader_lady_six_sky",
+      "leader_lady_trieu",
+      "leader_laurier",
+      "leader_lautaro",
+      "leader_ludwig",
+      "leader_mansa_musa",
+      "leader_matthias_corvinus",
+      "leader_menelik",
+      "leader_montezuma",
+      "leader_mvemba",
+      "leader_nader_shah",
+      "leader_nzinga_mbande",
+      "leader_pachacuti",
+      "leader_pedro",
+      "leader_pericles",
+      "leader_peter_great",
+      "leader_philip_ii",
+      "leader_poundmaker",
+      "leader_qin",
+      "leader_qin_alt",
+      "leader_ramses",
+      "leader_robert_the_bruce",
+      "leader_saladin",
+      "leader_saladin_alt",
+      "leader_sejong",
+      "leader_seondeok",
+      "leader_shaka",
+      "leader_simon_bolivar",
+      "leader_suleiman",
+      "leader_suleiman_alt",
+      "leader_sundiata_keita",
+      "leader_t_roosevelt",
+      "leader_t_roosevelt_roughrider",
+      "leader_tamar",
+      "leader_theodora",
+      "leader_tokugawa",
+      "leader_tomyris",
+      "leader_trajan",
+      "leader_victoria",
+      "leader_victoria_alt",
+      "leader_wilhelmina",
+      "leader_wu_zetian",
+      "leader_yongle"
+    ],
+    "emblemFallbacks": 0,
+    "emblemFallbackIds": [],
+    "missingImages": 0,
+    "missingImageIds": [],
+    "statusByLeader": {
+      "leader_abraham_lincoln": "genuine-portrait",
+      "leader_alexander": "genuine-portrait",
+      "leader_amanitore": "genuine-portrait",
+      "leader_ambiorix": "genuine-portrait",
+      "leader_barbarossa": "genuine-portrait",
+      "leader_basil": "genuine-portrait",
+      "leader_catherine_de_medici": "genuine-portrait",
+      "leader_catherine_de_medici_alt": "genuine-portrait",
+      "leader_chandragupta": "genuine-portrait",
+      "leader_cleopatra": "genuine-portrait",
+      "leader_cleopatra_alt": "genuine-portrait",
+      "leader_cyrus": "genuine-portrait",
+      "leader_dido": "genuine-portrait",
+      "leader_eleanor_england": "genuine-portrait",
+      "leader_eleanor_france": "genuine-portrait",
+      "leader_elizabeth": "genuine-portrait",
+      "leader_free_cities": "genuine-portrait",
+      "leader_gandhi": "genuine-portrait",
+      "leader_genghis_khan": "genuine-portrait",
+      "leader_gilgamesh": "genuine-portrait",
+      "leader_gitarja": "genuine-portrait",
+      "leader_gorgo": "genuine-portrait",
+      "leader_hammurabi": "genuine-portrait",
+      "leader_harald_alt": "genuine-portrait",
+      "leader_hardrada": "genuine-portrait",
+      "leader_hojo": "genuine-portrait",
+      "leader_jadwiga": "genuine-portrait",
+      "leader_jayavarman": "genuine-portrait",
+      "leader_joao_iii": "genuine-portrait",
+      "leader_john_curtin": "genuine-portrait",
+      "leader_julius_caesar": "genuine-portrait",
+      "leader_kristina": "genuine-portrait",
+      "leader_kublai_khan_china": "genuine-portrait",
+      "leader_kublai_khan_mongolia": "genuine-portrait",
+      "leader_kupe": "genuine-portrait",
+      "leader_lady_six_sky": "genuine-portrait",
+      "leader_lady_trieu": "genuine-portrait",
+      "leader_laurier": "genuine-portrait",
+      "leader_lautaro": "genuine-portrait",
+      "leader_ludwig": "genuine-portrait",
+      "leader_mansa_musa": "genuine-portrait",
+      "leader_matthias_corvinus": "genuine-portrait",
+      "leader_menelik": "genuine-portrait",
+      "leader_montezuma": "genuine-portrait",
+      "leader_mvemba": "genuine-portrait",
+      "leader_nader_shah": "genuine-portrait",
+      "leader_nzinga_mbande": "genuine-portrait",
+      "leader_pachacuti": "genuine-portrait",
+      "leader_pedro": "genuine-portrait",
+      "leader_pericles": "genuine-portrait",
+      "leader_peter_great": "genuine-portrait",
+      "leader_philip_ii": "genuine-portrait",
+      "leader_poundmaker": "genuine-portrait",
+      "leader_qin": "genuine-portrait",
+      "leader_qin_alt": "genuine-portrait",
+      "leader_ramses": "genuine-portrait",
+      "leader_robert_the_bruce": "genuine-portrait",
+      "leader_saladin": "genuine-portrait",
+      "leader_saladin_alt": "genuine-portrait",
+      "leader_sejong": "genuine-portrait",
+      "leader_seondeok": "genuine-portrait",
+      "leader_shaka": "genuine-portrait",
+      "leader_simon_bolivar": "genuine-portrait",
+      "leader_suleiman": "genuine-portrait",
+      "leader_suleiman_alt": "genuine-portrait",
+      "leader_sundiata_keita": "genuine-portrait",
+      "leader_t_roosevelt": "genuine-portrait",
+      "leader_t_roosevelt_roughrider": "genuine-portrait",
+      "leader_tamar": "genuine-portrait",
+      "leader_theodora": "genuine-portrait",
+      "leader_tokugawa": "genuine-portrait",
+      "leader_tomyris": "genuine-portrait",
+      "leader_trajan": "genuine-portrait",
+      "leader_victoria": "genuine-portrait",
+      "leader_victoria_alt": "genuine-portrait",
+      "leader_wilhelmina": "genuine-portrait",
+      "leader_wu_zetian": "genuine-portrait",
+      "leader_yongle": "genuine-portrait"
+    }
+  },
+  "alternateDefinitionFallbacks": 2,
+  "alternateDefinitionFallbackIds": [
+    "civilization_mongolia",
+    "civilization_sweden"
+  ],
+  "missingCount": 57,
+  "missing": [
+    {
+      "id": "resource_honey",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_GRAN_COLOMBIA_MAYA_RESOURCES"
+    },
+    {
+      "id": "resource_ley_line",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ETHIOPIA_RESOURCES"
+    },
+    {
+      "id": "resource_maize",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_GRAN_COLOMBIA_MAYA_RESOURCES"
+    },
+    {
+      "id": "improvement_ancient_tower_defense",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ZOMBIES_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_batey",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_GRAN_COLOMBIA_MAYA_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_corporation",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_MONOPOLIES_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_feitoria",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_PORTUGAL_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_hacienda",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_GRAN_COLOMBIA_MAYA_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_industry",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_MONOPOLIES_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_kampung",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_INDONESIA_KHMER_UNITACTIONS"
+    },
+    {
+      "id": "improvement_mahavihara",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_meteor_goody",
+      "reason": "missing definition ICON_IMPROVEMENT_METEOR_GOODY"
+    },
+    {
+      "id": "improvement_modern_trap_defense",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ZOMBIES_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_pyramid",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_NUBIA_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_outback_station",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_AUSTRALIA_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_pairidaeza",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_MACEDON_PERSIA_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_modern_tower_defense",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ZOMBIES_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_rock_hewn_church",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ETHIOPIA_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_trading_dome",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_ancient_trap_defense",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ZOMBIES_UNIT_ACTIONS"
+    },
+    {
+      "id": "improvement_vampire_castle",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ETHIOPIA_UNIT_ACTIONS"
+    },
+    {
+      "id": "unit_hero_anansi",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_hero_arthur",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_hero_beowulf",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_comandante_general",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_GRAN_COLOMBIA_MAYA_UNITS"
+    },
+    {
+      "id": "unit_cultist",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ETHIOPIA_UNITS"
+    },
+    {
+      "id": "unit_digger",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_AUSTRALIA_UNITS"
+    },
+    {
+      "id": "unit_khmer_domrey",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_INDONESIA_KHMER_UNITS"
+    },
+    {
+      "id": "unit_byzantine_dromon",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BYZANTIUM_GAUL_UNITS"
+    },
+    {
+      "id": "unit_gaul_gaesatae",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BYZANTIUM_GAUL_UNITS"
+    },
+    {
+      "id": "unit_hero_hercules",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_macedonian_hetairoi",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_MACEDON_PERSIA_UNITS"
+    },
+    {
+      "id": "unit_hero_himiko",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_hero_hippolyta",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_mayan_hulche",
+      "reason": "missing definition ICON_UNIT_MAYAN_HULCHE"
+    },
+    {
+      "id": "unit_hero_hunahpu",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_macedonian_hypaspist",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_MACEDON_PERSIA_UNITS"
+    },
+    {
+      "id": "unit_persian_immortal",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_MACEDON_PERSIA_UNITS"
+    },
+    {
+      "id": "unit_indonesian_jong",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_INDONESIA_KHMER_UNITS"
+    },
+    {
+      "id": "unit_colombian_llanero",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_GRAN_COLOMBIA_MAYA_UNITS"
+    },
+    {
+      "id": "unit_hero_maui",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_hero_mulan",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_portuguese_nau",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_PORTUGAL_UNITS"
+    },
+    {
+      "id": "unit_lahore_nihang",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_GRAN_COLOMBIA_MAYA_UNITS"
+    },
+    {
+      "id": "unit_ethiopian_oromo_cavalry",
+      "reason": "missing definition ICON_UNIT_ETHIOPIAN_OROMO_CAVALRY"
+    },
+    {
+      "id": "unit_hero_oya",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_nubian_pitati",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_NUBIA_UNITS"
+    },
+    {
+      "id": "unit_questing_knight",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_babylonian_sabum_kibittum",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_hero_sinbad",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_soothsayer",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_GRAN_COLOMBIA_MAYA_UNITS"
+    },
+    {
+      "id": "unit_hero_wukong",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BABYLON_UNITS"
+    },
+    {
+      "id": "unit_byzantine_tagma",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_BYZANTIUM_GAUL_UNITS"
+    },
+    {
+      "id": "unit_vampire",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ETHIOPIA_UNITS"
+    },
+    {
+      "id": "unit_vietnamese_voi_chien",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_KUBLAIKHAN_VIETNAM_UNITS"
+    },
+    {
+      "id": "unit_polish_hussar",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_POLAND_JADWIGA_UNITS"
+    },
+    {
+      "id": "unit_mode_zombie",
+      "reason": "missing DDS/BLP atlas ICON_ATLAS_ZOMBIES_UNITS"
+    }
+  ],
+  "publishVerifiedLeaderImages": 78,
+  "publishVerificationErrors": []
+}

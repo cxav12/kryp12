@@ -1,0 +1,2427 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "policy_future_victory_science",
+      "name": "Aerospace Contractors",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Cities with a Spaceport gain +3 Resource Aluminum Aluminum per turn and +3 Power Power.",
+        "unlockedBy": "civic_exodus_imperative",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_future_victory_science.webp"
+    },
+    {
+      "id": "policy_aesthetics",
+      "name": "Aesthetics",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Theater Square district adjacency bonuses.",
+        "unlockedBy": "civic_medieval_faires",
+        "obsoleteBy": "policy_sports_media"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_aesthetics.webp"
+    },
+    {
+      "id": "policy_after_action_reports",
+      "name": "After Action Reports",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All units gain +25% combat experience.",
+        "unlockedBy": "civic_rapid_deployment",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_after_action_reports.webp"
+    },
+    {
+      "id": "policy_agoge",
+      "name": "Agoge",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward Ancient and Classical era melee, anti-cavalry, and ranged units.",
+        "unlockedBy": "civic_craftsmanship",
+        "obsoleteBy": "policy_feudal_contract"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_agoge.webp"
+    },
+    {
+      "id": "policy_gov_autocracy",
+      "name": "Autocratic Legacy",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 to all yields for each government building and palace in a city.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gov_autocracy.webp"
+    },
+    {
+      "id": "policy_automated_workforce",
+      "name": "Automated Workforce",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Your cities get +20% Production Production towards city projects. BUT: -1 Amenities Amenity and -5 Loyalty per turn in your cities.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_automated_workforce.webp"
+    },
+    {
+      "id": "policy_bastions",
+      "name": "Bastions",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+6 City Strength Defense Strength. +5 City Ranged Ranged Strength.",
+        "unlockedBy": "civic_defensive_tactics",
+        "obsoleteBy": "policy_public_works"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_bastions.webp"
+    },
+    {
+      "id": "policy_caravansaries",
+      "name": "Caravansaries",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Gold Gold from all Traderoute Trade Routes.",
+        "unlockedBy": "civic_foreign_trade",
+        "obsoleteBy": "policy_triangular_trade"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_caravansaries.webp"
+    },
+    {
+      "id": "policy_charismatic_leader",
+      "name": "Charismatic Leader",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Influence points per turn toward earning city-state Envoy Envoys.",
+        "unlockedBy": "civic_political_philosophy",
+        "obsoleteBy": "policy_gunboat_diplomacy"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_charismatic_leader.webp"
+    },
+    {
+      "id": "policy_chivalry",
+      "name": "Chivalry",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward Industrial era and earlier heavy and light cavalry units.",
+        "unlockedBy": "civic_divine_right",
+        "obsoleteBy": "policy_lightning_warfare"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_chivalry.webp"
+    },
+    {
+      "id": "policy_civil_prestige",
+      "name": "Civil Prestige",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Established Governor Governors with at least 2 Promotions provide +1 Amenities Amenity and +2 Housing Housing.",
+        "unlockedBy": "civic_civil_service",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_civil_prestige.webp"
+    },
+    {
+      "id": "policy_collective_activism",
+      "name": "Collective Activism",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+5% Culture Culture per city-state you are the Suzerain of.",
+        "unlockedBy": "civic_social_media",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_collective_activism.webp"
+    },
+    {
+      "id": "policy_collectivism",
+      "name": "Collectivism",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Farms +1 Food Food. All cities +2 Housing Housing. +100% Industrial Zone adjacency bonuses. BUT: Greatperson Great People Points earned 50% slower.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_collectivism.webp"
+    },
+    {
+      "id": "policy_collectivization",
+      "name": "Collectivization",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Production Production and +4 Food Food from domestic Traderoute Trade Routes.",
+        "unlockedBy": "civic_class_struggle",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_collectivization.webp"
+    },
+    {
+      "id": "policy_colonial_offices",
+      "name": "Colonial Offices",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+15% faster growth and 3 Loyalty per turn for cities not on your original Capital Capital's continent.",
+        "unlockedBy": "civic_exploration",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_colonial_offices.webp"
+    },
+    {
+      "id": "policy_colonial_taxes",
+      "name": "Colonial Taxes",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+25% Gold Gold and +10% Production Production in cities not on your original Capital Capital's continent.",
+        "unlockedBy": "civic_colonialism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_colonial_taxes.webp"
+    },
+    {
+      "id": "policy_colonization",
+      "name": "Colonization",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward Settlers.",
+        "unlockedBy": "civic_early_empire",
+        "obsoleteBy": "policy_expropriation"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_colonization.webp"
+    },
+    {
+      "id": "policy_communications_office",
+      "name": "Communications Office",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Governor Governors provide +1 Loyalty per turn to their city, per Promotion the Governor Governor has.",
+        "unlockedBy": "civic_social_media",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_communications_office.webp"
+    },
+    {
+      "id": "policy_gov_communism",
+      "name": "Communist Legacy",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+0.6 Production Production per Citizen Citizen in cities with Governor Governors.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gov_communism.webp"
+    },
+    {
+      "id": "policy_conscription",
+      "name": "Conscription",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Unit maintenance reduced by 1 Gold Gold per turn, per unit.",
+        "unlockedBy": "civic_state_workforce",
+        "obsoleteBy": "policy_levee_en_masse"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_conscription.webp"
+    },
+    {
+      "id": "policy_containment",
+      "name": "Containment",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Each Envoy Envoy you send to a city-state counts as two, if its Suzerain has a different government than you.",
+        "unlockedBy": "civic_cold_war",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_containment.webp"
+    },
+    {
+      "id": "policy_corvee",
+      "name": "Corvée",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+15% Production Production toward Ancient and Classical wonders.",
+        "unlockedBy": "civic_state_workforce",
+        "obsoleteBy": "policy_skyscrapers"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_corvee.webp"
+    },
+    {
+      "id": "policy_craftsmen",
+      "name": "Craftsmen",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "100% Industrial Zone adjacency bonuses.",
+        "unlockedBy": "civic_guilds",
+        "obsoleteBy": "policy_five_year_plan"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_craftsmen.webp"
+    },
+    {
+      "id": "policy_cryptography",
+      "name": "Cryptography",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Enemy Spy level reduced by 2 in your lands. Your Spy level is increased by 1 for offensive operations.",
+        "unlockedBy": "civic_cold_war",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_cryptography.webp"
+    },
+    {
+      "id": "policy_culture_industry",
+      "name": "Culture Industry",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Cities receive +1 Culture Culture for every specialty district. +25% Production Production towards non specialty districts. Entertainment Complex and Water Park district buildings can be bought with Faith Faith.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_culture_industry.webp"
+    },
+    {
+      "id": "policy_cyber_warfare",
+      "name": "Cyber Warfare",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+10 Strength Combat Strength against units from the Information and Future Eras. BUT: Stat Grievance Grievances against you do not decay.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_cyber_warfare.webp"
+    },
+    {
+      "id": "policy_decentralization",
+      "name": "Decentralization",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Cities with 6 or less Citizen population receive +4 Loyalty per turn. BUT: Cities with more than 6 Citizen population receive -15% Gold Gold.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_decentralization.webp"
+    },
+    {
+      "id": "policy_defense_of_motherland",
+      "name": "Defense of the Motherland",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "No war weariness from combat in your territory. +100% Production Production for Modern, Atomic, and Information era support units.",
+        "unlockedBy": "civic_class_struggle",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_defense_of_motherland.webp"
+    },
+    {
+      "id": "policy_gov_democracy",
+      "name": "Democratic Legacy",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Your Traderoute Trade Routes to an Ally or Suzerain's city provide +4 Food Food and +4 Production Production for both cities. Alliance Points with all allies increase by an additional .25 per turn.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gov_democracy.webp"
+    },
+    {
+      "id": "policy_despotic_paternalism",
+      "name": "Despotic Paternalism",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+4 Loyalty per turn in cities with Governor Governors. BUT: -15% Science Science and -15% Culture Culture in all cities without an established Governor Governor.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_despotic_paternalism.webp"
+    },
+    {
+      "id": "policy_future_victory_diplomatic",
+      "name": "Diplomatic Capital",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+4 Favor Diplomatic Favor per turn.",
+        "unlockedBy": "civic_smart_power_doctrine",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_future_victory_diplomatic.webp"
+    },
+    {
+      "id": "policy_diplomatic_league",
+      "name": "Diplomatic League",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "The first Envoy Envoy you send to each city-state counts as two Envoy Envoys.",
+        "unlockedBy": "civic_political_philosophy",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_diplomatic_league.webp"
+    },
+    {
+      "id": "policy_discipline",
+      "name": "Discipline",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+5 Strength Unit Combat Strength when fighting Barbarians.",
+        "unlockedBy": "civic_code_of_laws",
+        "obsoleteBy": "policy_native_conquest"
+      },
+      "strategy": {
+        "summary": "Use it when Barbarian camps or raiders threaten your opening; replace it when that pressure is gone."
+      },
+      "image": "/civ6/assets/icons/policy/policy_discipline.webp"
+    },
+    {
+      "id": "policy_disinformation_campaign",
+      "name": "Disinformation Campaign",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+3 Favor Diplomatic Favor per turn for each Broadcast Center. BUT: -10% Science Science and Culture Culture in all cities.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_disinformation_campaign.webp"
+    },
+    {
+      "id": "policy_drill_manuals",
+      "name": "Drill Manuals",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All improved Resource Niter Niter and Resource Coal Coal resources yield 1 additional resource per turn.",
+        "unlockedBy": "civic_mercantilism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_drill_manuals.webp"
+    },
+    {
+      "id": "policy_ecommerce",
+      "name": "Ecommerce",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Production Production and +5 Gold Gold from all Traderoute Trade Routes.",
+        "unlockedBy": "civic_globalization",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_ecommerce.webp"
+    },
+    {
+      "id": "policy_economic_union",
+      "name": "Economic Union",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Commercial Hub and Harbor district adjacency bonuses.",
+        "unlockedBy": "civic_ideology",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_economic_union.webp"
+    },
+    {
+      "id": "policy_elite_forces",
+      "name": "Elite Forces",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% combat experience for all units. BUT: +2 Gold Gold to maintain each combat and spy unit.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_elite_forces.webp"
+    },
+    {
+      "id": "policy_equestrian_orders",
+      "name": "Equestrian Orders",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All improved Resource Horses Horses and Resource Iron Iron resources yield 1 additional resource per turn.",
+        "unlockedBy": "civic_military_training",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_equestrian_orders.webp"
+    },
+    {
+      "id": "policy_exodus_of_the_evangelists",
+      "name": "Exodus of the Evangelists",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Movement Movement for all Religious units. Additionally, newly trained ones get +2 Charges. +4 Greatprophet Great Prophet points per turn.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_exodus_of_the_evangelists.webp"
+    },
+    {
+      "id": "policy_expropriation",
+      "name": "Expropriation",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward Settlers. Plot purchase cost reduced by 20%.",
+        "unlockedBy": "civic_scorched_earth",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_expropriation.webp"
+    },
+    {
+      "id": "policy_gov_fascism",
+      "name": "Fascist Legacy",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All units gain +5 Strength Combat Strength. War Weariness reduced by 15%.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gov_fascism.webp"
+    },
+    {
+      "id": "policy_feudal_contract",
+      "name": "Feudal Contract",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward Ancient, Classical, Medieval, and Renaissance era melee, anti-cavalry, and ranged units.",
+        "unlockedBy": "civic_feudalism",
+        "obsoleteBy": "policy_grande_armee"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_feudal_contract.webp"
+    },
+    {
+      "id": "policy_five_year_plan",
+      "name": "Five-Year Plan",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Campus and Industrial Zone district adjacency bonuses.",
+        "unlockedBy": "civic_ideology",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_five_year_plan.webp"
+    },
+    {
+      "id": "policy_flower_power",
+      "name": "Flower Power",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All Civilizations not currently at war receive +100% of the Tourism Tourism from your Concerts. BUT: The cost of producing is decreased by 100% and purchasing is +100% for units other than Rock Bands..",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_flower_power.webp"
+    },
+    {
+      "id": "policy_force_modernization",
+      "name": "Force Modernization",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "50% Gold Gold and resource discount on all unit upgrades.",
+        "unlockedBy": "civic_urbanization",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_force_modernization.webp"
+    },
+    {
+      "id": "policy_free_enquiry",
+      "name": "Free Inquiry",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Commercial Hub and Harbor district's Gold Gold provides Science Science as well. Campus districts provide Gold Gold equal to their Science Science bonus.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_free_enquiry.webp"
+    },
+    {
+      "id": "policy_free_market",
+      "name": "Free Market",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Extra Gold Gold from buildings in Commercial Hubs: +50% if city Citizen population is 15 or higher, +50% if district has at least +4 adjacency bonus.",
+        "unlockedBy": "civic_the_enlightenment",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_free_market.webp"
+    },
+    {
+      "id": "policy_frescoes",
+      "name": "Frescoes",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatartist Great Artist points per turn. +2 Greatartist Great Artist points per turn for every Art Museum.",
+        "unlockedBy": "civic_humanism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_frescoes.webp"
+    },
+    {
+      "id": "policy_future_counter_domination",
+      "name": "Global Coalition",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+7 Strength Combat Strength for units in friendly territory.",
+        "unlockedBy": "civic_smart_power_doctrine",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_future_counter_domination.webp"
+    },
+    {
+      "id": "policy_god_king",
+      "name": "God King",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Faith Faith and +1 Gold Gold in the Capital Capital.",
+        "unlockedBy": "civic_code_of_laws",
+        "obsoleteBy": "policy_scripture"
+      },
+      "strategy": {
+        "summary": "Useful when the early Faith helps secure a Pantheon sooner than passive generation would."
+      },
+      "image": "/civ6/assets/icons/policy/policy_god_king.webp"
+    },
+    {
+      "id": "policy_gothic_architecture",
+      "name": "Gothic Architecture",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+15% Production Production toward Renaissance, Medieval, Classical, and Ancient wonders.",
+        "unlockedBy": "civic_divine_right",
+        "obsoleteBy": "policy_skyscrapers"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gothic_architecture.webp"
+    },
+    {
+      "id": "policy_grand_opera",
+      "name": "Grand Opera",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Extra Culture Culture from buildings in Theater Squares: +50% if city Citizen population is 15 or higher, +50% if district has at least +4 adjacency bonus.",
+        "unlockedBy": "civic_opera_ballet",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_grand_opera.webp"
+    },
+    {
+      "id": "policy_grande_armee",
+      "name": "Grande Armée",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward Industrial era and earlier melee, anti-cavalry, and ranged units.",
+        "unlockedBy": "civic_nationalism",
+        "obsoleteBy": "policy_military_first"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_grande_armee.webp"
+    },
+    {
+      "id": "policy_gunboat_diplomacy",
+      "name": "Gunboat Diplomacy",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Open Borders with all city-states, and +4 Influence points per turn toward earning Envoy Envoys.",
+        "unlockedBy": "civic_ideology",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gunboat_diplomacy.webp"
+    },
+    {
+      "id": "policy_future_victory_culture",
+      "name": "Hallyu",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Your Rock Band units can choose from any possible promotion.",
+        "unlockedBy": "civic_cultural_hegemony",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_future_victory_culture.webp"
+    },
+    {
+      "id": "policy_heartbeat_of_steam",
+      "name": "Heartbeat of Steam",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+10% Production Production toward Industrial era and later wonders. Campus district's Science Science adjacency bonus provides Production Production as well.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_heartbeat_of_steam.webp"
+    },
+    {
+      "id": "policy_heritage_tourism",
+      "name": "Heritage Tourism",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Tourism Tourism from Greatwork Landscape Great Works of Art and Greatwork Artifact Artifacts.",
+        "unlockedBy": "civic_cultural_heritage",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_heritage_tourism.webp"
+    },
+    {
+      "id": "policy_ilkum",
+      "name": "Ilkum",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+30% Production Production toward Builders.",
+        "unlockedBy": "civic_craftsmanship",
+        "obsoleteBy": "policy_serfdom"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_ilkum.webp"
+    },
+    {
+      "id": "policy_inquisition",
+      "name": "Inquisition",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Start Inquisition with 1 Apostle charge. All Religious units +15 Religion Religious Combat Strength in friendly territory. BUT: -25% Science Science in all cities.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_inquisition.webp"
+    },
+    {
+      "id": "policy_inspiration",
+      "name": "Inspiration",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatscientist Great Scientist points per turn.",
+        "unlockedBy": "civic_mysticism",
+        "obsoleteBy": "policy_nobel_prize"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_inspiration.webp"
+    },
+    {
+      "id": "policy_insulae",
+      "name": "Insulae",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Housing Housing in all cities with at least 2 specialty districts.",
+        "unlockedBy": "civic_games_recreation",
+        "obsoleteBy": "policy_medina_quarter"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_insulae.webp"
+    },
+    {
+      "id": "policy_future_victory_domination",
+      "name": "Integrated Attack Logistics",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Movement if starting turn in enemy territory. +50% Production Production for Giant Death Robots.",
+        "unlockedBy": "civic_information_warfare",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_future_victory_domination.webp"
+    },
+    {
+      "id": "policy_integrated_space_cell",
+      "name": "Integrated Space Cell",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+15% Production Production toward Space Race projects if a city has either a Military Academy or a Seaport.",
+        "unlockedBy": "civic_space_race",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_integrated_space_cell.webp"
+    },
+    {
+      "id": "policy_international_space_agency",
+      "name": "International Space Agency",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+5% Science Science per city-state you are the Suzerain of.",
+        "unlockedBy": "civic_globalization",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_international_space_agency.webp"
+    },
+    {
+      "id": "policy_international_waters",
+      "name": "International Waters",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Production Production toward all naval units, excluding Carriers.",
+        "unlockedBy": "civic_cold_war",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_international_waters.webp"
+    },
+    {
+      "id": "policy_invention",
+      "name": "Invention",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+4 Greatengineer Great Engineer points per turn. +2 Greatengineer Great Engineer points per turn for every Workshop.",
+        "unlockedBy": "civic_humanism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_invention.webp"
+    },
+    {
+      "id": "policy_isolationism",
+      "name": "Isolationism",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Domestic routes provide +2 Food Food, +2 Production Production. BUT: Can't train or buy Settlers nor settle new cities.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_isolationism.webp"
+    },
+    {
+      "id": "policy_laissez_faire",
+      "name": "Laissez-Faire",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatmerchant Great Merchant points per turn for every Bank and +4 Greatmerchant Great Merchant points per turn for every Stock Exchange. +2 Greatadmiral Great Admiral points per turn for every Shipyard and +4 Greatadmiral Great Admiral points per turn for every Seaport.",
+        "unlockedBy": "civic_capitalism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_laissez_faire.webp"
+    },
+    {
+      "id": "policy_land_surveyors",
+      "name": "Land Surveyors",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Reduces the cost of purchasing a tile by 20%.",
+        "unlockedBy": "civic_early_empire",
+        "obsoleteBy": "policy_expropriation"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_land_surveyors.webp"
+    },
+    {
+      "id": "policy_letters_of_marque",
+      "name": "Letters of Marque",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Naval Raiders: +100% Production Production, +2 Movement Movement. Yields doubled from plundering Trade Routes. BUT: Traderoute Trade Route yields -50%.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_letters_of_marque.webp"
+    },
+    {
+      "id": "policy_levee_en_masse",
+      "name": "Levée en Masse",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Unit maintenance cost reduced by 2 Gold Gold per turn, per unit.",
+        "unlockedBy": "civic_mobilization",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_levee_en_masse.webp"
+    },
+    {
+      "id": "policy_liberalism",
+      "name": "Liberalism",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Amenities Amenity to all cities with at least 2 specialty districts.",
+        "unlockedBy": "civic_the_enlightenment",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_liberalism.webp"
+    },
+    {
+      "id": "policy_lightning_warfare",
+      "name": "Lightning Warfare",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production for all heavy and light cavalry units.",
+        "unlockedBy": "civic_ideology",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_lightning_warfare.webp"
+    },
+    {
+      "id": "policy_limes",
+      "name": "Limes",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Production Production toward defensive buildings.",
+        "unlockedBy": "civic_defensive_tactics",
+        "obsoleteBy": "policy_lightning_warfare"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_limes.webp"
+    },
+    {
+      "id": "policy_limitanei",
+      "name": "Limitanei",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Loyalty per turn for cities with a garrisoned unit.",
+        "unlockedBy": "civic_early_empire",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_limitanei.webp"
+    },
+    {
+      "id": "policy_literary_tradition",
+      "name": "Literary Tradition",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatwriter Great Writer points per turn.",
+        "unlockedBy": "civic_drama_poetry",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_literary_tradition.webp"
+    },
+    {
+      "id": "policy_logistics",
+      "name": "Logistics",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Movement if starting turn in friendly territory.",
+        "unlockedBy": "civic_mercantilism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_logistics.webp"
+    },
+    {
+      "id": "policy_machiavellianism",
+      "name": "Machiavellianism",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward Spies. Spy operations take 25% less time.",
+        "unlockedBy": "civic_diplomatic_service",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_machiavellianism.webp"
+    },
+    {
+      "id": "policy_mandala_state",
+      "name": "Mandala State",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+4 Culture Culture for every Wonder. Each Wonder in your cities cause foreign cities within 9 tiles to lose 2 Loyalty per turn.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_mandala_state.webp"
+    },
+    {
+      "id": "policy_maneuver",
+      "name": "Maneuver",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward Ancient and Classical era heavy and light cavalry units.",
+        "unlockedBy": "civic_military_tradition",
+        "obsoleteBy": "policy_lightning_warfare"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_maneuver.webp"
+    },
+    {
+      "id": "policy_maritime_industries",
+      "name": "Maritime Industries",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Production Production toward Ancient and Classical era naval units.",
+        "unlockedBy": "civic_foreign_trade",
+        "obsoleteBy": "policy_international_waters"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_maritime_industries.webp"
+    },
+    {
+      "id": "policy_market_economy",
+      "name": "Market Economy",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Your international Traderoute Trade Routes provide +1 Gold Gold per Luxury and Strategic resource improved at the destination, as well as +2 Culture Culture and +2 Science Science.",
+        "unlockedBy": "civic_capitalism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_market_economy.webp"
+    },
+    {
+      "id": "policy_martial_law",
+      "name": "Martial Law",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Accumulate 25% less war weariness than usual. Cities with a garrisoned unit get +4 Loyalty per turn.",
+        "unlockedBy": "civic_totalitarianism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_martial_law.webp"
+    },
+    {
+      "id": "policy_medina_quarter",
+      "name": "Medina Quarter",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Housing Housing in all cities with at least 3 specialty districts.",
+        "unlockedBy": "civic_medieval_faires",
+        "obsoleteBy": "policy_new_deal"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_medina_quarter.webp"
+    },
+    {
+      "id": "policy_gov_merchant_republic",
+      "name": "Mercantile Legacy",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+10% Gold Gold in all cities with an established Governor Governor.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gov_merchant_republic.webp"
+    },
+    {
+      "id": "policy_merchant_confederation",
+      "name": "Merchant Confederation",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Gold Gold from each of your Envoy Envoys at city-states.",
+        "unlockedBy": "civic_medieval_faires",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_merchant_confederation.webp"
+    },
+    {
+      "id": "policy_meritocracy",
+      "name": "Meritocracy",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Each city receives +1 Culture Culture for each specialty district it constructs.",
+        "unlockedBy": "civic_civil_service",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_meritocracy.webp"
+    },
+    {
+      "id": "policy_military_first",
+      "name": "Military First",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward all melee, anti-cavalry, and ranged units.",
+        "unlockedBy": "civic_rapid_deployment",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_military_first.webp"
+    },
+    {
+      "id": "policy_military_organization",
+      "name": "Military Organization",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatgeneral Great General points per turn for every Armory and +4 Greatgeneral Great General points per turn for every Military Academy. Great Generals receive +2 Movement.",
+        "unlockedBy": "civic_scorched_earth",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_military_organization.webp"
+    },
+    {
+      "id": "policy_military_research",
+      "name": "Military Research",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Military Academies, Seaports, and Renaissance Walls generate +2 Science Science.",
+        "unlockedBy": "civic_urbanization",
+        "obsoleteBy": "policy_integrated_space_cell"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_military_research.webp"
+    },
+    {
+      "id": "policy_military_industrial_complex",
+      "name": "Military-Industrial Complex",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All improved Aluminum, Oil, and Uranium resources yield 2 additional resource per turn. All combat units receive +5 Strength Combat Strength and if the unit has a range attack +1 Range.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_military_industrial_complex.webp"
+    },
+    {
+      "id": "policy_gov_monarchy",
+      "name": "Monarchic Legacy",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Housing Housing per level of Walls. +2 Favor Diplomatic Favor for every Renaissance Wall.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gov_monarchy.webp"
+    },
+    {
+      "id": "policy_monasticism",
+      "name": "Monasticism",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+75% Science Science in cities with a Holy Site. BUT: -25% Culture Culture in all cities.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_monasticism.webp"
+    },
+    {
+      "id": "policy_monumentality",
+      "name": "Monumentality",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Movement Movement for all Builders and Settlers. May purchase civilian units with Faith Faith. Builders are 30% cheaper to purchase with Faith Faith and Gold Gold.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_monumentality.webp"
+    },
+    {
+      "id": "policy_music_censorship",
+      "name": "Music Censorship",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Rock Bands from other players may not enter your territory. -1 Amenities Amenity in all of your cities with 10 or more Citizen Population.",
+        "unlockedBy": "civic_space_race",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_music_censorship.webp"
+    },
+    {
+      "id": "policy_national_identity",
+      "name": "National Identity",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Units have 50% less Strength Combat Strength reduction from being injured.",
+        "unlockedBy": "civic_nationalism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_national_identity.webp"
+    },
+    {
+      "id": "policy_native_conquest",
+      "name": "Native Conquest",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Combat victories over units from earlier eras provide Gold Gold equal to 50% of the Strength Combat Strength of the defeated unit. (on Standard Speed)",
+        "unlockedBy": "civic_colonialism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_native_conquest.webp"
+    },
+    {
+      "id": "policy_natural_philosophy",
+      "name": "Natural Philosophy",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Campus district adjacency bonuses.",
+        "unlockedBy": "civic_recorded_history",
+        "obsoleteBy": "policy_five_year_plan"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_natural_philosophy.webp"
+    },
+    {
+      "id": "policy_naval_infrastructure",
+      "name": "Naval Infrastructure",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Harbor district adjacency bonuses.",
+        "unlockedBy": "civic_naval_tradition",
+        "obsoleteBy": "policy_economic_union"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_naval_infrastructure.webp"
+    },
+    {
+      "id": "policy_navigation",
+      "name": "Navigation",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatadmiral Great Admiral points per turn.",
+        "unlockedBy": "civic_naval_tradition",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_navigation.webp"
+    },
+    {
+      "id": "policy_new_deal",
+      "name": "New Deal",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+4 Housing Housing and +2 Amenities Amenities to all cities with at least 3 specialty districts.",
+        "unlockedBy": "civic_suffrage",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_new_deal.webp"
+    },
+    {
+      "id": "policy_future_counter_science",
+      "name": "Non-State Actors",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Your Spy units can choose from any possible promotion.",
+        "unlockedBy": "civic_cultural_hegemony",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_future_counter_science.webp"
+    },
+    {
+      "id": "policy_nuclear_espionage",
+      "name": "Nuclear Espionage",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Spies who steal a tech boost without being detected gain an extra boost.",
+        "unlockedBy": "civic_nuclear_program",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_nuclear_espionage.webp"
+    },
+    {
+      "id": "policy_gov_oligarchy",
+      "name": "Oligarchic Legacy",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All land melee, anti-cavalry, and naval melee class units gain +4 Strength Combat Strength.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gov_oligarchy.webp"
+    },
+    {
+      "id": "policy_online_communities",
+      "name": "Online Communities",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Tourism Tourism output to civilizations to which you have a Traderoute Trade Route.",
+        "unlockedBy": "civic_social_media",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_online_communities.webp"
+    },
+    {
+      "id": "policy_popular_front",
+      "name": "Popular Front",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Favor from Suzerainty of City-States and Alliance Level. Your Trade Routes to City-States provide +4 to all yields.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_popular_front.webp"
+    },
+    {
+      "id": "policy_praetorian_guard",
+      "name": "Praetorian Guard",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Wounded units can heal +10 HP per turn. +2 Production Production to Encampment districts and buildings.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_praetorian_guard.webp"
+    },
+    {
+      "id": "policy_praetorium",
+      "name": "Praetorium",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Governor Governors provide +2 Loyalty per turn to their city.",
+        "unlockedBy": "civic_recorded_history",
+        "obsoleteBy": "policy_communications_office"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_praetorium.webp"
+    },
+    {
+      "id": "policy_press_gangs",
+      "name": "Press Gangs",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "100% Production Production toward Industrial era and earlier naval units.",
+        "unlockedBy": "civic_exploration",
+        "obsoleteBy": "policy_international_waters"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_press_gangs.webp"
+    },
+    {
+      "id": "policy_professional_army",
+      "name": "Professional Army",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "50% Gold Gold discount on all unit upgrades.",
+        "unlockedBy": "civic_mercenaries",
+        "obsoleteBy": "policy_force_modernization"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_professional_army.webp"
+    },
+    {
+      "id": "policy_propaganda",
+      "name": "Propaganda",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Accumulate 25% less war weariness than usual.",
+        "unlockedBy": "civic_mass_media",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_propaganda.webp"
+    },
+    {
+      "id": "policy_public_transport",
+      "name": "Public Transport",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Neighborhoods with Charming appeal receive +3 Food Food and +1 Production Production, Breathtaking Neighborhoods are granted an additional +1 of each yield. All Neighborhoods receive +1 Gold Gold.",
+        "unlockedBy": "civic_urbanization",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_public_transport.webp"
+    },
+    {
+      "id": "policy_public_works",
+      "name": "Public Works",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+30% Production Production toward Builders, and newly trained Builders gain 2 extra build actions.",
+        "unlockedBy": "civic_civil_engineering",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_public_works.webp"
+    },
+    {
+      "id": "policy_future_counter_diplomatic",
+      "name": "Rabblerousing",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "When you reduce a player's Diplomatic Victory points in the World Congress, get 50% of your spent Favor Diplomatic Favor back. +1 Favor Diplomatic Favor per turn.",
+        "unlockedBy": "civic_information_warfare",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_future_counter_diplomatic.webp"
+    },
+    {
+      "id": "policy_raid",
+      "name": "Raid",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Yields gained from pillaging and coastal raids are +50%.",
+        "unlockedBy": "civic_military_training",
+        "obsoleteBy": "policy_total_war"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_raid.webp"
+    },
+    {
+      "id": "policy_raj",
+      "name": "Raj",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Science Science, Culture Culture, Faith Faith, and Gold Gold from each city-state you are Suzerain of. Traderoute Trade Routes to City-States receive +2 Gold Gold.",
+        "unlockedBy": "civic_colonialism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_raj.webp"
+    },
+    {
+      "id": "policy_rationalism",
+      "name": "Rationalism",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Extra Science Science from buildings in Campuses: +50% if city Citizen population is 15 or higher, +50% if district has at least +4 adjacency bonus.",
+        "unlockedBy": "civic_the_enlightenment",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_rationalism.webp"
+    },
+    {
+      "id": "policy_reform_the_coinage",
+      "name": "Reform the Coinage",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Your Traders cannot be plundered. International Traderoute Trade Routes provide +3 Gold Gold per specialty district in the foreign city.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_reform_the_coinage.webp"
+    },
+    {
+      "id": "policy_religious_orders",
+      "name": "Religious Orders",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All Religious units +5 Religion Religious Strength in theological combat.",
+        "unlockedBy": "civic_reformed_church",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_religious_orders.webp"
+    },
+    {
+      "id": "policy_gov_classical_republic",
+      "name": "Republican Legacy",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All cities with a district receive +1 Housing Housing and +1 Amenities Amenity.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gov_classical_republic.webp"
+    },
+    {
+      "id": "policy_resource_management",
+      "name": "Resource Management",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All improved Resource Aluminum Aluminum and Resource Oil Oil resources yield 1 additional resource per turn.",
+        "unlockedBy": "civic_conservation",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_resource_management.webp"
+    },
+    {
+      "id": "policy_retainers",
+      "name": "Retainers",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Amenities Amenity for cities with a garrisoned unit.",
+        "unlockedBy": "civic_civil_service",
+        "obsoleteBy": "policy_propaganda"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_retainers.webp"
+    },
+    {
+      "id": "policy_retinues",
+      "name": "Retinues",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "50% resource discount on all unit upgrades.",
+        "unlockedBy": "civic_mercenaries",
+        "obsoleteBy": "policy_force_modernization"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_retinues.webp"
+    },
+    {
+      "id": "policy_revelation",
+      "name": "Revelation",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatprophet Great Prophet points per turn.",
+        "unlockedBy": "civic_mysticism",
+        "obsoleteBy": "policy_invention"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_revelation.webp"
+    },
+    {
+      "id": "policy_robber_barons",
+      "name": "Robber Barons",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Gold Gold in cities with a Stock Exchange. +25% Production Production in cities with a Factory. BUT: -2 Amenities Amenities in all cities.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_robber_barons.webp"
+    },
+    {
+      "id": "policy_rogue_state",
+      "name": "Rogue State",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production to nuclear program projects and Nuclear Devices. BUT: Earn no influence toward new Envoy Envoys.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_rogue_state.webp"
+    },
+    {
+      "id": "policy_sack",
+      "name": "Sack",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Yields gained from pillaging are doubled for pillaging districts.",
+        "unlockedBy": "civic_mercenaries",
+        "obsoleteBy": "policy_total_war"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_sack.webp"
+    },
+    {
+      "id": "policy_sakdina",
+      "name": "Sakdina",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "While your projects are active each of your Citizens exerts +0.5 Loyalty pressure to their city. When your projects complete receive +10% additional Greatperson Great People points for every Building in that project’s district.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_sakdina.webp"
+    },
+    {
+      "id": "policy_samoderzhaviye",
+      "name": "Samoderzhaviye",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production in your Capital Capital. BUT: All Governor Governors are neutralized and cannot be reestablished.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_samoderzhaviye.webp"
+    },
+    {
+      "id": "policy_satellite_broadcasts",
+      "name": "Satellite Broadcasts",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+200% Tourism Tourism from Greatwork Music Great Works of Music.",
+        "unlockedBy": "civic_space_race",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_satellite_broadcasts.webp"
+    },
+    {
+      "id": "policy_nobel_prize",
+      "name": "Science Foundations",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatscientist Great Scientist points per turn for every University and +4 Greatscientist Great Scientist points per turn for every Research Lab. +2 Greatengineer Great Engineer points per turn for every Factory and +4 Greatengineer Great Engineer points per turn for every Power Plant",
+        "unlockedBy": "civic_nuclear_program",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_nobel_prize.webp"
+    },
+    {
+      "id": "policy_scripture",
+      "name": "Scripture",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Holy Site adjacency bonuses.",
+        "unlockedBy": "civic_theology",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_scripture.webp"
+    },
+    {
+      "id": "policy_second_strike_capability",
+      "name": "Second Strike Capability",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Nuclear Device maintenance reduced by 50% Gold Gold per turn.",
+        "unlockedBy": "civic_cold_war",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_second_strike_capability.webp"
+    },
+    {
+      "id": "policy_serfdom",
+      "name": "Serfdom",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Newly trained Builders gain 2 extra build actions.",
+        "unlockedBy": "civic_feudalism",
+        "obsoleteBy": "policy_public_works"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_serfdom.webp"
+    },
+    {
+      "id": "policy_simultaneum",
+      "name": "Simultaneum",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Extra Faith Faith from buildings in Holy Sites: +50% if city Citizen population is 15 or higher, +50% if district has at least +4 adjacency bonus.",
+        "unlockedBy": "civic_reformed_church",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_simultaneum.webp"
+    },
+    {
+      "id": "policy_sky_and_stars",
+      "name": "Sky and Stars",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+30% Production Production towards Spaceport and Aerodrome districts. +15% Science Science and Production Production to Cities with either a Spaceport or Aerodrome.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_sky_and_stars.webp"
+    },
+    {
+      "id": "policy_skyscrapers",
+      "name": "Skyscrapers",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+15% Production Production toward all wonders.",
+        "unlockedBy": "civic_civil_engineering",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_skyscrapers.webp"
+    },
+    {
+      "id": "policy_soft_targets",
+      "name": "Soft Targets",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+10 Strength Combat Strength vs. city attacks and district defenses. BUT: -3 Strength Combat Strength against units.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_soft_targets.webp"
+    },
+    {
+      "id": "policy_soldarity",
+      "name": "Solidarity",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All Governor Governors exert 2 additional foreign Loyalty pressure. All your cities with governors receive +25% Gold Gold and +25% Faith Faith.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_soldarity.webp"
+    },
+    {
+      "id": "policy_future_counter_culture",
+      "name": "Space Tourism",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Tourism Tourism from other players is reduced by 20% versus your civilization.",
+        "unlockedBy": "civic_exodus_imperative",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_future_counter_culture.webp"
+    },
+    {
+      "id": "policy_sports_media",
+      "name": "Sports Media",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Theater Square district adjacency bonuses, and Stadiums generate +1 Amenities Amenity.",
+        "unlockedBy": "civic_professional_sports",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_sports_media.webp"
+    },
+    {
+      "id": "policy_strategic_air_force",
+      "name": "Strategic Air Force",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% Production Production toward all air units and toward Carriers.",
+        "unlockedBy": "civic_globalization",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_strategic_air_force.webp"
+    },
+    {
+      "id": "policy_strategos",
+      "name": "Strategos",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatgeneral Great General points per turn.",
+        "unlockedBy": "civic_military_tradition",
+        "obsoleteBy": "policy_military_organization"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_strategos.webp"
+    },
+    {
+      "id": "policy_survey",
+      "name": "Survey",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Double experience for recon units.",
+        "unlockedBy": "civic_code_of_laws",
+        "obsoleteBy": "policy_native_conquest"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_survey.webp"
+    },
+    {
+      "id": "policy_symphonies",
+      "name": "Symphonies",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+4 Greatmusician Great Musician points per turn. +4 Greatmusician Great Musician points per turn for every Broadcast Center.",
+        "unlockedBy": "civic_opera_ballet",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_symphonies.webp"
+    },
+    {
+      "id": "policy_finest_hour",
+      "name": "Their Finest Hour",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "All units +5 Strength Combat Strength when fighting in or adjacent to their home territory.",
+        "unlockedBy": "civic_suffrage",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_finest_hour.webp"
+    },
+    {
+      "id": "policy_gov_theocracy",
+      "name": "Theocratic Legacy",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+5 Religion Religious Strength in Theological Combat. +0.5 Faith Faith per Citizen Citizen in cities with Governor Governors.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_gov_theocracy.webp"
+    },
+    {
+      "id": "policy_third_alternative",
+      "name": "Third Alternative",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Culture Culture and +4 Gold Gold from each Research Lab, Military Academy, Coal Power Plant, Oil Power Plant, and Nuclear Power Plant.",
+        "unlockedBy": "civic_totalitarianism",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_third_alternative.webp"
+    },
+    {
+      "id": "policy_to_arms",
+      "name": "To Arms!",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+50% XP earned for all units and +15% Production Production towards military units.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_to_arms.webp"
+    },
+    {
+      "id": "policy_total_war",
+      "name": "Total War",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Yields gained from pillaging, coastal raids, and plundering Traderoute Trade Routes are +50%.",
+        "unlockedBy": "civic_scorched_earth",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_total_war.webp"
+    },
+    {
+      "id": "policy_town_charters",
+      "name": "Town Charters",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Commercial Hub district adjacency bonuses.",
+        "unlockedBy": "civic_guilds",
+        "obsoleteBy": "policy_economic_union"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_town_charters.webp"
+    },
+    {
+      "id": "policy_trade_confederation",
+      "name": "Trade Confederation",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Culture Culture and +1 Science Science from international Traderoute Trade Routes.",
+        "unlockedBy": "civic_mercenaries",
+        "obsoleteBy": "policy_market_economy"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_trade_confederation.webp"
+    },
+    {
+      "id": "policy_traveling_merchants",
+      "name": "Traveling Merchants",
+      "type": "Great Person",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+2 Greatmerchant Great Merchant points per turn.",
+        "unlockedBy": "civic_guilds",
+        "obsoleteBy": "policy_laissez_faire"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_traveling_merchants.webp"
+    },
+    {
+      "id": "policy_triangular_trade",
+      "name": "Triangular Trade",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+4 Gold Gold and +1 Faith Faith from all Traderoute Trade Routes.",
+        "unlockedBy": "civic_mercantilism",
+        "obsoleteBy": "policy_ecommerce"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_triangular_trade.webp"
+    },
+    {
+      "id": "policy_twilight_valor",
+      "name": "Twilight Valor",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+5 Strength Combat Strength for all melee attack units. BUT: Cannot heal outside your territory.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_twilight_valor.webp"
+    },
+    {
+      "id": "policy_urban_planning",
+      "name": "Urban Planning",
+      "type": "Economic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+1 Production Production in all cities.",
+        "unlockedBy": "civic_code_of_laws",
+        "obsoleteBy": "policy_rationalism"
+      },
+      "strategy": {
+        "summary": "A broadly useful opening policy when your immediate needs are not more specialized."
+      },
+      "image": "/civ6/assets/icons/policy/policy_urban_planning.webp"
+    },
+    {
+      "id": "policy_veterancy",
+      "name": "Veterancy",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+30% Production Production toward Encampment districts, Harbor districts, and buildings for these districts.",
+        "unlockedBy": "civic_military_training",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_veterancy.webp"
+    },
+    {
+      "id": "policy_wars_of_religion",
+      "name": "Wars of Religion",
+      "type": "Military",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+4 Strength Combat Strength when a non-religious unit fights a civilization that follows another Religion.",
+        "unlockedBy": "civic_reformed_church",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_wars_of_religion.webp"
+    },
+    {
+      "id": "policy_wish_you_were_here",
+      "name": "Wish You Were Here",
+      "type": "Wildcard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "+100% Tourism Tourism to all National Parks and +50% Tourism Tourism from World Wonders.",
+        "unlockedBy": null,
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_wish_you_were_here.webp"
+    },
+    {
+      "id": "policy_wisselbanken",
+      "name": "Wisselbanken",
+      "type": "Diplomatic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "effect": "Your Traderoute Trade Routes to an Ally's city or vassal city-state provide +2 Food Food and +2 Production Production for both cities. Alliance Points with all allies increase by an additional .25 per turn.",
+        "unlockedBy": "civic_diplomatic_service",
+        "obsoleteBy": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/policy/policy_wisselbanken.webp"
+    }
+  ]
+}

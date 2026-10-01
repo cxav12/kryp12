@@ -1,0 +1,3351 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "unit_aircraft_carrier",
+      "name": "Aircraft Carrier",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Atomic era melee naval unit that can transport air units.",
+        "productionCost": 540,
+        "maintenance": 7,
+        "movement": 3,
+        "combat": 65,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_combined_arms",
+        "strategicResource": "resource_oil",
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_aircraft_carrier.webp"
+    },
+    {
+      "id": "unit_hero_anansi",
+      "name": "Anansi",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Demigod and traveler of African folklore, renowned for his wit and trickery.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 18,
+        "rangedCombat": 30,
+        "range": 1,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_antiair_gun",
+      "name": "Anti-Air Gun",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Atomic era anti-air support unit. Provides cover from air attacks up to 1 hex away from the weapon.",
+        "productionCost": 455,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": 1,
+        "prerequisite": "tech_advanced_ballistics",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_antiair_gun.webp"
+    },
+    {
+      "id": "unit_apostle",
+      "name": "Apostle",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "May convert Citizen Citizens to their Religion and initiate theological combat with units of other Religions. Once per game may Launch Inquisition to allow the purchase of Inquisitors. Once per game may Evangelize Belief to add an additional Belief to their Religion. These uses consume the Apostle.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_apostle.webp"
+    },
+    {
+      "id": "unit_archaeologist",
+      "name": "Archaeologist",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Find and extract Greatwork Artifact Artifacts from Resource Antiquity Site Antiquity Sites to be displayed in their home city's Museum.",
+        "productionCost": 400,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "civic_natural_history",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_archaeologist.webp"
+    },
+    {
+      "id": "unit_archer",
+      "name": "Archer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "First Ancient era ranged unit with a Range Range of 2.",
+        "productionCost": 60,
+        "maintenance": 1,
+        "movement": 2,
+        "combat": 15,
+        "rangedCombat": 25,
+        "range": 2,
+        "prerequisite": "tech_archery",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_archer.webp"
+    },
+    {
+      "id": "unit_hero_arthur",
+      "name": "Arthur",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "King and founder of the Knights of the Round Table, renowned for his virtue and chivalry.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 5,
+        "combat": 36,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_artillery",
+      "name": "Artillery",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Modern era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion.",
+        "productionCost": 430,
+        "maintenance": 6,
+        "movement": 2,
+        "combat": 60,
+        "rangedCombat": null,
+        "range": 2,
+        "prerequisite": "tech_steel",
+        "strategicResource": "resource_oil",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_artillery.webp"
+    },
+    {
+      "id": "unit_at_crew",
+      "name": "AT Crew",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Modern era counter to cavalry class units.",
+        "productionCost": 400,
+        "maintenance": 4,
+        "movement": 2,
+        "combat": 75,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_chemistry",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_at_crew.webp"
+    },
+    {
+      "id": "unit_barbarian_horse_archer",
+      "name": "Barbarian Horse Archer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ancient era primitive horseback archer.",
+        "productionCost": 35,
+        "maintenance": 1,
+        "movement": 3,
+        "combat": 10,
+        "rangedCombat": 15,
+        "range": 1,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_barbarian_horse_archer.webp"
+    },
+    {
+      "id": "unit_barbarian_horseman",
+      "name": "Barbarian Horseman",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ancient era primitive horseback warrior.",
+        "productionCost": 40,
+        "maintenance": 1,
+        "movement": 3,
+        "combat": 20,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_barbarian_horseman.webp"
+    },
+    {
+      "id": "unit_ottoman_barbary_corsair",
+      "name": "Barbary Corsair",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ottoman unique Medieval era naval unit that replaces the Privateer. It costs no Movement Movement to coastal raid. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.",
+        "productionCost": 240,
+        "maintenance": 3,
+        "movement": 4,
+        "combat": 40,
+        "rangedCombat": 50,
+        "range": 2,
+        "prerequisite": "civic_medieval_faires",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_ottoman_barbary_corsair.webp"
+    },
+    {
+      "id": "unit_battering_ram",
+      "name": "Battering Ram",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ancient era support unit. When adjacent to a city, attacking melee and anti-cavalry units do full damage to the city’s Walls. Does not affect cities with Medieval or Renaissance Walls. Ineffective against Urban Defenses.",
+        "productionCost": 65,
+        "maintenance": 1,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_masonry",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_battering_ram.webp"
+    },
+    {
+      "id": "unit_battleship",
+      "name": "Battleship",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Modern era naval ranged unit. Provides cover from air and nuclear attacks up to 1 tile away.",
+        "productionCost": 430,
+        "maintenance": 6,
+        "movement": 5,
+        "combat": 60,
+        "rangedCombat": 70,
+        "range": 3,
+        "prerequisite": "tech_refining",
+        "strategicResource": "resource_coal",
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_battleship.webp"
+    },
+    {
+      "id": "unit_hero_beowulf",
+      "name": "Beowulf",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mighty warrior of the far North, renowned for his strength and bravery in single combat.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 34,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_norwegian_berserker",
+      "name": "Berserker",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Norwegian unique Medieval era melee unit that replaces the Man-At-Arms. 4 Movement Movement if this unit starts in enemy territory. +10 Strength Combat Strength when attacking and -5 Strength Combat Strength when defending against melee attacks.",
+        "productionCost": 160,
+        "maintenance": 3,
+        "movement": 2,
+        "combat": 48,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_tactics",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_norwegian_berserker.webp"
+    },
+    {
+      "id": "unit_biplane",
+      "name": "Biplane",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "First air combat unit, available in the Modern era.",
+        "productionCost": 430,
+        "maintenance": 6,
+        "movement": 6,
+        "combat": 80,
+        "rangedCombat": 75,
+        "range": 4,
+        "prerequisite": "tech_flight",
+        "strategicResource": "resource_oil",
+        "domain": "Air"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_biplane.webp"
+    },
+    {
+      "id": "unit_phoenicia_bireme",
+      "name": "Bireme",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Phoenician unique Ancient Era unit that replaces the Galley. Increased Strength Combat Strength and Movement Movement. Trader units are immune to being plundered if they are within 4 tiles of a Bireme and on a water tile.",
+        "productionCost": 65,
+        "maintenance": 1,
+        "movement": 4,
+        "combat": 35,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_sailing",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_phoenicia_bireme.webp"
+    },
+    {
+      "id": "unit_hungary_black_army",
+      "name": "Black Army",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Hungarian unique Medieval Era unit that replaces the Courser. +3 Strength Combat Strength for each adjacent Levied unit.",
+        "productionCost": 205,
+        "maintenance": 3,
+        "movement": 5,
+        "combat": 49,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_castles",
+        "strategicResource": "resource_horses",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_hungary_black_army.webp"
+    },
+    {
+      "id": "unit_bombard",
+      "name": "Bombard",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Renaissance era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion.",
+        "productionCost": 280,
+        "maintenance": 4,
+        "movement": 2,
+        "combat": 45,
+        "rangedCombat": null,
+        "range": 2,
+        "prerequisite": "tech_metal_casting",
+        "strategicResource": "resource_niter",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_bombard.webp"
+    },
+    {
+      "id": "unit_bomber",
+      "name": "Bomber",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "First bomber unit, available in the Atomic era.",
+        "productionCost": 560,
+        "maintenance": 7,
+        "movement": 10,
+        "combat": 85,
+        "rangedCombat": null,
+        "range": 10,
+        "prerequisite": "tech_advanced_flight",
+        "strategicResource": "resource_aluminum",
+        "domain": "Air"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_bomber.webp"
+    },
+    {
+      "id": "unit_builder",
+      "name": "Builder",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "May create tile improvements, remove features like Woods or Rainforest, or Harvest some resources. Builders can be used 3 times. This can be increased through policies or wonders like the Pyramids.",
+        "productionCost": 50,
+        "maintenance": null,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_builder.webp"
+    },
+    {
+      "id": "unit_caravel",
+      "name": "Caravel",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Fast Renaissance era exploration melee naval unit.",
+        "productionCost": 240,
+        "maintenance": 4,
+        "movement": 4,
+        "combat": 55,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_cartography",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_caravel.webp"
+    },
+    {
+      "id": "unit_sweden_carolean",
+      "name": "Carolean",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Swedish unique Renaissance Era unit that replaces the Pike and Shot. Faster than the Pike and Shot. +3 Strength Combat Strength per unused Movement Movement.",
+        "productionCost": 250,
+        "maintenance": 3,
+        "movement": 3,
+        "combat": 55,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_metal_casting",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_sweden_carolean.webp"
+    },
+    {
+      "id": "unit_catapult",
+      "name": "Catapult",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Classical era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion.",
+        "productionCost": 120,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": 25,
+        "rangedCombat": null,
+        "range": 2,
+        "prerequisite": "tech_engineering",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_catapult.webp"
+    },
+    {
+      "id": "unit_cavalry",
+      "name": "Cavalry",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Fast-moving Industrial era light cavalry unit.",
+        "productionCost": 330,
+        "maintenance": 5,
+        "movement": 5,
+        "combat": 62,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_science",
+        "strategicResource": "resource_horses",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_cavalry.webp"
+    },
+    {
+      "id": "unit_comandante_general",
+      "name": "Comandante General",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A special type of Great Person only available to Simón Bolívar. Each has unique abilities, including a passive effect, and a Retire effect.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_spanish_conquistador",
+      "name": "Conquistador",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Spanish unique Renaissance era unit that replaces the Musketman. +10 Strength Combat Strength when there is a religious unit within one hex. If this unit captures a city or is adjacent to a city when it is captured, the city will automatically adopt the Conquistador player's Religion as the dominant Religion.",
+        "productionCost": 250,
+        "maintenance": 4,
+        "movement": 2,
+        "combat": 58,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_gunpowder",
+        "strategicResource": "resource_niter",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_spanish_conquistador.webp"
+    },
+    {
+      "id": "unit_russian_cossack",
+      "name": "Cossack",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Russian unique Industrial era unit that replaces Cavalry. Stronger than Cavalry, and gains +5 Strength Combat Strength when fighting in or adjacent to its home territory. Can move after attacking if Movement Movement points remain.",
+        "productionCost": 340,
+        "maintenance": 5,
+        "movement": 5,
+        "combat": 67,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_science",
+        "strategicResource": "resource_horses",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_russian_cossack.webp"
+    },
+    {
+      "id": "unit_courser",
+      "name": "Courser",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Medieval Era light cavalry unit.",
+        "productionCost": 200,
+        "maintenance": 3,
+        "movement": 5,
+        "combat": 46,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_castles",
+        "strategicResource": "resource_horses",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_courser.webp"
+    },
+    {
+      "id": "unit_crossbowman",
+      "name": "Crossbowman",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Medieval era ranged unit.",
+        "productionCost": 180,
+        "maintenance": 3,
+        "movement": 2,
+        "combat": 30,
+        "rangedCombat": 40,
+        "range": 2,
+        "prerequisite": "tech_machinery",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_crossbowman.webp"
+    },
+    {
+      "id": "unit_chinese_crouching_tiger",
+      "name": "Crouching Tiger",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Chinese unique Medieval era unit. Ranged unit with a Range Range of 1 and high combat strength.",
+        "productionCost": 140,
+        "maintenance": 3,
+        "movement": 2,
+        "combat": 30,
+        "rangedCombat": 50,
+        "range": 1,
+        "prerequisite": "tech_machinery",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_chinese_crouching_tiger.webp"
+    },
+    {
+      "id": "unit_cuirassier",
+      "name": "Cuirassier",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Industrial Era heavy cavalry unit.",
+        "productionCost": 330,
+        "maintenance": 5,
+        "movement": 4,
+        "combat": 64,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_ballistics",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_cuirassier.webp"
+    },
+    {
+      "id": "unit_cultist",
+      "name": "Cultist",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Support unit unique to the Voidsingers. Once it dies or loses all charges, its devoted sacrifice awards the player a Greatwork Relic Relic of the Void. Can move into foreign lands when not at war, and use a charge to Recruit Followers in an adjacent foreign city, causing it to lose 10 Loyalty.",
+        "productionCost": 100,
+        "maintenance": 4,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_de_zeven_provincien",
+      "name": "De Zeven Provinciën",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Netherlands unique Renaissance Era unit that replaces the Frigate. +7 Strength Combat Strength when attacking defensible districts.",
+        "productionCost": 280,
+        "maintenance": 5,
+        "movement": 4,
+        "combat": 50,
+        "rangedCombat": 60,
+        "range": 2,
+        "prerequisite": "tech_square_rigging",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_de_zeven_provincien.webp"
+    },
+    {
+      "id": "unit_destroyer",
+      "name": "Destroyer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Strongest melee naval unit. Reveals Naval Raiders within sight range.",
+        "productionCost": 540,
+        "maintenance": 7,
+        "movement": 4,
+        "combat": 85,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_combined_arms",
+        "strategicResource": "resource_oil",
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_destroyer.webp"
+    },
+    {
+      "id": "unit_digger",
+      "name": "Digger",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Australian unique Modern era unit that replaces Infantry. +10 Strength Combat Strength when fighting on Coastal tiles. +5 Strength Combat Strength when fighting on Neutral or Foreign Territory.",
+        "productionCost": 430,
+        "maintenance": 6,
+        "movement": 2,
+        "combat": 78,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_replaceable_parts",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_khmer_domrey",
+      "name": "Domrey",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Khmer unique Medieval era siege unit that replaces the Trebuchet. This unit has a higher Strength Melee and Range Strength than the Trebuchet. It can move and shoot in the same turn and exerts zone of control.",
+        "productionCost": 200,
+        "maintenance": 3,
+        "movement": 2,
+        "combat": 40,
+        "rangedCombat": null,
+        "range": 2,
+        "prerequisite": "tech_military_engineering",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_byzantine_dromon",
+      "name": "Dromon",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Byzantine unique Classical era unit that replaces the Quadrireme that has additional range and receives +10 Strength Combat Strength against units.",
+        "productionCost": 120,
+        "maintenance": 2,
+        "movement": 3,
+        "combat": 20,
+        "rangedCombat": 25,
+        "range": 2,
+        "prerequisite": "tech_shipbuilding",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_drone",
+      "name": "Drone",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Atomic era support unit. Adds +1 Range Range and +5 Bombard Bombard Strength to Siege class units within 1 hex.",
+        "productionCost": 420,
+        "maintenance": 3,
+        "movement": 3,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_computers",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_drone.webp"
+    },
+    {
+      "id": "unit_aztec_eagle_warrior",
+      "name": "Eagle Warrior",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Aztec unique Ancient era unit that replaces the Warrior. Has a chance to capture other civilization's military units by turning them into Builders.",
+        "productionCost": 65,
+        "maintenance": null,
+        "movement": 2,
+        "combat": 28,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_aztec_eagle_warrior.webp"
+    },
+    {
+      "id": "unit_field_cannon",
+      "name": "Field Cannon",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Industrial era ranged unit.",
+        "productionCost": 330,
+        "maintenance": 5,
+        "movement": 2,
+        "combat": 50,
+        "rangedCombat": 60,
+        "range": 2,
+        "prerequisite": "tech_ballistics",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_field_cannon.webp"
+    },
+    {
+      "id": "unit_fighter",
+      "name": "Fighter",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Atomic era Biplane upgrade.",
+        "productionCost": 520,
+        "maintenance": 7,
+        "movement": 8,
+        "combat": 100,
+        "rangedCombat": 100,
+        "range": 5,
+        "prerequisite": "tech_advanced_flight",
+        "strategicResource": "resource_aluminum",
+        "domain": "Air"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_fighter.webp"
+    },
+    {
+      "id": "unit_frigate",
+      "name": "Frigate",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Renaissance era ranged naval unit.",
+        "productionCost": 280,
+        "maintenance": 5,
+        "movement": 4,
+        "combat": 45,
+        "rangedCombat": 55,
+        "range": 2,
+        "prerequisite": "tech_square_rigging",
+        "strategicResource": "resource_niter",
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_frigate.webp"
+    },
+    {
+      "id": "unit_gaul_gaesatae",
+      "name": "Gaesatae",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Gallic unique Ancient era unit that replaces the Warrior. This unit has increased cost and receives +10 Strength Combat Strength when fighting units with a higher base Combat Strength. +5 Strength Combat Strength vs. district defenses.",
+        "productionCost": 60,
+        "maintenance": null,
+        "movement": 2,
+        "combat": 20,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_galley",
+      "name": "Galley",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ancient era melee naval combat unit. Can only operate on Coastal waters until Cartography is researched.",
+        "productionCost": 65,
+        "maintenance": 1,
+        "movement": 3,
+        "combat": 30,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_sailing",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_galley.webp"
+    },
+    {
+      "id": "unit_french_garde_imperiale",
+      "name": "Garde Impériale",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "French unique Industrial era melee unit that replaces the Line Infantry. +10 Strength Combat Strength when fighting on your capital's continent. Greatgeneral Great General points for killing units.",
+        "productionCost": 360,
+        "maintenance": 5,
+        "movement": 2,
+        "combat": 70,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_science",
+        "strategicResource": "resource_niter",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_french_garde_imperiale.webp"
+    },
+    {
+      "id": "unit_giant_death_robot",
+      "name": "Giant Death Robot",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Information Era Super-Unit. Able to move and fight in water. Resistant to Weapons of Mass Destruction. Combat abilities can be upgraded by researching future technologies.",
+        "productionCost": 1500,
+        "maintenance": 15,
+        "movement": 5,
+        "combat": 130,
+        "rangedCombat": 120,
+        "range": 3,
+        "prerequisite": "tech_robotics",
+        "strategicResource": "resource_uranium",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_giant_death_robot.webp"
+    },
+    {
+      "id": "unit_great_admiral",
+      "name": "Great Admiral",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Each Greatadmiral Great Admiral has unique abilities, including a passive effect, and a Retire effect. Visit the Great People panel to learn more, and track your progress.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_great_admiral.webp"
+    },
+    {
+      "id": "unit_great_artist",
+      "name": "Great Artist",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Each Greatartist Great Artist generates a Greatwork Landscape Great Work of Art when activated. Visit the Great People panel to learn more, and track your progress.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_great_artist.webp"
+    },
+    {
+      "id": "unit_great_engineer",
+      "name": "Great Engineer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Each Greatengineer Great Engineer has unique abilities when activated. Visit the Great People panel to learn more, and track your progress.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_great_engineer.webp"
+    },
+    {
+      "id": "unit_great_general",
+      "name": "Great General",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Each Greatgeneral Great General has unique abilities, including a passive effect, and a Retire effect. Visit the Great People panel to learn more, and track your progress.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_great_general.webp"
+    },
+    {
+      "id": "unit_great_merchant",
+      "name": "Great Merchant",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Each Greatmerchant Great Merchant has unique abilities when activated. Visit the Great People panel to learn more, and track your progress.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_great_merchant.webp"
+    },
+    {
+      "id": "unit_great_musician",
+      "name": "Great Musician",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Each Greatmusician Great Musician generates a Greatwork Music Great Work of Music when activated. Visit the Great People panel to learn more, and track your progress.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_great_musician.webp"
+    },
+    {
+      "id": "unit_great_prophet",
+      "name": "Great Prophet",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Great Greatprophet Prophets can found a Religion when activated. Visit the Great People panel to learn more, and track your progress.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_great_prophet.webp"
+    },
+    {
+      "id": "unit_great_scientist",
+      "name": "Great Scientist",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Each Greatscientist Great Scientist has unique abilities when activated. Visit the Great People panel to learn more, and track your progress.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_great_scientist.webp"
+    },
+    {
+      "id": "unit_great_writer",
+      "name": "Great Writer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Each Greatwriter Great Writer generates a Greatwork Writing Great Work of Writing when activated. Visit the Great People panel to learn more, and track your progress.",
+        "productionCost": 1,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_great_writer.webp"
+    },
+    {
+      "id": "unit_guru",
+      "name": "Guru",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "May use a charge to heal itself and all adjacent friendly religious units. May not initiate theological combat with units of other Religions (but can defend).",
+        "productionCost": 120,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_guru.webp"
+    },
+    {
+      "id": "unit_heavy_chariot",
+      "name": "Heavy Chariot",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Hard-hitting, Ancient era heavy cavalry unit. Gains 1 bonus Movement Movement if it begins a turn on a flat tile with no Woods, Rainforest, or Hills.",
+        "productionCost": 65,
+        "maintenance": 1,
+        "movement": 2,
+        "combat": 28,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_the_wheel",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_heavy_chariot.webp"
+    },
+    {
+      "id": "unit_helicopter",
+      "name": "Helicopter",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Fast-moving Atomic era light cavalry unit.",
+        "productionCost": 600,
+        "maintenance": 7,
+        "movement": 4,
+        "combat": 86,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_synthetic_materials",
+        "strategicResource": "resource_aluminum",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_helicopter.webp"
+    },
+    {
+      "id": "unit_hero_hercules",
+      "name": "Hercules",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Demigod of superhuman strength, renowned for his famous Labors.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 36,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_macedonian_hetairoi",
+      "name": "Hetairoi",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Macedonian unique heavy cavalry unit that replaces the Horseman. Additional +5 Strength Combat Strength when adjacent to a Great General. +5 Great General points when killing an enemy unit. Starts with 1 free Promotion.",
+        "productionCost": 100,
+        "maintenance": 2,
+        "movement": 4,
+        "combat": 36,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_horseback_riding",
+        "strategicResource": "resource_horses",
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_scottish_highlander",
+      "name": "Highlander",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Scottish unique Industrial Era unit that replaces the Ranger. Strong reconnaissance unit. +5 Strength Combat Strength bonus when fighting in Hill and Forest terrain.",
+        "productionCost": 380,
+        "maintenance": 5,
+        "movement": 3,
+        "combat": 50,
+        "rangedCombat": 65,
+        "range": 1,
+        "prerequisite": "tech_rifling",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_scottish_highlander.webp"
+    },
+    {
+      "id": "unit_hero_himiko",
+      "name": "Himiko",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Shaman-Queen of ancient Japan, renowned for her wisdom and mystical power.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_hero_hippolyta",
+      "name": "Hippolyta",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Warrior Queen of the Amazons, renowned for her leadership and martial skill.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 32,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_greek_hoplite",
+      "name": "Hoplite",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Greek unique Ancient era anti-cavalry unit that replaces the Spearman. +10 Strength Combat Strength if there is at least one adjacent Hoplite unit.",
+        "productionCost": 65,
+        "maintenance": 1,
+        "movement": 2,
+        "combat": 28,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_bronze_working",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_greek_hoplite.webp"
+    },
+    {
+      "id": "unit_horseman",
+      "name": "Horseman",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Fast-moving Classical era light cavalry unit.",
+        "productionCost": 80,
+        "maintenance": 2,
+        "movement": 4,
+        "combat": 36,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_horseback_riding",
+        "strategicResource": "resource_horses",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_horseman.webp"
+    },
+    {
+      "id": "unit_mayan_hulche",
+      "name": "Hul'che",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mayan unique Ancient Era ranged unit that replaces the Archer. Strong ranged attack. +5 Strength Combat Strength when fighting a wounded opponent.",
+        "productionCost": 60,
+        "maintenance": 1,
+        "movement": 2,
+        "combat": 15,
+        "rangedCombat": 28,
+        "range": 2,
+        "prerequisite": "tech_archery",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_hero_hunahpu",
+      "name": "Hunahpu & Xbalanque",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Legendary athletes and heroes of the Maya, renowned for their power over death and the Underworld.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 30,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_hungary_huszar",
+      "name": "Huszár",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Hungarian unique Industrial era unit that replaces Cavalry. +3 Strength Combat Strength for every active Alliance.",
+        "productionCost": 335,
+        "maintenance": 5,
+        "movement": 5,
+        "combat": 65,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_science",
+        "strategicResource": "resource_horses",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_hungary_huszar.webp"
+    },
+    {
+      "id": "unit_korean_hwacha",
+      "name": "Hwacha",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Korean unique Renaissance Era unit that replaces the Field Cannon. High Ranged Ranged Attack Strength. Cannot move and attack in the same turn.",
+        "productionCost": 250,
+        "maintenance": 3,
+        "movement": 2,
+        "combat": 45,
+        "rangedCombat": 60,
+        "range": 2,
+        "prerequisite": "tech_gunpowder",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_korean_hwacha.webp"
+    },
+    {
+      "id": "unit_macedonian_hypaspist",
+      "name": "Hypaspist",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Macedonian unique melee unit that replaces the Swordsman. +5 Strength Combat Strength when besieging districts. 50% Additional Support Bonus.",
+        "productionCost": 100,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": 38,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_iron_working",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_persian_immortal",
+      "name": "Immortal",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Persian unique melee unit that replaces the Swordsman. Melee class unit with a ranged attack, Range Range 2. Strong defense strength.",
+        "productionCost": 100,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": 35,
+        "rangedCombat": 25,
+        "range": 2,
+        "prerequisite": "tech_iron_working",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_zulu_impi",
+      "name": "Impi",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Zulu unique Medieval Era unit that replaces the Pikeman. Increased Flanking bonus, low cost and low maintenance. Earns XP faster.",
+        "productionCost": 125,
+        "maintenance": 1,
+        "movement": 2,
+        "combat": 45,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_tactics",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_zulu_impi.webp"
+    },
+    {
+      "id": "unit_infantry",
+      "name": "Infantry",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Modern era melee unit.",
+        "productionCost": 430,
+        "maintenance": 6,
+        "movement": 2,
+        "combat": 75,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_replaceable_parts",
+        "strategicResource": "resource_oil",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_infantry.webp"
+    },
+    {
+      "id": "unit_inquisitor",
+      "name": "Inquisitor",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "May reduce the presence of other Religions in their territory by 75%, and initiate theological combat with units of other Religions.",
+        "productionCost": 75,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_inquisitor.webp"
+    },
+    {
+      "id": "unit_ironclad",
+      "name": "Ironclad",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Powerful Industrial era armored melee naval unit.",
+        "productionCost": 380,
+        "maintenance": 5,
+        "movement": 5,
+        "combat": 70,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_steam_power",
+        "strategicResource": "resource_coal",
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_ironclad.webp"
+    },
+    {
+      "id": "unit_suleiman_janissary",
+      "name": "Janissary",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ottoman unique Renaissance Era unit that replaces the Musketman. Starts with a free promotion. Stronger and cheaper than the Musketman. To train a Janissary a city must have a population of at least 2. If a city is founded by the Ottomans and trains a Janissary it loses a population.",
+        "productionCost": 120,
+        "maintenance": 4,
+        "movement": 2,
+        "combat": 60,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_gunpowder",
+        "strategicResource": "resource_niter",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_suleiman_janissary.webp"
+    },
+    {
+      "id": "unit_jet_bomber",
+      "name": "Jet Bomber",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Information era Bomber upgrade.",
+        "productionCost": 700,
+        "maintenance": 8,
+        "movement": 15,
+        "combat": 90,
+        "rangedCombat": null,
+        "range": 15,
+        "prerequisite": "tech_stealth_technology",
+        "strategicResource": "resource_aluminum",
+        "domain": "Air"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_jet_bomber.webp"
+    },
+    {
+      "id": "unit_jet_fighter",
+      "name": "Jet Fighter",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Information era Fighter upgrade.",
+        "productionCost": 650,
+        "maintenance": 8,
+        "movement": 10,
+        "combat": 110,
+        "rangedCombat": 110,
+        "range": 6,
+        "prerequisite": "tech_lasers",
+        "strategicResource": "resource_aluminum",
+        "domain": "Air"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_jet_fighter.webp"
+    },
+    {
+      "id": "unit_indonesian_jong",
+      "name": "Jong",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Indonesian unique Medieval era naval unit that replaces the Frigate. Formation units all inherit escort's Movement Movement speed and +5 Strength Combat Strength when in a formation.",
+        "productionCost": 300,
+        "maintenance": 5,
+        "movement": 5,
+        "combat": 45,
+        "rangedCombat": 55,
+        "range": 2,
+        "prerequisite": "civic_mercenaries",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_mongolian_keshig",
+      "name": "Keshig",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mongolian unique Medieval Era Ranged Cavalry unit. Can escort moving civilian and support units at their higher Movement Movement speed.",
+        "productionCost": 160,
+        "maintenance": 3,
+        "movement": 4,
+        "combat": 35,
+        "rangedCombat": 45,
+        "range": 2,
+        "prerequisite": "tech_stirrups",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_mongolian_keshig.webp"
+    },
+    {
+      "id": "unit_georgian_khevsureti",
+      "name": "Khevsur",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Georgian unique Medieval Era unit that replaces the Man-At-Arms. +7 Strength Combat Strength bonus when fighting in hill terrain. No Movement Movement penalty in hill terrain.",
+        "productionCost": 160,
+        "maintenance": 3,
+        "movement": 2,
+        "combat": 48,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_tactics",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_georgian_khevsureti.webp"
+    },
+    {
+      "id": "unit_knight",
+      "name": "Knight",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Hard-hitting, Medieval era heavy cavalry unit.",
+        "productionCost": 220,
+        "maintenance": 4,
+        "movement": 4,
+        "combat": 50,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_stirrups",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_knight.webp"
+    },
+    {
+      "id": "unit_roman_legion",
+      "name": "Legion",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Roman unique Classical era melee unit that replaces the Swordsman. Can build a Roman Fort.",
+        "productionCost": 110,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": 40,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_iron_working",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_roman_legion.webp"
+    },
+    {
+      "id": "unit_line_infantry",
+      "name": "Line Infantry",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Industrial Era melee unit.",
+        "productionCost": 360,
+        "maintenance": 5,
+        "movement": 2,
+        "combat": 65,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_science",
+        "strategicResource": "resource_niter",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_line_infantry.webp"
+    },
+    {
+      "id": "unit_colombian_llanero",
+      "name": "Llanero",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Gran Colombian Industrial era unique unit that replaces the Cavalry. Low maintenance cost. +2 Strength Combat Strength for every adjacent Llanero. Fully heals when in range of a Comandante General that activates its retire ability.",
+        "productionCost": 330,
+        "maintenance": 2,
+        "movement": 5,
+        "combat": 62,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_science",
+        "strategicResource": "resource_horses",
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_machine_gun",
+      "name": "Machine Gun",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Atomic era ranged unit.",
+        "productionCost": 540,
+        "maintenance": 6,
+        "movement": 2,
+        "combat": 70,
+        "rangedCombat": 85,
+        "range": 2,
+        "prerequisite": "tech_advanced_ballistics",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_machine_gun.webp"
+    },
+    {
+      "id": "unit_mapuche_malon_raider",
+      "name": "Malón Raider",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mapuche unique Renaissance Era unit. +5 Strength Combat Strength bonus if within 4 hexes of friendly territory. Pillaging costs 1 Movement Movement.",
+        "productionCost": 230,
+        "maintenance": 4,
+        "movement": 4,
+        "combat": 55,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_gunpowder",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_mapuche_malon_raider.webp"
+    },
+    {
+      "id": "unit_arabian_mamluk",
+      "name": "Mamluk",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Arabian unique Medieval era unit that replaces the Knight. Heals at the end of every turn, even after moving or attacking.",
+        "productionCost": 220,
+        "maintenance": 4,
+        "movement": 4,
+        "combat": 50,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_stirrups",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_arabian_mamluk.webp"
+    },
+    {
+      "id": "unit_man_at_arms",
+      "name": "Man-At-Arms",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Medieval Era melee unit.",
+        "productionCost": 160,
+        "maintenance": 3,
+        "movement": 2,
+        "combat": 45,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_apprenticeship",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_man_at_arms.webp"
+    },
+    {
+      "id": "unit_mali_mandekalu_cavalry",
+      "name": "Mandekalu Cavalry",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mali unique Medieval Era unit that replaces the Knight. Trader units are immune to being plundered if they are within 4 tiles of a Mandekalu Cavalry and on a land tile. Combat victories provide Gold Gold equal to 100% of that unit's base Strength Combat Strength (on Standard Speed).",
+        "productionCost": 220,
+        "maintenance": 4,
+        "movement": 4,
+        "combat": 55,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_stirrups",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_mali_mandekalu_cavalry.webp"
+    },
+    {
+      "id": "unit_egyptian_chariot_archer",
+      "name": "Maryannu Chariot Archer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Egyptian unique Ancient era ranged unit. 4 Movement Movement when starting in open terrain.",
+        "productionCost": 90,
+        "maintenance": 1,
+        "movement": 2,
+        "combat": 25,
+        "rangedCombat": 35,
+        "range": 2,
+        "prerequisite": "tech_the_wheel",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_egyptian_chariot_archer.webp"
+    },
+    {
+      "id": "unit_hero_maui",
+      "name": "Maui",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Demigod and hero of Polynesian myth, renowned for his feats and gifts to humanity.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 30,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_mechanized_infantry",
+      "name": "Mechanized Infantry",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Information era melee unit.",
+        "productionCost": 650,
+        "maintenance": 8,
+        "movement": 3,
+        "combat": 85,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_satellites",
+        "strategicResource": "resource_oil",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_mechanized_infantry.webp"
+    },
+    {
+      "id": "unit_medic",
+      "name": "Medic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Industrial era support unit. Can heal adjacent units.",
+        "productionCost": 370,
+        "maintenance": 5,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_sanitation",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_medic.webp"
+    },
+    {
+      "id": "unit_military_engineer",
+      "name": "Military Engineer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Medieval era support unit. Requires an Armory to produce. Can construct Roads, Railroads, Forts, Airstrips, Missile Silos, and Mountain Tunnel improvements. One of their build charges can also be used to complete 20% of a Canal, Dam or Aqueduct district or a Flood Barrier building.",
+        "productionCost": 170,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_engineering",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_military_engineer.webp"
+    },
+    {
+      "id": "unit_brazilian_minas_geraes",
+      "name": "Minas Geraes",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Brazilian unique Industrial era unit that replaces the Battleship. Stronger than the Battleship. Unlocked by Nationalism.",
+        "productionCost": 430,
+        "maintenance": 6,
+        "movement": 5,
+        "combat": 70,
+        "rangedCombat": 80,
+        "range": 3,
+        "prerequisite": "civic_nationalism",
+        "strategicResource": "resource_coal",
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_brazilian_minas_geraes.webp"
+    },
+    {
+      "id": "unit_missile_cruiser",
+      "name": "Missile Cruiser",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Strongest ranged naval unit, available in the Information era.",
+        "productionCost": 680,
+        "maintenance": 8,
+        "movement": 5,
+        "combat": 75,
+        "rangedCombat": 90,
+        "range": 3,
+        "prerequisite": "tech_lasers",
+        "strategicResource": "resource_oil",
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_missile_cruiser.webp"
+    },
+    {
+      "id": "unit_missionary",
+      "name": "Missionary",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "May convert Citizen Citizens to their Religion. May not initiate theological combat with units of other Religions (but can defend).",
+        "productionCost": 75,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_missionary.webp"
+    },
+    {
+      "id": "unit_mobile_sam",
+      "name": "Mobile SAM",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Information era anti-air support unit. Provides cover from air and nuclear attacks up to 1 hex away from the weapon.",
+        "productionCost": 590,
+        "maintenance": 4,
+        "movement": 3,
+        "combat": null,
+        "rangedCombat": null,
+        "range": 1,
+        "prerequisite": "tech_guidance_systems",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_mobile_sam.webp"
+    },
+    {
+      "id": "unit_modern_armor",
+      "name": "Modern Armor",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Information era heavy cavalry unit that is fast and strong.",
+        "productionCost": 680,
+        "maintenance": 8,
+        "movement": 4,
+        "combat": 95,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_composites",
+        "strategicResource": "resource_oil",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_modern_armor.webp"
+    },
+    {
+      "id": "unit_modern_at",
+      "name": "Modern AT",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Information era counter to cavalry class units.",
+        "productionCost": 580,
+        "maintenance": 8,
+        "movement": 3,
+        "combat": 85,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_composites",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_modern_at.webp"
+    },
+    {
+      "id": "unit_canada_mountie",
+      "name": "Mountie",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Canadian unique Modern era unit. Can create 2 National Parks. +5 Strength Combat Strength when fighting within 2 tiles of a National Park. Additional +5 Strength Combat Strength when fighting within 2 tiles of a National Park you own.",
+        "productionCost": 290,
+        "maintenance": 3,
+        "movement": 5,
+        "combat": 62,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "civic_conservation",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_canada_mountie.webp"
+    },
+    {
+      "id": "unit_hero_mulan",
+      "name": "Mulan",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Devoted and skilled warrior, renowned for her devotion and loyalty.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 5,
+        "combat": 16,
+        "rangedCombat": 28,
+        "range": 2,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_musketman",
+      "name": "Musketman",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Renaissance era melee unit.",
+        "productionCost": 240,
+        "maintenance": 4,
+        "movement": 2,
+        "combat": 55,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_gunpowder",
+        "strategicResource": "resource_niter",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_musketman.webp"
+    },
+    {
+      "id": "unit_naturalist",
+      "name": "Naturalist",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A late-game civilian who can create a single National Park to attract Tourism Tourists. Must be purchased with Faith Faith.",
+        "productionCost": 300,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "civic_conservation",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_naturalist.webp"
+    },
+    {
+      "id": "unit_portuguese_nau",
+      "name": "Nau",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Portuguese unique naval melee unit that replaces the Caravel. Starts with 1 free Promotion and is less maintenance. Has two charges to build Feitorias.",
+        "productionCost": 240,
+        "maintenance": 2,
+        "movement": 4,
+        "combat": 55,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_cartography",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_kongo_shield_bearer",
+      "name": "Ngao Mbeba",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Kongo unique Classical era unit that replaces the Swordsman. +10 Strength Combat Strength when defending against ranged attacks. Can move and see through Woods and Rainforest.",
+        "productionCost": 110,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": 38,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_iron_working",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_kongo_shield_bearer.webp"
+    },
+    {
+      "id": "unit_lahore_nihang",
+      "name": "Nihang",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Lahore City-State unique unit with a unique Promotion tree. Purchasable with Faith Faith. Strength Combat Strength is increased when Barracks, Armory, and Military Academy buildings are first constructed.",
+        "productionCost": 100,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": 25,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_nuclear_submarine",
+      "name": "Nuclear Submarine",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Highly advanced Information era ranged raiding naval unit that can be armed with nuclear weapons. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.",
+        "productionCost": 680,
+        "maintenance": 8,
+        "movement": 4,
+        "combat": 80,
+        "rangedCombat": 85,
+        "range": 2,
+        "prerequisite": "tech_telecommunications",
+        "strategicResource": "resource_uranium",
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_nuclear_submarine.webp"
+    },
+    {
+      "id": "unit_observation_balloon",
+      "name": "Observation Balloon",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Modern era support unit. Grants +1 Range Range to Siege class units within 1 hex.",
+        "productionCost": 240,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_flight",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_observation_balloon.webp"
+    },
+    {
+      "id": "unit_cree_okihtcitaw",
+      "name": "Okihtcitaw",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Cree unique Ancient era unit that replaces the Scout. Strong reconnaissance unit. Starts with 1 free promotion.",
+        "productionCost": 40,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 20,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_cree_okihtcitaw.webp"
+    },
+    {
+      "id": "unit_ethiopian_oromo_cavalry",
+      "name": "Oromo Cavalry",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ethiopian unique Medieval era light cavalry unit. Stronger and greater sight than the Courser that it replaces. Receives no Movement Movement penalty from moving in Hills.",
+        "productionCost": 200,
+        "maintenance": 3,
+        "movement": 5,
+        "combat": 48,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_castles",
+        "strategicResource": "resource_horses",
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_hero_oya",
+      "name": "Oya",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Orisha of winds, storms, and lightning, renowned for her extreme power.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 30,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_american_p51",
+      "name": "P-51 Mustang",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "American unique Atomic era air unit that replaces the Fighter. Gains +5 Strength Combat Strength against fighter aircraft, has +2 flight range, and gains +50% experience.",
+        "productionCost": 520,
+        "maintenance": 7,
+        "movement": 10,
+        "combat": 105,
+        "rangedCombat": 105,
+        "range": 5,
+        "prerequisite": "tech_advanced_flight",
+        "strategicResource": "resource_aluminum",
+        "domain": "Air"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_american_p51.webp"
+    },
+    {
+      "id": "unit_pike_and_shot",
+      "name": "Pike and Shot",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Late Renaissance era anti-cavalry unit.",
+        "productionCost": 250,
+        "maintenance": 4,
+        "movement": 2,
+        "combat": 55,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_metal_casting",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_pike_and_shot.webp"
+    },
+    {
+      "id": "unit_pikeman",
+      "name": "Pikeman",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Medieval era anti-cavalry unit.",
+        "productionCost": 180,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": 45,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_tactics",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_pikeman.webp"
+    },
+    {
+      "id": "unit_privateer",
+      "name": "Privateer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Renaissance era ranged naval unit with the ability to coastal raid.Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.",
+        "productionCost": 280,
+        "maintenance": 4,
+        "movement": 4,
+        "combat": 40,
+        "rangedCombat": 50,
+        "range": 2,
+        "prerequisite": "civic_mercantilism",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_privateer.webp"
+    },
+    {
+      "id": "unit_nubian_pitati",
+      "name": "Pítati Archer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Nubian unique Ancient era unit that replaces the Archer. Stronger than the Archer with extra Movement Movement. Upgrades to Crossbowman.",
+        "productionCost": 70,
+        "maintenance": 1,
+        "movement": 3,
+        "combat": 17,
+        "rangedCombat": 30,
+        "range": 2,
+        "prerequisite": "tech_archery",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_quadrireme",
+      "name": "Quadrireme",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Classical era ranged naval unit. Can only operate on Coastal waters until Cartography is researched.",
+        "productionCost": 120,
+        "maintenance": 2,
+        "movement": 3,
+        "combat": 20,
+        "rangedCombat": 25,
+        "range": 1,
+        "prerequisite": "tech_shipbuilding",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_quadrireme.webp"
+    },
+    {
+      "id": "unit_questing_knight",
+      "name": "Questing Knight",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Heavy Cavalry. One of Arthur's chosen Knights and strengthened by his charge.",
+        "productionCost": 100,
+        "maintenance": null,
+        "movement": 4,
+        "combat": 34,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_ranger",
+      "name": "Ranger",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Fast-moving Industrial era recon unit.",
+        "productionCost": 380,
+        "maintenance": 5,
+        "movement": 3,
+        "combat": 45,
+        "rangedCombat": 60,
+        "range": 1,
+        "prerequisite": "tech_rifling",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_ranger.webp"
+    },
+    {
+      "id": "unit_english_redcoat",
+      "name": "Redcoat",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "English unique Industrial era unit when Victoria is their leader that replaces the Line Infantry. +10 Strength Combat Strength when fighting on a continent other than that of your capital's. No disembark cost.",
+        "productionCost": 360,
+        "maintenance": 5,
+        "movement": 2,
+        "combat": 70,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_military_science",
+        "strategicResource": "resource_niter",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_english_redcoat.webp"
+    },
+    {
+      "id": "unit_rock_band",
+      "name": "Rock Band",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Can perform a rock concert at a valid venue, including at Wonders, at a District with one of the required buildings, or at a special target allowed by one of the band's promotions. Their Album Sales stat is the expected Tourism Tourism strength at their next concert. After performing concerts their Album Sales and Rock Band Level may increase. Must be purchased with Faith Faith. Cannot perform on the same tile twice.",
+        "productionCost": 300,
+        "maintenance": null,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "civic_cold_war",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_rock_band.webp"
+    },
+    {
+      "id": "unit_rocket_artillery",
+      "name": "Rocket Artillery",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Information era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion.",
+        "productionCost": 680,
+        "maintenance": 8,
+        "movement": 3,
+        "combat": 70,
+        "rangedCombat": null,
+        "range": 3,
+        "prerequisite": "tech_guidance_systems",
+        "strategicResource": "resource_oil",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_rocket_artillery.webp"
+    },
+    {
+      "id": "unit_american_rough_rider",
+      "name": "Rough Rider",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "American unique Industrial era unit when Teddy Roosevelt is their leader that replaces the Cuirassiers. Culture Culture is earned from kills on their Capital Capital's continent. +10 Strength Combat Strength when fighting on Hills. Lower maintenance cost.",
+        "productionCost": 385,
+        "maintenance": 2,
+        "movement": 5,
+        "combat": 67,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_ballistics",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_american_rough_rider.webp"
+    },
+    {
+      "id": "unit_babylonian_sabum_kibittum",
+      "name": "Sabum Kibittum",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Babylonian unique Ancient era melee unit. +17 Strength Combat Strength against Heavy and Light Cavalry promotion class units. This unit has 3 Movement Movement and sight.",
+        "productionCost": 35,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 17,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_scythian_horse_archer",
+      "name": "Saka Horse Archer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Scythian unique Classical era unit. Ranged unit with 4 Movement Movement with a Range Range of 1.",
+        "productionCost": 100,
+        "maintenance": 2,
+        "movement": 4,
+        "combat": 20,
+        "rangedCombat": 25,
+        "range": 1,
+        "prerequisite": "tech_horseback_riding",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_scythian_horse_archer.webp"
+    },
+    {
+      "id": "unit_japanese_samurai",
+      "name": "Samurai",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Japanese unique Medieval era melee unit that replaces the Man-At-Arms. Does not suffer combat penalties when damaged.",
+        "productionCost": 160,
+        "maintenance": 3,
+        "movement": 2,
+        "combat": 48,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "civic_feudalism",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_japanese_samurai.webp"
+    },
+    {
+      "id": "unit_scout",
+      "name": "Scout",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Fast-moving Ancient era recon unit.",
+        "productionCost": 30,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 10,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_scout.webp"
+    },
+    {
+      "id": "unit_english_seadog",
+      "name": "Sea Dog",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "English unique Renaissance era naval unit that replaces the Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.",
+        "productionCost": 280,
+        "maintenance": 4,
+        "movement": 4,
+        "combat": 40,
+        "rangedCombat": 55,
+        "range": 2,
+        "prerequisite": "civic_mercantilism",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_english_seadog.webp"
+    },
+    {
+      "id": "unit_settler",
+      "name": "Settler",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "May create new cities. Reduces city's Citizen Population by 1 when completed.",
+        "productionCost": 80,
+        "maintenance": null,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_settler.webp"
+    },
+    {
+      "id": "unit_siege_tower",
+      "name": "Siege Tower",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Medieval era support unit. When adjacent to a city, attacking melee and anti-cavalry units ignore Walls and immediately assault the city. Does not affect cities with Renaissance Walls. Ineffective against Urban Defenses.",
+        "productionCost": 100,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_machinery",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_siege_tower.webp"
+    },
+    {
+      "id": "unit_hero_sinbad",
+      "name": "Sinbad",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Naval Hero. Adventurer and fortune-hunter, renowned for his strange and marvelous travels.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 7,
+        "combat": 30,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_skirmisher",
+      "name": "Skirmisher",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Medieval Era recon unit.",
+        "productionCost": 150,
+        "maintenance": 2,
+        "movement": 3,
+        "combat": 20,
+        "rangedCombat": 30,
+        "range": 1,
+        "prerequisite": "tech_machinery",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_skirmisher.webp"
+    },
+    {
+      "id": "unit_slinger",
+      "name": "Slinger",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Weak Ancient era ranged unit. Better on attack than defense.",
+        "productionCost": 35,
+        "maintenance": null,
+        "movement": 2,
+        "combat": 5,
+        "rangedCombat": 15,
+        "range": 1,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_slinger.webp"
+    },
+    {
+      "id": "unit_soothsayer",
+      "name": "Soothsayer",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "An Apocalypse-mode-specific support unit. Can use the Cause Disaster action to begin a random disaster in the hexes near the unit. Doing so destroys the Soothsayer if it has no more charges.",
+        "productionCost": 50,
+        "maintenance": 4,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_spearman",
+      "name": "Spearman",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Ancient era anti-cavalry unit.",
+        "productionCost": 65,
+        "maintenance": 1,
+        "movement": 2,
+        "combat": 25,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_bronze_working",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_spearman.webp"
+    },
+    {
+      "id": "unit_spec_ops",
+      "name": "Spec Ops",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Atomic Era reconnaissance unit. Paradrop ability allows movement from friendly tile to location 7 tiles away (12 if starting from Aerodrome or Airstrip). Can attack support units directly without having to eliminate the combat unit first.",
+        "productionCost": 520,
+        "maintenance": 7,
+        "movement": 3,
+        "combat": 60,
+        "rangedCombat": 65,
+        "range": 2,
+        "prerequisite": "tech_plastics",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_spec_ops.webp"
+    },
+    {
+      "id": "unit_spy",
+      "name": "Spy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Performs secret missions in foreign cities and protects your cities from enemy Spies.",
+        "productionCost": 225,
+        "maintenance": 4,
+        "movement": 1,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_spy.webp"
+    },
+    {
+      "id": "unit_submarine",
+      "name": "Submarine",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Modern era ranged raiding naval unit. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.",
+        "productionCost": 480,
+        "maintenance": 6,
+        "movement": 3,
+        "combat": 65,
+        "rangedCombat": 75,
+        "range": 2,
+        "prerequisite": "tech_electricity",
+        "strategicResource": "resource_oil",
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_submarine.webp"
+    },
+    {
+      "id": "unit_hero_wukong",
+      "name": "Sun Wukong",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "The Monkey King, hero of ancient China, renowned for his cunning and immortality.",
+        "productionCost": 200,
+        "maintenance": null,
+        "movement": 6,
+        "combat": 32,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_supply_convoy",
+      "name": "Supply Convoy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Modern era support unit. Increases healing for adjacent units. Gives units 1 bonus Movement Movement if move is started adjacent to the Convoy.",
+        "productionCost": 450,
+        "maintenance": 2,
+        "movement": 4,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_combustion",
+        "strategicResource": null,
+        "domain": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_supply_convoy.webp"
+    },
+    {
+      "id": "unit_swordsman",
+      "name": "Swordsman",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Strong Classical era melee unit.",
+        "productionCost": 90,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": 35,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_iron_working",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_swordsman.webp"
+    },
+    {
+      "id": "unit_byzantine_tagma",
+      "name": "Tagma",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Basil II's unique Medieval era unit that replaces the Knight. Land units within 1 tile of the Tagma receive +4 Strength Combat Strength or Religion Religious Strength.",
+        "productionCost": 220,
+        "maintenance": 4,
+        "movement": 4,
+        "combat": 50,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "civic_divine_right",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_tank",
+      "name": "Tank",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Fast-moving Modern era heavy cavalry unit that ignores zone of control.",
+        "productionCost": 480,
+        "maintenance": 6,
+        "movement": 4,
+        "combat": 85,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_combustion",
+        "strategicResource": "resource_oil",
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_tank.webp"
+    },
+    {
+      "id": "unit_maori_toa",
+      "name": "Toa",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Māori unique Classical era melee unit. Adjacent enemy units receive -5 Strength Combat Strength. Can build the unique Pā improvement.",
+        "productionCost": 120,
+        "maintenance": null,
+        "movement": 2,
+        "combat": 38,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_construction",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_maori_toa.webp"
+    },
+    {
+      "id": "unit_trader",
+      "name": "Trader",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "May make and maintain a single Traderoute Trade Route. Automatically creates Roads as it travels.",
+        "productionCost": 40,
+        "maintenance": null,
+        "movement": 2,
+        "combat": null,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "civic_foreign_trade",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_trader.webp"
+    },
+    {
+      "id": "unit_trebuchet",
+      "name": "Trebuchet",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Medieval era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion.",
+        "productionCost": 200,
+        "maintenance": 3,
+        "movement": 2,
+        "combat": 35,
+        "rangedCombat": null,
+        "range": 2,
+        "prerequisite": "tech_military_engineering",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_trebuchet.webp"
+    },
+    {
+      "id": "unit_german_uboat",
+      "name": "U-Boat",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "German unique Modern era naval unit that replaces the Submarine. Cheaper to produce, +1 Sight, and +10 Strength Combat Strength when fighting on Ocean tiles. Able to reveal other stealthed units.",
+        "productionCost": 430,
+        "maintenance": 6,
+        "movement": 3,
+        "combat": 65,
+        "rangedCombat": 75,
+        "range": 2,
+        "prerequisite": "tech_electricity",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_german_uboat.webp"
+    },
+    {
+      "id": "unit_vampire",
+      "name": "Vampire",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Combat unit unique to the Sanguine Pact. Has base Strength Combat Strength equal to the strongest unit your cities have produced. Gains permanent Strength Combat Strength when units die in adjacent tiles. Strength from Barbarian deaths is capped at +10. When killed, retreats with 1 HP to the Capital Capital or nearest Vampire Castle. Heals an additional 50 HP from pillaging enemy tiles, but receives reduced passive healing.",
+        "productionCost": 150,
+        "maintenance": null,
+        "movement": 2,
+        "combat": 20,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_indian_varu",
+      "name": "Varu",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Indian unique Classical era heavy cavalry unit. Adjacent enemy units receive -5 Strength Combat Strength.",
+        "productionCost": 120,
+        "maintenance": 2,
+        "movement": 2,
+        "combat": 40,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_horseback_riding",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_indian_varu.webp"
+    },
+    {
+      "id": "unit_norwegian_longship",
+      "name": "Viking Longship",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Norwegian unique Ancient era naval unit that replaces the Galley. Can pillage enemy coastal lands and capture civilians if adjacent using its coastal raiding ability. 4 Movement Movement while in coastal waters.",
+        "productionCost": 65,
+        "maintenance": 1,
+        "movement": 3,
+        "combat": 35,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "tech_sailing",
+        "strategicResource": null,
+        "domain": "Sea"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_norwegian_longship.webp"
+    },
+    {
+      "id": "unit_vietnamese_voi_chien",
+      "name": "Voi Chiến",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Vietnamese unique Medieval era ranged unit that replaces the Crossbowman. These units have additional movement and can move after attacking. They are also stronger when defending, more expensive, and have greater sight.",
+        "productionCost": 200,
+        "maintenance": 3,
+        "movement": 3,
+        "combat": 35,
+        "rangedCombat": 40,
+        "range": 2,
+        "prerequisite": "tech_machinery",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_sumerian_war_cart",
+      "name": "War-Cart",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Sumerian unique Ancient era unit. Stronger than all other starting units. No penalties against anti-cavalry units. 4 Movement Movement if this unit starts in open terrain.",
+        "productionCost": 55,
+        "maintenance": null,
+        "movement": 3,
+        "combat": 30,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_sumerian_war_cart.webp"
+    },
+    {
+      "id": "unit_inca_warakaq",
+      "name": "Warak’aq",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Incan unique Medieval Era unit that replaces the Skirmisher. Stronger at ranged combat than the Skirmisher and +1 additional attack per turn.",
+        "productionCost": 165,
+        "maintenance": 2,
+        "movement": 3,
+        "combat": 20,
+        "rangedCombat": 40,
+        "range": 1,
+        "prerequisite": "tech_machinery",
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_inca_warakaq.webp"
+    },
+    {
+      "id": "unit_warrior",
+      "name": "Warrior",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Weak Ancient era melee unit.",
+        "productionCost": 40,
+        "maintenance": null,
+        "movement": 2,
+        "combat": 20,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_warrior.webp"
+    },
+    {
+      "id": "unit_warrior_monk",
+      "name": "Warrior Monk",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Fast-moving land combat unit with a unique promotion tree.",
+        "productionCost": 100,
+        "maintenance": 2,
+        "movement": 3,
+        "combat": 40,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/unit/unit_warrior_monk.webp"
+    },
+    {
+      "id": "unit_polish_hussar",
+      "name": "Winged Hussar",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Polish unique Renaissance era unit that replaces the Cuirassier. Pushes defending enemy units back from their hex in any battle where they score more damage. Defenders that cannot retreat suffer additional damage.",
+        "productionCost": 330,
+        "maintenance": 5,
+        "movement": 4,
+        "combat": 64,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": "civic_mercantilism",
+        "strategicResource": "resource_iron",
+        "domain": "Land"
+      },
+      "strategy": {}
+    },
+    {
+      "id": "unit_mode_zombie",
+      "name": "Zombie",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A hostile melee unit that has a chance to appear on the map at a location where a unit has died. Its Melee Strength increases with each Zombie that has been eliminated, globally. If a Zombie destroys another unit, a new Zombie unit spawns in that tile the next turn. If a Zombie reduces a city's population, a new Zombie unit will spawn immediately next to the city. Zombies target the closest nearby unit, city, or defensible district.",
+        "productionCost": 40,
+        "maintenance": 1,
+        "movement": 2,
+        "combat": 20,
+        "rangedCombat": null,
+        "range": null,
+        "prerequisite": null,
+        "strategicResource": null,
+        "domain": "Land"
+      },
+      "strategy": {}
+    }
+  ]
+}

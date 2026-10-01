@@ -1,0 +1,1095 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "improvement_airstrip",
+      "name": "Airstrip",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Military Engineer ability to construct an Airstrip. Can support 3 air units. Can only be built on flat terrain. -1 Appeal.",
+        "yieldChanges": {},
+        "prerequisite": "tech_flight",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_airstrip.webp"
+    },
+    {
+      "id": "improvement_barbarian_camp",
+      "name": "Barbarian Outpost",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Creates additional Barbarians.Gold Gold award if destroyed. -1 Appeal",
+        "yieldChanges": {},
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_barbarian_camp.webp"
+    },
+    {
+      "id": "improvement_ancient_tower_defense",
+      "name": "Barricade",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "An unworkable early Improvement that deals minor damage to, and exerts zone of control on, hostile units passing through or adjacent to it. Unlocked with Military Engineering and built using a Builder Charge. Does not prevent unit movement through this space.",
+        "yieldChanges": {},
+        "prerequisite": "tech_military_engineering",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_batey",
+      "name": "Batey",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Batey. +1 Culture Culture. +1 Culture Culture for every adjacent Bonus Resource and Entertainment Complex (increased to +2 Culture Culture when Exploration is discovered). Provides Tourism Tourism after researching Flight. Cannot be built adjacent to another Batey or on Hills.",
+        "yieldChanges": {
+          "culture": 1
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_mound",
+      "name": "Cahokia Mounds",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Cahokia Mounds. +3 Gold Gold. Cities receive +1 Amenities Amenity from their first Cahokia Mound improvement. Upon discovering Natural History, cities receive +1 Amenities Amenity from their second Cahokia Mound improvement. +1 Food Food for every 2 adjacent Districts once Feudalism is discovered or for every adjacent District once Replaceable Parts is researched. Provides +1 Housing Housing. Receive an additional Housing Housing once Cultural Heritage is discovered. Cannot be built adjacent to other Cahokia Mounds.",
+        "yieldChanges": {
+          "food": 0,
+          "gold": 3
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_mound.webp"
+    },
+    {
+      "id": "improvement_camp",
+      "name": "Camp",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct Camps. +2 Gold Gold. Can only be built on valid resources. If built on Luxury resources, the city will gain use of that resource.",
+        "yieldChanges": {
+          "gold": 2,
+          "food": 0,
+          "production": 0
+        },
+        "prerequisite": "tech_animal_husbandry",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_camp.webp"
+    },
+    {
+      "id": "improvement_chemamull",
+      "name": "Chemamull",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Chemamull, unique to Mapuche. +1 Production Production. Provides Culture Culture equal to 75% of the tile's Appeal. Additional Tourism Tourism after researching Flight. Minimum Appeal of Breathtaking.",
+        "yieldChanges": {
+          "production": 1
+        },
+        "prerequisite": "civic_craftsmanship",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_chemamull.webp"
+    },
+    {
+      "id": "improvement_chateau",
+      "name": "Château",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Château, unique to France. +2 Culture Culture and +1 Gold Gold. +1 Appeal. +1 Culture Culture for every adjacent wonder (becomes +2 after researching Flight). +2 Gold Gold if on a tile containing a River edge. Provides Tourism Tourism from Culture Culture after researching Flight. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Château.",
+        "yieldChanges": {
+          "culture": 2,
+          "gold": 1
+        },
+        "prerequisite": "civic_humanism",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_chateau.webp"
+    },
+    {
+      "id": "improvement_city_park",
+      "name": "City Park",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A Governor Governor unique improvement that can be built in a city with a Surveyor Governor with the Parks and Recreation promotion. Yields 2 Appeal and 1 Culture Culture. +1 Amenities Amenity if adjacent to water. +3 Culture Culture if in a city with a Surveyor Governor with the Parks and Recreation promotion. Cannot be adjacent to another City Park.",
+        "yieldChanges": {
+          "culture": 1
+        },
+        "prerequisite": "civic_games_recreation",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_city_park.webp"
+    },
+    {
+      "id": "improvement_colossal_head",
+      "name": "Colossal Head",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Colossal Head. +2 Faith Faith. +1 Faith Faith for every 2 adjacent Rainforest or for every adjacent Rainforest once Humanism is discovered. +1 Faith Faith for every 2 adjacent Woods or for every adjacent Woods once Humanism is discovered. Tourism Tourism from Faith Faith once Flight is researched. Cannot be built on Snow or Snow Hills.",
+        "yieldChanges": {
+          "faith": 2,
+          "culture": 0
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_colossal_head.webp"
+    },
+    {
+      "id": "improvement_corporation",
+      "name": "Corporation",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A corporation dedicated to a specific Luxury Resource. Allows cities to create Products, a new type of Great Work which grants powerful bonuses to your cities that house them. Can only be pillaged (never destroyed) by natural disasters.",
+        "yieldChanges": {
+          "food": 4,
+          "production": 10,
+          "gold": 3
+        },
+        "prerequisite": "tech_economics",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_farm",
+      "name": "Farm",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct Farms. +1 Food Food. Can only be built on Grassland or Plains. Constructing farms adjacent to other Farms provides bonuses to Housing.",
+        "yieldChanges": {
+          "food": 1,
+          "production": 0
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {
+        "summary": "Supports growth and later Farm adjacency patterns."
+      },
+      "image": "/civ6/assets/icons/improvement/improvement_farm.webp"
+    },
+    {
+      "id": "improvement_feitoria",
+      "name": "Feitoria",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Nau ability to construct a Feitoria, unique to Portugal. Provides +4 Gold Gold and +1 Production Production. Trade routes sent to this city from Portugal gain +4 Gold Gold and +1 Production Production. Can only be built adjacent to Luxury or Bonus resources in territory belonging to other Civilizations or City-States that you have Open Borders with. Must be built on a Coast or Lake tile adjacent to land and not adjacent to another Feitoria. Feitorias cannot be removed.",
+        "yieldChanges": {
+          "gold": 4,
+          "production": 1
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_fishery",
+      "name": "Fishery",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "A Governor Governor unique improvement that can be built in a city with a Surveyor Governor with the Aquaculture promotion. Yields 1 Food Food, +0.5 Housing Housing, +1 additional Food Food if adjacent to a sea resource. +1 Production Production if in a city with a Surveyor Governor with the Aquaculture promotion. Must be built on a coastal plot.",
+        "yieldChanges": {
+          "food": 1,
+          "production": 0
+        },
+        "prerequisite": "tech_sailing",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_fishery.webp"
+    },
+    {
+      "id": "improvement_fishing_boats",
+      "name": "Fishing Boats",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct Fishing Boats. +1 Food Food. Can only be built on valid resources. If built on Luxury resources, the city will gain use of that resource.",
+        "yieldChanges": {
+          "food": 1,
+          "gold": 0,
+          "production": 0
+        },
+        "prerequisite": "tech_sailing",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_fishing_boats.webp"
+    },
+    {
+      "id": "improvement_fort",
+      "name": "Fort",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "{LOC_IMPROVEMENT_FORT_DESCRIPTION} {LOC_DESCRIPTION_ADDENDUM_WEAK_TRAP}",
+        "yieldChanges": {},
+        "prerequisite": "tech_siege_tactics",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_fort.webp"
+    },
+    {
+      "id": "improvement_geothermal_plant",
+      "name": "Geothermal Plant",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Geothermal Plant. +1 Science Science. +2 Production Production. Provides 4 Power Power per turn. Must be built on a Geothermal Fissure.",
+        "yieldChanges": {
+          "production": 2,
+          "science": 1
+        },
+        "prerequisite": "tech_synthetic_materials",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_geothermal_plant.webp"
+    },
+    {
+      "id": "improvement_golf_course",
+      "name": "Golf Course",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Golf Course, unique to Scotland. +1 Amenities Amenity and +2 Gold Gold. +1 Culture Culture if adjacent to a City Center district and +1 Culture Culture if adjacent to an Entertainment Complex district. Additional Tourism Tourism and Housing Housing as you advance through the Civics and Technology Tree. Cannot be placed on Desert or Desert Hills. One per city. Tiles with Golf Courses cannot be swapped. +1 Appeal.",
+        "yieldChanges": {
+          "culture": 0,
+          "gold": 2
+        },
+        "prerequisite": "civic_reformed_church",
+        "buildable": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_golf_course.webp"
+    },
+    {
+      "id": "improvement_great_wall",
+      "name": "Great Wall",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct the Great Wall, unique to China. +2 Gold Gold. Provides an increase to Strength Defense. Bonus to Gold Gold if adjacent to other segments. Additional Culture Culture and Tourism Tourism as you advance through the Technology Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+        "yieldChanges": {
+          "gold": 2,
+          "culture": 0
+        },
+        "prerequisite": "tech_masonry",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_great_wall.webp"
+    },
+    {
+      "id": "improvement_hacienda",
+      "name": "Hacienda",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Hacienda, unique to Gran Colombia. +2 Gold Gold, +1 Production Production, and +0.5 Housing Housing. +1 Food Food for every two adjacent Plantations (increased to every Plantation with Replaceable Parts). Plantations and Haciendas receive +1 Production Production for every two adjacent Haciendas (increased to every Hacienda with Rapid Deployment). Can only be built on Plains, Plains Hills, Grassland, and Grassland Hills.",
+        "yieldChanges": {
+          "food": 0,
+          "gold": 2,
+          "production": 1
+        },
+        "prerequisite": "civic_mercantilism",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_ice_hockey_rink",
+      "name": "Ice Hockey Rink",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct an Ice Hockey Rink, unique to Canada. +1 Amenities Amenity. +1 Culture Culture for each adjacent Tundra, Tundra Hills, Snow, and Snow Hills tile. Provides Tourism Tourism from Culture once Flight is unlocked. +2 Food Food and Production Production once the Professional Sports civic is unlocked. +4 Culture Culture if adjacent to a Stadium building. Can be built on Tundra, Tundra Hills, Snow, and Snow Hills. One per city. +2 Appeal.",
+        "yieldChanges": {
+          "culture": 0,
+          "food": 0,
+          "production": 0
+        },
+        "prerequisite": "civic_colonialism",
+        "buildable": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_ice_hockey_rink.webp"
+    },
+    {
+      "id": "improvement_industry",
+      "name": "Industry",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "An industry dedicated to a specific Luxury Resource. Provides a unique benefit to its city, as well as +1 Greatmerchant Great Merchant point.",
+        "yieldChanges": {
+          "food": 2,
+          "production": 2,
+          "gold": 1
+        },
+        "prerequisite": "tech_currency",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_kampung",
+      "name": "Kampung",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Kampung, unique to Indonesia. +1 Production Production and +1 Housing Housing. +1 Food Food for each adjacent Fishing Boat. Additional Production Production, Housing Housing, and Tourism Tourism as you advance through the Technology and Civics Tree. Must be placed on a Coast or Lake tile adjacent to a sea resource.",
+        "yieldChanges": {
+          "food": 0,
+          "production": 1
+        },
+        "prerequisite": "tech_shipbuilding",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_kurgan",
+      "name": "Kurgan",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Kurgan, unique to Scythia. +1 Faith Faith and +3 Gold Gold. +1 Faith Faith for each adjacent Pasture (becomes +2 after researching Stirrups). Provides Tourism Tourism from Faith Faith after researching Flight. Cannot be built on Hills.",
+        "yieldChanges": {
+          "gold": 3,
+          "faith": 1
+        },
+        "prerequisite": "tech_animal_husbandry",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_kurgan.webp"
+    },
+    {
+      "id": "improvement_lumber_mill",
+      "name": "Lumber Mill",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Lumber Mill. +2 Production Production. Can only be built on Woods. Once Mercantilism is unlocked it can also be built on Rainforest.",
+        "yieldChanges": {
+          "production": 2
+        },
+        "prerequisite": "tech_construction",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_lumber_mill.webp"
+    },
+    {
+      "id": "improvement_mahavihara",
+      "name": "Mahavihara",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Mahavihara. +2 Science Science and +1 Housing Housing. +1 Faith Faith for every adjacent Holy Site district and +1 Science Science for every adjacent Campus district. After researching Scientific Theory receive an additional +1 Science Science for every adjacent Campus. When a player constructs their first Mahavihara receive a random technology. Must be built on flat terrain not adjacent to another Mahavihara.",
+        "yieldChanges": {
+          "science": 2,
+          "faith": 0
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_mekewap",
+      "name": "Mekewap",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Mekewap, unique to Cree. Provides +1 Production Production and +1 Housing Housing. +1 Gold Gold if adjacent to a Luxury resource. For every 2 adjacent Bonus Resources +1 Food Food. Additional Production Production, Gold Gold, Food Food, and Housing Housing as you advance through the Civics and Technology Tree. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Mekewap.",
+        "yieldChanges": {
+          "production": 1,
+          "food": 0,
+          "gold": 0
+        },
+        "prerequisite": "tech_pottery",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_mekewap.webp"
+    },
+    {
+      "id": "improvement_meteor_goody",
+      "name": "Meteor Site",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "yieldChanges": {},
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_mine",
+      "name": "Mine",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct Mines. +1 Production Production. -1 Appeal. Can be built on hills or valid resources. If built on Luxury or Strategic resources, the city will gain use of that resource.",
+        "yieldChanges": {
+          "production": 1,
+          "science": 0
+        },
+        "prerequisite": "tech_mining",
+        "buildable": true
+      },
+      "strategy": {
+        "summary": "A core Production improvement whose value grows through later technologies and policies."
+      },
+      "image": "/civ6/assets/icons/improvement/improvement_mine.webp"
+    },
+    {
+      "id": "improvement_missile_silo",
+      "name": "Missile Silo",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Military Engineer ability to construct a Missile Silo. Acts as a launch site for Nuclear and Thermonuclear Devices.",
+        "yieldChanges": {},
+        "prerequisite": "tech_rocketry",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_missile_silo.webp"
+    },
+    {
+      "id": "improvement_mission",
+      "name": "Mission",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Mission, unique to Spain. +2 Faith Faith. +2 Faith Faith, +1 Production Production, and +1 Food Food if on a different continent than your Capital Capital. +1 Science Science for every adjacent Campus and Holy Site district. Additional Science Science once Cultural Heritage is discovered. +2 Loyalty per turn for cities with a Mission improvement adjacent to the City Center and not on your original Capital Capital's continent.",
+        "yieldChanges": {
+          "faith": 2,
+          "science": 0,
+          "food": 0,
+          "production": 0
+        },
+        "prerequisite": "tech_education",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_mission.webp"
+    },
+    {
+      "id": "improvement_moai",
+      "name": "Moai",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Moai. +1 Culture Culture. +1 Culture Culture for every 2 adjacent Moai. +2 Culture Culture if on or adjacent to a Volcanic Soil tile. +1 Culture Culture if adjacent to a Coast or Lake tile . Additional Culture Culture and Tourism Tourism as you advance through the Civics and Technology Tree. Can be built on Plains, Plains Hills, Grassland, Grassland Hills, or Volcanic Soil. Cannot be placed adjacent to a Woods or Rainforest tile.",
+        "yieldChanges": {
+          "culture": 1
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_moai.webp"
+    },
+    {
+      "id": "improvement_modern_trap_defense",
+      "name": "Modernized Trap",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "An unworkable later Improvement that deals significant damage to, and depletes the movement of, hostile units passing directly through it. Unlocked with Ballistics and built using a Charge from a Military Engineer. Does not prevent unit movement through this space.",
+        "yieldChanges": {},
+        "prerequisite": "tech_ballistics",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_mountain_tunnel",
+      "name": "Mountain Tunnel",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Military Engineer ability to construct a Mountain Tunnel. Acts as a movement portal on a mountain range, allowing units to move into it and exit from another portal at the cost of 2 Movement Movement. Traderoute Trade Routes traveling through it can multiply the Gold Gold they get from districts at their destination. Can only be built on an adjacent Mountain tile. Cannot be pillaged or removed.",
+        "yieldChanges": {},
+        "prerequisite": "tech_chemistry",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_mountain_tunnel.webp"
+    },
+    {
+      "id": "improvement_nazca_line",
+      "name": "Nazca Line",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Nazca Line. +1 Faith Faith to adjacent tiles. +1 Faith Faith to adjacent tiles with a resource. +1 Food Food to adjacent Desert and Desert Hill tiles after discovering Civil Service. +1 Production Production to adjacent flat tiles after researching Mass Production. +1 Appeal. Can only be built on flat Desert. This tile cannot be worked .",
+        "yieldChanges": {},
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_nazca_line.webp"
+    },
+    {
+      "id": "improvement_pyramid",
+      "name": "Nubian Pyramid",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Improvement that unlocks with Masonry and must be built on Desert, Desert Hills or Floodplains. +2 Faith Faith and +2 Food Food. Receives additional yields from adjacent districts. +1 Food Food if adjacent to a city center. For all other districts that award adjacency bonuses: +1 of the appropriate yield if that district is adjacent.",
+        "yieldChanges": {
+          "faith": 2,
+          "food": 2,
+          "science": 0,
+          "culture": 0,
+          "production": 0,
+          "gold": 0
+        },
+        "prerequisite": "tech_masonry",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_offshore_oil_rig",
+      "name": "Offshore Oil Rig",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct an Offshore Oil Rig. -1 Appeal. Can only be built on Coast or Lake tiles with Resource Oil Oil.",
+        "yieldChanges": {
+          "production": 2
+        },
+        "prerequisite": "tech_plastics",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_offshore_oil_rig.webp"
+    },
+    {
+      "id": "improvement_offshore_wind_farm",
+      "name": "Offshore Wind Farm",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct an Offshore Wind Farm. +2 Production Production. Provides 2 Power Power per turn. Must be built on Coast or Lake terrain.",
+        "yieldChanges": {
+          "production": 2
+        },
+        "prerequisite": "tech_predictive_systems",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_offshore_wind_farm.webp"
+    },
+    {
+      "id": "improvement_oil_well",
+      "name": "Oil Well",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct an Oil Well. -1 Appeal. Can only be built on land tiles withResource Oil Oil.",
+        "yieldChanges": {
+          "production": 2
+        },
+        "prerequisite": "tech_refining",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_oil_well.webp"
+    },
+    {
+      "id": "improvement_open_air_museum",
+      "name": "Open-Air Museum",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct an Open-Air Museum, unique to Sweden. Provides +2 Loyalty per turn in this city. +2 Culture Culture and +2 Tourism Tourism for each type of terrain (Snow, Tundra, Desert, Plains or Grassland) in which at least one Swedish city is founded. One per city. Tiles with Open-Air Museums cannot be swapped.",
+        "yieldChanges": {},
+        "prerequisite": "civic_nationalism",
+        "buildable": false
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_open_air_museum.webp"
+    },
+    {
+      "id": "improvement_outback_station",
+      "name": "Outback Station",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct an Outback Station, unique to Australia. +1 Food Food and +1 Production Production. +1 Food Food for each adjacent Pasture. Additional Food Food and Production Production as you advance through the Technology and Civic Tree for adjacent Outback Stations and Pastures. Can only be built in Desert, Desert Hills, Grassland, and Plains tiles.",
+        "yieldChanges": {
+          "production": 1,
+          "food": 1
+        },
+        "prerequisite": "civic_guilds",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_pairidaeza",
+      "name": "Pairidaeza",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Pairidaeza, unique to Persia. +1 Culture Culture and +2 Gold Gold. +1 Appeal. +1 Culture Culture for each adjacent Holy Site and Theater Square. +1 Gold Gold for each adjacent Commercial Hub and City Center. Additional Culture Culture and Tourism Tourism as you advance through the Technology and Civics Tree. Cannot be built on Snow, Tundra, Snow Hills, or Tundra Hills or adjacent to another Pairidaeza.",
+        "yieldChanges": {
+          "culture": 1,
+          "gold": 2
+        },
+        "prerequisite": "civic_early_empire",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_pasture",
+      "name": "Pasture",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct Pastures. +1 Production Production. Can only be built on valid resources. If built on Strategic resources, the city will gain use of that resource.",
+        "yieldChanges": {
+          "food": 0,
+          "production": 1
+        },
+        "prerequisite": "tech_animal_husbandry",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_pasture.webp"
+    },
+    {
+      "id": "improvement_plantation",
+      "name": "Plantation",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct Plantations. +2 Gold Gold. Can only be built on valid resources. If built on Luxury resources, the city will gain use of that resource.",
+        "yieldChanges": {
+          "food": 0,
+          "gold": 2,
+          "production": 0
+        },
+        "prerequisite": "tech_irrigation",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_plantation.webp"
+    },
+    {
+      "id": "improvement_polder",
+      "name": "Polder",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Polder, unique to Netherlands. +1 Food Food, +1 Production Production, and +0.5 Housing Housing. +1 Food Food if adjacent to a Polder improvement. Additional Production Production, Gold Gold, and Food Food as you advance through the Civics and Technology Tree. Must be placed on a Coast or Lake tile adjacent to 3 or more passable land tiles. Increases Movement Movement Cost of tile to 3.",
+        "yieldChanges": {
+          "food": 1,
+          "gold": 0,
+          "production": 1
+        },
+        "prerequisite": "civic_guilds",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_polder.webp"
+    },
+    {
+      "id": "improvement_maori_pa",
+      "name": "Pā",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "{LOC_IMPROVEMENT_MAORI_PA_DESCRIPTION} {LOC_DESCRIPTION_ADDENDUM_WEAK_TRAP}",
+        "yieldChanges": {},
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_maori_pa.webp"
+    },
+    {
+      "id": "improvement_mountain_road",
+      "name": "Qhapaq Ñan",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Qhapaq Ñan, unique to Pachacuti. Acts as a movement portal on a mountain range, allowing units to move into it and exit from another portal at the cost of 2 Movement Movement. Traderoute Trade Routes traveling through it can multiply the Gold Gold they get from districts at their destination. Can only be built on an adjacent Mountain tile. Cannot be pillaged or removed.",
+        "yieldChanges": {},
+        "prerequisite": "civic_foreign_trade",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_mountain_road.webp"
+    },
+    {
+      "id": "improvement_quarry",
+      "name": "Quarry",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct Quarries. +1 Production Production. -1 Appeal. Can only be built on valid resources. If built on a Luxury resource, the city will gain use of that resource.",
+        "yieldChanges": {
+          "gold": 0,
+          "production": 1
+        },
+        "prerequisite": "tech_mining",
+        "buildable": true
+      },
+      "strategy": {
+        "summary": "Provides sustained Production and can support Industrial Zone planning."
+      },
+      "image": "/civ6/assets/icons/improvement/improvement_quarry.webp"
+    },
+    {
+      "id": "improvement_modern_tower_defense",
+      "name": "Reinforced Barricade",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "An unworkable later Improvement that deals moderate damage to, and exerts zone of control on, hostile units passing through or adjacent to it. Unlocked with Rifling and built using a Charge from a Military Engineer. Does not prevent unit movement through this space.",
+        "yieldChanges": {},
+        "prerequisite": "tech_rifling",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_rock_hewn_church",
+      "name": "Rock-Hewn Church",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Rock-Hewn Church, unique to Ethiopia. +1 Faith Faith. +1 Faith Faith for every adjacent Mountain and Hills tile. Provides Tourism Tourism from Faith Faith, after researching Flight. +1 Appeal. Can only be pillaged (never destroyed) by natural disasters. Can only be built on Hills or Volcanic Soil not adjacent to another Rock-Hewn Church.",
+        "yieldChanges": {
+          "faith": 1
+        },
+        "prerequisite": "civic_drama_poetry",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_roman_fort",
+      "name": "Roman Fort",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "{LOC_IMPROVEMENT_ROMAN_FORT_DESCRIPTION} {LOC_DESCRIPTION_ADDENDUM_WEAK_TRAP}",
+        "yieldChanges": {},
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_roman_fort.webp"
+    },
+    {
+      "id": "improvement_beach_resort",
+      "name": "Seaside Resort",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct Seaside Resorts. Provides Tourism Tourism equal to the tile's Appeal. Can only be built on Coastal Desert, Coastal Plains, or Coastal Grassland tiles. Minimum Appeal of Breathtaking.",
+        "yieldChanges": {},
+        "prerequisite": "tech_radio",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_beach_resort.webp"
+    },
+    {
+      "id": "improvement_seastead",
+      "name": "Seastead",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Seastead. +2 Food Food. +1 Production Production for each adjacent Fishing Boats. Fishing Boats receive +1 Production Production for each adjacent Seastead. +1 Culture Culture and Tourism Tourism for every adjacent Reef. +2 Housing Housing. Must be built on Coast, Lake or Ocean terrain. Cannot be placed adjacent to another Seastead.",
+        "yieldChanges": {
+          "culture": 0,
+          "food": 2,
+          "production": 0
+        },
+        "prerequisite": "tech_seasteads",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_seastead.webp"
+    },
+    {
+      "id": "improvement_ski_resort",
+      "name": "Ski Resort",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Ski Resort. Provides +4 Tourism Tourism. Provides an Amenities Amenity. Can only be built on a Mountain. Cannot be built adjacent to another Ski Resort. Cannot be pillaged, worked or removed.",
+        "yieldChanges": {},
+        "prerequisite": "civic_professional_sports",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_ski_resort.webp"
+    },
+    {
+      "id": "improvement_solar_farm",
+      "name": "Solar Farm",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Solar Farm. +1 Gold Gold. +1 Production Production. Provides 2 Power Power per turn. Must be built on flat terrain. Cannot be built on Snow.",
+        "yieldChanges": {
+          "gold": 1,
+          "production": 1
+        },
+        "prerequisite": "tech_satellites",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_solar_farm.webp"
+    },
+    {
+      "id": "improvement_sphinx",
+      "name": "Sphinx",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Sphinx, unique to Egypt. +1 Faith Faith and +1 Culture Culture. +2 Appeal. +2 Faith Faith if next to a wonder. +1 Culture Culture if built on Floodplains. Additional Culture Culture once Natural History is discovered. Provides Tourism Tourism after researching Flight. Cannot be built next to another Sphinx. Cannot be built on Snow or Snow Hills.",
+        "yieldChanges": {
+          "culture": 1,
+          "faith": 1
+        },
+        "prerequisite": "civic_craftsmanship",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_sphinx.webp"
+    },
+    {
+      "id": "improvement_stepwell",
+      "name": "Stepwell",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Stepwell, unique to India. +1 Food Food and +1 Housing Housing. +1 Faith Faith if adjacent to a Holy Site district. +1 Food Food if adjacent to a Farm. Additional Housing Housing, Faith Faith, and Food Food as you advance through the Technology and Civics Tree. Prevents Food Food loss during Drought. Cannot be built on Hills or adjacent to another Stepwell.",
+        "yieldChanges": {
+          "food": 1,
+          "faith": 0
+        },
+        "prerequisite": "tech_irrigation",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_stepwell.webp"
+    },
+    {
+      "id": "improvement_terrace_farm",
+      "name": "Terrace Farm",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Terrace Farm, unique to the Inca. +1 Food Food. Provides +1 Housing Housing. +1 Food Food for each adjacent Mountain Tile. Gain +2 Production Production for each adjacent Aqueduct district. Receive +1 Production Production if adjacent to Fresh Water and not an Aqueduct district. Additional Food Food as you advance through the Civics and Technology Tree for adjacency with other Terrace Farms. Can be placed on Grassland Hills, Plains Hills, and Desert Hills.",
+        "yieldChanges": {
+          "food": 1,
+          "production": 0
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_terrace_farm.webp"
+    },
+    {
+      "id": "improvement_trading_dome",
+      "name": "Trading Dome",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Trading Dome. +2 Gold Gold. +1 Gold Gold for every adjacent Luxury resource. Your outgoing international Traderoute Trade Routes grant +1 Gold Gold per Trading Dome at the origin. Cannot be built next to another Trading Dome.",
+        "yieldChanges": {
+          "gold": 2
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_ancient_trap_defense",
+      "name": "Trap",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "An unworkable early Improvement that deals moderate damage to, and depletes the movement of, hostile units passing directly through it. Unlocked with Construction and built using a Builder Charge. Does not prevent unit movement through this space.",
+        "yieldChanges": {},
+        "prerequisite": "tech_construction",
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_goody_hut",
+      "name": "Tribal Village",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "yieldChanges": {},
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_goody_hut.webp"
+    },
+    {
+      "id": "improvement_vampire_castle",
+      "name": "Vampire Castle",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "{LOC_IMPROVEMENT_VAMPIRE_CASTLE_DESCRIPTION} {LOC_DESCRIPTION_ADDENDUM_WEAK_TRAP}",
+        "yieldChanges": {},
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {}
+    },
+    {
+      "id": "improvement_wind_farm",
+      "name": "Wind Farm",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Wind Farm. +2 Gold Gold. +1 Production Production. Provides 2 Power Power per turn. Must be built on Hills terrain.",
+        "yieldChanges": {
+          "gold": 2,
+          "production": 1
+        },
+        "prerequisite": "tech_composites",
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_wind_farm.webp"
+    },
+    {
+      "id": "improvement_ziggurat",
+      "name": "Ziggurat",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Unlocks the Builder ability to construct a Ziggurat, unique to Sumeria. +2 Science Science. +1 Culture Culture if next to River. Cannot be built on Hills but may be built on Floodplains.",
+        "yieldChanges": {
+          "culture": 0,
+          "science": 2
+        },
+        "prerequisite": null,
+        "buildable": true
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/improvement/improvement_ziggurat.webp"
+    }
+  ]
+}

@@ -1,0 +1,1254 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "leader_abraham_lincoln",
+      "name": "Abraham Lincoln",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Emancipation Proclamation",
+        "ability": "Industrial Zones give +2 Amenities Amenities and +3 Loyalty per turn but your Plantations give -2 Loyalty per turn. Receive a free Melee unit after constructing Industrial Zones and their buildings. The free unit does not require resources when created or to maintain and receives +5 Strength Combat Strength.",
+        "civilizations": [
+          "civilization_america"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_abraham_lincoln.webp"
+    },
+    {
+      "id": "leader_alexander",
+      "name": "Alexander",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "To World's End",
+        "ability": "Cities do not incur war weariness. All military units heal completely when this player captures a city with a world wonder.",
+        "civilizations": [
+          "civilization_macedon"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_alexander.webp"
+    },
+    {
+      "id": "leader_amanitore",
+      "name": "Amanitore",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Kandake of Meroë",
+        "ability": "+20% Production Production towards all districts rising to +40% if there is a Nubian Pyramid adjacent to the City Center.",
+        "civilizations": [
+          "civilization_nubia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_amanitore.webp"
+    },
+    {
+      "id": "leader_ambiorix",
+      "name": "Ambiorix",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "King of the Eburones",
+        "ability": "Your civilization gains Culture Culture equal to 20% of the unit’s cost when a non-civilian is trained. Melee, Anti-Cavalry, and Ranged Units receive +2 Strength Combat Strength for every adjacent unit.",
+        "civilizations": [
+          "civilization_gaul"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_ambiorix.webp"
+    },
+    {
+      "id": "leader_basil",
+      "name": "Basil II",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Porphyrogénnētos",
+        "ability": "Heavy and Light Cavalry units do full damage against cities following the same religion as Byzantium. Gain the Tagma unique unit when the Divine Right civic is discovered.",
+        "civilizations": [
+          "civilization_byzantium"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_basil.webp"
+    },
+    {
+      "id": "leader_lady_trieu",
+      "name": "Bà Triệu",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Drive Out The Aggressors",
+        "ability": "+5 Strength Combat Strength for units fighting in Rainforest, Marsh, or Woods tiles. +1 Movement Movement if they begin their turn there. Both these bonuses are doubled if the tile is your territory.",
+        "civilizations": [
+          "civilization_vietnam"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_lady_trieu.webp"
+    },
+    {
+      "id": "leader_catherine_de_medici",
+      "name": "Catherine de Medici (Black Queen)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Catherine's Flying Squadron",
+        "ability": "Has 1 level of Vislimited Diplomatic Visibility greater than normal with every civilization that she's met. Receives a free Spy (and extra spy capacity) with the Castles technology. All spies start as Agents with a free promotion.",
+        "civilizations": [
+          "civilization_france"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_catherine_de_medici.webp"
+    },
+    {
+      "id": "leader_catherine_de_medici_alt",
+      "name": "Catherine de Medici (Magnificence)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Catherine’s Magnificences",
+        "ability": "Improved Luxury resources adjacent to Theater Square districts or Châteaux receive +2 Culture Culture. May initiate the Court Festival project in any city with a Theater Square district.",
+        "civilizations": [
+          "civilization_france"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_catherine_de_medici_alt.webp"
+    },
+    {
+      "id": "leader_chandragupta",
+      "name": "Chandragupta",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Arthashastra",
+        "ability": "Can declare a War of Territorial Expansion after gaining the Military Training Civic. +2 Movement Movement and +5 Strength Combat Strength for the first 10 turns after declaring a War of Territorial Expansion.",
+        "civilizations": [
+          "civilization_india"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_chandragupta.webp"
+    },
+    {
+      "id": "leader_cleopatra",
+      "name": "Cleopatra (Egyptian)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Mediterranean's Bride",
+        "ability": "Your Traderoute Trade Routes to other civilizations provide +4 Gold Gold for Egypt. Other civilizations' Traderoute Trade Routes to Egypt provide +2 Food Food for them and +2 Gold Gold for Egypt. Trading with Allies earns twice as many bonus Alliance Points.",
+        "civilizations": [
+          "civilization_egypt"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_cleopatra.webp"
+    },
+    {
+      "id": "leader_cleopatra_alt",
+      "name": "Cleopatra (Ptolemaic)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Arrival of Hapi",
+        "ability": "Resources along Floodplains receive +1 Food Food and +1 Culture Culture. Owned Floodplains tiles grant +1 Appeal to adjacent tiles instead of usual -1.",
+        "civilizations": [
+          "civilization_egypt"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_cleopatra_alt.webp"
+    },
+    {
+      "id": "leader_cyrus",
+      "name": "Cyrus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Fall of Babylon",
+        "ability": "+2 Movement Movement for the first 10 turns after declaring a Surprise War on a major civilization. +5 Loyalty per turn in occupied cities with a garrisoned unit. Declaring a Surprise War only counts as a Formal War for the purpose of warmongering and war weariness.",
+        "civilizations": [
+          "civilization_persia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_cyrus.webp"
+    },
+    {
+      "id": "leader_dido",
+      "name": "Dido",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Founder of Carthage",
+        "ability": "Can move their original Capital Capital to any city with a Cothon they founded by completing a unique project in that city. +1 Traderoute Trade Route capacity for each Government Plaza building and the Government Plaza district. +50% Production Production toward districts in the city with the Government Plaza.",
+        "civilizations": [
+          "civilization_phoenicia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_dido.webp"
+    },
+    {
+      "id": "leader_eleanor_england",
+      "name": "Eleanor of Aquitaine (England)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Court of Love",
+        "ability": "Great Works in Eleanor’s cities each cause -1 Loyalty per turn in foreign cities within 9 tiles. A city that leaves another civilization due to a loss of Loyalty and is currently receiving the most Loyalty per turn from Eleanor's civilization skips the Free City step to join this civilization.",
+        "civilizations": [
+          "civilization_england"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_eleanor_england.webp"
+    },
+    {
+      "id": "leader_eleanor_france",
+      "name": "Eleanor of Aquitaine (France)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Court of Love",
+        "ability": "Great Works in Eleanor’s cities each cause -1 Loyalty per turn in foreign cities within 9 tiles. A city that leaves another civilization due to a loss of Loyalty and is currently receiving the most Loyalty per turn from Eleanor's civilization skips the Free City step to join this civilization.",
+        "civilizations": [
+          "civilization_france"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_eleanor_france.webp"
+    },
+    {
+      "id": "leader_elizabeth",
+      "name": "Elizabeth I",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Drake's Legacy",
+        "ability": "England's Traderoute Trade Route Capacity is increased by 2 after acquiring your first Greatadmiral Great Admiral. Traderoute Trade Routes to any city-state provide +3 Gold Gold for every specialty district in the origin city. +100% Yields from Plundering Traderoute Trade Routes with Naval Units.",
+        "civilizations": [
+          "civilization_england"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_elizabeth.webp"
+    },
+    {
+      "id": "leader_barbarossa",
+      "name": "Frederick Barbarossa",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Holy Roman Emperor",
+        "ability": "Additional Military policy slot. +7 Strength Combat Strength when attacking city-states.",
+        "civilizations": [
+          "civilization_germany"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_barbarossa.webp"
+    },
+    {
+      "id": "leader_free_cities",
+      "name": "Free Cities Leader",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": []
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_free_cities.webp"
+    },
+    {
+      "id": "leader_gandhi",
+      "name": "Gandhi",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Satyagraha",
+        "ability": "+5 Faith Faith for each civilization (including India) they have met that has founded a Religion and is not currently at war. Opposing civilizations receive double the war weariness for fighting against Gandhi.",
+        "civilizations": [
+          "civilization_india"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_gandhi.webp"
+    },
+    {
+      "id": "leader_genghis_khan",
+      "name": "Genghis Khan",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Mongol Horde",
+        "ability": "All cavalry class units gain +3 Strength Combat Strength and a chance to capture defeated enemy cavalry class units.",
+        "civilizations": [
+          "civilization_mongolia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_genghis_khan.webp"
+    },
+    {
+      "id": "leader_gilgamesh",
+      "name": "Gilgamesh",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_sumeria"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_gilgamesh.webp"
+    },
+    {
+      "id": "leader_gitarja",
+      "name": "Gitarja",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Exalted Goddess of the Three Worlds",
+        "ability": "Naval units can be purchased with Faith Faith. Religious units pay no movement to embark or disembark. +2Faith Faith to City Centers that are adjacent to Coast or Lake tiles.",
+        "civilizations": [
+          "civilization_indonesia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_gitarja.webp"
+    },
+    {
+      "id": "leader_gorgo",
+      "name": "Gorgo",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Thermopylae",
+        "ability": "Combat victories provide Culture Culture equal to 50% of the Strength Combat Strength of the defeated unit. (on Standard Speed) +1 Strength Combat Strength for every Military Policy slotted.",
+        "civilizations": [
+          "civilization_greece"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_gorgo.webp"
+    },
+    {
+      "id": "leader_hammurabi",
+      "name": "Hammurabi",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Ninu Ilu Sirum",
+        "ability": "When each specialty district type except the Government Plaza is constructed for the first time receive the lowest Production Production cost building that can currently be constructed in that district. Receive an Envoy Envoy when any other district is constructed for the first time.",
+        "civilizations": [
+          "civilization_babylon_stk"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_hammurabi.webp"
+    },
+    {
+      "id": "leader_hardrada",
+      "name": "Harald Hardrada (Konge)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Thunderbolt of the North",
+        "ability": "Allows coastal raiding for all naval melee units and +50% Production Production toward all naval melee units. Receive Science Science from pillaging and coastal raiding Mines in addition to Gold Gold. Pillaging or coastal raiding Quarries, Pastures, Plantations, and Camps provide Culture Culture in addition to Faith Faith. Gain the Viking Longship unique unit with Sailing.",
+        "civilizations": [
+          "civilization_norway"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_hardrada.webp"
+    },
+    {
+      "id": "leader_harald_alt",
+      "name": "Harald Hardrada (Varangian)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Varangian Guard",
+        "ability": "All units pay 2 less Gold Gold maintenance. 75% Discount on Levying units and levied units receive Culture Culture, Faith Faith and Science Science from kills equal to 50% of the opponents' Strength Combat Strength. +1 Influence Points per turn from the Stave Church.",
+        "civilizations": [
+          "civilization_norway"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_harald_alt.webp"
+    },
+    {
+      "id": "leader_hojo",
+      "name": "Hojo Tokimune",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Divine Wind",
+        "ability": "Land units receive +5 Strength Combat Strength in land tiles adjacent to Coast; naval units receive +5 Strength Combat Strength in shallow water tiles. Builds Encampment, Holy Site and Theater Square districts in half the time. Units do not receive damage from Hurricanes. Civilizations that are at war with Japan receive +100% unit damage from Hurricanes in Japanese territory.",
+        "civilizations": [
+          "civilization_japan"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_hojo.webp"
+    },
+    {
+      "id": "leader_jadwiga",
+      "name": "Jadwiga",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_poland"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_jadwiga.webp"
+    },
+    {
+      "id": "leader_jayavarman",
+      "name": "Jayavarman VII",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Monasteries of the King",
+        "ability": "Holy Sites are granted a Major adjacency with Rivers, a Culture Bomb, Food Food equal to its adjacency bonus, and +2 Housing Housing if on a River.",
+        "civilizations": [
+          "civilization_khmer"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_jayavarman.webp"
+    },
+    {
+      "id": "leader_john_curtin",
+      "name": "John Curtin",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Citadel of Civilization",
+        "ability": "+100% Production Production if they have either received a declaration of war or liberated a city in the past 10 turns.",
+        "civilizations": [
+          "civilization_australia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_john_curtin.webp"
+    },
+    {
+      "id": "leader_joao_iii",
+      "name": "João III",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Porta do Cerco",
+        "ability": "All units receive +1 sight. +1 Traderoute Trade Route capacity when a civilization is met. Open Borders with all city-states.",
+        "civilizations": [
+          "civilization_portugal"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_joao_iii.webp"
+    },
+    {
+      "id": "leader_julius_caesar",
+      "name": "Julius Caesar",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Veni, Vidi, Vici",
+        "ability": "+300 Gold Gold whenever you conquer a city for the first time or when you earn Gold Gold from a Barbarian Outpost. The Gold Gold becomes 500 after researching Metal Casting and 700 after Steel (on Standard Speed). When targeting Barbarians receive +5 Strength Combat Strength and always earn normal XP.",
+        "civilizations": [
+          "civilization_rome"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_julius_caesar.webp"
+    },
+    {
+      "id": "leader_kristina",
+      "name": "Kristina",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Queen's Bibliotheque",
+        "ability": null,
+        "civilizations": [
+          "civilization_sweden"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_kristina.webp"
+    },
+    {
+      "id": "leader_kublai_khan_china",
+      "name": "Kublai Khan (China)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Gerege",
+        "ability": "One extra Economic policy slot in any government. Receive a random Techboosted Eureka and Civicboosted Inspiration when establishing a Tradingpost Trading Post in another Civilization's city for the first time.",
+        "civilizations": [
+          "civilization_china"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_kublai_khan_china.webp"
+    },
+    {
+      "id": "leader_kublai_khan_mongolia",
+      "name": "Kublai Khan (Mongolia)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Gerege",
+        "ability": "One extra Economic policy slot in any government. Receive a random Techboosted Eureka and Civicboosted Inspiration when establishing a Tradingpost Trading Post in another Civilization's city for the first time.",
+        "civilizations": [
+          "civilization_mongolia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_kublai_khan_mongolia.webp"
+    },
+    {
+      "id": "leader_kupe",
+      "name": "Kupe",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Kupe's Voyage",
+        "ability": "Begin the game in an Ocean tile. Gain a free Builder and +1 Citizen Population when settling your first city. The Palace receives +3 Housing Housing and +1 Amenities Amenity. +2 Science Science and +2 Culture Culture per turn before you settle your first city.",
+        "civilizations": [
+          "civilization_maori"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_kupe.webp"
+    },
+    {
+      "id": "leader_lady_six_sky",
+      "name": "Lady Six Sky",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Ix Mutal Ajaw",
+        "ability": "Non capital cities within 6 tiles of the Capital Capital gain +10% to all yields and when founded receive a builder. Other non capital cities receive -15% to all yields. +5 Strength Combat Strength to units within 6 tiles of the Capital Capital.",
+        "civilizations": [
+          "civilization_maya"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_lady_six_sky.webp"
+    },
+    {
+      "id": "leader_lautaro",
+      "name": "Lautaro",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Swift Hawk",
+        "ability": "+10 Strength Combat Strength when fighting Free Cities or civilizations that are in a Golden or Heroic Age. Defeating an enemy unit within the borders of an enemy city causes that city to lose 20 Loyalty and 40 loyalty if that civilization is in a Golden or Heroic Age.",
+        "civilizations": [
+          "civilization_mapuche"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_lautaro.webp"
+    },
+    {
+      "id": "leader_ludwig",
+      "name": "Ludwig II",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Swan King",
+        "ability": "Wonders, even if not finished, receive +2 Culture Culture for every adjacent District. This CultureCulture is displayed in the City Yields. All Culture Culture adjacencies provide Tourism Tourism after discovering Castles.",
+        "civilizations": [
+          "civilization_germany"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_ludwig.webp"
+    },
+    {
+      "id": "leader_mansa_musa",
+      "name": "Mansa Musa",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Sahel Merchants",
+        "ability": "International Traderoute Trade Routes gain +1 Gold Gold for every flat Desert tile in the origin city. Receive +1 Traderoute Trade Capacity every time you enter a Golden Age.",
+        "civilizations": [
+          "civilization_mali"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_mansa_musa.webp"
+    },
+    {
+      "id": "leader_matthias_corvinus",
+      "name": "Matthias Corvinus",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Raven King",
+        "ability": "Levied units gain an ability giving them +2 Movement Movement and +5 Strength Combat Strength. It costs 75% less Gold Gold and resources to upgrade Levied units. If you Levy troops from a City-State receive 2 Envoy Envoys with that City-State. Gain the Black Army unique unit when the Castles technology is researched.",
+        "civilizations": [
+          "civilization_hungary"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_matthias_corvinus.webp"
+    },
+    {
+      "id": "leader_menelik",
+      "name": "Menelik II",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Council of Ministers",
+        "ability": "Receive Science Science and Culture Culture equal to 15% of your Faith Faith generation in cities founded on Hills. Units receive +4 Strength Combat Strength on Hills.",
+        "civilizations": [
+          "civilization_ethiopia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_menelik.webp"
+    },
+    {
+      "id": "leader_montezuma",
+      "name": "Montezuma",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Gifts for the Tlatoani",
+        "ability": "Luxury resources in his territory provide an Amenities Amenity to 2 extra cities. Military units receive +1 Strength Combat Strength when attacking for each different Luxury resource improved in Aztec lands.",
+        "civilizations": [
+          "civilization_aztec"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_montezuma.webp"
+    },
+    {
+      "id": "leader_mvemba",
+      "name": "Mvemba a Nzinga",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Religious Convert",
+        "ability": "May not build Holy Site districts, gain Great Prophets, or found Religions. Gains all Beliefs of any Religion that has established itself in a majority of his cities. Receives an Apostle each time he finishes a M'banza or Theater Square district (of that city's majority Religion).",
+        "civilizations": [
+          "civilization_kongo"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_mvemba.webp"
+    },
+    {
+      "id": "leader_nader_shah",
+      "name": "Nader Shah",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Sword of Persia",
+        "ability": "+5 Strength Combat Strength when attacking full Health Units. Cities not founded by Nader Shah receive +2 Faith Faith and +3 Gold Gold on Domestic Traderoute Trade Routes.",
+        "civilizations": [
+          "civilization_persia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_nader_shah.webp"
+    },
+    {
+      "id": "leader_nzinga_mbande",
+      "name": "Nzinga Mbande",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Queen of Ndongo and Matamba",
+        "ability": "Cities receive +10% Yields if on the same continent as your Capital Capital (Including your Capital Capital), -15% if on another continent.",
+        "civilizations": [
+          "civilization_kongo"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_nzinga_mbande.webp"
+    },
+    {
+      "id": "leader_pachacuti",
+      "name": "Pachacuti",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Qhapaq Ñan",
+        "ability": null,
+        "civilizations": [
+          "civilization_inca"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_pachacuti.webp"
+    },
+    {
+      "id": "leader_pedro",
+      "name": "Pedro II",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Magnanimous",
+        "ability": "After recruiting or patronizing a Greatperson Great Person, 20% of its Greatperson Great Person point cost is refunded.",
+        "civilizations": [
+          "civilization_brazil"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_pedro.webp"
+    },
+    {
+      "id": "leader_pericles",
+      "name": "Pericles",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Surrounded by Glory",
+        "ability": "+5% Culture Culture per city-state you are the Suzerain of.",
+        "civilizations": [
+          "civilization_greece"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_pericles.webp"
+    },
+    {
+      "id": "leader_peter_great",
+      "name": "Peter",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "The Grand Embassy",
+        "ability": "Receives Science Science or Culture Culture from Traderoute Trade Routes to civilizations that are more advanced than Russia. +1 per 3 technologies or civics ahead.",
+        "civilizations": [
+          "civilization_russia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_peter_great.webp"
+    },
+    {
+      "id": "leader_philip_ii",
+      "name": "Philip II",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_spain"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_philip_ii.webp"
+    },
+    {
+      "id": "leader_poundmaker",
+      "name": "Poundmaker",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Favorable Terms",
+        "ability": "All Alliance types provide Shared Visibility. Your outgoing Traderoute Trade Routes grant +1 Food Food to Poundmaker per Camp or Pasture at the destination. Traderoute Trade Routes sent to your cities grant +1 Gold Gold to Poundmaker per Camp or Pasture at the destination.",
+        "civilizations": [
+          "civilization_cree"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_poundmaker.webp"
+    },
+    {
+      "id": "leader_qin",
+      "name": "Qin (Mandate of Heaven)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "The First Emperor",
+        "ability": "When building Ancient and Classical wonders you may spend Builder charges to complete 15% of the original wonder cost. Builders receive an additional charge. Canals are unlocked with the Masonry technology.",
+        "civilizations": [
+          "civilization_china"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_qin.webp"
+    },
+    {
+      "id": "leader_qin_alt",
+      "name": "Qin (Unifier)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Thirty-Six Stratagems",
+        "ability": "Melee units receive the Convert Barbarians action. This action converts Barbarian units into your units, but it removes the melee unit.",
+        "civilizations": [
+          "civilization_china"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_qin_alt.webp"
+    },
+    {
+      "id": "leader_ramses",
+      "name": "Ramses II",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_egypt"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_ramses.webp"
+    },
+    {
+      "id": "leader_robert_the_bruce",
+      "name": "Robert the Bruce",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Bannockburn",
+        "ability": "Can declare a War of Liberation after gaining the Defensive Tactics Civic. +100% Production Production and +2 Movement Movement for the first 10 turns after declaring a War of Liberation.",
+        "civilizations": [
+          "civilization_scotland"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_robert_the_bruce.webp"
+    },
+    {
+      "id": "leader_saladin_alt",
+      "name": "Saladin (Sultan)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_arabia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_saladin_alt.webp"
+    },
+    {
+      "id": "leader_saladin",
+      "name": "Saladin (Vizier)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Righteousness of the Faith",
+        "ability": "The worship building for their Religion can be purchased by any player for just one-tenth of the usual Faith Faith cost. This worship building is enhanced to add 10% to the Science Science, Faith Faith, and Culture Culture output of Arabian cities.",
+        "civilizations": [
+          "civilization_arabia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_saladin.webp"
+    },
+    {
+      "id": "leader_sejong",
+      "name": "Sejong",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_korea"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_sejong.webp"
+    },
+    {
+      "id": "leader_seondeok",
+      "name": "Seondeok",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Hwarang",
+        "ability": "Governor Governors established in a city provide +3% Culture Culture and Science Science for each Promotion they have earned, including their first.",
+        "civilizations": [
+          "civilization_korea"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_seondeok.webp"
+    },
+    {
+      "id": "leader_shaka",
+      "name": "Shaka",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Amabutho",
+        "ability": "May form Corps (Mercenaries Civic) and Armies (Nationalism Civic) earlier. An additional +5 Strength Base Combat Strength to both Corps and Armies.",
+        "civilizations": [
+          "civilization_zulu"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_shaka.webp"
+    },
+    {
+      "id": "leader_simon_bolivar",
+      "name": "Simón Bolívar",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Campaña Admirable",
+        "ability": "Earn a Comandante General when the game enters a new era.",
+        "civilizations": [
+          "civilization_gran_colombia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_simon_bolivar.webp"
+    },
+    {
+      "id": "leader_suleiman",
+      "name": "Suleiman (Kanuni)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Janissary",
+        "ability": null,
+        "civilizations": [
+          "civilization_ottoman"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_suleiman.webp"
+    },
+    {
+      "id": "leader_suleiman_alt",
+      "name": "Suleiman (Muhteşem)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_ottoman"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_suleiman_alt.webp"
+    },
+    {
+      "id": "leader_sundiata_keita",
+      "name": "Sundiata Keita",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_mali"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_sundiata_keita.webp"
+    },
+    {
+      "id": "leader_tamar",
+      "name": "Tamar",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Glory of the World, Kingdom and Faith",
+        "ability": "Combat victories provide Faith Faith equal to 50% of the Combat Strength of the defeated unit (on Standard Speed). Each Envoy Envoy you send to a city-state of your majority Religion counts as two Envoy Envoys. (Must have a majority Religion).",
+        "civilizations": [
+          "civilization_georgia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_tamar.webp"
+    },
+    {
+      "id": "leader_t_roosevelt",
+      "name": "Teddy Roosevelt (Bull Moose)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_america"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_t_roosevelt.webp"
+    },
+    {
+      "id": "leader_t_roosevelt_roughrider",
+      "name": "Teddy Roosevelt (Rough Rider)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Roosevelt Corollary",
+        "ability": "Units receive +5 Strength Combat Strength on their home continent. Envoys sent to City-States you have a Traderoute Trade Route to count as two Envoy Envoys. Gain the Rough Rider unique unit with Rifling.",
+        "civilizations": [
+          "civilization_america"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_t_roosevelt_roughrider.webp"
+    },
+    {
+      "id": "leader_theodora",
+      "name": "Theodora",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Metanoia",
+        "ability": "Holy Sites provide Culture Culture equal to their adjacency bonus. Farms provide a Faith Faith adjacency to Hippodromes and Holy Sites.",
+        "civilizations": [
+          "civilization_byzantium"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_theodora.webp"
+    },
+    {
+      "id": "leader_tokugawa",
+      "name": "Tokugawa",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Bakuhan",
+        "ability": "International Traderoute Trade Routes receive -25% Yield and Tourism Tourism, but Domestic Traderoute Trade Routes provide +1 Culture Culture, +1 Science Science, and +2 Gold Gold for every Specialty District at the Destination. Cities within 6 tiles of Japan's Capital Capital are 100% loyal and after researching Flight receive +1 Tourism Tourism for every District.",
+        "civilizations": [
+          "civilization_japan"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_tokugawa.webp"
+    },
+    {
+      "id": "leader_tomyris",
+      "name": "Tomyris",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Killer of Cyrus",
+        "ability": "All units receive +5 Strength Combat Strength when attacking wounded units. When they eliminate a unit, they heal up to 30 hit points.",
+        "civilizations": [
+          "civilization_scythia"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_tomyris.webp"
+    },
+    {
+      "id": "leader_trajan",
+      "name": "Trajan",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Trajan's Column",
+        "ability": "All cities start with an additional City Center building. (Starts with a Monument building in the Ancient era).",
+        "civilizations": [
+          "civilization_rome"
+        ]
+      },
+      "strategy": {
+        "summary": "Makes newly founded cities useful sooner and supports rapid expansion."
+      },
+      "image": "/civ6/assets/icons/leader/leader_trajan.webp"
+    },
+    {
+      "id": "leader_victoria",
+      "name": "Victoria (Age of Empire)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Pax Britannica",
+        "ability": "Each time you found your first city on a continent other than your home continent receive a free melee unit and a Traderoute Trade Route capacity. Constructing any Royal Navy Dockyard grants you a copy of the strongest naval unit you can build. Gain the Redcoat unique unit when the Military Science technology is researched.",
+        "civilizations": [
+          "civilization_england"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_victoria.webp"
+    },
+    {
+      "id": "leader_victoria_alt",
+      "name": "Victoria (Age of Steam)",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Age of Steam",
+        "ability": "+10% Production Production in Cities for every Industrial Zone building in that city. +2 Production Production to all Strategic Resources.",
+        "civilizations": [
+          "civilization_england"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_victoria_alt.webp"
+    },
+    {
+      "id": "leader_laurier",
+      "name": "Wilfrid Laurier",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "The Last Best West",
+        "ability": "Allows Farms to be built on Tundra terrain. After Civil Engineering is unlocked Farms can be built on Tundra Hills. In Snow, Tundra, Snow Hills, and Tundra Hills all Mines provide +2 Production Production, Lumber Mills provide +2 Production Production, Camps provide +2 Food Food, Farms provide +2 Food Food, and strategic resource accumulation rate is +100%. Reduces the purchase cost of tiles in these terrain types by 50%.",
+        "civilizations": [
+          "civilization_canada"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_laurier.webp"
+    },
+    {
+      "id": "leader_wilhelmina",
+      "name": "Wilhelmina",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": "Radio Oranje",
+        "ability": "Your Traderoute Trade Routes to your own cities provide +2 Loyalty per turn for the starting city. Traderoute Trade Routes to foreign cities or from foreign cities provide +2 Culture Culture to you.",
+        "civilizations": [
+          "civilization_netherlands"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_wilhelmina.webp"
+    },
+    {
+      "id": "leader_wu_zetian",
+      "name": "Wu Zetian",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_china"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_wu_zetian.webp"
+    },
+    {
+      "id": "leader_yongle",
+      "name": "Yongle",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "abilityName": null,
+        "ability": null,
+        "civilizations": [
+          "civilization_china"
+        ]
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/leader/leader_yongle.webp"
+    }
+  ]
+}

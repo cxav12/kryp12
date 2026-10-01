@@ -1,0 +1,1166 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "wonder_alhambra",
+      "name": "Alhambra",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Military policy slot Provides the same defensive bonuses as the Fort improvement. Must be built on Hills adjacent to an Encampment district.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "tech_castles",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "general": 2
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_alhambra.webp"
+    },
+    {
+      "id": "wonder_amundsen_scott_research_station",
+      "name": "Amundsen-Scott Research Station",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+20% Science Science and 10% Production Production in all cities. If there are 5 Snow or Snow Hills tiles within 3 tiles of a city and owned by this player these yields are doubled. Must be built next to a Campus with a Research Lab on a Snow or Snow Hills tile.",
+        "district": null,
+        "productionCost": 1620,
+        "maintenance": null,
+        "prerequisite": "civic_rapid_deployment",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "scientist": 5
+        },
+        "requiredPreviousBuilding": "building_research_lab"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_amundsen_scott_research_station.webp"
+    },
+    {
+      "id": "wonder_angkor_wat",
+      "name": "Angkor Wat",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Citizen Population in all Current Cities when built. +1 Housing Housing in all cities.  Must be built adjacent to an Aqueduct district.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "civic_medieval_faires",
+        "yieldChanges": {
+          "faith": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_angkor_wat.webp"
+    },
+    {
+      "id": "wonder_apadana",
+      "name": "Apadana",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+2 Envoy Envoys when you build a wonder, including Apadana, in this city. Must be built adjacent to your Capital Capital.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "civic_political_philosophy",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_apadana.webp"
+    },
+    {
+      "id": "wonder_big_ben",
+      "name": "Big Ben",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Economic policy slot Immediately after construction Gold Gold in treasury is increased by 50%. Must be built next to a River adjacent to a Commercial Hub district with a Bank.",
+        "district": null,
+        "productionCost": 1450,
+        "maintenance": null,
+        "prerequisite": "tech_economics",
+        "yieldChanges": {
+          "gold": 6
+        },
+        "greatPersonPoints": {
+          "merchant": 3
+        },
+        "requiredPreviousBuilding": "building_bank"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_big_ben.webp"
+    },
+    {
+      "id": "wonder_biosphere",
+      "name": "Biosphère",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+200% Power Power for all Offshore Windfarms, Solar Farms, Wind Farms, Geothermal Plants, and Hydroelectric Dams. This building and these improvements provide Tourism Tourism equal to their Power Power. +1 Appeal to tiles adjacent to Rainforest and Marsh in your empire. Must be built along a River adjacent to a Neighborhood district.",
+        "district": null,
+        "productionCost": 1740,
+        "maintenance": null,
+        "prerequisite": "tech_synthetic_materials",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_biosphere.webp"
+    },
+    {
+      "id": "wonder_bolshoi_theatre",
+      "name": "Bolshoi Theatre",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Awards 2 randomly-chosen free civics when completed. Must be built on flat land adjacent to a Theater Square district.",
+        "district": null,
+        "productionCost": 1240,
+        "maintenance": null,
+        "prerequisite": "civic_opera_ballet",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "writer": 2,
+          "musician": 2
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_bolshoi_theatre.webp"
+    },
+    {
+      "id": "wonder_broadway",
+      "name": "Broadway",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+20% Culture Culture in this city. 1 free random Atomic era civic boost. Must be built on flat land adjacent to a Theater Square district.",
+        "district": null,
+        "productionCost": 1620,
+        "maintenance": null,
+        "prerequisite": "civic_mass_media",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "writer": 3,
+          "musician": 3
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_broadway.webp"
+    },
+    {
+      "id": "wonder_casa_de_contratacion",
+      "name": "Casa de Contratación",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Gain 3 Governor Governor promotions. All your cities not on your original Capital Capital's continent with a Governor Governor gain +15% Production Production, +15% Faith Faith and +15% Gold Gold. Must be built adjacent to a Government Plaza.",
+        "district": null,
+        "productionCost": 920,
+        "maintenance": null,
+        "prerequisite": "tech_cartography",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "merchant": 3
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_casa_de_contratacion.webp"
+    },
+    {
+      "id": "wonder_chichen_itza",
+      "name": "Chichen Itza",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+2 Culture Culture to all Rainforest tiles for this city. +1 Production Production to all Rainforest tiles for this city. Must be built on Rainforest.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "civic_guilds",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_chichen_itza.webp"
+    },
+    {
+      "id": "wonder_colosseum",
+      "name": "Colosseum",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "The Colosseum provides 2 of the following: Culture Culture, Loyalty per turn, and Amenities Amenities to each city center within 6 tiles. Must be built on flat land adjacent to an Entertainment Complex with an Arena.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "civic_games_recreation",
+        "yieldChanges": {
+          "culture": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_arena"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_colosseum.webp"
+    },
+    {
+      "id": "wonder_colossus",
+      "name": "Colossus",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Traderoute Trade Route capacity. Grants a Trader unit. Must be built on the Coast, adjacent to land and a Harbor district.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "tech_shipbuilding",
+        "yieldChanges": {
+          "gold": 3
+        },
+        "greatPersonPoints": {
+          "admiral": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_colossus.webp"
+    },
+    {
+      "id": "wonder_cristo_redentor",
+      "name": "Cristo Redentor",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Tourism Tourism output from Greatwork Relic Relics and Holy Cities is not diminished by other civilizations who have researched The Enlightenment civic. +100% Tourism Tourism from Seaside Resorts across your civilization. Must be built on Hills.",
+        "district": null,
+        "productionCost": 1620,
+        "maintenance": null,
+        "prerequisite": "civic_mass_media",
+        "yieldChanges": {
+          "culture": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_cristo_redentor.webp"
+    },
+    {
+      "id": "wonder_eiffel_tower",
+      "name": "Eiffel Tower",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "All tiles in your civilization gain +2 Appeal. Must be built on flat land adjacent to the City Center.",
+        "district": null,
+        "productionCost": 1620,
+        "maintenance": null,
+        "prerequisite": "tech_steel",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_eiffel_tower.webp"
+    },
+    {
+      "id": "wonder_estadio_do_maracana",
+      "name": "Estádio do Maracanã",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+2 Amenities Amenities in each city in your civilization. Must be built on flat land adjacent to an Entertainment Complex district with a Stadium.",
+        "district": null,
+        "productionCost": 1740,
+        "maintenance": null,
+        "prerequisite": "civic_professional_sports",
+        "yieldChanges": {
+          "culture": 6
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_stadium"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_estadio_do_maracana.webp"
+    },
+    {
+      "id": "wonder_etemenanki",
+      "name": "Etemenanki",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+2 Science Science and +1 Production Production to all Marsh tiles in your empire. +1 Science Science and +1 Production Production on all Floodplains tiles for this city. Must be built on Floodplains or Marsh.",
+        "district": null,
+        "productionCost": 220,
+        "maintenance": null,
+        "prerequisite": "tech_writing",
+        "yieldChanges": {
+          "science": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_etemenanki.webp"
+    },
+    {
+      "id": "wonder_forbidden_city",
+      "name": "Forbidden City",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Wildcard policy slot Must be built on flat land adjacent to the City Center.",
+        "district": null,
+        "productionCost": 920,
+        "maintenance": null,
+        "prerequisite": "tech_printing",
+        "yieldChanges": {
+          "culture": 5
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_forbidden_city.webp"
+    },
+    {
+      "id": "wonder_golden_gate_bridge",
+      "name": "Golden Gate Bridge",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Land units can cross without needing to embark. Acts as Modern Road and creates Modern Roads (if not present) in land tiles on either end. City gains +3 Amenities Amenities. All tiles in this city +4 Appeal. +100% Tourism Tourism from improvements and National Parks in this city. Traderoute Trade Routes traveling through it can multiply the Gold Gold they get from districts at their destination. Must be built on a Coast tile. The bridge must run straight across the hex between two land tiles directly opposite one another. At least one water tile must be present on both the left and right sides of the bridge.",
+        "district": null,
+        "productionCost": 1620,
+        "maintenance": null,
+        "prerequisite": "tech_combustion",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_golden_gate_bridge.webp"
+    },
+    {
+      "id": "wonder_great_bath",
+      "name": "Great Bath",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "The Floodplains tiles along the river containing the Great Bath are now immune to Flood damage (though Food Food and Production Production bonuses from flooding drop by 50%). Floodplains tiles belonging to this city gain +1 Faith Faith for each time Flood damage is mitigated. Must be built on a Floodplains tile.",
+        "district": null,
+        "productionCost": 180,
+        "maintenance": null,
+        "prerequisite": "tech_pottery",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_great_bath.webp"
+    },
+    {
+      "id": "wonder_great_library",
+      "name": "Great Library",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Receive boosts to all Ancient and Classical era technologies. Receive a random tech boost after another player recruits a Greatscientist Great Scientist. Must be built on flat land adjacent to a Campus district with a Library.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "civic_recorded_history",
+        "yieldChanges": {
+          "science": 2
+        },
+        "greatPersonPoints": {
+          "scientist": 1,
+          "writer": 1
+        },
+        "requiredPreviousBuilding": "building_library"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_great_library.webp"
+    },
+    {
+      "id": "wonder_great_lighthouse",
+      "name": "Great Lighthouse",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Movement Movement for all naval units Must be built on the Coast, and adjacent to land and a Harbor district with a Lighthouse.",
+        "district": null,
+        "productionCost": 290,
+        "maintenance": null,
+        "prerequisite": "tech_celestial_navigation",
+        "yieldChanges": {
+          "gold": 3
+        },
+        "greatPersonPoints": {
+          "admiral": 1
+        },
+        "requiredPreviousBuilding": "building_lighthouse"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_great_lighthouse.webp"
+    },
+    {
+      "id": "wonder_great_zimbabwe",
+      "name": "Great Zimbabwe",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Traderoute Trade Route capacity Your Traderoute Trade Routes from this city get +2 Gold Gold for every Bonus resource within 3 tiles of the city and in this city's territory. Must be built adjacent to a Commercial Hub district with a Market and adjacent to Resource Cattle Cattle.",
+        "district": null,
+        "productionCost": 920,
+        "maintenance": null,
+        "prerequisite": "tech_banking",
+        "yieldChanges": {
+          "gold": 5
+        },
+        "greatPersonPoints": {
+          "merchant": 2
+        },
+        "requiredPreviousBuilding": "building_market"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_great_zimbabwe.webp"
+    },
+    {
+      "id": "wonder_hagia_sophia",
+      "name": "Hagia Sophia",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Missionaries and Apostles can spread Religion 1 extra time. Must be built on flat land adjacent to a Holy Site district, and you must have founded a Religion.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "tech_buttress",
+        "yieldChanges": {
+          "faith": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_hagia_sophia.webp"
+    },
+    {
+      "id": "wonder_hanging_gardens",
+      "name": "Hanging Gardens",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "All Hero units have 10% longer Lifespan Lifespans. Increases growth by 15% in all cities. Must be built next to a River.",
+        "district": null,
+        "productionCost": 180,
+        "maintenance": null,
+        "prerequisite": "tech_irrigation",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_hanging_gardens.webp"
+    },
+    {
+      "id": "wonder_hermitage",
+      "name": "Hermitage",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Must be built along a River.",
+        "district": null,
+        "productionCost": 1450,
+        "maintenance": null,
+        "prerequisite": "civic_natural_history",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "artist": 3
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_hermitage.webp"
+    },
+    {
+      "id": "wonder_huey_teocalli",
+      "name": "Huey Teocalli",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Amenities Amenity from entertainment for each Lake tile within one tile of Huey Teocalli. +1 Food Food and +1 Production Production for each Lake tile in your empire. Must be built on a Lake tile adjacent to land.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "tech_military_tactics",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_huey_teocalli.webp"
+    },
+    {
+      "id": "wonder_jebel_barkal",
+      "name": "Jebel Barkal",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Awards 6 Resource Iron Iron per turn. Provides +4 Faith Faith to all your cities that are within 6 tiles. Must be built on Desert (Hills) terrain.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "tech_iron_working",
+        "yieldChanges": {
+          "faith": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_jebel_barkal.webp"
+    },
+    {
+      "id": "wonder_kilwa_kisiwani",
+      "name": "Kilwa Kisiwani",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+3 Envoy Envoys when built. When you are the Suzerain of a City-State this city receives a +15% boost to the Type bonuses provided by that City-State. If you are the Suzerain to 2 or more City-States of that type an additional +15% boost is given to all your cities. Must be built on a flat tile adjacent to Coast.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "tech_machinery",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_kilwa_kisiwani.webp"
+    },
+    {
+      "id": "wonder_kotoku_in",
+      "name": "Kotoku-in",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+20% Faith Faith in this city. Grants 4 Warrior Monks. Must be built adjacent to a Holy Site district with a Temple. Warrior Monks can only be received if player has founded a religion or if there is a majority religion for this player or city.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "civic_divine_right",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_kotoku_in.webp"
+    },
+    {
+      "id": "wonder_machu_picchu",
+      "name": "Machu Picchu",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Mountain tiles provide a standard adjacency bonus to Commercial Hub, Theater Square, and Industrial Zone districts in all cities. Must be built on a Mountain tile that does not contain a Volcano.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "tech_engineering",
+        "yieldChanges": {
+          "gold": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_machu_picchu.webp"
+    },
+    {
+      "id": "wonder_mahabodhi_temple",
+      "name": "Mahabodhi Temple",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+2 Diplomatic Victory Points and grants 2 Apostles when built. Must be built on Woods adjacent to a Holy Site district with a Temple, and you must have founded a Religion.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "civic_theology",
+        "yieldChanges": {
+          "faith": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_temple"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_mahabodhi_temple.webp"
+    },
+    {
+      "id": "wonder_halicarnassus_mausoleum",
+      "name": "Mausoleum at Halicarnassus",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Science Science, +1 Faith Faith, and +1 Culture Culture on all Coast tiles for this city. Greatengineer Great Engineers have an additional charge. Must be built adjacent to a Harbor district.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "civic_defensive_tactics",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_halicarnassus_mausoleum.webp"
+    },
+    {
+      "id": "wonder_meenakshi_temple",
+      "name": "Meenakshi Temple",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Grants 2 Gurus. Gurus are 30% cheaper to purchase. Religious units adjacent to Gurus receive +5 Religion Religious Strength in Theological Combat and +1 Movement Movement. Must be built adjacent to a Holy Site and you must have founded a Religion.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "civic_civil_service",
+        "yieldChanges": {
+          "faith": 3
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_meenakshi_temple.webp"
+    },
+    {
+      "id": "wonder_mont_st_michel",
+      "name": "Mont St. Michel",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "All Apostles you create gain the Martyr ability in addition to a second ability you chose normally. Must be built on Floodplains or Marsh.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "civic_divine_right",
+        "yieldChanges": {
+          "faith": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_mont_st_michel.webp"
+    },
+    {
+      "id": "wonder_oracle",
+      "name": "Oracle",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Recalling Heroes costs 15% less Faith Faith, and Patronage of Great People costs 25% less Faith Faith. Districts in this city provide +2 Greatperson Great Person points of their type (for example, Greatwriter Great Writer points from the Theater Square district). Must be built on Hills.",
+        "district": null,
+        "productionCost": 290,
+        "maintenance": null,
+        "prerequisite": "civic_mysticism",
+        "yieldChanges": {
+          "culture": 1,
+          "faith": 1
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_oracle.webp"
+    },
+    {
+      "id": "wonder_orszaghaz",
+      "name": "Országház",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+100% Favor Diplomatic Favor per turn from starting a turn as Suzerain of a City-State. Must be built on a River.",
+        "district": null,
+        "productionCost": 920,
+        "maintenance": null,
+        "prerequisite": "tech_sanitation",
+        "yieldChanges": {
+          "culture": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_orszaghaz.webp"
+    },
+    {
+      "id": "wonder_oxford_university",
+      "name": "Oxford University",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+20% Science Science in this city, and awards 2 randomly-chosen free technologies when completed. Must be built on Grassland or Plains adjacent to a Campus district with a University.",
+        "district": null,
+        "productionCost": 1240,
+        "maintenance": null,
+        "prerequisite": "tech_scientific_theory",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "scientist": 3
+        },
+        "requiredPreviousBuilding": "building_university"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_oxford_university.webp"
+    },
+    {
+      "id": "wonder_panama_canal",
+      "name": "Panama Canal",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Upon completion 1 or 2 adjacent Canal districts are automatically constructed. The Canal wonder tile can now be crossed by naval units. Traderoute Trade Routes traveling through it can multiply the Gold Gold they get from districts at their destination. Must be built on a flat land tile where there are two adjacent tiles directly across the build tile from one another that meet the following criteria: one adjacent tile must be able to legally hold a Canal district connecting into the Panama Canal construction tile; the other must be either a city, a water tile, or be another tile that can hold a connecting Canal.",
+        "district": null,
+        "productionCost": 920,
+        "maintenance": null,
+        "prerequisite": "tech_steam_power",
+        "yieldChanges": {
+          "gold": 10
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_panama_canal.webp"
+    },
+    {
+      "id": "wonder_petra",
+      "name": "Petra",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+2 Food Food, +2 Gold Gold, and +1 Production Production on all Desert tiles for this city (non-Floodplains). Must be built on Desert or Desert Floodplains without Hills.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "tech_mathematics",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_petra.webp"
+    },
+    {
+      "id": "wonder_potala_palace",
+      "name": "Potala Palace",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Diplomatic policy slot. +1 Diplomatic Victory point. Must be built on a Hill adjacent to a Mountain.",
+        "district": null,
+        "productionCost": 1060,
+        "maintenance": null,
+        "prerequisite": "tech_astronomy",
+        "yieldChanges": {
+          "culture": 2,
+          "faith": 3
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_potala_palace.webp"
+    },
+    {
+      "id": "wonder_pyramids",
+      "name": "Pyramids",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Grants a free Builder. All Builders can build 1 extra improvement. Must be built on Desert (including Desert Floodplains) without Hills.",
+        "district": null,
+        "productionCost": 220,
+        "maintenance": null,
+        "prerequisite": "tech_masonry",
+        "yieldChanges": {
+          "culture": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {
+        "whyBuild": "Strong when a wide empire expects to use many Builder charges.",
+        "whenUseful": "Most valuable when settled land has many improvements or chops still to complete.",
+        "whenToSkip": "Skip it when the production race is unsafe or an early army, Settler, or district is more urgent."
+      },
+      "image": "/civ6/assets/icons/wonder/wonder_pyramids.webp"
+    },
+    {
+      "id": "wonder_ruhr_valley",
+      "name": "Ruhr Valley",
+      "era": "Atomic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+20% Production Production in this city, and +1 Production Production for each Mine and Quarry in this city. Must be built along a River adjacent to an Industrial Zone district with a Factory.",
+        "district": null,
+        "productionCost": 1240,
+        "maintenance": null,
+        "prerequisite": "tech_industrialization",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_factory"
+      },
+      "strategy": {
+        "whyBuild": "Creates a production center capable of completing late-game projects, units, or wonders quickly.",
+        "whenUseful": "Best in a city that already has many productive improved tiles.",
+        "whenToSkip": "Skip it when placement is weak or the production cost would delay a more direct victory requirement."
+      },
+      "image": "/civ6/assets/icons/wonder/wonder_ruhr_valley.webp"
+    },
+    {
+      "id": "wonder_st_basils_cathedral",
+      "name": "St. Basil's Cathedral",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+100% Tourism Religious Tourism from this city. +1 Food Food, +1 Production Production, and +1 Culture Culture on all Tundra tiles for this city. Must be built adjacent to a City Center.",
+        "district": null,
+        "productionCost": 920,
+        "maintenance": null,
+        "prerequisite": "civic_reformed_church",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_st_basils_cathedral.webp"
+    },
+    {
+      "id": "wonder_statue_liberty",
+      "name": "Statue of Liberty",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Grants 2 Settlers. All your cities within 6 tiles are always 100% Loyal. Must be built on the Coast, adjacent to land and a Harbor district.",
+        "district": null,
+        "productionCost": 1240,
+        "maintenance": null,
+        "prerequisite": "civic_civil_engineering",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_statue_liberty.webp"
+    },
+    {
+      "id": "wonder_statue_of_zeus",
+      "name": "Statue of Zeus",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Grants 3 Archers, 3 Spearmen, and a Battering Ram. +50% Production Production towards anti-cavalry units. Must be built on flat land adjacent to an Encampment district with a Barracks.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "civic_military_training",
+        "yieldChanges": {
+          "gold": 3
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": "building_barracks"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_statue_of_zeus.webp"
+    },
+    {
+      "id": "wonder_stonehenge",
+      "name": "Stonehenge",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Grants a free Greatprophet Great Prophet. Greatprophet Great Prophets may found a Religion on Stonehenge instead of a Holy Site. Must be adjacent to Resource Stone Stone and on flat land.",
+        "district": null,
+        "productionCost": 180,
+        "maintenance": null,
+        "prerequisite": "tech_astrology",
+        "yieldChanges": {
+          "faith": 2
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_stonehenge.webp"
+    },
+    {
+      "id": "wonder_sydney_opera_house",
+      "name": "Sydney Opera House",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Must be built on the Coast, adjacent to land and a Harbor district.",
+        "district": null,
+        "productionCost": 1850,
+        "maintenance": null,
+        "prerequisite": "civic_cultural_heritage",
+        "yieldChanges": {
+          "culture": 8
+        },
+        "greatPersonPoints": {
+          "musician": 5
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_sydney_opera_house.webp"
+    },
+    {
+      "id": "wonder_taj_mahal",
+      "name": "Taj Mahal",
+      "era": "Information",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "+1 Era Score from Historic Moment earned after this wonder is complete if that Moment is usually worth 2 or more Era Score. Must be built next to a River.",
+        "district": null,
+        "productionCost": 920,
+        "maintenance": null,
+        "prerequisite": "civic_humanism",
+        "yieldChanges": {},
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_taj_mahal.webp"
+    },
+    {
+      "id": "wonder_temple_artemis",
+      "name": "Temple of Artemis",
+      "era": "Medieval",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Each Camp, Pasture, and Plantation improvement within 4 tiles of this wonder provides +1 Amenities Amenity. Must be placed adjacent to a Camp improvement.",
+        "district": null,
+        "productionCost": 180,
+        "maintenance": null,
+        "prerequisite": "tech_archery",
+        "yieldChanges": {
+          "food": 4
+        },
+        "greatPersonPoints": {},
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_temple_artemis.webp"
+    },
+    {
+      "id": "wonder_terracotta_army",
+      "name": "Terracotta Army",
+      "era": "Renaissance",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "All current units gain a promotion level. All Archaeologists from the owner may enter foreign lands without Open Borders. Must be built on flat Grassland or Plains adjacent to an Encampment district with a Barracks or Stable.",
+        "district": null,
+        "productionCost": 400,
+        "maintenance": null,
+        "prerequisite": "tech_construction",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "general": 1
+        },
+        "requiredPreviousBuilding": "building_stable"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_terracotta_army.webp"
+    },
+    {
+      "id": "wonder_torre_de_belem",
+      "name": "Torre de Belém",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "International Traderoute Trade Routes from this city receive +2 Gold Gold for every Luxury Resource at the destination. When the Torre de Belém is constructed, cities not on your home continent receive the lowest Production Production cost city center building they can currently construct. Must be built on a Coast tile that is adjacent to a Harbor district.",
+        "district": null,
+        "productionCost": 920,
+        "maintenance": null,
+        "prerequisite": "civic_mercantilism",
+        "yieldChanges": {
+          "gold": 5
+        },
+        "greatPersonPoints": {
+          "admiral": 1
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_torre_de_belem.webp"
+    },
+    {
+      "id": "wonder_university_sankore",
+      "name": "University of Sankore",
+      "era": "Industrial",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Other Civilizations' Traderoute Trade Routes to this city provide +1 Science Science and +1 Gold Gold for them. +2 Science Science for every Traderoute Trade Route to this city. Domestic Traderoute Trade Routes give an additional +1 Faith Faith to this city. Must be built on the Desert or Desert Hills, and adjacent to a Campus district with a University.",
+        "district": null,
+        "productionCost": 710,
+        "maintenance": null,
+        "prerequisite": "tech_education",
+        "yieldChanges": {
+          "science": 3,
+          "faith": 1
+        },
+        "greatPersonPoints": {
+          "scientist": 2
+        },
+        "requiredPreviousBuilding": "building_university"
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_university_sankore.webp"
+    },
+    {
+      "id": "wonder_venetian_arsenal",
+      "name": "Venetian Arsenal",
+      "era": "Modern",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": "Receive a second naval unit each time you train a naval unit. Must be built on a Coast tile that is adjacent to an Industrial Zone district.",
+        "district": null,
+        "productionCost": 920,
+        "maintenance": null,
+        "prerequisite": "tech_mass_production",
+        "yieldChanges": {},
+        "greatPersonPoints": {
+          "engineer": 2
+        },
+        "requiredPreviousBuilding": null
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/wonder/wonder_venetian_arsenal.webp"
+    }
+  ]
+}

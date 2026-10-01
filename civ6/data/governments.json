@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "sampleData": false,
+  "records": [
+    {
+      "id": "government_autocracy",
+      "name": "Autocracy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_political_philosophy",
+        "inherentBonus": "+1 to all yields for each government building and palace in a city.",
+        "accumulatedBonus": "+10% Production toward Wonders.",
+        "policySlots": {
+          "military": 1,
+          "economic": 1,
+          "diplomatic": 1,
+          "wildcard": 1
+        }
+      },
+      "strategy": {
+        "summary": "Useful when concentrating early output or competing for wonders."
+      },
+      "image": "/civ6/assets/icons/government/government_autocracy.webp"
+    },
+    {
+      "id": "government_chiefdom",
+      "name": "Chiefdom",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": null,
+        "inherentBonus": "No Bonus.",
+        "accumulatedBonus": "No Bonus.",
+        "policySlots": {
+          "military": 1,
+          "economic": 1
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_chiefdom.webp"
+    },
+    {
+      "id": "government_classical_republic",
+      "name": "Classical Republic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_political_philosophy",
+        "inherentBonus": "All cities with a district receive +1 Housing Housing and +1 Amenities Amenity.",
+        "accumulatedBonus": "+15% Great Person points.",
+        "policySlots": {
+          "economic": 2,
+          "diplomatic": 1,
+          "wildcard": 1
+        }
+      },
+      "strategy": {
+        "summary": "Supports district-led development and flexible economic policy use."
+      },
+      "image": "/civ6/assets/icons/government/government_classical_republic.webp"
+    },
+    {
+      "id": "government_communism",
+      "name": "Communism",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_class_struggle",
+        "inherentBonus": "+0.6 Production Production per Citizen Citizen in cities with Governor Governors.",
+        "accumulatedBonus": "+10% Science Science.",
+        "policySlots": {
+          "military": 3,
+          "economic": 3,
+          "diplomatic": 1,
+          "wildcard": 1
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_communism.webp"
+    },
+    {
+      "id": "government_corporate_libertarianism",
+      "name": "Corporate Libertarianism",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_corporate_libertarianism",
+        "inherentBonus": "Commercial Hubs and Encampments provide cities with +10% Production Production, and accumulating resources with improvements provide +1 per turn.",
+        "accumulatedBonus": "-10% Science Science.",
+        "policySlots": {
+          "military": 3,
+          "economic": 1,
+          "diplomatic": 1,
+          "wildcard": 5
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_corporate_libertarianism.webp"
+    },
+    {
+      "id": "government_democracy",
+      "name": "Democracy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_suffrage",
+        "inherentBonus": "Your Traderoute Trade Routes to an Ally or Suzerain's city provide +4 Food Food and +4 Production Production for both cities. Alliance Points with all allies increase by an additional .25 per turn.",
+        "accumulatedBonus": "15% Discount on Purchases with Gold Gold.",
+        "policySlots": {
+          "military": 1,
+          "economic": 3,
+          "diplomatic": 2,
+          "wildcard": 2
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_democracy.webp"
+    },
+    {
+      "id": "government_digital_democracy",
+      "name": "Digital Democracy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_digital_democracy",
+        "inherentBonus": "+2 Amenities Amenities in all cities, and +2 Culture Culture per Specialty District.",
+        "accumulatedBonus": "-3 Strength Combat Strength for all units.",
+        "policySlots": {
+          "military": 1,
+          "economic": 1,
+          "diplomatic": 3,
+          "wildcard": 5
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_digital_democracy.webp"
+    },
+    {
+      "id": "government_fascism",
+      "name": "Fascism",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_totalitarianism",
+        "inherentBonus": "All units gain +5 Strength Combat Strength. War Weariness reduced by 15%.",
+        "accumulatedBonus": "+50% Production toward Units.",
+        "policySlots": {
+          "military": 4,
+          "economic": 1,
+          "diplomatic": 1,
+          "wildcard": 2
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_fascism.webp"
+    },
+    {
+      "id": "government_merchant_republic",
+      "name": "Merchant Republic",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_exploration",
+        "inherentBonus": "+10% Gold Gold in all cities with an established Governor Governor.",
+        "accumulatedBonus": "+15% Production toward Districts.",
+        "policySlots": {
+          "military": 1,
+          "economic": 2,
+          "diplomatic": 2,
+          "wildcard": 1
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_merchant_republic.webp"
+    },
+    {
+      "id": "government_monarchy",
+      "name": "Monarchy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_divine_right",
+        "inherentBonus": "+1 Housing Housing per level of Walls. +2 Favor Diplomatic Favor for every Renaissance Wall.",
+        "accumulatedBonus": "+50% Influence Points.",
+        "policySlots": {
+          "military": 2,
+          "economic": 1,
+          "diplomatic": 1,
+          "wildcard": 2
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_monarchy.webp"
+    },
+    {
+      "id": "government_oligarchy",
+      "name": "Oligarchy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_political_philosophy",
+        "inherentBonus": "All land melee, anti-cavalry, and naval melee class units gain +4 Strength Combat Strength.",
+        "accumulatedBonus": "+20% Unit Experience.",
+        "policySlots": {
+          "military": 2,
+          "economic": 1,
+          "wildcard": 1
+        }
+      },
+      "strategy": {
+        "summary": "Supports an early land-war plan or a period of heightened military risk."
+      },
+      "image": "/civ6/assets/icons/government/government_oligarchy.webp"
+    },
+    {
+      "id": "government_synthetic_technocracy",
+      "name": "Synthetic Technocracy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_synthetic_technocracy",
+        "inherentBonus": "+3 Power Power in all cities, and +30% Production Production towards all city projects.",
+        "accumulatedBonus": "-10% Tourism Tourism.",
+        "policySlots": {
+          "military": 1,
+          "economic": 3,
+          "diplomatic": 1,
+          "wildcard": 5
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_synthetic_technocracy.webp"
+    },
+    {
+      "id": "government_theocracy",
+      "name": "Theocracy",
+      "rulesets": [
+        "gathering-storm"
+      ],
+      "gameData": {
+        "description": null,
+        "unlockedBy": "civic_reformed_church",
+        "inherentBonus": "+5 Religion Religious Strength in Theological Combat. +0.5 Faith Faith per Citizen Citizen in cities with Governor Governors.",
+        "accumulatedBonus": "15% Discount on Purchases with Faith Faith.",
+        "policySlots": {
+          "military": 2,
+          "economic": 2,
+          "diplomatic": 1,
+          "wildcard": 1
+        }
+      },
+      "strategy": {},
+      "image": "/civ6/assets/icons/government/government_theocracy.webp"
+    }
+  ]
+}

@@ -9,16 +9,16 @@ function createHeaderStats(topbar) {
   stats.setAttribute("aria-live", "polite");
   stats.innerHTML = `
     <div class="header-team-stat">
-      <span class="header-team-stat-label">Record</span>
-      <strong data-header-record>&mdash;</strong>
+      <span class="header-team-stat-label" data-header-label>Record</span>
+      <strong data-header-value>&mdash;</strong>
     </div>
     <div class="header-team-stat">
-      <span class="header-team-stat-label">Streak</span>
-      <strong data-header-streak>&mdash;</strong>
+      <span class="header-team-stat-label" data-header-label>Streak</span>
+      <strong data-header-value>&mdash;</strong>
     </div>
     <div class="header-team-stat">
-      <span class="header-team-stat-label">Next</span>
-      <strong data-header-next>&mdash;</strong>
+      <span class="header-team-stat-label" data-header-label>Next</span>
+      <strong data-header-value>&mdash;</strong>
     </div>
   `;
   topbar.append(stats);
@@ -27,72 +27,22 @@ function createHeaderStats(topbar) {
 
 const yankeesHeaderStats = [...yankeesTopbars].map(createHeaderStats);
 
-function setHeaderStat(selector, value, tone = "") {
+function setHeaderCard(index, label, value, tone = "") {
   yankeesHeaderStats.forEach((stats) => {
-    const output = stats.querySelector(selector);
-    if (!output) return;
+    const card = stats.querySelectorAll(".header-team-stat")[index];
+    const output = card?.querySelector("[data-header-value]");
+    const labelNode = card?.querySelector("[data-header-label]");
+    if (!output || !labelNode) return;
+    labelNode.textContent = label;
     output.textContent = value;
     output.classList.toggle("is-win", tone === "win");
     output.classList.toggle("is-loss", tone === "loss");
   });
 }
 
-function apiDate(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
-function nextScheduledHeaderGame(games) {
-  return games
-    .filter((game) => game.status?.abstractGameState === "Preview"
-      && !/postponed|cancelled|canceled|suspended/i.test(game.status?.detailedState || ""))
-    .sort((a, b) => new Date(a.gameDate) - new Date(b.gameDate))[0];
-}
-
-async function renderNextOpponent() {
-  const start = new Date();
-  start.setHours(0, 0, 0, 0);
-  const end = new Date(start);
-  end.setDate(end.getDate() + 180);
-
-  const url = new URL("https://statsapi.mlb.com/api/v1/schedule");
-  url.searchParams.set("sportId", "1");
-  url.searchParams.set("teamId", String(HEADER_YANKEES_TEAM_ID));
-  url.searchParams.set("startDate", apiDate(start));
-  url.searchParams.set("endDate", apiDate(end));
-  url.searchParams.set("hydrate", "team");
-
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`MLB schedule returned ${response.status}`);
-  const data = await response.json();
-  const games = (data.dates || []).flatMap((date) => date.games || []);
-  const game = nextScheduledHeaderGame(games);
-  if (!game) {
-    setHeaderStat("[data-header-next]", "—");
-    return;
-  }
-
-  const yankeesAreAway = Number(game.teams?.away?.team?.id) === HEADER_YANKEES_TEAM_ID;
-  const opponent = yankeesAreAway ? game.teams?.home?.team : game.teams?.away?.team;
-  const abbreviation = opponent?.abbreviation;
-  if (abbreviation) setHeaderStat("[data-header-next]", `${yankeesAreAway ? "@" : ""}${abbreviation}`);
-}
-
-function standingsOrdinal(value) {
-  const number = Number.parseInt(value, 10);
-  if (!Number.isFinite(number)) return "";
-  const remainder100 = number % 100;
-  const suffix = remainder100 >= 11 && remainder100 <= 13
-    ? "th"
-    : ({ 1: "st", 2: "nd", 3: "rd" }[number % 10] || "th");
-  return `${number}${suffix}`;
-}
-
-async function renderYankeesBrandRecord() {
+function createYankeesBrandRecordLines() {
   if (!yankeesBrandCopies.length) return;
-  const recordLines = [...yankeesBrandCopies].map((brandCopy) => {
+  return [...yankeesBrandCopies].map((brandCopy) => {
     brandCopy.classList.add("brand-copy");
     const newYork = brandCopy.querySelector(".brand-kicker");
     const yankees = brandCopy.querySelector(".brand-title");
@@ -108,48 +58,89 @@ async function renderYankeesBrandRecord() {
     brandCopy.append(line);
     return line;
   });
+}
+
+const yankeesBrandRecordLines = createYankeesBrandRecordLines() || [];
+
+const headerGameTimeFormatter = new Intl.DateTimeFormat(undefined, {
+  hour: "numeric",
+  minute: "2-digit",
+});
+
+function headerTeamAbbreviation(team) {
+  return team?.abbreviation || team?.teamCode?.toUpperCase() || team?.fileCode?.toUpperCase() || "TBD";
+}
+
+function nextHeaderGameLabel(details) {
+  if (typeof details === "string") return details;
+  const game = details?.game;
+  const opponent = details?.opponent;
+  if (!game || !opponent) return "TBD";
+  const yankeesAreAway = Number(game.teams?.away?.team?.id) === HEADER_YANKEES_TEAM_ID;
+  const prefix = yankeesAreAway ? "@" : "vs";
+  const start = new Date(game.gameDate || "");
+  const time = Number.isFinite(start.getTime()) ? ` · ${headerGameTimeFormatter.format(start)}` : "";
+  return `${prefix} ${headerTeamAbbreviation(opponent)}${time}`;
+}
+
+function renderHeaderState(state) {
+  yankeesBrandRecordLines.forEach((line) => {
+    line.textContent = state.subtitle || "";
+    line.hidden = !state.subtitle;
+  });
+  state.cards.forEach(([label, rawValue, tone], index) => {
+    const value = typeof rawValue === "object" ? nextHeaderGameLabel(rawValue) : rawValue;
+    setHeaderCard(index, label, value, tone);
+  });
+}
+
+async function fetchHeaderData(season) {
+  const standingsUrl = new URL("https://statsapi.mlb.com/api/v1/standings");
+  standingsUrl.searchParams.set("leagueId", "103");
+  standingsUrl.searchParams.set("season", season);
+  standingsUrl.searchParams.set("standingsTypes", "regularSeason");
+  standingsUrl.searchParams.set("hydrate", "team,division");
+
+  const scheduleUrl = new URL("https://statsapi.mlb.com/api/v1/schedule");
+  scheduleUrl.searchParams.set("sportId", "1");
+  scheduleUrl.searchParams.set("teamId", String(HEADER_YANKEES_TEAM_ID));
+  scheduleUrl.searchParams.set("startDate", `${season}-01-01`);
+  scheduleUrl.searchParams.set("endDate", `${season}-12-31`);
+  scheduleUrl.searchParams.set("gameTypes", "R,F,D,L,W");
+  scheduleUrl.searchParams.set("hydrate", "team");
+
+  const [standingsResult, scheduleResult] = await Promise.allSettled([
+    fetch(standingsUrl).then((response) => {
+      if (!response.ok) throw new Error(`MLB standings returned ${response.status}`);
+      return response.json();
+    }),
+    fetch(scheduleUrl).then((response) => {
+      if (!response.ok) throw new Error(`MLB schedule returned ${response.status}`);
+      return response.json();
+    }),
+  ]);
+  return {
+    standings: standingsResult.status === "fulfilled" ? standingsResult.value : null,
+    games: scheduleResult.status === "fulfilled"
+      ? (scheduleResult.value.dates || []).flatMap((date) => date.games || [])
+      : [],
+  };
+}
+
+async function renderYankeesHeader() {
+  if (!window.YankeesHeaderSeason) return;
+  const season = new Date().getFullYear();
 
   try {
-    const season = new Date().getFullYear();
-    const url = new URL("https://statsapi.mlb.com/api/v1/standings");
-    url.searchParams.set("leagueId", "103");
-    url.searchParams.set("season", season);
-    url.searchParams.set("standingsTypes", "regularSeason");
-    url.searchParams.set("hydrate", "team,division");
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`MLB standings returned ${response.status}`);
-    const data = await response.json();
-    const match = (data.records || []).flatMap((record) =>
-      (record.teamRecords || []).map((teamRecord) => ({ record, teamRecord }))
-    ).find(({ teamRecord }) => Number(teamRecord.team?.id) === HEADER_YANKEES_TEAM_ID);
-    if (!match) throw new Error("Yankees standings unavailable");
-
-    const { record, teamRecord } = match;
-    const position = standingsOrdinal(teamRecord.divisionRank);
-    const division = record.division?.name || "American League East";
-    const rawGamesBack = teamRecord.divisionGamesBack ?? teamRecord.gamesBack;
-    const gamesBack = Number.parseFloat(rawGamesBack);
-    const showGamesBack = Number(teamRecord.divisionRank) > 1 && Number.isFinite(gamesBack) && gamesBack >= 0;
-    const label = `${position ? `${position} in ` : ""}${division}${showGamesBack ? ` · ${gamesBack} GB` : ""}`;
-    recordLines.forEach((line) => {
-      line.textContent = label;
-      line.hidden = false;
-    });
-
-    setHeaderStat("[data-header-record]", `${teamRecord.wins}–${teamRecord.losses}`);
-    const streak = teamRecord.streak?.streakCode || "—";
-    setHeaderStat(
-      "[data-header-streak]",
-      streak,
-      streak.toUpperCase().startsWith("W") ? "win" : streak.toUpperCase().startsWith("L") ? "loss" : ""
-    );
+    const data = await fetchHeaderData(season);
+    const state = window.YankeesHeaderSeason.buildHeaderState({ season, ...data });
+    renderHeaderState(state);
   } catch (error) {
-    recordLines.forEach((line) => line.remove());
+    // Keep the neutral header placeholders when MLB data cannot be resolved safely.
   }
 }
 
-renderYankeesBrandRecord();
-renderNextOpponent().catch(() => {});
+renderYankeesHeader();
 
 function setupStickySiteNavigation() {
   const navs = [...document.querySelectorAll(".desktop-site-nav, .site-nav")];

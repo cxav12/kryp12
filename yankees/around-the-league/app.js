@@ -145,7 +145,7 @@ const state = {
     players: null,
     teams: null,
     view: "players",
-    selectedStats: { hitting: 1, pitching: 0 },
+    selectedStats: { hitting: 1, pitching: 1 },
     season: SEASON,
     gameType: "R",
     postseasonAvailable: false,
@@ -170,6 +170,7 @@ const els = {
   nextStandingsSeason: document.querySelector("#next-standings-season"),
   standingsBody: document.querySelector("#standings-body"),
   standingsClinchLegend: document.querySelector("#standings-clinch-legend"),
+  leagueLeadersTitle: document.querySelector("#league-leaders-title"),
   leagueLeaders: document.querySelector("#league-leaders"),
   leaderboardToggle: document.querySelector("#leaderboard-toggle"),
   leaderboardSeasonToggle: document.querySelector("#leaderboard-season-toggle"),
@@ -951,25 +952,37 @@ async function loadHotPlayers() {
   renderWhosHot();
 }
 
-function leaderEntry(entry, index, type) {
+function isYankeesLeader(entry, type) {
+  return (type === "player" && entry.abbreviation === "NYY")
+    || (type === "team" && Number(entry.id) === TEAM_ID);
+}
+
+function leaderEntry(entry, index, type, definition) {
   const item = element("li", "leader-entry");
-  if ((type === "player" && entry.abbreviation === "NYY") || (type === "team" && Number(entry.id) === TEAM_ID)) {
+  item.style.setProperty("--leader-team-color", teamPrimaryColor({ id: entry.teamId || entry.id }));
+  if (isYankeesLeader(entry, type)) {
     item.classList.add("is-yankees");
+    item.setAttribute("aria-label", `${entry.name}, Yankees leader, rank ${index + 1}, ${entry.value} ${definition.toggleLabel}`);
   }
   const identity = element(type === "player" ? "a" : "span", "leader-identity");
   if (type === "player") identity.href = `../player-profile/?player=${entry.id}`;
   identity.append(element("strong", "leader-name", entry.name));
-  if (type === "player") identity.append(element("span", "leader-team", entry.abbreviation || "MLB"));
   const image = type === "player"
-    ? mediaImage(PLAYER_HEADSHOT_URL(entry.id), "leader-image", `${entry.name} headshot`, 32, 32)
-    : mediaImage(teamLogoUrl({ id: entry.id }), "leader-image team-logo", `${entry.name} logo`, 32, 32);
+    ? mediaImage(PLAYER_HEADSHOT_URL(entry.id), "leader-image", "", 40, 40)
+    : mediaImage(teamLogoUrl({ id: entry.id }), "leader-image team-logo", "", 40, 40);
   const media = image || element("span", "leader-image");
   const linkedMedia = type === "player" ? element("a", "leader-image-link") : media;
   if (type === "player") {
+    linkedMedia.setAttribute("aria-label", `View ${entry.name} profile`);
     linkedMedia.href = `../player-profile/?player=${entry.id}`;
     linkedMedia.append(media);
   }
-  item.append(element("span", "leader-rank", index + 1), linkedMedia, identity, element("strong", "leader-value", entry.value));
+  const team = type === "player" && entry.teamId
+    ? mediaImage(teamLogoUrl({ id: entry.teamId }), "leader-team-logo team-logo", `${entry.abbreviation || "Team"} logo`, 24, 24)
+    : element("span", "leader-team", entry.abbreviation || (type === "team" ? "MLB" : "—"));
+  const value = element("strong", "leader-value", entry.value);
+  value.setAttribute("data-stat-label", definition.toggleLabel);
+  item.append(element("span", "leader-rank", index + 1), linkedMedia, identity, team, value);
   return item;
 }
 
@@ -990,22 +1003,71 @@ function statsLeaderUrl(definition, type, groupName) {
   return `../player-stats/?${params}`;
 }
 
-function leaderStatCard(definition, entries, type, groupName, selected = false) {
+function featuredLeader(entry, type, definition) {
+  const featured = element("article", "leader-featured");
+  featured.style.setProperty("--leader-team-color", teamPrimaryColor({ id: entry.teamId || entry.id }));
+  if (isYankeesLeader(entry, type)) featured.classList.add("is-yankees");
+  const rank = element("strong", "leader-featured-rank", "1");
+  const image = type === "player"
+    ? mediaImage(PLAYER_HEADSHOT_URL(entry.id), "leader-featured-image", "", 80, 80)
+    : mediaImage(teamLogoUrl({ id: entry.id }), "leader-featured-image team-logo", "", 80, 80);
+  const media = image || element("span", "leader-featured-image");
+  const linkedMedia = type === "player" ? element("a", "leader-featured-image-link") : media;
+  if (type === "player") {
+    linkedMedia.href = `../player-profile/?player=${entry.id}`;
+    linkedMedia.setAttribute("aria-label", `View ${entry.name} profile`);
+    linkedMedia.append(media);
+  }
+  const identity = element("div", "leader-featured-identity");
+  const name = element(type === "player" ? "a" : "strong", "leader-featured-name", entry.name);
+  if (type === "player") name.href = `../player-profile/?player=${entry.id}`;
+  identity.append(name);
+  const teamLogo = type === "player" && entry.teamId
+    ? mediaImage(teamLogoUrl({ id: entry.teamId }), "leader-featured-team-logo team-logo", `${entry.abbreviation || "Team"} logo`, 40, 40)
+    : null;
+  if (teamLogo) featured.classList.add("has-team-logo");
+  const stat = element("div", "leader-featured-stat");
+  stat.append(element("strong", "leader-featured-value", entry.value));
+  featured.append(rank, linkedMedia, identity);
+  if (teamLogo) featured.append(teamLogo);
+  featured.append(stat);
+  return featured;
+}
+
+function leaderTable(entries, type, definition) {
+  const table = element("div", "leader-table");
+  const heading = element("div", "leader-table-heading");
+  heading.setAttribute("aria-hidden", "true");
+  heading.append(
+    element("span", "", "#"),
+    element("span", "", ""),
+    element("span", "", type === "player" ? "Player" : "Team"),
+    element("span", "", type === "player" ? "Team" : "Code"),
+    element("span", "", definition.toggleLabel),
+  );
+  const list = element("ol", "leader-list");
+  list.start = 2;
+  entries.slice(1, 5).forEach((entry, index) => list.append(leaderEntry(entry, index + 1, type, definition)));
+  table.append(heading, featuredLeader(entries[0], type, definition), list);
+  return table;
+}
+
+function leaderStatCard(definition, entries, type, groupName) {
   const card = element("section", "leader-stat-card");
-  card.classList.toggle("is-selected", selected);
+  card.id = `leader-panel-${type}-${groupName}`;
+  card.setAttribute("role", "tabpanel");
+  card.setAttribute("aria-labelledby", `leader-tab-${type}-${groupName}-${definition.key}`);
   const heading = element("div", "leader-stat-heading");
-  const more = element("a", "leader-more-link", "More");
+  const more = element("a", "leader-more-link", "View full leaders →");
   more.href = statsLeaderUrl(definition, type, groupName);
   more.setAttribute("aria-label", `View more ${definition.label} leaders`);
   heading.append(element("h4", "leader-stat-title", definition.label), more);
   card.append(heading);
   if (!entries?.length) {
-    card.append(element("p", "leader-stat-empty", "Unavailable"));
+    card.append(element("p", "leader-stat-empty", `No ${definition.label.toLowerCase()} leaders are available.`));
     return card;
   }
-  const list = element("ol", "leader-list");
-  entries.slice(0, 5).forEach((entry, index) => list.append(leaderEntry(entry, index, type)));
-  card.append(list);
+  card.append(leaderTable(entries, type, definition));
   return card;
 }
 
@@ -1013,7 +1075,7 @@ function leaderGroup(title, groupName, definitions, leaders, type, selectedIndex
   const group = element("section", "leader-group");
   const header = element("div", "leader-group-header");
   const controls = element("div", "leader-stat-toggle");
-  controls.setAttribute("role", "group");
+  controls.setAttribute("role", "tablist");
   controls.setAttribute("aria-label", `${title} statistic`);
   const toggleOrder = groupName === "hitting" ? [1, 0, 2, 3, 4] : [0, 1, 2, 3, 4];
   toggleOrder.forEach((index) => {
@@ -1021,25 +1083,30 @@ function leaderGroup(title, groupName, definitions, leaders, type, selectedIndex
     const button = element("button", "leader-stat-toggle-button", definition.toggleLabel);
     const active = index === selectedIndex;
     button.type = "button";
+    button.id = `leader-tab-${type}-${groupName}-${definition.key}`;
     button.dataset.leaderStatGroup = groupName;
     button.dataset.leaderStatIndex = String(index);
     button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-selected", String(active));
+    button.setAttribute("aria-controls", `leader-panel-${type}-${groupName}`);
+    button.tabIndex = active ? 0 : -1;
     button.setAttribute("aria-label", definition.label);
+    button.title = definition.label;
     controls.append(button);
   });
-  const grid = element("div", "leader-stat-grid");
-  definitions.forEach((definition, index) => {
-    grid.append(leaderStatCard(definition, leaders?.[definition.key], type, groupName, index === selectedIndex));
-  });
+  const definition = definitions[selectedIndex];
   header.append(element("h3", "leader-group-title", title), controls);
-  group.append(header, grid);
+  group.append(header, leaderStatCard(definition, leaders?.[definition.key], type, groupName));
   return group;
 }
 
 function renderLeagueLeaders() {
   const { players, teams, view, selectedStats, status } = state.leagueLeaders;
   if (status === "loading") return;
+  els.leagueLeadersTitle.textContent = state.leagueLeaders.gameType === "P"
+    ? "Postseason League Leaders"
+    : state.leagueLeaders.postseasonAvailable ? "Regular Season League Leaders" : "League Leaders";
   const showingPlayers = view === "players";
   const data = showingPlayers ? players : teams;
   const definitions = showingPlayers ? PLAYER_LEADER_STATS : TEAM_LEADER_STATS;
@@ -1085,36 +1152,59 @@ function setLeagueLeaderStat(group, index) {
   renderLeagueLeaders();
 }
 
-function playerLeaderSummary(leader) {
+function playerLeaderSummary(split, key) {
   return {
-    id: leader.person?.id,
-    name: leader.person?.fullName || "Player",
-    abbreviation: teamAbbreviation(leader.team),
-    value: leader.value ?? "-",
+    id: split.player?.id,
+    name: split.player?.fullName || "Player",
+    teamId: split.team?.id,
+    abbreviation: teamAbbreviation(split.team),
+    value: split.stat?.[key] ?? "-",
   };
 }
 
-async function getPlayerLeagueLeaders(season, gameType) {
-  const definitions = [...PLAYER_LEADER_STATS.hitting, ...PLAYER_LEADER_STATS.pitching]
-    .filter((definition) => definition.key !== "qualityStarts");
-  const url = new URL(`${MLB_API}/stats/leaders`);
-  url.searchParams.set("leaderCategories", definitions.map((definition) => definition.key).join(","));
-  url.searchParams.set("season", season);
-  url.searchParams.set("gameTypes", gameType);
-  url.searchParams.set("sportId", "1");
-  url.searchParams.set("limit", "5");
-  url.searchParams.set("hydrate", "person(currentTeam),team");
-
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
-  const data = await response.json();
-  const result = { hitting: {}, pitching: {} };
-  definitions.forEach((definition) => {
-    const board = (data.leagueLeaders || []).find((entry) => entry.leaderCategory === definition.key
-      && entry.statGroup === definition.group);
-    result[definition.group][definition.key] = (board?.leaders || []).slice(0, 5).map(playerLeaderSummary);
+function rankPlayerSplits(allSplits, qualifiedSplits, definitions) {
+  const result = {};
+  definitions.filter((definition) => definition.key !== "qualityStarts").forEach((definition) => {
+    const key = statsSortKey(definition.key);
+    const rateStat = definition.key === "battingAverage" || definition.key === "earnedRunAverage";
+    const splits = rateStat ? qualifiedSplits : allSplits;
+    const direction = definition.ascending ? 1 : -1;
+    result[definition.key] = [...splits]
+      .filter((split) => split.player?.id && Number.isFinite(Number(split.stat?.[key])))
+      .filter((split) => definition.key !== "earnedRunAverage" || statNumber(split.stat?.gamesStarted) > 0)
+      .sort((a, b) => direction * (Number(a.stat[key]) - Number(b.stat[key])))
+      .slice(0, 5)
+      .map((split) => playerLeaderSummary(split, key));
   });
   return result;
+}
+
+async function getPlayerLeagueLeaders(season, gameType) {
+  const request = async (group, playerPool) => {
+    const url = new URL(`${MLB_API}/stats`);
+    url.searchParams.set("stats", "season");
+    url.searchParams.set("group", group);
+    url.searchParams.set("season", season);
+    url.searchParams.set("gameType", gameType);
+    url.searchParams.set("sportIds", "1");
+    url.searchParams.set("playerPool", playerPool);
+    url.searchParams.set("limit", "5000");
+    url.searchParams.set("hydrate", "team");
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`MLB API returned ${response.status}`);
+    const data = await response.json();
+    return data.stats?.[0]?.splits || [];
+  };
+  const [allHitting, qualifiedHitting, allPitching, qualifiedPitching] = await Promise.all([
+    request("hitting", "ALL"),
+    request("hitting", "QUALIFIED"),
+    request("pitching", "ALL"),
+    request("pitching", "QUALIFIED"),
+  ]);
+  return {
+    hitting: rankPlayerSplits(allHitting, qualifiedHitting, PLAYER_LEADER_STATS.hitting),
+    pitching: rankPlayerSplits(allPitching, qualifiedPitching, PLAYER_LEADER_STATS.pitching),
+  };
 }
 
 function teamLeaderSummary(split, key) {
@@ -1202,6 +1292,7 @@ async function getQualityStartLeaders(season, gameType) {
     return {
       id: person.id,
       name: person.fullName || candidate?.player?.fullName || "Player",
+      teamId: candidate?.team?.id || person.currentTeam?.id,
       abbreviation: teamAbbreviation(candidate?.team || person.currentTeam),
       value: count,
     };
@@ -1510,7 +1601,7 @@ function scoreGroup(title, games, { showEmpty = false } = {}) {
   section.append(heading);
 
   if (!games.length && showEmpty) {
-    section.append(element("p", "scores-group-empty", "No AL East games are scheduled for this date."));
+    section.append(element("p", "scores-group-empty", "No AL East games are scheduled for today."));
     return section;
   }
 
@@ -1671,6 +1762,35 @@ function setActiveSectionLink(link) {
   });
 }
 
+let sectionReturnVisibilityFrame = 0;
+
+function updateSectionReturnVisibility() {
+  cancelAnimationFrame(sectionReturnVisibilityFrame);
+  sectionReturnVisibilityFrame = requestAnimationFrame(() => {
+    const initialViewportBottom = window.innerHeight;
+
+    document.querySelectorAll(".section-return").forEach((sectionReturn) => {
+      sectionReturn.hidden = false;
+      const returnBottom = sectionReturn.getBoundingClientRect().bottom + window.scrollY;
+      sectionReturn.hidden = returnBottom <= initialViewportBottom;
+    });
+  });
+}
+
+function observeSectionReturnVisibility() {
+  const dashboard = document.querySelector(".league-dashboard-grid");
+  if (!dashboard) return;
+
+  new MutationObserver(updateSectionReturnVisibility).observe(dashboard, {
+    childList: true,
+    subtree: true,
+  });
+  window.addEventListener("resize", updateSectionReturnVisibility);
+  window.addEventListener("load", updateSectionReturnVisibility, { once: true });
+  document.fonts?.ready.then(updateSectionReturnVisibility);
+  updateSectionReturnVisibility();
+}
+
 function bindEvents() {
   els.sectionNav?.addEventListener("click", (event) => {
     const link = event.target.closest("a[href^='#']");
@@ -1696,10 +1816,26 @@ function bindEvents() {
     const button = event.target.closest("[data-leader-stat-group]");
     if (button) setLeagueLeaderStat(button.dataset.leaderStatGroup, button.dataset.leaderStatIndex);
   });
+  els.leagueLeaders.addEventListener("keydown", (event) => {
+    const button = event.target.closest("[role='tab'][data-leader-stat-group]");
+    if (!button || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    const tabs = [...button.closest("[role='tablist']").querySelectorAll("[role='tab']")];
+    const currentIndex = tabs.indexOf(button);
+    const nextIndex = event.key === "Home"
+      ? 0
+      : event.key === "End"
+        ? tabs.length - 1
+        : (currentIndex + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+    event.preventDefault();
+    const next = tabs[nextIndex];
+    setLeagueLeaderStat(next.dataset.leaderStatGroup, next.dataset.leaderStatIndex);
+    requestAnimationFrame(() => document.getElementById(next.id)?.focus());
+  });
 }
 
 function init() {
   bindEvents();
+  observeSectionReturnVisibility();
   renderTopProspects();
   renderDatePicker();
   renderStandingsSeason();

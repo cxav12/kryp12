@@ -63,6 +63,10 @@
   margin-top: 14px;
 }
 
+.section-return[hidden] {
+  display: none;
+}
+
 .section-return a {
   min-height: 34px;
   border: 0;
@@ -704,7 +708,7 @@
 }
 
 .standings-table .team-standing-row td:first-child {
-  box-shadow: none;
+  box-shadow: inset 4px 0 0 var(--standing-team-color, #60798f);
 }
 
 .standings-table .is-yankees td {
@@ -715,10 +719,6 @@
 
 .standings-table .is-yankees td:nth-child(2) {
   color: #a8caff;
-}
-
-.standings-table .is-yankees td:first-child {
-  box-shadow: none;
 }
 
 .standings-table.is-wild-card-view .wild-card-cutoff td {
@@ -1127,6 +1127,290 @@ a.leader-identity:focus-visible .leader-name {
   text-align: center;
 }
 
+/* Spacious single-category leaderboards */
+.leaderboard-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+.leader-group {
+  padding: 16px;
+  border-radius: 10px;
+  background: rgba(7, 13, 19, 0.72);
+}
+
+.leader-group + .leader-group {
+  margin-top: 0;
+}
+
+.leader-group-header {
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.leader-group-title {
+  font-size: 1.08rem;
+}
+
+.leader-stat-toggle {
+  width: min(100%, 420px);
+  display: grid;
+}
+
+.leader-stat-toggle-button {
+  min-height: 36px;
+  cursor: pointer;
+}
+
+.leader-stat-toggle-button:focus-visible {
+  outline: 2px solid rgba(143, 187, 227, 0.78);
+  outline-offset: 2px;
+}
+
+.leader-stat-card {
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #0a1015;
+  animation: leader-content-in 140ms ease-out;
+}
+
+.leader-stat-heading {
+  min-height: 48px;
+  background: #0d141b;
+  padding: 10px 16px;
+}
+
+.leader-stat-title {
+  font-size: 0.95rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.leader-more-link {
+  padding: 5px 0;
+}
+
+.leader-featured {
+  min-width: 0;
+  min-height: 112px;
+  display: grid;
+  grid-template-columns: 44px 88px minmax(0, 1fr) minmax(90px, auto);
+  align-items: center;
+  gap: 16px;
+  padding: 10px 18px;
+  border-left: 4px solid var(--leader-team-color, #60798f);
+  background: #111920;
+}
+
+.leader-featured.has-team-logo {
+  grid-template-columns: 44px 44px minmax(180px, 1fr) 90px 90px;
+  gap: 12px;
+}
+
+.leader-featured.has-team-logo .leader-featured-image-link,
+.leader-featured.has-team-logo .leader-featured-image {
+  width: 64px;
+  height: 64px;
+}
+
+.leader-featured.has-team-logo .leader-featured-identity {
+  padding-left: 0;
+}
+
+.leader-featured.has-team-logo .leader-featured-name {
+  margin-left: 10px;
+}
+
+.leader-featured.is-yankees {
+  background: rgba(29, 79, 120, 0.24);
+}
+
+.leader-featured-rank {
+  color: #9ac7ff;
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.leader-featured-image-link,
+.leader-featured-image {
+  width: 80px;
+  height: 80px;
+}
+
+.leader-featured-image-link {
+  display: grid;
+  place-items: center;
+}
+
+.leader-featured-image {
+  object-fit: contain;
+  object-position: center;
+}
+
+.leader-featured-identity {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 4px;
+}
+
+.leader-featured-name {
+  color: var(--ink);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 850;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+a.leader-featured-name:hover,
+a.leader-featured-name:focus-visible {
+  color: #aeb6a7;
+}
+
+.leader-featured-stat {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  line-height: 1;
+}
+
+.leader-featured-team-logo {
+  width: 40px;
+  height: 40px;
+  justify-self: center;
+  object-fit: contain;
+  opacity: 0.5;
+  filter: grayscale(0.3) saturate(0.7);
+}
+
+.leader-featured-value {
+  color: var(--yankees-silver);
+  font-size: clamp(1.75rem, 4vw, 2.65rem);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.leader-table {
+  min-width: 0;
+}
+
+.leader-table-heading,
+.leader-entry {
+  display: grid;
+  grid-template-columns: 44px 44px minmax(180px, 1fr) 90px 90px;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.leader-table-heading {
+  min-height: 30px;
+  color: var(--muted);
+  padding: 4px 18px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.leader-table-heading span:last-child {
+  text-align: center;
+}
+
+.leader-table-heading span:nth-child(4) {
+  text-align: center;
+}
+
+.leader-table-heading span:first-child {
+  text-align: center;
+}
+
+.leader-entry {
+  min-height: 58px;
+  padding: 7px 18px;
+  border-left: 4px solid var(--leader-team-color, #60798f);
+}
+
+.leader-entry:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.leader-entry.is-yankees {
+  background: rgba(29, 79, 120, 0.2);
+}
+
+.leader-entry.is-yankees .leader-name {
+  color: #a8caff;
+}
+
+.leader-image,
+.leader-image-link {
+  width: 40px;
+  height: 40px;
+}
+
+.leader-image-link {
+  display: grid;
+  place-items: center;
+}
+
+.leader-image {
+  object-position: center;
+}
+
+.leader-identity {
+  align-content: center;
+}
+
+.leader-name {
+  overflow: visible;
+  font-size: 0.86rem;
+  line-height: 1.25;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.leader-team {
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+.leader-team-logo {
+  width: 24px;
+  height: 24px;
+  justify-self: center;
+  object-fit: contain;
+  opacity: 0.46;
+  filter: grayscale(0.35) saturate(0.65);
+}
+
+.leader-value {
+  justify-self: center;
+  font-size: 0.92rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.leader-stat-empty {
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+}
+
+@keyframes leader-content-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leader-stat-card {
+    animation: none;
+  }
+}
+
 .prospects-panel {
   min-width: 0;
   grid-column: 1 / -1;
@@ -1415,11 +1699,174 @@ a.leader-identity:focus-visible .leader-name {
   }
 
   .leader-stat-card {
-    display: none;
+    display: block;
+  }
+}
+
+@media (max-width: 1099.98px) {
+  .leaderboard-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767.98px) {
+
+  .leaderboard-header-controls,
+  .leaderboard-toggle {
+    width: 100%;
   }
 
-  .leader-stat-card.is-selected {
-    display: block;
+  .leader-group + .leader-group {
+    margin-top: 24px;
+  }
+
+  .leader-group {
+    padding: 12px;
+  }
+
+  .leader-group-header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .leader-stat-toggle {
+    width: 100%;
+  }
+
+  .leader-stat-toggle-button {
+    min-height: 38px;
+    padding-inline: 5px;
+  }
+
+  .leader-featured {
+    min-height: 94px;
+    grid-template-columns: 34px 68px minmax(0, 1fr) minmax(60px, auto);
+    gap: 9px;
+    padding: 10px 12px 6px;
+  }
+
+  .leader-featured.has-team-logo {
+    grid-template-columns: 28px 36px minmax(0, 1fr) 42px 68px;
+    gap: 7px;
+  }
+
+  .leader-featured.has-team-logo .leader-featured-image-link,
+  .leader-featured.has-team-logo .leader-featured-image {
+    width: 48px;
+    height: 48px;
+  }
+
+  .leader-featured.has-team-logo .leader-featured-identity {
+    padding-left: 0;
+  }
+
+  .leader-featured.has-team-logo .leader-featured-name {
+    margin-left: 6px;
+  }
+
+  .leader-featured-team-logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .leader-featured-rank {
+    font-size: 1.5rem;
+  }
+
+  .leader-featured-image-link,
+  .leader-featured-image {
+    width: 64px;
+    height: 64px;
+  }
+
+  .leader-featured-name {
+    font-size: 1rem;
+  }
+
+  .leader-featured-value {
+    font-size: 1.8rem;
+  }
+
+  .leader-table-heading,
+  .leader-entry {
+    grid-template-columns: 28px 36px minmax(0, 1fr) 42px 68px;
+    column-gap: 7px;
+  }
+
+  .leader-table-heading {
+    padding-inline: 10px;
+    font-size: 0.58rem;
+  }
+
+  .leader-entry {
+    min-height: 54px;
+    padding: 6px 10px;
+  }
+
+  .leader-image,
+  .leader-image-link {
+    width: 36px;
+    height: 36px;
+  }
+
+  .leader-name {
+    font-size: 0.76rem;
+  }
+
+  .leader-team {
+    font-size: 0.68rem;
+  }
+
+  .leader-value {
+    font-size: 0.78rem;
+  }
+
+  .leader-value::after {
+    content: " " attr(data-stat-label);
+    color: var(--muted);
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 389.98px) {
+  .leader-featured {
+    grid-template-columns: 28px 56px minmax(0, 1fr) minmax(50px, auto);
+    gap: 6px;
+    padding-inline: 8px;
+  }
+
+  .leader-featured.has-team-logo {
+    grid-template-columns: 24px 32px minmax(0, 1fr) 36px 60px;
+    gap: 5px;
+  }
+
+  .leader-featured.has-team-logo .leader-featured-image-link,
+  .leader-featured.has-team-logo .leader-featured-image {
+    width: 42px;
+    height: 42px;
+  }
+
+  .leader-featured-team-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .leader-featured-image-link,
+  .leader-featured-image {
+    width: 54px;
+    height: 54px;
+  }
+
+  .leader-table-heading,
+  .leader-entry {
+    grid-template-columns: 24px 32px minmax(0, 1fr) 36px 60px;
+    column-gap: 5px;
+  }
+
+  .leader-table-heading,
+  .leader-entry {
+    padding-inline: 7px;
   }
 }
 

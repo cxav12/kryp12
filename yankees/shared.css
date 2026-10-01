@@ -425,7 +425,7 @@ b {
 .header-team-stats {
   display: grid;
   flex-shrink: 0;
-  grid-template-columns: repeat(3, minmax(76px, 1fr));
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 1.4fr);
   width: min(100%, 330px);
   margin-left: auto;
   border: 1px solid rgba(205, 216, 228, 0.13);
@@ -455,11 +455,16 @@ b {
 }
 
 .header-team-stat strong {
+  min-width: 0;
   margin-top: 3px;
   color: var(--text);
-  font-size: 1rem;
+  font-size: clamp(0.78rem, 2.6vw, 1rem);
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.header-team-stat:last-child strong {
   white-space: nowrap;
 }
 

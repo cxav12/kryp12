@@ -434,6 +434,16 @@
     padding-inline: 0;
   }
 
+  .stats-scope-toggle {
+    grid-template-columns: 1.45fr .75fr .75fr .9fr 1.05fr;
+  }
+
+  .stats-scope-button {
+    min-width: 0;
+    padding-inline: 4px;
+    white-space: nowrap;
+  }
+
   .stats-card {
     overflow: hidden;
   }

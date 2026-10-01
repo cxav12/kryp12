@@ -1904,17 +1904,21 @@ a.leader-featured-name:focus-visible {
   }
 
   .standings-switcher {
-    grid-template-columns: minmax(50px, 1fr) repeat(3, minmax(26px, 0.65fr)) minmax(54px, 1fr) minmax(72px, 1.2fr);
-    border-radius: 999px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    border-radius: 20px;
+    padding: 6px;
   }
 
   .standings-season-control {
-    grid-template-columns: 18px minmax(36px, 1fr) 18px;
+    grid-template-columns: 16px minmax(32px, 1fr) 16px;
   }
 
   .standings-switch {
-    min-height: 36px;
-    padding-inline: 3px;
+    min-height: 40px;
+    padding-inline: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
 
@@ -1927,7 +1931,7 @@ a.leader-featured-name:focus-visible {
   }
 
   .standings-season-arrow {
-    width: 18px;
+    width: 16px;
   }
 
   .standings-option {

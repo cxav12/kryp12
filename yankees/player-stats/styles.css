@@ -456,7 +456,7 @@
     display: block;
   }
 
-  .mobile-stat-list {
+  #mobile-stat-list {
     margin: 0;
     padding: 0 0 8px;
     list-style: none;
@@ -469,6 +469,7 @@
     align-items: center;
     gap: 8px;
     border-bottom: 0;
+    padding: 0 12px 0 9px;
   }
 
   .mobile-stat-row:nth-child(even) {

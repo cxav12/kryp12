@@ -16,11 +16,11 @@
   </div>
   <div class="field field-wide">
     <label for="product_url">Product URL</label>
-    <input id="product_url" name="product_url" type="url" maxlength="2048" required value="<?= e($item['product_url'] ?? '') ?>">
+    <input id="product_url" name="product_url" type="url" autocomplete="off" maxlength="2048" required value="<?= e($item['product_url'] ?? '') ?>">
   </div>
   <div class="field field-wide">
     <label for="image_url">Image URL <span>optional</span></label>
-    <input id="image_url" name="image_url" type="url" maxlength="2048" value="<?= e($item['image_url'] ?? '') ?>">
+    <input id="image_url" name="image_url" type="url" autocomplete="off" maxlength="2048" value="<?= e($item['image_url'] ?? '') ?>">
   </div>
   <div class="field field-wide">
     <label for="description">Note or description <span>optional</span></label>

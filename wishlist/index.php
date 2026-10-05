@@ -17,7 +17,7 @@ require __DIR__ . '/templates/header.php';
     <form class="url-form" action="<?= e(appUrl('admin/import.php')) ?>" method="post">
       <?= csrfField() ?>
       <label class="visually-hidden" for="product-import-url">Product URL</label>
-      <input id="product-import-url" name="product_url" type="url" placeholder="https://www.example.com/product" maxlength="2048" required>
+      <input id="product-import-url" name="product_url" type="url" autocomplete="off" placeholder="https://www.example.com/product" maxlength="2048" required>
       <button class="button button-primary" type="submit">Add item</button>
     </form>
   </section>

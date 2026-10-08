@@ -1,0 +1,524 @@
+{
+  "id": "nato-alphabet",
+  "slug": "phonetic-alphabet",
+  "title": "Phonetic alphabet",
+  "category": "Communications",
+  "summary": "A\u2013Z NATO spelling words, ready for a quick refresh.",
+  "status": "general-reference",
+  "lastReviewed": "2026-10-08",
+  "sources": [
+    {
+      "title": "NATO \u00b7 The NATO phonetic alphabet",
+      "url": "https://www.nato.int/en/about-us/nato-history/history-by-theme/symbols-of-nato/nato-phonetic-alphabet"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Before you study",
+      "text": "General NATO reference. Confirm the alphabet used by your ECC before preparing for department tests. This is not a department-approved protocol."
+    },
+    {
+      "heading": "A\u2013Z reference",
+      "items": [
+        {
+          "label": "A",
+          "text": "Alfa"
+        },
+        {
+          "label": "B",
+          "text": "Bravo"
+        },
+        {
+          "label": "C",
+          "text": "Charlie"
+        },
+        {
+          "label": "D",
+          "text": "Delta"
+        },
+        {
+          "label": "E",
+          "text": "Echo"
+        },
+        {
+          "label": "F",
+          "text": "Foxtrot"
+        },
+        {
+          "label": "G",
+          "text": "Golf"
+        },
+        {
+          "label": "H",
+          "text": "Hotel"
+        },
+        {
+          "label": "I",
+          "text": "India"
+        },
+        {
+          "label": "J",
+          "text": "Juliett"
+        },
+        {
+          "label": "K",
+          "text": "Kilo"
+        },
+        {
+          "label": "L",
+          "text": "Lima"
+        },
+        {
+          "label": "M",
+          "text": "Mike"
+        },
+        {
+          "label": "N",
+          "text": "November"
+        },
+        {
+          "label": "O",
+          "text": "Oscar"
+        },
+        {
+          "label": "P",
+          "text": "Papa"
+        },
+        {
+          "label": "Q",
+          "text": "Quebec"
+        },
+        {
+          "label": "R",
+          "text": "Romeo"
+        },
+        {
+          "label": "S",
+          "text": "Sierra"
+        },
+        {
+          "label": "T",
+          "text": "Tango"
+        },
+        {
+          "label": "U",
+          "text": "Uniform"
+        },
+        {
+          "label": "V",
+          "text": "Victor"
+        },
+        {
+          "label": "W",
+          "text": "Whiskey"
+        },
+        {
+          "label": "X",
+          "text": "X-ray"
+        },
+        {
+          "label": "Y",
+          "text": "Yankee"
+        },
+        {
+          "label": "Z",
+          "text": "Zulu"
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "What is the NATO spelling word for A?",
+      "answer": "Alfa"
+    },
+    {
+      "question": "What is the NATO spelling word for B?",
+      "answer": "Bravo"
+    },
+    {
+      "question": "What is the NATO spelling word for C?",
+      "answer": "Charlie"
+    },
+    {
+      "question": "What is the NATO spelling word for D?",
+      "answer": "Delta"
+    },
+    {
+      "question": "What is the NATO spelling word for E?",
+      "answer": "Echo"
+    },
+    {
+      "question": "What is the NATO spelling word for F?",
+      "answer": "Foxtrot"
+    },
+    {
+      "question": "What is the NATO spelling word for G?",
+      "answer": "Golf"
+    },
+    {
+      "question": "What is the NATO spelling word for H?",
+      "answer": "Hotel"
+    },
+    {
+      "question": "What is the NATO spelling word for I?",
+      "answer": "India"
+    },
+    {
+      "question": "What is the NATO spelling word for J?",
+      "answer": "Juliett"
+    },
+    {
+      "question": "What is the NATO spelling word for K?",
+      "answer": "Kilo"
+    },
+    {
+      "question": "What is the NATO spelling word for L?",
+      "answer": "Lima"
+    },
+    {
+      "question": "What is the NATO spelling word for M?",
+      "answer": "Mike"
+    },
+    {
+      "question": "What is the NATO spelling word for N?",
+      "answer": "November"
+    },
+    {
+      "question": "What is the NATO spelling word for O?",
+      "answer": "Oscar"
+    },
+    {
+      "question": "What is the NATO spelling word for P?",
+      "answer": "Papa"
+    },
+    {
+      "question": "What is the NATO spelling word for Q?",
+      "answer": "Quebec"
+    },
+    {
+      "question": "What is the NATO spelling word for R?",
+      "answer": "Romeo"
+    },
+    {
+      "question": "What is the NATO spelling word for S?",
+      "answer": "Sierra"
+    },
+    {
+      "question": "What is the NATO spelling word for T?",
+      "answer": "Tango"
+    },
+    {
+      "question": "What is the NATO spelling word for U?",
+      "answer": "Uniform"
+    },
+    {
+      "question": "What is the NATO spelling word for V?",
+      "answer": "Victor"
+    },
+    {
+      "question": "What is the NATO spelling word for W?",
+      "answer": "Whiskey"
+    },
+    {
+      "question": "What is the NATO spelling word for X?",
+      "answer": "X-ray"
+    },
+    {
+      "question": "What is the NATO spelling word for Y?",
+      "answer": "Yankee"
+    },
+    {
+      "question": "What is the NATO spelling word for Z?",
+      "answer": "Zulu"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which NATO spelling word represents A?",
+      "choices": [
+        "Alfa",
+        "Bravo",
+        "Charlie",
+        "Delta"
+      ],
+      "correctIndex": 0,
+      "explanation": "A is represented by Alfa in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents B?",
+      "choices": [
+        "Charlie",
+        "Delta",
+        "Echo",
+        "Bravo"
+      ],
+      "correctIndex": 3,
+      "explanation": "B is represented by Bravo in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents C?",
+      "choices": [
+        "Echo",
+        "Foxtrot",
+        "Charlie",
+        "Delta"
+      ],
+      "correctIndex": 2,
+      "explanation": "C is represented by Charlie in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents D?",
+      "choices": [
+        "Golf",
+        "Delta",
+        "Echo",
+        "Foxtrot"
+      ],
+      "correctIndex": 1,
+      "explanation": "D is represented by Delta in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents E?",
+      "choices": [
+        "Echo",
+        "Foxtrot",
+        "Golf",
+        "Hotel"
+      ],
+      "correctIndex": 0,
+      "explanation": "E is represented by Echo in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents F?",
+      "choices": [
+        "Golf",
+        "Hotel",
+        "India",
+        "Foxtrot"
+      ],
+      "correctIndex": 3,
+      "explanation": "F is represented by Foxtrot in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents G?",
+      "choices": [
+        "India",
+        "Juliett",
+        "Golf",
+        "Hotel"
+      ],
+      "correctIndex": 2,
+      "explanation": "G is represented by Golf in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents H?",
+      "choices": [
+        "Kilo",
+        "Hotel",
+        "India",
+        "Juliett"
+      ],
+      "correctIndex": 1,
+      "explanation": "H is represented by Hotel in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents I?",
+      "choices": [
+        "India",
+        "Juliett",
+        "Kilo",
+        "Lima"
+      ],
+      "correctIndex": 0,
+      "explanation": "I is represented by India in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents J?",
+      "choices": [
+        "Kilo",
+        "Lima",
+        "Mike",
+        "Juliett"
+      ],
+      "correctIndex": 3,
+      "explanation": "J is represented by Juliett in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents K?",
+      "choices": [
+        "Mike",
+        "November",
+        "Kilo",
+        "Lima"
+      ],
+      "correctIndex": 2,
+      "explanation": "K is represented by Kilo in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents L?",
+      "choices": [
+        "Oscar",
+        "Lima",
+        "Mike",
+        "November"
+      ],
+      "correctIndex": 1,
+      "explanation": "L is represented by Lima in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents M?",
+      "choices": [
+        "Mike",
+        "November",
+        "Oscar",
+        "Papa"
+      ],
+      "correctIndex": 0,
+      "explanation": "M is represented by Mike in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents N?",
+      "choices": [
+        "Oscar",
+        "Papa",
+        "Quebec",
+        "November"
+      ],
+      "correctIndex": 3,
+      "explanation": "N is represented by November in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents O?",
+      "choices": [
+        "Quebec",
+        "Romeo",
+        "Oscar",
+        "Papa"
+      ],
+      "correctIndex": 2,
+      "explanation": "O is represented by Oscar in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents P?",
+      "choices": [
+        "Sierra",
+        "Papa",
+        "Quebec",
+        "Romeo"
+      ],
+      "correctIndex": 1,
+      "explanation": "P is represented by Papa in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents Q?",
+      "choices": [
+        "Quebec",
+        "Romeo",
+        "Sierra",
+        "Tango"
+      ],
+      "correctIndex": 0,
+      "explanation": "Q is represented by Quebec in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents R?",
+      "choices": [
+        "Sierra",
+        "Tango",
+        "Uniform",
+        "Romeo"
+      ],
+      "correctIndex": 3,
+      "explanation": "R is represented by Romeo in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents S?",
+      "choices": [
+        "Uniform",
+        "Victor",
+        "Sierra",
+        "Tango"
+      ],
+      "correctIndex": 2,
+      "explanation": "S is represented by Sierra in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents T?",
+      "choices": [
+        "Whiskey",
+        "Tango",
+        "Uniform",
+        "Victor"
+      ],
+      "correctIndex": 1,
+      "explanation": "T is represented by Tango in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents U?",
+      "choices": [
+        "Uniform",
+        "Victor",
+        "Whiskey",
+        "X-ray"
+      ],
+      "correctIndex": 0,
+      "explanation": "U is represented by Uniform in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents V?",
+      "choices": [
+        "Whiskey",
+        "X-ray",
+        "Yankee",
+        "Victor"
+      ],
+      "correctIndex": 3,
+      "explanation": "V is represented by Victor in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents W?",
+      "choices": [
+        "Yankee",
+        "Zulu",
+        "Whiskey",
+        "X-ray"
+      ],
+      "correctIndex": 2,
+      "explanation": "W is represented by Whiskey in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents X?",
+      "choices": [
+        "Alfa",
+        "X-ray",
+        "Yankee",
+        "Zulu"
+      ],
+      "correctIndex": 1,
+      "explanation": "X is represented by X-ray in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents Y?",
+      "choices": [
+        "Yankee",
+        "Zulu",
+        "Alfa",
+        "Bravo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Y is represented by Yankee in the NATO spelling alphabet."
+    },
+    {
+      "question": "Which NATO spelling word represents Z?",
+      "choices": [
+        "Alfa",
+        "Bravo",
+        "Charlie",
+        "Zulu"
+      ],
+      "correctIndex": 3,
+      "explanation": "Z is represented by Zulu in the NATO spelling alphabet."
+    }
+  ]
+}

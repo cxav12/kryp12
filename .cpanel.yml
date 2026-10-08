@@ -14,3 +14,4 @@ deployment:
     - /bin/cp -Rf yankees $DEPLOYPATH
     - /bin/cp -Rf wishlist $DEPLOYPATH
     - /bin/cp -Rf login $DEPLOYPATH
+    - /bin/cp -Rf ecc $DEPLOYPATH

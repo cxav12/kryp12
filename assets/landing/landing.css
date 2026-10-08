@@ -130,3 +130,6 @@ body {
   .project-card, .project-art::before, .project-logo, .project-arrow svg { transition: none; }
   a.project-card:hover, a.project-card:hover .project-art::before, a.project-card:hover .project-logo, a.project-card:hover .project-arrow svg { transform: none; }
 }
+
+/* ECC stays public independently of account-managed sites. */
+.project-card--ecc { --accent: #8de6d0; --card-bg: #142e36; border: 0; }

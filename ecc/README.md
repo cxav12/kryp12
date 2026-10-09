@@ -31,13 +31,13 @@ Copy the starter JSON, choose unique stable `id` and `slug`, then revise the con
 }
 ```
 
-All top-level fields shown are required. IDs/slugs use lowercase letters, digits and single hyphens. Dates must be real YYYY-MM-DD dates. Sources need a title and HTTP(S) URL. At least one source and section is required. A section has a heading and `text`, `items`, or both. `items` is a list of `{ "label": "A", "text": "Alfa" }` objects, rendered as a reference grid. Text is plain text, not HTML or Markdown; newlines are supported in section text.
+Core fields are id, slug, title, category, status, sections, flashcards and quiz. Summary, sources and lastReviewed are optional legacy metadata and are not displayed. Do not add descriptions, source attribution or reviewed dates unless explicitly requested; see AGENTS.md. IDs/slugs use lowercase letters, digits and single hyphens. Dates must be real YYYY-MM-DD dates. Sources need a title; an optional URL must use HTTP(S). For supplied documents or screenshots without a public link, describe the source in the title and omit the URL. At least one section is required. A section has a heading and `text`, `items`, or both. `items` is a list of `{ "label": "A", "text": "Alfa" }` objects, rendered as a reference grid. Text is plain text, not HTML or Markdown; newlines are supported in section text.
 
 `flashcards` and `quiz` may be empty arrays. Each quiz needs at least two nonempty choices, a zero-based integer `correctIndex` identifying one choice, and a nonempty explanation. Keep study questions consistent with the reference; nothing is generated automatically at runtime.
 
 Categories appear only when populated. Invalid JSON, invalid schema and duplicate IDs/slugs are skipped and logged on the server without disclosing paths to visitors. Fix logged errors before publishing. Empty libraries and topics without practice material have explanatory states.
 
-Use `department-approved` only with supplied approval and a publishable source. Otherwise use `general-reference`. Record the review date and original source. Initial NATO alphabet content is sourced from NATO and awaits confirmation that it matches the ECC's alphabet. No local protocols or codes are assumed.
+Use `department-approved` only with supplied approval and a publishable source. Otherwise use `general-reference`. Do not add source attribution or review dates unless requested. Initial NATO alphabet content is sourced from NATO and awaits confirmation that it matches the ECC's alphabet. No local protocols or codes are assumed.
 
 ## Preview and validation
 

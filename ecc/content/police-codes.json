@@ -1,0 +1,165 @@
+{
+  "id": "police-codes",
+  "slug": "police-codes",
+  "title": "Police 10 Codes and Activity/Status Codes",
+  "category": "Descriptions – Abbreviations",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "10-60",
+      "text": "Wanted or Stolen indicated, not confirmed\nNotes and details: Preceded with “Possible” or “Confirmed”"
+    },
+    {
+      "heading": "10-61",
+      "text": "Contagious Disease Exposure Precautions Recommended"
+    },
+    {
+      "heading": "10-70",
+      "text": "Surveillance in the area\nNotes and details: Stay out of the area"
+    },
+    {
+      "heading": "Signal 3",
+      "text": "Fire and Rescue in trouble\nNotes and details: Needs Immediate Help"
+    },
+    {
+      "heading": "Signal 13",
+      "text": "Officer in trouble\nNotes and details: Needs Immediate Help\n10-50"
+    },
+    {
+      "heading": "Routine",
+      "text": "Normal Response Level\nNotes and details: Old “Code 1” Response"
+    },
+    {
+      "heading": "Priority",
+      "text": "Expedited Response Level\nNotes and details: Old “Code 3” Response"
+    },
+    {
+      "heading": "MO",
+      "text": "Mentally Observant"
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "What does 10-60 mean on the supplied reference sheet?",
+      "answer": "Wanted or Stolen indicated, not confirmed\nNotes and details: Preceded with “Possible” or “Confirmed”"
+    },
+    {
+      "question": "What does 10-61 mean on the supplied reference sheet?",
+      "answer": "Contagious Disease Exposure Precautions Recommended"
+    },
+    {
+      "question": "What does 10-70 mean on the supplied reference sheet?",
+      "answer": "Surveillance in the area\nNotes and details: Stay out of the area"
+    },
+    {
+      "question": "What does Signal 3 mean on the supplied reference sheet?",
+      "answer": "Fire and Rescue in trouble\nNotes and details: Needs Immediate Help"
+    },
+    {
+      "question": "What does Signal 13 mean on the supplied reference sheet?",
+      "answer": "Officer in trouble\nNotes and details: Needs Immediate Help\n10-50"
+    },
+    {
+      "question": "What does Routine mean on the supplied reference sheet?",
+      "answer": "Normal Response Level\nNotes and details: Old “Code 1” Response"
+    },
+    {
+      "question": "What does Priority mean on the supplied reference sheet?",
+      "answer": "Expedited Response Level\nNotes and details: Old “Code 3” Response"
+    },
+    {
+      "question": "What does MO mean on the supplied reference sheet?",
+      "answer": "Mentally Observant"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does 10-60 mean on the supplied reference sheet?",
+      "choices": [
+        "Wanted or Stolen indicated, not confirmed",
+        "Contagious Disease Exposure Precautions Recommended",
+        "Surveillance in the area",
+        "Fire and Rescue in trouble"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wanted or Stolen indicated, not confirmed\nNotes and details: Preceded with “Possible” or “Confirmed”"
+    },
+    {
+      "question": "What does 10-61 mean on the supplied reference sheet?",
+      "choices": [
+        "Surveillance in the area",
+        "Fire and Rescue in trouble",
+        "Officer in trouble",
+        "Contagious Disease Exposure Precautions Recommended"
+      ],
+      "correctIndex": 3,
+      "explanation": "Contagious Disease Exposure Precautions Recommended"
+    },
+    {
+      "question": "What does 10-70 mean on the supplied reference sheet?",
+      "choices": [
+        "Officer in trouble",
+        "Normal Response Level",
+        "Surveillance in the area",
+        "Fire and Rescue in trouble"
+      ],
+      "correctIndex": 2,
+      "explanation": "Surveillance in the area\nNotes and details: Stay out of the area"
+    },
+    {
+      "question": "What does Signal 3 mean on the supplied reference sheet?",
+      "choices": [
+        "Expedited Response Level",
+        "Fire and Rescue in trouble",
+        "Officer in trouble",
+        "Normal Response Level"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fire and Rescue in trouble\nNotes and details: Needs Immediate Help"
+    },
+    {
+      "question": "What does Signal 13 mean on the supplied reference sheet?",
+      "choices": [
+        "Officer in trouble",
+        "Normal Response Level",
+        "Expedited Response Level",
+        "Mentally Observant"
+      ],
+      "correctIndex": 0,
+      "explanation": "Officer in trouble\nNotes and details: Needs Immediate Help\n10-50"
+    },
+    {
+      "question": "What does Routine mean on the supplied reference sheet?",
+      "choices": [
+        "Expedited Response Level",
+        "Mentally Observant",
+        "Wanted or Stolen indicated, not confirmed",
+        "Normal Response Level"
+      ],
+      "correctIndex": 3,
+      "explanation": "Normal Response Level\nNotes and details: Old “Code 1” Response"
+    },
+    {
+      "question": "What does Priority mean on the supplied reference sheet?",
+      "choices": [
+        "Wanted or Stolen indicated, not confirmed",
+        "Contagious Disease Exposure Precautions Recommended",
+        "Expedited Response Level",
+        "Mentally Observant"
+      ],
+      "correctIndex": 2,
+      "explanation": "Expedited Response Level\nNotes and details: Old “Code 3” Response"
+    },
+    {
+      "question": "What does MO mean on the supplied reference sheet?",
+      "choices": [
+        "Surveillance in the area",
+        "Mentally Observant",
+        "Wanted or Stolen indicated, not confirmed",
+        "Contagious Disease Exposure Precautions Recommended"
+      ],
+      "correctIndex": 1,
+      "explanation": "Mentally Observant"
+    }
+  ]
+}

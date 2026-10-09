@@ -4,14 +4,22 @@ function eccEscape(string $value): string { return htmlspecialchars($value, ENT_
 function eccText($value): bool { return is_string($value) && trim($value) !== ''; }
 function eccValidTopic($t): bool {
     if (!is_array($t)) return false;
-    foreach (['id', 'slug', 'title', 'category', 'summary', 'status', 'lastReviewed'] as $key) if (!eccText($t[$key] ?? null)) return false;
+    foreach (['id', 'slug', 'title', 'category', 'status'] as $key) if (!eccText($t[$key] ?? null)) return false;
     foreach (['id', 'slug'] as $key) if (!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D', $t[$key])) return false;
     if (!in_array($t['status'], ['general-reference', 'department-approved'], true)) return false;
-    $date = DateTimeImmutable::createFromFormat('!Y-m-d', $t['lastReviewed']);
-    if (!$date || $date->format('Y-m-d') !== $t['lastReviewed']) return false;
-    foreach (['sections', 'sources', 'flashcards', 'quiz'] as $key) if (!isset($t[$key]) || !is_array($t[$key]) || array_values($t[$key]) !== $t[$key]) return false;
-    if (!$t['sections'] || !$t['sources']) return false;
-    foreach ($t['sources'] as $s) if (!is_array($s) || !eccText($s['title'] ?? null) || !is_string($s['url'] ?? null) || !filter_var($s['url'], FILTER_VALIDATE_URL) || !in_array(parse_url($s['url'], PHP_URL_SCHEME), ['http', 'https'], true)) return false;
+    if (isset($t['lastReviewed'])) {
+        if (!eccText($t['lastReviewed'])) return false;
+        $date = DateTimeImmutable::createFromFormat('!Y-m-d', $t['lastReviewed']);
+        if (!$date || $date->format('Y-m-d') !== $t['lastReviewed']) return false;
+    }
+    if (isset($t['summary']) && !eccText($t['summary'])) return false;
+    foreach (['sections', 'flashcards', 'quiz'] as $key) if (!isset($t[$key]) || !is_array($t[$key]) || array_values($t[$key]) !== $t[$key]) return false;
+    if (!$t['sections']) return false;
+    if (isset($t['sources']) && (!is_array($t['sources']) || array_values($t['sources']) !== $t['sources'])) return false;
+    foreach ($t['sources'] ?? [] as $s) {
+        if (!is_array($s) || !eccText($s['title'] ?? null)) return false;
+        if (isset($s['url']) && (!is_string($s['url']) || !filter_var($s['url'], FILTER_VALIDATE_URL) || !in_array(parse_url($s['url'], PHP_URL_SCHEME), ['http', 'https'], true))) return false;
+    }
     foreach ($t['sections'] as $s) {
         if (!is_array($s) || !eccText($s['heading'] ?? null)) return false;
         if (isset($s['text']) && !eccText($s['text'])) return false;

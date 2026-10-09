@@ -1,28 +1,16 @@
 {
   "id": "nato-alphabet",
   "slug": "phonetic-alphabet",
-  "title": "Phonetic alphabet",
-  "category": "Communications",
-  "summary": "A\u2013Z NATO spelling words, ready for a quick refresh.",
+  "title": "Phonetic Alphabet - Fire",
+  "category": "Descriptions – Abbreviations",
   "status": "general-reference",
-  "lastReviewed": "2026-10-08",
-  "sources": [
-    {
-      "title": "NATO \u00b7 The NATO phonetic alphabet",
-      "url": "https://www.nato.int/en/about-us/nato-history/history-by-theme/symbols-of-nato/nato-phonetic-alphabet"
-    }
-  ],
   "sections": [
     {
-      "heading": "Before you study",
-      "text": "General NATO reference. Confirm the alphabet used by your ECC before preparing for department tests. This is not a department-approved protocol."
-    },
-    {
-      "heading": "A\u2013Z reference",
+      "heading": "A–Z reference",
       "items": [
         {
           "label": "A",
-          "text": "Alfa"
+          "text": "Alpha"
         },
         {
           "label": "B",
@@ -129,124 +117,124 @@
   ],
   "flashcards": [
     {
-      "question": "What is the NATO spelling word for A?",
-      "answer": "Alfa"
+      "question": "What is the Fire phonetic word for A?",
+      "answer": "Alpha"
     },
     {
-      "question": "What is the NATO spelling word for B?",
+      "question": "What is the Fire phonetic word for B?",
       "answer": "Bravo"
     },
     {
-      "question": "What is the NATO spelling word for C?",
+      "question": "What is the Fire phonetic word for C?",
       "answer": "Charlie"
     },
     {
-      "question": "What is the NATO spelling word for D?",
+      "question": "What is the Fire phonetic word for D?",
       "answer": "Delta"
     },
     {
-      "question": "What is the NATO spelling word for E?",
+      "question": "What is the Fire phonetic word for E?",
       "answer": "Echo"
     },
     {
-      "question": "What is the NATO spelling word for F?",
+      "question": "What is the Fire phonetic word for F?",
       "answer": "Foxtrot"
     },
     {
-      "question": "What is the NATO spelling word for G?",
+      "question": "What is the Fire phonetic word for G?",
       "answer": "Golf"
     },
     {
-      "question": "What is the NATO spelling word for H?",
+      "question": "What is the Fire phonetic word for H?",
       "answer": "Hotel"
     },
     {
-      "question": "What is the NATO spelling word for I?",
+      "question": "What is the Fire phonetic word for I?",
       "answer": "India"
     },
     {
-      "question": "What is the NATO spelling word for J?",
+      "question": "What is the Fire phonetic word for J?",
       "answer": "Juliett"
     },
     {
-      "question": "What is the NATO spelling word for K?",
+      "question": "What is the Fire phonetic word for K?",
       "answer": "Kilo"
     },
     {
-      "question": "What is the NATO spelling word for L?",
+      "question": "What is the Fire phonetic word for L?",
       "answer": "Lima"
     },
     {
-      "question": "What is the NATO spelling word for M?",
+      "question": "What is the Fire phonetic word for M?",
       "answer": "Mike"
     },
     {
-      "question": "What is the NATO spelling word for N?",
+      "question": "What is the Fire phonetic word for N?",
       "answer": "November"
     },
     {
-      "question": "What is the NATO spelling word for O?",
+      "question": "What is the Fire phonetic word for O?",
       "answer": "Oscar"
     },
     {
-      "question": "What is the NATO spelling word for P?",
+      "question": "What is the Fire phonetic word for P?",
       "answer": "Papa"
     },
     {
-      "question": "What is the NATO spelling word for Q?",
+      "question": "What is the Fire phonetic word for Q?",
       "answer": "Quebec"
     },
     {
-      "question": "What is the NATO spelling word for R?",
+      "question": "What is the Fire phonetic word for R?",
       "answer": "Romeo"
     },
     {
-      "question": "What is the NATO spelling word for S?",
+      "question": "What is the Fire phonetic word for S?",
       "answer": "Sierra"
     },
     {
-      "question": "What is the NATO spelling word for T?",
+      "question": "What is the Fire phonetic word for T?",
       "answer": "Tango"
     },
     {
-      "question": "What is the NATO spelling word for U?",
+      "question": "What is the Fire phonetic word for U?",
       "answer": "Uniform"
     },
     {
-      "question": "What is the NATO spelling word for V?",
+      "question": "What is the Fire phonetic word for V?",
       "answer": "Victor"
     },
     {
-      "question": "What is the NATO spelling word for W?",
+      "question": "What is the Fire phonetic word for W?",
       "answer": "Whiskey"
     },
     {
-      "question": "What is the NATO spelling word for X?",
+      "question": "What is the Fire phonetic word for X?",
       "answer": "X-ray"
     },
     {
-      "question": "What is the NATO spelling word for Y?",
+      "question": "What is the Fire phonetic word for Y?",
       "answer": "Yankee"
     },
     {
-      "question": "What is the NATO spelling word for Z?",
+      "question": "What is the Fire phonetic word for Z?",
       "answer": "Zulu"
     }
   ],
   "quiz": [
     {
-      "question": "Which NATO spelling word represents A?",
+      "question": "Which Fire phonetic word represents A?",
       "choices": [
-        "Alfa",
+        "Alpha",
         "Bravo",
         "Charlie",
         "Delta"
       ],
       "correctIndex": 0,
-      "explanation": "A is represented by Alfa in the NATO spelling alphabet."
+      "explanation": "A is represented by Alpha in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents B?",
+      "question": "Which Fire phonetic word represents B?",
       "choices": [
         "Charlie",
         "Delta",
@@ -254,10 +242,10 @@
         "Bravo"
       ],
       "correctIndex": 3,
-      "explanation": "B is represented by Bravo in the NATO spelling alphabet."
+      "explanation": "B is represented by Bravo in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents C?",
+      "question": "Which Fire phonetic word represents C?",
       "choices": [
         "Echo",
         "Foxtrot",
@@ -265,10 +253,10 @@
         "Delta"
       ],
       "correctIndex": 2,
-      "explanation": "C is represented by Charlie in the NATO spelling alphabet."
+      "explanation": "C is represented by Charlie in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents D?",
+      "question": "Which Fire phonetic word represents D?",
       "choices": [
         "Golf",
         "Delta",
@@ -276,10 +264,10 @@
         "Foxtrot"
       ],
       "correctIndex": 1,
-      "explanation": "D is represented by Delta in the NATO spelling alphabet."
+      "explanation": "D is represented by Delta in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents E?",
+      "question": "Which Fire phonetic word represents E?",
       "choices": [
         "Echo",
         "Foxtrot",
@@ -287,10 +275,10 @@
         "Hotel"
       ],
       "correctIndex": 0,
-      "explanation": "E is represented by Echo in the NATO spelling alphabet."
+      "explanation": "E is represented by Echo in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents F?",
+      "question": "Which Fire phonetic word represents F?",
       "choices": [
         "Golf",
         "Hotel",
@@ -298,10 +286,10 @@
         "Foxtrot"
       ],
       "correctIndex": 3,
-      "explanation": "F is represented by Foxtrot in the NATO spelling alphabet."
+      "explanation": "F is represented by Foxtrot in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents G?",
+      "question": "Which Fire phonetic word represents G?",
       "choices": [
         "India",
         "Juliett",
@@ -309,10 +297,10 @@
         "Hotel"
       ],
       "correctIndex": 2,
-      "explanation": "G is represented by Golf in the NATO spelling alphabet."
+      "explanation": "G is represented by Golf in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents H?",
+      "question": "Which Fire phonetic word represents H?",
       "choices": [
         "Kilo",
         "Hotel",
@@ -320,10 +308,10 @@
         "Juliett"
       ],
       "correctIndex": 1,
-      "explanation": "H is represented by Hotel in the NATO spelling alphabet."
+      "explanation": "H is represented by Hotel in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents I?",
+      "question": "Which Fire phonetic word represents I?",
       "choices": [
         "India",
         "Juliett",
@@ -331,10 +319,10 @@
         "Lima"
       ],
       "correctIndex": 0,
-      "explanation": "I is represented by India in the NATO spelling alphabet."
+      "explanation": "I is represented by India in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents J?",
+      "question": "Which Fire phonetic word represents J?",
       "choices": [
         "Kilo",
         "Lima",
@@ -342,10 +330,10 @@
         "Juliett"
       ],
       "correctIndex": 3,
-      "explanation": "J is represented by Juliett in the NATO spelling alphabet."
+      "explanation": "J is represented by Juliett in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents K?",
+      "question": "Which Fire phonetic word represents K?",
       "choices": [
         "Mike",
         "November",
@@ -353,10 +341,10 @@
         "Lima"
       ],
       "correctIndex": 2,
-      "explanation": "K is represented by Kilo in the NATO spelling alphabet."
+      "explanation": "K is represented by Kilo in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents L?",
+      "question": "Which Fire phonetic word represents L?",
       "choices": [
         "Oscar",
         "Lima",
@@ -364,10 +352,10 @@
         "November"
       ],
       "correctIndex": 1,
-      "explanation": "L is represented by Lima in the NATO spelling alphabet."
+      "explanation": "L is represented by Lima in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents M?",
+      "question": "Which Fire phonetic word represents M?",
       "choices": [
         "Mike",
         "November",
@@ -375,10 +363,10 @@
         "Papa"
       ],
       "correctIndex": 0,
-      "explanation": "M is represented by Mike in the NATO spelling alphabet."
+      "explanation": "M is represented by Mike in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents N?",
+      "question": "Which Fire phonetic word represents N?",
       "choices": [
         "Oscar",
         "Papa",
@@ -386,10 +374,10 @@
         "November"
       ],
       "correctIndex": 3,
-      "explanation": "N is represented by November in the NATO spelling alphabet."
+      "explanation": "N is represented by November in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents O?",
+      "question": "Which Fire phonetic word represents O?",
       "choices": [
         "Quebec",
         "Romeo",
@@ -397,10 +385,10 @@
         "Papa"
       ],
       "correctIndex": 2,
-      "explanation": "O is represented by Oscar in the NATO spelling alphabet."
+      "explanation": "O is represented by Oscar in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents P?",
+      "question": "Which Fire phonetic word represents P?",
       "choices": [
         "Sierra",
         "Papa",
@@ -408,10 +396,10 @@
         "Romeo"
       ],
       "correctIndex": 1,
-      "explanation": "P is represented by Papa in the NATO spelling alphabet."
+      "explanation": "P is represented by Papa in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents Q?",
+      "question": "Which Fire phonetic word represents Q?",
       "choices": [
         "Quebec",
         "Romeo",
@@ -419,10 +407,10 @@
         "Tango"
       ],
       "correctIndex": 0,
-      "explanation": "Q is represented by Quebec in the NATO spelling alphabet."
+      "explanation": "Q is represented by Quebec in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents R?",
+      "question": "Which Fire phonetic word represents R?",
       "choices": [
         "Sierra",
         "Tango",
@@ -430,10 +418,10 @@
         "Romeo"
       ],
       "correctIndex": 3,
-      "explanation": "R is represented by Romeo in the NATO spelling alphabet."
+      "explanation": "R is represented by Romeo in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents S?",
+      "question": "Which Fire phonetic word represents S?",
       "choices": [
         "Uniform",
         "Victor",
@@ -441,10 +429,10 @@
         "Tango"
       ],
       "correctIndex": 2,
-      "explanation": "S is represented by Sierra in the NATO spelling alphabet."
+      "explanation": "S is represented by Sierra in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents T?",
+      "question": "Which Fire phonetic word represents T?",
       "choices": [
         "Whiskey",
         "Tango",
@@ -452,10 +440,10 @@
         "Victor"
       ],
       "correctIndex": 1,
-      "explanation": "T is represented by Tango in the NATO spelling alphabet."
+      "explanation": "T is represented by Tango in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents U?",
+      "question": "Which Fire phonetic word represents U?",
       "choices": [
         "Uniform",
         "Victor",
@@ -463,10 +451,10 @@
         "X-ray"
       ],
       "correctIndex": 0,
-      "explanation": "U is represented by Uniform in the NATO spelling alphabet."
+      "explanation": "U is represented by Uniform in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents V?",
+      "question": "Which Fire phonetic word represents V?",
       "choices": [
         "Whiskey",
         "X-ray",
@@ -474,10 +462,10 @@
         "Victor"
       ],
       "correctIndex": 3,
-      "explanation": "V is represented by Victor in the NATO spelling alphabet."
+      "explanation": "V is represented by Victor in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents W?",
+      "question": "Which Fire phonetic word represents W?",
       "choices": [
         "Yankee",
         "Zulu",
@@ -485,40 +473,40 @@
         "X-ray"
       ],
       "correctIndex": 2,
-      "explanation": "W is represented by Whiskey in the NATO spelling alphabet."
+      "explanation": "W is represented by Whiskey in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents X?",
+      "question": "Which Fire phonetic word represents X?",
       "choices": [
-        "Alfa",
+        "Alpha",
         "X-ray",
         "Yankee",
         "Zulu"
       ],
       "correctIndex": 1,
-      "explanation": "X is represented by X-ray in the NATO spelling alphabet."
+      "explanation": "X is represented by X-ray in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents Y?",
+      "question": "Which Fire phonetic word represents Y?",
       "choices": [
         "Yankee",
         "Zulu",
-        "Alfa",
+        "Alpha",
         "Bravo"
       ],
       "correctIndex": 0,
-      "explanation": "Y is represented by Yankee in the NATO spelling alphabet."
+      "explanation": "Y is represented by Yankee in the Fire phonetic alphabet."
     },
     {
-      "question": "Which NATO spelling word represents Z?",
+      "question": "Which Fire phonetic word represents Z?",
       "choices": [
-        "Alfa",
+        "Alpha",
         "Bravo",
         "Charlie",
         "Zulu"
       ],
       "correctIndex": 3,
-      "explanation": "Z is represented by Zulu in the NATO spelling alphabet."
+      "explanation": "Z is represented by Zulu in the Fire phonetic alphabet."
     }
   ]
 }

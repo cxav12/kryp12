@@ -1,0 +1,512 @@
+{
+  "id": "police-alphabet",
+  "slug": "phonetic-alphabet-police",
+  "title": "Phonetic Alphabet - Police",
+  "category": "Descriptions – Abbreviations",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "A–Z reference",
+      "items": [
+        {
+          "label": "A",
+          "text": "Adam"
+        },
+        {
+          "label": "B",
+          "text": "Baker"
+        },
+        {
+          "label": "C",
+          "text": "Charlie"
+        },
+        {
+          "label": "D",
+          "text": "Delta"
+        },
+        {
+          "label": "E",
+          "text": "Edward"
+        },
+        {
+          "label": "F",
+          "text": "Frank"
+        },
+        {
+          "label": "G",
+          "text": "George"
+        },
+        {
+          "label": "H",
+          "text": "Henry"
+        },
+        {
+          "label": "I",
+          "text": "Ida"
+        },
+        {
+          "label": "J",
+          "text": "John"
+        },
+        {
+          "label": "K",
+          "text": "King"
+        },
+        {
+          "label": "L",
+          "text": "Lincoln"
+        },
+        {
+          "label": "M",
+          "text": "Mary"
+        },
+        {
+          "label": "N",
+          "text": "Nancy"
+        },
+        {
+          "label": "O",
+          "text": "Ocean"
+        },
+        {
+          "label": "P",
+          "text": "Paul"
+        },
+        {
+          "label": "Q",
+          "text": "Queen"
+        },
+        {
+          "label": "R",
+          "text": "Robert"
+        },
+        {
+          "label": "S",
+          "text": "Sam"
+        },
+        {
+          "label": "T",
+          "text": "Tac"
+        },
+        {
+          "label": "U",
+          "text": "Union"
+        },
+        {
+          "label": "V",
+          "text": "Victor"
+        },
+        {
+          "label": "W",
+          "text": "Whiskey"
+        },
+        {
+          "label": "X",
+          "text": "X-ray"
+        },
+        {
+          "label": "Y",
+          "text": "Yankee"
+        },
+        {
+          "label": "Z",
+          "text": "Zebra"
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "What is the Police phonetic word for A?",
+      "answer": "Adam"
+    },
+    {
+      "question": "What is the Police phonetic word for B?",
+      "answer": "Baker"
+    },
+    {
+      "question": "What is the Police phonetic word for C?",
+      "answer": "Charlie"
+    },
+    {
+      "question": "What is the Police phonetic word for D?",
+      "answer": "Delta"
+    },
+    {
+      "question": "What is the Police phonetic word for E?",
+      "answer": "Edward"
+    },
+    {
+      "question": "What is the Police phonetic word for F?",
+      "answer": "Frank"
+    },
+    {
+      "question": "What is the Police phonetic word for G?",
+      "answer": "George"
+    },
+    {
+      "question": "What is the Police phonetic word for H?",
+      "answer": "Henry"
+    },
+    {
+      "question": "What is the Police phonetic word for I?",
+      "answer": "Ida"
+    },
+    {
+      "question": "What is the Police phonetic word for J?",
+      "answer": "John"
+    },
+    {
+      "question": "What is the Police phonetic word for K?",
+      "answer": "King"
+    },
+    {
+      "question": "What is the Police phonetic word for L?",
+      "answer": "Lincoln"
+    },
+    {
+      "question": "What is the Police phonetic word for M?",
+      "answer": "Mary"
+    },
+    {
+      "question": "What is the Police phonetic word for N?",
+      "answer": "Nancy"
+    },
+    {
+      "question": "What is the Police phonetic word for O?",
+      "answer": "Ocean"
+    },
+    {
+      "question": "What is the Police phonetic word for P?",
+      "answer": "Paul"
+    },
+    {
+      "question": "What is the Police phonetic word for Q?",
+      "answer": "Queen"
+    },
+    {
+      "question": "What is the Police phonetic word for R?",
+      "answer": "Robert"
+    },
+    {
+      "question": "What is the Police phonetic word for S?",
+      "answer": "Sam"
+    },
+    {
+      "question": "What is the Police phonetic word for T?",
+      "answer": "Tac"
+    },
+    {
+      "question": "What is the Police phonetic word for U?",
+      "answer": "Union"
+    },
+    {
+      "question": "What is the Police phonetic word for V?",
+      "answer": "Victor"
+    },
+    {
+      "question": "What is the Police phonetic word for W?",
+      "answer": "Whiskey"
+    },
+    {
+      "question": "What is the Police phonetic word for X?",
+      "answer": "X-ray"
+    },
+    {
+      "question": "What is the Police phonetic word for Y?",
+      "answer": "Yankee"
+    },
+    {
+      "question": "What is the Police phonetic word for Z?",
+      "answer": "Zebra"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which Police phonetic word represents A?",
+      "choices": [
+        "Adam",
+        "Baker",
+        "Charlie",
+        "Delta"
+      ],
+      "correctIndex": 0,
+      "explanation": "A is represented by Adam in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents B?",
+      "choices": [
+        "Charlie",
+        "Delta",
+        "Edward",
+        "Baker"
+      ],
+      "correctIndex": 3,
+      "explanation": "B is represented by Baker in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents C?",
+      "choices": [
+        "Edward",
+        "Frank",
+        "Charlie",
+        "Delta"
+      ],
+      "correctIndex": 2,
+      "explanation": "C is represented by Charlie in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents D?",
+      "choices": [
+        "George",
+        "Delta",
+        "Edward",
+        "Frank"
+      ],
+      "correctIndex": 1,
+      "explanation": "D is represented by Delta in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents E?",
+      "choices": [
+        "Edward",
+        "Frank",
+        "George",
+        "Henry"
+      ],
+      "correctIndex": 0,
+      "explanation": "E is represented by Edward in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents F?",
+      "choices": [
+        "George",
+        "Henry",
+        "Ida",
+        "Frank"
+      ],
+      "correctIndex": 3,
+      "explanation": "F is represented by Frank in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents G?",
+      "choices": [
+        "Ida",
+        "John",
+        "George",
+        "Henry"
+      ],
+      "correctIndex": 2,
+      "explanation": "G is represented by George in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents H?",
+      "choices": [
+        "King",
+        "Henry",
+        "Ida",
+        "John"
+      ],
+      "correctIndex": 1,
+      "explanation": "H is represented by Henry in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents I?",
+      "choices": [
+        "Ida",
+        "John",
+        "King",
+        "Lincoln"
+      ],
+      "correctIndex": 0,
+      "explanation": "I is represented by Ida in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents J?",
+      "choices": [
+        "King",
+        "Lincoln",
+        "Mary",
+        "John"
+      ],
+      "correctIndex": 3,
+      "explanation": "J is represented by John in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents K?",
+      "choices": [
+        "Mary",
+        "Nancy",
+        "King",
+        "Lincoln"
+      ],
+      "correctIndex": 2,
+      "explanation": "K is represented by King in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents L?",
+      "choices": [
+        "Ocean",
+        "Lincoln",
+        "Mary",
+        "Nancy"
+      ],
+      "correctIndex": 1,
+      "explanation": "L is represented by Lincoln in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents M?",
+      "choices": [
+        "Mary",
+        "Nancy",
+        "Ocean",
+        "Paul"
+      ],
+      "correctIndex": 0,
+      "explanation": "M is represented by Mary in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents N?",
+      "choices": [
+        "Ocean",
+        "Paul",
+        "Queen",
+        "Nancy"
+      ],
+      "correctIndex": 3,
+      "explanation": "N is represented by Nancy in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents O?",
+      "choices": [
+        "Queen",
+        "Robert",
+        "Ocean",
+        "Paul"
+      ],
+      "correctIndex": 2,
+      "explanation": "O is represented by Ocean in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents P?",
+      "choices": [
+        "Sam",
+        "Paul",
+        "Queen",
+        "Robert"
+      ],
+      "correctIndex": 1,
+      "explanation": "P is represented by Paul in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents Q?",
+      "choices": [
+        "Queen",
+        "Robert",
+        "Sam",
+        "Tac"
+      ],
+      "correctIndex": 0,
+      "explanation": "Q is represented by Queen in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents R?",
+      "choices": [
+        "Sam",
+        "Tac",
+        "Union",
+        "Robert"
+      ],
+      "correctIndex": 3,
+      "explanation": "R is represented by Robert in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents S?",
+      "choices": [
+        "Union",
+        "Victor",
+        "Sam",
+        "Tac"
+      ],
+      "correctIndex": 2,
+      "explanation": "S is represented by Sam in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents T?",
+      "choices": [
+        "Whiskey",
+        "Tac",
+        "Union",
+        "Victor"
+      ],
+      "correctIndex": 1,
+      "explanation": "T is represented by Tac in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents U?",
+      "choices": [
+        "Union",
+        "Victor",
+        "Whiskey",
+        "X-ray"
+      ],
+      "correctIndex": 0,
+      "explanation": "U is represented by Union in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents V?",
+      "choices": [
+        "Whiskey",
+        "X-ray",
+        "Yankee",
+        "Victor"
+      ],
+      "correctIndex": 3,
+      "explanation": "V is represented by Victor in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents W?",
+      "choices": [
+        "Yankee",
+        "Zebra",
+        "Whiskey",
+        "X-ray"
+      ],
+      "correctIndex": 2,
+      "explanation": "W is represented by Whiskey in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents X?",
+      "choices": [
+        "Adam",
+        "X-ray",
+        "Yankee",
+        "Zebra"
+      ],
+      "correctIndex": 1,
+      "explanation": "X is represented by X-ray in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents Y?",
+      "choices": [
+        "Yankee",
+        "Zebra",
+        "Adam",
+        "Baker"
+      ],
+      "correctIndex": 0,
+      "explanation": "Y is represented by Yankee in the Police alphabet."
+    },
+    {
+      "question": "Which Police phonetic word represents Z?",
+      "choices": [
+        "Adam",
+        "Baker",
+        "Charlie",
+        "Zebra"
+      ],
+      "correctIndex": 3,
+      "explanation": "Z is represented by Zebra in the Police alphabet."
+    }
+  ]
+}

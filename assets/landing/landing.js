@@ -23,7 +23,7 @@
     })
     .catch(() => {});
 
-  const defaults = { yankees: true, palworld: true, color: true, wishlist: false, ravens: false };
+  const defaults = { yankees: true, palworld: true, color: true, ecc: true, wishlist: false, ravens: false };
   const applyVisibility = (visibility) => document.querySelectorAll("[data-site-key]").forEach((item) => {
     const key = item.dataset.siteKey;
     item.hidden = !(visibility[key] ?? defaults[key] ?? false);

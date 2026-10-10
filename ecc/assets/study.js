@@ -36,8 +36,23 @@
     }
     return result;
   }
+  let shuffleScope = 'all';
+  try { shuffleScope = localStorage.getItem('ecc-shuffle-scope') === 'topic' ? 'topic' : 'all'; } catch {}
+  function shuffleSelected(values, key) {
+    if (shuffleScope === 'all') return shuffle(values);
+    let start = 0;
+    return topics.flatMap(topic => {
+      const count = topic[key].length;
+      const group = shuffle(values.slice(start, start + count));
+      start += count;
+      return group;
+    });
+  }
+  let quizOrder = 'random';
+  try { quizOrder = localStorage.getItem('ecc-quiz-order') === 'ordered' ? 'ordered' : 'random'; } catch {}
   function randomizeQuizChoices() {
     if (mode !== 'quiz') return;
+    entries.splice(0, entries.length, ...topics.flatMap(topic => topic.quiz.map(item => ({ ...item, topicTitle: topic.title, status: topic.status }))));
     let offset = 0;
     topics.forEach(topic => {
       const isAlphabet = alphabetSlugs.includes(topic.slug);
@@ -58,6 +73,7 @@
         entry.correctIndex = entry.choices.indexOf(correct);
       });
     });
+    if (quizOrder === 'random') entries.splice(0, entries.length, ...shuffleSelected(entries, 'quiz'));
   }
   randomizeQuizChoices();
   let position = 0; let score = 0; let revealed = false; let submitted = false; let attempted = false; let selected = null; let finished = false;
@@ -74,6 +90,58 @@
       randomizeQuizChoices(); render();
     });
   });
+  document.querySelectorAll('[name="quiz-order"]').forEach(option => {
+    option.checked = option.value === quizOrder;
+    option.addEventListener('change', () => {
+      quizOrder = option.value;
+      try { localStorage.setItem('ecc-quiz-order', quizOrder); } catch {}
+      position = 0; score = 0; submitted = false; attempted = false; selected = null; finished = false;
+      randomizeQuizChoices(); render();
+    });
+  });
+  let cardOrder = 'random';
+  try { cardOrder = localStorage.getItem('ecc-card-order') === 'ordered' ? 'ordered' : 'random'; } catch {}
+  function applyCardOrder() {
+    if (mode !== 'cards') return;
+    const cards = topics.flatMap(topic => topic.flashcards.map(item => ({ ...item, topicTitle: topic.title, status: topic.status })));
+    entries.splice(0, entries.length, ...(cardOrder === 'random' ? shuffleSelected(cards, 'flashcards') : cards));
+  }
+  document.querySelectorAll('[name="card-order"]').forEach(option => {
+    option.checked = option.value === cardOrder;
+    option.addEventListener('change', () => {
+      cardOrder = option.value;
+      try { localStorage.setItem('ecc-card-order', cardOrder); } catch {}
+      position = 0; revealed = false; applyCardOrder(); render();
+    });
+  });
+  applyCardOrder();
+  document.querySelectorAll('[name="shuffle-scope"]').forEach(option => {
+    option.checked = option.value === shuffleScope;
+    option.addEventListener('change', () => {
+      shuffleScope = option.value;
+      try { localStorage.setItem('ecc-shuffle-scope', shuffleScope); } catch {}
+      position = 0; score = 0; revealed = false; submitted = false; attempted = false; selected = null; finished = false;
+      if (mode === 'cards') applyCardOrder(); else randomizeQuizChoices();
+      render();
+    });
+  });
+  const studyOptions = document.querySelector('.study-options');
+  const optionsSummary = document.querySelector('#study-options-summary');
+  function updateOptionsSummary() {
+    const order = mode === 'cards' ? cardOrder : quizOrder;
+    const shuffleField = document.querySelector('#shuffle-scope-field');
+    if (shuffleField) shuffleField.hidden = order !== 'random';
+    optionsSummary.textContent = (order === 'random' ? (shuffleScope === 'all' ? 'Random · All topics mixed' : 'Random · Within topics') : 'In order') +
+      (mode === 'quiz' ? ` · ${answerStyle === 'typed' ? 'Type answer' : 'Multiple choice'}` : '');
+  }
+  if (studyOptions && optionsSummary) {
+    updateOptionsSummary();
+    studyOptions.addEventListener('change', updateOptionsSummary);
+    document.querySelector('#close-study-options').addEventListener('click', () => {
+      studyOptions.open = false;
+      studyOptions.querySelector('summary').focus();
+    });
+  }
   function normalizeAnswer(value) { return value.trim().toLocaleLowerCase().replace(/[‐‑–—]/g, '-').replace(/\s+/g, ' '); }
   function el(tag, text, className) { const n = document.createElement(tag); if (text !== undefined) n.textContent = text; if (className) n.className = className; return n; }
   function button(text, action, secondary = false) { const b = el('button', text, secondary ? 'button secondary' : 'button'); b.type = 'button'; b.addEventListener('click', action); return b; }
@@ -93,7 +161,7 @@
         const reveal = button(revealed ? 'Hide answer' : 'Reveal answer', () => { revealed = !revealed; render(); root.querySelector('[aria-expanded]').focus(); }); reveal.setAttribute('aria-expanded', String(revealed)); root.append(reveal);
         const controls = el('div', undefined, 'study-controls');
         const previous = button('← Previous', () => { position--; revealed = false; render(true); }, true); previous.disabled = position === 0;
-        const next = button(position === entries.length - 1 ? 'Start again ↻' : 'Next card →', () => { position = (position + 1) % entries.length; revealed = false; render(true); }, true);
+        const next = button(position === entries.length - 1 ? 'Start again ↻' : 'Next card →', () => { if (position === entries.length - 1) { position = 0; applyCardOrder(); } else position++; revealed = false; render(true); }, true);
         controls.append(previous, next); root.append(controls);
       } else {
         const choices = el('fieldset'); choices.append(el('legend', 'Choose one answer', 'visually-hidden'));

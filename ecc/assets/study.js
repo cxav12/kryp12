@@ -12,7 +12,9 @@
     search.addEventListener('input', filter); filter();
     search.form.addEventListener('submit', event => { event.preventDefault(); filter(); });
   }
-  const scope = document.querySelector('.scope-form select');
+  const stationGroup = document.querySelector('#station-group');
+  if (stationGroup) stationGroup.addEventListener('change', () => stationGroup.form.requestSubmit());
+  const scope = document.querySelector('.scope-form:not(.station-group-form) select');
   if (scope) {
     scope.addEventListener('change', () => {
       if (window.matchMedia('(max-width: 759px)').matches) scope.form.requestSubmit();

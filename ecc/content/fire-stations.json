@@ -6,7 +6,7 @@
   "status": "department-approved",
   "sections": [
     {
-      "heading": "Station 701",
+      "heading": "Station 701 — 1st Battalion",
       "items": [
         {
           "label": "Community",
@@ -20,10 +20,11 @@
           "label": "Cross streets",
           "text": "Georgia Ave / Sligo Ave"
         }
-      ]
+      ],
+      "battalion": "1st Battalion"
     },
     {
-      "heading": "Station 702",
+      "heading": "Station 702 — 1st Battalion",
       "items": [
         {
           "label": "Community",
@@ -37,10 +38,11 @@
           "label": "Cross streets",
           "text": "Carroll Ave / Philadelphia Ave"
         }
-      ]
+      ],
+      "battalion": "1st Battalion"
     },
     {
-      "heading": "Station 703",
+      "heading": "Station 703 — 3rd Battalion",
       "items": [
         {
           "label": "Community",
@@ -54,10 +56,11 @@
           "label": "Cross streets",
           "text": "Hungerford Ave / Beall Ave"
         }
-      ]
+      ],
+      "battalion": "3rd Battalion"
     },
     {
-      "heading": "Station 704",
+      "heading": "Station 704 — 4th Battalion",
       "items": [
         {
           "label": "Community",
@@ -71,10 +74,11 @@
           "label": "Cross streets",
           "text": "Brooke Rd / Olney Sandy Spring Rd"
         }
-      ]
+      ],
+      "battalion": "4th Battalion"
     },
     {
-      "heading": "Station 705",
+      "heading": "Station 705 — 4th Battalion",
       "items": [
         {
           "label": "Community",
@@ -88,10 +92,11 @@
           "label": "Cross streets",
           "text": "Connecticut Ave / Plyers Mill Rd"
         }
-      ]
+      ],
+      "battalion": "4th Battalion"
     },
     {
-      "heading": "Station 706",
+      "heading": "Station 706 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -105,10 +110,11 @@
           "label": "Cross streets",
           "text": "Wisconsin Ave / Bradley Blvd"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 707",
+      "heading": "Station 707 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -126,10 +132,11 @@
           "label": "Additional info",
           "text": "Hazmat Station"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 708",
+      "heading": "Station 708 — 3rd Battalion",
       "items": [
         {
           "label": "Community",
@@ -143,10 +150,11 @@
           "label": "Cross streets",
           "text": "Russell Ave / Montgomery Village Ave"
         }
-      ]
+      ],
+      "battalion": "3rd Battalion"
     },
     {
-      "heading": "Station 709",
+      "heading": "Station 709 — 5th Battalion",
       "items": [
         {
           "label": "Community",
@@ -160,10 +168,11 @@
           "label": "Cross streets",
           "text": "Frederick Rd / Old Hundred Rd"
         }
-      ]
+      ],
+      "battalion": "5th Battalion"
     },
     {
-      "heading": "Station 710",
+      "heading": "Station 710 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -181,10 +190,11 @@
           "label": "Additional info",
           "text": "Swift Water Station"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 711",
+      "heading": "Station 711 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -198,10 +208,11 @@
           "label": "Cross streets",
           "text": "Massachusetts Ave / Sangamore Rd"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 712",
+      "heading": "Station 712 — 1st Battalion",
       "items": [
         {
           "label": "Community",
@@ -219,10 +230,11 @@
           "label": "Additional info",
           "text": "BC701"
         }
-      ]
+      ],
+      "battalion": "1st Battalion"
     },
     {
-      "heading": "Station 713",
+      "heading": "Station 713 — 5th Battalion",
       "items": [
         {
           "label": "Community",
@@ -236,10 +248,11 @@
           "label": "Cross streets",
           "text": "Ridge Rd / Lewis Dr"
         }
-      ]
+      ],
+      "battalion": "5th Battalion"
     },
     {
-      "heading": "Station 714",
+      "heading": "Station 714 — 5th Battalion",
       "items": [
         {
           "label": "Community",
@@ -257,10 +270,11 @@
           "label": "Additional info",
           "text": "Swift Water Station"
         }
-      ]
+      ],
+      "battalion": "5th Battalion"
     },
     {
-      "heading": "Station 715",
+      "heading": "Station 715 — 1st Battalion",
       "items": [
         {
           "label": "Community",
@@ -274,10 +288,11 @@
           "label": "Cross streets",
           "text": "Old Columbia Pike / Briggs Chaney Rd"
         }
-      ]
+      ],
+      "battalion": "1st Battalion"
     },
     {
-      "heading": "Station 716",
+      "heading": "Station 716 — 1st Battalion",
       "items": [
         {
           "label": "Community",
@@ -291,10 +306,11 @@
           "label": "Cross streets",
           "text": "University Blvd E / Williamsburg Dr"
         }
-      ]
+      ],
+      "battalion": "1st Battalion"
     },
     {
-      "heading": "Station 717",
+      "heading": "Station 717 — 5th Battalion",
       "items": [
         {
           "label": "Community",
@@ -308,10 +324,11 @@
           "label": "Cross streets",
           "text": "Laytonsville Rd / Howard St"
         }
-      ]
+      ],
+      "battalion": "5th Battalion"
     },
     {
-      "heading": "Station 718",
+      "heading": "Station 718 — 4th Battalion",
       "items": [
         {
           "label": "Community",
@@ -325,10 +342,11 @@
           "label": "Cross streets",
           "text": "Georgia Ave / Georgian Woods Pl"
         }
-      ]
+      ],
+      "battalion": "4th Battalion"
     },
     {
-      "heading": "Station 719",
+      "heading": "Station 719 — 1st Battalion",
       "items": [
         {
           "label": "Community",
@@ -342,10 +360,11 @@
           "label": "Cross streets",
           "text": "Seminary Rd / Sutton Pl"
         }
-      ]
+      ],
+      "battalion": "1st Battalion"
     },
     {
-      "heading": "Station 720",
+      "heading": "Station 720 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -363,10 +382,11 @@
           "label": "Additional info",
           "text": "BC702"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 721",
+      "heading": "Station 721 — 4th Battalion",
       "items": [
         {
           "label": "Community",
@@ -380,10 +400,11 @@
           "label": "Cross streets",
           "text": "Veirs Mill Rd / Gaynor Rd"
         }
-      ]
+      ],
+      "battalion": "4th Battalion"
     },
     {
-      "heading": "Station 722",
+      "heading": "Station 722 — 5th Battalion",
       "items": [
         {
           "label": "Community",
@@ -401,10 +422,11 @@
           "label": "Additional info",
           "text": "Career Only Station"
         }
-      ]
+      ],
+      "battalion": "5th Battalion"
     },
     {
-      "heading": "Station 723",
+      "heading": "Station 723 — 3rd Battalion",
       "items": [
         {
           "label": "Community",
@@ -422,10 +444,11 @@
           "label": "Additional info",
           "text": "Emergency Response Team"
         }
-      ]
+      ],
+      "battalion": "3rd Battalion"
     },
     {
-      "heading": "Station 724",
+      "heading": "Station 724 — 1st Battalion",
       "items": [
         {
           "label": "Community",
@@ -439,10 +462,11 @@
           "label": "Cross streets",
           "text": "New Hampshire Ave / Wolf Dr"
         }
-      ]
+      ],
+      "battalion": "1st Battalion"
     },
     {
-      "heading": "Station 725",
+      "heading": "Station 725 — 4th Battalion",
       "items": [
         {
           "label": "Community",
@@ -460,10 +484,11 @@
           "label": "Additional info",
           "text": "Support Station, BC704"
         }
-      ]
+      ],
+      "battalion": "4th Battalion"
     },
     {
-      "heading": "Station 726",
+      "heading": "Station 726 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -477,10 +502,11 @@
           "label": "Cross streets",
           "text": "Democracy Blvd"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 727",
+      "heading": "Station 727 — 3rd Battalion",
       "items": [
         {
           "label": "Community",
@@ -498,10 +524,11 @@
           "label": "Additional info",
           "text": "Training Academy/No dispatch"
         }
-      ]
+      ],
+      "battalion": "3rd Battalion"
     },
     {
-      "heading": "Station 728",
+      "heading": "Station 728 — 3rd Battalion",
       "items": [
         {
           "label": "Community",
@@ -519,10 +546,11 @@
           "label": "Additional info",
           "text": "Hazmat Station"
         }
-      ]
+      ],
+      "battalion": "3rd Battalion"
     },
     {
-      "heading": "Station 729",
+      "heading": "Station 729 — 5th Battalion",
       "items": [
         {
           "label": "Community",
@@ -540,10 +568,11 @@
           "label": "Additional info",
           "text": "Tech Rescue Station"
         }
-      ]
+      ],
+      "battalion": "5th Battalion"
     },
     {
-      "heading": "Station 730",
+      "heading": "Station 730 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -561,10 +590,11 @@
           "label": "Additional info",
           "text": "Swift Water"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 731",
+      "heading": "Station 731 — 3rd Battalion",
       "items": [
         {
           "label": "Community",
@@ -582,10 +612,11 @@
           "label": "Additional info",
           "text": "Tech Rescue Station"
         }
-      ]
+      ],
+      "battalion": "3rd Battalion"
     },
     {
-      "heading": "Station 732",
+      "heading": "Station 732 — 3rd Battalion",
       "items": [
         {
           "label": "Community",
@@ -603,10 +634,11 @@
           "label": "Additional info",
           "text": "Career Only Station, BC703"
         }
-      ]
+      ],
+      "battalion": "3rd Battalion"
     },
     {
-      "heading": "Station 733",
+      "heading": "Station 733 — 3rd Battalion",
       "items": [
         {
           "label": "Community",
@@ -620,10 +652,11 @@
           "label": "Cross streets",
           "text": "Falls Rd / Marseille Rd"
         }
-      ]
+      ],
+      "battalion": "3rd Battalion"
     },
     {
-      "heading": "Station 734",
+      "heading": "Station 734 — 5th Battalion",
       "items": [
         {
           "label": "Community",
@@ -641,10 +674,11 @@
           "label": "Additional info",
           "text": "Career Only Station, BC705"
         }
-      ]
+      ],
+      "battalion": "5th Battalion"
     },
     {
-      "heading": "Station 735",
+      "heading": "Station 735 — 5th Battalion",
       "items": [
         {
           "label": "Community",
@@ -662,10 +696,11 @@
           "label": "Additional info",
           "text": "Career Only Station"
         }
-      ]
+      ],
+      "battalion": "5th Battalion"
     },
     {
-      "heading": "Station 740",
+      "heading": "Station 740 — 4th Battalion",
       "items": [
         {
           "label": "Community",
@@ -679,10 +714,11 @@
           "label": "Cross streets",
           "text": "Georgia Ave / Emory Church Rd"
         }
-      ]
+      ],
+      "battalion": "4th Battalion"
     },
     {
-      "heading": "Station 741",
+      "heading": "Station 741 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -696,10 +732,11 @@
           "label": "Cross streets",
           "text": "Battery Ln / Old Georgetown Rd"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 742",
+      "heading": "Station 742 — 4th Battalion",
       "items": [
         {
           "label": "Community",
@@ -713,10 +750,11 @@
           "label": "Cross streets",
           "text": "Arcola Ave / Georgia Ave"
         }
-      ]
+      ],
+      "battalion": "4th Battalion"
     },
     {
-      "heading": "Station 750",
+      "heading": "Station 750 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -734,10 +772,11 @@
           "label": "Additional info",
           "text": "Federal Station"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 751",
+      "heading": "Station 751 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -755,10 +794,11 @@
           "label": "Additional info",
           "text": "Federal Station"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 752",
+      "heading": "Station 752 — 2nd Battalion",
       "items": [
         {
           "label": "Community",
@@ -776,10 +816,11 @@
           "label": "Additional info",
           "text": "Federal Station"
         }
-      ]
+      ],
+      "battalion": "2nd Battalion"
     },
     {
-      "heading": "Station 753",
+      "heading": "Station 753 — 3rd Battalion",
       "items": [
         {
           "label": "Community",
@@ -797,10 +838,11 @@
           "label": "Additional info",
           "text": "Federal Station"
         }
-      ]
+      ],
+      "battalion": "3rd Battalion"
     },
     {
-      "heading": "Station 754",
+      "heading": "Station 754 — 1st Battalion",
       "items": [
         {
           "label": "Community",
@@ -818,181 +860,182 @@
           "label": "Additional info",
           "text": "Federal Station"
         }
-      ]
+      ],
+      "battalion": "1st Battalion"
     }
   ],
   "flashcards": [
     {
-      "question": "What is the community for Station 701?",
-      "answer": "Silver Spring"
+      "question": "What community and battalion is Station 701 in?",
+      "answer": "Silver Spring · 1st Battalion"
     },
     {
-      "question": "What is the community for Station 702?",
-      "answer": "Takoma Park"
+      "question": "What community and battalion is Station 702 in?",
+      "answer": "Takoma Park · 1st Battalion"
     },
     {
-      "question": "What is the community for Station 703?",
-      "answer": "Rockville"
+      "question": "What community and battalion is Station 703 in?",
+      "answer": "Rockville · 3rd Battalion"
     },
     {
-      "question": "What is the community for Station 704?",
-      "answer": "Sandy Spring"
+      "question": "What community and battalion is Station 704 in?",
+      "answer": "Sandy Spring · 4th Battalion"
     },
     {
-      "question": "What is the community for Station 705?",
-      "answer": "Kensington"
+      "question": "What community and battalion is Station 705 in?",
+      "answer": "Kensington · 4th Battalion"
     },
     {
-      "question": "What is the community for Station 706?",
-      "answer": "Bethesda"
+      "question": "What community and battalion is Station 706 in?",
+      "answer": "Bethesda · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 707?",
-      "answer": "Chevy Chase"
+      "question": "What community and battalion is Station 707 in?",
+      "answer": "Chevy Chase · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 708?",
-      "answer": "Gaithersburg"
+      "question": "What community and battalion is Station 708 in?",
+      "answer": "Gaithersburg · 3rd Battalion"
     },
     {
-      "question": "What is the community for Station 709?",
-      "answer": "Hyattstown"
+      "question": "What community and battalion is Station 709 in?",
+      "answer": "Hyattstown · 5th Battalion"
     },
     {
-      "question": "What is the community for Station 710?",
-      "answer": "Cabin John"
+      "question": "What community and battalion is Station 710 in?",
+      "answer": "Cabin John · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 711?",
-      "answer": "Glen Echo"
+      "question": "What community and battalion is Station 711 in?",
+      "answer": "Glen Echo · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 712?",
-      "answer": "Hillandale"
+      "question": "What community and battalion is Station 712 in?",
+      "answer": "Hillandale · 1st Battalion"
     },
     {
-      "question": "What is the community for Station 713?",
-      "answer": "Damascus"
+      "question": "What community and battalion is Station 713 in?",
+      "answer": "Damascus · 5th Battalion"
     },
     {
-      "question": "What is the community for Station 714?",
-      "answer": "Upper Montgomery"
+      "question": "What community and battalion is Station 714 in?",
+      "answer": "Upper Montgomery · 5th Battalion"
     },
     {
-      "question": "What is the community for Station 715?",
-      "answer": "Burtonsville"
+      "question": "What community and battalion is Station 715 in?",
+      "answer": "Burtonsville · 1st Battalion"
     },
     {
-      "question": "What is the community for Station 716?",
-      "answer": "Silver Spring"
+      "question": "What community and battalion is Station 716 in?",
+      "answer": "Silver Spring · 1st Battalion"
     },
     {
-      "question": "What is the community for Station 717?",
-      "answer": "Laytonsville"
+      "question": "What community and battalion is Station 717 in?",
+      "answer": "Laytonsville · 5th Battalion"
     },
     {
-      "question": "What is the community for Station 718?",
-      "answer": "Kensington"
+      "question": "What community and battalion is Station 718 in?",
+      "answer": "Kensington · 4th Battalion"
     },
     {
-      "question": "What is the community for Station 719?",
-      "answer": "Silver Spring"
+      "question": "What community and battalion is Station 719 in?",
+      "answer": "Silver Spring · 1st Battalion"
     },
     {
-      "question": "What is the community for Station 720?",
-      "answer": "Bethesda"
+      "question": "What community and battalion is Station 720 in?",
+      "answer": "Bethesda · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 721?",
-      "answer": "Kensington"
+      "question": "What community and battalion is Station 721 in?",
+      "answer": "Kensington · 4th Battalion"
     },
     {
-      "question": "What is the community for Station 722?",
-      "answer": "Kingsview"
+      "question": "What community and battalion is Station 722 in?",
+      "answer": "Kingsview · 5th Battalion"
     },
     {
-      "question": "What is the community for Station 723?",
-      "answer": "Rockville"
+      "question": "What community and battalion is Station 723 in?",
+      "answer": "Rockville · 3rd Battalion"
     },
     {
-      "question": "What is the community for Station 724?",
-      "answer": "Hillandale"
+      "question": "What community and battalion is Station 724 in?",
+      "answer": "Hillandale · 1st Battalion"
     },
     {
-      "question": "What is the community for Station 725?",
-      "answer": "Kensington"
+      "question": "What community and battalion is Station 725 in?",
+      "answer": "Kensington · 4th Battalion"
     },
     {
-      "question": "What is the community for Station 726?",
-      "answer": "Bethesda"
+      "question": "What community and battalion is Station 726 in?",
+      "answer": "Bethesda · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 727?",
-      "answer": "PSTA"
+      "question": "What community and battalion is Station 727 in?",
+      "answer": "PSTA · 3rd Battalion"
     },
     {
-      "question": "What is the community for Station 728?",
-      "answer": "Gaithersburg"
+      "question": "What community and battalion is Station 728 in?",
+      "answer": "Gaithersburg · 3rd Battalion"
     },
     {
-      "question": "What is the community for Station 729?",
-      "answer": "Germantown"
+      "question": "What community and battalion is Station 729 in?",
+      "answer": "Germantown · 5th Battalion"
     },
     {
-      "question": "What is the community for Station 730?",
-      "answer": "Cabin John"
+      "question": "What community and battalion is Station 730 in?",
+      "answer": "Cabin John · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 731?",
-      "answer": "Rockville"
+      "question": "What community and battalion is Station 731 in?",
+      "answer": "Rockville · 3rd Battalion"
     },
     {
-      "question": "What is the community for Station 732?",
-      "answer": "Travilah"
+      "question": "What community and battalion is Station 732 in?",
+      "answer": "Travilah · 3rd Battalion"
     },
     {
-      "question": "What is the community for Station 733?",
-      "answer": "Rockville"
+      "question": "What community and battalion is Station 733 in?",
+      "answer": "Rockville · 3rd Battalion"
     },
     {
-      "question": "What is the community for Station 734?",
-      "answer": "Milestone"
+      "question": "What community and battalion is Station 734 in?",
+      "answer": "Milestone · 5th Battalion"
     },
     {
-      "question": "What is the community for Station 735?",
-      "answer": "Clarksburg"
+      "question": "What community and battalion is Station 735 in?",
+      "answer": "Clarksburg · 5th Battalion"
     },
     {
-      "question": "What is the community for Station 740?",
-      "answer": "Sandy Spring"
+      "question": "What community and battalion is Station 740 in?",
+      "answer": "Sandy Spring · 4th Battalion"
     },
     {
-      "question": "What is the community for Station 741?",
-      "answer": "Bethesda Chevy Chase Rescue Squad"
+      "question": "What community and battalion is Station 741 in?",
+      "answer": "Bethesda Chevy Chase Rescue Squad · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 742?",
-      "answer": "Wheaton Rescue Squad"
+      "question": "What community and battalion is Station 742 in?",
+      "answer": "Wheaton Rescue Squad · 4th Battalion"
     },
     {
-      "question": "What is the community for Station 750?",
-      "answer": "Bethesda Navy Medical"
+      "question": "What community and battalion is Station 750 in?",
+      "answer": "Bethesda Navy Medical · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 751?",
-      "answer": "NIH"
+      "question": "What community and battalion is Station 751 in?",
+      "answer": "NIH · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 752?",
-      "answer": "NSWC- Carderock"
+      "question": "What community and battalion is Station 752 in?",
+      "answer": "NSWC- Carderock · 2nd Battalion"
     },
     {
-      "question": "What is the community for Station 753?",
-      "answer": "NIST"
+      "question": "What community and battalion is Station 753 in?",
+      "answer": "NIST · 3rd Battalion"
     },
     {
-      "question": "What is the community for Station 754?",
-      "answer": "Walter Reed- Annex"
+      "question": "What community and battalion is Station 754 in?",
+      "answer": "Walter Reed- Annex · 1st Battalion"
     }
   ],
   "quiz": [
@@ -1005,7 +1048,7 @@
         "Sandy Spring"
       ],
       "correctIndex": 0,
-      "explanation": "Station 701: Silver Spring."
+      "explanation": "Station 701: Silver Spring · 1st Battalion."
     },
     {
       "question": "Which community is listed for Station 702?",
@@ -1016,7 +1059,7 @@
         "Sandy Spring"
       ],
       "correctIndex": 0,
-      "explanation": "Station 702: Takoma Park."
+      "explanation": "Station 702: Takoma Park · 1st Battalion."
     },
     {
       "question": "Which community is listed for Station 703?",
@@ -1027,7 +1070,7 @@
         "Sandy Spring"
       ],
       "correctIndex": 0,
-      "explanation": "Station 703: Rockville."
+      "explanation": "Station 703: Rockville · 3rd Battalion."
     },
     {
       "question": "Which community is listed for Station 704?",
@@ -1038,7 +1081,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 704: Sandy Spring."
+      "explanation": "Station 704: Sandy Spring · 4th Battalion."
     },
     {
       "question": "Which community is listed for Station 705?",
@@ -1049,7 +1092,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 705: Kensington."
+      "explanation": "Station 705: Kensington · 4th Battalion."
     },
     {
       "question": "Which community is listed for Station 706?",
@@ -1060,7 +1103,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 706: Bethesda."
+      "explanation": "Station 706: Bethesda · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 707?",
@@ -1071,7 +1114,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 707: Chevy Chase."
+      "explanation": "Station 707: Chevy Chase · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 708?",
@@ -1082,7 +1125,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 708: Gaithersburg."
+      "explanation": "Station 708: Gaithersburg · 3rd Battalion."
     },
     {
       "question": "Which community is listed for Station 709?",
@@ -1093,7 +1136,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 709: Hyattstown."
+      "explanation": "Station 709: Hyattstown · 5th Battalion."
     },
     {
       "question": "Which community is listed for Station 710?",
@@ -1104,7 +1147,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 710: Cabin John."
+      "explanation": "Station 710: Cabin John · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 711?",
@@ -1115,7 +1158,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 711: Glen Echo."
+      "explanation": "Station 711: Glen Echo · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 712?",
@@ -1126,7 +1169,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 712: Hillandale."
+      "explanation": "Station 712: Hillandale · 1st Battalion."
     },
     {
       "question": "Which community is listed for Station 713?",
@@ -1137,7 +1180,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 713: Damascus."
+      "explanation": "Station 713: Damascus · 5th Battalion."
     },
     {
       "question": "Which community is listed for Station 714?",
@@ -1148,7 +1191,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 714: Upper Montgomery."
+      "explanation": "Station 714: Upper Montgomery · 5th Battalion."
     },
     {
       "question": "Which community is listed for Station 715?",
@@ -1159,7 +1202,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 715: Burtonsville."
+      "explanation": "Station 715: Burtonsville · 1st Battalion."
     },
     {
       "question": "Which community is listed for Station 716?",
@@ -1170,7 +1213,7 @@
         "Sandy Spring"
       ],
       "correctIndex": 0,
-      "explanation": "Station 716: Silver Spring."
+      "explanation": "Station 716: Silver Spring · 1st Battalion."
     },
     {
       "question": "Which community is listed for Station 717?",
@@ -1181,7 +1224,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 717: Laytonsville."
+      "explanation": "Station 717: Laytonsville · 5th Battalion."
     },
     {
       "question": "Which community is listed for Station 718?",
@@ -1192,7 +1235,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 718: Kensington."
+      "explanation": "Station 718: Kensington · 4th Battalion."
     },
     {
       "question": "Which community is listed for Station 719?",
@@ -1203,7 +1246,7 @@
         "Sandy Spring"
       ],
       "correctIndex": 0,
-      "explanation": "Station 719: Silver Spring."
+      "explanation": "Station 719: Silver Spring · 1st Battalion."
     },
     {
       "question": "Which community is listed for Station 720?",
@@ -1214,7 +1257,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 720: Bethesda."
+      "explanation": "Station 720: Bethesda · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 721?",
@@ -1225,7 +1268,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 721: Kensington."
+      "explanation": "Station 721: Kensington · 4th Battalion."
     },
     {
       "question": "Which community is listed for Station 722?",
@@ -1236,7 +1279,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 722: Kingsview."
+      "explanation": "Station 722: Kingsview · 5th Battalion."
     },
     {
       "question": "Which community is listed for Station 723?",
@@ -1247,7 +1290,7 @@
         "Sandy Spring"
       ],
       "correctIndex": 0,
-      "explanation": "Station 723: Rockville."
+      "explanation": "Station 723: Rockville · 3rd Battalion."
     },
     {
       "question": "Which community is listed for Station 724?",
@@ -1258,7 +1301,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 724: Hillandale."
+      "explanation": "Station 724: Hillandale · 1st Battalion."
     },
     {
       "question": "Which community is listed for Station 725?",
@@ -1269,7 +1312,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 725: Kensington."
+      "explanation": "Station 725: Kensington · 4th Battalion."
     },
     {
       "question": "Which community is listed for Station 726?",
@@ -1280,7 +1323,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 726: Bethesda."
+      "explanation": "Station 726: Bethesda · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 727?",
@@ -1291,7 +1334,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 727: PSTA."
+      "explanation": "Station 727: PSTA · 3rd Battalion."
     },
     {
       "question": "Which community is listed for Station 728?",
@@ -1302,7 +1345,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 728: Gaithersburg."
+      "explanation": "Station 728: Gaithersburg · 3rd Battalion."
     },
     {
       "question": "Which community is listed for Station 729?",
@@ -1313,7 +1356,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 729: Germantown."
+      "explanation": "Station 729: Germantown · 5th Battalion."
     },
     {
       "question": "Which community is listed for Station 730?",
@@ -1324,7 +1367,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 730: Cabin John."
+      "explanation": "Station 730: Cabin John · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 731?",
@@ -1335,7 +1378,7 @@
         "Sandy Spring"
       ],
       "correctIndex": 0,
-      "explanation": "Station 731: Rockville."
+      "explanation": "Station 731: Rockville · 3rd Battalion."
     },
     {
       "question": "Which community is listed for Station 732?",
@@ -1346,7 +1389,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 732: Travilah."
+      "explanation": "Station 732: Travilah · 3rd Battalion."
     },
     {
       "question": "Which community is listed for Station 733?",
@@ -1357,7 +1400,7 @@
         "Sandy Spring"
       ],
       "correctIndex": 0,
-      "explanation": "Station 733: Rockville."
+      "explanation": "Station 733: Rockville · 3rd Battalion."
     },
     {
       "question": "Which community is listed for Station 734?",
@@ -1368,7 +1411,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 734: Milestone."
+      "explanation": "Station 734: Milestone · 5th Battalion."
     },
     {
       "question": "Which community is listed for Station 735?",
@@ -1379,7 +1422,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 735: Clarksburg."
+      "explanation": "Station 735: Clarksburg · 5th Battalion."
     },
     {
       "question": "Which community is listed for Station 740?",
@@ -1390,7 +1433,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 740: Sandy Spring."
+      "explanation": "Station 740: Sandy Spring · 4th Battalion."
     },
     {
       "question": "Which community is listed for Station 741?",
@@ -1401,7 +1444,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 741: Bethesda Chevy Chase Rescue Squad."
+      "explanation": "Station 741: Bethesda Chevy Chase Rescue Squad · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 742?",
@@ -1412,7 +1455,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 742: Wheaton Rescue Squad."
+      "explanation": "Station 742: Wheaton Rescue Squad · 4th Battalion."
     },
     {
       "question": "Which community is listed for Station 750?",
@@ -1423,7 +1466,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 750: Bethesda Navy Medical."
+      "explanation": "Station 750: Bethesda Navy Medical · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 751?",
@@ -1434,7 +1477,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 751: NIH."
+      "explanation": "Station 751: NIH · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 752?",
@@ -1445,7 +1488,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 752: NSWC- Carderock."
+      "explanation": "Station 752: NSWC- Carderock · 2nd Battalion."
     },
     {
       "question": "Which community is listed for Station 753?",
@@ -1456,7 +1499,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 753: NIST."
+      "explanation": "Station 753: NIST · 3rd Battalion."
     },
     {
       "question": "Which community is listed for Station 754?",
@@ -1467,7 +1510,7 @@
         "Rockville"
       ],
       "correctIndex": 0,
-      "explanation": "Station 754: Walter Reed- Annex."
+      "explanation": "Station 754: Walter Reed- Annex · 1st Battalion."
     }
   ]
 }

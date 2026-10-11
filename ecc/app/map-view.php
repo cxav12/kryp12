@@ -1,0 +1,11 @@
+<section class="panel battalion-map-panel" aria-label="Battalion map">
+<div class="map-heading"><h2>Battalion map</h2><span class="map-badge">Study preview</span></div>
+<label for="map-battalion">Battalion</label><div class="search-row"><select id="map-battalion"><option value="">All battalions</option><?php foreach (['1st','2nd','3rd','4th','5th'] as $ordinal): ?><option><?= $ordinal ?> Battalion</option><?php endforeach; ?></select></div>
+<div class="map-legend" aria-label="Station marker battalions"><span><i style="background:#aa4e08" aria-hidden="true"></i>1st Battalion</span><span><i style="background:#116b5c" aria-hidden="true"></i>2nd Battalion</span><span><i style="background:#315cb0" aria-hidden="true"></i>3rd Battalion</span><span><i style="background:#85439c" aria-hidden="true"></i>4th Battalion</span><span><i style="background:#626b13" aria-hidden="true"></i>5th Battalion</span></div>
+<div class="map-viewport" id="map-viewport"><?php readfile(__DIR__ . '/../assets/battalion-map.svg'); ?></div>
+<div class="map-controls"><button type="button" class="button secondary" id="map-out" aria-label="Zoom out">−</button><button type="button" class="button secondary" id="map-reset">Reset</button><button type="button" class="button secondary" id="map-in" aria-label="Zoom in">+</button><button type="button" class="button secondary" id="map-full" aria-label="Expand map">Expand</button></div>
+<div id="map-selection" class="map-selection" aria-live="polite"><strong>Select a station</strong><span>Tap a marker or choose a station below.</span></div>
+<label for="map-station">Station</label><div class="search-row"><select id="map-station"><option value="">Choose a station</option><?php foreach ($topic['sections'] as $station): ?><option value="<?= (int) explode(' ', $station['heading'])[1] ?>" data-battalion="<?= eccEscape($station['battalion']) ?>"><?= eccEscape($station['heading']) ?></option><?php endforeach; ?></select></div>
+<script id="station-map-data" type="application/json"><?= json_encode($topic['sections'], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<script src="assets/map.js?v=<?= filemtime(__DIR__.'/../assets/map.js') ?>" defer></script>
+</section>

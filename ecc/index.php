@@ -1,14 +1,16 @@
 <?php
 require __DIR__ . '/app/content.php';
 $topics = eccLoadTopics();
-$view = is_string($_GET['view'] ?? null) ? $_GET['view'] : 'home';
+$view = is_string($_GET['view'] ?? null) ? $_GET['view'] : 'library';
+// Keep existing Home bookmarks pointed at the consolidated library.
+if ($view === 'home') $view = 'library';
 // Keep saved quiz URLs useful while quizzes are hidden.
 if ($view === 'quiz') $view = 'cards';
 $slug = is_string($_GET['topic'] ?? null) ? $_GET['topic'] : '';
 $topic = $topics[$slug] ?? null;
-$missing = !in_array($view, ['home', 'library', 'topic', 'cards', 'quiz'], true) || ($view === 'topic' && !$topic) || ($slug !== '' && !$topic);
+$missing = !in_array($view, ['library', 'topic', 'cards', 'quiz'], true) || ($view === 'topic' && !$topic) || ($slug !== '' && !$topic);
 if ($missing) http_response_code(404);
-$title = $missing ? 'Topic not found' : ($view === 'topic' ? $topic['title'] : ['home'=>'Your study desk','library'=>'Reference library','cards'=>'Flashcards','quiz'=>'Practice quiz'][$view]);
+$title = $missing ? 'Topic not found' : ($view === 'topic' ? $topic['title'] : ['library'=>'Reference library','cards'=>'Flashcards','quiz'=>'Practice quiz'][$view]);
 function eccLink(string $view, string $slug = ''): string { return './?' . http_build_query(array_filter(['view'=>$view, 'topic'=>$slug])); }
 ?>
 <!doctype html><html lang="en"><head>
@@ -19,14 +21,11 @@ function eccLink(string $view, string $slug = ''): string { return './?' . http_
 <script src="assets/study.js?v=<?= filemtime(__DIR__.'/assets/study.js') ?>" defer></script></head><body>
 <a class="skip" href="#main">Skip to content</a>
 <main id="main" tabindex="-1"<?= in_array($view, ['cards', 'quiz'], true) ? ' class="study-page"' : '' ?>>
-<?php if ($view !== 'home' || $missing): ?>
-<div class="page-heading<?= $view === 'topic' ? ' topic-page-heading' : ($view === 'library' ? ' library-page-heading' : '') ?>"><span class="eyebrow"><?= $view === 'topic' && $topic ? eccEscape($topic['category']) : ($view === 'home' ? 'A little practice. Every day.' : 'ECC / STUDY LIBRARY') ?></span><div class="page-title-row"><h1 id="page-title"><?= eccEscape($title) ?></h1><?php if ($view === 'library'): ?><span class="topic-count"><?= count($topics) ?> <?= count($topics) === 1 ? 'topic' : 'topics' ?></span><?php endif; ?></div></div>
-<?php endif; ?>
+<div class="page-heading<?= $view === 'topic' ? ' topic-page-heading' : ($view === 'library' ? ' library-page-heading' : '') ?>"><span class="eyebrow"><?= $view === 'topic' && $topic ? eccEscape($topic['category']) : 'ECC / STUDY LIBRARY' ?></span><div class="page-title-row"><h1 id="page-title"><?= eccEscape($title) ?></h1><?php if ($view === 'library'): ?><span class="topic-count"><?= count($topics) ?> <?= count($topics) === 1 ? 'topic' : 'topics' ?></span><?php endif; ?></div></div>
 <?php if ($missing): ?>
 <section class="panel"><h2>We couldn’t find that topic.</h2><p>It may have been moved or isn’t published yet.</p><a class="button" href="<?= eccLink('library') ?>">Open the library</a></section>
-<?php elseif ($view === 'home' || $view === 'library'): ?>
-<?php if ($view === 'home'): ?><section class="practice-links" aria-label="Study tools"><a href="<?= eccLink('cards') ?>"><span class="tool-icon" aria-hidden="true">▤</span><strong>Flashcards</strong><span>Recall, reveal, repeat</span><b aria-hidden="true">↗</b></a></section><?php endif; ?>
-<section aria-labelledby="<?= $view === 'library' ? 'page-title' : 'library-title' ?>"><?php if ($view === 'home'): ?><div class="section-heading"><h2 id="library-title">Reference library</h2><span><?= count($topics) ?> <?= count($topics) === 1 ? 'topic' : 'topics' ?></span></div><?php endif; ?>
+<?php elseif ($view === 'library'): ?>
+<section aria-labelledby="page-title">
 <?php
 $query = '';
 $shown = 0;
@@ -72,4 +71,4 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 <?php if ($view === 'quiz'): ?><script id="quiz-topic-pool" type="application/json"><?= json_encode(array_values($topics), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_INVALID_UTF8_SUBSTITUTE) ?></script><?php endif; ?>
 <?php endif; ?>
 
-</main><nav class="bottom-nav" aria-label="Main navigation"><?php foreach (['home'=>'Home','library'=>'Library','cards'=>'Cards'] as $key=>$label): ?><a href="<?= eccLink($key) ?>" <?= ($view === $key || ($view === 'topic' && $key === 'library')) ? 'aria-current="page"' : '' ?>><?= $label ?></a><?php endforeach; ?></nav></body></html>
+</main><nav class="bottom-nav" aria-label="Main navigation"><?php foreach (['library'=>'Library','cards'=>'Cards'] as $key=>$label): ?><a href="<?= eccLink($key) ?>" <?= ($view === $key || ($view === 'topic' && $key === 'library')) ? 'aria-current="page"' : '' ?>><?= $label ?></a><?php endforeach; ?></nav></body></html>

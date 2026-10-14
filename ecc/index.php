@@ -49,12 +49,6 @@ $referenceSections = $topic['sections'];
 if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battalion'], $b['battalion']) ?: strnatcasecmp($a['heading'], $b['heading']));
 ?>
 <?php if ($slug === 'fire-stations'): ?>
-<div class="station-view-tabs" aria-label="Station view"><a href="<?= eccLink('topic', $slug) ?>" <?= ($_GET['display'] ?? '') !== 'map' ? 'aria-current="page"' : '' ?>>Station list</a><a href="<?= eccLink('topic', $slug) ?>&amp;display=map" <?= ($_GET['display'] ?? '') === 'map' ? 'aria-current="page"' : '' ?>>Battalion map</a></div>
-<?php endif; ?>
-<?php if ($slug === 'fire-stations' && ($_GET['display'] ?? '') === 'map'): ?>
-<?php require __DIR__ . '/app/map-view.php'; ?>
-<?php else: ?>
-<?php if ($slug === 'fire-stations'): ?>
 <form class="station-group-form scope-form" action="./" method="get">
 <input type="hidden" name="view" value="topic"><input type="hidden" name="topic" value="fire-stations">
 <label for="station-group">Group stations</label><div class="search-row"><select id="station-group" name="group"><option value="station" <?= !$stationGrouping ? 'selected' : '' ?>>Station number</option><option value="battalion" <?= $stationGrouping ? 'selected' : '' ?>>Battalion</option></select></div>
@@ -66,7 +60,6 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 <?php if ($stationGrouping && $previousBattalion !== $s['battalion']): $previousBattalion = $s['battalion']; ?><h2 class="battalion-heading"><?= eccEscape($previousBattalion) ?></h2><?php endif; ?><section class="panel reference-section"><h2><?= eccEscape($s['heading']) ?></h2><?php if (isset($s['text'])): ?><p><?= nl2br(eccEscape($s['text'])) ?></p><?php endif; ?><?php if (isset($s['items'])): ?><dl class="reference-grid<?= $slug === 'fire-stations' ? ' station-reference' : '' ?>"><?php foreach ($s['items'] as $item): ?><div><dt><?= eccEscape($item['label']) ?></dt><dd><?= eccEscape($item['text']) ?></dd></div><?php endforeach; ?></dl><?php endif; ?></section><?php endforeach; ?>
 </article>
 <aside class="panel study-aside"><span class="eyebrow">Put it into practice</span><h2>Ready for a refresh?</h2><p>Study this topic at your own pace.</p><a class="button" href="<?= eccLink('cards', $slug) ?>">Flashcards · <?= count($topic['flashcards']) ?></a></aside></div>
-<?php endif; ?>
 <?php else: ?>
 <form class="scope-form" action="./" method="get"><input type="hidden" name="view" value="<?= eccEscape($view) ?>"><label for="scope">Study topic</label><div class="search-row"><select id="scope" name="topic"><option value="">All topics</option><?php foreach ($topics as $t): ?><option value="<?= eccEscape($t['slug']) ?>" <?= $slug === $t['slug'] ? 'selected' : '' ?>><?= eccEscape($t['title']) ?></option><?php endforeach; ?></select><button type="submit">Load</button></div></form>
 <details class="study-options"><summary><strong>Study options</strong><span id="study-options-summary">Random<?= $view === 'quiz' ? ' · Multiple choice' : '' ?></span></summary><div class="study-options-body">

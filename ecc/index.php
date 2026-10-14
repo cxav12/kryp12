@@ -18,7 +18,6 @@ function eccLink(string $view, string $slug = ''): string { return './?' . http_
 <link rel="stylesheet" href="assets/style.css?v=<?= filemtime(__DIR__.'/assets/style.css') ?>">
 <script src="assets/study.js?v=<?= filemtime(__DIR__.'/assets/study.js') ?>" defer></script></head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="topbar"><a class="brand" href="./"><span class="mark" aria-hidden="true">E</span><span>ECC<small>DISPATCH STUDY</small></span></a></header>
 <main id="main" tabindex="-1"<?= in_array($view, ['cards', 'quiz'], true) ? ' class="study-page"' : '' ?>>
 <?php if ($view !== 'home' || $missing): ?>
 <div class="page-heading<?= $view === 'topic' ? ' topic-page-heading' : ($view === 'library' ? ' library-page-heading' : '') ?>"><span class="eyebrow"><?= $view === 'topic' && $topic ? eccEscape($topic['category']) : ($view === 'home' ? 'A little practice. Every day.' : 'ECC / STUDY LIBRARY') ?></span><div class="page-title-row"><h1 id="page-title"><?= eccEscape($title) ?></h1><?php if ($view === 'library'): ?><span class="topic-count"><?= count($topics) ?> <?= count($topics) === 1 ? 'topic' : 'topics' ?></span><?php endif; ?></div></div>

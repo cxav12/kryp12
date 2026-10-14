@@ -20,7 +20,9 @@ function eccLink(string $view, string $slug = ''): string { return './?' . http_
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar"><a class="brand" href="./"><span class="mark" aria-hidden="true">E</span><span>ECC<small>DISPATCH STUDY</small></span></a></header>
 <main id="main" tabindex="-1"<?= in_array($view, ['cards', 'quiz'], true) ? ' class="study-page"' : '' ?>>
+<?php if ($view !== 'home' || $missing): ?>
 <div class="page-heading<?= $view === 'topic' ? ' topic-page-heading' : ($view === 'library' ? ' library-page-heading' : '') ?>"><span class="eyebrow"><?= $view === 'topic' && $topic ? eccEscape($topic['category']) : ($view === 'home' ? 'A little practice. Every day.' : 'ECC / STUDY LIBRARY') ?></span><div class="page-title-row"><h1 id="page-title"><?= eccEscape($title) ?></h1><?php if ($view === 'library'): ?><span class="topic-count"><?= count($topics) ?> <?= count($topics) === 1 ? 'topic' : 'topics' ?></span><?php endif; ?></div></div>
+<?php endif; ?>
 <?php if ($missing): ?>
 <section class="panel"><h2>We couldn’t find that topic.</h2><p>It may have been moved or isn’t published yet.</p><a class="button" href="<?= eccLink('library') ?>">Open the library</a></section>
 <?php elseif ($view === 'home' || $view === 'library'): ?>

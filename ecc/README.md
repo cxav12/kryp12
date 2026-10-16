@@ -1,6 +1,6 @@
 # ECC dispatcher study
 
-Public, mobile-first PHP study site. No database, login, build step, external fonts, or packages. Intended path: `/ecc/`. This is a study aid, not an operational dispatch tool.
+Unlisted, mobile-first PHP study site. It remains available by direct URL but is hidden from the KRYP12 homepage by default. No database, login, build step, external fonts, or packages. Intended path: `/ecc/`. This is a study aid, not an operational dispatch tool.
 
 ## Structure
 
@@ -73,6 +73,6 @@ git push origin main
 git push namecheap main
 ```
 
-`.cpanel.yml` includes ECC in the existing deployment copy list. No separate manual deployment is assumed. Do not force-push. A database is not needed for ECC even though other repository sites use one. The hub entry is public and does not depend on account access.
+`.cpanel.yml` includes ECC in the existing deployment copy list. No separate manual deployment is assumed. Do not force-push. A database is not needed for ECC even though other repository sites use one. The hub entry is hidden by default and can be enabled only through Admin → Site Visibility; direct URL access remains available.
 
 A future editor could write this schema, but must have protected access, validation and backups. Live edits require a defined Git synchronization process before deployment to avoid overwriting server changes. No editor or authentication is implemented now.

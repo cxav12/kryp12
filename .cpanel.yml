@@ -3,6 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/horacqou/public_html/
     - /bin/cp -f index.html $DEPLOYPATH
+    - /bin/cp -f robots.txt $DEPLOYPATH
     - /bin/cp -Rf account $DEPLOYPATH
     - /bin/cp -Rf account-app $DEPLOYPATH
     - /bin/cp -Rf admin $DEPLOYPATH

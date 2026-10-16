@@ -1,6 +1,6 @@
 # ECC dispatcher study
 
-Unlisted, mobile-first PHP study site. It remains available by direct URL but is hidden from the KRYP12 homepage by default. No database, login, build step, external fonts, or packages. Intended path: `/ecc/`. This is a study aid, not an operational dispatch tool.
+Unlisted, mobile-first PHP study site. It remains available by direct URL but is hidden from the KRYP12 homepage by default. The root `robots.txt` asks crawlers not to visit `/ecc/`, and ECC responses also send `noindex`, `nofollow`, and `noarchive` directives. These are cooperative crawler controls, not access control; every valid ECC URL remains publicly reachable by direct URL. No database, login, build step, external fonts, or packages. Intended path: `/ecc/`. This is a study aid, not an operational dispatch tool.
 
 ## Structure
 

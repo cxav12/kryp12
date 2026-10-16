@@ -25,6 +25,30 @@
   const runeImage = rune => runeImages.has(rune)
     ? `/diablo/assets/game/runes/runeword-uniques/${rune.toLowerCase()}.png`
     : placeholder;
+  const gemImages = {
+    Topaz: "/diablo/assets/game/gems/rune-crafting/topaz.png",
+    Amethyst: "/diablo/assets/game/gems/rune-crafting/amethyst.png",
+    Ruby: "/diablo/assets/game/gems/rune-crafting/ruby.png",
+    Emerald: "/diablo/assets/game/gems/rune-crafting/emerald.png",
+    Diamond: "/diablo/assets/game/gems/rune-crafting/diamond.png",
+    Sapphire: "/diablo/assets/game/gems/rune-crafting/sapphire.png"
+  };
+  const craftingRecipes = [
+    {rune:"Tir",quantity:3,result:"Eth"},
+    {rune:"Eth",quantity:3,result:"Ith"},
+    {rune:"Ith",quantity:3,result:"Tal"},
+    {rune:"Tal",quantity:3,result:"Ral"},
+    {rune:"Ral",quantity:3,result:"Ort"},
+    {rune:"Ort",quantity:3,result:"Thul"},
+    {rune:"Thul",quantity:3,gem:{quality:"Chipped",name:"Topaz"},result:"Amn"},
+    {rune:"Amn",quantity:3,gem:{quality:"Chipped",name:"Amethyst"},result:"Sol"},
+    {rune:"Mal",quantity:2,gem:{quality:"Flawless",name:"Amethyst"},result:"Ist"},
+    {rune:"Ist",quantity:2,gem:{quality:"Flawless",name:"Ruby"},result:"Vex"},
+    {rune:"Vex",quantity:2,gem:{quality:"Flawless",name:"Emerald"},result:"Ohm"},
+    {rune:"Ohm",quantity:2,gem:{quality:"Flawless",name:"Diamond"},result:"Lo"},
+    {rune:"Lo",quantity:2,gem:{quality:"Grand",name:"Topaz"},result:"Ber"},
+    {rune:"Ber",quantity:2,gem:{quality:"Grand",name:"Sapphire"},result:"Jah"}
+  ];
   const recipes = [
     {name:"Ancient's Pledge",type:"Multi-Type Weapon",runes:["Ral","Ort","Tal"],affixes:["x35% All Damage Multiplier","+35% Cold Resistance","+35% Fire Resistance","+35% Lightning Resistance","+35% Poison Resistance","35% Damage Reduction"]},
     {name:"Call to Arms",type:"Multi-Type Weapon",runes:["Amn","Ral","Mal","Ist","Ohm"],power:"While a Shout is active, gain +5 ranks to all skills, 15% Maximum Life, and 15% Maximum Primary Resource.",affixes:["+(200–250) Weapon Damage","x40% All Damage Multiplier","+40% Attack Speed","+1 to All Skills","+5 to Shout Skills"]},
@@ -47,6 +71,10 @@
     {name:"Zephyr",type:"Multi-Type Weapon",runes:["Ort","Eth"],affixes:["x125% All Damage Multiplier","+25% Attack Speed","+25% Movement Speed","25.0% Dodge Chance","Lucky Hit: Up to a 40% chance to deal 3000–4000 Lightning Damage","Unleash a Dust Devil whenever you Dodge"]}
   ];
   const escape = window.DiabloSite?.escapeHtml || (value => String(value));
+  const goldRunes = new Set(["Eth", "Tal", "Ort", "Amn", "Mal"]);
+  const craftingRuneMarkup = rune => `<span class="crafting-item rune-reference ${goldRunes.has(rune) ? 'rune-reference-gold' : 'rune-reference-purple'}"><img src="${runeImage(rune)}" alt="" loading="lazy" decoding="async"><span>${escape(rune)}</span></span>`;
+  const craftingGemMarkup = gem => `<span class="crafting-item gem-reference"><img src="${gemImages[gem.name]}" alt="" loading="lazy" decoding="async"><span><span class="gem-quality">${escape(gem.quality)}</span> ${escape(gem.name)}</span></span>`;
   const runeMarkup = (rune, eager = false) => `<span class="rune-token"><img src="${runeImage(rune)}" alt="${escape(rune)} rune" loading="${eager ? 'eager' : 'lazy'}"${eager ? ' fetchpriority="high"' : ''} onerror="this.onerror=null;this.src='${placeholder}'"><span>${escape(rune)}</span></span>`;
+  document.querySelector('#rune-crafting-body').innerHTML = craftingRecipes.map(recipe => `<tr><td>${craftingRuneMarkup(recipe.result)}</td><td><span class="crafting-recipe">${craftingRuneMarkup(recipe.rune)}<span class="crafting-quantity">× ${recipe.quantity}</span>${recipe.gem ? `<span class="crafting-plus">+</span>${craftingGemMarkup(recipe.gem)}` : ''}</span></td></tr>`).join('');
   document.querySelector('#runeword-grid').innerHTML = recipes.map((recipe, index) => `<article class="panel runeword-card"><section class="runeword-item"><img class="runeword-placeholder" src="${itemImage(recipe.name)}" alt="${itemImages[recipe.name] ? `${escape(recipe.name)} crafted Unique` : `Temporary artwork placeholder for ${escape(recipe.name)}`}" loading="${index === 0 ? 'eager' : 'lazy'}"${index === 0 ? ' fetchpriority="high"' : ''} onerror="this.onerror=null;this.src='${placeholder}'"><div><h2>${escape(recipe.name)}</h2><p>${escape(recipe.type)}</p></div></section><section class="runeword-runes"><h3>Runes</h3><div class="rune-list">${recipe.runes.map(rune => runeMarkup(rune, index === 0)).join('')}</div></section><section class="runeword-effects">${recipe.power ? `<h3>Unique power</h3><p class="runeword-power">${escape(recipe.power)}</p>` : ''}<h3>Guaranteed affixes</h3><ul class="runeword-affixes">${recipe.affixes.map(affix => `<li>${escape(affix)}</li>`).join('')}</ul></section></article>`).join('');
 })();

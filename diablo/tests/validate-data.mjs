@@ -11,4 +11,6 @@ const events=JSON.parse(fs.readFileSync(new URL('../data/events-fallback.json',i
 const schedule=JSON.parse(fs.readFileSync(new URL('../data/event-schedule.json',import.meta.url),'utf8'));
 const projected=await new ProjectedScheduleAdapter(schedule,()=>new Date('2026-09-16T18:31:24Z')).fetchState();
 assert.ok(validateEventState(projected));assert.equal(projected.worldBoss.start,'2026-09-16T20:00:00.000Z');assert.equal(projected.helltide.active,true);assert.ok(projected.upcoming.some(event=>event.type==='legion'));
+const projectedAfterBossSpawn=await new ProjectedScheduleAdapter(schedule,()=>new Date('2026-09-16T20:05:00Z')).fetchState();
+assert.equal(projectedAfterBossSpawn.worldBoss.active,false);assert.equal(projectedAfterBossSpawn.worldBoss.start,'2026-09-16T23:30:00.000Z');
 console.log(`Validated ${builds.builds.length} build, ${builds.builds.reduce((n,b)=>n+b.variantOrder.length,0)} variants, ${assetIds.size} centralized asset records, safe fallback, and projected event schedules.`);

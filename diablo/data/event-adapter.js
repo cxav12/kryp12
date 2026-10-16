@@ -28,9 +28,8 @@ export class ProjectedScheduleAdapter extends EventSourceAdapter {
     const now=this.now();
     const bossConfig=config.schedules.worldBoss;
     const bossCurrent=occurrence(new Date(bossConfig.anchor),bossConfig.cadenceMinutes,now);
-    const bossActive=now<addMinutes(bossCurrent,bossConfig.durationMinutes);
-    const bossStart=bossActive?bossCurrent:addMinutes(bossCurrent,bossConfig.cadenceMinutes);
-    const worldBoss=normalizedEvent('world-boss','World Boss',bossStart,bossConfig.durationMinutes,{active:bossActive,name:null,location:null});
+    const bossStart=addMinutes(bossCurrent,bossConfig.cadenceMinutes);
+    const worldBoss=normalizedEvent('world-boss','World Boss',bossStart,bossConfig.durationMinutes,{active:false,name:null,location:null});
 
     const hellConfig=config.schedules.helltide;
     const hourStart=new Date(now);hourStart.setUTCMinutes(0,0,0);

@@ -3,7 +3,7 @@
   const page=location.pathname;
   const links=[['Builds',root],['Events',root+'events/'],['Affix Categories',root+'affix-categories/'],['Runeword Uniques',root+'runeword-uniques/']];
   const current=page.includes('/events/')?'Events':page.includes('/affix-categories/')?'Affix Categories':page.includes('/runeword-uniques/')?'Runeword Uniques':'Builds';
-  const cacheKey='diablo-event-state-v1';
+  const cacheKey='diablo-event-state-v2';
   let assetManifestPromise,assetManifest;
   document.querySelectorAll('[data-site-header]').forEach(header=>{
     header.innerHTML=`<div class="nav-shell"><a class="brand" href="${root}" aria-label="Diablo IV home">DIABLO <span>IV</span></a><nav class="main-nav" aria-label="Primary">${links.map(([label,url])=>`<a href="${url}"${current===label?' aria-current="page"':''}>${label}</a>`).join('')}</nav><div class="event-chips"><a class="boss-chip" href="${root}events/" aria-label="World Boss event status"><span class="boss-dot"></span><span class="boss-label">World Boss</span><span class="boss-value" data-boss-status>Loading…</span></a><a class="boss-chip helltide-chip" href="${root}events/" aria-label="Helltide event status"><span class="boss-dot"></span><span class="boss-label" data-helltide-label>Helltide</span><span class="boss-value" data-helltide-status>Loading…</span></a></div></div>`;
@@ -15,7 +15,7 @@
   document.addEventListener('error',event=>{const image=event.target;if(!(image instanceof HTMLImageElement)||!image.matches('.diablo-asset[data-fallback-src]'))return;const fallback=image.dataset.fallbackSrc;image.removeAttribute('data-fallback-src');image.src=fallback},true);
   async function eventState(){
     try{
-      const [config,module]=await Promise.all([loadJson('data/event-schedule.json'),import(root+'data/event-adapter.js')]);
+      const [config,module]=await Promise.all([loadJson('data/event-schedule.json'),import(root+'data/event-adapter.js?v=20261016-boss-rollover1')]);
       const state=await new module.ProjectedScheduleAdapter(config).fetchState();
       if(!module.validateEventState(state))throw new Error('Invalid normalized event state');
       try{localStorage.setItem(cacheKey,JSON.stringify(state))}catch{}
@@ -37,9 +37,9 @@
       let boundaryReached=false;
       document.querySelectorAll('[data-boss-status]').forEach(el=>{
         if(!state.worldBoss){el.textContent='Schedule unavailable';return}
-        const target=state.worldBoss.active?state.worldBoss.end:state.worldBoss.start;
+        const target=state.worldBoss.start;
         if(new Date(target)<=new Date()){boundaryReached=true;return}
-        el.textContent=`${state.worldBoss.active?'Active':'In'} ${duration(target)}`;
+        el.textContent=`In ${duration(target)}`;
       });
       document.querySelectorAll('[data-helltide-status]').forEach(el=>{
         const label=el.closest('.helltide-chip')?.querySelector('[data-helltide-label]');

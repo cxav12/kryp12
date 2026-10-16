@@ -1,6 +1,6 @@
 (async function(){
-  const host=document.querySelector('#build-guide'),id=document.body.dataset.buildId;let data,itemData,aspectData,paragonData,warPlanData,runeStageData;
-  try{[data,itemData,aspectData,paragonData,warPlanData,runeStageData]=await Promise.all([DiabloSite.loadJson('data/builds.json'),DiabloSite.loadJson('data/items.json'),DiabloSite.loadJson('data/aspects.json'),DiabloSite.loadJson('data/paragon/whirlwind-board-geometry.json'),DiabloSite.loadJson('data/war-plans.json'),DiabloSite.loadJson('data/rune-stages.json'),DiabloSite.loadAssets()])}catch(error){host.innerHTML=`<p class="empty-state">${error.message}</p>`;return}
+  const host=document.querySelector('#build-guide'),id=document.body.dataset.buildId;let data,itemData,aspectData,warPlanData,runeStageData;
+  try{[data,itemData,aspectData,warPlanData,runeStageData]=await Promise.all([DiabloSite.loadJson('data/builds.json'),DiabloSite.loadJson('data/items.json'),DiabloSite.loadJson('data/aspects.json'),DiabloSite.loadJson('data/war-plans.json'),DiabloSite.loadJson('data/rune-stages.json'),DiabloSite.loadAssets()])}catch(error){host.innerHTML=`<p class="empty-state">${error.message}</p>`;return}
   const build=data.builds.find(b=>b.id===id);if(!build){host.innerHTML='<p class="empty-state">Build not found.</p>';return}
   const variantStorageKey=`diablo-build-variant:${build.id}`;
   let selected=build.defaultVariant,sectionObserver;
@@ -29,7 +29,7 @@
     return {...variantFor(raw.extends,seen),...raw};
   };
   const sectionId=title=>title.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-  const sectionTitles=['Equipment','Talismans, Charms & Seal','Weapon/Class Mechanic','Runes & Seasonal Systems','Skills','Paragon Board','Mercenary','War Plans'];
+  const sectionTitles=['Equipment','Talismans, Charms & Seal','Weapon/Class Mechanic','Runes & Seasonal Systems','Skills','Glyphs','Mercenary','War Plans'];
   function section(title,content){return `<section class="panel guide-section" id="${sectionId(title)}"><h2>${title}</h2>${content}</section>`}
   const modifierName=modifier=>typeof modifier==='string'?modifier:modifier.name;
   const modifierSource=modifier=>typeof modifier==='string'?'leveling':modifier.source;
@@ -43,7 +43,7 @@
     ${section('Weapon/Class Mechanic',`<div class="system-grid">${v.expertise.map(x=>`<article class="system-card system-card-with-icon">${icon(x.assetId,x.name)}<div><h3>${esc(x.type)}</h3><strong>${esc(x.name)}</strong><p>${esc(x.assignment)}</p></div></article>`).join('')}</div>`)}
     ${section('Runes & Seasonal Systems',runeStagesMarkup())}
     ${section('Skills',`${v.skillPointSources?`<div class="skill-source-summary"><div><strong>${v.skillPointSources.leveling}</strong><span>Leveling points</span><small>Earned by reaching level 70</small></div><div class="seasonal-points"><strong>+${v.skillPointSources.seasonal}</strong><span>${esc(v.skillPointSources.seasonalLabel)}</span><small>Complete seasonal progression when ready</small></div><div><strong>${v.skillPointSources.total}</strong><span>Complete build</span><small>Eternal: extras come from ${esc(v.skillPointSources.eternalLabel)}</small></div></div>`:''}<p class="warning"><strong>Spend the leveling points first.</strong> Gold “Season” labels identify allocations that can wait until their Season Rank / Journey points are unlocked.</p><div class="skill-grid">${v.skills.map(x=>`<article class="skill-card"><div class="skill-card-heading">${icon(x.skillId,x.name)}<div><div class="skill-points">${x.manualPoints}/${x.maxManualPoints}</div><strong>${esc(x.name)}</strong></div>${x.seasonPoints?`<span class="skill-source-badge">${x.seasonPoints} Season</span>`:''}</div><p>${esc(x.kind)}</p>${x.levelPoints!==undefined?`<div class="skill-allocation"><span>${x.levelPoints} leveling${x.seasonPoints?` + ${x.seasonPoints} seasonal`:''} ranks</span></div>`:''}${x.modifiers.length?`<ul class="skill-modifiers">${x.modifiers.map(modifier=>`<li>${esc(modifierName(modifier))}${modifierSource(modifier)==='season'?'<span class="skill-source-badge">Season</span>':''}</li>`).join('')}</ul>`:''}</article>`).join('')}</div><p class="verification-note">${esc(v.skillVerification)}</p>`)}
-    ${section('Paragon Board',ParagonBoardUI.sectionMarkup(paragonData,v.label,paragonData.variantKey!==selected))}
+    ${section('Glyphs',`<div class="glyph-list">${v.glyphs.map((glyph,index)=>`<article class="glyph-card"><span class="priority-number" aria-hidden="true">${index+1}</span>${icon(glyph.assetId,glyph.name)}<div><span class="slot-label">Glyph</span><strong>${esc(glyph.name)}</strong><p class="meta">${esc(glyph.progression)}</p></div></article>`).join('')}</div>`)}
     ${section('Mercenary',`<div class="people-grid mercenary-grid"><article class="person-card mercenary-card"><div class="person-heading">${icon(mercenary.assetId,mercenary.name)}<div><span class="slot-label">${esc(mercenary.role)}</span><strong>${esc(mercenary.name)}</strong></div></div><div class="mercenary-selections">${mercenary.selections.map(selection=>`<div>${icon(selection.assetId,selection.name)}<span>${esc(selection.type)}</span><strong>${esc(selection.name)}</strong></div>`).join('')}</div></article><article class="person-card mercenary-card"><div class="person-heading">${icon(reinforcement.assetId,reinforcement.name)}<div><span class="slot-label">${esc(reinforcement.role)}</span><strong>${esc(reinforcement.name)}</strong></div></div><div class="mercenary-selections"><div>${icon(reinforcement.skillAssetId,reinforcement.skill)}<span>Reinforcement Skill</span><strong>${esc(reinforcement.skill)}</strong></div><div><span>Opportunity</span><strong>${esc(reinforcement.opportunity)}</strong></div></div><p>${esc(reinforcement.effect)}</p></article></div>`)}
     ${section('War Plans',WarPlansUI.sectionMarkup(warPlanData))}
     </div></div><dialog class="item-dialog" aria-labelledby="item-dialog-title"><button class="item-dialog-close" type="button" aria-label="Close item details">×</button><div class="item-dialog-content"></div></dialog>
@@ -78,7 +78,6 @@
       host.querySelectorAll('[data-rune-stage]').forEach(tab=>tab.setAttribute('aria-selected',String(tab===button)));
       host.querySelectorAll('[data-rune-stage-panel]').forEach(panel=>{const active=panel.dataset.runeStagePanel===stage;panel.classList.toggle('is-active',active);panel.hidden=!active});
     }));
-    ParagonBoardUI.mount(host.querySelector('[data-paragon-section]'),paragonData);
     WarPlansUI.mount(host.querySelector('[data-war-plan-viewer]'),warPlanData);
     const tocLinks=[...host.querySelectorAll('.guide-toc a')];
     const markCurrent=id=>tocLinks.forEach(link=>link.toggleAttribute('aria-current',link.hash===`#${id}`));

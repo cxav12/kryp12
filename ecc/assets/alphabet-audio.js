@@ -4,7 +4,7 @@
   const status = document.querySelector('#alphabet-audio-status');
   if (!button || !status) return;
   if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
-    status.textContent = 'Read aloud is unavailable in this browser.';
+    status.textContent = 'Alphabet audio is unavailable in this browser.';
     return;
   }
   const words = [...document.querySelectorAll('.topic-layout article .reference-grid dd')]
@@ -21,7 +21,7 @@
     clearTimeout(timer);
     synth.cancel();
     utterance = null;
-    button.textContent = 'Read aloud';
+    button.textContent = 'Play alphabet';
     status.textContent = message;
   }
   function readWord(index, currentSession) {
@@ -61,7 +61,7 @@
     }
     stop();
     playing = true;
-    button.textContent = 'Stop reading';
+    button.textContent = 'Stop';
     status.textContent = 'Reading A–Z…';
     readWord(0, session);
   });

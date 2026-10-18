@@ -20,7 +20,7 @@ function eccLink(string $view, string $slug = ''): string { return './?' . http_
 <meta name="description" content="ECC dispatcher study references and flashcards.">
 <title><?= eccEscape($title) ?> · ECC</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css?v=<?= filemtime(__DIR__.'/assets/style.css') ?>">
-<?php if ($view === 'topic' && !$missing && $slug === 'phonetic-alphabet-police'): ?>
+<?php if ($view === 'topic' && !$missing && in_array($slug, ['phonetic-alphabet', 'phonetic-alphabet-police'], true)): ?>
 <script src="assets/alphabet-audio.js?v=<?= filemtime(__DIR__.'/assets/alphabet-audio.js') ?>" defer></script>
 <?php endif; ?>
 <script src="assets/study.js?v=<?= filemtime(__DIR__.'/assets/study.js') ?>" defer></script></head><body>
@@ -59,9 +59,9 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 </form>
 <?php endif; ?>
 <div class="topic-layout"><article>
-<?php if ($slug === 'phonetic-alphabet-police'): ?>
+<?php if (in_array($slug, ['phonetic-alphabet', 'phonetic-alphabet-police'], true)): ?>
 <div class="alphabet-audio">
-<button class="button" id="alphabet-read" type="button" hidden>Read aloud</button>
+<button class="button" id="alphabet-read" type="button" hidden>Play alphabet</button>
 <span id="alphabet-audio-status" role="status"></span>
 <noscript>Enable JavaScript to read the alphabet aloud.</noscript>
 </div>

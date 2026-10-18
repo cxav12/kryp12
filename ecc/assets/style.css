@@ -103,3 +103,6 @@ body.map-open { overflow: hidden; }
 @media (min-width: 760px) {
   .station-group-form { max-width: none; width: calc(100% - 304px); }
 }
+
+.alphabet-audio { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 16px; }
+#alphabet-audio-status { color: var(--muted); font-size: .85rem; }

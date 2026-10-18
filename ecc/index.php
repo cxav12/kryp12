@@ -20,6 +20,9 @@ function eccLink(string $view, string $slug = ''): string { return './?' . http_
 <meta name="description" content="ECC dispatcher study references and flashcards.">
 <title><?= eccEscape($title) ?> · ECC</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css?v=<?= filemtime(__DIR__.'/assets/style.css') ?>">
+<?php if ($view === 'topic' && !$missing && $slug === 'phonetic-alphabet-police'): ?>
+<script src="assets/alphabet-audio.js?v=<?= filemtime(__DIR__.'/assets/alphabet-audio.js') ?>" defer></script>
+<?php endif; ?>
 <script src="assets/study.js?v=<?= filemtime(__DIR__.'/assets/study.js') ?>" defer></script></head><body>
 <a class="skip" href="#main">Skip to content</a>
 <main id="main" tabindex="-1"<?= in_array($view, ['cards', 'quiz'], true) ? ' class="study-page"' : '' ?>>
@@ -56,6 +59,13 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 </form>
 <?php endif; ?>
 <div class="topic-layout"><article>
+<?php if ($slug === 'phonetic-alphabet-police'): ?>
+<div class="alphabet-audio">
+<button class="button" id="alphabet-read" type="button" hidden>Read aloud</button>
+<span id="alphabet-audio-status" role="status"></span>
+<noscript>Enable JavaScript to read the alphabet aloud.</noscript>
+</div>
+<?php endif; ?>
 <?php $previousBattalion = null; foreach ($referenceSections as $s): ?>
 <?php if ($stationGrouping && $previousBattalion !== $s['battalion']): $previousBattalion = $s['battalion']; ?><h2 class="battalion-heading"><?= eccEscape($previousBattalion) ?></h2><?php endif; ?><section class="panel reference-section"><h2><?= eccEscape($s['heading']) ?></h2><?php if (isset($s['text'])): ?><p><?= nl2br(eccEscape($s['text'])) ?></p><?php endif; ?><?php if (isset($s['items'])): ?><dl class="reference-grid<?= $slug === 'fire-stations' ? ' station-reference' : '' ?>"><?php foreach ($s['items'] as $item): ?><div><dt><?= eccEscape($item['label']) ?></dt><dd><?= eccEscape($item['text']) ?></dd></div><?php endforeach; ?></dl><?php endif; ?></section><?php endforeach; ?>
 </article>

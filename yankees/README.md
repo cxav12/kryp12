@@ -16,7 +16,8 @@ Then visit `http://localhost:8080/yankees/`.
 ## Structure
 
 - `shared.css` contains site-wide tokens, typography, navigation, and common controls.
-- Root `index.html`, `styles.css`, and `assets/js/app.js` power the game recap dashboard.
+- Root `index.html`, `offseason.css`, and `assets/js/offseason.js` power the Offseason Hub with live MLB transactions, current roster groups, and regular-season totals.
+- `game/index.html`, root `styles.css`, and `assets/js/app.js` preserve individual game recaps linked from Schedule. Legacy `?game=` homepage links forward to the game page.
 - `assets/js/` contains the dashboard scripts and site-wide `shared.js`.
 - `tests/` contains JavaScript unit tests. Run them from the repository root with `node --test yankees/tests/*.test.js`.
 - Each route subdirectory contains its page-specific HTML, CSS, and JavaScript.
@@ -27,6 +28,7 @@ Then visit `http://localhost:8080/yankees/`.
 GitHub Pages serves the static pages and assets in this directory. The `tests/` directory is for development; PHP contact handlers require a PHP server and are currently disabled. The primary routes are:
 
 - `/yankees/`
+- `/yankees/game/?game=<MLB-game-id>`
 - `/yankees/player-profile/`
 - `/yankees/player-stats/`
 - `/yankees/schedule/`

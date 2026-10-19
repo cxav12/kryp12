@@ -260,7 +260,7 @@ function renderGame(game) {
   const started = ["Final", "Live"].includes(game.status?.abstractGameState) && !YankeesGameStatus.isCanceled(game);
   card.className = `game-card ${gameClass(game)}`;
   if (!isUpcoming) {
-    card.href = `../?game=${encodeURIComponent(game.gamePk)}`;
+    card.href = `../game/?game=${encodeURIComponent(game.gamePk)}`;
     card.setAttribute("aria-label", `Open game recap for ${away.team?.name || "away team"} at ${home.team?.name || "home team"}`);
   }
   card.innerHTML = `
@@ -340,7 +340,7 @@ function renderListGame(game) {
   const card = document.createElement(isUpcoming ? "article" : "a");
   card.className = `schedule-list-card ${gameClass(game)}`;
   if (!isUpcoming) {
-    card.href = `../?game=${encodeURIComponent(game.gamePk)}`;
+    card.href = `../game/?game=${encodeURIComponent(game.gamePk)}`;
     card.setAttribute("aria-label", `Open game recap against ${opponent.team?.name || "opponent"}`);
   }
   card.innerHTML = `

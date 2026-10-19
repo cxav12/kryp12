@@ -87,6 +87,7 @@ function nextHeaderGameLabel(details) {
 }
 
 let headerCountdownTimer;
+let headerSeasonRefreshTimer;
 let activeYankeesSeasonState;
 function publishSeasonState(state) {
   activeYankeesSeasonState = state;
@@ -96,6 +97,9 @@ function publishSeasonState(state) {
 
 function renderHeaderState(state) {
   clearInterval(headerCountdownTimer);
+  clearTimeout(headerSeasonRefreshTimer);
+  const refreshDelay = state.offseasonSwitchAt ? Math.max(1000, Math.min(300000, state.offseasonSwitchAt - Date.now())) : 300000;
+  headerSeasonRefreshTimer = setTimeout(renderYankeesHeader, refreshDelay);
   yankeesBrandRecordLines.forEach((line) => {
     line.textContent = state.subtitle || "";
     line.hidden = !state.subtitle;
@@ -171,6 +175,23 @@ async function renderYankeesHeader() {
     }
     const state = model.buildHeaderState({ season, ...data });
     if (["postseason-complete", "season-complete"].includes(state.mode)) {
+      const finalGame = model.lastSeasonGame({season, ...data});
+      let switchAt = null;
+      if (finalGame?.gamePk) {
+        try {
+          const url = new URL(`https://statsapi.mlb.com/api/v1.1/game/${finalGame.gamePk}/feed/live`);
+          url.searchParams.set("fields", "gamePk,gameData,status,abstractGameState,detailedState,liveData,plays,currentPlay,allPlays,about,endTime");
+          const response = await fetch(url, {signal: AbortSignal.timeout(15000)});
+          if (!response.ok) throw new Error("Final game timing unavailable");
+          switchAt = model.offseasonSwitchAt({season, ...data, feed: await response.json()});
+        } catch {
+          // Keep the game view until the end time can be verified.
+        }
+      }
+      if (!switchAt || Date.now() < switchAt) {
+        renderHeaderState({...state, offseasonSwitchAt: switchAt});
+        return;
+      }
       renderHeaderState(model.buildOffseasonState({ season }));
       try {
         const url = new URL("https://statsapi.mlb.com/api/v1/schedule");

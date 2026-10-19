@@ -167,3 +167,51 @@ test("Opening Day countdown targets midnight in New York and never goes negative
   assert.equal(openingCountdown("2027-03-25", "2027-03-26T04:00:00Z"), "0d 0h 0m 0s");
   assert.equal(openingCountdown("", "2027-03-24T02:57:56Z"), "TBD");
 });
+
+function finishedSeasonFixture() {
+  const record = standings();
+  record.records[0].teamRecords[0].clinched = false;
+  record.records[0].teamRecords[0].wildCardRank = '5';
+  const final = {...game({date:'2027-09-30T17:00:00Z',state:'Final',winner:'NYY'}), gamePk:900};
+  const feed = {gamePk:900, gameData:{status:{abstractGameState:'Final'}}, liveData:{plays:{allPlays:[{about:{endTime:'2027-09-30T20:00:00Z'}}],currentPlay:{about:{endTime:'2027-09-30T20:15:00Z'}}}}};
+  return {season:2027, standings:record, games:[final], feed};
+}
+
+test('offseason switch is exactly 24 hours after the final play, not first pitch', () => {
+  const {offseasonSwitchAt} = require('../assets/js/header-season.js');
+  assert.equal(offseasonSwitchAt(finishedSeasonFixture()), Date.parse('2027-10-01T20:15:00Z'));
+});
+
+test('unverified end times and mismatched game feeds do not activate offseason', () => {
+  const {offseasonSwitchAt} = require('../assets/js/header-season.js');
+  const fixture=finishedSeasonFixture();
+  assert.equal(offseasonSwitchAt({...fixture,feed:{...fixture.feed,gamePk:901}}),null);
+  assert.equal(offseasonSwitchAt({...fixture,feed:{...fixture.feed,liveData:{}}}),null);
+  assert.equal(offseasonSwitchAt({...fixture,feed:{...fixture.feed,gameData:{status:{abstractGameState:'Live'}}}}),null);
+});
+
+test('a playoff qualifier stays in the game view while awaiting its first series', () => {
+  const {lastSeasonGame} = require('../assets/js/header-season.js');
+  const fixture=finishedSeasonFixture();
+  fixture.standings.records[0].teamRecords[0].clinched=true;
+  assert.equal(buildHeaderState(fixture).mode,'postseason-pending');
+  assert.equal(lastSeasonGame(fixture),null);
+});
+
+test('the final playoff game determines the offseason start after elimination', () => {
+  const {lastSeasonGame,offseasonSwitchAt} = require('../assets/js/header-season.js');
+  const fixture=finishedSeasonFixture();
+  const playoffs=[1,2,3].map((n)=>({...game({type:'D',date:`2027-10-0${n}T17:00:00Z`,state:'Final',winner:'OPP'}),gamePk:900+n}));
+  fixture.games.push(...playoffs);
+  fixture.feed.gamePk=903;
+  fixture.feed.liveData.plays={currentPlay:{about:{endTime:'2027-10-03T20:00:00Z'}}};
+  assert.equal(lastSeasonGame(fixture).gamePk,903);
+  assert.equal(offseasonSwitchAt(fixture),Date.parse('2027-10-04T20:00:00Z'));
+});
+
+test('winning a playoff round does not start the offseason', () => {
+  const {lastSeasonGame} = require('../assets/js/header-season.js');
+  const fixture=finishedSeasonFixture();
+  fixture.games.push(...[1,2,3].map(n=>({...game({type:'D',date:`2027-10-0${n}T17:00:00Z`,state:'Final',winner:'NYY'}),gamePk:900+n})));
+  assert.equal(lastSeasonGame(fixture),null);
+});

@@ -172,6 +172,14 @@
     const regularSeasonComplete = scheduledRegularGames.length > 0
       && scheduledRegularGames.every(isFinal);
     if (regularSeasonComplete && standing) {
+      const teamRecord = (standings?.records || []).flatMap(record => record.teamRecords || []).find(record => Number(record.team?.id) === YANKEES_ID);
+      if (teamRecord?.clinched === true || /[wxyz*]/i.test(teamRecord?.clinchIndicator || "")) {
+        return {
+          mode: "postseason-pending",
+          subtitle: `${season} Postseason · Awaiting matchup`,
+          cards: [["Final Record", `${standing.wins}–${standing.losses}`], ["Status", "Qualified"], ["Next", "TBD"]],
+        };
+      }
       return {
         mode: "season-complete",
         subtitle: `${season} Season Complete`,
@@ -194,6 +202,27 @@
         ["Next", upcoming ? { game: upcoming, opponent: opponentFor(upcoming) } : "—"],
       ],
     };
+  }
+
+  function lastSeasonGame({season, standings, games = []}) {
+    const state = buildHeaderState({season, standings, games});
+    if (!["season-complete", "postseason-complete"].includes(state.mode)) return null;
+    if (state.mode === "season-complete") {
+      const record = (standings?.records || []).flatMap(item => item.teamRecords || []).find(item => Number(item.team?.id) === YANKEES_ID);
+      // Do not infer elimination from an incomplete standings response.
+      if (!record || (record.clinched === undefined && record.wildCardRank === undefined && record.wildCardEliminationNumber === undefined)) return null;
+    }
+    return games.filter(game => ["R", "F", "D", "L", "W"].includes(gameType(game))
+      && opponentFor(game) && isFinal(game) && !isUnavailable(game))
+      .sort((a,b) => gameTime(b) - gameTime(a))[0] || null;
+  }
+
+  function offseasonSwitchAt({season, standings, games = [], feed}) {
+    const game = lastSeasonGame({season, standings, games});
+    if (!game || Number(feed?.gamePk) !== Number(game.gamePk) || !isFinal({status: feed?.gameData?.status})) return null;
+    const ends = [...(feed?.liveData?.plays?.allPlays || []), feed?.liveData?.plays?.currentPlay]
+      .map(play => Date.parse(play?.about?.endTime || "")).filter(Number.isFinite);
+    return ends.length ? Math.max(...ends) + 24 * 60 * 60 * 1000 : null;
   }
 
   function easternDate(now = new Date()) {
@@ -249,5 +278,5 @@
     };
   }
 
-  return { buildHeaderState, buildOffseasonState, easternDate, openingDayStart, openingCountdown, regularSeasonStarted, seasonOpener, gameType, isFinal, opponentFor, seriesLabel, seriesState };
+  return { buildHeaderState, buildOffseasonState, lastSeasonGame, offseasonSwitchAt, easternDate, openingDayStart, openingCountdown, regularSeasonStarted, seasonOpener, gameType, isFinal, opponentFor, seriesLabel, seriesState };
 }));

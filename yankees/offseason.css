@@ -15,10 +15,10 @@
 .offseason-type { font-size: .7rem; color: var(--quiet); margin-left: 8px; font-weight: normal; }
 .offseason-record { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 750; color: var(--yankees-silver); letter-spacing: -.04em; line-height: 1.1; }
 .offseason-record-label { color: var(--quiet); font-size: .8rem; margin: 8px 0 22px; }
-.offseason-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0 0 20px; }
-.offseason-stats div { background: var(--inner-card-bg); border-radius: 7px; padding: 14px; }
-.offseason-stats dt { font-size: .72rem; font-weight: 400; color: var(--quiet); }
-.offseason-stats dd { font-size: 1.3rem; font-weight: 700; color: var(--yankees-silver); margin: 5px 0 0; }
+.offseason-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 10px; margin: 0 0 20px; }
+.offseason-stats div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; min-width: 0; background: var(--inner-card-bg); border-radius: 7px; padding: 10px 14px; }
+.offseason-stats dt { font-size: .875rem; font-weight: 500; color: var(--quiet); }
+.offseason-stats dd { font-size: 1.35rem; font-weight: 700; color: var(--yankees-silver); margin: 0; white-space: nowrap; }
 .offseason-roster { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 .offseason-roster-group { min-width: 0; background: var(--inner-card-bg); border-radius: 7px; padding: 16px; }
 .offseason-roster-group h3 { display: flex; justify-content: space-between; font-size: .87rem; color: var(--yankees-silver); margin: 0 0 14px; gap: 8px; }

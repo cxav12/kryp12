@@ -196,5 +196,58 @@
     };
   }
 
-  return { buildHeaderState, gameType, isFinal, opponentFor, seriesLabel, seriesState };
+  function easternDate(now = new Date()) {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+  }
+
+  function seasonOpener(games, season, type = "R") {
+    return games.filter((game) => gameType(game) === type && opponentFor(game) && !isUnavailable(game)
+      && String(game.officialDate || game.gameDate || "").startsWith(`${season}-`))
+      .sort((a, b) => String(a.officialDate || a.gameDate).localeCompare(String(b.officialDate || b.gameDate)))[0] || null;
+  }
+
+  function openingDayStart(date) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date || "")) return NaN;
+    const midnight = Date.parse(`${date}T00:00:00Z`);
+    let target = midnight;
+    const formatter = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" });
+    for (let i = 0; i < 2; i++) {
+      const parts = Object.fromEntries(formatter.formatToParts(new Date(target)).map(({type, value}) => [type, value]));
+      const offset = Date.UTC(+parts.year, +parts.month - 1, +parts.day, +parts.hour, +parts.minute, +parts.second) - target;
+      target = midnight - offset;
+    }
+    return target;
+  }
+
+  function openingCountdown(date, now = new Date()) {
+    const target = openingDayStart(date);
+    if (!Number.isFinite(target)) return "TBD";
+    const seconds = Math.max(0, Math.floor((target - new Date(now).getTime()) / 1000));
+    return `${Math.floor(seconds / 86400)}d ${Math.floor(seconds / 3600) % 24}h ${Math.floor(seconds / 60) % 60}m ${seconds % 60}s`;
+  }
+
+  function regularSeasonStarted({ games = [], season, now = new Date() }) {
+    const opener = seasonOpener(games, season);
+    return Boolean(opener && easternDate(now) >= String(opener.officialDate || opener.gameDate).slice(0, 10));
+  }
+
+  function buildOffseasonState({ season, games = [] }) {
+    const nextSeason = Number(season) + 1;
+    const spring = seasonOpener(games, nextSeason, "S");
+    const regular = seasonOpener(games, nextSeason);
+    const date = regular ? String(regular.officialDate || regular.gameDate).slice(0, 10) : "";
+    const springDate = spring ? new Date(`${String(spring.officialDate || spring.gameDate).slice(0, 10)}T12:00:00Z`) : null;
+    return {
+      mode: "offseason",
+      season,
+      openingDate: date,
+      subtitle: `${season}–${String(nextSeason).slice(-2)} Offseason`,
+      cards: [
+        ["Opening Day countdown", { countdownDate: date }],
+        ["Spring opener", springDate && Number.isFinite(springDate.getTime()) ? new Intl.DateTimeFormat("en-US", {month: "short", day: "numeric", timeZone: "America/New_York"}).format(springDate) : "TBD"],
+      ],
+    };
+  }
+
+  return { buildHeaderState, buildOffseasonState, easternDate, openingDayStart, openingCountdown, regularSeasonStarted, seasonOpener, gameType, isFinal, opponentFor, seriesLabel, seriesState };
 }));

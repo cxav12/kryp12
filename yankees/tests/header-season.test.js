@@ -120,3 +120,50 @@ test("falls back safely when MLB data is unavailable", () => {
   assert.equal(state.mode, "regular");
   assert.deepEqual(state.cards.map((card) => card[1]), ["—", "—", "—"]);
 });
+
+test("offseason header looks ahead without inventing unannounced dates", () => {
+  const { buildOffseasonState } = require("../assets/js/header-season.js");
+  const state = buildOffseasonState({ season: 2026 });
+  assert.equal(state.subtitle, "2026–27 Offseason");
+  assert.deepEqual(state.cards, [["Opening Day countdown", {countdownDate: ""}], ["Spring opener", "TBD"]]);
+});
+
+test("offseason header uses the earliest next-season spring and regular games", () => {
+  const { buildOffseasonState } = require("../assets/js/header-season.js");
+  const state = buildOffseasonState({ season: 2026, games: [
+    game({ type: "R", date: "2027-04-02T23:00:00Z" }),
+    game({ type: "S", date: "2027-02-28T18:00:00Z" }),
+    game({ type: "S", date: "2027-02-25T18:00:00Z" }),
+    game({ type: "R", date: "2027-03-30T23:00:00Z" }),
+    game({ type: "S", date: "2026-02-20T18:00:00Z" }),
+  ] });
+  assert.equal(state.cards[1][1], "Feb 25");
+  assert.deepEqual(state.cards[0][1], {countdownDate: "2027-03-30"});
+});
+
+test("offseason header skips canceled games and respects official game dates", () => {
+  const { buildOffseasonState } = require("../assets/js/header-season.js");
+  const canceled = game({ type: "R", date: "2027-03-28T18:00:00Z" });
+  canceled.status.detailedState = "Cancelled";
+  const opener = game({ type: "R", date: "2027-04-01T01:00:00Z" });
+  opener.officialDate = "2027-03-31";
+  const state = buildOffseasonState({ season: 2026, games: [canceled, opener] });
+  assert.deepEqual(state.cards[0][1], {countdownDate: "2027-03-31"});
+});
+
+test("spring training does not trigger the regular-season view", () => {
+  const { regularSeasonStarted } = require("../assets/js/header-season.js");
+  const games = [game({type: "S", date: "2027-02-19T18:00:00Z"}), game({date: "2027-03-25T17:00:00Z"})];
+  assert.equal(regularSeasonStarted({season: 2027, games, now: new Date("2027-02-19T20:00:00Z")}), false);
+  assert.equal(regularSeasonStarted({season: 2027, games, now: new Date("2027-03-25T03:59:59Z")}), false);
+  assert.equal(regularSeasonStarted({season: 2027, games, now: new Date("2027-03-25T04:00:00Z")}), true);
+});
+
+test("Opening Day countdown targets midnight in New York and never goes negative", () => {
+  const { openingCountdown, openingDayStart } = require("../assets/js/header-season.js");
+  assert.equal(openingDayStart("2027-03-25"), Date.parse("2027-03-25T04:00:00Z"));
+  assert.equal(openingDayStart("2027-01-25"), Date.parse("2027-01-25T05:00:00Z"));
+  assert.equal(openingCountdown("2027-03-25", "2027-03-24T02:57:56Z"), "1d 1h 2m 4s");
+  assert.equal(openingCountdown("2027-03-25", "2027-03-26T04:00:00Z"), "0d 0h 0m 0s");
+  assert.equal(openingCountdown("", "2027-03-24T02:57:56Z"), "TBD");
+});

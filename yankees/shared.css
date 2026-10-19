@@ -1371,3 +1371,7 @@ small {
     padding-inline: 0;
   }
 }
+
+.header-team-stats.is-offseason { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); width: min(100%, 370px); }
+.header-team-stats.is-offseason strong { font-variant-numeric: tabular-nums; font-size: .9rem; white-space: nowrap; }
+.header-team-stat[hidden] { display: none; }

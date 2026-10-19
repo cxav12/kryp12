@@ -4,7 +4,7 @@
   const now = new Date();
   const year = Number(new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York', year: 'numeric'}).format(now));
   const month = Number(new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York', month: 'numeric'}).format(now));
-  const season = month < 3 ? year - 1 : year;
+  const season = Number(document.getElementById('home-view')?.dataset.reviewSeason) || (month < 3 ? year - 1 : year);
   const today = new Intl.DateTimeFormat('en-CA', {timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit'}).format(now);
   const el = id => document.getElementById(id);
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[char]));

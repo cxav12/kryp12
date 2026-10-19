@@ -19,6 +19,7 @@ Then visit `http://localhost:8080/yankees/`.
 - Root `index.html`, `offseason.css`, and `assets/js/offseason.js` power the Offseason Hub with live MLB transactions, current roster groups, and regular-season totals.
 - `game/index.html`, root `styles.css`, and `assets/js/app.js` preserve individual game recaps linked from Schedule. Legacy `?game=` homepage links forward to the game page.
 - `assets/js/` contains the dashboard scripts and site-wide `shared.js`.
+- `home-view.js` selects the offseason or original game dashboard from the shared season state. Offseason mode persists through spring training; the Yankees’ first regular-season official game date switches the homepage and header back at midnight America/New_York. The Opening Day countdown uses that same boundary, and the spring opener remains a separate date.
 - `tests/` contains JavaScript unit tests. Run them from the repository root with `node --test yankees/tests/*.test.js`.
 - Each route subdirectory contains its page-specific HTML, CSS, and JavaScript.
 - `team-overview/` keeps its roster and transaction module in `roster-transactions.js`; `around-the-league/` provides the league-wide daily scoreboard and standings views.

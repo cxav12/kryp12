@@ -37,3 +37,5 @@ GitHub Pages serves the static pages and assets in this directory. The `tests/` 
 - `/yankees/schedule/`
 - `/yankees/around-the-league/`
 - `/yankees/team-overview/`
+
+Offseason visuals live in `offseason.css` and `assets/js/offseason-effects.js`, enabled only by the offseason homepage body class. Pointer lighting is limited to fine pointers; entrances run once and reduced-motion preferences disable animation. The regular-season homepage never loads the effects script.

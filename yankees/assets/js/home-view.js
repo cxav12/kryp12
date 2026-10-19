@@ -6,7 +6,7 @@
   function loadScript(name) {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      script.src = `./assets/js/${name}.js?v=20261019-home-sections3`;
+      script.src = `./assets/js/${name}.js?v=20261019-visuals5`;
       script.onload = resolve;
       script.onerror = reject;
       document.body.append(script);
@@ -24,6 +24,7 @@
     // A reload clears the old view's live-game refreshes or offseason requests.
     if (currentMode) { location.reload(); return; }
     currentMode = mode;
+    document.body.classList.toggle('offseason-experience', mode === 'offseason');
     const template = document.getElementById(`${mode}-home-template`);
     container.replaceChildren(template.content.cloneNode(true));
     container.setAttribute('aria-busy', 'false');
@@ -32,6 +33,7 @@
       if (mode === 'offseason') {
         container.dataset.reviewSeason = String(state.season);
         await loadScript('offseason');
+        loadScript('offseason-effects').catch(() => {});
       } else {
         for (const name of ['abs-challenges', 'game-status', 'home-game-selection', 'home-alerts', 'app']) await loadScript(name);
       }

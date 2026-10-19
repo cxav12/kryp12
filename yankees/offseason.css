@@ -52,3 +52,42 @@
 .offseason-next:disabled { opacity: .5; }
 .offseason-next[hidden] { display: none; }
 @media(max-width: 520px) { .offseason-dates { grid-template-columns: minmax(0, 1fr); } }
+
+/* Offseason-only stadium lighting. No continuous animation or layout motion. */
+.offseason-experience { --offseason-light: #a7c9ef; }
+.offseason-experience .hero-panel { box-shadow: 0 12px 50px #0006, inset 0 2px 0 #abc7e21c; }
+.offseason-experience .hero-panel::after { display: block; content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 82% -35%, #c2e3ff26, transparent 60%); pointer-events: none; }
+.offseason-experience .header-team-stats.is-offseason { box-shadow: 0 0 35px #6b9dd51a; }
+.offseason-experience .header-team-stats.is-offseason strong { color: #dceafb; text-shadow: 0 0 18px #b1d5ff35; }
+.offseason-experience .offseason-intro { position: relative; overflow: hidden; isolation: isolate; background: linear-gradient(115deg, #132435, #101a24 58%, #0b121a); box-shadow: inset 0 2px 0 #bbd7f331, 0 12px 30px #0003; }
+.offseason-experience .offseason-intro::before { content: ''; position: absolute; inset: 0; z-index: -1; background: repeating-linear-gradient(105deg, transparent 0 35px, #d9e6f704 35px 37px); pointer-events: none; }
+.offseason-experience .page-intro-card.offseason-intro .page-heading { color: #e0eaf3; letter-spacing: -.035em; }
+.offseason-diamond { position: absolute; width: 190px; height: 110px; top: 50%; right: 210px; transform: translateY(-50%); opacity: .22; z-index: -1; pointer-events: none; }
+.offseason-experience .offseason-updated { color: #9eafbf; font-variant-numeric: tabular-nums; }
+.offseason-experience .offseason-panel { position: relative; isolation: isolate; box-shadow: 0 10px 30px #0002, inset 0 2px 0 #b8cee10c; }
+.offseason-experience .offseason-panel::before { content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: -1; background: radial-gradient(550px circle at var(--spot-x, 50%) var(--spot-y, 0%), #8dc3ff1f, transparent 65%); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+.offseason-experience .offseason-panel:focus-within::before { opacity: .65; }
+.offseason-experience .offseason-section-header h2 { color: #cfdae4; }
+.offseason-experience .offseason-section-header h2::before { content: ''; display: inline-block; width: 5px; height: 5px; margin: 0 9px 3px 0; background: #8bb3df; transform: rotate(45deg); box-shadow: 0 0 10px #7babdf55; }
+.offseason-experience .offseason-record { background: linear-gradient(135deg, #f0f5fa, #8ca3ba); background-clip: text; -webkit-background-clip: text; color: transparent; }
+.offseason-experience .offseason-date { position: relative; overflow: hidden; background: linear-gradient(130deg, #12202c, #0b131b 75%); box-shadow: inset 0 2px 0 #bedcff1a; }
+.offseason-experience .offseason-date::after { content: ''; position: absolute; width: 65px; height: 65px; right: -10px; bottom: -30px; background: linear-gradient(135deg, #a3c5ed13, transparent); transform: rotate(45deg); pointer-events: none; }
+.offseason-experience .offseason-date time { color: #dbe9f6; font-variant-numeric: tabular-nums; }
+.offseason-experience .offseason-stats > div { background: linear-gradient(115deg, #101c26, #0a1219); }
+.offseason-experience .offseason-stats dd { color: #d6e5f3; }
+.offseason-experience .offseason-prospect-person img { background: radial-gradient(ellipse at 50% 100%, #4673a44d, #17232f 60%, #0b131c); box-shadow: 0 6px 25px #0004; }
+.offseason-experience :is(.offseason-move, .offseason-news-list li, .offseason-roster-group) { transition: background-color .2s ease, box-shadow .2s ease; }
+.offseason-experience :is(.offseason-news-list a, .offseason-roster-group a, .offseason-section-header a, .offseason-more, .offseason-next) { transition: color .2s ease, background-color .2s ease; }
+.offseason-experience :is(.offseason-news-list a, .offseason-roster-group a, .offseason-section-header a, .offseason-more, .offseason-next):focus-visible { outline: 3px solid #91b9e3; outline-offset: 5px; border-radius: 4px; }
+@media(hover: hover) and (pointer: fine) {
+  .offseason-experience .offseason-panel:hover::before { opacity: 1; }
+  .offseason-experience :is(.offseason-move, .offseason-news-list li):hover { background-color: #111e2a; box-shadow: inset 3px 0 0 #7ba3cc66; }
+  .offseason-experience .offseason-roster-group:hover { background-color: #0d1822; }
+  .offseason-experience :is(.offseason-news-list a, .offseason-roster-group a, .offseason-section-header a, .offseason-more):hover { color: #d5e9ff; }
+  .offseason-experience .offseason-next:hover { background: #20364b; color: #e5f2ff; }
+}
+@media(max-width: 700px) { .offseason-diamond { right: 0; opacity: .12; } }
+@media(prefers-reduced-motion: reduce) {
+  .offseason-experience *, .offseason-experience *::before, .offseason-experience *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .offseason-experience .offseason-panel::before { background: linear-gradient(130deg, #8dc3ff0d, transparent 70%); }
+}

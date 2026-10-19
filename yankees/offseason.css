@@ -31,3 +31,24 @@
 @media(max-width: 1000px) { .offseason-roster { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media(max-width: 700px) { .offseason-columns { grid-template-columns: minmax(0, 1fr); } }
 @media(max-width: 420px) { .offseason-roster { grid-template-columns: minmax(0, 1fr); } }
+
+.offseason-dates-panel { margin-top: 14px; }
+.offseason-dates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.offseason-date { padding: 16px; background: var(--inner-card-bg); border-radius: 7px; }
+.offseason-date h3 { font-size: .8rem; margin: 0 0 8px; color: var(--quiet); }
+.offseason-date time, .offseason-date strong { font-size: 1.15rem; color: var(--yankees-silver); font-weight: 700; }
+.offseason-date p { font-size: .75rem; margin: 8px 0 0; }
+.offseason-news-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.offseason-news-list li { padding: 16px; background: var(--inner-card-bg); border-radius: 7px; }
+.offseason-news-list a { font-size: .9rem; font-weight: 650; color: var(--yankees-silver); line-height: 1.5; }
+.offseason-news-date, .offseason-prospect-season { display: block; margin: 8px 0 0; font-size: .75rem; color: var(--quiet); }
+.offseason-prospect-person { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.offseason-prospect-person img { object-fit: contain; background: var(--inner-card-bg); border-radius: 8px; flex-shrink: 0; }
+.offseason-prospect-person h3 { font-size: 1.15rem; margin: 0 0 8px; }
+.offseason-prospect-person a { color: var(--yankees-silver); }
+.offseason-prospect-person p { font-size: .8rem; color: var(--quiet); margin: 0; }
+#prospect-performance .offseason-stats { margin-top: 14px; }
+.offseason-next { border: 0; border-radius: 7px; background: var(--inner-card-bg); color: var(--yankees-silver); padding: 10px 14px; font-size: .8rem; min-height: 44px; }
+.offseason-next:disabled { opacity: .5; }
+.offseason-next[hidden] { display: none; }
+@media(max-width: 520px) { .offseason-dates { grid-template-columns: minmax(0, 1fr); } }

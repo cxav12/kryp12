@@ -17,6 +17,8 @@ Then visit `http://localhost:8080/yankees/`.
 
 - `shared.css` contains site-wide tokens, typography, navigation, and common controls.
 - Root `index.html`, `offseason.css`, and `assets/js/offseason.js` power the Offseason Hub with live MLB transactions, current roster groups, and regular-season totals.
+- Offseason extras include confirmed Yankees opener dates, official MLB headlines, and a spotlight that rotates through the minor-league prospects already listed in Team Overview. Prospect stats are labeled as combined minor-league totals or the specific affiliate; unavailable data is left unavailable.
+- `api/news.php` fetches only the fixed official Yankees RSS feed and caches four linked headlines for ten minutes in the server temporary directory. It requires PHP with SimpleXML and either cURL or HTTPS streams. Namecheap and the PHP local launcher support this; static-only hosting shows a news fallback link. No full articles are copied.
 - `game/index.html`, root `styles.css`, and `assets/js/app.js` preserve individual game recaps linked from Schedule. Legacy `?game=` homepage links forward to the game page.
 - `assets/js/` contains the dashboard scripts and site-wide `shared.js`.
 - `home-view.js` selects the offseason or original game dashboard from the shared season state. Offseason mode persists through spring training; the Yankees’ first regular-season official game date switches the homepage and header back at midnight America/New_York. The Opening Day countdown uses that same boundary, and the spring opener remains a separate date.

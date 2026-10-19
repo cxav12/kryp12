@@ -6,7 +6,7 @@
   function loadScript(name) {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      script.src = `./assets/js/${name}.js?v=20261019-home-switch1`;
+      script.src = `./assets/js/${name}.js?v=20261019-home-sections3`;
       script.onload = resolve;
       script.onerror = reject;
       document.body.append(script);

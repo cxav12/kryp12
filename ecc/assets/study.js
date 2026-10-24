@@ -167,17 +167,10 @@
     render(true);
   }
   if (mode === 'cards') {
-    document.addEventListener('keydown', event => {
-      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.target.isContentEditable || event.target.closest('input, select, textarea, .scope-form, .study-options')) return;
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-        event.preventDefault();
-        moveCard(event.key === 'ArrowLeft' ? -1 : 1);
-      }
-    });
     let swipe = null;
     root.addEventListener('touchstart', event => {
       swipe = null;
-      if (event.touches.length !== 1) return;
+      if (window.matchMedia('(min-width: 760px)').matches || event.touches.length !== 1) return;
       const touch = event.touches[0];
       swipe = { id: touch.identifier, x: touch.clientX, y: touch.clientY };
     }, { passive: true });
@@ -188,6 +181,7 @@
     }, { passive: true });
     root.addEventListener('touchend', event => {
       if (!swipe) return;
+      if (window.matchMedia('(min-width: 760px)').matches) { swipe = null; return; }
       const start = swipe;
       swipe = null;
       const touch = [...event.changedTouches].find(touch => touch.identifier === start.id);
@@ -229,11 +223,15 @@
         reveal.setAttribute('aria-expanded', String(revealed));
         root.append(reveal);
         root.append(el('p', 'Swipe left for next · Swipe right for previous', 'card-swipe-hint'));
-        const keyboardHint = el('span', 'Use ← → arrow keys on a keyboard.', 'card-keyboard-hint');
-        root.querySelector('.card-swipe-hint').append(keyboardHint);
+        const controls = el('div', undefined, 'study-controls card-desktop-controls');
+        const previous = button('← Previous', () => moveCard(-1), true);
+        previous.disabled = position === 0;
+        const next = button(position === entries.length - 1 ? 'Start again ↻' : 'Next card →', () => moveCard(1, true), true);
+        controls.append(previous, next);
+        root.append(controls);
         if (position === entries.length - 1 && revealed) {
           const restart = button('Start again ↻', () => moveCard(1, true), true);
-          restart.classList.add('card-reveal');
+          restart.classList.add('card-reveal', 'card-mobile-restart');
           root.append(restart);
         }
       } else {

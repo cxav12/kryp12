@@ -74,7 +74,7 @@
         },
         {
           "label": "REHAB",
-          "text": "Rehabilitation; rest, hydration, cooling, and monitoring for firefighters"
+          "text": "Rehabilitation unit; a support vehicle that helps firefighters rest, rehydrate, cool down or warm up, and receive medical monitoring at an incident."
         },
         {
           "label": "RS",
@@ -178,7 +178,7 @@
     },
     {
       "question": "What does REHAB stand for in fire apparatus terminology?",
-      "answer": "Rehabilitation; rest, hydration, cooling, and monitoring for firefighters"
+      "answer": "Rehabilitation unit; a support vehicle that helps firefighters rest, rehydrate, cool down or warm up, and receive medical monitoring at an incident."
     },
     {
       "question": "What does RS stand for in fire apparatus terminology?",

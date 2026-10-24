@@ -1,0 +1,73 @@
+{
+  "id": "cymbals",
+  "slug": "cymbals",
+  "title": "CYMBALS",
+  "category": "Study",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "Vehicle description",
+      "items": [
+        {
+          "label": "C",
+          "text": "Color of the vehicle"
+        },
+        {
+          "label": "Y",
+          "text": "Year of the vehicle"
+        },
+        {
+          "label": "M",
+          "text": "Make and model of the vehicle"
+        },
+        {
+          "label": "B",
+          "text": "Body style (2-door, 4-door, station wagon)"
+        },
+        {
+          "label": "A",
+          "text": "Any other descriptive information"
+        },
+        {
+          "label": "L",
+          "text": "License plate number"
+        },
+        {
+          "label": "S",
+          "text": "State of the license plate"
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "What does C stand for in CYMBALS?",
+      "answer": "Color of the vehicle"
+    },
+    {
+      "question": "What does Y stand for in CYMBALS?",
+      "answer": "Year of the vehicle"
+    },
+    {
+      "question": "What does M stand for in CYMBALS?",
+      "answer": "Make and model of the vehicle"
+    },
+    {
+      "question": "What does B stand for in CYMBALS?",
+      "answer": "Body style (2-door, 4-door, station wagon)"
+    },
+    {
+      "question": "What does A stand for in CYMBALS?",
+      "answer": "Any other descriptive information"
+    },
+    {
+      "question": "What does L stand for in CYMBALS?",
+      "answer": "License plate number"
+    },
+    {
+      "question": "What does S stand for in CYMBALS?",
+      "answer": "State of the license plate"
+    }
+  ],
+  "quiz": []
+}

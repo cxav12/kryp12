@@ -55,9 +55,11 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 <?php if ($slug === 'fire-stations'): ?>
 <form class="station-group-form scope-form" action="./" method="get">
 <input type="hidden" name="view" value="topic"><input type="hidden" name="topic" value="fire-stations">
-<label for="station-group">Group stations</label><div class="search-row"><select id="station-group" name="group"><option value="station" <?= !$stationGrouping ? 'selected' : '' ?>>Station number</option><option value="battalion" <?= $stationGrouping ? 'selected' : '' ?>>Battalion</option></select></div>
+<div class="station-options-row">
+<label class="visually-hidden" for="station-group">Group stations</label><div class="search-row"><select id="station-group" name="group"><option value="station" <?= !$stationGrouping ? 'selected' : '' ?>>By station</option><option value="battalion" <?= $stationGrouping ? 'selected' : '' ?>>By battalion</option></select></div>
 <input type="hidden" name="compact" value="0">
-<label class="station-detail-toggle" for="station-compact"><input id="station-compact" type="checkbox" name="compact" value="1" <?= $stationCompact ? 'checked' : '' ?>>Hide additional information</label>
+<label class="station-detail-toggle" for="station-compact"><input id="station-compact" type="checkbox" name="compact" value="1" <?= $stationCompact ? 'checked' : '' ?>>Community only</label>
+</div>
 <noscript><button class="button" type="submit">Apply options</button></noscript>
 </form>
 <?php endif; ?>

@@ -111,3 +111,8 @@ body.map-open { overflow: hidden; }
 .apparatus-reference > div { align-items: baseline; }
 .apparatus-reference dt { width: 72px; flex: 0 0 72px; }
 .apparatus-reference dd { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+
+.station-options-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; gap: 10px; }
+.station-options-row .search-row { margin: 0; }
+.station-options-row select { padding-inline: 12px 34px; background-position: right 12px center; }
+.station-options-row .station-detail-toggle { margin: 0; padding: 10px 12px; gap: 8px; }

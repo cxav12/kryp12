@@ -99,10 +99,10 @@ body.map-open { overflow: hidden; }
 .map-legend span { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; color: var(--ink); }
 .map-legend i { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
 
-/* Preserve the original desktop reference-column width without a sidebar. */
+/* Center the original reference-width column, including its heading and actions. */
 @media (min-width: 760px) {
-  .topic-layout, .topic-actions, .station-group-form { width: calc(100% - 304px); }
-  .station-group-form { max-width: none; }
+  main.topic-page > :is(.page-heading, .back-link, .topic-actions, .station-group-form, .topic-layout) { width: calc(100% - 304px); max-width: none; margin-inline: auto; }
+  main.topic-page > .back-link { display: block; }
 }
 
 .topic-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }

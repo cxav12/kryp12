@@ -105,8 +105,8 @@ body.map-open { overflow: hidden; }
   main.topic-page > .back-link { display: block; }
 }
 
-.topic-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
-.topic-actions .button { width: auto; max-width: 100%; flex: 0 1 auto; }
+.topic-actions { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; margin-bottom: 16px; }
+.topic-actions .button { width: 100%; min-width: 0; max-width: 100%; flex: 1 1 0; padding-inline: 10px; }
 .topic-actions > [role="status"], .topic-actions > noscript { flex-basis: 100%; }
 #alphabet-audio-status:empty { display: none; }
 #alphabet-audio-status { color: var(--muted); font-size: .85rem; }

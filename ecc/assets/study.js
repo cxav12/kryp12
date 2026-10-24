@@ -20,7 +20,7 @@
       document.querySelectorAll('[data-station-detail]').forEach(item => { item.hidden = stationCompact.checked; });
       const url = new URL(window.location.href);
       if (stationCompact.checked) url.searchParams.set('compact', '1');
-      else url.searchParams.delete('compact');
+      else url.searchParams.set('compact', '0');
       window.history.replaceState(null, '', url);
     });
   }

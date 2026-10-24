@@ -120,3 +120,9 @@ main.topic-page > .back-link { display: block; }
 .ecc-abbreviations-reference dt { width: auto; white-space: nowrap; }
 
 #study[data-mode="cards"] { touch-action: pan-y pinch-zoom; }
+
+.card-reveal { width: 100%; }
+.card-swipe-hint { margin: 14px 0 0; text-align: center; font-size: .78rem; }
+.card-keyboard-hint { display: none; }
+@media (hover: hover) and (pointer: fine) { .card-keyboard-hint { display: block; margin-top: 4px; } }
+.card-swipe-hint + .card-reveal { margin-top: 16px; }

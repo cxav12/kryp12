@@ -167,6 +167,13 @@
     render(true);
   }
   if (mode === 'cards') {
+    root.addEventListener('keydown', event => {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.target.closest('input, select, textarea')) return;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        moveCard(event.key === 'ArrowLeft' ? -1 : 1);
+      }
+    });
     let swipe = null;
     root.addEventListener('touchstart', event => {
       swipe = null;
@@ -210,21 +217,25 @@
       root.append(heading(item.question));
       if (mode === 'cards') {
         const answer = el('p', item.answer, 'answer'); answer.hidden = !revealed; root.append(answer);
-        const controls = el('div', undefined, 'study-controls');
-        const previous = button('← Previous', () => moveCard(-1), true); previous.disabled = position === 0;
         answer.id = 'flashcard-answer';
-        const next = button(!revealed ? 'Reveal answer' : (position === entries.length - 1 ? 'Start again ↻' : 'Next card →'), () => {
-          if (!revealed) {
-            revealed = true;
-            render();
-            root.querySelector('[data-card-action]').focus();
-            return;
-          }
-          moveCard(1, true);
+        const reveal = button(revealed ? 'Hide answer' : 'Reveal answer', () => {
+          revealed = !revealed;
+          render();
+          root.querySelector('[data-card-action]').focus();
         });
-        next.dataset.cardAction = '';
-        if (!revealed) { next.setAttribute('aria-controls', answer.id); next.setAttribute('aria-expanded', 'false'); }
-        controls.append(previous, next); root.append(controls);
+        reveal.dataset.cardAction = '';
+        reveal.classList.add('card-reveal');
+        reveal.setAttribute('aria-controls', answer.id);
+        reveal.setAttribute('aria-expanded', String(revealed));
+        root.append(reveal);
+        root.append(el('p', 'Swipe left for next · Swipe right for previous', 'card-swipe-hint'));
+        const keyboardHint = el('span', 'Use ← → arrow keys on a keyboard.', 'card-keyboard-hint');
+        root.querySelector('.card-swipe-hint').append(keyboardHint);
+        if (position === entries.length - 1 && revealed) {
+          const restart = button('Start again ↻', () => moveCard(1, true), true);
+          restart.classList.add('card-reveal');
+          root.append(restart);
+        }
       } else {
         const choices = el('fieldset'); choices.append(el('legend', 'Choose one answer', 'visually-hidden'));
         const status = el('span', '', 'visually-hidden'); status.setAttribute('role', 'status');

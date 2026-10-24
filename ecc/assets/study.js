@@ -167,8 +167,8 @@
     render(true);
   }
   if (mode === 'cards') {
-    root.addEventListener('keydown', event => {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.target.closest('input, select, textarea')) return;
+    document.addEventListener('keydown', event => {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.target.isContentEditable || event.target.closest('input, select, textarea, .scope-form, .study-options')) return;
       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         event.preventDefault();
         moveCard(event.key === 'ArrowLeft' ? -1 : 1);

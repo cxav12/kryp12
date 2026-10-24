@@ -10,103 +10,103 @@
       "items": [
         {
           "label": "A",
-          "text": "ambulance"
+          "text": "Ambulance"
         },
         {
           "label": "ALS",
-          "text": "advanced life support; paramedic chase vehicle, often an SUV"
+          "text": "Advanced life support; paramedic chase vehicle, often an SUV"
         },
         {
           "label": "AT",
-          "text": "aerial tower; called a tower locally"
+          "text": "Aerial tower; called a tower locally"
         },
         {
           "label": "BC",
-          "text": "battalion chief"
+          "text": "Battalion chief"
         },
         {
           "label": "BE",
-          "text": "brush engine"
+          "text": "Brush engine"
         },
         {
           "label": "BT",
-          "text": "boat"
+          "text": "Boat"
         },
         {
           "label": "BUTV",
-          "text": "brush utility vehicle"
+          "text": "Brush utility vehicle"
         },
         {
           "label": "CP",
-          "text": "command post"
+          "text": "Command post"
         },
         {
           "label": "CT",
-          "text": "canteen"
+          "text": "Canteen"
         },
         {
           "label": "EMS",
-          "text": "ems supervisor"
+          "text": "EMS supervisor"
         },
         {
           "label": "HM",
-          "text": "hazardous materials unit"
+          "text": "Hazardous materials unit"
         },
         {
           "label": "M",
-          "text": "medic"
+          "text": "Medic"
         },
         {
           "label": "MAU",
-          "text": "mobile air unit"
+          "text": "Mobile air unit"
         },
         {
           "label": "PAT",
-          "text": "paramedic aerial tower"
+          "text": "Paramedic aerial tower"
         },
         {
           "label": "PE",
-          "text": "paramedic engine"
+          "text": "Paramedic engine"
         },
         {
           "label": "RE",
-          "text": "rescue engine"
+          "text": "Rescue engine"
         },
         {
           "label": "REHAB",
-          "text": "rehabilitation; rest, hydration, cooling, and monitoring for firefighters"
+          "text": "Rehabilitation; rest, hydration, cooling, and monitoring for firefighters"
         },
         {
           "label": "RS",
-          "text": "rescue squad"
+          "text": "Rescue squad"
         },
         {
           "label": "SA",
-          "text": "safety officer"
+          "text": "Safety officer"
         },
         {
           "label": "SU",
-          "text": "support unit"
+          "text": "Support unit"
         },
         {
           "label": "SW",
-          "text": "swift-water rescue"
+          "text": "Swift-water rescue"
         },
         {
           "label": "T",
-          "text": "truck"
+          "text": "Truck"
         },
         {
           "label": "U",
-          "text": "utility"
+          "text": "Utility"
         },
         {
           "label": "UT",
-          "text": "utility"
+          "text": "Utility"
         },
         {
           "label": "W",
-          "text": "tanker"
+          "text": "Tanker"
         }
       ]
     }
@@ -114,103 +114,103 @@
   "flashcards": [
     {
       "question": "What does A stand for in fire apparatus terminology?",
-      "answer": "ambulance"
+      "answer": "Ambulance"
     },
     {
       "question": "What does ALS stand for in fire apparatus terminology?",
-      "answer": "advanced life support; paramedic chase vehicle, often an SUV"
+      "answer": "Advanced life support; paramedic chase vehicle, often an SUV"
     },
     {
       "question": "What does AT stand for in fire apparatus terminology?",
-      "answer": "aerial tower; called a tower locally"
+      "answer": "Aerial tower; called a tower locally"
     },
     {
       "question": "What does BC stand for in fire apparatus terminology?",
-      "answer": "battalion chief"
+      "answer": "Battalion chief"
     },
     {
       "question": "What does BE stand for in fire apparatus terminology?",
-      "answer": "brush engine"
+      "answer": "Brush engine"
     },
     {
       "question": "What does BT stand for in fire apparatus terminology?",
-      "answer": "boat"
+      "answer": "Boat"
     },
     {
       "question": "What does BUTV stand for in fire apparatus terminology?",
-      "answer": "brush utility vehicle"
+      "answer": "Brush utility vehicle"
     },
     {
       "question": "What does CP stand for in fire apparatus terminology?",
-      "answer": "command post"
+      "answer": "Command post"
     },
     {
       "question": "What does CT stand for in fire apparatus terminology?",
-      "answer": "canteen"
+      "answer": "Canteen"
     },
     {
       "question": "What does EMS stand for in fire apparatus terminology?",
-      "answer": "ems supervisor"
+      "answer": "EMS supervisor"
     },
     {
       "question": "What does HM stand for in fire apparatus terminology?",
-      "answer": "hazardous materials unit"
+      "answer": "Hazardous materials unit"
     },
     {
       "question": "What does M stand for in fire apparatus terminology?",
-      "answer": "medic"
+      "answer": "Medic"
     },
     {
       "question": "What does MAU stand for in fire apparatus terminology?",
-      "answer": "mobile air unit"
+      "answer": "Mobile air unit"
     },
     {
       "question": "What does PAT stand for in fire apparatus terminology?",
-      "answer": "paramedic aerial tower"
+      "answer": "Paramedic aerial tower"
     },
     {
       "question": "What does PE stand for in fire apparatus terminology?",
-      "answer": "paramedic engine"
+      "answer": "Paramedic engine"
     },
     {
       "question": "What does RE stand for in fire apparatus terminology?",
-      "answer": "rescue engine"
+      "answer": "Rescue engine"
     },
     {
       "question": "What does REHAB stand for in fire apparatus terminology?",
-      "answer": "rehabilitation; rest, hydration, cooling, and monitoring for firefighters"
+      "answer": "Rehabilitation; rest, hydration, cooling, and monitoring for firefighters"
     },
     {
       "question": "What does RS stand for in fire apparatus terminology?",
-      "answer": "rescue squad"
+      "answer": "Rescue squad"
     },
     {
       "question": "What does SA stand for in fire apparatus terminology?",
-      "answer": "safety officer"
+      "answer": "Safety officer"
     },
     {
       "question": "What does SU stand for in fire apparatus terminology?",
-      "answer": "support unit"
+      "answer": "Support unit"
     },
     {
       "question": "What does SW stand for in fire apparatus terminology?",
-      "answer": "swift-water rescue"
+      "answer": "Swift-water rescue"
     },
     {
       "question": "What does T stand for in fire apparatus terminology?",
-      "answer": "truck"
+      "answer": "Truck"
     },
     {
       "question": "What does U stand for in fire apparatus terminology?",
-      "answer": "utility"
+      "answer": "Utility"
     },
     {
       "question": "What does UT stand for in fire apparatus terminology?",
-      "answer": "utility"
+      "answer": "Utility"
     },
     {
       "question": "What does W stand for in fire apparatus terminology?",
-      "answer": "tanker"
+      "answer": "Tanker"
     }
   ],
   "quiz": []

@@ -106,3 +106,8 @@ body.map-open { overflow: hidden; }
 
 .station-detail-toggle { display: flex; align-items: center; gap: 12px; min-height: 48px; margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: #e7eeee; cursor: pointer; }
 .station-detail-toggle input { width: 20px; height: 20px; margin: 0; flex-shrink: 0; accent-color: var(--teal); }
+
+.reference-grid.apparatus-reference { grid-template-columns: 1fr; }
+.apparatus-reference > div { align-items: baseline; }
+.apparatus-reference dt { width: 72px; flex: 0 0 72px; }
+.apparatus-reference dd { flex: 1; min-width: 0; overflow-wrap: anywhere; }

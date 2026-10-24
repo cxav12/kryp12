@@ -58,18 +58,21 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 <noscript><button class="button" type="submit">Apply grouping</button></noscript>
 </form>
 <?php endif; ?>
-<div class="topic-layout"><article>
+<div class="topic-actions" role="group" aria-label="Study actions">
 <?php if (in_array($slug, ['phonetic-alphabet', 'phonetic-alphabet-police'], true)): ?>
-<div class="alphabet-audio">
 <button class="button" id="alphabet-read" type="button" hidden>Play alphabet</button>
-<span id="alphabet-audio-status" role="status"></span>
-<noscript>Enable JavaScript to read the alphabet aloud.</noscript>
-</div>
 <?php endif; ?>
+<a class="button" href="<?= eccLink('cards', $slug) ?>">Flashcards · <?= count($topic['flashcards']) ?></a>
+<?php if (in_array($slug, ['phonetic-alphabet', 'phonetic-alphabet-police'], true)): ?>
+<span id="alphabet-audio-status" role="status"></span>
+<noscript>Enable JavaScript to play the alphabet.</noscript>
+<?php endif; ?>
+</div>
+<div class="topic-layout"><article>
 <?php $previousBattalion = null; foreach ($referenceSections as $s): ?>
 <?php if ($stationGrouping && $previousBattalion !== $s['battalion']): $previousBattalion = $s['battalion']; ?><h2 class="battalion-heading"><?= eccEscape($previousBattalion) ?></h2><?php endif; ?><section class="panel reference-section"><h2><?= eccEscape($s['heading']) ?></h2><?php if (isset($s['text'])): ?><p><?= nl2br(eccEscape($s['text'])) ?></p><?php endif; ?><?php if (isset($s['items'])): ?><dl class="reference-grid<?= $slug === 'fire-stations' ? ' station-reference' : '' ?>"><?php foreach ($s['items'] as $item): ?><div><dt><?= eccEscape($item['label']) ?></dt><dd><?= eccEscape($item['text']) ?></dd></div><?php endforeach; ?></dl><?php endif; ?></section><?php endforeach; ?>
 </article>
-<aside class="study-aside"><a class="button" href="<?= eccLink('cards', $slug) ?>">Flashcards · <?= count($topic['flashcards']) ?></a></aside></div>
+</div>
 <?php else: ?>
 <form class="scope-form" action="./" method="get"><input type="hidden" name="view" value="<?= eccEscape($view) ?>"><label for="scope">Study topic</label><div class="search-row"><select id="scope" name="topic"><option value="">All topics</option><?php foreach ($topics as $t): ?><option value="<?= eccEscape($t['slug']) ?>" <?= $slug === $t['slug'] ? 'selected' : '' ?>><?= eccEscape($t['title']) ?></option><?php endforeach; ?></select><button type="submit">Load</button></div></form>
 <details class="study-options"><summary><strong>Study options</strong><span id="study-options-summary">Random<?= $view === 'quiz' ? ' · Multiple choice' : '' ?></span></summary><div class="study-options-body">

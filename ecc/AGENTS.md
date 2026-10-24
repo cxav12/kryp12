@@ -15,3 +15,4 @@
 - All ECC pages must share the same centered desktop container width: use the common `main` layout (780px maximum, including padding), with no separate Library, topic, or Cards width overrides. Mobile remains full-width within consistent page padding.
 
 - Keep Library topics in one list without category headings, and omit category labels above topic titles, until the user asks to restore categories.
+- Use the shared page heading spacing on every view: no bottom margin on the title itself, with a consistent 16px gap below the heading block.

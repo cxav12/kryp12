@@ -154,6 +154,42 @@
       studyOptions.querySelector('summary').focus();
     });
   }
+  function moveCard(direction, restart = false) {
+    if (mode !== 'cards' || !entries.length) return;
+    const destination = position + direction;
+    if (destination < 0) return;
+    if (destination >= entries.length) {
+      if (!restart) return;
+      position = 0;
+      applyCardOrder();
+    } else position = destination;
+    revealed = false;
+    render(true);
+  }
+  if (mode === 'cards') {
+    let swipe = null;
+    root.addEventListener('touchstart', event => {
+      swipe = null;
+      if (event.touches.length !== 1 || event.target.closest('button, a, input, select, textarea')) return;
+      const touch = event.touches[0];
+      swipe = { id: touch.identifier, x: touch.clientX, y: touch.clientY };
+    }, { passive: true });
+    root.addEventListener('touchmove', event => {
+      if (!swipe) return;
+      const touch = [...event.touches].find(touch => touch.identifier === swipe.id);
+      if (event.touches.length !== 1 || !touch || (Math.abs(touch.clientY - swipe.y) > 12 && Math.abs(touch.clientY - swipe.y) > Math.abs(touch.clientX - swipe.x))) swipe = null;
+    }, { passive: true });
+    root.addEventListener('touchend', event => {
+      if (!swipe) return;
+      const start = swipe;
+      swipe = null;
+      const touch = [...event.changedTouches].find(touch => touch.identifier === start.id);
+      if (!touch) return;
+      const dx = touch.clientX - start.x, dy = touch.clientY - start.y;
+      if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.5) moveCard(dx < 0 ? 1 : -1);
+    }, { passive: true });
+    root.addEventListener('touchcancel', () => { swipe = null; }, { passive: true });
+  }
   function normalizeAnswer(value) { return value.trim().toLocaleLowerCase().replace(/[‐‑–—]/g, '-').replace(/\s+/g, ' '); }
   function el(tag, text, className) { const n = document.createElement(tag); if (text !== undefined) n.textContent = text; if (className) n.className = className; return n; }
   function button(text, action, secondary = false) { const b = el('button', text, secondary ? 'button secondary' : 'button'); b.type = 'button'; b.addEventListener('click', action); return b; }
@@ -171,7 +207,7 @@
       if (mode === 'cards') {
         const answer = el('p', item.answer, 'answer'); answer.hidden = !revealed; root.append(answer);
         const controls = el('div', undefined, 'study-controls');
-        const previous = button('← Previous', () => { position--; revealed = false; render(true); }, true); previous.disabled = position === 0;
+        const previous = button('← Previous', () => moveCard(-1), true); previous.disabled = position === 0;
         answer.id = 'flashcard-answer';
         const next = button(!revealed ? 'Reveal answer' : (position === entries.length - 1 ? 'Start again ↻' : 'Next card →'), () => {
           if (!revealed) {
@@ -180,9 +216,7 @@
             root.querySelector('[data-card-action]').focus();
             return;
           }
-          if (position === entries.length - 1) { position = 0; applyCardOrder(); } else position++;
-          revealed = false;
-          render(true);
+          moveCard(1, true);
         });
         next.dataset.cardAction = '';
         if (!revealed) { next.setAttribute('aria-controls', answer.id); next.setAttribute('aria-expanded', 'false'); }

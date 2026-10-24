@@ -118,3 +118,5 @@ main.topic-page > .back-link { display: block; }
 .reference-grid.ecc-abbreviations-reference { grid-template-columns: max-content minmax(0, 1fr); }
 .ecc-abbreviations-reference > div { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; }
 .ecc-abbreviations-reference dt { width: auto; white-space: nowrap; }
+
+#study[data-mode="cards"] { touch-action: pan-y pinch-zoom; }

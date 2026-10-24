@@ -170,7 +170,7 @@
     let swipe = null;
     root.addEventListener('touchstart', event => {
       swipe = null;
-      if (event.touches.length !== 1 || event.target.closest('button, a, input, select, textarea')) return;
+      if (event.touches.length !== 1) return;
       const touch = event.touches[0];
       swipe = { id: touch.identifier, x: touch.clientX, y: touch.clientY };
     }, { passive: true });
@@ -186,8 +186,12 @@
       const touch = [...event.changedTouches].find(touch => touch.identifier === start.id);
       if (!touch) return;
       const dx = touch.clientX - start.x, dy = touch.clientY - start.y;
-      if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.5) moveCard(dx < 0 ? 1 : -1);
-    }, { passive: true });
+      if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        // A completed swipe must not also activate the button beneath it.
+        if (event.cancelable) event.preventDefault();
+        moveCard(dx < 0 ? 1 : -1);
+      }
+    }, { passive: false });
     root.addEventListener('touchcancel', () => { swipe = null; }, { passive: true });
   }
   function normalizeAnswer(value) { return value.trim().toLocaleLowerCase().replace(/[‐‑–—]/g, '-').replace(/\s+/g, ' '); }

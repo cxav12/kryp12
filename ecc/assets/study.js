@@ -170,10 +170,22 @@
       root.append(heading(item.question));
       if (mode === 'cards') {
         const answer = el('p', item.answer, 'answer'); answer.hidden = !revealed; root.append(answer);
-        const reveal = button(revealed ? 'Hide answer' : 'Reveal answer', () => { revealed = !revealed; render(); root.querySelector('[aria-expanded]').focus(); }); reveal.setAttribute('aria-expanded', String(revealed)); root.append(reveal);
         const controls = el('div', undefined, 'study-controls');
         const previous = button('← Previous', () => { position--; revealed = false; render(true); }, true); previous.disabled = position === 0;
-        const next = button(position === entries.length - 1 ? 'Start again ↻' : 'Next card →', () => { if (position === entries.length - 1) { position = 0; applyCardOrder(); } else position++; revealed = false; render(true); }, true);
+        answer.id = 'flashcard-answer';
+        const next = button(!revealed ? 'Reveal answer' : (position === entries.length - 1 ? 'Start again ↻' : 'Next card →'), () => {
+          if (!revealed) {
+            revealed = true;
+            render();
+            root.querySelector('[data-card-action]').focus();
+            return;
+          }
+          if (position === entries.length - 1) { position = 0; applyCardOrder(); } else position++;
+          revealed = false;
+          render(true);
+        });
+        next.dataset.cardAction = '';
+        if (!revealed) { next.setAttribute('aria-controls', answer.id); next.setAttribute('aria-expanded', 'false'); }
         controls.append(previous, next); root.append(controls);
       } else {
         const choices = el('fieldset'); choices.append(el('legend', 'Choose one answer', 'visually-hidden'));

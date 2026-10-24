@@ -115,4 +115,6 @@ body.map-open { overflow: hidden; }
 
 main.topic-page > .back-link { display: block; }
 
-.ecc-abbreviations-reference dt { width: 100px; flex-basis: 100px; overflow-wrap: anywhere; }
+.reference-grid.ecc-abbreviations-reference { grid-template-columns: max-content minmax(0, 1fr); }
+.ecc-abbreviations-reference > div { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; }
+.ecc-abbreviations-reference dt { width: auto; white-space: nowrap; }

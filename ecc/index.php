@@ -48,6 +48,7 @@ $match = $query === '' || stripos($searchText, $query) !== false; if ($match) $s
 <a class="back-link" href="<?= eccLink('library') ?>">← All references</a>
 <?php
 $stationGrouping = $slug === 'fire-stations' && ($_GET['group'] ?? '') === 'battalion';
+$stationCompact = $slug === 'fire-stations' && ($_GET['compact'] ?? '') === '1';
 $referenceSections = $topic['sections'];
 if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battalion'], $b['battalion']) ?: strnatcasecmp($a['heading'], $b['heading']));
 ?>
@@ -55,7 +56,8 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 <form class="station-group-form scope-form" action="./" method="get">
 <input type="hidden" name="view" value="topic"><input type="hidden" name="topic" value="fire-stations">
 <label for="station-group">Group stations</label><div class="search-row"><select id="station-group" name="group"><option value="station" <?= !$stationGrouping ? 'selected' : '' ?>>Station number</option><option value="battalion" <?= $stationGrouping ? 'selected' : '' ?>>Battalion</option></select></div>
-<noscript><button class="button" type="submit">Apply grouping</button></noscript>
+<label class="station-detail-toggle" for="station-compact"><input id="station-compact" type="checkbox" name="compact" value="1" <?= $stationCompact ? 'checked' : '' ?>>Hide additional information</label>
+<noscript><button class="button" type="submit">Apply options</button></noscript>
 </form>
 <?php endif; ?>
 <div class="topic-actions" role="group" aria-label="Study actions">
@@ -70,7 +72,7 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 </div>
 <div class="topic-layout"><article>
 <?php $previousBattalion = null; foreach ($referenceSections as $s): ?>
-<?php if ($stationGrouping && $previousBattalion !== $s['battalion']): $previousBattalion = $s['battalion']; ?><h2 class="battalion-heading"><?= eccEscape($previousBattalion) ?></h2><?php endif; ?><section class="panel reference-section"><h2><?= eccEscape($s['heading']) ?></h2><?php if (isset($s['text'])): ?><p><?= nl2br(eccEscape($s['text'])) ?></p><?php endif; ?><?php if (isset($s['items'])): ?><dl class="reference-grid<?= $slug === 'fire-stations' ? ' station-reference' : '' ?>"><?php foreach ($s['items'] as $item): ?><div><dt><?= eccEscape($item['label']) ?></dt><dd><?= eccEscape($item['text']) ?></dd></div><?php endforeach; ?></dl><?php endif; ?></section><?php endforeach; ?>
+<?php if ($stationGrouping && $previousBattalion !== $s['battalion']): $previousBattalion = $s['battalion']; ?><h2 class="battalion-heading"><?= eccEscape($previousBattalion) ?></h2><?php endif; ?><section class="panel reference-section"><h2><?= eccEscape($s['heading']) ?></h2><?php if (isset($s['text'])): ?><p<?= $slug === 'fire-stations' ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><?= nl2br(eccEscape($s['text'])) ?></p><?php endif; ?><?php if (isset($s['items'])): ?><dl class="reference-grid<?= $slug === 'fire-stations' ? ' station-reference' : '' ?>"><?php foreach ($s['items'] as $item): ?><div<?= $slug === 'fire-stations' && strcasecmp(trim($item['label']), 'Community') !== 0 ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><dt><?= eccEscape($item['label']) ?></dt><dd><?= eccEscape($item['text']) ?></dd></div><?php endforeach; ?></dl><?php endif; ?></section><?php endforeach; ?>
 </article>
 </div>
 <?php else: ?>

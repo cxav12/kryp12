@@ -14,6 +14,16 @@
   }
   const stationGroup = document.querySelector('#station-group');
   if (stationGroup) stationGroup.addEventListener('change', () => stationGroup.form.requestSubmit());
+  const stationCompact = document.querySelector('#station-compact');
+  if (stationCompact) {
+    stationCompact.addEventListener('change', () => {
+      document.querySelectorAll('[data-station-detail]').forEach(item => { item.hidden = stationCompact.checked; });
+      const url = new URL(window.location.href);
+      if (stationCompact.checked) url.searchParams.set('compact', '1');
+      else url.searchParams.delete('compact');
+      window.history.replaceState(null, '', url);
+    });
+  }
   const scope = document.querySelector('.scope-form:not(.station-group-form) select');
   if (scope) {
     scope.addEventListener('change', () => {

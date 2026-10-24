@@ -10,7 +10,7 @@
       "items": [
         {
           "label": "A",
-          "text": "Ambulance"
+          "text": "Ambulance; provides basic life support and patient transport."
         },
         {
           "label": "ALS",
@@ -18,7 +18,7 @@
         },
         {
           "label": "AT",
-          "text": "Aerial tower; called a tower locally"
+          "text": "Aerial tower; ladder apparatus with a bucket or work platform."
         },
         {
           "label": "BC",
@@ -38,7 +38,7 @@
         },
         {
           "label": "CP",
-          "text": "Command post"
+          "text": "Command post; a vehicle equipped to support incident command during major emergencies."
         },
         {
           "label": "CT",
@@ -54,11 +54,11 @@
         },
         {
           "label": "M",
-          "text": "Medic"
+          "text": "Medic unit; provides advanced life support and patient transport."
         },
         {
           "label": "MAU",
-          "text": "Mobile air unit"
+          "text": "Mobile air unit; supplies and refills firefighters’ breathing-air cylinders."
         },
         {
           "label": "PAT",
@@ -70,7 +70,7 @@
         },
         {
           "label": "RE",
-          "text": "Rescue engine"
+          "text": "Rescue engine; a firefighting engine that also carries vehicle-extrication equipment."
         },
         {
           "label": "REHAB",
@@ -78,7 +78,7 @@
         },
         {
           "label": "RS",
-          "text": "Rescue squad"
+          "text": "Rescue squad; carries specialized equipment for heavy rescue and vehicle extrication."
         },
         {
           "label": "SA",
@@ -94,19 +94,15 @@
         },
         {
           "label": "T",
-          "text": "Truck"
+          "text": "Truck; ladder apparatus without a bucket or work platform."
         },
         {
           "label": "U",
           "text": "Utility"
         },
         {
-          "label": "UT",
-          "text": "Utility"
-        },
-        {
           "label": "W",
-          "text": "Tanker"
+          "text": "Tanker; carries large quantities of water to supply firefighting operations."
         }
       ]
     }
@@ -114,7 +110,7 @@
   "flashcards": [
     {
       "question": "What does A stand for in fire apparatus terminology?",
-      "answer": "Ambulance"
+      "answer": "Ambulance; provides basic life support and patient transport."
     },
     {
       "question": "What does ALS stand for in fire apparatus terminology?",
@@ -122,7 +118,7 @@
     },
     {
       "question": "What does AT stand for in fire apparatus terminology?",
-      "answer": "Aerial tower; called a tower locally"
+      "answer": "Aerial tower; ladder apparatus with a bucket or work platform."
     },
     {
       "question": "What does BC stand for in fire apparatus terminology?",
@@ -142,7 +138,7 @@
     },
     {
       "question": "What does CP stand for in fire apparatus terminology?",
-      "answer": "Command post"
+      "answer": "Command post; a vehicle equipped to support incident command during major emergencies."
     },
     {
       "question": "What does CT stand for in fire apparatus terminology?",
@@ -158,11 +154,11 @@
     },
     {
       "question": "What does M stand for in fire apparatus terminology?",
-      "answer": "Medic"
+      "answer": "Medic unit; provides advanced life support and patient transport."
     },
     {
       "question": "What does MAU stand for in fire apparatus terminology?",
-      "answer": "Mobile air unit"
+      "answer": "Mobile air unit; supplies and refills firefighters’ breathing-air cylinders."
     },
     {
       "question": "What does PAT stand for in fire apparatus terminology?",
@@ -174,7 +170,7 @@
     },
     {
       "question": "What does RE stand for in fire apparatus terminology?",
-      "answer": "Rescue engine"
+      "answer": "Rescue engine; a firefighting engine that also carries vehicle-extrication equipment."
     },
     {
       "question": "What does REHAB stand for in fire apparatus terminology?",
@@ -182,7 +178,7 @@
     },
     {
       "question": "What does RS stand for in fire apparatus terminology?",
-      "answer": "Rescue squad"
+      "answer": "Rescue squad; carries specialized equipment for heavy rescue and vehicle extrication."
     },
     {
       "question": "What does SA stand for in fire apparatus terminology?",
@@ -198,19 +194,15 @@
     },
     {
       "question": "What does T stand for in fire apparatus terminology?",
-      "answer": "Truck"
+      "answer": "Truck; ladder apparatus without a bucket or work platform."
     },
     {
       "question": "What does U stand for in fire apparatus terminology?",
       "answer": "Utility"
     },
     {
-      "question": "What does UT stand for in fire apparatus terminology?",
-      "answer": "Utility"
-    },
-    {
       "question": "What does W stand for in fire apparatus terminology?",
-      "answer": "Tanker"
+      "answer": "Tanker; carries large quantities of water to supply firefighting operations."
     }
   ],
   "quiz": []

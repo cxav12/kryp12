@@ -103,3 +103,6 @@ body.map-open { overflow: hidden; }
 .topic-actions > [role="status"], .topic-actions > noscript { flex-basis: 100%; }
 #alphabet-audio-status:empty { display: none; }
 #alphabet-audio-status { color: var(--muted); font-size: .85rem; }
+
+.station-detail-toggle { display: flex; align-items: center; gap: 12px; min-height: 48px; margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: #e7eeee; cursor: pointer; }
+.station-detail-toggle input { width: 20px; height: 20px; margin: 0; flex-shrink: 0; accent-color: var(--teal); }

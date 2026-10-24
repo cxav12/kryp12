@@ -119,10 +119,13 @@ main.topic-page > .back-link { display: block; }
 .ecc-abbreviations-reference > div { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; }
 .ecc-abbreviations-reference dt { width: auto; white-space: nowrap; }
 
-#study[data-mode="cards"] { touch-action: pan-y pinch-zoom; }
+@media (max-width: 759px) { #study[data-mode="cards"] { touch-action: pan-y pinch-zoom; } }
 
 .card-reveal { width: 100%; }
 .card-swipe-hint { margin: 14px 0 0; text-align: center; font-size: .78rem; }
-.card-keyboard-hint { display: none; }
-@media (hover: hover) and (pointer: fine) { .card-keyboard-hint { display: block; margin-top: 4px; } }
-.card-swipe-hint + .card-reveal { margin-top: 16px; }
+.card-desktop-controls { display: none; }
+.card-mobile-restart { margin-top: 16px; }
+@media (min-width: 760px) {
+  .card-desktop-controls { display: flex; }
+  .card-swipe-hint, .card-mobile-restart { display: none; }
+}

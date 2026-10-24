@@ -1,0 +1,1257 @@
+{
+  "id": "911-ecc-abbreviations",
+  "slug": "911-ecc-abbreviations",
+  "title": "911 ECC Abbreviations",
+  "category": "Study",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "Abbreviations",
+      "items": [
+        {
+          "label": "AF",
+          "text": "Asian Female or Adult Female"
+        },
+        {
+          "label": "AM",
+          "text": "Asian Male or Adult Male"
+        },
+        {
+          "label": "ACR",
+          "text": "Across"
+        },
+        {
+          "label": "ADMIN",
+          "text": "Administrative"
+        },
+        {
+          "label": "ADV/ADVS",
+          "text": "Advise"
+        },
+        {
+          "label": "ALCO",
+          "text": "Alcohol"
+        },
+        {
+          "label": "ALM",
+          "text": "Alarm"
+        },
+        {
+          "label": "ANS",
+          "text": "Answer"
+        },
+        {
+          "label": "ANS MACH",
+          "text": "Answering Machine"
+        },
+        {
+          "label": "APPROX",
+          "text": "Approximately"
+        },
+        {
+          "label": "ASLT",
+          "text": "Assault"
+        },
+        {
+          "label": "AUTH",
+          "text": "Authority"
+        },
+        {
+          "label": "AVAIL",
+          "text": "Available"
+        },
+        {
+          "label": "BF",
+          "text": "Black Female"
+        },
+        {
+          "label": "BM",
+          "text": "Black Male"
+        },
+        {
+          "label": "B4",
+          "text": "Before"
+        },
+        {
+          "label": "BLD",
+          "text": "Bald"
+        },
+        {
+          "label": "BLDG",
+          "text": "Building"
+        },
+        {
+          "label": "BLK",
+          "text": "Black"
+        },
+        {
+          "label": "BLU",
+          "text": "Blue"
+        },
+        {
+          "label": "BRO",
+          "text": "Brown"
+        },
+        {
+          "label": "BSMT",
+          "text": "Basement"
+        },
+        {
+          "label": "BTW/BTWN",
+          "text": "Between"
+        },
+        {
+          "label": "CB",
+          "text": "Call Back"
+        },
+        {
+          "label": "CDS",
+          "text": "Controlled Dangerous Substance"
+        },
+        {
+          "label": "CITZ",
+          "text": "Citizen"
+        },
+        {
+          "label": "CLR",
+          "text": "Clear"
+        },
+        {
+          "label": "COMPL",
+          "text": "Complainant"
+        },
+        {
+          "label": "CXL",
+          "text": "Cancel"
+        },
+        {
+          "label": "DB",
+          "text": "Detective Bureau"
+        },
+        {
+          "label": "DET",
+          "text": "Detective or Director"
+        },
+        {
+          "label": "DL",
+          "text": "Direct Line"
+        },
+        {
+          "label": "DEPT",
+          "text": "Department"
+        },
+        {
+          "label": "DIFF",
+          "text": "Different"
+        },
+        {
+          "label": "DIR",
+          "text": "Direction"
+        },
+        {
+          "label": "DISP",
+          "text": "Dispute"
+        },
+        {
+          "label": "DISPO",
+          "text": "Disposition"
+        },
+        {
+          "label": "DOA",
+          "text": "Dead on Arrival"
+        },
+        {
+          "label": "DOB",
+          "text": "Date of Birth"
+        },
+        {
+          "label": "DOT",
+          "text": "Direction of Travel"
+        },
+        {
+          "label": "DUI",
+          "text": "Driving Under the Influence"
+        },
+        {
+          "label": "DUP/DUPL",
+          "text": "Duplicate"
+        },
+        {
+          "label": "EB or E/B",
+          "text": "East Bound"
+        },
+        {
+          "label": "ECC",
+          "text": "Emergency Communications Center"
+        },
+        {
+          "label": "EMP/EMPL",
+          "text": "Employee"
+        },
+        {
+          "label": "ENRT",
+          "text": "En Route"
+        },
+        {
+          "label": "ER",
+          "text": "Emergency Room"
+        },
+        {
+          "label": "ETA",
+          "text": "Estimated Time of Arrival"
+        },
+        {
+          "label": "EXTR",
+          "text": "Extradition/Extradite"
+        },
+        {
+          "label": "FR or DFRS",
+          "text": "Fire and Rescue"
+        },
+        {
+          "label": "FTA",
+          "text": "Failure to Appear"
+        },
+        {
+          "label": "GEC",
+          "text": "Germantown Emergency Center"
+        },
+        {
+          "label": "GOA",
+          "text": "Gone on Arrival"
+        },
+        {
+          "label": "GRN",
+          "text": "Green"
+        },
+        {
+          "label": "HB",
+          "text": "Hatchback"
+        },
+        {
+          "label": "HF",
+          "text": "Hispanic Female"
+        },
+        {
+          "label": "HM",
+          "text": "Hispanic Male"
+        },
+        {
+          "label": "HA",
+          "text": "Hold Authority"
+        },
+        {
+          "label": "HQ",
+          "text": "Headquarters"
+        },
+        {
+          "label": "HRS",
+          "text": "Hours"
+        },
+        {
+          "label": "HSE",
+          "text": "House"
+        },
+        {
+          "label": "HX and HCH",
+          "text": "Holy Cross Hospital"
+        },
+        {
+          "label": "ID",
+          "text": "Identification"
+        },
+        {
+          "label": "IFO",
+          "text": "In Front of"
+        },
+        {
+          "label": "INC",
+          "text": "Incident"
+        },
+        {
+          "label": "INFO",
+          "text": "Information"
+        },
+        {
+          "label": "INJ",
+          "text": "Injury"
+        },
+        {
+          "label": "INV",
+          "text": "Involved or Investigate"
+        },
+        {
+          "label": "JUV",
+          "text": "Juvenile"
+        },
+        {
+          "label": "JKT/JAC",
+          "text": "Jacket"
+        },
+        {
+          "label": "LIC",
+          "text": "License"
+        },
+        {
+          "label": "LOF",
+          "text": "Look Out For"
+        },
+        {
+          "label": "LS",
+          "text": "Last Seen"
+        },
+        {
+          "label": "LSW",
+          "text": "Last Seen Wearing"
+        },
+        {
+          "label": "LT",
+          "text": "Light"
+        },
+        {
+          "label": "MED",
+          "text": "Medium"
+        },
+        {
+          "label": "MGH",
+          "text": "Montgomery General Hospital"
+        },
+        {
+          "label": "MGR",
+          "text": "Manager"
+        },
+        {
+          "label": "MINS",
+          "text": "Minutes"
+        },
+        {
+          "label": "MISC",
+          "text": "Miscellaneous"
+        },
+        {
+          "label": "MISD",
+          "text": "Misdemeanor"
+        },
+        {
+          "label": "MO",
+          "text": "Mental Observant"
+        },
+        {
+          "label": "MSG",
+          "text": "Message"
+        },
+        {
+          "label": "NB or N/B",
+          "text": "North Bound"
+        },
+        {
+          "label": "NFD",
+          "text": "No Further Description"
+        },
+        {
+          "label": "NFI",
+          "text": "No Further Information"
+        },
+        {
+          "label": "NABOR",
+          "text": "Neighbor"
+        },
+        {
+          "label": "NOTIF",
+          "text": "Notified"
+        },
+        {
+          "label": "NUM or #",
+          "text": "Number"
+        },
+        {
+          "label": "OBT",
+          "text": "Obtained"
+        },
+        {
+          "label": "OCA",
+          "text": "Originating Case Agency"
+        },
+        {
+          "label": "OCC",
+          "text": "Occurred or Occupied"
+        },
+        {
+          "label": "OFC",
+          "text": "Officer"
+        },
+        {
+          "label": "OIC",
+          "text": "Officer in Charge"
+        },
+        {
+          "label": "OPR or OPER",
+          "text": "Operator"
+        },
+        {
+          "label": "ORI",
+          "text": "Originating Agency Identification"
+        },
+        {
+          "label": "PAT/PTL",
+          "text": "Patrol"
+        },
+        {
+          "label": "PL or P/L",
+          "text": "Parking Lot"
+        },
+        {
+          "label": "PKG",
+          "text": "Parking or Package"
+        },
+        {
+          "label": "PKTK",
+          "text": "Pick Up Truck"
+        },
+        {
+          "label": "PLS or PLZ",
+          "text": "Please"
+        },
+        {
+          "label": "POSS",
+          "text": "Possible or Possession"
+        },
+        {
+          "label": "PROB",
+          "text": "Probably/Problem/Probation"
+        },
+        {
+          "label": "PU",
+          "text": "Pick Up"
+        },
+        {
+          "label": "R",
+          "text": "Are"
+        },
+        {
+          "label": "RD",
+          "text": "Road"
+        },
+        {
+          "label": "RDWY",
+          "text": "Roadway"
+        },
+        {
+          "label": "REF",
+          "text": "Reference or Refused"
+        },
+        {
+          "label": "REP",
+          "text": "Representative"
+        },
+        {
+          "label": "RESD",
+          "text": "Residence or Resident"
+        },
+        {
+          "label": "RESP",
+          "text": "Respond or Response"
+        },
+        {
+          "label": "RM",
+          "text": "Room"
+        },
+        {
+          "label": "RT",
+          "text": "Route"
+        },
+        {
+          "label": "SA",
+          "text": "Same"
+        },
+        {
+          "label": "SB or S/B",
+          "text": "South Bound"
+        },
+        {
+          "label": "SEC",
+          "text": "Security"
+        },
+        {
+          "label": "SGAH",
+          "text": "Shady Grove Adventist Hospital"
+        },
+        {
+          "label": "STA or STN",
+          "text": "Station"
+        },
+        {
+          "label": "SW or S/W",
+          "text": "Southwest or Station Wagon"
+        },
+        {
+          "label": "SUB HOSP / SUB",
+          "text": "Suburban Hospital"
+        },
+        {
+          "label": "SUBJ",
+          "text": "Subject"
+        },
+        {
+          "label": "SUPV",
+          "text": "Supervisor"
+        },
+        {
+          "label": "SUSP",
+          "text": "Suspect/ Suspicious"
+        },
+        {
+          "label": "SVC",
+          "text": "Service"
+        },
+        {
+          "label": "TDD",
+          "text": "Telecommunications Device for the Deaf"
+        },
+        {
+          "label": "TEL",
+          "text": "Telephone"
+        },
+        {
+          "label": "TEMP",
+          "text": "Temporary"
+        },
+        {
+          "label": "THX",
+          "text": "Thanks"
+        },
+        {
+          "label": "TK",
+          "text": "Truck"
+        },
+        {
+          "label": "TTY",
+          "text": "Teletype"
+        },
+        {
+          "label": "U",
+          "text": "You"
+        },
+        {
+          "label": "U R",
+          "text": "You are"
+        },
+        {
+          "label": "UNK",
+          "text": "Unknown"
+        },
+        {
+          "label": "UR",
+          "text": "Your"
+        },
+        {
+          "label": "VEH",
+          "text": "Vehicle"
+        },
+        {
+          "label": "VIC/VICT",
+          "text": "Victim"
+        },
+        {
+          "label": "VIN",
+          "text": "Vehicle Identification Number"
+        },
+        {
+          "label": "VIOL",
+          "text": "Violent or Violation"
+        },
+        {
+          "label": "VOP",
+          "text": "Violation of Probation"
+        },
+        {
+          "label": "W/",
+          "text": "With"
+        },
+        {
+          "label": "WF",
+          "text": "White Female"
+        },
+        {
+          "label": "WM",
+          "text": "White Male"
+        },
+        {
+          "label": "WN",
+          "text": "Will Notify"
+        },
+        {
+          "label": "W/O",
+          "text": "Without"
+        },
+        {
+          "label": "WAH",
+          "text": "Washington Adventist Hospital"
+        },
+        {
+          "label": "WARR",
+          "text": "Warrant"
+        },
+        {
+          "label": "WB or W/B",
+          "text": "West Bound"
+        },
+        {
+          "label": "WEAP",
+          "text": "Weapons"
+        },
+        {
+          "label": "WHI",
+          "text": "White"
+        },
+        {
+          "label": "XX",
+          "text": "Criss Cross"
+        },
+        {
+          "label": "YEL",
+          "text": "Yellow"
+        },
+        {
+          "label": "YOA/YRS",
+          "text": "Years of Age"
+        },
+        {
+          "label": "2D",
+          "text": "Two Door"
+        },
+        {
+          "label": "4D",
+          "text": "Four Door"
+        },
+        {
+          "label": "LL",
+          "text": "SUV"
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "What does AF mean in 911 ECC terminology?",
+      "answer": "Asian Female or Adult Female"
+    },
+    {
+      "question": "What does AM mean in 911 ECC terminology?",
+      "answer": "Asian Male or Adult Male"
+    },
+    {
+      "question": "What does ACR mean in 911 ECC terminology?",
+      "answer": "Across"
+    },
+    {
+      "question": "What does ADMIN mean in 911 ECC terminology?",
+      "answer": "Administrative"
+    },
+    {
+      "question": "What does ADV/ADVS mean in 911 ECC terminology?",
+      "answer": "Advise"
+    },
+    {
+      "question": "What does ALCO mean in 911 ECC terminology?",
+      "answer": "Alcohol"
+    },
+    {
+      "question": "What does ALM mean in 911 ECC terminology?",
+      "answer": "Alarm"
+    },
+    {
+      "question": "What does ANS mean in 911 ECC terminology?",
+      "answer": "Answer"
+    },
+    {
+      "question": "What does ANS MACH mean in 911 ECC terminology?",
+      "answer": "Answering Machine"
+    },
+    {
+      "question": "What does APPROX mean in 911 ECC terminology?",
+      "answer": "Approximately"
+    },
+    {
+      "question": "What does ASLT mean in 911 ECC terminology?",
+      "answer": "Assault"
+    },
+    {
+      "question": "What does AUTH mean in 911 ECC terminology?",
+      "answer": "Authority"
+    },
+    {
+      "question": "What does AVAIL mean in 911 ECC terminology?",
+      "answer": "Available"
+    },
+    {
+      "question": "What does BF mean in 911 ECC terminology?",
+      "answer": "Black Female"
+    },
+    {
+      "question": "What does BM mean in 911 ECC terminology?",
+      "answer": "Black Male"
+    },
+    {
+      "question": "What does B4 mean in 911 ECC terminology?",
+      "answer": "Before"
+    },
+    {
+      "question": "What does BLD mean in 911 ECC terminology?",
+      "answer": "Bald"
+    },
+    {
+      "question": "What does BLDG mean in 911 ECC terminology?",
+      "answer": "Building"
+    },
+    {
+      "question": "What does BLK mean in 911 ECC terminology?",
+      "answer": "Black"
+    },
+    {
+      "question": "What does BLU mean in 911 ECC terminology?",
+      "answer": "Blue"
+    },
+    {
+      "question": "What does BRO mean in 911 ECC terminology?",
+      "answer": "Brown"
+    },
+    {
+      "question": "What does BSMT mean in 911 ECC terminology?",
+      "answer": "Basement"
+    },
+    {
+      "question": "What does BTW/BTWN mean in 911 ECC terminology?",
+      "answer": "Between"
+    },
+    {
+      "question": "What does CB mean in 911 ECC terminology?",
+      "answer": "Call Back"
+    },
+    {
+      "question": "What does CDS mean in 911 ECC terminology?",
+      "answer": "Controlled Dangerous Substance"
+    },
+    {
+      "question": "What does CITZ mean in 911 ECC terminology?",
+      "answer": "Citizen"
+    },
+    {
+      "question": "What does CLR mean in 911 ECC terminology?",
+      "answer": "Clear"
+    },
+    {
+      "question": "What does COMPL mean in 911 ECC terminology?",
+      "answer": "Complainant"
+    },
+    {
+      "question": "What does CXL mean in 911 ECC terminology?",
+      "answer": "Cancel"
+    },
+    {
+      "question": "What does DB mean in 911 ECC terminology?",
+      "answer": "Detective Bureau"
+    },
+    {
+      "question": "What does DET mean in 911 ECC terminology?",
+      "answer": "Detective or Director"
+    },
+    {
+      "question": "What does DL mean in 911 ECC terminology?",
+      "answer": "Direct Line"
+    },
+    {
+      "question": "What does DEPT mean in 911 ECC terminology?",
+      "answer": "Department"
+    },
+    {
+      "question": "What does DIFF mean in 911 ECC terminology?",
+      "answer": "Different"
+    },
+    {
+      "question": "What does DIR mean in 911 ECC terminology?",
+      "answer": "Direction"
+    },
+    {
+      "question": "What does DISP mean in 911 ECC terminology?",
+      "answer": "Dispute"
+    },
+    {
+      "question": "What does DISPO mean in 911 ECC terminology?",
+      "answer": "Disposition"
+    },
+    {
+      "question": "What does DOA mean in 911 ECC terminology?",
+      "answer": "Dead on Arrival"
+    },
+    {
+      "question": "What does DOB mean in 911 ECC terminology?",
+      "answer": "Date of Birth"
+    },
+    {
+      "question": "What does DOT mean in 911 ECC terminology?",
+      "answer": "Direction of Travel"
+    },
+    {
+      "question": "What does DUI mean in 911 ECC terminology?",
+      "answer": "Driving Under the Influence"
+    },
+    {
+      "question": "What does DUP/DUPL mean in 911 ECC terminology?",
+      "answer": "Duplicate"
+    },
+    {
+      "question": "What does EB or E/B mean in 911 ECC terminology?",
+      "answer": "East Bound"
+    },
+    {
+      "question": "What does ECC mean in 911 ECC terminology?",
+      "answer": "Emergency Communications Center"
+    },
+    {
+      "question": "What does EMP/EMPL mean in 911 ECC terminology?",
+      "answer": "Employee"
+    },
+    {
+      "question": "What does ENRT mean in 911 ECC terminology?",
+      "answer": "En Route"
+    },
+    {
+      "question": "What does ER mean in 911 ECC terminology?",
+      "answer": "Emergency Room"
+    },
+    {
+      "question": "What does ETA mean in 911 ECC terminology?",
+      "answer": "Estimated Time of Arrival"
+    },
+    {
+      "question": "What does EXTR mean in 911 ECC terminology?",
+      "answer": "Extradition/Extradite"
+    },
+    {
+      "question": "What does FR or DFRS mean in 911 ECC terminology?",
+      "answer": "Fire and Rescue"
+    },
+    {
+      "question": "What does FTA mean in 911 ECC terminology?",
+      "answer": "Failure to Appear"
+    },
+    {
+      "question": "What does GEC mean in 911 ECC terminology?",
+      "answer": "Germantown Emergency Center"
+    },
+    {
+      "question": "What does GOA mean in 911 ECC terminology?",
+      "answer": "Gone on Arrival"
+    },
+    {
+      "question": "What does GRN mean in 911 ECC terminology?",
+      "answer": "Green"
+    },
+    {
+      "question": "What does HB mean in 911 ECC terminology?",
+      "answer": "Hatchback"
+    },
+    {
+      "question": "What does HF mean in 911 ECC terminology?",
+      "answer": "Hispanic Female"
+    },
+    {
+      "question": "What does HM mean in 911 ECC terminology?",
+      "answer": "Hispanic Male"
+    },
+    {
+      "question": "What does HA mean in 911 ECC terminology?",
+      "answer": "Hold Authority"
+    },
+    {
+      "question": "What does HQ mean in 911 ECC terminology?",
+      "answer": "Headquarters"
+    },
+    {
+      "question": "What does HRS mean in 911 ECC terminology?",
+      "answer": "Hours"
+    },
+    {
+      "question": "What does HSE mean in 911 ECC terminology?",
+      "answer": "House"
+    },
+    {
+      "question": "What does HX and HCH mean in 911 ECC terminology?",
+      "answer": "Holy Cross Hospital"
+    },
+    {
+      "question": "What does ID mean in 911 ECC terminology?",
+      "answer": "Identification"
+    },
+    {
+      "question": "What does IFO mean in 911 ECC terminology?",
+      "answer": "In Front of"
+    },
+    {
+      "question": "What does INC mean in 911 ECC terminology?",
+      "answer": "Incident"
+    },
+    {
+      "question": "What does INFO mean in 911 ECC terminology?",
+      "answer": "Information"
+    },
+    {
+      "question": "What does INJ mean in 911 ECC terminology?",
+      "answer": "Injury"
+    },
+    {
+      "question": "What does INV mean in 911 ECC terminology?",
+      "answer": "Involved or Investigate"
+    },
+    {
+      "question": "What does JUV mean in 911 ECC terminology?",
+      "answer": "Juvenile"
+    },
+    {
+      "question": "What does JKT/JAC mean in 911 ECC terminology?",
+      "answer": "Jacket"
+    },
+    {
+      "question": "What does LIC mean in 911 ECC terminology?",
+      "answer": "License"
+    },
+    {
+      "question": "What does LOF mean in 911 ECC terminology?",
+      "answer": "Look Out For"
+    },
+    {
+      "question": "What does LS mean in 911 ECC terminology?",
+      "answer": "Last Seen"
+    },
+    {
+      "question": "What does LSW mean in 911 ECC terminology?",
+      "answer": "Last Seen Wearing"
+    },
+    {
+      "question": "What does LT mean in 911 ECC terminology?",
+      "answer": "Light"
+    },
+    {
+      "question": "What does MED mean in 911 ECC terminology?",
+      "answer": "Medium"
+    },
+    {
+      "question": "What does MGH mean in 911 ECC terminology?",
+      "answer": "Montgomery General Hospital"
+    },
+    {
+      "question": "What does MGR mean in 911 ECC terminology?",
+      "answer": "Manager"
+    },
+    {
+      "question": "What does MINS mean in 911 ECC terminology?",
+      "answer": "Minutes"
+    },
+    {
+      "question": "What does MISC mean in 911 ECC terminology?",
+      "answer": "Miscellaneous"
+    },
+    {
+      "question": "What does MISD mean in 911 ECC terminology?",
+      "answer": "Misdemeanor"
+    },
+    {
+      "question": "What does MO mean in 911 ECC terminology?",
+      "answer": "Mental Observant"
+    },
+    {
+      "question": "What does MSG mean in 911 ECC terminology?",
+      "answer": "Message"
+    },
+    {
+      "question": "What does NB or N/B mean in 911 ECC terminology?",
+      "answer": "North Bound"
+    },
+    {
+      "question": "What does NFD mean in 911 ECC terminology?",
+      "answer": "No Further Description"
+    },
+    {
+      "question": "What does NFI mean in 911 ECC terminology?",
+      "answer": "No Further Information"
+    },
+    {
+      "question": "What does NABOR mean in 911 ECC terminology?",
+      "answer": "Neighbor"
+    },
+    {
+      "question": "What does NOTIF mean in 911 ECC terminology?",
+      "answer": "Notified"
+    },
+    {
+      "question": "What does NUM or # mean in 911 ECC terminology?",
+      "answer": "Number"
+    },
+    {
+      "question": "What does OBT mean in 911 ECC terminology?",
+      "answer": "Obtained"
+    },
+    {
+      "question": "What does OCA mean in 911 ECC terminology?",
+      "answer": "Originating Case Agency"
+    },
+    {
+      "question": "What does OCC mean in 911 ECC terminology?",
+      "answer": "Occurred or Occupied"
+    },
+    {
+      "question": "What does OFC mean in 911 ECC terminology?",
+      "answer": "Officer"
+    },
+    {
+      "question": "What does OIC mean in 911 ECC terminology?",
+      "answer": "Officer in Charge"
+    },
+    {
+      "question": "What does OPR or OPER mean in 911 ECC terminology?",
+      "answer": "Operator"
+    },
+    {
+      "question": "What does ORI mean in 911 ECC terminology?",
+      "answer": "Originating Agency Identification"
+    },
+    {
+      "question": "What does PAT/PTL mean in 911 ECC terminology?",
+      "answer": "Patrol"
+    },
+    {
+      "question": "What does PL or P/L mean in 911 ECC terminology?",
+      "answer": "Parking Lot"
+    },
+    {
+      "question": "What does PKG mean in 911 ECC terminology?",
+      "answer": "Parking or Package"
+    },
+    {
+      "question": "What does PKTK mean in 911 ECC terminology?",
+      "answer": "Pick Up Truck"
+    },
+    {
+      "question": "What does PLS or PLZ mean in 911 ECC terminology?",
+      "answer": "Please"
+    },
+    {
+      "question": "What does POSS mean in 911 ECC terminology?",
+      "answer": "Possible or Possession"
+    },
+    {
+      "question": "What does PROB mean in 911 ECC terminology?",
+      "answer": "Probably/Problem/Probation"
+    },
+    {
+      "question": "What does PU mean in 911 ECC terminology?",
+      "answer": "Pick Up"
+    },
+    {
+      "question": "What does R mean in 911 ECC terminology?",
+      "answer": "Are"
+    },
+    {
+      "question": "What does RD mean in 911 ECC terminology?",
+      "answer": "Road"
+    },
+    {
+      "question": "What does RDWY mean in 911 ECC terminology?",
+      "answer": "Roadway"
+    },
+    {
+      "question": "What does REF mean in 911 ECC terminology?",
+      "answer": "Reference or Refused"
+    },
+    {
+      "question": "What does REP mean in 911 ECC terminology?",
+      "answer": "Representative"
+    },
+    {
+      "question": "What does RESD mean in 911 ECC terminology?",
+      "answer": "Residence or Resident"
+    },
+    {
+      "question": "What does RESP mean in 911 ECC terminology?",
+      "answer": "Respond or Response"
+    },
+    {
+      "question": "What does RM mean in 911 ECC terminology?",
+      "answer": "Room"
+    },
+    {
+      "question": "What does RT mean in 911 ECC terminology?",
+      "answer": "Route"
+    },
+    {
+      "question": "What does SA mean in 911 ECC terminology?",
+      "answer": "Same"
+    },
+    {
+      "question": "What does SB or S/B mean in 911 ECC terminology?",
+      "answer": "South Bound"
+    },
+    {
+      "question": "What does SEC mean in 911 ECC terminology?",
+      "answer": "Security"
+    },
+    {
+      "question": "What does SGAH mean in 911 ECC terminology?",
+      "answer": "Shady Grove Adventist Hospital"
+    },
+    {
+      "question": "What does STA or STN mean in 911 ECC terminology?",
+      "answer": "Station"
+    },
+    {
+      "question": "What does SW or S/W mean in 911 ECC terminology?",
+      "answer": "Southwest or Station Wagon"
+    },
+    {
+      "question": "What does SUB HOSP / SUB mean in 911 ECC terminology?",
+      "answer": "Suburban Hospital"
+    },
+    {
+      "question": "What does SUBJ mean in 911 ECC terminology?",
+      "answer": "Subject"
+    },
+    {
+      "question": "What does SUPV mean in 911 ECC terminology?",
+      "answer": "Supervisor"
+    },
+    {
+      "question": "What does SUSP mean in 911 ECC terminology?",
+      "answer": "Suspect/ Suspicious"
+    },
+    {
+      "question": "What does SVC mean in 911 ECC terminology?",
+      "answer": "Service"
+    },
+    {
+      "question": "What does TDD mean in 911 ECC terminology?",
+      "answer": "Telecommunications Device for the Deaf"
+    },
+    {
+      "question": "What does TEL mean in 911 ECC terminology?",
+      "answer": "Telephone"
+    },
+    {
+      "question": "What does TEMP mean in 911 ECC terminology?",
+      "answer": "Temporary"
+    },
+    {
+      "question": "What does THX mean in 911 ECC terminology?",
+      "answer": "Thanks"
+    },
+    {
+      "question": "What does TK mean in 911 ECC terminology?",
+      "answer": "Truck"
+    },
+    {
+      "question": "What does TTY mean in 911 ECC terminology?",
+      "answer": "Teletype"
+    },
+    {
+      "question": "What does U mean in 911 ECC terminology?",
+      "answer": "You"
+    },
+    {
+      "question": "What does U R mean in 911 ECC terminology?",
+      "answer": "You are"
+    },
+    {
+      "question": "What does UNK mean in 911 ECC terminology?",
+      "answer": "Unknown"
+    },
+    {
+      "question": "What does UR mean in 911 ECC terminology?",
+      "answer": "Your"
+    },
+    {
+      "question": "What does VEH mean in 911 ECC terminology?",
+      "answer": "Vehicle"
+    },
+    {
+      "question": "What does VIC/VICT mean in 911 ECC terminology?",
+      "answer": "Victim"
+    },
+    {
+      "question": "What does VIN mean in 911 ECC terminology?",
+      "answer": "Vehicle Identification Number"
+    },
+    {
+      "question": "What does VIOL mean in 911 ECC terminology?",
+      "answer": "Violent or Violation"
+    },
+    {
+      "question": "What does VOP mean in 911 ECC terminology?",
+      "answer": "Violation of Probation"
+    },
+    {
+      "question": "What does W/ mean in 911 ECC terminology?",
+      "answer": "With"
+    },
+    {
+      "question": "What does WF mean in 911 ECC terminology?",
+      "answer": "White Female"
+    },
+    {
+      "question": "What does WM mean in 911 ECC terminology?",
+      "answer": "White Male"
+    },
+    {
+      "question": "What does WN mean in 911 ECC terminology?",
+      "answer": "Will Notify"
+    },
+    {
+      "question": "What does W/O mean in 911 ECC terminology?",
+      "answer": "Without"
+    },
+    {
+      "question": "What does WAH mean in 911 ECC terminology?",
+      "answer": "Washington Adventist Hospital"
+    },
+    {
+      "question": "What does WARR mean in 911 ECC terminology?",
+      "answer": "Warrant"
+    },
+    {
+      "question": "What does WB or W/B mean in 911 ECC terminology?",
+      "answer": "West Bound"
+    },
+    {
+      "question": "What does WEAP mean in 911 ECC terminology?",
+      "answer": "Weapons"
+    },
+    {
+      "question": "What does WHI mean in 911 ECC terminology?",
+      "answer": "White"
+    },
+    {
+      "question": "What does XX mean in 911 ECC terminology?",
+      "answer": "Criss Cross"
+    },
+    {
+      "question": "What does YEL mean in 911 ECC terminology?",
+      "answer": "Yellow"
+    },
+    {
+      "question": "What does YOA/YRS mean in 911 ECC terminology?",
+      "answer": "Years of Age"
+    },
+    {
+      "question": "What does 2D mean in 911 ECC terminology?",
+      "answer": "Two Door"
+    },
+    {
+      "question": "What does 4D mean in 911 ECC terminology?",
+      "answer": "Four Door"
+    },
+    {
+      "question": "What does LL mean in 911 ECC terminology?",
+      "answer": "SUV"
+    }
+  ],
+  "quiz": []
+}

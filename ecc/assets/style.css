@@ -114,3 +114,5 @@ body.map-open { overflow: hidden; }
 .station-options-row .station-detail-toggle { margin: 0; padding: 10px 12px; gap: 8px; }
 
 main.topic-page > .back-link { display: block; }
+
+.ecc-abbreviations-reference dt { width: 100px; flex-basis: 100px; overflow-wrap: anywhere; }

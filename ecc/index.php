@@ -26,7 +26,7 @@ function eccLink(string $view, string $slug = ''): string { return './?' . http_
 <script src="assets/study.js?v=<?= filemtime(__DIR__.'/assets/study.js') ?>" defer></script></head><body>
 <a class="skip" href="#main">Skip to content</a>
 <main id="main" tabindex="-1"<?= in_array($view, ['cards', 'quiz'], true) ? ' class="study-page"' : ($view === 'topic' && !$missing ? ' class="topic-page"' : '') ?>>
-<div class="page-heading<?= $view === 'topic' ? ' topic-page-heading' : ($view === 'library' ? ' library-page-heading' : '') ?>"><span class="eyebrow"><?= $view === 'topic' && $topic ? eccEscape($topic['category']) : 'ECC / STUDY LIBRARY' ?></span><div class="page-title-row"><h1 id="page-title"><?= eccEscape($title) ?></h1><?php if ($view === 'library'): ?><span class="topic-count"><?= count($topics) ?> <?= count($topics) === 1 ? 'topic' : 'topics' ?></span><?php endif; ?></div></div>
+<div class="page-heading<?= $view === 'topic' ? ' topic-page-heading' : ($view === 'library' ? ' library-page-heading' : '') ?>"><?php if ($view !== 'topic'): ?><span class="eyebrow">ECC / STUDY LIBRARY</span><?php endif; ?><div class="page-title-row"><h1 id="page-title"><?= eccEscape($title) ?></h1><?php if ($view === 'library'): ?><span class="topic-count"><?= count($topics) ?> <?= count($topics) === 1 ? 'topic' : 'topics' ?></span><?php endif; ?></div></div>
 <?php if ($missing): ?>
 <section class="panel"><h2>We couldn’t find that topic.</h2><p>It may have been moved or isn’t published yet.</p><a class="button" href="<?= eccLink('library') ?>">Open the library</a></section>
 <?php elseif ($view === 'library'): ?>
@@ -34,15 +34,15 @@ function eccLink(string $view, string $slug = ''): string { return './?' . http_
 <?php
 $query = '';
 $shown = 0;
-foreach (array_unique(array_column($topics, 'category')) as $category): ?>
-<div class="category"><h3><?= eccEscape($category) ?></h3><div class="topic-list">
-<?php foreach ($topics as $t): if ($t['category'] !== $category) continue;
+?>
+<div class="topic-list">
+<?php foreach ($topics as $t):
 $searchText = $t['title'].' '.($t['summary'] ?? '').' '.$t['category'];
 foreach ($t['sections'] as $s) { $searchText .= ' '.$s['heading'].' '.($s['text'] ?? ''); foreach ($s['items'] ?? [] as $item) $searchText .= ' '.$item['label'].' '.$item['text']; }
 $match = $query === '' || stripos($searchText, $query) !== false; if ($match) $shown++;
 ?>
 <a class="topic-row" href="<?= eccLink('topic', $t['slug']) ?>" data-search="<?= eccEscape($searchText) ?>" <?= !$match ? 'hidden' : '' ?>><div><h4><?= eccEscape($t['title']) ?></h4></div><span aria-hidden="true">→</span></a>
-<?php endforeach; ?></div></div><?php endforeach; ?>
+<?php endforeach; ?></div>
 <p id="empty-search" class="notice" <?= $shown ? 'hidden' : '' ?>><?= $topics ? 'No matching topics. Try another word or clear your search.' : 'Your library is ready for its first topic.' ?></p></section>
 <?php elseif ($view === 'topic'): ?>
 <a class="back-link" href="<?= eccLink('library') ?>">← All references</a>
@@ -73,7 +73,7 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 </div>
 <div class="topic-layout"><article>
 <?php $previousBattalion = null; foreach ($referenceSections as $s): ?>
-<?php if ($stationGrouping && $previousBattalion !== $s['battalion']): $previousBattalion = $s['battalion']; ?><h2 class="battalion-heading"><?= eccEscape($previousBattalion) ?></h2><?php endif; ?><section class="panel reference-section"><h2><?= eccEscape($s['heading']) ?></h2><?php if (isset($s['text'])): ?><p<?= $slug === 'fire-stations' ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><?= nl2br(eccEscape($s['text'])) ?></p><?php endif; ?><?php if (isset($s['items'])): ?><dl class="reference-grid<?= $slug === 'fire-stations' ? ' station-reference' : '' ?>"><?php foreach ($s['items'] as $item): ?><div<?= $slug === 'fire-stations' && strcasecmp(trim($item['label']), 'Community') !== 0 ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><dt><?= eccEscape($item['label']) ?></dt><dd><?= eccEscape($item['text']) ?></dd></div><?php endforeach; ?></dl><?php endif; ?></section><?php endforeach; ?>
+<?php if ($stationGrouping && $previousBattalion !== $s['battalion']): $previousBattalion = $s['battalion']; ?><h2 class="battalion-heading"><?= eccEscape($previousBattalion) ?></h2><?php endif; ?><section class="panel reference-section"><h2><?= eccEscape($s['heading']) ?></h2><?php if (isset($s['text'])): ?><p<?= $slug === 'fire-stations' ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><?= nl2br(eccEscape($s['text'])) ?></p><?php endif; ?><?php if (isset($s['items'])): ?><dl class="reference-grid<?= $slug === 'fire-stations' ? ' station-reference' : ($slug === 'fire-apparatuses' ? ' apparatus-reference' : '') ?>"><?php foreach ($s['items'] as $item): ?><div<?= $slug === 'fire-stations' && strcasecmp(trim($item['label']), 'Community') !== 0 ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><dt><?= eccEscape($item['label']) ?></dt><dd><?= eccEscape($item['text']) ?></dd></div><?php endforeach; ?></dl><?php endif; ?></section><?php endforeach; ?>
 </article>
 </div>
 <?php else: ?>

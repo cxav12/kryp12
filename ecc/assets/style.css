@@ -129,3 +129,9 @@ main.topic-page > .back-link { display: block; }
   .card-desktop-controls { display: flex; }
   .card-swipe-hint, .card-mobile-restart { display: none; }
 }
+
+/* Highway exit numbers and direction notes stay readable on phones. */
+.highway-exits-reference { grid-template-columns: 1fr; }
+.highway-exits-reference > div { align-items: flex-start; flex-direction: column; gap: 4px; }
+.highway-exits-reference dt { width: auto; font-size: .85rem; }
+.highway-exits-reference dd { overflow-wrap: anywhere; }

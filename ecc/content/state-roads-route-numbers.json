@@ -1,0 +1,316 @@
+{
+  "id": "state-roads-route-numbers",
+  "slug": "state-roads-route-numbers",
+  "title": "State Roads Route Numbers",
+  "category": "Reference",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "RT 27",
+      "text": "Ridge Rd"
+    },
+    {
+      "heading": "RT 28",
+      "text": "Dickerson Rd\nDarnestown Rd\nVeirs Mill Rd\nKey West Hwy\nW Montgomery Ave\n1st St\nE Jefferson St\nNorbeck"
+    },
+    {
+      "heading": "RT 29",
+      "text": "Georgia Ave\nColesville Rd\nColumbia Pike"
+    },
+    {
+      "heading": "RT 32",
+      "text": "Skyesville Rd (HCO & CCO)"
+    },
+    {
+      "heading": "RT 75",
+      "text": "Green Valley Rd (FCO)"
+    },
+    {
+      "heading": "RT 80",
+      "text": "Fingerboard Rd (FCO)\nKemptown Rd (FCO)"
+    },
+    {
+      "heading": "RT 97",
+      "text": "Georgia Ave"
+    },
+    {
+      "heading": "RT 107",
+      "text": "Whites Ferry Rd\nFisher Ave"
+    },
+    {
+      "heading": "RT 108",
+      "text": "Damacus Rd\nOlney Sandy Spring Rd\nMain St\nLaytonsville Rd\nOlney Laytonsville Rd\nAshton Rd\nClarksville Pike (HCO)"
+    },
+    {
+      "heading": "RT 109",
+      "text": "Old Hundred Rd\nElgin Rd\nBeallsville Rd\nBarnesville Rd"
+    },
+    {
+      "heading": "RT 112",
+      "text": "Seneca Rd"
+    },
+    {
+      "heading": "RT 115",
+      "text": "Muncaster Mill Rd"
+    },
+    {
+      "heading": "RT 117",
+      "text": "Bucklodge Rd\nClarksburg Rd\nBarnesville Rd\nClopper Rd\nW Diamond Ave"
+    },
+    {
+      "heading": "RT 118",
+      "text": "Germantown Rd"
+    },
+    {
+      "heading": "RT 119",
+      "text": "Great Seneca Hwy"
+    },
+    {
+      "heading": "RT 121",
+      "text": "Clarksburg Rd"
+    },
+    {
+      "heading": "RT 124",
+      "text": "Woodfield Rd\nMontgomery Village Ave\nQuince Orchard Rd\nMid-County Hwy"
+    },
+    {
+      "heading": "RT 182",
+      "text": "Dr. Bird Rd\nNorwood Rd\nLayhill Rd"
+    },
+    {
+      "heading": "RT 185",
+      "text": "Connecticut Ave"
+    },
+    {
+      "heading": "RT 186",
+      "text": "Brookville Rd"
+    },
+    {
+      "heading": "RT 187",
+      "text": "Old Georgetown Rd"
+    },
+    {
+      "heading": "RT 188",
+      "text": "Wilson Ln"
+    },
+    {
+      "heading": "RT 189",
+      "text": "Maryland Ave\nFalls Rd"
+    },
+    {
+      "heading": "RT 190",
+      "text": "River Rd"
+    },
+    {
+      "heading": "RT 191",
+      "text": "Bradley Ln\nBradley Blvd\nOaklyn Dr"
+    },
+    {
+      "heading": "RT 192",
+      "text": "Metropolitan Ave\nCapital View Ave\nForest Glen Rd"
+    },
+    {
+      "heading": "RT 193",
+      "text": "Greenbelt Rd (PGCO)\nUniversity Blvd E\nUniversity Blvd W"
+    },
+    {
+      "heading": "RT 198",
+      "text": "Sandy Spring Rd\nSpencerville Rd"
+    },
+    {
+      "heading": "RT 355",
+      "text": "Urbana Pike (FCO)\nFrederick Rd (5D)\nN. Frederick Rd (6D)\nFrederick RD (6D-1D)\nHungerford Rd (1D)\nRockville Pike (1D)\nWisconsin Blvd (2D)"
+    },
+    {
+      "heading": "RT 384",
+      "text": "Colesville Rd"
+    },
+    {
+      "heading": "RT 410",
+      "text": "East West Hwy\nBurlington Ave\nCarroll Ave\nPhiladelphia Ave\nEthan Allen Ave"
+    },
+    {
+      "heading": "RT 430",
+      "text": "Greenbelt Rd (PGCO)\nMetzerott Rd (PGCO)"
+    },
+    {
+      "heading": "RT 547",
+      "text": "Strathmore Ave\nKnowles Ave"
+    },
+    {
+      "heading": "RT 586",
+      "text": "Veirs Mill Rd"
+    },
+    {
+      "heading": "RT 614",
+      "text": "Goldsboro Rd"
+    },
+    {
+      "heading": "RT 650",
+      "text": "New Hampshire Ave\nDamascus Rd"
+    },
+    {
+      "heading": "RT 787",
+      "text": "Flower Ave"
+    },
+    {
+      "heading": "RT 911",
+      "text": "First St\nDodge St"
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "Which street names are listed for RT 27?",
+      "answer": "Ridge Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 28?",
+      "answer": "Dickerson Rd\nDarnestown Rd\nVeirs Mill Rd\nKey West Hwy\nW Montgomery Ave\n1st St\nE Jefferson St\nNorbeck"
+    },
+    {
+      "question": "Which street names are listed for RT 29?",
+      "answer": "Georgia Ave\nColesville Rd\nColumbia Pike"
+    },
+    {
+      "question": "Which street names are listed for RT 32?",
+      "answer": "Skyesville Rd (HCO & CCO)"
+    },
+    {
+      "question": "Which street names are listed for RT 75?",
+      "answer": "Green Valley Rd (FCO)"
+    },
+    {
+      "question": "Which street names are listed for RT 80?",
+      "answer": "Fingerboard Rd (FCO)\nKemptown Rd (FCO)"
+    },
+    {
+      "question": "Which street names are listed for RT 97?",
+      "answer": "Georgia Ave"
+    },
+    {
+      "question": "Which street names are listed for RT 107?",
+      "answer": "Whites Ferry Rd\nFisher Ave"
+    },
+    {
+      "question": "Which street names are listed for RT 108?",
+      "answer": "Damacus Rd\nOlney Sandy Spring Rd\nMain St\nLaytonsville Rd\nOlney Laytonsville Rd\nAshton Rd\nClarksville Pike (HCO)"
+    },
+    {
+      "question": "Which street names are listed for RT 109?",
+      "answer": "Old Hundred Rd\nElgin Rd\nBeallsville Rd\nBarnesville Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 112?",
+      "answer": "Seneca Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 115?",
+      "answer": "Muncaster Mill Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 117?",
+      "answer": "Bucklodge Rd\nClarksburg Rd\nBarnesville Rd\nClopper Rd\nW Diamond Ave"
+    },
+    {
+      "question": "Which street names are listed for RT 118?",
+      "answer": "Germantown Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 119?",
+      "answer": "Great Seneca Hwy"
+    },
+    {
+      "question": "Which street names are listed for RT 121?",
+      "answer": "Clarksburg Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 124?",
+      "answer": "Woodfield Rd\nMontgomery Village Ave\nQuince Orchard Rd\nMid-County Hwy"
+    },
+    {
+      "question": "Which street names are listed for RT 182?",
+      "answer": "Dr. Bird Rd\nNorwood Rd\nLayhill Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 185?",
+      "answer": "Connecticut Ave"
+    },
+    {
+      "question": "Which street names are listed for RT 186?",
+      "answer": "Brookville Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 187?",
+      "answer": "Old Georgetown Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 188?",
+      "answer": "Wilson Ln"
+    },
+    {
+      "question": "Which street names are listed for RT 189?",
+      "answer": "Maryland Ave\nFalls Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 190?",
+      "answer": "River Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 191?",
+      "answer": "Bradley Ln\nBradley Blvd\nOaklyn Dr"
+    },
+    {
+      "question": "Which street names are listed for RT 192?",
+      "answer": "Metropolitan Ave\nCapital View Ave\nForest Glen Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 193?",
+      "answer": "Greenbelt Rd (PGCO)\nUniversity Blvd E\nUniversity Blvd W"
+    },
+    {
+      "question": "Which street names are listed for RT 198?",
+      "answer": "Sandy Spring Rd\nSpencerville Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 355?",
+      "answer": "Urbana Pike (FCO)\nFrederick Rd (5D)\nN. Frederick Rd (6D)\nFrederick RD (6D-1D)\nHungerford Rd (1D)\nRockville Pike (1D)\nWisconsin Blvd (2D)"
+    },
+    {
+      "question": "Which street names are listed for RT 384?",
+      "answer": "Colesville Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 410?",
+      "answer": "East West Hwy\nBurlington Ave\nCarroll Ave\nPhiladelphia Ave\nEthan Allen Ave"
+    },
+    {
+      "question": "Which street names are listed for RT 430?",
+      "answer": "Greenbelt Rd (PGCO)\nMetzerott Rd (PGCO)"
+    },
+    {
+      "question": "Which street names are listed for RT 547?",
+      "answer": "Strathmore Ave\nKnowles Ave"
+    },
+    {
+      "question": "Which street names are listed for RT 586?",
+      "answer": "Veirs Mill Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 614?",
+      "answer": "Goldsboro Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 650?",
+      "answer": "New Hampshire Ave\nDamascus Rd"
+    },
+    {
+      "question": "Which street names are listed for RT 787?",
+      "answer": "Flower Ave"
+    },
+    {
+      "question": "Which street names are listed for RT 911?",
+      "answer": "First St\nDodge St"
+    }
+  ],
+  "quiz": []
+}

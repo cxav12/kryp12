@@ -1,0 +1,286 @@
+{
+  "id": "car-numbering",
+  "slug": "car-numbering",
+  "title": "Car Numbering",
+  "category": "Reference",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "Police districts and sectors",
+      "items": [
+        {
+          "label": "1D — Rockville",
+          "text": "Sectors A and B"
+        },
+        {
+          "label": "2D — Bethesda",
+          "text": "Sectors D and E"
+        },
+        {
+          "label": "3D — Silver Spring",
+          "text": "Sectors G and I"
+        },
+        {
+          "label": "4D — Wheaton/Glenmont",
+          "text": "Sectors K and L"
+        },
+        {
+          "label": "5D — Germantown",
+          "text": "Sectors M and N"
+        },
+        {
+          "label": "6D — Gaithersburg/Montgomery Village",
+          "text": "Sectors P and R"
+        }
+      ]
+    },
+    {
+      "heading": "Response areas",
+      "items": [
+        {
+          "label": "County",
+          "text": "Montgomery County is 507 square miles with over 1 million residents. The county is divided into six police districts."
+        },
+        {
+          "label": "Sectors",
+          "text": "Each district is divided into sectors."
+        },
+        {
+          "label": "Beats",
+          "text": "Each beat (response area) is comprised of PRAs (atoms)."
+        },
+        {
+          "label": "PRAs",
+          "text": "Reporting districts which break down each beat and sector for statistical purposes and for future determination of sector or response area realignment."
+        },
+        {
+          "label": "CL",
+          "text": "Corporate Limits or City Limits. Used to determine dispatch responses and for statistical purposes like the atoms."
+        },
+        {
+          "label": "Municipalities",
+          "text": "Three municipalities affect response areas: Rockville City, Chevy Chase Village, and Gaithersburg City."
+        }
+      ]
+    },
+    {
+      "heading": "Car Numbering System",
+      "items": [
+        {
+          "label": "First digit",
+          "text": "A number between 1 and 9 for patrol. Corresponds with the shift or squad number the officer is assigned. The number has nothing to do with the district they are assigned."
+        },
+        {
+          "label": "Second digit",
+          "text": "A letter which corresponds to the district the officer is assigned."
+        },
+        {
+          "label": "Third digit",
+          "text": "Represents the response area (beat) that the officer is assigned."
+        },
+        {
+          "label": "Fourth digit",
+          "text": "Represents the number of units in that particular response area (beat), starting with “2”."
+        }
+      ]
+    },
+    {
+      "heading": "District and municipality letters",
+      "items": [
+        {
+          "label": "1D — Rockville",
+          "text": "A and B"
+        },
+        {
+          "label": "Rockville City",
+          "text": "C"
+        },
+        {
+          "label": "2D — Bethesda",
+          "text": "D and E"
+        },
+        {
+          "label": "Chevy Chase",
+          "text": "(9)M"
+        },
+        {
+          "label": "3D — Silver Spring",
+          "text": "G and I"
+        },
+        {
+          "label": "4D — Wheaton/Glenmont",
+          "text": "K and L"
+        },
+        {
+          "label": "5D — Germantown",
+          "text": "M and N"
+        },
+        {
+          "label": "6D — Gaithersburg/Montgomery Village",
+          "text": "P and R"
+        },
+        {
+          "label": "Gaithersburg City",
+          "text": "V"
+        }
+      ]
+    },
+    {
+      "heading": "Unit structure",
+      "items": [
+        {
+          "label": "Sergeant",
+          "text": "A car (unit) number with a “0” on the end indicates a Sergeant. Example: 1A10."
+        },
+        {
+          "label": "Corporal",
+          "text": "A car (unit) number with “11” on the end indicates a Corporal. Example: 1A11."
+        }
+      ]
+    },
+    {
+      "heading": "Shifts",
+      "items": [
+        {
+          "label": "Shifts 1 and 2",
+          "text": "Permanent day work: 0600–1600 hours."
+        },
+        {
+          "label": "Shifts 3 and 4",
+          "text": "Permanent evening: 1400–0000 hours."
+        },
+        {
+          "label": "Shifts 7 and 8",
+          "text": "Permanent midnight: 2030–0630 hours."
+        }
+      ]
+    },
+    {
+      "heading": "Phonetics",
+      "text": "Always use the phonetic alphabet when calling a car (unit).\nExample: 2D1 = Two Delta One."
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "Police districts and sectors — 1D — Rockville: What does this mean?",
+      "answer": "Sectors A and B"
+    },
+    {
+      "question": "Police districts and sectors — 2D — Bethesda: What does this mean?",
+      "answer": "Sectors D and E"
+    },
+    {
+      "question": "Police districts and sectors — 3D — Silver Spring: What does this mean?",
+      "answer": "Sectors G and I"
+    },
+    {
+      "question": "Police districts and sectors — 4D — Wheaton/Glenmont: What does this mean?",
+      "answer": "Sectors K and L"
+    },
+    {
+      "question": "Police districts and sectors — 5D — Germantown: What does this mean?",
+      "answer": "Sectors M and N"
+    },
+    {
+      "question": "Police districts and sectors — 6D — Gaithersburg/Montgomery Village: What does this mean?",
+      "answer": "Sectors P and R"
+    },
+    {
+      "question": "Response areas — Sectors: What does this mean?",
+      "answer": "Each district is divided into sectors."
+    },
+    {
+      "question": "Response areas — Beats: What does this mean?",
+      "answer": "Each beat (response area) is comprised of PRAs (atoms)."
+    },
+    {
+      "question": "Response areas — PRAs: What does this mean?",
+      "answer": "Reporting districts which break down each beat and sector for statistical purposes and for future determination of sector or response area realignment."
+    },
+    {
+      "question": "Response areas — CL: What does this mean?",
+      "answer": "Corporate Limits or City Limits. Used to determine dispatch responses and for statistical purposes like the atoms."
+    },
+    {
+      "question": "Response areas — Municipalities: What does this mean?",
+      "answer": "Three municipalities affect response areas: Rockville City, Chevy Chase Village, and Gaithersburg City."
+    },
+    {
+      "question": "Car Numbering System — First digit: What does this mean?",
+      "answer": "A number between 1 and 9 for patrol. Corresponds with the shift or squad number the officer is assigned. The number has nothing to do with the district they are assigned."
+    },
+    {
+      "question": "Car Numbering System — Second digit: What does this mean?",
+      "answer": "A letter which corresponds to the district the officer is assigned."
+    },
+    {
+      "question": "Car Numbering System — Third digit: What does this mean?",
+      "answer": "Represents the response area (beat) that the officer is assigned."
+    },
+    {
+      "question": "Car Numbering System — Fourth digit: What does this mean?",
+      "answer": "Represents the number of units in that particular response area (beat), starting with “2”."
+    },
+    {
+      "question": "District and municipality letters — 1D — Rockville: What does this mean?",
+      "answer": "A and B"
+    },
+    {
+      "question": "District and municipality letters — Rockville City: What does this mean?",
+      "answer": "C"
+    },
+    {
+      "question": "District and municipality letters — 2D — Bethesda: What does this mean?",
+      "answer": "D and E"
+    },
+    {
+      "question": "District and municipality letters — Chevy Chase: What does this mean?",
+      "answer": "(9)M"
+    },
+    {
+      "question": "District and municipality letters — 3D — Silver Spring: What does this mean?",
+      "answer": "G and I"
+    },
+    {
+      "question": "District and municipality letters — 4D — Wheaton/Glenmont: What does this mean?",
+      "answer": "K and L"
+    },
+    {
+      "question": "District and municipality letters — 5D — Germantown: What does this mean?",
+      "answer": "M and N"
+    },
+    {
+      "question": "District and municipality letters — 6D — Gaithersburg/Montgomery Village: What does this mean?",
+      "answer": "P and R"
+    },
+    {
+      "question": "District and municipality letters — Gaithersburg City: What does this mean?",
+      "answer": "V"
+    },
+    {
+      "question": "Unit structure — Sergeant: What does this mean?",
+      "answer": "A car (unit) number with a “0” on the end indicates a Sergeant. Example: 1A10."
+    },
+    {
+      "question": "Unit structure — Corporal: What does this mean?",
+      "answer": "A car (unit) number with “11” on the end indicates a Corporal. Example: 1A11."
+    },
+    {
+      "question": "Shifts — Shifts 1 and 2: What does this mean?",
+      "answer": "Permanent day work: 0600–1600 hours."
+    },
+    {
+      "question": "Shifts — Shifts 3 and 4: What does this mean?",
+      "answer": "Permanent evening: 1400–0000 hours."
+    },
+    {
+      "question": "Shifts — Shifts 7 and 8: What does this mean?",
+      "answer": "Permanent midnight: 2030–0630 hours."
+    },
+    {
+      "question": "How should you call a car (unit) number, such as 2D1?",
+      "answer": "Always use the phonetic alphabet. 2D1 = Two Delta One."
+    }
+  ],
+  "quiz": []
+}

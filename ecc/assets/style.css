@@ -182,3 +182,7 @@ body::after {
   .topic-row:hover, .topic-row:hover > span[aria-hidden] { transform: none; }
 }
 @media print { body { background: white; } body::before, body::after { display: none; } }
+
+@media (max-width: 759px) {
+  .ecc-abbreviations-reference dt { align-self: center; }
+}

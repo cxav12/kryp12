@@ -1,0 +1,226 @@
+{
+  "id": "highway-additional-information",
+  "slug": "highway-additional-information",
+  "title": "Highway Additional Information",
+  "category": "Reference",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "I270 (North & South)",
+      "items": [
+        {
+          "label": "N270",
+          "text": "Goes from I-495 to Frederick County. Exit 22 — Old Hundred Rd is the last exit in MOCO."
+        },
+        {
+          "label": "S270",
+          "text": "Goes from Frederick County to I-495. Exit 22 — Old Hundred Rd is the first exit in MOCO."
+        },
+        {
+          "label": "270 Spur",
+          "text": "Goes towards Montgomery Mall (Democracy Boulevard) and Fairfax County."
+        },
+        {
+          "label": "270 continues",
+          "text": "Continues towards Rockville Pike (355) and Prince George’s County."
+        },
+        {
+          "label": "GEO",
+          "text": "GEO as N270 or S270, then TAB out and select your location from the list provided."
+        }
+      ]
+    },
+    {
+      "heading": "I370 (East & West)",
+      "items": [
+        {
+          "label": "E370",
+          "text": "Goes from Washingtonian Boulevard (the Rio Area) to I-200 (Shady Grove Metro)."
+        },
+        {
+          "label": "W370",
+          "text": "Goes from I-200 (Shady Grove Metro) to Sam Eig Highway."
+        },
+        {
+          "label": "GEO",
+          "text": "GEO as E370 or W370, then TAB out and select your location from the list provided."
+        }
+      ]
+    },
+    {
+      "heading": "I200 (ICC) (East & West)",
+      "items": [
+        {
+          "label": "E200",
+          "text": "Goes from I-370 or Shady Grove Metro to Prince George’s County."
+        },
+        {
+          "label": "W200",
+          "text": "Goes from Prince George’s County to I-370 or Shady Grove Metro."
+        },
+        {
+          "label": "GEO",
+          "text": "GEO as E200 or W200, then TAB out and select your location from the list provided."
+        },
+        {
+          "label": "Tunnel or deck over",
+          "text": "If caller is in the tunnel or deck over, call will be treated as a Structure Fire."
+        }
+      ]
+    },
+    {
+      "heading": "I495 (East & West)",
+      "items": [
+        {
+          "label": "IL495",
+          "text": "Goes from Fairfax County to Prince George’s County. Exit 41 — Clara Barton Parkway is the first exit in MOCO. Exit 28 — New Hampshire Ave is the last exit in MOCO."
+        },
+        {
+          "label": "OL495",
+          "text": "Goes from Prince George’s County to Fairfax County. Exit 28 — New Hampshire Ave is the first exit in MOCO. Exit 41 — Clara Barton Parkway is the last exit in MOCO."
+        },
+        {
+          "label": "GEO",
+          "text": "GEO as IL495 or OL495, then TAB out and select your location from the list provided."
+        }
+      ]
+    },
+    {
+      "heading": "I-495 interchange with MacArthur Boulevard, Clara Barton Parkway and Cabin John Parkway",
+      "items": [
+        {
+          "label": "Parallel roads",
+          "text": "MacArthur Boulevard and Clara Barton Parkway run parallel to each other."
+        },
+        {
+          "label": "Clara Barton connection",
+          "text": "Clara Barton is connected to I-495 by Cabin John Parkway."
+        },
+        {
+          "label": "Cabin John connections",
+          "text": "Cabin John Parkway only connects to Clara Barton Parkway and I-495; there are no other intersections."
+        },
+        {
+          "label": "GEO Cabin John",
+          "text": "Type “CJ” in the Location Field, then TAB out and select your location (Northbound or Southbound) from the list provided."
+        },
+        {
+          "label": "GEO Clara Barton",
+          "text": "Type “CB” in the Location Field, then TAB out and select your location from the list provided."
+        }
+      ]
+    },
+    {
+      "heading": "Overpasses & Underpasses",
+      "items": [
+        {
+          "label": "Incident location",
+          "text": "This is for incidents which occur on a street which is located ON the bridge over an Interstate or under the bridge of an Interstate. The incident did not occur ON the Interstate."
+        },
+        {
+          "label": "GEO",
+          "text": "For an overpass or underpass of a street with an Interstate (I-270, I-495, I-200, or I-370), type in the street name only and TAB out. Select the location that has the street name AT highway."
+        },
+        {
+          "label": "Example",
+          "text": "New Hampshire Ave AT I495"
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "I270 (North & South) — N270: What should you know?",
+      "answer": "Goes from I-495 to Frederick County. Exit 22 — Old Hundred Rd is the last exit in MOCO."
+    },
+    {
+      "question": "I270 (North & South) — S270: What should you know?",
+      "answer": "Goes from Frederick County to I-495. Exit 22 — Old Hundred Rd is the first exit in MOCO."
+    },
+    {
+      "question": "I270 (North & South) — 270 Spur: What should you know?",
+      "answer": "Goes towards Montgomery Mall (Democracy Boulevard) and Fairfax County."
+    },
+    {
+      "question": "I270 (North & South) — 270 continues: What should you know?",
+      "answer": "Continues towards Rockville Pike (355) and Prince George’s County."
+    },
+    {
+      "question": "I270 (North & South) — GEO: What should you know?",
+      "answer": "GEO as N270 or S270, then TAB out and select your location from the list provided."
+    },
+    {
+      "question": "I370 (East & West) — E370: What should you know?",
+      "answer": "Goes from Washingtonian Boulevard (the Rio Area) to I-200 (Shady Grove Metro)."
+    },
+    {
+      "question": "I370 (East & West) — W370: What should you know?",
+      "answer": "Goes from I-200 (Shady Grove Metro) to Sam Eig Highway."
+    },
+    {
+      "question": "I370 (East & West) — GEO: What should you know?",
+      "answer": "GEO as E370 or W370, then TAB out and select your location from the list provided."
+    },
+    {
+      "question": "I200 (ICC) (East & West) — E200: What should you know?",
+      "answer": "Goes from I-370 or Shady Grove Metro to Prince George’s County."
+    },
+    {
+      "question": "I200 (ICC) (East & West) — W200: What should you know?",
+      "answer": "Goes from Prince George’s County to I-370 or Shady Grove Metro."
+    },
+    {
+      "question": "I200 (ICC) (East & West) — GEO: What should you know?",
+      "answer": "GEO as E200 or W200, then TAB out and select your location from the list provided."
+    },
+    {
+      "question": "I200 (ICC) (East & West) — Tunnel or deck over: What should you know?",
+      "answer": "If caller is in the tunnel or deck over, call will be treated as a Structure Fire."
+    },
+    {
+      "question": "I495 (East & West) — IL495: What should you know?",
+      "answer": "Goes from Fairfax County to Prince George’s County. Exit 41 — Clara Barton Parkway is the first exit in MOCO. Exit 28 — New Hampshire Ave is the last exit in MOCO."
+    },
+    {
+      "question": "I495 (East & West) — OL495: What should you know?",
+      "answer": "Goes from Prince George’s County to Fairfax County. Exit 28 — New Hampshire Ave is the first exit in MOCO. Exit 41 — Clara Barton Parkway is the last exit in MOCO."
+    },
+    {
+      "question": "I495 (East & West) — GEO: What should you know?",
+      "answer": "GEO as IL495 or OL495, then TAB out and select your location from the list provided."
+    },
+    {
+      "question": "I-495 interchange with MacArthur Boulevard, Clara Barton Parkway and Cabin John Parkway — Parallel roads: What should you know?",
+      "answer": "MacArthur Boulevard and Clara Barton Parkway run parallel to each other."
+    },
+    {
+      "question": "I-495 interchange with MacArthur Boulevard, Clara Barton Parkway and Cabin John Parkway — Clara Barton connection: What should you know?",
+      "answer": "Clara Barton is connected to I-495 by Cabin John Parkway."
+    },
+    {
+      "question": "I-495 interchange with MacArthur Boulevard, Clara Barton Parkway and Cabin John Parkway — Cabin John connections: What should you know?",
+      "answer": "Cabin John Parkway only connects to Clara Barton Parkway and I-495; there are no other intersections."
+    },
+    {
+      "question": "I-495 interchange with MacArthur Boulevard, Clara Barton Parkway and Cabin John Parkway — GEO Cabin John: What should you know?",
+      "answer": "Type “CJ” in the Location Field, then TAB out and select your location (Northbound or Southbound) from the list provided."
+    },
+    {
+      "question": "I-495 interchange with MacArthur Boulevard, Clara Barton Parkway and Cabin John Parkway — GEO Clara Barton: What should you know?",
+      "answer": "Type “CB” in the Location Field, then TAB out and select your location from the list provided."
+    },
+    {
+      "question": "Overpasses & Underpasses — Incident location: What should you know?",
+      "answer": "This is for incidents which occur on a street which is located ON the bridge over an Interstate or under the bridge of an Interstate. The incident did not occur ON the Interstate."
+    },
+    {
+      "question": "Overpasses & Underpasses — GEO: What should you know?",
+      "answer": "For an overpass or underpass of a street with an Interstate (I-270, I-495, I-200, or I-370), type in the street name only and TAB out. Select the location that has the street name AT highway."
+    },
+    {
+      "question": "Overpasses & Underpasses — Example: What should you know?",
+      "answer": "New Hampshire Ave AT I495"
+    }
+  ],
+  "quiz": []
+}

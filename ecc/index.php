@@ -15,7 +15,7 @@ $title = $missing ? 'Topic not found' : ($view === 'topic' ? $topic['title'] : [
 function eccLink(string $view, string $slug = ''): string { return './?' . http_build_query(array_filter(['view'=>$view, 'topic'=>$slug])); }
 ?>
 <!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#142e36">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#172b4d">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="description" content="ECC dispatcher study references and flashcards.">
 <title><?= eccEscape($title) ?> · ECC</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">

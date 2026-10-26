@@ -1,0 +1,115 @@
+{
+  "id": "airport-hospital-and-other-information",
+  "slug": "airport-hospital-and-other-information",
+  "title": "Airport, Hospital and Other Information",
+  "category": "Reference",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "Airports",
+      "items": [
+        {
+          "label": "Davis Airfield",
+          "text": "Laytonsville — Station 17 Laytonsville; off Pocahontas.\n7200 Hawkins Creamery Road — off Laytonsville Road."
+        },
+        {
+          "label": "Airpark",
+          "text": "Gaithersburg / Airpark Road — Station 28 Derwood.\n7940 Airpark Road — off Woodfield Road."
+        }
+      ]
+    },
+    {
+      "heading": "1-Lane Bridges",
+      "items": [
+        {
+          "label": "Glen Road / S Glen Road",
+          "text": "1-lane bridge."
+        },
+        {
+          "label": "Mac Arthur Boulevard & Cabin John Parkway",
+          "text": "Bridge goes over the CJ Pkwy. CPN: Union Arch Bridge."
+        }
+      ]
+    },
+    {
+      "heading": "Hospitals in Montgomery County",
+      "text": "Holy Cross Hospital Germantown\nGermantown Emergency Center (GEC)\nShady Grove Adventist Hospital (SGAH)\nMedstar Montgomery General Hospital\nSuburban Hospital\nHoly Cross Hospital (Silver Spring)\nWhite Oak Medical Center (WOMC)\nWalter Reed National Military Medical Center (Bethesda Navy)"
+    },
+    {
+      "heading": "Hospital Divert Status",
+      "items": [
+        {
+          "label": "YELLOW",
+          "text": "ER (Emergency Room)"
+        },
+        {
+          "label": "RED",
+          "text": "No Cardiac Monitors (ICU)"
+        },
+        {
+          "label": "TRM",
+          "text": "Trauma"
+        },
+        {
+          "label": "BLUE",
+          "text": "Mini-Disaster (problem with the infrastructure)"
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "Where is Davis Airfield, and which station is listed?",
+      "answer": "Laytonsville — Station 17 Laytonsville; off Pocahontas.\n7200 Hawkins Creamery Road — off Laytonsville Road."
+    },
+    {
+      "question": "Where is Airpark, and which station is listed?",
+      "answer": "Gaithersburg / Airpark Road — Station 28 Derwood.\n7940 Airpark Road — off Woodfield Road."
+    },
+    {
+      "question": "Which 1-lane bridges are listed?",
+      "answer": "Glen Road / S Glen Road\nMac Arthur Boulevard & Cabin John Parkway (bridge goes over the CJ Pkwy)"
+    },
+    {
+      "question": "What CPN is listed for the bridge at Mac Arthur Boulevard & Cabin John Parkway?",
+      "answer": "Union Arch Bridge"
+    },
+    {
+      "question": "Which hospitals are listed in Montgomery County?",
+      "answer": "Holy Cross Hospital Germantown\nGermantown Emergency Center (GEC)\nShady Grove Adventist Hospital (SGAH)\nMedstar Montgomery General Hospital\nSuburban Hospital\nHoly Cross Hospital (Silver Spring)\nWhite Oak Medical Center (WOMC)\nWalter Reed National Military Medical Center (Bethesda Navy)"
+    },
+    {
+      "question": "Which hospital is abbreviated GEC?",
+      "answer": "Germantown Emergency Center"
+    },
+    {
+      "question": "Which hospital is abbreviated SGAH?",
+      "answer": "Shady Grove Adventist Hospital"
+    },
+    {
+      "question": "Which hospital is abbreviated WOMC?",
+      "answer": "White Oak Medical Center"
+    },
+    {
+      "question": "Which hospital is listed as Bethesda Navy?",
+      "answer": "Walter Reed National Military Medical Center"
+    },
+    {
+      "question": "What does hospital divert status YELLOW mean?",
+      "answer": "ER (Emergency Room)"
+    },
+    {
+      "question": "What does hospital divert status RED mean?",
+      "answer": "No Cardiac Monitors (ICU)"
+    },
+    {
+      "question": "What does hospital divert status TRM mean?",
+      "answer": "Trauma"
+    },
+    {
+      "question": "What does hospital divert status BLUE mean?",
+      "answer": "Mini-Disaster (problem with the infrastructure)"
+    }
+  ],
+  "quiz": []
+}

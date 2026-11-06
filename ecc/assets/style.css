@@ -191,3 +191,24 @@ body::after {
 .study-controls > button, .map-controls > button, .card-reveal, .card-mobile-restart {
   display: inline-flex; align-items: center; justify-content: center;
 }
+
+.reference-grid.chief-complaints-reference {
+  grid-template-columns: minmax(0, 1fr);
+}
+.chief-complaints-reference > div {
+  display: grid;
+  grid-template-columns: 3ch minmax(0, 1fr);
+  align-items: start;
+  align-content: start;
+  column-gap: 12px;
+}
+.chief-complaints-reference dt {
+  width: auto;
+  font-variant-numeric: tabular-nums;
+}
+.chief-complaints-reference dd { overflow-wrap: anywhere; }
+@media (min-width: 760px) {
+  .reference-grid.chief-complaints-reference {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

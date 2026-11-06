@@ -1,0 +1,281 @@
+{
+  "id": "emd-chief-complaints",
+  "slug": "emd-chief-complaints",
+  "title": "EMD Chief Complaints",
+  "category": "Study",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "Chief Complaints",
+      "items": [
+        {
+          "label": "1",
+          "text": "Abdominal Pain / Problems"
+        },
+        {
+          "label": "2",
+          "text": "Allergies (Reactions) / Envenomations (Stings, Bites)"
+        },
+        {
+          "label": "3",
+          "text": "Animal Bites / Attacks"
+        },
+        {
+          "label": "4",
+          "text": "Assault / Sexual Assault / Stun Gun"
+        },
+        {
+          "label": "5",
+          "text": "Back Pain (Non-Traumatic or Non-Recent Trauma)"
+        },
+        {
+          "label": "6",
+          "text": "Breathing Problems"
+        },
+        {
+          "label": "7",
+          "text": "Burns (Scalds) / Explosion (Blast)"
+        },
+        {
+          "label": "8",
+          "text": "Carbon Monoxide / Inhalation / HAZMAT / CBRN"
+        },
+        {
+          "label": "9",
+          "text": "Cardiac or Respiratory Arrest / Death"
+        },
+        {
+          "label": "10",
+          "text": "Chest Pain / Chest Discomfort (Non-Traumatic)"
+        },
+        {
+          "label": "11",
+          "text": "Choking"
+        },
+        {
+          "label": "12",
+          "text": "Convulsions / Seizures"
+        },
+        {
+          "label": "13",
+          "text": "Diabetic Problems"
+        },
+        {
+          "label": "14",
+          "text": "Drowning / Near Drowning / Diving / Scuba Accident"
+        },
+        {
+          "label": "15",
+          "text": "Electrocution / Lightning"
+        },
+        {
+          "label": "16",
+          "text": "Eye Problems / Injuries"
+        },
+        {
+          "label": "17",
+          "text": "Falls"
+        },
+        {
+          "label": "18",
+          "text": "Headache"
+        },
+        {
+          "label": "19",
+          "text": "Heart Problems / A.I.C.D."
+        },
+        {
+          "label": "20",
+          "text": "Heat / Cold Exposure"
+        },
+        {
+          "label": "21",
+          "text": "Hemorrhage (Bleeding) / Lacerations"
+        },
+        {
+          "label": "22",
+          "text": "Inaccessible Incident / Other Entrapments (Non-Traffic)"
+        },
+        {
+          "label": "23",
+          "text": "Overdose / Poisoning (Ingestion)"
+        },
+        {
+          "label": "24",
+          "text": "Pregnancy / Childbirth / Miscarriage"
+        },
+        {
+          "label": "25",
+          "text": "Psychiatric / Mental Health Conditions / Suicide Attempt / Abnormal Behavior"
+        },
+        {
+          "label": "26",
+          "text": "Sick Person (Specific Diagnosis)"
+        },
+        {
+          "label": "27",
+          "text": "Stab / Gunshot / Penetrating Trauma"
+        },
+        {
+          "label": "28",
+          "text": "Stroke (CVA) / Transient Ischemic Attack (TIA)"
+        },
+        {
+          "label": "29",
+          "text": "Traffic Collision / Transportation Incidents"
+        },
+        {
+          "label": "30",
+          "text": "Traumatic Injuries (Specific)"
+        },
+        {
+          "label": "31",
+          "text": "Unconscious / Fainting (Near)"
+        },
+        {
+          "label": "32",
+          "text": "Unknown Problem (Person Down)"
+        },
+        {
+          "label": "37",
+          "text": "Interfacility Evaluation / Transfer"
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "What is EMD chief complaint 1?",
+      "answer": "Abdominal Pain / Problems"
+    },
+    {
+      "question": "What is EMD chief complaint 2?",
+      "answer": "Allergies (Reactions) / Envenomations (Stings, Bites)"
+    },
+    {
+      "question": "What is EMD chief complaint 3?",
+      "answer": "Animal Bites / Attacks"
+    },
+    {
+      "question": "What is EMD chief complaint 4?",
+      "answer": "Assault / Sexual Assault / Stun Gun"
+    },
+    {
+      "question": "What is EMD chief complaint 5?",
+      "answer": "Back Pain (Non-Traumatic or Non-Recent Trauma)"
+    },
+    {
+      "question": "What is EMD chief complaint 6?",
+      "answer": "Breathing Problems"
+    },
+    {
+      "question": "What is EMD chief complaint 7?",
+      "answer": "Burns (Scalds) / Explosion (Blast)"
+    },
+    {
+      "question": "What is EMD chief complaint 8?",
+      "answer": "Carbon Monoxide / Inhalation / HAZMAT / CBRN"
+    },
+    {
+      "question": "What is EMD chief complaint 9?",
+      "answer": "Cardiac or Respiratory Arrest / Death"
+    },
+    {
+      "question": "What is EMD chief complaint 10?",
+      "answer": "Chest Pain / Chest Discomfort (Non-Traumatic)"
+    },
+    {
+      "question": "What is EMD chief complaint 11?",
+      "answer": "Choking"
+    },
+    {
+      "question": "What is EMD chief complaint 12?",
+      "answer": "Convulsions / Seizures"
+    },
+    {
+      "question": "What is EMD chief complaint 13?",
+      "answer": "Diabetic Problems"
+    },
+    {
+      "question": "What is EMD chief complaint 14?",
+      "answer": "Drowning / Near Drowning / Diving / Scuba Accident"
+    },
+    {
+      "question": "What is EMD chief complaint 15?",
+      "answer": "Electrocution / Lightning"
+    },
+    {
+      "question": "What is EMD chief complaint 16?",
+      "answer": "Eye Problems / Injuries"
+    },
+    {
+      "question": "What is EMD chief complaint 17?",
+      "answer": "Falls"
+    },
+    {
+      "question": "What is EMD chief complaint 18?",
+      "answer": "Headache"
+    },
+    {
+      "question": "What is EMD chief complaint 19?",
+      "answer": "Heart Problems / A.I.C.D."
+    },
+    {
+      "question": "What is EMD chief complaint 20?",
+      "answer": "Heat / Cold Exposure"
+    },
+    {
+      "question": "What is EMD chief complaint 21?",
+      "answer": "Hemorrhage (Bleeding) / Lacerations"
+    },
+    {
+      "question": "What is EMD chief complaint 22?",
+      "answer": "Inaccessible Incident / Other Entrapments (Non-Traffic)"
+    },
+    {
+      "question": "What is EMD chief complaint 23?",
+      "answer": "Overdose / Poisoning (Ingestion)"
+    },
+    {
+      "question": "What is EMD chief complaint 24?",
+      "answer": "Pregnancy / Childbirth / Miscarriage"
+    },
+    {
+      "question": "What is EMD chief complaint 25?",
+      "answer": "Psychiatric / Mental Health Conditions / Suicide Attempt / Abnormal Behavior"
+    },
+    {
+      "question": "What is EMD chief complaint 26?",
+      "answer": "Sick Person (Specific Diagnosis)"
+    },
+    {
+      "question": "What is EMD chief complaint 27?",
+      "answer": "Stab / Gunshot / Penetrating Trauma"
+    },
+    {
+      "question": "What is EMD chief complaint 28?",
+      "answer": "Stroke (CVA) / Transient Ischemic Attack (TIA)"
+    },
+    {
+      "question": "What is EMD chief complaint 29?",
+      "answer": "Traffic Collision / Transportation Incidents"
+    },
+    {
+      "question": "What is EMD chief complaint 30?",
+      "answer": "Traumatic Injuries (Specific)"
+    },
+    {
+      "question": "What is EMD chief complaint 31?",
+      "answer": "Unconscious / Fainting (Near)"
+    },
+    {
+      "question": "What is EMD chief complaint 32?",
+      "answer": "Unknown Problem (Person Down)"
+    },
+    {
+      "question": "What is EMD chief complaint 37?",
+      "answer": "Interfacility Evaluation / Transfer"
+    }
+  ],
+  "quiz": []
+}

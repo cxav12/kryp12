@@ -1,0 +1,281 @@
+{
+  "id": "efd-chief-complaints",
+  "slug": "efd-chief-complaints",
+  "title": "EFD Chief Complaints",
+  "category": "Study",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "Chief Complaints",
+      "items": [
+        {
+          "label": "51",
+          "text": "Aircraft Emergency"
+        },
+        {
+          "label": "52",
+          "text": "Alarms"
+        },
+        {
+          "label": "53",
+          "text": "Service Call"
+        },
+        {
+          "label": "54",
+          "text": "Confined Space / Structure Collapse"
+        },
+        {
+          "label": "55",
+          "text": "Electrical Hazard"
+        },
+        {
+          "label": "56",
+          "text": "Elevator / Escalator Incident"
+        },
+        {
+          "label": "57",
+          "text": "Explosion"
+        },
+        {
+          "label": "58",
+          "text": "Extrication / Entrapment"
+        },
+        {
+          "label": "59",
+          "text": "Fuel Spill / Fuel Odor"
+        },
+        {
+          "label": "60",
+          "text": "Gas Leak / Gas Odor (Natural and LP Gases)"
+        },
+        {
+          "label": "61",
+          "text": "HAZMAT"
+        },
+        {
+          "label": "62",
+          "text": "High Angle Rescue"
+        },
+        {
+          "label": "63",
+          "text": "Lightning Strike (Investigation)"
+        },
+        {
+          "label": "64",
+          "text": "Marine / Boat Fire"
+        },
+        {
+          "label": "65",
+          "text": "Mutual Aid / Assist Outside Agency"
+        },
+        {
+          "label": "66",
+          "text": "Odor (Strange / Unknown)"
+        },
+        {
+          "label": "67",
+          "text": "Outside Fire"
+        },
+        {
+          "label": "68",
+          "text": "Smoke Investigation (Outside)"
+        },
+        {
+          "label": "69",
+          "text": "Structure Fire"
+        },
+        {
+          "label": "70",
+          "text": "Train and Rail Collision / Derailment"
+        },
+        {
+          "label": "71",
+          "text": "Vehicle Fire"
+        },
+        {
+          "label": "72",
+          "text": "Water / Ice / Mud Rescue"
+        },
+        {
+          "label": "73",
+          "text": "Watercraft in Distress / Collision"
+        },
+        {
+          "label": "74",
+          "text": "Suspicious Package (Letter, Item, Substance) / Explosives"
+        },
+        {
+          "label": "75",
+          "text": "Train and Rail Fire"
+        },
+        {
+          "label": "76",
+          "text": "Bomb Threat"
+        },
+        {
+          "label": "77",
+          "text": "Motor Vehicle Collision"
+        },
+        {
+          "label": "78",
+          "text": "Backcountry Rescue"
+        },
+        {
+          "label": "79",
+          "text": "Lost Person"
+        },
+        {
+          "label": "80",
+          "text": "Outside Tank Fire"
+        },
+        {
+          "label": "81",
+          "text": "Sinking Vehicle / Vehicle in Floodwater"
+        },
+        {
+          "label": "82",
+          "text": "Vegetation / Wildland / Brush / Grass Fire"
+        },
+        {
+          "label": "83",
+          "text": "Weather / Disaster Situations"
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "What is EFD chief complaint 51?",
+      "answer": "Aircraft Emergency"
+    },
+    {
+      "question": "What is EFD chief complaint 52?",
+      "answer": "Alarms"
+    },
+    {
+      "question": "What is EFD chief complaint 53?",
+      "answer": "Service Call"
+    },
+    {
+      "question": "What is EFD chief complaint 54?",
+      "answer": "Confined Space / Structure Collapse"
+    },
+    {
+      "question": "What is EFD chief complaint 55?",
+      "answer": "Electrical Hazard"
+    },
+    {
+      "question": "What is EFD chief complaint 56?",
+      "answer": "Elevator / Escalator Incident"
+    },
+    {
+      "question": "What is EFD chief complaint 57?",
+      "answer": "Explosion"
+    },
+    {
+      "question": "What is EFD chief complaint 58?",
+      "answer": "Extrication / Entrapment"
+    },
+    {
+      "question": "What is EFD chief complaint 59?",
+      "answer": "Fuel Spill / Fuel Odor"
+    },
+    {
+      "question": "What is EFD chief complaint 60?",
+      "answer": "Gas Leak / Gas Odor (Natural and LP Gases)"
+    },
+    {
+      "question": "What is EFD chief complaint 61?",
+      "answer": "HAZMAT"
+    },
+    {
+      "question": "What is EFD chief complaint 62?",
+      "answer": "High Angle Rescue"
+    },
+    {
+      "question": "What is EFD chief complaint 63?",
+      "answer": "Lightning Strike (Investigation)"
+    },
+    {
+      "question": "What is EFD chief complaint 64?",
+      "answer": "Marine / Boat Fire"
+    },
+    {
+      "question": "What is EFD chief complaint 65?",
+      "answer": "Mutual Aid / Assist Outside Agency"
+    },
+    {
+      "question": "What is EFD chief complaint 66?",
+      "answer": "Odor (Strange / Unknown)"
+    },
+    {
+      "question": "What is EFD chief complaint 67?",
+      "answer": "Outside Fire"
+    },
+    {
+      "question": "What is EFD chief complaint 68?",
+      "answer": "Smoke Investigation (Outside)"
+    },
+    {
+      "question": "What is EFD chief complaint 69?",
+      "answer": "Structure Fire"
+    },
+    {
+      "question": "What is EFD chief complaint 70?",
+      "answer": "Train and Rail Collision / Derailment"
+    },
+    {
+      "question": "What is EFD chief complaint 71?",
+      "answer": "Vehicle Fire"
+    },
+    {
+      "question": "What is EFD chief complaint 72?",
+      "answer": "Water / Ice / Mud Rescue"
+    },
+    {
+      "question": "What is EFD chief complaint 73?",
+      "answer": "Watercraft in Distress / Collision"
+    },
+    {
+      "question": "What is EFD chief complaint 74?",
+      "answer": "Suspicious Package (Letter, Item, Substance) / Explosives"
+    },
+    {
+      "question": "What is EFD chief complaint 75?",
+      "answer": "Train and Rail Fire"
+    },
+    {
+      "question": "What is EFD chief complaint 76?",
+      "answer": "Bomb Threat"
+    },
+    {
+      "question": "What is EFD chief complaint 77?",
+      "answer": "Motor Vehicle Collision"
+    },
+    {
+      "question": "What is EFD chief complaint 78?",
+      "answer": "Backcountry Rescue"
+    },
+    {
+      "question": "What is EFD chief complaint 79?",
+      "answer": "Lost Person"
+    },
+    {
+      "question": "What is EFD chief complaint 80?",
+      "answer": "Outside Tank Fire"
+    },
+    {
+      "question": "What is EFD chief complaint 81?",
+      "answer": "Sinking Vehicle / Vehicle in Floodwater"
+    },
+    {
+      "question": "What is EFD chief complaint 82?",
+      "answer": "Vegetation / Wildland / Brush / Grass Fire"
+    },
+    {
+      "question": "What is EFD chief complaint 83?",
+      "answer": "Weather / Disaster Situations"
+    }
+  ],
+  "quiz": []
+}

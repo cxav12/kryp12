@@ -1,0 +1,313 @@
+{
+  "id": "epd-chief-complaints",
+  "slug": "epd-chief-complaints",
+  "title": "EPD Chief Complaints",
+  "category": "Study",
+  "status": "general-reference",
+  "sections": [
+    {
+      "heading": "Chief Complaints",
+      "items": [
+        {
+          "label": "101",
+          "text": "Abduction (Kidnapping) / Custodial Abduction / Custody Issue / Hostage Situation"
+        },
+        {
+          "label": "102",
+          "text": "Abuse / Abandonment / Neglect"
+        },
+        {
+          "label": "103",
+          "text": "Administrative (Lost or Found Property, Found Unexploded Ordnance, Messages, Transports)"
+        },
+        {
+          "label": "104",
+          "text": "Alarms"
+        },
+        {
+          "label": "105",
+          "text": "Animal"
+        },
+        {
+          "label": "106",
+          "text": "Assault / Sexual Assault / Shooting / Stabbing"
+        },
+        {
+          "label": "107",
+          "text": "Assist Other Agencies"
+        },
+        {
+          "label": "108",
+          "text": "Bomb Found / Suspicious Package (Letter, Item) / Product Contamination"
+        },
+        {
+          "label": "109",
+          "text": "Bomb / CBRN / Product Contamination Threat"
+        },
+        {
+          "label": "110",
+          "text": "Burglary (Break-and-Enter) / Home Invasion"
+        },
+        {
+          "label": "111",
+          "text": "Damage / Vandalism / Mischief"
+        },
+        {
+          "label": "112",
+          "text": "Deceased Person"
+        },
+        {
+          "label": "113",
+          "text": "Disturbance / Nuisance"
+        },
+        {
+          "label": "114",
+          "text": "Domestic Disturbance / Violence"
+        },
+        {
+          "label": "115",
+          "text": "Driving Under the Influence (Impaired Driving)"
+        },
+        {
+          "label": "116",
+          "text": "Drugs"
+        },
+        {
+          "label": "117",
+          "text": "Explosion"
+        },
+        {
+          "label": "118",
+          "text": "Fraud / Forgery"
+        },
+        {
+          "label": "119",
+          "text": "Harassment / Stalking / Threat"
+        },
+        {
+          "label": "120",
+          "text": "Indecency / Lewdness"
+        },
+        {
+          "label": "121",
+          "text": "Mental Disorder (Behavioral Problems)"
+        },
+        {
+          "label": "122",
+          "text": "Miscellaneous"
+        },
+        {
+          "label": "123",
+          "text": "Missing / Runaway / Found Person"
+        },
+        {
+          "label": "124",
+          "text": "Officer Needs Assistance"
+        },
+        {
+          "label": "125",
+          "text": "Public Service (Lock-out / Lock-in, Peace, Welfare, Reckless Activity)"
+        },
+        {
+          "label": "126",
+          "text": "Robbery / Carjacking"
+        },
+        {
+          "label": "127",
+          "text": "Suicidal Person / Attempted Suicide"
+        },
+        {
+          "label": "128",
+          "text": "Supplemental"
+        },
+        {
+          "label": "129",
+          "text": "Suspicious / Wanted (Person, Circumstances, Vehicle)"
+        },
+        {
+          "label": "130",
+          "text": "Theft (Larceny)"
+        },
+        {
+          "label": "131",
+          "text": "Traffic Collision / Transportation Incident"
+        },
+        {
+          "label": "132",
+          "text": "Traffic Violation / Complaint / Hazard"
+        },
+        {
+          "label": "133",
+          "text": "Trespassing / Unwanted"
+        },
+        {
+          "label": "134",
+          "text": "Unknown (3rd Party)"
+        },
+        {
+          "label": "135",
+          "text": "Weapons / Firearms"
+        },
+        {
+          "label": "136",
+          "text": "Active Assailant (Shooter)"
+        },
+        {
+          "label": "C",
+          "text": "Caller In Danger"
+        }
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "question": "What is EPD chief complaint 101?",
+      "answer": "Abduction (Kidnapping) / Custodial Abduction / Custody Issue / Hostage Situation"
+    },
+    {
+      "question": "What is EPD chief complaint 102?",
+      "answer": "Abuse / Abandonment / Neglect"
+    },
+    {
+      "question": "What is EPD chief complaint 103?",
+      "answer": "Administrative (Lost or Found Property, Found Unexploded Ordnance, Messages, Transports)"
+    },
+    {
+      "question": "What is EPD chief complaint 104?",
+      "answer": "Alarms"
+    },
+    {
+      "question": "What is EPD chief complaint 105?",
+      "answer": "Animal"
+    },
+    {
+      "question": "What is EPD chief complaint 106?",
+      "answer": "Assault / Sexual Assault / Shooting / Stabbing"
+    },
+    {
+      "question": "What is EPD chief complaint 107?",
+      "answer": "Assist Other Agencies"
+    },
+    {
+      "question": "What is EPD chief complaint 108?",
+      "answer": "Bomb Found / Suspicious Package (Letter, Item) / Product Contamination"
+    },
+    {
+      "question": "What is EPD chief complaint 109?",
+      "answer": "Bomb / CBRN / Product Contamination Threat"
+    },
+    {
+      "question": "What is EPD chief complaint 110?",
+      "answer": "Burglary (Break-and-Enter) / Home Invasion"
+    },
+    {
+      "question": "What is EPD chief complaint 111?",
+      "answer": "Damage / Vandalism / Mischief"
+    },
+    {
+      "question": "What is EPD chief complaint 112?",
+      "answer": "Deceased Person"
+    },
+    {
+      "question": "What is EPD chief complaint 113?",
+      "answer": "Disturbance / Nuisance"
+    },
+    {
+      "question": "What is EPD chief complaint 114?",
+      "answer": "Domestic Disturbance / Violence"
+    },
+    {
+      "question": "What is EPD chief complaint 115?",
+      "answer": "Driving Under the Influence (Impaired Driving)"
+    },
+    {
+      "question": "What is EPD chief complaint 116?",
+      "answer": "Drugs"
+    },
+    {
+      "question": "What is EPD chief complaint 117?",
+      "answer": "Explosion"
+    },
+    {
+      "question": "What is EPD chief complaint 118?",
+      "answer": "Fraud / Forgery"
+    },
+    {
+      "question": "What is EPD chief complaint 119?",
+      "answer": "Harassment / Stalking / Threat"
+    },
+    {
+      "question": "What is EPD chief complaint 120?",
+      "answer": "Indecency / Lewdness"
+    },
+    {
+      "question": "What is EPD chief complaint 121?",
+      "answer": "Mental Disorder (Behavioral Problems)"
+    },
+    {
+      "question": "What is EPD chief complaint 122?",
+      "answer": "Miscellaneous"
+    },
+    {
+      "question": "What is EPD chief complaint 123?",
+      "answer": "Missing / Runaway / Found Person"
+    },
+    {
+      "question": "What is EPD chief complaint 124?",
+      "answer": "Officer Needs Assistance"
+    },
+    {
+      "question": "What is EPD chief complaint 125?",
+      "answer": "Public Service (Lock-out / Lock-in, Peace, Welfare, Reckless Activity)"
+    },
+    {
+      "question": "What is EPD chief complaint 126?",
+      "answer": "Robbery / Carjacking"
+    },
+    {
+      "question": "What is EPD chief complaint 127?",
+      "answer": "Suicidal Person / Attempted Suicide"
+    },
+    {
+      "question": "What is EPD chief complaint 128?",
+      "answer": "Supplemental"
+    },
+    {
+      "question": "What is EPD chief complaint 129?",
+      "answer": "Suspicious / Wanted (Person, Circumstances, Vehicle)"
+    },
+    {
+      "question": "What is EPD chief complaint 130?",
+      "answer": "Theft (Larceny)"
+    },
+    {
+      "question": "What is EPD chief complaint 131?",
+      "answer": "Traffic Collision / Transportation Incident"
+    },
+    {
+      "question": "What is EPD chief complaint 132?",
+      "answer": "Traffic Violation / Complaint / Hazard"
+    },
+    {
+      "question": "What is EPD chief complaint 133?",
+      "answer": "Trespassing / Unwanted"
+    },
+    {
+      "question": "What is EPD chief complaint 134?",
+      "answer": "Unknown (3rd Party)"
+    },
+    {
+      "question": "What is EPD chief complaint 135?",
+      "answer": "Weapons / Firearms"
+    },
+    {
+      "question": "What is EPD chief complaint 136?",
+      "answer": "Active Assailant (Shooter)"
+    },
+    {
+      "question": "What is EPD chief complaint C?",
+      "answer": "Caller In Danger"
+    }
+  ],
+  "quiz": []
+}

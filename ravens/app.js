@@ -2,6 +2,7 @@ const SEASON = 2026;
 const RAVENS_ID = "33";
 const RAVENS_ABBR = "BAL";
 const ESPN_SITE_API = "https://site.api.espn.com/apis/site/v2/sports/football/nfl";
+const ESPN_STANDINGS_API = "https://site.api.espn.com/apis/v2/sports/football/nfl/standings";
 const REFRESH_MS = 30000;
 const TEAM_COLORS = {
   ARI: "#97233F", ATL: "#A71930", BAL: "#241773", BUF: "#00338D", CAR: "#0085CA", CHI: "#0B162A", CIN: "#FB4F14", CLE: "#311D00",
@@ -77,7 +78,7 @@ async function getSchedule() {
 async function getSummary(id) { return getJson(`${ESPN_SITE_API}/summary?event=${encodeURIComponent(id)}`); }
 function standingsEntries(data) { return (data.children || data.groups || []).flatMap((conference) => (conference.children || [conference]).flatMap((division) => division.standings?.entries || [])); }
 async function getTeamRecords() {
-  const data = await getJson(`${ESPN_SITE_API}/standings?season=${SEASON}&seasontype=2`);
+  const data = await getJson(`${ESPN_STANDINGS_API}?season=${SEASON}&seasontype=2`);
   return new Map(standingsEntries(data).map((entry) => {
     const stats = entry.stats || [];
     const value = (...names) => stats.find((stat) => names.includes(stat.name) || names.includes(stat.abbreviation))?.value;
@@ -126,7 +127,7 @@ function renderSelectors() {
 function quarterScores(entry) { const scores = (entry?.linescores || []).map((item) => displayScore(item, "-")); return [0, 1, 2, 3].map((index) => scores[index] ?? "-"); }
 function broadcastNames(...games) {
   const names = games.flatMap((game) => [
-    ...(game?.broadcasts || []).flatMap((item) => item.names || []),
+    ...(game?.broadcasts || []).flatMap((item) => item.names || [item.media?.shortName || item.media?.name]),
     ...(game?.geoBroadcasts || []).map((item) => item.media?.shortName || item.media?.name),
   ]).filter(Boolean);
   return [...new Set(names)].join(" / ");
@@ -136,14 +137,13 @@ async function refreshGameContext(event) {
   if (!event || typeof RavensGameContext === "undefined") return;
   const cached = state.gameContexts.get(String(event.id));
   if (cached && Date.now() - cached.updatedAt < 10 * 60 * 1000) return;
-  const fallback = { broadcast: RavensGameContext.broadcastFor(event), conditions: "", updatedAt: Date.now() };
+  const fallback = { broadcast: RavensGameContext.broadcastFor(event), conditions: cached?.conditions || "", updatedAt: Date.now() };
   state.gameContexts.set(String(event.id), fallback);
   renderGame();
   try {
     const context = await RavensGameContext.fetchContext(event);
-    if (String(event.id) !== String(state.selectedId)) return;
     state.gameContexts.set(String(event.id), context);
-    renderGame();
+    if (String(event.id) === String(state.selectedId)) renderGame();
   } catch (_) { /* ESPN data and the curated broadcast remain visible when live weather is unavailable. */ }
 }
 function scoreTeam(entry, side = "left", recordFallback, currentRecord) {
@@ -173,7 +173,7 @@ function renderGame() {
   const gameContext = state.gameContexts.get(String(event?.id)) || {};
   const broadcast = broadcastNames(game, scheduleGame) || gameContext.broadcast || RavensGameContext?.broadcastFor(event) || "Broadcast TBD";
   const indoor = game.venue?.indoor ?? scheduleGame.venue?.indoor;
-  const weather = game.weather?.displayValue || scheduleGame.weather?.displayValue || gameContext.conditions || (indoor ? "Indoors" : "Forecast pending");
+  const weather = game.weather?.displayValue || scheduleGame.weather?.displayValue || (indoor ? "Indoors" : gameContext.conditions || (currentState === "post" ? "Unavailable" : "Forecast pending"));
   const includeFinalResult = currentState === "post" && !isPreseason(event);
   const ravensScore = Number(displayScore(ravens.score, 0)); const opponentScore = Number(displayScore(opponent.score, 0));
   const ravensRecord = recordWithFinalResult(state.teamRecords.get(ravens.team?.abbreviation) || recordText(ravens, scheduleRavens), ravensScore, opponentScore, includeFinalResult);
@@ -421,7 +421,7 @@ async function selectGame(id, { scroll = false, refresh = false } = {}) {
   if (!refresh) { state.summary = null; state.nflReceiving = null; renderSelectors(); renderGame(); els.winPanel.hidden = true; els.dashboard.hidden = true; }
   else renderSelectors();
   try {
-    state.summary = await getSummary(id); renderGame(); renderDashboard(); refreshGameContext(selectedEvent());
+    state.summary = await getSummary(id); renderGame(); renderDashboard();
     const needsYac = (state.summary?.boxscore?.players || []).some((group) => (group.statistics || []).some((category) => {
       if (!/receiving/i.test(category.name || category.type || category.text || "")) return false;
       const yacIndex = (category.labels || []).findIndex((label) => /^YAC$/i.test(label));
@@ -429,6 +429,7 @@ async function selectGame(id, { scroll = false, refresh = false } = {}) {
     }));
     if (needsYac) { try { state.nflReceiving = await getNflReceivingStats(selectedEvent()); renderPlayers(); } catch (_) { /* ESPN statistics remain available when the NFL fallback fails. */ } }
   } catch (_) { state.summary = null; renderDashboard(); els.status.textContent = "Some game details unavailable"; }
+  refreshGameContext(selectedEvent());
   if (scroll) els.game.scrollIntoView({ behavior: "smooth", block: "start" }); scheduleRefresh();
 }
 function scheduleRefresh() {

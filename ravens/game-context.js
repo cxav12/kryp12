@@ -7,6 +7,7 @@
     "2026-09-27|BAL-DAL": "CBS / Paramount+",
   };
   const VENUES = {
+    "m&t bank stadium": { latitude: 39.278, longitude: -76.623, timezone: "America/New_York" },
     "maracana stadium": { latitude: -22.9121, longitude: -43.2302, timezone: "America/Sao_Paulo" },
     "maracana": { latitude: -22.9121, longitude: -43.2302, timezone: "America/Sao_Paulo" },
   };
@@ -37,21 +38,28 @@
     return VENUES[normalize(venue.fullName)] || null;
   }
 
-  function weatherUrl(venue) {
+  function weatherUrl(venue, kickoff = null) {
     const params = new URLSearchParams({
       latitude: String(venue.latitude), longitude: String(venue.longitude),
-      current: "temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m",
-      temperature_unit: "fahrenheit", wind_speed_unit: "mph", timezone: venue.timezone,
+      temperature_unit: "fahrenheit", timezone: venue.timezone,
     });
+    const variables = "temperature_2m,apparent_temperature,weather_code";
+    if (kickoff !== null) {
+      params.set("hourly", variables);
+      params.set("timeformat", "unixtime");
+      params.set("forecast_days", "8");
+    } else {
+      params.set("current", variables);
+    }
     return `https://api.open-meteo.com/v1/forecast?${params}`;
   }
 
   function formatConditions(payload) {
     const current = payload?.current;
-    if (!current || !Number.isFinite(Number(current.temperature_2m))) return "";
+    if (current?.temperature_2m == null || !Number.isFinite(Number(current.temperature_2m))) return "";
     const temperature = Math.round(Number(current.temperature_2m));
-    const feelsLike = Math.round(Number(current.apparent_temperature));
-    const label = WEATHER_LABELS.get(Number(current.weather_code)) || "Current conditions";
+    const feelsLike = Math.round(current.apparent_temperature ?? NaN);
+    const label = WEATHER_LABELS.get(Number(current.weather_code ?? NaN)) || "Current conditions";
     const feels = Number.isFinite(feelsLike) && feelsLike !== temperature ? ` · Feels ${feelsLike}°F` : "";
     return `${temperature}°F · ${label}${feels}`;
   }
@@ -59,10 +67,29 @@
   async function fetchContext(event, fetchImpl = fetch) {
     const context = { broadcast: broadcastFor(event), conditions: "", updatedAt: Date.now() };
     const venue = venueFor(event);
-    if (!venue) return context;
-    const response = await fetchImpl(weatherUrl(venue));
+    const game = competition(event);
+    const status = game.status?.type?.state || event?.status?.type?.state;
+    if (!venue || game.venue?.indoor || status === "post") return context;
+    const start = Date.parse(event?.date);
+    const kickoff = Number.isFinite(start) && start > context.updatedAt ? start : null;
+    if (kickoff !== null && kickoff - context.updatedAt >= 7 * 86400000) return context;
+    const response = await fetchImpl(weatherUrl(venue, kickoff));
     if (!response.ok) throw new Error(`Weather request returned ${response.status}`);
-    context.conditions = formatConditions(await response.json());
+    const payload = await response.json();
+    if (kickoff === null) {
+      context.conditions = formatConditions(payload);
+    } else {
+      const hourly = payload.hourly;
+      const nearestHour = Math.round(kickoff / 3600000) * 3600;
+      const index = hourly?.time?.indexOf(nearestHour) ?? -1;
+      if (index >= 0) {
+        context.conditions = formatConditions({ current: {
+          temperature_2m: hourly.temperature_2m?.[index],
+          apparent_temperature: hourly.apparent_temperature?.[index],
+          weather_code: hourly.weather_code?.[index],
+        } });
+      }
+    }
     return context;
   }
 

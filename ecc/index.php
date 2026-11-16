@@ -12,6 +12,21 @@ $topic = $topics[$slug] ?? null;
 $missing = !in_array($view, ['library', 'topic', 'cards', 'quiz'], true) || ($view === 'topic' && !$topic) || ($slug !== '' && !$topic);
 if ($missing) http_response_code(404);
 $title = $missing ? 'Topic not found' : ($view === 'topic' ? $topic['title'] : ['library'=>'Reference library','cards'=>'Flashcards','quiz'=>'Practice quiz'][$view]);
+function eccCondensedExit(array $item): array {
+    $label = preg_replace('/^Exit (?=\d)/', '', $item['label']);
+    if ($label === 'Weigh Station') return ['weigh station', null];
+
+    $destination = $item['text'];
+    if (preg_match('/^RT\s+(\d+[A-Z]?)\b/i', $destination, $route)) {
+        $destination = $route[1];
+    } elseif (preg_match('/^((?:I|N|S|E|W)\d+(?: (?:North and South|East|West|North|South|Spur))?)\b/i', $destination, $route)) {
+        $destination = $route[1];
+    } elseif (preg_match('/\bto ((?:NB|SB|EB|WB) \d+[A-Z]?)$/i', $destination, $route)) {
+        $destination = $route[1];
+    }
+    return [$label, $destination];
+}
+
 function eccLink(string $view, string $slug = ''): string { return './?' . http_build_query(array_filter(['view'=>$view, 'topic'=>$slug])); }
 ?>
 <!doctype html><html lang="en"><head>
@@ -49,6 +64,7 @@ $match = $query === '' || stripos($searchText, $query) !== false; if ($match) $s
 <?php
 $stationGrouping = $slug === 'fire-stations' && ($_GET['group'] ?? '') === 'battalion';
 $stationCompact = $slug === 'fire-stations' && ($_GET['compact'] ?? '1') !== '0';
+$highwayCompact = $slug === 'highway-exits' && ($_GET['compact'] ?? '') === '1';
 $referenceSections = $topic['sections'];
 if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battalion'], $b['battalion']) ?: strnatcasecmp($a['heading'], $b['heading']));
 ?>
@@ -68,6 +84,9 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 <button class="button" id="alphabet-read" type="button" hidden>Play alphabet</button>
 <?php endif; ?>
 <a class="button" href="<?= eccLink('cards', $slug) ?>">Flashcards · <?= count($topic['flashcards']) ?></a>
+<?php if ($slug === 'highway-exits'): ?>
+<a class="button" href="<?= eccLink('topic', $slug) ?><?= $highwayCompact ? '' : '&amp;compact=1' ?>"><?= $highwayCompact ? 'Full version' : 'Condensed version' ?></a>
+<?php endif; ?>
 <?php if (in_array($slug, ['phonetic-alphabet', 'phonetic-alphabet-police'], true)): ?>
 <span id="alphabet-audio-status" role="status"></span>
 <noscript>Enable JavaScript to play the alphabet.</noscript>
@@ -75,7 +94,13 @@ if ($stationGrouping) usort($referenceSections, fn($a, $b) => strcmp($a['battali
 </div>
 <div class="topic-layout"><article>
 <?php $previousBattalion = null; foreach ($referenceSections as $s): ?>
-<?php if ($stationGrouping && $previousBattalion !== $s['battalion']): $previousBattalion = $s['battalion']; ?><h2 class="battalion-heading"><?= eccEscape($previousBattalion) ?></h2><?php endif; ?><section class="panel reference-section"><h2><?= eccEscape($s['heading']) ?></h2><?php if (isset($s['text'])): ?><p<?= $slug === 'fire-stations' ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><?= nl2br(eccEscape($s['text'])) ?></p><?php endif; ?><?php if (isset($s['items'])): ?><dl class="reference-grid<?= in_array($slug, ['emd-chief-complaints', 'efd-chief-complaints', 'epd-chief-complaints'], true) ? ' chief-complaints-reference' : '' ?><?= in_array($slug, ['highway-exits', 'highway-additional-information', 'airport-hospital-and-other-information', 'car-numbering'], true) ? ' highway-exits-reference' : '' ?><?= $slug === 'fire-stations' ? ' station-reference' : (in_array($slug, ['fire-apparatuses', 'cymbals', '911-ecc-abbreviations'], true) ? ' definition-reference' . ($slug === '911-ecc-abbreviations' ? ' ecc-abbreviations-reference' : '') : '') ?>"><?php foreach ($s['items'] as $item): ?><div<?= $slug === 'fire-stations' && strcasecmp(trim($item['label']), 'Community') !== 0 ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><dt><?= eccEscape($item['label']) ?></dt><dd><?= eccEscape($item['text']) ?></dd></div><?php endforeach; ?></dl><?php endif; ?></section><?php endforeach; ?>
+<?php if ($stationGrouping && $previousBattalion !== $s['battalion']): $previousBattalion = $s['battalion']; ?><h2 class="battalion-heading"><?= eccEscape($previousBattalion) ?></h2><?php endif; ?><section class="panel reference-section"><h2><?= eccEscape($s['heading']) ?></h2><?php if (isset($s['text'])): ?><p<?= $slug === 'fire-stations' ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><?= nl2br(eccEscape($s['text'])) ?></p><?php endif; ?><?php if ($highwayCompact && !empty($s['items'])): ?>
+<ul class="condensed-exits" role="list">
+<?php foreach ($s['items'] as $item): [$label, $destination] = eccCondensedExit($item); ?>
+<li><strong><?= eccEscape($label) ?></strong><?php if ($destination !== null): ?> - <?= eccEscape($destination) ?><?php endif; ?></li>
+<?php endforeach; ?>
+</ul>
+<?php elseif (isset($s['items'])): ?><dl class="reference-grid<?= in_array($slug, ['emd-chief-complaints', 'efd-chief-complaints', 'epd-chief-complaints'], true) ? ' chief-complaints-reference' : '' ?><?= in_array($slug, ['highway-exits', 'highway-additional-information', 'airport-hospital-and-other-information', 'car-numbering'], true) ? ' highway-exits-reference' : '' ?><?= $slug === 'fire-stations' ? ' station-reference' : (in_array($slug, ['fire-apparatuses', 'cymbals', '911-ecc-abbreviations'], true) ? ' definition-reference' . ($slug === '911-ecc-abbreviations' ? ' ecc-abbreviations-reference' : '') : '') ?>"><?php foreach ($s['items'] as $item): ?><div<?= $slug === 'fire-stations' && strcasecmp(trim($item['label']), 'Community') !== 0 ? ' data-station-detail' . ($stationCompact ? ' hidden' : '') : '' ?>><dt><?= eccEscape($item['label']) ?></dt><dd><?= eccEscape($item['text']) ?></dd></div><?php endforeach; ?></dl><?php endif; ?></section><?php endforeach; ?>
 </article>
 </div>
 <?php else: ?>

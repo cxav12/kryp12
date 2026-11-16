@@ -131,6 +131,9 @@ main.topic-page > .back-link { display: flex; }
 }
 
 /* Highway exit numbers and direction notes stay readable on phones. */
+.condensed-exits { list-style: none; margin: 0; padding: 0; }
+.condensed-exits li + li { margin-top: 4px; }
+.condensed-exits strong { font-weight: 850; color: var(--accent); }
 .highway-exits-reference { grid-template-columns: 1fr; }
 .highway-exits-reference > div { align-items: flex-start; flex-direction: column; gap: 4px; }
 .highway-exits-reference dt { width: auto; font-size: .85rem; }

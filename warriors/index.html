@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d17">
+  <meta name="description" content="Golden State Warriors scores, schedule, roster, stats, and NBA standings.">
+  <title>Golden State Warriors</title>
+  <link rel="preconnect" href="https://site.api.espn.com">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="site-shell">
+    <header class="team-header">
+      <a class="brand" href="#home" aria-label="Golden State Warriors home">
+        <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" width="84" height="84" alt="">
+        <h1>Golden State Warriors</h1>
+      </a>
+    </header>
+    <nav class="site-nav" aria-label="Warriors sections">
+      <a href="#home">Home</a>
+      <a href="#roster">Roster</a>
+      <a href="#stats">Stats</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#team">Team Overview</a>
+      <a href="#league">Around the League</a>
+    </nav>
+    <section aria-labelledby="page-title">
+      <header class="page-intro">
+        <h2 id="page-title">Game Center</h2>
+        <span id="season"></span>
+      </header>
+      <div id="content" aria-busy="true"><p class="panel" role="status">Loading Warriors data…</p></div>
+      <noscript><p class="panel">Enable JavaScript to load NBA data.</p></noscript>
+    </section>
+  </main>
+</body>
+</html>

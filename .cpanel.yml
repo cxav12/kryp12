@@ -13,6 +13,7 @@ deployment:
     - /bin/cp -Rf diablo $DEPLOYPATH
     - /bin/cp -Rf palworld $DEPLOYPATH
     - /bin/cp -Rf ravens $DEPLOYPATH
+    - /bin/cp -Rf warriors $DEPLOYPATH
     - /bin/cp -Rf yankees $DEPLOYPATH
     - /bin/cp -Rf wishlist $DEPLOYPATH
     - /bin/cp -Rf login $DEPLOYPATH

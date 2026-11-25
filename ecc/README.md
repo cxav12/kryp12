@@ -76,3 +76,13 @@ git push namecheap main
 `.cpanel.yml` includes ECC in the existing deployment copy list. No separate manual deployment is assumed. Do not force-push. A database is not needed for ECC even though other repository sites use one. The hub entry is hidden by default and can be enabled only through Admin → Site Visibility; direct URL access remains available.
 
 A future editor could write this schema, but must have protected access, validation and backups. Live edits require a defined Git synchronization process before deployment to avoid overwriting server changes. No editor or authentication is implemented now.
+
+## Install and use offline
+
+ECC now includes `manifest.json`, phone icons, and an ECC-scoped `service-worker.js` registered by `index.php` through `assets/pwa.js`. There is no ECC `index.html`; PHP continues to render the site.
+
+After deployment over HTTPS, open `/ecc/` while online and leave it open long enough for the initial download to finish. On iPhone, use Safari → Share → Add to Home Screen. On Android, use the browser's Install app / Add to Home screen option. Open the saved app once online before testing airplane mode.
+
+The worker downloads all published references, flashcards, station grouping/detail combinations, the condensed highway view, and local assets using `offline-resources.php`. A failed initial download does not install a partial version. Cached pages remain available offline even if they were never individually opened. Alphabet speech depends on voices available on the phone; download a local voice for offline speech.
+
+The app serves a consistent cached snapshot. A content hash in the registration URL changes when PHP, JSON, or assets change, triggering a fresh download on the next online visit. Close all ECC tabs and the installed app, then reopen to activate a waiting update. Only ECC-prefixed caches are removed, leaving other sites alone. Browser storage clearing or eviction requires another online download. An unknown uncached URL still requires the network.

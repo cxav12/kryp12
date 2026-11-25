@@ -2,6 +2,9 @@
 header('X-Robots-Tag: noindex, nofollow, noarchive', true);
 require __DIR__ . '/app/content.php';
 $topics = eccLoadTopics();
+// Content hashes refresh the entire offline snapshot after any deployed app change.
+$offlineFiles = array_merge([__FILE__, __DIR__.'/manifest.json', __DIR__.'/service-worker.js', __DIR__.'/offline-resources.php'], glob(__DIR__.'/assets/*'), glob(__DIR__.'/content/*.json'), glob(__DIR__.'/app/*.php'));
+$offlineVersion = hash('sha256', implode('', array_map('hash_file', array_fill(0, count($offlineFiles), 'sha256'), $offlineFiles)));
 $view = is_string($_GET['view'] ?? null) ? $_GET['view'] : 'library';
 // Keep existing Home bookmarks pointed at the consolidated library.
 if ($view === 'home') $view = 'library';
@@ -33,6 +36,11 @@ function eccLink(string $view, string $slug = ''): string { return './?' . http_
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#172b4d">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="description" content="ECC dispatcher study references and flashcards.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ECC">
+<script src="assets/pwa.js" data-version="<?= $offlineVersion ?>" defer></script>
 <title><?= eccEscape($title) ?> · ECC</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css?v=<?= filemtime(__DIR__.'/assets/style.css') ?>">
 <?php if ($view === 'topic' && !$missing && in_array($slug, ['phonetic-alphabet', 'phonetic-alphabet-police'], true)): ?>

@@ -51,16 +51,52 @@ async function schedule() {
 function gameScore(event) {
   return phase(event) === "pre" ? status(event) : entries(event).map(entry => `${entry.team?.abbreviation} ${score(entry.score)}`).join(" – ");
 }
-function gameCard(event, detail) {
+function teamRecord(entry) {
+  const records = entry?.records || entry?.record || [];
+  const items = Array.isArray(records) ? records : records.items || [];
+  return (items.find(item => item.type === "total" || item.type === "overall" || item.name === "overall") || items[0])?.summary;
+}
+function teamColor(team, fallback) {
+  return /^[a-f0-9]{6}$/i.test(team?.color || "") ? `#${team.color}` : fallback;
+}
+function probabilityCard(event, detail, teams) {
+  const isHome = teams[0].homeAway === "home";
+  const validNumber = value => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
+  let percent;
+  let label;
+  if (phase(event) !== "pre") {
+    const latest = (detail?.winprobability || []).filter(point => validNumber(point.homeWinPercentage) && Number(point.homeWinPercentage) >= 0 && Number(point.homeWinPercentage) <= 1).at(-1);
+    if (latest && ["home", "away"].includes(teams[0].homeAway)) {
+      percent = (isHome ? Number(latest.homeWinPercentage) : 1 - Number(latest.homeWinPercentage)) * 100;
+      label = "Play-by-play win probability";
+    }
+  } else {
+    const projection = detail?.predictor?.[isHome ? "homeTeam" : "awayTeam"];
+    if (projection && validNumber(projection.gameProjection) && ["home", "away"].includes(teams[0].homeAway)) {
+      percent = Number(projection.gameProjection);
+      label = "ESPN pregame prediction";
+    }
+  }
+  if (!Number.isFinite(percent) || percent < 0 || percent > 100) {
+    return panel("Warriors win probability", '<p class="muted">Win probability is not available for this game yet.</p>');
+  }
+  return `<section class="panel win-panel"><div class="probability-heading"><div><h3>Warriors win probability</h3><p class="muted">${label}</p></div><strong>${percent.toFixed(1)}%</strong></div><div class="probability-labels"><span>${html(teams[0].team?.abbreviation)} ${percent.toFixed(1)}%</span><span>${html(teams[1].team?.abbreviation)} ${(100 - percent).toFixed(1)}%</span></div><div class="probability-track" role="img" aria-label="Warriors ${percent.toFixed(1)} percent; ${html(teams[1].team?.displayName)} ${(100 - percent).toFixed(1)} percent"><span style="width:${percent}%"></span></div></section>`;
+}
+function gameCard(event, detail, profiles = []) {
   const competition = game(event);
-  const venue = detail?.gameInfo?.venue?.fullName || competition.venue?.fullName;
-  const broadcast = (competition.broadcasts || []).flatMap(item => item.names || [item.media?.shortName]).filter(Boolean);
-  const teams = [warriors(event), opponent(event)];
-  const headline = `<div class="scoreboard panel">${teams.map((entry, i) => `${i ? `<div class="game-status">${html(status(event))}</div>` : ""}<div class="score-team"><img src="https://a.espncdn.com/i/teamlogos/nba/500/${encodeURIComponent(entry?.team?.abbreviation?.toLowerCase() || "nba")}.png" alt=""><strong>${html(entry?.team?.displayName)}</strong><b>${html(phase(event) === "pre" ? "—" : score(entry?.score))}</b></div>`).join("")}<p class="score-details">${[dateText(event), venue, ...new Set(broadcast)].filter(Boolean).map(html).join(" · ")}</p></div>`;
-  const gameTeams = detail?.header?.competitions?.[0]?.competitors || [];
-  const periods = Math.max(0, ...gameTeams.map(entry => entry.linescores?.length || 0));
-  const lines = periods ? panel("Quarter Scores", table("Quarter scores", ["Team", ...Array.from({ length: periods }, (_, i) => i < 4 ? `Q${i + 1}` : `OT${i - 3}`), "Total"], gameTeams.map(entry => row([entry.team?.abbreviation, ...Array.from({ length: periods }, (_, i) => score(entry.linescores?.[i])), score(entry.score)].map(html), entry.team?.abbreviation === "GS")))) : "";
-  return headline + lines;
+  const detailed = detail?.header?.competitions?.[0];
+  const teams = [warriors(event), opponent(event)].map((entry, index) => {
+    const match = detailed?.competitors?.find(item => String(item.team?.id) === String(entry.team?.id));
+    return { ...entry, ...match, team: { ...profiles[index], ...entry.team, ...match?.team }, recordText: teamRecord(match) || teamRecord(entry) || teamRecord(profiles[index]) || "Record unavailable" };
+  });
+  const venue = detail?.gameInfo?.venue || competition.venue;
+  const broadcasts = [...(detailed?.broadcasts || []), ...(competition.broadcasts || [])];
+  const channels = [...new Set(broadcasts.flatMap(item => item.names || [item.media?.shortName]).filter(Boolean))];
+  const location = [venue?.address?.city, venue?.address?.state].filter(Boolean).join(", ");
+  const info = [["Tipoff", `${dateText(event)}, ${tipoff.format(new Date(event.date))}`], ["Watch", channels.join(", ") || "Broadcast to be announced"], ["Venue", venue?.fullName || "Venue to be announced"], ...(location ? [["Location", location]] : [])];
+  const renderTeam = (entry, index) => `<div class="score-team score-team--${index ? "right" : "left"}"><div class="team-identity"><strong>${html(entry.team?.displayName)}</strong><span class="team-record">${html(entry.recordText)}</span><span class="team-location">${entry.homeAway === "home" ? "Home" : entry.homeAway === "away" ? "Away" : ""}</span></div><img src="https://a.espncdn.com/i/teamlogos/nba/500/${encodeURIComponent(entry.team?.abbreviation?.toLowerCase() || "nba")}.png" alt=""><b>${html(phase(event) === "pre" ? "—" : score(entry.score))}</b></div>`;
+  const headline = `<section class="matchup-panel panel" aria-label="Warriors matchup" style="--opponent-color:${teamColor(teams[1].team, '#49566f')}"><div class="scoreboard">${renderTeam(teams[0], 0)}<div class="game-status"><strong>${html(status(event))}</strong><span>${html(dateText(event))}</span></div>${renderTeam(teams[1], 1)}</div><div class="game-info-bar">${info.map(([label, value]) => `<span><b>${label}:</b> ${html(value)}</span>`).join("")}</div>${table("Quarter scores", ["Team", "Q1", "Q2", "Q3", "Q4", ...Array.from({ length: Math.max(0, ...teams.map(entry => (entry.linescores?.length || 0) - 4)) }, (_, i) => `OT${i + 1}`), "Total"], teams.map(entry => row([entry.team?.abbreviation, ...Array.from({ length: Math.max(4, ...teams.map(item => item.linescores?.length || 0)) }, (_, i) => score(entry.linescores?.[i])), phase(event) === "pre" ? "—" : score(entry.score)].map(html), entry.team?.abbreviation === "GS")))}</section>`;
+  return headline + probabilityCard(event, detail, teams);
 }
 
 async function home() {
@@ -72,9 +108,13 @@ async function home() {
   if (!selected) return '<p class="panel">No Warriors games available.</p>';
   const picks = [...new Set([...recent, ...(live ? [live] : []), ...upcoming.slice(0, 3), selected])];
   const picker = `<div class="game-picker" aria-label="Select a Warriors game">${picks.map(event => `<button type="button" data-game="${html(event.id)}" aria-pressed="${event === selected}"><small>${html(dateText(event))}</small><strong>${html(matchup(event))}</strong><span>${html(gameScore(event))}</span></button>`).join("")}</div>`;
-  const detail = phase(selected) === "pre" ? null :
-    await load(`${espn}/summary?event=${encodeURIComponent(selected.id)}`).catch(() => null);
-  return picker + gameCard(selected, detail);
+  const detail = await load(`${espn}/summary?event=${encodeURIComponent(selected.id)}`).catch(() => null);
+  const profiles = await Promise.all([warriors(selected), opponent(selected)].map(async entry => {
+    const detailed = detail?.header?.competitions?.[0]?.competitors?.find(item => String(item.team?.id) === String(entry.team?.id));
+    if (teamRecord(detailed) || teamRecord(entry) || !entry.team?.id) return null;
+    return (await load(`${espn}/teams/${encodeURIComponent(entry.team.id)}`).catch(() => null))?.team;
+  }));
+  return picker + gameCard(selected, detail, profiles);
 }
 async function renderSchedule() {
   const events = await schedule();
